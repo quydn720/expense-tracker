@@ -1,5 +1,6 @@
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/pages/splash_page/splash_page.dart';
+import 'package:expense_tracker/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFFCFCFC),
         primaryColor: kPrimaryColor,
       ),
-      home: SplashPage(),
+      initialRoute: SplashPage.routeName,
+      routes: routes,
     );
   }
 }
