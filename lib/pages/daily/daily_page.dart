@@ -1,3 +1,5 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../components/extended_app_bar_page.dart';
 import 'components/body.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,7 @@ class DailyPage extends StatelessWidget {
       child: ExtendedAppBarPage(
         body: Body(),
         title: 'Daily transactions',
+        icon: FontAwesomeIcons.search,
       ),
     );
   }

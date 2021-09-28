@@ -1,3 +1,5 @@
+import 'package:expense_tracker/constants.dart';
+import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -7,27 +9,33 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(kDefaultPadding),
       child: Column(
         children: [
-          const SizedBox(height: 10.0),
+          SizedBox(height: SizeConfig.screenHeight * 0.025),
           Expanded(
             child: ListView.separated(
               separatorBuilder: (_, index) => Divider(
                 thickness: 2.0,
-                indent: 75.0,
-                endIndent: 25.0,
+                indent: SizeConfig.screenWidth * 0.2,
+                endIndent: SizeConfig.screenWidth * 0.05,
               ),
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: CircleAvatar(
-                      child: FaIcon(FontAwesomeIcons.accessibleIcon)),
+                    child: FaIcon(FontAwesomeIcons.accessibleIcon),
+                  ),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Hello this is a long text',
+                      Expanded(
+                        child: Text(
+                          'Hello this is a long text aaaaaaaa',
+                          maxLines: 1,
+                          softWrap: true,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                       Text('\$300.4'),
                     ],
@@ -37,7 +45,6 @@ class Body extends StatelessWidget {
               },
             ),
           ),
-          const SizedBox(height: 10.0),
         ],
       ),
     );
