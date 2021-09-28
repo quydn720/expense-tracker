@@ -2,8 +2,6 @@ import '../../../components/default_button.dart';
 import '../../home_pages/home_pages.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-
 class CustomCard extends StatelessWidget {
   const CustomCard({
     required this.title,
