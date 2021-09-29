@@ -1,4 +1,7 @@
-import 'package:expense_tracker/constants.dart';
+import '../../../size_config.dart';
+import '../../../utils/date_formatter.dart';
+
+import '../../../constants.dart';
 import 'package:flutter/material.dart';
 
 class DayIndicator extends StatelessWidget {
@@ -19,10 +22,16 @@ class DayIndicator extends StatelessWidget {
               .subtitle2!
               .copyWith(color: Colors.grey),
         ),
-        SizedBox(height: 4.0),
+        SizedBox(height: SizeConfig.defaultSize),
         CircleAvatar(
-          child: Text('$day'),
-          backgroundColor: kGreyishColor,
+          child: Text('$day',
+              style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                    color: day == DateFormatter.today.day
+                        ? Colors.white
+                        : Colors.black,
+                  )),
+          backgroundColor:
+              day == DateFormatter.today.day ? kPrimaryColor : kGreyishColor,
         ),
       ],
     );
