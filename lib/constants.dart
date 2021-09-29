@@ -8,3 +8,5 @@ const Color kGreyishColor = Color(0xFFF6F6F7);
 const int kAnimationDuration = 100;
 
 const double kRadius = 20.0;
+const double kDefaultPadding = 10.0;
+const double kHeaderPadding = 15.0;

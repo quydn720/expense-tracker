@@ -1,11 +1,10 @@
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/pages/budget/budget_page.dart';
-import 'package:expense_tracker/pages/daily/daily_page.dart';
-import 'package:expense_tracker/pages/home_pages/components/body.dart';
-import 'package:expense_tracker/pages/home_pages/components/bottom_nav_item_icon.dart';
-import 'package:expense_tracker/pages/profile/profile_page.dart';
-import 'package:expense_tracker/pages/stats/stats_page.dart';
-import 'package:expense_tracker/size_config.dart';
+import '../../constants.dart';
+import '../budget/budget_page.dart';
+import '../daily/daily_page.dart';
+import 'components/bottom_nav_item_icon.dart';
+import '../profile/profile_page.dart';
+import '../stats/stats_page.dart';
+import '../../size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -45,9 +44,9 @@ class _HomePageState extends State<HomePage> {
       onTap: (value) => setState(() {
         currentIndex = value;
       }),
-      iconSize: 20.0,
-      selectedItemColor: kPrimaryColor,
-      selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+      iconSize: 16.0,
+      selectedIconTheme: IconThemeData(color: kPrimaryColor),
+      selectedItemColor: Colors.black,
       type: BottomNavigationBarType.fixed,
       items: [
         BottomNavigationBarItem(

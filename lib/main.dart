@@ -1,11 +1,9 @@
-import 'package:expense_tracker/pages/daily/daily_page.dart';
-import 'package:expense_tracker/pages/home_pages/home_pages.dart';
-import 'package:expense_tracker/pages/login_pages/login_page.dart';
+import 'package:expense_tracker/pages/splash_page/splash_page.dart';
+import 'package:flutter/material.dart';
 
 import 'constants.dart';
-import 'pages/splash_page/splash_page.dart';
+import 'pages/home_pages/home_pages.dart';
 import 'routes.dart';
-import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,23 +17,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: kWhiteBackgroundColor,
         primaryColor: kPrimaryColor,
-        appBarTheme: appBarTheme,
         textTheme: textTheme,
+        appBarTheme: appBarTheme,
       ),
-      initialRoute: HomePage.routeName,
+      initialRoute: SplashPage.routeName,
       routes: routes,
     );
   }
 }
 
-const appBarTheme = AppBarTheme(
+final appBarTheme = AppBarTheme(
   backgroundColor: Colors.white,
-  toolbarHeight: 140.0,
-  shape: const RoundedRectangleBorder(
-    borderRadius: const BorderRadius.all(
-      Radius.circular(kRadius),
-    ),
-  ),
+  titleTextStyle: textTheme.headline1,
 );
 
 const textTheme = TextTheme(

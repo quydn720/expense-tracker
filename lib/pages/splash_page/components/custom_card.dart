@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../../../components/default_button.dart';
 import '../../home_pages/home_pages.dart';
-import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({
@@ -41,7 +42,7 @@ class CustomCard extends StatelessWidget {
               child: DefaultButton(
                 title: 'I\'m interested',
                 onPressed: () {
-                  Navigator.pushNamed(context, HomePage.routeName);
+                  Navigator.popAndPushNamed(context, HomePage.routeName);
                 },
               ),
             ),

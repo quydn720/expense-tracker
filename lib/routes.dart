@@ -1,5 +1,5 @@
-import 'package:expense_tracker/pages/daily/daily_page.dart';
-import 'package:expense_tracker/pages/login_pages/login_page.dart';
+import 'pages/daily/daily_page.dart';
+import 'pages/login_pages/login_page.dart';
 
 import 'pages/home_pages/home_pages.dart';
 
