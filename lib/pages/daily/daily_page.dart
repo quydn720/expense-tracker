@@ -12,7 +12,7 @@ class DailyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ExtendedAppBarPage(
-        body: Body(),
+        body: Body(), // TODO: body take the index of app bar
         title: 'Daily transactions',
         icon: FontAwesomeIcons.search,
       ),

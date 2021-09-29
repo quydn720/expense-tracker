@@ -1,7 +1,8 @@
+import 'package:expense_tracker/pages/home_pages/components/custom_bottom_nav_item.dart';
+
 import '../../constants.dart';
 import '../budget/budget_page.dart';
 import '../daily/daily_page.dart';
-import 'components/bottom_nav_item_icon.dart';
 import '../profile/profile_page.dart';
 import '../stats/stats_page.dart';
 import '../../size_config.dart';
@@ -30,42 +31,81 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return SafeArea(
-      child: Scaffold(
-        body: _widgetOptions.elementAt(currentIndex),
-        bottomNavigationBar: buildBottomNav(),
+    return Scaffold(
+      body: _widgetOptions.elementAt(currentIndex),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+        backgroundColor: kPrimaryColor,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: _buildBottomNav(),
     );
   }
 
-  BottomNavigationBar buildBottomNav() {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: (value) => setState(() {
-        currentIndex = value;
-      }),
-      iconSize: 16.0,
-      selectedIconTheme: IconThemeData(color: kPrimaryColor),
-      selectedItemColor: Colors.black,
-      type: BottomNavigationBarType.fixed,
-      items: [
-        BottomNavigationBarItem(
-          icon: BottomNavItemIcon(icon: FontAwesomeIcons.calendarAlt),
-          label: 'Daily',
+  BottomAppBar _buildBottomNav() {
+    return BottomAppBar(
+      shape: CircularNotchedRectangle(),
+      notchMargin: 10.0,
+      child: Container(
+        height: SizeConfig.screenHeight * 0.075,
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomBottomNavItem(
+              icon: FontAwesomeIcons.calendarAlt,
+              title: Text(
+                'Daily',
+                style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                    color: currentIndex == 0 ? Colors.black : Colors.grey),
+              ),
+              onTap: () => setState(() {
+                currentIndex = 0;
+              }),
+              color: currentIndex == 0 ? kPrimaryColor : Colors.grey,
+            ),
+            CustomBottomNavItem(
+              icon: FontAwesomeIcons.chartBar,
+              title: Text(
+                'Stats',
+                style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                    color: currentIndex == 1 ? Colors.black : Colors.grey),
+              ),
+              onTap: () => setState(() {
+                currentIndex = 1;
+              }),
+              color: currentIndex == 1 ? kPrimaryColor : Colors.grey,
+            ),
+            SizedBox(width: SizeConfig.screenWidth * 0.1),
+            CustomBottomNavItem(
+              icon: FontAwesomeIcons.wallet,
+              title: Text(
+                'Budget',
+                style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                    color: currentIndex == 2 ? Colors.black : Colors.grey),
+              ),
+              onTap: () => setState(() {
+                currentIndex = 2;
+              }),
+              color: currentIndex == 2 ? kPrimaryColor : Colors.grey,
+            ),
+            CustomBottomNavItem(
+              icon: FontAwesomeIcons.user,
+              title: Text(
+                'User',
+                style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                    color: currentIndex == 3 ? Colors.black : Colors.grey),
+              ),
+              onTap: () => setState(() {
+                currentIndex = 3;
+              }),
+              color: currentIndex == 3 ? kPrimaryColor : Colors.grey,
+            ),
+          ],
         ),
-        BottomNavigationBarItem(
-          icon: BottomNavItemIcon(icon: FontAwesomeIcons.chartBar),
-          label: 'Stats',
-        ),
-        BottomNavigationBarItem(
-          icon: BottomNavItemIcon(icon: FontAwesomeIcons.wallet),
-          label: 'Budget',
-        ),
-        BottomNavigationBarItem(
-          icon: BottomNavItemIcon(icon: FontAwesomeIcons.user),
-          label: 'User',
-        ),
-      ],
+      ),
     );
   }
 }
