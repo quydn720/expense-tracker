@@ -1,8 +1,8 @@
-import '../../../size_config.dart';
-import '../../../utils/date_formatter.dart';
+import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
-import 'package:flutter/material.dart';
+import '../../../size_config.dart';
+import '../../../utils/date_formatter.dart';
 
 class DayIndicator extends StatelessWidget {
   const DayIndicator({

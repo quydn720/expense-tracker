@@ -1,11 +1,15 @@
-import 'package:expense_tracker/pages/splash_page/splash_page.dart';
+import 'pages/splash/splash_page.dart';
+
+import 'pages/onboarding/onboarding_page.dart';
+
+import 'utils/date_formatter.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
-import 'pages/home_pages/home_pages.dart';
 import 'routes.dart';
 
 void main() {
+  DateFormatter.init();
   runApp(MyApp());
 }
 
@@ -36,6 +40,7 @@ const textTheme = TextTheme(
     fontFamily: 'GTWalsheimPro',
     fontSize: 25.0,
     fontWeight: FontWeight.bold,
+    color: Colors.black,
   ),
   bodyText2: TextStyle(
     fontFamily: 'GTWalsheimPro',

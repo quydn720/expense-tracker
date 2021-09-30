@@ -1,4 +1,6 @@
-import 'package:expense_tracker/pages/home_pages/components/custom_bottom_nav_item.dart';
+import '../daily/components/day_indicator.dart';
+import 'components/custom_bottom_nav_item.dart';
+import '../../utils/date_formatter.dart';
 
 import '../../constants.dart';
 import '../budget/budget_page.dart';
@@ -20,18 +22,26 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
-
-  List<Widget> _widgetOptions = <Widget>[
+  List _widgetOptions = [
     DailyPage(),
     StatsPage(),
     BudgetPage(),
     ProfilePage(),
   ];
+  List pageTitleData = [
+    ['Daily Transaction', FontAwesomeIcons.search],
+    ['Statistic', FontAwesomeIcons.search],
+    ['Budget', FontAwesomeIcons.search],
+    ['Profile', FontAwesomeIcons.cog],
+  ];
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
+      appBar: _buildAppBar(
+        title: pageTitleData[currentIndex][0],
+        icon: pageTitleData[currentIndex][1],
+      ),
       body: _widgetOptions.elementAt(currentIndex),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -40,6 +50,86 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: _buildBottomNav(),
+    );
+  }
+
+  AppBar _buildAppBar({required String title, required IconData icon}) {
+    return AppBar(
+      toolbarHeight: currentIndex == 3
+          ? SizeConfig.screenHeight * 0.125
+          : SizeConfig.screenHeight * 0.25,
+      shape: const RoundedRectangleBorder(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(kRadius),
+        ),
+      ),
+      flexibleSpace: currentIndex == 3
+          ? Container(
+              padding: const EdgeInsets.all(kDefaultPadding),
+              child: Column(
+                children: [
+                  SizedBox(height: SizeConfig.screenHeight * 0.05),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: kHeaderPadding),
+                        child: Text(
+                          title,
+                          // 'title',
+                          style: Theme.of(context).textTheme.headline1,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        // icon: FaIcon(icon, size: SizeConfig.defaultSize * 2.0),
+                        icon: FaIcon(icon, size: SizeConfig.defaultSize * 2.0),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          : Container(
+              padding: const EdgeInsets.all(kDefaultPadding),
+              child: Column(
+                children: [
+                  SizedBox(height: SizeConfig.screenHeight * 0.05),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: kHeaderPadding),
+                        child: Text(
+                          title,
+                          // 'title',
+                          style: Theme.of(context).textTheme.headline1,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        // icon: FaIcon(icon, size: SizeConfig.defaultSize * 2.0),
+                        icon: FaIcon(icon, size: SizeConfig.defaultSize * 2.0),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: List.generate(
+                      7,
+                      (index) {
+                        return DayIndicator(
+                          day: DateFormatter.listDateOfWeek[index].day,
+                          dayOfWeek: DateFormatter.toWeekday(index),
+                        );
+                      },
+                    ),
+                  ),
+                  Spacer(),
+                ],
+              ),
+            ),
     );
   }
 

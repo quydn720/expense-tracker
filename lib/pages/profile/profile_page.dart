@@ -1,33 +1,13 @@
 import '../../constants.dart';
 import '../../size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: SizeConfig.screenHeight * 0.125,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 25.0),
-          child: Text('Profile', style: TextStyle(color: Colors.black)),
-        ),
-        elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: kDefaultPadding),
-            child: IconButton(
-              icon: FaIcon(FontAwesomeIcons.cog, color: Colors.black),
-              onPressed: () {},
-            ),
-          )
-        ],
-      ),
-      body: Body(),
-    );
+    return Body();
   }
 }
 
