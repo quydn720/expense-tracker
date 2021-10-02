@@ -1,3 +1,4 @@
+import '../../../size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -43,7 +44,7 @@ class _BodyState extends State<Body> {
           Expanded(
             flex: 3,
             child: SizedBox(
-              width: 280, // TODO: fixed size
+              width: SizeConfig.screenWidth * 0.6,
               child: PageView.builder(
                 onPageChanged: (value) => setState(() {
                   selectedIndex = value;
@@ -91,7 +92,7 @@ class _BodyState extends State<Body> {
       width: index == selectedIndex ? 20.0 : 10.0,
       decoration: BoxDecoration(
         color: index == selectedIndex ? kPrimaryColor : Colors.grey,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(kRadius),
       ),
       duration: Duration(milliseconds: kAnimationDuration),
     );
