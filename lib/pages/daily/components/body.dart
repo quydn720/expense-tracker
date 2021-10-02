@@ -1,4 +1,5 @@
-import 'package:expense_tracker/models/transaction.dart';
+import '../../../models/transaction.dart';
+import '../../../sample_data.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -6,32 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  const Body({
+    Key? key,
+    required this.selectedDay,
+    required this.repository,
+  }) : super(key: key);
 
+  final DateTime selectedDay;
+  final List<Transaction>
+      repository; // sample repository, implement with database later
   @override
   Widget build(BuildContext context) {
-    final listTransaction = <Transaction>[
-      Transaction(
-          payeeName: 'Buy grocery',
-          dateCreated: DateTime.now(),
-          amount: 12.0,
-          category: 'Food'),
-      Transaction(
-          payeeName: 'T-shirt',
-          dateCreated: DateTime.now(),
-          amount: 45.0,
-          category: 'Shopping'),
-      Transaction(
-          payeeName: 'Movie ticket',
-          dateCreated: DateTime.now(),
-          amount: 10.0,
-          category: 'Entertainment'),
-      Transaction(
-          payeeName: 'Buy grocery',
-          dateCreated: DateTime.now(),
-          amount: 5.0,
-          category: 'Food'),
-    ];
+    final list = listTransaction
+        .where((transaction) => transaction.dateCreated.day == selectedDay.day)
+        .toList();
     return Padding(
       padding: const EdgeInsets.all(kDefaultPadding),
       child: Column(
@@ -44,9 +33,9 @@ class Body extends StatelessWidget {
                 indent: SizeConfig.screenWidth * 0.2,
                 endIndent: SizeConfig.screenWidth * 0.05,
               ),
-              itemCount: listTransaction.length,
+              itemCount: list.length,
               itemBuilder: (context, index) {
-                final transaction = listTransaction[index];
+                final transaction = list[index];
                 return ListTile(
                   leading: CircleAvatar(
                     child: FaIcon(FontAwesomeIcons.accessibleIcon),
