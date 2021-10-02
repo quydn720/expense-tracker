@@ -1,3 +1,5 @@
+import 'package:expense_tracker/models/transaction.dart';
+
 import '../../../constants.dart';
 import '../../../size_config.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,28 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final listTransaction = <Transaction>[
+      Transaction(
+          payeeName: 'Buy grocery',
+          dateCreated: DateTime.now(),
+          amount: 12.0,
+          category: 'Food'),
+      Transaction(
+          payeeName: 'T-shirt',
+          dateCreated: DateTime.now(),
+          amount: 45.0,
+          category: 'Shopping'),
+      Transaction(
+          payeeName: 'Movie ticket',
+          dateCreated: DateTime.now(),
+          amount: 10.0,
+          category: 'Entertainment'),
+      Transaction(
+          payeeName: 'Buy grocery',
+          dateCreated: DateTime.now(),
+          amount: 5.0,
+          category: 'Food'),
+    ];
     return Padding(
       padding: const EdgeInsets.all(kDefaultPadding),
       child: Column(
@@ -20,8 +44,9 @@ class Body extends StatelessWidget {
                 indent: SizeConfig.screenWidth * 0.2,
                 endIndent: SizeConfig.screenWidth * 0.05,
               ),
-              itemCount: 10,
+              itemCount: listTransaction.length,
               itemBuilder: (context, index) {
+                final transaction = listTransaction[index];
                 return ListTile(
                   leading: CircleAvatar(
                     child: FaIcon(FontAwesomeIcons.accessibleIcon),
@@ -31,16 +56,17 @@ class Body extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'Hello this is a long text aaaaaaaa',
+                          transaction.payeeName,
                           maxLines: 1,
                           softWrap: true,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      Text('\$300.4'),
+                      Text('\$${transaction.amount}'),
                     ],
                   ),
-                  subtitle: Text('Fri 10 a.m'),
+                  // subtitle: Text('Fri 10 a.m'),
+                  subtitle: Text(transaction.date),
                 );
               },
             ),
