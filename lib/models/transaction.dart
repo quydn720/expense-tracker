@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class Transaction {
+class Transaction with Comparable<Transaction> {
   final String payeeName;
   final DateTime dateCreated;
   final double amount;
@@ -15,6 +15,11 @@ class Transaction {
   });
 
   get date => DateFormat.MMMd().format(dateCreated);
+
+  @override
+  int compareTo(Transaction other) {
+    return dateCreated.compareTo(other.dateCreated);
+  }
 }
 
 enum TransactionType {

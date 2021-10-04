@@ -44,7 +44,7 @@ class _DailyPageState extends State<DailyPage> {
             repo.add(
               Transaction(
                   payeeName: 'New things',
-                  dateCreated: DateTime.now().add(Duration(days: -2)),
+                  dateCreated: DateTime.now().add(Duration(days: 2)),
                   amount: 1000,
                   category: 'Shopping'),
             );
@@ -97,6 +97,16 @@ class _DailyPageState extends State<DailyPage> {
                 firstDay: kFirstDay,
                 lastDay: kLastDay,
                 focusedDay: _focusedDay,
+                calendarStyle: CalendarStyle(
+                  selectedDecoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: kPrimaryColor,
+                  ),
+                  todayDecoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: kPrimaryColorLight,
+                  ),
+                ),
                 calendarFormat:
                     isExpanded ? CalendarFormat.month : CalendarFormat.week,
                 headerVisible: false,
@@ -124,11 +134,3 @@ class _DailyPageState extends State<DailyPage> {
     );
   }
 }
-
-//  listTransaction.add(
-//               Transaction(
-//                   payeeName: 'New things',
-//                   dateCreated: DateTime.now().add(Duration(days: 1)),
-//                   amount: 1000,
-//                   category: 'Shopping'),
-//             );
