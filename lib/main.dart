@@ -1,21 +1,21 @@
-import 'pages/splash/splash_page.dart';
-
-import 'pages/onboarding/onboarding_page.dart';
-
-import 'utils/date_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'constants.dart';
+import 'pages/splash/splash_page.dart';
 import 'routes.dart';
 
 void main() {
-  DateFormatter.init();
-  runApp(MyApp());
+  runApp(AppWidget());
 }
 
-class MyApp extends StatelessWidget {
+class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.pink, // status bar color
+      systemNavigationBarColor: Colors.lightBlue,
+    ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

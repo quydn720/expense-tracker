@@ -1,3 +1,5 @@
+import 'package:expense_tracker/pages/add_transaction/add_transaction.dart';
+
 import 'pages/home/home_pages.dart';
 import 'pages/login/login_page.dart';
 import 'pages/onboarding/onboarding_page.dart';
@@ -14,4 +16,5 @@ final Map<String, WidgetBuilder> routes = {
   HomePage.routeName: (context) => HomePage(),
   DailyPage.routeName: (context) => DailyPage(),
   LoginPage.routeName: (context) => LoginPage(),
+  AddNewTransactionPage.routeName: (context) => AddNewTransactionPage(),
 };

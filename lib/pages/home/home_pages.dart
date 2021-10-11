@@ -1,3 +1,6 @@
+import 'package:expense_tracker/pages/add_transaction/add_transaction.dart';
+import 'package:expense_tracker/pages/login/login_page.dart';
+
 import 'components/custom_bottom_nav_item.dart';
 
 import '../../constants.dart';
@@ -29,11 +32,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    SizeConfig().init(context); // remove later
     return Scaffold(
+      backgroundColor: Color(0xffFAFAFA),
       body: _widgetOptions.elementAt(_selectedIndex),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          final a = await Navigator.pushNamed(
+            context,
+            AddNewTransactionPage.routeName,
+          );
+          print(a);
+        },
         child: Icon(Icons.add),
         backgroundColor: kPrimaryColor,
       ),
