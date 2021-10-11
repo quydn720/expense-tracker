@@ -1,3 +1,4 @@
+import 'package:expense_tracker/components/default_app_bar.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/models/transaction.dart';
 import 'package:expense_tracker/sample_data.dart';
@@ -31,42 +32,21 @@ class _StatsPageState extends State<StatsPage> {
     daylyTotal.forEach((key, value) {
       spotsList.add(FlSpot(key.toDouble(), value));
     });
-    print(spotsList);
     final maxY = daylyTotal.values.reduce((c, n) => c > n ? c : n) + 10;
 
     return Column(
       children: [
-        // TODO: think about custom app bar => not have to use scaffold
-        // come back later
-        Material(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(kRadius),
-          ),
-          elevation: 4,
-          child: Container(
-            padding: const EdgeInsets.all(kDefaultPadding),
-            height: SizeConfig.screenHeight * 0.25,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: kHeaderPadding),
-                  child: Text(
-                    'Statistics',
-                    // 'title',
-                    style: Theme.of(context).textTheme.headline1,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: FaIcon(
-                    FontAwesomeIcons.search,
-                    size: SizeConfig.defaultSize * 2.0,
-                  ),
-                ),
-              ],
+        DefaultAppBar(
+          height: SizeConfig.screenHeight * 0.25,
+          title: 'Statistics',
+          action: IconButton(
+            onPressed: () {},
+            icon: FaIcon(
+              FontAwesomeIcons.search,
+              size: SizeConfig.defaultSize * 2.0,
             ),
           ),
+          iconPosition: IconPosition.RIGHT,
         ),
         Spacer(),
         Expanded(

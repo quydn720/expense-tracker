@@ -6,7 +6,7 @@ import '../../constants.dart';
 import '../../models/transaction.dart';
 import '../../sample_data.dart';
 import '../../size_config.dart';
-import '../home/components/expandable_app_bar.dart';
+import '../../components/expandable_app_bar.dart';
 import 'components/body.dart';
 
 class DailyPage extends StatefulWidget {
@@ -40,12 +40,13 @@ class _DailyPageState extends State<DailyPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          // await data from the add page
           setState(() {
             repo.add(
               Transaction(
                   payeeName: 'New things',
                   dateCreated: DateTime.now().add(Duration(days: 2)),
-                  amount: 1000,
+                  amount: 25,
                   category: 'Shopping'),
             );
           });
