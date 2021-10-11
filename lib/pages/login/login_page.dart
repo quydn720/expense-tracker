@@ -1,4 +1,7 @@
+import 'package:expense_tracker/constants.dart';
+import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginPage extends StatelessWidget {
@@ -20,36 +23,42 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
+    SizeConfig().init(context);
+
+    return Padding(
+      padding: const EdgeInsets.all(kHeaderPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          InputLoginForm(),
+          const SizedBox(height: 20.0),
+          SizedBox(
+            width: SizeConfig.screenWidth * 0.2,
+            height: SizeConfig.screenHeight * 0.3,
+            child: SvgPicture.asset('assets/images/shopping.svg'),
+          ),
+          Spacer(),
+          Text(
+            'Login to your account',
+            style: Theme.of(context).textTheme.headline1,
+          ),
+          const SizedBox(height: 20.0),
+          Expanded(child: InputLoginForm()),
           ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+              backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
             ),
             child: Text('Login'),
             onPressed: () {},
           ),
           TextButton(onPressed: () {}, child: Text('Already have an account?')),
-          Divider(),
-          ElevatedButton.icon(
-            onPressed: () {},
-            icon: FaIcon(FontAwesomeIcons.apple),
-            label: Text('Continue with Apple'),
-          ),
-          ElevatedButton.icon(
-            onPressed: () {},
-            icon: FaIcon(FontAwesomeIcons.google),
-            label: Text('Continue with Apple'),
-          ),
-          ElevatedButton.icon(
-            onPressed: () {},
-            icon: FaIcon(FontAwesomeIcons.facebook),
-            label: Text('Continue with Apple'),
-          ),
+          // ElevatedButton.icon(
+          //   style: ButtonStyle(
+          //     backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
+          //   ),
+          //   onPressed: () {},
+          //   icon: FaIcon(FontAwesomeIcons.facebook),
+          //   label: Text('Continue with Facebook'),
+          // ),
         ],
       ),
     );
@@ -69,9 +78,6 @@ class InputLoginForm extends StatelessWidget {
           TextFormField(
             decoration: InputDecoration(
               label: Text('Email address'),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
               hintText: 'Email address',
               contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
             ),
@@ -81,9 +87,7 @@ class InputLoginForm extends StatelessWidget {
           TextFormField(
             obscureText: true,
             decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
+              label: Text('Password'),
               hintText: 'Password',
               contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
             ),

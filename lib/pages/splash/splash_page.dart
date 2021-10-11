@@ -1,3 +1,5 @@
+import '../onboarding/onboarding_page.dart';
+
 import '../home/home_pages.dart';
 
 import '../../size_config.dart';
@@ -12,7 +14,7 @@ class SplashPage extends StatelessWidget {
     SizeConfig().init(context);
     // TODO: Check shared preferences xem thu user co phai lan dau mo app k
     return FutureBuilder(
-      future: Future.delayed(Duration(seconds: 2)),
+      future: Future.delayed(Duration(seconds: 1)),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
@@ -22,7 +24,7 @@ class SplashPage extends StatelessWidget {
             ),
           );
         } else {
-          return HomePage();
+          return OnboardingPage();
         }
       },
     );

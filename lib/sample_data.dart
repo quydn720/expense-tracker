@@ -21,4 +21,24 @@ final listTransaction = <Transaction>[
       dateCreated: DateTime.now().add(Duration(days: -1)),
       amount: 5.0,
       category: 'Food'),
+  Transaction(
+      payeeName: 'Buy grocery',
+      dateCreated: DateTime.now().add(Duration(days: -2)),
+      amount: 5.0,
+      category: 'Food'),
+  Transaction(
+      payeeName: 'Buy grocery',
+      dateCreated: DateTime.now().add(Duration(days: 3)),
+      amount: 5.0,
+      category: 'Food'),
+  Transaction(
+      payeeName: 'Buy grocery',
+      dateCreated: DateTime.now().add(Duration(days: 2)),
+      amount: 5.0,
+      category: 'Food'),
+  Transaction(
+      payeeName: 'Buy grocery',
+      dateCreated: DateTime.now().add(Duration(days: -1)),
+      amount: 5.0,
+      category: 'Food'),
 ];
