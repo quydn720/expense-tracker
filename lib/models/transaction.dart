@@ -20,6 +20,11 @@ class Transaction with Comparable<Transaction> {
   int compareTo(Transaction other) {
     return dateCreated.compareTo(other.dateCreated);
   }
+
+  @override
+  String toString() {
+    return 'Transaction: $payeeName $category $date $amount';
+  }
 }
 
 enum TransactionType {
