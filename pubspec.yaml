@@ -28,7 +28,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   font_awesome_flutter: ^9.1.0
-  flutter_svg: ^0.22.0
   fl_chart: ^0.40.0
   shared_preferences: ^2.0.8
   provider: ^6.0.1
@@ -37,6 +36,7 @@ dependencies:
   table_calendar: ^3.0.2
 
 dev_dependencies:
+  flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
 
@@ -48,6 +48,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/icons/
   fonts:
     - family: Inter
       fonts:
