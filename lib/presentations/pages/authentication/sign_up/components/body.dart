@@ -1,7 +1,5 @@
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/pages/authentication/sign_in/sign_in_page.dart';
-
-import '../../../../components/default_outlined_button.dart';
 import 'package:flutter/material.dart';
 
 import 'sign_up_form.dart';

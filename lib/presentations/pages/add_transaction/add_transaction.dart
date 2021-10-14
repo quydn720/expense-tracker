@@ -1,9 +1,10 @@
-import 'package:expense_tracker/components/default_app_bar.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/models/transaction.dart';
-import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../../constants.dart';
+import '../../../size_config.dart';
+import '../../components/default_app_bar.dart';
+import '../../models/transaction.dart';
 
 class AddNewTransactionPage extends StatefulWidget {
   static String routeName = '/add_new_transaction';
@@ -44,9 +45,9 @@ class _AddNewTransactionPageState extends State<AddNewTransactionPage> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            DefaultAppBar(
+            DefaultAppBar1(
               elevation: 2,
-              iconPosition: IconPosition.RIGHT,
+              iconPosition: IconPosition.right,
               height: SizeConfig.screenHeight * 0.125,
               title: 'Add new transaction',
               action: IconButton(

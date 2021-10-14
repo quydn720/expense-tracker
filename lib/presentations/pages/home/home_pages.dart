@@ -1,14 +1,13 @@
-import 'package:expense_tracker/pages/add_transaction/add_transaction.dart';
-import 'package:expense_tracker/pages/login/login_page.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
+import '../add_transaction/add_transaction.dart';
 
 import 'components/custom_bottom_nav_item.dart';
 
-import '../../constants.dart';
 import '../budget/budget_page.dart';
 import '../daily/daily_page.dart';
 import '../profile/profile_page.dart';
 import '../stats/stats_page.dart';
-import '../../size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

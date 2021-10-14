@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../../constants.dart';
-import '../../models/transaction.dart';
-import '../../sample_data.dart';
-import '../../size_config.dart';
+import '../../../constants.dart';
+import '../../../sample_data.dart';
+import '../../../size_config.dart';
 import '../../components/expandable_app_bar.dart';
+import '../../models/transaction.dart';
 import 'components/body.dart';
 
 class DailyPage extends StatefulWidget {
@@ -55,8 +55,8 @@ class _DailyPageState extends State<DailyPage> {
     );
   }
 
-  ExpandableAppBar buildAppBar(BuildContext context) {
-    return ExpandableAppBar(
+  DefaultAppBar3 buildAppBar(BuildContext context) {
+    return DefaultAppBar3(
       height: isExpanded
           ? SizeConfig.screenHeight * 0.60
           : SizeConfig.screenHeight * 0.25,
@@ -69,7 +69,7 @@ class _DailyPageState extends State<DailyPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: kHeaderPadding),
+                  padding: const EdgeInsets.only(left: kMediumPadding),
                   child: Text(
                     'Daily Transaction',
                     // 'title',

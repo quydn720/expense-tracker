@@ -28,8 +28,8 @@ class Transaction with Comparable<Transaction> {
 }
 
 enum TransactionType {
-  Expense,
-  Income,
+  expense,
+  income,
 }
 
 class Category {

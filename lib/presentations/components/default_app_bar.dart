@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
-class DefaultAppBar extends StatelessWidget {
-  const DefaultAppBar({
+class DefaultAppBar1 extends StatelessWidget {
+  const DefaultAppBar1({
     Key? key,
     required this.height,
     required this.title,
     required this.action,
-    this.iconPosition = IconPosition.LEFT,
+    this.iconPosition = IconPosition.left,
     this.elevation = 4,
   }) : super(key: key);
   final double height;
@@ -19,7 +19,7 @@ class DefaultAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final widgetList = iconPosition == IconPosition.LEFT
+    final widgetList = iconPosition == IconPosition.left
         ? <Widget>[
             IconButton(
               onPressed: () {
@@ -35,7 +35,7 @@ class DefaultAppBar extends StatelessWidget {
           ]
         : <Widget>[
             Padding(
-              padding: const EdgeInsets.only(left: kHeaderPadding),
+              padding: const EdgeInsets.only(left: kMediumPadding),
               child: Text(
                 title,
                 style: Theme.of(context).textTheme.headline1,
@@ -45,14 +45,14 @@ class DefaultAppBar extends StatelessWidget {
           ];
     return Material(
       borderRadius: const BorderRadius.all(
-        Radius.circular(kRadius),
+        Radius.circular(kDefaultRadius),
       ),
       elevation: elevation,
       child: Container(
         padding: const EdgeInsets.all(kDefaultPadding),
         height: height,
         child: Row(
-          mainAxisAlignment: iconPosition == IconPosition.LEFT
+          mainAxisAlignment: iconPosition == IconPosition.left
               ? MainAxisAlignment.start
               : MainAxisAlignment.spaceBetween,
           children: widgetList,
@@ -63,6 +63,6 @@ class DefaultAppBar extends StatelessWidget {
 }
 
 enum IconPosition {
-  LEFT,
-  RIGHT,
+  left,
+  right,
 }

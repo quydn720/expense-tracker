@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../constants.dart';
+import '../../../../constants.dart';
+import '../../../../sample_data.dart';
+import '../../../../size_config.dart';
 import '../../../models/transaction.dart';
-import '../../../sample_data.dart';
-import '../../../size_config.dart';
 
 class Body extends StatelessWidget {
   const Body({

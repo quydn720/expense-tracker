@@ -1,9 +1,10 @@
-import 'package:expense_tracker/components/default_app_bar.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/models/transaction.dart';
-import 'package:expense_tracker/sample_data.dart';
-import 'package:expense_tracker/size_config.dart';
 import 'package:expense_tracker/utils/collection_extension.dart';
+
+import '../../../constants.dart';
+import '../../../sample_data.dart';
+import '../../../size_config.dart';
+import '../../components/default_app_bar.dart';
+import '../../models/transaction.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -36,7 +37,7 @@ class _StatsPageState extends State<StatsPage> {
 
     return Column(
       children: [
-        DefaultAppBar(
+        DefaultAppBar1(
           height: SizeConfig.screenHeight * 0.25,
           title: 'Statistics',
           action: IconButton(
@@ -46,7 +47,7 @@ class _StatsPageState extends State<StatsPage> {
               size: SizeConfig.defaultSize * 2.0,
             ),
           ),
-          iconPosition: IconPosition.RIGHT,
+          iconPosition: IconPosition.right,
         ),
         Spacer(),
         Expanded(

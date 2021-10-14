@@ -1,4 +1,4 @@
-import 'models/transaction.dart';
+import 'package:expense_tracker/presentations/models/transaction.dart';
 
 final listTransaction = <Transaction>[
   Transaction(
