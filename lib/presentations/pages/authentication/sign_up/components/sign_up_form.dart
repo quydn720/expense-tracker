@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:expense_tracker/app/auth/bloc/sign_in_form_bloc.dart';
 import 'package:expense_tracker/presentations/components/default_outlined_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,40 +19,38 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final _formKey = GlobalKey<FormState>();
-  String email = '';
   String name = '';
-  String password = '';
-
+  bool isVisible = true;
   bool agreeTerm = false;
-  bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<SignInFormBloc>();
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
         state.authFailureOrSuccessOption.fold(
           () {},
           (either) => either.fold(
             (failure) {
-              failure.map(
-                cancelledByUser: (_) => print('cancelledByUser'),
-                serverError: (_) => print('serverError'),
-                emailAlreadyInUse: (_) => print('emailAlreadyInUse'),
-                invalidEmailAndPasswordCombination: (_) =>
-                    print('invalidEmailAndPasswordCombination'),
-              );
+              Flushbar(
+                message: failure.map(
+                  cancelledByUser: (_) => 'cancelledByUser',
+                  serverError: (_) => 'serverError',
+                  emailAlreadyInUse: (_) => 'emailAlreadyInUse',
+                  invalidEmailAndPasswordCombination: (_) =>
+                      'invalidEmailAndPasswordCombination',
+                ),
+                duration: const Duration(seconds: 2),
+              ).show(context);
             },
             (_) {
-              print('success');
+              print('register successfully');
             },
           ),
         );
       },
       builder: (context, state) {
         return Form(
-          key: _formKey,
-          autovalidateMode: AutovalidateMode.always,
           child: Container(
             alignment: Alignment.center,
             child: Column(
@@ -74,20 +73,15 @@ class _SignUpFormState extends State<SignUpForm> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(label: Text('Email')),
                   textInputAction: TextInputAction.next,
-                  validator: (_) => context
-                      .read<SignInFormBloc>()
-                      .state
-                      .emailAddress
-                      .value
-                      .fold(
-                        (failure) => failure.maybeMap(
-                          invalidEmail: (_) => 'Invalid Email',
-                          orElse: () => null,
-                        ),
-                        (_) => null,
-                      ),
-                  onChanged: (v) =>
-                      context.read<SignInFormBloc>().add(EmailChanged(v)),
+                  validator: (_) => bloc.state.emailAddress.value.fold(
+                    (failure) => failure.maybeMap(
+                      invalidEmail: (_) => 'Invalid Email',
+                      orElse: () => null,
+                    ),
+                    (_) => null,
+                  ),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  onChanged: (v) => bloc.add(EmailChanged(v)),
                 ),
                 const SizedBox(height: kMediumPadding),
                 TextFormField(
@@ -102,28 +96,22 @@ class _SignUpFormState extends State<SignUpForm> {
                         ),
                       ),
                     ),
-                    validator: (_) => context
-                        .read<SignInFormBloc>()
-                        .state
-                        .password
-                        .value
-                        .fold(
+                    validator: (_) => bloc.state.password.value.fold(
                           (failure) => failure.maybeMap(
                             shortPassword: (_) => 'Short Password',
                             orElse: () => null,
                           ),
                           (_) => null,
                         ),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     textInputAction: TextInputAction.done,
-                    onChanged: (v) =>
-                        context.read<SignInFormBloc>().add(PasswordChanged(v))),
+                    onChanged: (v) => bloc.add(PasswordChanged(v))),
                 const SizedBox(height: kMediumPadding),
                 Row(
                   children: [
                     Checkbox(
-                      value: agreeTerm,
-                      onChanged: (v) => setState(() => agreeTerm = v!),
-                    ),
+                        value: agreeTerm,
+                        onChanged: (v) => setState(() => agreeTerm = v!)),
                     const Expanded(
                       child: HyperlinkText(
                         normalText: 'By signing up, you agree to the ',
@@ -136,21 +124,14 @@ class _SignUpFormState extends State<SignUpForm> {
                 DefaultButton(
                   title: 'Sign up',
                   onPress: () {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      context
-                          .read<SignInFormBloc>()
-                          .add(const RegisterWithEmailAndPasswordPressed());
-                    }
+                    bloc.add(const RegisterWithEmailAndPasswordPressed());
                   },
                 ),
                 const SizedBox(height: kMediumPadding),
                 DefaultOutlinedButton(
                   title: 'Sign up with Google',
                   onPress: () {
-                    context
-                        .read<SignInFormBloc>()
-                        .add(const SignInFormEvent.signInWithGooglePressed());
+                    bloc.add(const SignInFormEvent.signInWithGooglePressed());
                   },
                   icon: Image.asset('assets/icons/flat-color-icons_google.png'),
                 ),
