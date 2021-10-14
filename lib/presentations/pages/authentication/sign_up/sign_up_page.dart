@@ -1,4 +1,4 @@
-import 'package:expense_tracker/app/auth/bloc/sign_in_form_bloc.dart';
+import 'package:expense_tracker/app/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:expense_tracker/presentations/components/expandable_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

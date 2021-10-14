@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:expense_tracker/domain/auth/user.dart';
 
 import 'auth_failure.dart';
 import 'email_address.dart';
@@ -14,4 +15,6 @@ abstract class IAuthFacade {
     required Password password,
   });
   Future<Either<AuthFailure, Unit>> signInWithGoogle();
+  Option<User> getSignInUser();
+  Future<void> signOut();
 }
