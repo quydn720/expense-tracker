@@ -25,9 +25,15 @@ class _HomePageState extends State<HomePage> {
   List _widgetOptions = <Widget>[
     DailyPage(),
     StatsPage(),
+    Container(),
     BudgetPage(),
     ProfilePage(),
   ];
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,18 +49,50 @@ class _HomePageState extends State<HomePage> {
           );
           print(a);
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add, size: 30),
         backgroundColor: kPrimaryColor,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: _buildBottomNav(),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 6.0,
+        clipBehavior: Clip.antiAlias,
+        child: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          unselectedItemColor: kDark25,
+          selectedItemColor: kViolet100,
+          selectedFontSize: 12.5,
+          unselectedFontSize: 12.5,
+          type: BottomNavigationBarType.fixed,
+          onTap: _onItemTapped,
+          items: [
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/icons/home.png'),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/icons/transaction_bw.png'),
+              label: "Trans",
+            ),
+            const BottomNavigationBarItem(icon: SizedBox.shrink(), label: ""),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/icons/pie-chart.png'),
+              label: "Budget",
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/icons/user.png'),
+              label: "Profile",
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   // This is holy duplicated ...
   BottomAppBar _buildBottomNav() {
     return BottomAppBar(
-      shape: CircularNotchedRectangle(),
+      shape: const CircularNotchedRectangle(),
       notchMargin: 10.0,
       child: Container(
         height: SizeConfig.screenHeight * 0.075,

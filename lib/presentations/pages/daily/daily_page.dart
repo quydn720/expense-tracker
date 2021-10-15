@@ -1,137 +1,157 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import '../../../constants.dart';
 import '../../../sample_data.dart';
-import '../../../size_config.dart';
-import '../../components/expandable_app_bar.dart';
+import '../../components/bars.dart';
 import '../../models/transaction.dart';
-import 'components/body.dart';
+import 'components/top_navigation.dart';
+import 'components/transaction_card.dart';
 
-class DailyPage extends StatefulWidget {
+class DailyPage extends StatelessWidget {
   static String routeName = '/daily_page';
-  static String pageName = 'Daily';
   const DailyPage({Key? key}) : super(key: key);
 
   @override
-  State<DailyPage> createState() => _DailyPageState();
-}
-
-class _DailyPageState extends State<DailyPage> {
-  bool isExpanded = false;
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
-
-  List<Transaction> repo = listTransaction;
-  @override
-  void dispose() {
-    isExpanded = false;
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context),
-      body: Body(
-        selectedDay: _focusedDay,
-        repository: repo,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // await data from the add page
-          setState(() {
-            repo.add(
-              Transaction(
-                  payeeName: 'New things',
-                  dateCreated: DateTime.now().add(Duration(days: 2)),
-                  amount: 25,
-                  category: 'Shopping'),
-            );
-          });
-        },
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const TopNavigation(),
+              const DefaultBar(
+                title: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text('Spend Frequency', style: title3),
+                ),
+              ),
+              SizedBox(
+                height: 180,
+                child: LineChart(
+                  LineChartData(
+                    gridData: FlGridData(show: false),
+                    titlesData: FlTitlesData(show: false),
+                    borderData: FlBorderData(show: false),
+                    minX: 0,
+                    maxX: 11,
+                    minY: 0,
+                    maxY: 6,
+                    lineBarsData: [
+                      LineChartBarData(
+                        spots: [
+                          FlSpot(0, 3),
+                          FlSpot(2.6, 2),
+                          FlSpot(4.9, 5),
+                          FlSpot(6.8, 3.1),
+                          FlSpot(8, 4),
+                          FlSpot(9.5, 3),
+                          FlSpot(11, 4),
+                        ],
+                        isCurved: true,
+                        colors: [kViolet100],
+                        barWidth: 5,
+                        isStrokeCapRound: true,
+                        dotData: FlDotData(
+                          show: false,
+                        ),
+                        belowBarData: BarAreaData(
+                          show: true,
+                          colors: [kViolet100]
+                              .map((color) => color.withOpacity(0.2))
+                              .toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Tabs(),
+              ),
+              DefaultBar(
+                title: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text('Recent Transaction', style: title3),
+                ),
+                trailing: Chip(
+                  backgroundColor: const Color(0xffF1F1FA),
+                  label: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                    child: Text(
+                      'See All',
+                      style: body3.copyWith(color: kViolet100),
+                    ),
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                child: TransactionCard(),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                child: TransactionCard(),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                child: TransactionCard(),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                child: TransactionCard(),
+              ),
+              const SizedBox(height: kMediumPadding),
+            ],
+          ),
+        ),
       ),
     );
   }
+}
 
-  DefaultAppBar3 buildAppBar(BuildContext context) {
-    return DefaultAppBar3(
-      height: isExpanded
-          ? SizeConfig.screenHeight * 0.60
-          : SizeConfig.screenHeight * 0.25,
-      child: Container(
-        padding: const EdgeInsets.all(kDefaultPadding),
-        child: Column(
-          children: [
-            SizedBox(height: SizeConfig.screenHeight * 0.05),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: kMediumPadding),
-                  child: Text(
-                    'Daily Transaction',
-                    // 'title',
-                    style: Theme.of(context).textTheme.headline1,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isExpanded = !isExpanded;
-                    });
-                  },
-                  icon: FaIcon(
-                    isExpanded
-                        ? FontAwesomeIcons.times
-                        : FontAwesomeIcons.search,
-                    size: SizeConfig.defaultSize * 2.0,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: SizeConfig.screenHeight * 0.025),
-            Expanded(
-              flex: 3,
-              child: TableCalendar(
-                firstDay: kFirstDay,
-                lastDay: kLastDay,
-                focusedDay: _focusedDay,
-                calendarStyle: CalendarStyle(
-                  selectedDecoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: kPrimaryColor,
-                  ),
-                  todayDecoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: kPrimaryColorLight,
-                  ),
-                ),
-                calendarFormat:
-                    isExpanded ? CalendarFormat.month : CalendarFormat.week,
-                headerVisible: false,
-                selectedDayPredicate: (day) {
-                  return isSameDay(_selectedDay, day);
-                },
-                onDaySelected: (selectedDay, focusedDay) {
-                  setState(() {
-                    _selectedDay = selectedDay;
-                    _focusedDay =
-                        focusedDay; // update `_focusedDay` here as well
-                  });
-                },
-                onPageChanged: (focusedDay) {
-                  _focusedDay = focusedDay;
-                },
-                shouldFillViewport: true,
-                sixWeekMonthsEnforced: true,
-              ),
-            ),
-            SizedBox(height: SizeConfig.screenHeight * 0.025),
-          ],
+class Tabs extends StatelessWidget {
+  const Tabs({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: const [
+        Chip(
+          backgroundColor: kYellow20,
+          label: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text('Today'),
+          ),
         ),
-      ),
+        Chip(
+          backgroundColor: kLight100,
+          label: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text('Week'),
+          ),
+        ),
+        Chip(
+          backgroundColor: kLight100,
+          label: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text('Month'),
+          ),
+        ),
+        Chip(
+          backgroundColor: kLight100,
+          label: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text('Year'),
+          ),
+        ),
+      ],
     );
   }
 }

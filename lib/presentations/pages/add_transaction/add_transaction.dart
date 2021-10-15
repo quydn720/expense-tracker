@@ -1,221 +1,91 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../constants.dart';
-import '../../../size_config.dart';
-import '../../components/default_app_bar.dart';
-import '../../models/transaction.dart';
+import '../../components/default_large_button.dart';
+import '../../components/expandable_app_bar.dart';
+import 'expense_income_form.dart';
 
-class AddNewTransactionPage extends StatefulWidget {
-  static String routeName = '/add_new_transaction';
+class AddNewTransactionPage extends StatelessWidget {
   const AddNewTransactionPage({Key? key}) : super(key: key);
-
-  @override
-  State<AddNewTransactionPage> createState() => _AddNewTransactionPageState();
-}
-
-class _AddNewTransactionPageState extends State<AddNewTransactionPage> {
-  int currentIndex = 0;
-  final TextEditingController _controller = TextEditingController();
-  late FocusNode focusNode;
-
-  String testing = '';
-  @override
-  void initState() {
-    focusNode = FocusNode();
-    _controller.addListener(() {
-      print(_controller.text);
-      setState(() {
-        testing = _controller.text;
-      });
-    });
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+  static String routeName = '/add_transaction';
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            DefaultAppBar1(
-              elevation: 2,
-              iconPosition: IconPosition.right,
-              height: SizeConfig.screenHeight * 0.125,
-              title: 'Add new transaction',
-              action: IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: FaIcon(
-                  FontAwesomeIcons.times,
-                  size: SizeConfig.defaultSize * 2.0,
+    return const AddTransactionWidget(
+      title: 'Expense',
+      color: kRed100,
+      child: ExpenseIncomeForm(),
+    );
+  }
+}
+
+class AddTransactionWidget extends StatelessWidget {
+  const AddTransactionWidget({
+    Key? key,
+    this.color,
+    required this.title,
+    this.child,
+  }) : super(key: key);
+  final Color? color;
+  final String title;
+  final Widget? child;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: color,
+      appBar: DefaultAppBar(
+        color: kRed100,
+        lead: GestureDetector(
+          child: Image.asset('assets/icons/arrow-left.png', color: kLight100),
+          onTap: () => Navigator.pop(context),
+        ),
+        middle: Text(title, style: title3.copyWith(color: kLight100)),
+      ),
+      body: Align(
+        alignment: Alignment.bottomCenter,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(kMediumPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'How much',
+                      style: title3.copyWith(color: kLight80),
+                    ),
+                    Text(
+                      '\$5000',
+                      style: titleX.copyWith(color: kLight80),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                5,
-                (index) => buildIndicators(index),
-              ),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Flexible(
-                          flex: 1,
-                          fit: FlexFit.loose,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: ReversedListTile(
-                                  leading: CircleAvatar(
-                                    child: Icon(Icons.ac_unit),
-                                  ),
-                                  onTap: () {
-                                    focusNode.requestFocus();
-                                    print(_controller.text);
-                                  },
-                                  title: 'Transaction type',
-                                  subtitle: 'Expense',
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: ReversedListTile(
-                                  title: 'Amount',
-                                  subtitle: '\$3.000.000.000',
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Flexible(
-                          flex: 1,
-                          fit: FlexFit.loose,
-                          child: ReversedListTile(
-                            leading: CircleAvatar(
-                              child: FaIcon(FontAwesomeIcons.accessibleIcon),
-                            ),
-                            title: 'Payee',
-                            subtitle: 'Motorbike engine oil',
-                          ),
-                        ),
-                        Flexible(
-                          flex: 1,
-                          fit: FlexFit.loose,
-                          child: ReversedListTile(
-                            leading: CircleAvatar(
-                              child: FaIcon(FontAwesomeIcons.accessibleIcon),
-                            ),
-                            title: 'Date',
-                            subtitle: '05-10-2020',
-                          ),
-                        ),
-                        Flexible(
-                          flex: 1,
-                          fit: FlexFit.loose,
-                          child: ReversedListTile(
-                            leading: CircleAvatar(
-                              child: FaIcon(FontAwesomeIcons.accessibleIcon),
-                            ),
-                            title: 'Date',
-                            subtitle: '05-10-2020',
-                          ),
-                        ),
-                      ],
-                      // color: Colors.blueAccent,
-                    ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: kLight100,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(kLargePadding),
+                    topRight: Radius.circular(kLargePadding),
                   ),
-                  Container(
-                    height: SizeConfig.screenHeight * 0.1,
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            focusNode: focusNode,
-                            controller: _controller,
-                            onChanged: (newValue) {},
-                            onSubmitted: (_) => _controller.clear(),
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(
-                              context,
-                              Transaction(
-                                  payeeName: 'payeeName',
-                                  dateCreated: DateTime.now(),
-                                  amount: 20,
-                                  category: 'category'),
-                            );
-                          },
-                          child: Text('Finish'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
+                child: child,
               ),
-            ),
-          ],
+              Container(
+                color: kLight100,
+                child: Padding(
+                  padding: const EdgeInsets.all(kMediumPadding),
+                  child: DefaultButton(
+                    onPress: () {},
+                    title: 'Continue',
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
-
-// TODO: come back later
-  Container buildIndicators(int index) {
-    return Container(
-      height: 2.0,
-      width: (SizeConfig.screenWidth - 2 * 30.0) / 5,
-      color: index == currentIndex ? kPrimaryColor : Colors.grey,
-    );
-  }
 }
-
-class ReversedListTile extends StatelessWidget {
-  const ReversedListTile({
-    Key? key,
-    required this.title,
-    required this.subtitle,
-    this.onTap,
-    this.leading,
-  }) : super(key: key);
-  final String title;
-  final String subtitle;
-  final Function()? onTap;
-  final Widget? leading;
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: leading,
-      onTap: onTap,
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.bodyText2,
-      ),
-      subtitle: Text(
-        subtitle,
-        style: Theme.of(context).textTheme.subtitle1,
-        maxLines: 1,
-        // overflow: TextOverflow.ellipsis,
-      ),
-    );
-  }
-}
-
-// bấm vào tile nào thì hiển thị text input với controller tương ứng
-// state textInputIndex => hiển thị text input nào ở đáy, hoặc null - k hiển thị

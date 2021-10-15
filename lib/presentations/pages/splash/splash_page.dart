@@ -1,11 +1,11 @@
-import 'package:expense_tracker/app/auth/auth_bloc.dart';
-import 'package:expense_tracker/presentations/pages/authentication/sign_up/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../app/auth/auth_bloc.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
-import '../onboarding/onboarding_page.dart';
+import '../authentication/sign_up/sign_up_page.dart';
+import '../home/home_pages.dart';
 
 class SplashPage extends StatelessWidget {
   static String routeName = '/splash_page';
@@ -21,10 +21,11 @@ class SplashPage extends StatelessWidget {
           initial: (_) {},
           authenticated: (_) {
             print(' authenticated');
+            Navigator.pushReplacementNamed(context, HomePage.routeName);
           },
           unauthenticated: (_) {
             print('not authenticated');
-            Navigator.pushNamed(context, SignUpPage.routeName);
+            Navigator.pushReplacementNamed(context, SignUpPage.routeName);
           },
         );
       },

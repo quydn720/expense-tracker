@@ -16,7 +16,8 @@ class ForgotPasswordPage extends StatelessWidget {
           child: Image.asset('assets/icons/arrow-left.png'),
           onTap: () => Navigator.pop(context),
         ),
-        text: Text('Forgot password', style: title3.copyWith(color: kDark100)),
+        middle:
+            Text('Forgot password', style: title3.copyWith(color: kDark100)),
       ),
       body: const Body(),
     );

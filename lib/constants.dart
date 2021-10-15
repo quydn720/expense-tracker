@@ -51,6 +51,7 @@ const Color kBlue100 = Color(0xff0077FF);
 const int kAnimationDuration = 100;
 
 const double kDefaultRadius = 16.0;
+const double kLargeRadius = 32.0;
 
 const double kDefaultPadding = 8.0;
 const double kMediumPadding = 16.0;

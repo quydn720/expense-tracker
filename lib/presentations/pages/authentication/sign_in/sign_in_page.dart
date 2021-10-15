@@ -21,7 +21,7 @@ class _SignInPageState extends State<SignInPage> {
           child: Image.asset('assets/icons/arrow-left.png'),
           onTap: () => Navigator.pop(context),
         ),
-        text: Text('Sign In', style: title3.copyWith(color: kDark100)),
+        middle: Text('Sign In', style: title3.copyWith(color: kDark100)),
       ),
       body: const Body(),
     );
