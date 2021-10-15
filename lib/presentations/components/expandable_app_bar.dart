@@ -19,18 +19,29 @@ class DefaultAppBar3 extends AppBar {
 }
 
 class DefaultAppBar extends AppBar {
-  final Widget? text;
-  final GestureDetector? lead;
-  final GestureDetector? trail;
+  final Widget? middle;
+  final Widget? lead;
+  final Widget? trail;
+  final Color? color;
   DefaultAppBar({
+    this.color,
     this.lead,
     this.trail,
     Key? key,
-    required this.text,
+    this.middle,
   }) : super(
+          backgroundColor: color,
           key: key,
-          leading: lead ?? const SizedBox(),
-          actions: [trail ?? const SizedBox()],
-          title: text ?? const SizedBox(),
+          leading: Padding(
+            child: lead ?? const SizedBox.shrink(),
+            padding: const EdgeInsets.only(left: kDefaultPadding),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: kDefaultPadding),
+              child: trail ?? const SizedBox.shrink(),
+            )
+          ],
+          title: middle ?? const SizedBox.shrink(),
         );
 }
