@@ -19,7 +19,7 @@ class SignUpPage extends StatelessWidget {
           child: Image.asset('assets/icons/arrow-left.png'),
           onTap: () => Navigator.pop(context),
         ),
-        text: Text('Sign Up', style: title3.copyWith(color: kDark100)),
+        middle: Text('Sign Up', style: title3.copyWith(color: kDark100)),
       ),
       body: BlocProvider(
         create: (context) => getIt<SignInFormBloc>(),

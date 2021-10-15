@@ -1,6 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:expense_tracker/app/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:expense_tracker/presentations/components/default_outlined_button.dart';
+import 'package:expense_tracker/presentations/pages/home/home_pages.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../constants.dart';
@@ -44,7 +45,11 @@ class _SignUpFormState extends State<SignUpForm> {
               ).show(context);
             },
             (_) {
-              print('register successfully');
+              Flushbar(
+                message: 'register successfully',
+                duration: const Duration(seconds: 2),
+              );
+              Navigator.pushNamed(context, HomePage.routeName);
             },
           ),
         );
