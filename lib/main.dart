@@ -22,9 +22,13 @@ class AppWidget extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
-        )
+          create: (context) {
+            return getIt<AuthBloc>()
+              ..add(
+                const AuthEvent.authCheckRequested(),
+              );
+          },
+        ),
       ],
       child: MaterialApp(
         initialRoute: SplashPage.routeName,
@@ -42,11 +46,21 @@ class AppWidget extends StatelessWidget {
           ),
           scaffoldBackgroundColor: kLight100,
           appBarTheme: appBarTheme,
+          bottomSheetTheme: bottomSheetThemeData,
         ),
       ),
     );
   }
 }
+
+const bottomSheetThemeData = BottomSheetThemeData(
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(kBottomSheetRadius),
+      topRight: Radius.circular(kBottomSheetRadius),
+    ),
+  ),
+);
 
 const appBarTheme = AppBarTheme(
   elevation: 0,

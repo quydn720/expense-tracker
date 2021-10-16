@@ -30,15 +30,17 @@ class DefaultAppBar extends AppBar {
     Key? key,
     this.middle,
   }) : super(
+          leadingWidth: 200,
+          automaticallyImplyLeading: false,
           backgroundColor: color,
           key: key,
           leading: Padding(
             child: lead ?? const SizedBox.shrink(),
-            padding: const EdgeInsets.only(left: kDefaultPadding),
+            padding: const EdgeInsets.only(left: kMediumPadding),
           ),
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: kDefaultPadding),
+              padding: const EdgeInsets.only(right: kMediumPadding),
               child: trail ?? const SizedBox.shrink(),
             )
           ],

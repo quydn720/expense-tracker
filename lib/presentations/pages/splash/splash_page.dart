@@ -1,3 +1,4 @@
+import 'package:expense_tracker/presentations/pages/main/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -5,7 +6,6 @@ import '../../../app/auth/auth_bloc.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 import '../authentication/sign_up/sign_up_page.dart';
-import '../home/home_pages.dart';
 
 class SplashPage extends StatelessWidget {
   static String routeName = '/splash_page';
@@ -21,7 +21,7 @@ class SplashPage extends StatelessWidget {
           initial: (_) {},
           authenticated: (_) {
             print(' authenticated');
-            Navigator.pushReplacementNamed(context, HomePage.routeName);
+            Navigator.pushReplacementNamed(context, MainPage.routeName);
           },
           unauthenticated: (_) {
             print('not authenticated');
