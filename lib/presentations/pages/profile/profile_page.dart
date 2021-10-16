@@ -2,6 +2,7 @@ import 'package:expense_tracker/app/auth/auth_bloc.dart';
 import 'package:expense_tracker/presentations/components/default_app_widget.dart';
 import 'package:expense_tracker/presentations/components/icon_card.dart';
 import 'package:expense_tracker/presentations/pages/authentication/sign_in/sign_in_page.dart';
+import 'package:expense_tracker/presentations/pages/profile/account/account_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -86,7 +87,7 @@ class Body extends StatelessWidget {
                   child: ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: 4,
+                    itemCount: data.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(kMediumPadding),
@@ -96,7 +97,7 @@ class Body extends StatelessWidget {
                             children: [
                               SquaredIconCard(
                                 imagePath: data[index]['img']!,
-                                height: 60,
+                                size: 60,
                                 imageColor: index != 3 ? kViolet100 : kRed100,
                                 color: index != 3 ? kViolet20 : kRed20,
                               ),
@@ -150,20 +151,6 @@ class ExportPage extends StatelessWidget {
         child: Text('Export page'),
       ),
       title: 'Export',
-    );
-  }
-}
-
-class AccountPage extends StatelessWidget {
-  const AccountPage({Key? key}) : super(key: key);
-  static String routeName = '/account';
-  @override
-  Widget build(BuildContext context) {
-    return const DefaultAppWidget(
-      title: 'Account',
-      body: Center(
-        child: Text('account page'),
-      ),
     );
   }
 }
