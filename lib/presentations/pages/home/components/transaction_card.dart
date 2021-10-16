@@ -6,11 +6,13 @@ import '../../../../constants.dart';
 class TransactionCard extends StatelessWidget {
   const TransactionCard({
     Key? key,
+    this.elevation,
   }) : super(key: key);
-
+  final double? elevation;
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: elevation,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: ListTile(

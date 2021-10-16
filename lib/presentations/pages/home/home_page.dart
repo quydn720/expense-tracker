@@ -2,15 +2,13 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
-import '../../../sample_data.dart';
 import '../../components/bars.dart';
-import '../../models/transaction.dart';
 import 'components/top_navigation.dart';
 import 'components/transaction_card.dart';
 
-class DailyPage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   static String routeName = '/daily_page';
-  const DailyPage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +67,38 @@ class DailyPage extends StatelessWidget {
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Tabs(),
+                child: Tabs(
+                  children: [
+                    Chip(
+                      backgroundColor: kYellow20,
+                      label: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text('Today'),
+                      ),
+                    ),
+                    Chip(
+                      backgroundColor: kLight100,
+                      label: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text('Week'),
+                      ),
+                    ),
+                    Chip(
+                      backgroundColor: kLight100,
+                      label: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text('Month'),
+                      ),
+                    ),
+                    Chip(
+                      backgroundColor: kLight100,
+                      label: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text('Year'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               DefaultBar(
                 title: const Padding(
@@ -116,42 +145,14 @@ class DailyPage extends StatelessWidget {
 class Tabs extends StatelessWidget {
   const Tabs({
     Key? key,
+    required this.children,
   }) : super(key: key);
-
+  final List<Widget> children;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Chip(
-          backgroundColor: kYellow20,
-          label: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('Today'),
-          ),
-        ),
-        Chip(
-          backgroundColor: kLight100,
-          label: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('Week'),
-          ),
-        ),
-        Chip(
-          backgroundColor: kLight100,
-          label: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('Month'),
-          ),
-        ),
-        Chip(
-          backgroundColor: kLight100,
-          label: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('Year'),
-          ),
-        ),
-      ],
+      children: children,
     );
   }
 }
