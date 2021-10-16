@@ -1,7 +1,7 @@
 import 'package:expense_tracker/constants.dart';
 import 'package:flutter/material.dart';
 
-import 'expandable_app_bar.dart';
+import 'default_app_bar.dart';
 
 /// Default scaffold widget with [DefaultAppBar]
 ///
