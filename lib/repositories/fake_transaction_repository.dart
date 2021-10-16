@@ -1,4 +1,4 @@
-import 'package:expense_tracker/models/transaction.dart';
+import 'package:expense_tracker/presentations/models/transaction.dart';
 
 abstract class TransactionRepository {
   Future<List<Transaction>> fetchTransactions(DateTime date);
