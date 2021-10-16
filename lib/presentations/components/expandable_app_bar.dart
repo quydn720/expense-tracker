@@ -1,3 +1,4 @@
+import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
@@ -30,12 +31,15 @@ class DefaultAppBar extends AppBar {
     Key? key,
     this.middle,
   }) : super(
-          leadingWidth: 200,
+          leadingWidth: SizeConfig.screenWidth * 0.4,
           automaticallyImplyLeading: false,
           backgroundColor: color,
           key: key,
           leading: Padding(
-            child: lead ?? const SizedBox.shrink(),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: lead ?? const SizedBox.shrink(),
+            ),
             padding: const EdgeInsets.only(left: kMediumPadding),
           ),
           actions: [
