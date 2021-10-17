@@ -2,7 +2,7 @@ import 'package:expense_tracker/presentations/pages/authentication/sign_in/body.
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
-import '../../../components/expandable_app_bar.dart';
+import '../../../components/default_app_bar.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
