@@ -26,12 +26,7 @@ class DefaultAppBar extends AppBar {
             ),
             padding: const EdgeInsets.only(left: kMediumPadding),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: kMediumPadding),
-              child: trail ?? const SizedBox.shrink(),
-            )
-          ],
+          actions: [trail ?? const SizedBox.shrink()],
           title: middle ?? const SizedBox.shrink(),
         );
 }

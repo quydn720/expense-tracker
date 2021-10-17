@@ -1,4 +1,4 @@
-import 'package:expense_tracker/presentations/components/icon_card.dart';
+import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
@@ -20,7 +20,7 @@ class TransactionCard extends StatelessWidget {
           horizontalTitleGap: kDefaultPadding,
           leading: const SquaredIconCard(
             color: kYellow20,
-            height: 60,
+            size: 60,
             imagePath: 'assets/icons/shopping-bag.png',
             imageColor: kYellow100,
           ),

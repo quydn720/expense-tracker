@@ -19,6 +19,20 @@ class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var themeData = ThemeData(
+      fontFamily: 'Inter',
+      primaryColor: kPrimaryColor,
+      elevatedButtonTheme: elevatedButtonTheme,
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Color(0xffF1F1FA)),
+          borderRadius: BorderRadius.circular(kDefaultRadius),
+        ),
+      ),
+      scaffoldBackgroundColor: kLight100,
+      appBarTheme: appBarTheme,
+      bottomSheetTheme: bottomSheetThemeData,
+    );
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -34,20 +48,7 @@ class AppWidget extends StatelessWidget {
         initialRoute: SplashPage.routeName,
         routes: routes,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: 'Inter',
-          primaryColor: kPrimaryColor,
-          elevatedButtonTheme: elevatedButtonTheme,
-          inputDecorationTheme: InputDecorationTheme(
-            border: OutlineInputBorder(
-              borderSide: const BorderSide(color: Color(0xffF1F1FA)),
-              borderRadius: BorderRadius.circular(kDefaultRadius),
-            ),
-          ),
-          scaffoldBackgroundColor: kLight100,
-          appBarTheme: appBarTheme,
-          bottomSheetTheme: bottomSheetThemeData,
-        ),
+        theme: themeData,
       ),
     );
   }

@@ -11,10 +11,12 @@ class DefaultAppWidget extends StatelessWidget {
     this.color,
     required this.title,
     this.body,
+    this.trail,
   }) : super(key: key);
   final Color? color;
   final String title;
   final Widget? body;
+  final Widget? trail;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class DefaultAppWidget extends StatelessWidget {
           onTap: () => Navigator.pop(context),
         ),
         middle: Text(title, style: title3.copyWith(color: kDark100)),
+        trail: trail,
       ),
       body: body,
     );

@@ -1,7 +1,7 @@
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/bars.dart';
-import 'package:expense_tracker/presentations/components/expandable_app_bar.dart';
-import 'package:expense_tracker/presentations/components/icon_card.dart';
+import 'package:expense_tracker/presentations/components/default_app_bar.dart';
+import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
 import 'package:expense_tracker/presentations/pages/home/components/pills.dart';
 import 'package:expense_tracker/presentations/pages/home/components/transaction_card.dart';
 import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/filter_bottom_sheet.dart';
@@ -33,7 +33,7 @@ class TransactionPage extends StatelessWidget {
               );
             },
             child: const SquaredIconCard(
-              height: 56,
+              size: 48,
               imagePath: 'assets/icons/sort.png',
             ),
           ),
@@ -44,6 +44,9 @@ class TransactionPage extends StatelessWidget {
         child: Column(
           children: [
             DefaultBar(
+              onTap: () {
+                print('tap');
+              },
               color: kViolet20,
               title: Padding(
                 padding: const EdgeInsets.all(kMediumPadding),

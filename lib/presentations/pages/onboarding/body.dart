@@ -4,7 +4,7 @@ import '../authentication/sign_in/sign_in_page.dart';
 import '../authentication/sign_up/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../components/default_large_button.dart';
+import '../../components/default_button.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);

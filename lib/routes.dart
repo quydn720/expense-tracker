@@ -1,6 +1,9 @@
 import 'package:expense_tracker/presentations/pages/authentication/forgot_password/forgot_pw_page.dart';
 import 'package:expense_tracker/presentations/pages/home/home_page.dart';
-import 'package:expense_tracker/presentations/pages/profile/profile_page.dart';
+import 'package:expense_tracker/presentations/pages/profile/account/account_page.dart';
+import 'package:expense_tracker/presentations/pages/profile/export/export_page.dart';
+import 'package:expense_tracker/presentations/pages/profile/export/export_result_page.dart';
+import 'package:expense_tracker/presentations/pages/profile/setting/setting_page.dart';
 import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
 import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/transaction_list.dart';
 import 'package:flutter/material.dart';
@@ -24,4 +27,5 @@ final Map<String, WidgetBuilder> routes = {
   AccountPage.routeName: (context) => const AccountPage(),
   SettingPage.routeName: (context) => const SettingPage(),
   ExportPage.routeName: (context) => const ExportPage(),
+  ExportDataPromptPage.routeName: (context) => const ExportDataPromptPage(),
 };

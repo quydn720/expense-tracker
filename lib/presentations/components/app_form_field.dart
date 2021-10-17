@@ -20,6 +20,7 @@ class AppFormField extends StatelessWidget {
           child: suffix,
         ),
         hintText: hint,
+        hintStyle: body1.copyWith(color: kDark50),
       ),
     );
   }

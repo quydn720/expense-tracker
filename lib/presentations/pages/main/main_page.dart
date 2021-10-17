@@ -30,6 +30,7 @@ class _MainPageState extends State<MainPage> {
     BudgetPage(),
     ProfilePage(),
   ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -39,54 +40,67 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context); // remove later
+    var bottomAppBar = BottomAppBar(
+      shape: const CircularNotchedRectangle(),
+      notchMargin: 6.0,
+      clipBehavior: Clip.antiAlias,
+      child: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        unselectedItemColor: kDark25,
+        selectedItemColor: kViolet100,
+        selectedFontSize: 12.5,
+        unselectedFontSize: 12.5,
+        type: BottomNavigationBarType.fixed,
+        onTap: _onItemTapped,
+        items: [
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/home.png',
+              color: (_selectedIndex == 0) ? kViolet100 : kDark25,
+            ),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/transaction_bw.png',
+              color: (_selectedIndex == 1) ? kViolet100 : kDark25,
+            ),
+            label: "Trans",
+          ),
+          const BottomNavigationBarItem(icon: SizedBox.shrink(), label: ""),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/pie-chart.png',
+              color: (_selectedIndex == 3) ? kViolet100 : kDark25,
+            ),
+            label: "Budget",
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/user.png',
+              color: (_selectedIndex == 4) ? kViolet100 : kDark25,
+            ),
+            label: "Profile",
+          ),
+        ],
+      ),
+    );
+    var floatingActionButton = FloatingActionButton(
+      onPressed: () async {
+        final a = await Navigator.pushNamed(
+          context,
+          AddNewTransactionPage.routeName,
+        );
+        print(a);
+      },
+      child: const Icon(Icons.add, size: 30),
+      backgroundColor: kPrimaryColor,
+    );
     return Scaffold(
-      backgroundColor: Color(0xffFAFAFA),
       body: _widgetOptions.elementAt(_selectedIndex),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final a = await Navigator.pushNamed(
-            context,
-            AddNewTransactionPage.routeName,
-          );
-          print(a);
-        },
-        child: const Icon(Icons.add, size: 30),
-        backgroundColor: kPrimaryColor,
-      ),
+      floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 6.0,
-        clipBehavior: Clip.antiAlias,
-        child: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          unselectedItemColor: kDark25,
-          selectedItemColor: kViolet100,
-          selectedFontSize: 12.5,
-          unselectedFontSize: 12.5,
-          type: BottomNavigationBarType.fixed,
-          onTap: _onItemTapped,
-          items: [
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/icons/home.png'),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/icons/transaction_bw.png'),
-              label: "Trans",
-            ),
-            const BottomNavigationBarItem(icon: SizedBox.shrink(), label: ""),
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/icons/pie-chart.png'),
-              label: "Budget",
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/icons/user.png'),
-              label: "Profile",
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: bottomAppBar,
     );
   }
 
