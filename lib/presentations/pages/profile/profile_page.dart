@@ -1,8 +1,9 @@
 import 'package:expense_tracker/app/auth/auth_bloc.dart';
-import 'package:expense_tracker/presentations/components/default_app_widget.dart';
-import 'package:expense_tracker/presentations/components/icon_card.dart';
+import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
 import 'package:expense_tracker/presentations/pages/authentication/sign_in/sign_in_page.dart';
 import 'package:expense_tracker/presentations/pages/profile/account/account_page.dart';
+import 'package:expense_tracker/presentations/pages/profile/export/export_page.dart';
+import 'package:expense_tracker/presentations/pages/profile/setting/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -68,8 +69,10 @@ class Body extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text('Username', style: body3),
-                          Text('Ngoc Quy',
-                              style: title2.copyWith(color: kDark75)),
+                          Text(
+                            'Ngoc Quy',
+                            style: title2.copyWith(color: kDark75),
+                          ),
                         ],
                       ),
                     ),
@@ -123,34 +126,6 @@ class Body extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class SettingPage extends StatelessWidget {
-  const SettingPage({Key? key}) : super(key: key);
-  static String routeName = '/Setting';
-  @override
-  Widget build(BuildContext context) {
-    return const DefaultAppWidget(
-      title: 'Settings',
-      body: Center(
-        child: Text('Setting page', style: body3),
-      ),
-    );
-  }
-}
-
-class ExportPage extends StatelessWidget {
-  const ExportPage({Key? key}) : super(key: key);
-  static String routeName = '/Export';
-  @override
-  Widget build(BuildContext context) {
-    return const DefaultAppWidget(
-      body: Center(
-        child: Text('Export page'),
-      ),
-      title: 'Export',
     );
   }
 }

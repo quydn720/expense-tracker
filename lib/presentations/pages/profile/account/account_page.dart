@@ -1,17 +1,21 @@
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/default_app_widget.dart';
-import 'package:expense_tracker/presentations/components/default_large_button.dart';
-import 'package:expense_tracker/presentations/components/icon_card.dart';
+import 'package:expense_tracker/presentations/components/default_button.dart';
+import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
 import 'package:flutter/material.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
   static String routeName = '/account';
   final data = const [
-    {'img': 'assets/icons/wallet-3.png', 'title': 'Wallet'},
-    {'img': 'assets/icons/banks/Chase.png', 'title': 'Chase'},
-    {'img': 'assets/icons/banks/Citi.png', 'title': 'Citi'},
-    {'img': 'assets/icons/banks/Paypal.png', 'title': 'Paypal'},
+    {'img': 'assets/icons/wallet-3.png', 'title': 'Wallet', 'amount': '400'},
+    {'img': 'assets/icons/banks/Chase.png', 'title': 'Chase', 'amount': '1000'},
+    {'img': 'assets/icons/banks/Citi.png', 'title': 'Citi', 'amount': '700'},
+    {
+      'img': 'assets/icons/banks/Paypal.png',
+      'title': 'Paypal',
+      'amount': '500'
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -57,12 +61,19 @@ class AccountPage extends StatelessWidget {
                           color: const Color(0xffF1F1FA),
                           imageColor: (index == 0) ? kBlue100 : null,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: kMediumPadding),
-                          child: Text(
-                            data[index]['title']!,
-                            style: title3.copyWith(color: kDark75),
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(left: kMediumPadding),
+                            child: Text(
+                              data[index]['title']!,
+                              style: title3.copyWith(color: kDark75),
+                            ),
                           ),
+                        ),
+                        Text(
+                          '\$${data[index]['amount']!}',
+                          style: title3.copyWith(color: kDark75),
                         ),
                       ],
                     ),
