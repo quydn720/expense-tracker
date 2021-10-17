@@ -1,6 +1,6 @@
 import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/default_large_button.dart';
-import 'package:expense_tracker/presentations/components/expandable_app_bar.dart';
+import 'package:expense_tracker/presentations/components/default_button.dart';
+import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'expense_income_form.dart';

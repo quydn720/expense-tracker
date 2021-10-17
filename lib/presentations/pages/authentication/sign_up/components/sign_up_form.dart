@@ -5,7 +5,7 @@ import 'package:expense_tracker/presentations/pages/main/main_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../constants.dart';
-import '../../../../components/default_large_button.dart';
+import '../../../../components/default_button.dart';
 import 'package:flutter/material.dart';
 
 import 'hyperlink_text.dart';
@@ -49,7 +49,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 message: 'register successfully',
                 duration: const Duration(seconds: 2),
               );
-              Navigator.pushNamed(context, MainPage.routeName);
+              Navigator.pushReplacementNamed(context, MainPage.routeName);
             },
           ),
         );
@@ -102,10 +102,12 @@ class _SignUpFormState extends State<SignUpForm> {
                       ),
                     ),
                     validator: (_) => bloc.state.password.value.fold(
-                          (failure) => failure.maybeMap(
-                            shortPassword: (_) => 'Short Password',
-                            orElse: () => null,
-                          ),
+                          (failure) {
+                            return failure.maybeMap(
+                              shortPassword: (_) => 'Short Password',
+                              orElse: () => null,
+                            );
+                          },
                           (_) => null,
                         ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,

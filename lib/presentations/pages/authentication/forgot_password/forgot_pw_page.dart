@@ -1,5 +1,5 @@
-import 'package:expense_tracker/presentations/components/default_large_button.dart';
-import 'package:expense_tracker/presentations/components/expandable_app_bar.dart';
+import 'package:expense_tracker/presentations/components/default_app_widget.dart';
+import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
@@ -10,16 +10,9 @@ class ForgotPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: DefaultAppBar(
-        lead: GestureDetector(
-          child: Image.asset('assets/icons/arrow-left.png'),
-          onTap: () => Navigator.pop(context),
-        ),
-        middle:
-            Text('Forgot password', style: title3.copyWith(color: kDark100)),
-      ),
-      body: const Body(),
+    return const DefaultAppWidget(
+      title: 'Forgot password',
+      body: Body(),
     );
   }
 }

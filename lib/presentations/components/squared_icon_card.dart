@@ -6,15 +6,15 @@ class SquaredIconCard extends StatelessWidget {
   const SquaredIconCard({
     Key? key,
     required this.imagePath,
-    required this.height,
+    required this.size,
     this.color = kLight100,
-    this.imageColor = kDark100,
+    this.imageColor,
   }) : super(key: key);
 
   final String imagePath;
-  final double height;
+  final double size;
   final Color color;
-  final Color imageColor;
+  final Color? imageColor;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -27,7 +27,8 @@ class SquaredIconCard extends StatelessWidget {
       ),
       child: Image.asset(
         imagePath,
-        height: height,
+        height: size,
+        width: size,
         color: imageColor,
       ),
     );

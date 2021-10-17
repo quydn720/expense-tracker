@@ -1,4 +1,4 @@
-import 'package:expense_tracker/presentations/components/icon_card.dart';
+import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
@@ -30,7 +30,7 @@ class MoneyChip extends StatelessWidget {
           children: [
             SquaredIconCard(
               imagePath: imagePath,
-              height: 48,
+              size: 48,
               imageColor: color,
             ),
             const SizedBox(width: kDefaultPadding),
