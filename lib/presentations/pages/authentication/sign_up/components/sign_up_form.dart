@@ -1,6 +1,7 @@
+import 'dart:async';
+
 import 'package:another_flushbar/flushbar.dart';
 import 'package:expense_tracker/app/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:expense_tracker/presentations/components/default_outlined_button.dart';
 import 'package:expense_tracker/presentations/pages/main/main_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,19 +11,10 @@ import 'package:flutter/material.dart';
 
 import 'hyperlink_text.dart';
 
-class SignUpForm extends StatefulWidget {
+class SignUpForm extends StatelessWidget {
   const SignUpForm({
     Key? key,
   }) : super(key: key);
-
-  @override
-  State<SignUpForm> createState() => _SignUpFormState();
-}
-
-class _SignUpFormState extends State<SignUpForm> {
-  String name = '';
-  bool isVisible = true;
-  bool agreeTerm = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,21 +27,24 @@ class _SignUpFormState extends State<SignUpForm> {
             (failure) {
               Flushbar(
                 message: failure.map(
-                  cancelledByUser: (_) => 'cancelledByUser',
-                  serverError: (_) => 'serverError',
-                  emailAlreadyInUse: (_) => 'emailAlreadyInUse',
+                  cancelledByUser: (_) => 'Your registration has been canceled',
+                  serverError: (_) => 'Server error',
+                  emailAlreadyInUse: (_) => 'Email already in use',
                   invalidEmailAndPasswordCombination: (_) =>
-                      'invalidEmailAndPasswordCombination',
+                      'Wrong email or password',
+                  notAgreeTerms: (_) => 'You must agree with Terms of Service',
                 ),
                 duration: const Duration(seconds: 2),
               ).show(context);
             },
             (_) {
               Flushbar(
-                message: 'register successfully',
-                duration: const Duration(seconds: 2),
-              );
-              Navigator.pushReplacementNamed(context, MainPage.routeName);
+                message: 'Register successfully',
+                duration: const Duration(seconds: 1),
+              ).show(context);
+              Timer(const Duration(seconds: 2), () {
+                Navigator.pushReplacementNamed(context, MainPage.routeName);
+              });
             },
           ),
         );
@@ -71,7 +66,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     }
                     return null;
                   },
-                  onSaved: (v) => name = v!,
+                  onChanged: (v) => bloc.add(DisplayNameChanged(v)),
                 ),
                 const SizedBox(height: kMediumPadding),
                 TextFormField(
@@ -90,15 +85,13 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
                 const SizedBox(height: kMediumPadding),
                 TextFormField(
-                    obscureText: isVisible,
+                    obscureText: bloc.state.isPasswordVisible,
                     autocorrect: false,
                     decoration: InputDecoration(
                       label: const Text('Password'),
                       suffixIcon: IconButton(
                         icon: Image.asset('assets/icons/show.png'),
-                        onPressed: () => setState(
-                          () => isVisible = !isVisible,
-                        ),
+                        onPressed: () => bloc.add(const ShowPasswordPressed()),
                       ),
                     ),
                     validator: (_) => bloc.state.password.value.fold(
@@ -117,8 +110,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 Row(
                   children: [
                     Checkbox(
-                        value: agreeTerm,
-                        onChanged: (v) => setState(() => agreeTerm = v!)),
+                      value: bloc.state.checkboxState,
+                      onChanged: (v) => bloc.add(CheckboxChanged(v!)),
+                    ),
                     const Expanded(
                       child: HyperlinkText(
                         normalText: 'By signing up, you agree to the ',
@@ -133,14 +127,6 @@ class _SignUpFormState extends State<SignUpForm> {
                   onPress: () {
                     bloc.add(const RegisterWithEmailAndPasswordPressed());
                   },
-                ),
-                const SizedBox(height: kMediumPadding),
-                DefaultOutlinedButton(
-                  title: 'Sign up with Google',
-                  onPress: () {
-                    bloc.add(const SignInFormEvent.signInWithGooglePressed());
-                  },
-                  icon: Image.asset('assets/icons/flat-color-icons_google.png'),
                 ),
                 const SizedBox(height: kMediumPadding),
               ],

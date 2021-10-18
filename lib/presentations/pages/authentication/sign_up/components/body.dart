@@ -16,7 +16,6 @@ class Body extends StatelessWidget {
         child: Column(
           children: [
             const SignUpForm(),
-            const Text('Or with'),
             const SizedBox(height: kMediumPadding),
             HyperlinkText(
               linkText: 'Login',

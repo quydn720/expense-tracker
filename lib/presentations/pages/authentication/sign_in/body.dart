@@ -1,4 +1,8 @@
+import 'dart:async';
+
+import 'package:another_flushbar/flushbar.dart';
 import 'package:expense_tracker/app/auth/sign_in_form/sign_in_form_bloc.dart';
+import 'package:expense_tracker/presentations/components/default_outlined_button.dart';
 import 'package:expense_tracker/presentations/pages/authentication/forgot_password/forgot_pw_page.dart';
 import 'package:expense_tracker/presentations/pages/main/main_page.dart';
 import 'package:flutter/material.dart';
@@ -22,14 +26,19 @@ class Body extends StatelessWidget {
           (either) => either.fold(
             (failure) {
               failure.maybeMap(
-                invalidEmailAndPasswordCombination: (_) {
-                  print('wrong user name or password');
-                },
+                invalidEmailAndPasswordCombination: (_) =>
+                    'Wrong email or password',
                 orElse: () {},
               );
             },
             (_) {
-              Navigator.pushReplacementNamed(context, MainPage.routeName);
+              Flushbar(
+                message: 'Login with Google successfully',
+                duration: const Duration(seconds: 1),
+              ).show(context);
+              Timer(const Duration(seconds: 2), () {
+                Navigator.pushReplacementNamed(context, MainPage.routeName);
+              });
             },
           ),
         );
@@ -62,10 +71,14 @@ class Body extends StatelessWidget {
                         ),
                         const SizedBox(height: kMediumPadding),
                         TextFormField(
-                          obscureText: true,
+                          obscureText: bloc.state.isPasswordVisible,
                           decoration: InputDecoration(
                             label: const Text('Password'),
-                            suffixIcon: Image.asset('assets/icons/show.png'),
+                            suffixIcon: IconButton(
+                              icon: Image.asset('assets/icons/show.png'),
+                              onPressed: () =>
+                                  bloc.add(const ShowPasswordPressed()),
+                            ),
                           ),
                           textInputAction: TextInputAction.done,
                           validator: (_) => bloc.state.password.value.fold(
@@ -86,6 +99,17 @@ class Body extends StatelessWidget {
                             bloc.add(const SignInWithEmailAndPasswordPressed());
                           },
                         ),
+                        const SizedBox(height: kMediumPadding),
+                        const Text('Or with'),
+                        const SizedBox(height: kMediumPadding),
+                        DefaultOutlinedButton(
+                          title: 'Sign in with Google',
+                          onPress: () =>
+                              bloc.add(const SignInWithGooglePressed()),
+                          icon: Image.asset(
+                              'assets/icons/flat-color-icons_google.png'),
+                        ),
+                        const SizedBox(height: kMediumPadding),
                         const SizedBox(height: kLargePadding),
                       ],
                     ),

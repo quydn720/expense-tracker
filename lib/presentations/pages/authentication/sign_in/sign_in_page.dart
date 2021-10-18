@@ -1,5 +1,8 @@
+import 'package:expense_tracker/app/auth/sign_in_form/sign_in_form_bloc.dart';
+import 'package:expense_tracker/injector.dart';
 import 'package:expense_tracker/presentations/pages/authentication/sign_in/body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../constants.dart';
 import '../../../components/default_app_bar.dart';
@@ -23,7 +26,10 @@ class _SignInPageState extends State<SignInPage> {
         ),
         middle: Text('Sign In', style: title3.copyWith(color: kDark100)),
       ),
-      body: const Body(),
+      body: BlocProvider(
+        create: (context) => getIt<SignInFormBloc>(),
+        child: const Body(),
+      ),
     );
   }
 }

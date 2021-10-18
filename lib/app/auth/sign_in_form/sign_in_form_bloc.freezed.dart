@@ -27,9 +27,25 @@ class _$SignInFormEventTearOff {
     );
   }
 
+  DisplayNameChanged displayNameChanged(String displayName) {
+    return DisplayNameChanged(
+      displayName,
+    );
+  }
+
   PasswordChanged passwordChanged(String passwordStr) {
     return PasswordChanged(
       passwordStr,
+    );
+  }
+
+  ShowPasswordPressed showPasswordPressed() {
+    return const ShowPasswordPressed();
+  }
+
+  CheckboxChanged checkboxChanged(bool checkboxState) {
+    return CheckboxChanged(
+      checkboxState,
     );
   }
 
@@ -55,7 +71,10 @@ mixin _$SignInFormEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String displayName) displayNameChanged,
     required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function() showPasswordPressed,
+    required TResult Function(bool checkboxState) checkboxChanged,
     required TResult Function() registerWithEmailAndPasswordPressed,
     required TResult Function() signInWithEmailAndPasswordPressed,
     required TResult Function() signInWithGooglePressed,
@@ -65,7 +84,10 @@ mixin _$SignInFormEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -75,7 +97,10 @@ mixin _$SignInFormEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -86,7 +111,10 @@ mixin _$SignInFormEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(DisplayNameChanged value) displayNameChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ShowPasswordPressed value) showPasswordPressed,
+    required TResult Function(CheckboxChanged value) checkboxChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordPressed,
     required TResult Function(SignInWithEmailAndPasswordPressed value)
@@ -99,7 +127,10 @@ mixin _$SignInFormEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -111,7 +142,10 @@ mixin _$SignInFormEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -179,7 +213,10 @@ class _$Initial implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String displayName) displayNameChanged,
     required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function() showPasswordPressed,
+    required TResult Function(bool checkboxState) checkboxChanged,
     required TResult Function() registerWithEmailAndPasswordPressed,
     required TResult Function() signInWithEmailAndPasswordPressed,
     required TResult Function() signInWithGooglePressed,
@@ -192,7 +229,10 @@ class _$Initial implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -205,7 +245,10 @@ class _$Initial implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -222,7 +265,10 @@ class _$Initial implements Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(DisplayNameChanged value) displayNameChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ShowPasswordPressed value) showPasswordPressed,
+    required TResult Function(CheckboxChanged value) checkboxChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordPressed,
     required TResult Function(SignInWithEmailAndPasswordPressed value)
@@ -238,7 +284,10 @@ class _$Initial implements Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -253,7 +302,10 @@ class _$Initial implements Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -339,7 +391,10 @@ class _$EmailChanged implements EmailChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String displayName) displayNameChanged,
     required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function() showPasswordPressed,
+    required TResult Function(bool checkboxState) checkboxChanged,
     required TResult Function() registerWithEmailAndPasswordPressed,
     required TResult Function() signInWithEmailAndPasswordPressed,
     required TResult Function() signInWithGooglePressed,
@@ -352,7 +407,10 @@ class _$EmailChanged implements EmailChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -365,7 +423,10 @@ class _$EmailChanged implements EmailChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -382,7 +443,10 @@ class _$EmailChanged implements EmailChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(DisplayNameChanged value) displayNameChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ShowPasswordPressed value) showPasswordPressed,
+    required TResult Function(CheckboxChanged value) checkboxChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordPressed,
     required TResult Function(SignInWithEmailAndPasswordPressed value)
@@ -398,7 +462,10 @@ class _$EmailChanged implements EmailChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -413,7 +480,10 @@ class _$EmailChanged implements EmailChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -434,6 +504,189 @@ abstract class EmailChanged implements SignInFormEvent {
   String get emailStr;
   @JsonKey(ignore: true)
   $EmailChangedCopyWith<EmailChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DisplayNameChangedCopyWith<$Res> {
+  factory $DisplayNameChangedCopyWith(
+          DisplayNameChanged value, $Res Function(DisplayNameChanged) then) =
+      _$DisplayNameChangedCopyWithImpl<$Res>;
+  $Res call({String displayName});
+}
+
+/// @nodoc
+class _$DisplayNameChangedCopyWithImpl<$Res>
+    extends _$SignInFormEventCopyWithImpl<$Res>
+    implements $DisplayNameChangedCopyWith<$Res> {
+  _$DisplayNameChangedCopyWithImpl(
+      DisplayNameChanged _value, $Res Function(DisplayNameChanged) _then)
+      : super(_value, (v) => _then(v as DisplayNameChanged));
+
+  @override
+  DisplayNameChanged get _value => super._value as DisplayNameChanged;
+
+  @override
+  $Res call({
+    Object? displayName = freezed,
+  }) {
+    return _then(DisplayNameChanged(
+      displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DisplayNameChanged implements DisplayNameChanged {
+  const _$DisplayNameChanged(this.displayName);
+
+  @override
+  final String displayName;
+
+  @override
+  String toString() {
+    return 'SignInFormEvent.displayNameChanged(displayName: $displayName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DisplayNameChanged &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, displayName);
+
+  @JsonKey(ignore: true)
+  @override
+  $DisplayNameChangedCopyWith<DisplayNameChanged> get copyWith =>
+      _$DisplayNameChangedCopyWithImpl<DisplayNameChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String displayName) displayNameChanged,
+    required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function() showPasswordPressed,
+    required TResult Function(bool checkboxState) checkboxChanged,
+    required TResult Function() registerWithEmailAndPasswordPressed,
+    required TResult Function() signInWithEmailAndPasswordPressed,
+    required TResult Function() signInWithGooglePressed,
+  }) {
+    return displayNameChanged(displayName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
+    TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
+    TResult Function()? registerWithEmailAndPasswordPressed,
+    TResult Function()? signInWithEmailAndPasswordPressed,
+    TResult Function()? signInWithGooglePressed,
+  }) {
+    return displayNameChanged?.call(displayName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
+    TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
+    TResult Function()? registerWithEmailAndPasswordPressed,
+    TResult Function()? signInWithEmailAndPasswordPressed,
+    TResult Function()? signInWithGooglePressed,
+    required TResult orElse(),
+  }) {
+    if (displayNameChanged != null) {
+      return displayNameChanged(displayName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(DisplayNameChanged value) displayNameChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ShowPasswordPressed value) showPasswordPressed,
+    required TResult Function(CheckboxChanged value) checkboxChanged,
+    required TResult Function(RegisterWithEmailAndPasswordPressed value)
+        registerWithEmailAndPasswordPressed,
+    required TResult Function(SignInWithEmailAndPasswordPressed value)
+        signInWithEmailAndPasswordPressed,
+    required TResult Function(SignInWithGooglePressed value)
+        signInWithGooglePressed,
+  }) {
+    return displayNameChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordPressed,
+    TResult Function(SignInWithEmailAndPasswordPressed value)?
+        signInWithEmailAndPasswordPressed,
+    TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
+  }) {
+    return displayNameChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordPressed,
+    TResult Function(SignInWithEmailAndPasswordPressed value)?
+        signInWithEmailAndPasswordPressed,
+    TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
+    required TResult orElse(),
+  }) {
+    if (displayNameChanged != null) {
+      return displayNameChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DisplayNameChanged implements SignInFormEvent {
+  const factory DisplayNameChanged(String displayName) = _$DisplayNameChanged;
+
+  String get displayName;
+  @JsonKey(ignore: true)
+  $DisplayNameChangedCopyWith<DisplayNameChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -504,7 +757,10 @@ class _$PasswordChanged implements PasswordChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String displayName) displayNameChanged,
     required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function() showPasswordPressed,
+    required TResult Function(bool checkboxState) checkboxChanged,
     required TResult Function() registerWithEmailAndPasswordPressed,
     required TResult Function() signInWithEmailAndPasswordPressed,
     required TResult Function() signInWithGooglePressed,
@@ -517,7 +773,10 @@ class _$PasswordChanged implements PasswordChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -530,7 +789,10 @@ class _$PasswordChanged implements PasswordChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -547,7 +809,10 @@ class _$PasswordChanged implements PasswordChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(DisplayNameChanged value) displayNameChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ShowPasswordPressed value) showPasswordPressed,
+    required TResult Function(CheckboxChanged value) checkboxChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordPressed,
     required TResult Function(SignInWithEmailAndPasswordPressed value)
@@ -563,7 +828,10 @@ class _$PasswordChanged implements PasswordChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -578,7 +846,10 @@ class _$PasswordChanged implements PasswordChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -599,6 +870,343 @@ abstract class PasswordChanged implements SignInFormEvent {
   String get passwordStr;
   @JsonKey(ignore: true)
   $PasswordChangedCopyWith<PasswordChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ShowPasswordPressedCopyWith<$Res> {
+  factory $ShowPasswordPressedCopyWith(
+          ShowPasswordPressed value, $Res Function(ShowPasswordPressed) then) =
+      _$ShowPasswordPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ShowPasswordPressedCopyWithImpl<$Res>
+    extends _$SignInFormEventCopyWithImpl<$Res>
+    implements $ShowPasswordPressedCopyWith<$Res> {
+  _$ShowPasswordPressedCopyWithImpl(
+      ShowPasswordPressed _value, $Res Function(ShowPasswordPressed) _then)
+      : super(_value, (v) => _then(v as ShowPasswordPressed));
+
+  @override
+  ShowPasswordPressed get _value => super._value as ShowPasswordPressed;
+}
+
+/// @nodoc
+
+class _$ShowPasswordPressed implements ShowPasswordPressed {
+  const _$ShowPasswordPressed();
+
+  @override
+  String toString() {
+    return 'SignInFormEvent.showPasswordPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ShowPasswordPressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String displayName) displayNameChanged,
+    required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function() showPasswordPressed,
+    required TResult Function(bool checkboxState) checkboxChanged,
+    required TResult Function() registerWithEmailAndPasswordPressed,
+    required TResult Function() signInWithEmailAndPasswordPressed,
+    required TResult Function() signInWithGooglePressed,
+  }) {
+    return showPasswordPressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
+    TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
+    TResult Function()? registerWithEmailAndPasswordPressed,
+    TResult Function()? signInWithEmailAndPasswordPressed,
+    TResult Function()? signInWithGooglePressed,
+  }) {
+    return showPasswordPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
+    TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
+    TResult Function()? registerWithEmailAndPasswordPressed,
+    TResult Function()? signInWithEmailAndPasswordPressed,
+    TResult Function()? signInWithGooglePressed,
+    required TResult orElse(),
+  }) {
+    if (showPasswordPressed != null) {
+      return showPasswordPressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(DisplayNameChanged value) displayNameChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ShowPasswordPressed value) showPasswordPressed,
+    required TResult Function(CheckboxChanged value) checkboxChanged,
+    required TResult Function(RegisterWithEmailAndPasswordPressed value)
+        registerWithEmailAndPasswordPressed,
+    required TResult Function(SignInWithEmailAndPasswordPressed value)
+        signInWithEmailAndPasswordPressed,
+    required TResult Function(SignInWithGooglePressed value)
+        signInWithGooglePressed,
+  }) {
+    return showPasswordPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordPressed,
+    TResult Function(SignInWithEmailAndPasswordPressed value)?
+        signInWithEmailAndPasswordPressed,
+    TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
+  }) {
+    return showPasswordPressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordPressed,
+    TResult Function(SignInWithEmailAndPasswordPressed value)?
+        signInWithEmailAndPasswordPressed,
+    TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
+    required TResult orElse(),
+  }) {
+    if (showPasswordPressed != null) {
+      return showPasswordPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ShowPasswordPressed implements SignInFormEvent {
+  const factory ShowPasswordPressed() = _$ShowPasswordPressed;
+}
+
+/// @nodoc
+abstract class $CheckboxChangedCopyWith<$Res> {
+  factory $CheckboxChangedCopyWith(
+          CheckboxChanged value, $Res Function(CheckboxChanged) then) =
+      _$CheckboxChangedCopyWithImpl<$Res>;
+  $Res call({bool checkboxState});
+}
+
+/// @nodoc
+class _$CheckboxChangedCopyWithImpl<$Res>
+    extends _$SignInFormEventCopyWithImpl<$Res>
+    implements $CheckboxChangedCopyWith<$Res> {
+  _$CheckboxChangedCopyWithImpl(
+      CheckboxChanged _value, $Res Function(CheckboxChanged) _then)
+      : super(_value, (v) => _then(v as CheckboxChanged));
+
+  @override
+  CheckboxChanged get _value => super._value as CheckboxChanged;
+
+  @override
+  $Res call({
+    Object? checkboxState = freezed,
+  }) {
+    return _then(CheckboxChanged(
+      checkboxState == freezed
+          ? _value.checkboxState
+          : checkboxState // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CheckboxChanged implements CheckboxChanged {
+  const _$CheckboxChanged(this.checkboxState);
+
+  @override
+  final bool checkboxState;
+
+  @override
+  String toString() {
+    return 'SignInFormEvent.checkboxChanged(checkboxState: $checkboxState)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CheckboxChanged &&
+            (identical(other.checkboxState, checkboxState) ||
+                other.checkboxState == checkboxState));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, checkboxState);
+
+  @JsonKey(ignore: true)
+  @override
+  $CheckboxChangedCopyWith<CheckboxChanged> get copyWith =>
+      _$CheckboxChangedCopyWithImpl<CheckboxChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String displayName) displayNameChanged,
+    required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function() showPasswordPressed,
+    required TResult Function(bool checkboxState) checkboxChanged,
+    required TResult Function() registerWithEmailAndPasswordPressed,
+    required TResult Function() signInWithEmailAndPasswordPressed,
+    required TResult Function() signInWithGooglePressed,
+  }) {
+    return checkboxChanged(checkboxState);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
+    TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
+    TResult Function()? registerWithEmailAndPasswordPressed,
+    TResult Function()? signInWithEmailAndPasswordPressed,
+    TResult Function()? signInWithGooglePressed,
+  }) {
+    return checkboxChanged?.call(checkboxState);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
+    TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
+    TResult Function()? registerWithEmailAndPasswordPressed,
+    TResult Function()? signInWithEmailAndPasswordPressed,
+    TResult Function()? signInWithGooglePressed,
+    required TResult orElse(),
+  }) {
+    if (checkboxChanged != null) {
+      return checkboxChanged(checkboxState);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(DisplayNameChanged value) displayNameChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ShowPasswordPressed value) showPasswordPressed,
+    required TResult Function(CheckboxChanged value) checkboxChanged,
+    required TResult Function(RegisterWithEmailAndPasswordPressed value)
+        registerWithEmailAndPasswordPressed,
+    required TResult Function(SignInWithEmailAndPasswordPressed value)
+        signInWithEmailAndPasswordPressed,
+    required TResult Function(SignInWithGooglePressed value)
+        signInWithGooglePressed,
+  }) {
+    return checkboxChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordPressed,
+    TResult Function(SignInWithEmailAndPasswordPressed value)?
+        signInWithEmailAndPasswordPressed,
+    TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
+  }) {
+    return checkboxChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
+    TResult Function(RegisterWithEmailAndPasswordPressed value)?
+        registerWithEmailAndPasswordPressed,
+    TResult Function(SignInWithEmailAndPasswordPressed value)?
+        signInWithEmailAndPasswordPressed,
+    TResult Function(SignInWithGooglePressed value)? signInWithGooglePressed,
+    required TResult orElse(),
+  }) {
+    if (checkboxChanged != null) {
+      return checkboxChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CheckboxChanged implements SignInFormEvent {
+  const factory CheckboxChanged(bool checkboxState) = _$CheckboxChanged;
+
+  bool get checkboxState;
+  @JsonKey(ignore: true)
+  $CheckboxChangedCopyWith<CheckboxChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -650,7 +1258,10 @@ class _$RegisterWithEmailAndPasswordPressed
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String displayName) displayNameChanged,
     required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function() showPasswordPressed,
+    required TResult Function(bool checkboxState) checkboxChanged,
     required TResult Function() registerWithEmailAndPasswordPressed,
     required TResult Function() signInWithEmailAndPasswordPressed,
     required TResult Function() signInWithGooglePressed,
@@ -663,7 +1274,10 @@ class _$RegisterWithEmailAndPasswordPressed
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -676,7 +1290,10 @@ class _$RegisterWithEmailAndPasswordPressed
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -693,7 +1310,10 @@ class _$RegisterWithEmailAndPasswordPressed
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(DisplayNameChanged value) displayNameChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ShowPasswordPressed value) showPasswordPressed,
+    required TResult Function(CheckboxChanged value) checkboxChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordPressed,
     required TResult Function(SignInWithEmailAndPasswordPressed value)
@@ -709,7 +1329,10 @@ class _$RegisterWithEmailAndPasswordPressed
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -724,7 +1347,10 @@ class _$RegisterWithEmailAndPasswordPressed
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -792,7 +1418,10 @@ class _$SignInWithEmailAndPasswordPressed
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String displayName) displayNameChanged,
     required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function() showPasswordPressed,
+    required TResult Function(bool checkboxState) checkboxChanged,
     required TResult Function() registerWithEmailAndPasswordPressed,
     required TResult Function() signInWithEmailAndPasswordPressed,
     required TResult Function() signInWithGooglePressed,
@@ -805,7 +1434,10 @@ class _$SignInWithEmailAndPasswordPressed
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -818,7 +1450,10 @@ class _$SignInWithEmailAndPasswordPressed
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -835,7 +1470,10 @@ class _$SignInWithEmailAndPasswordPressed
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(DisplayNameChanged value) displayNameChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ShowPasswordPressed value) showPasswordPressed,
+    required TResult Function(CheckboxChanged value) checkboxChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordPressed,
     required TResult Function(SignInWithEmailAndPasswordPressed value)
@@ -851,7 +1489,10 @@ class _$SignInWithEmailAndPasswordPressed
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -866,7 +1507,10 @@ class _$SignInWithEmailAndPasswordPressed
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -929,7 +1573,10 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String displayName) displayNameChanged,
     required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function() showPasswordPressed,
+    required TResult Function(bool checkboxState) checkboxChanged,
     required TResult Function() registerWithEmailAndPasswordPressed,
     required TResult Function() signInWithEmailAndPasswordPressed,
     required TResult Function() signInWithGooglePressed,
@@ -942,7 +1589,10 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -955,7 +1605,10 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String emailStr)? emailChanged,
+    TResult Function(String displayName)? displayNameChanged,
     TResult Function(String passwordStr)? passwordChanged,
+    TResult Function()? showPasswordPressed,
+    TResult Function(bool checkboxState)? checkboxChanged,
     TResult Function()? registerWithEmailAndPasswordPressed,
     TResult Function()? signInWithEmailAndPasswordPressed,
     TResult Function()? signInWithGooglePressed,
@@ -972,7 +1625,10 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(DisplayNameChanged value) displayNameChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ShowPasswordPressed value) showPasswordPressed,
+    required TResult Function(CheckboxChanged value) checkboxChanged,
     required TResult Function(RegisterWithEmailAndPasswordPressed value)
         registerWithEmailAndPasswordPressed,
     required TResult Function(SignInWithEmailAndPasswordPressed value)
@@ -988,7 +1644,10 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -1003,7 +1662,10 @@ class _$SignInWithGooglePressed implements SignInWithGooglePressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(DisplayNameChanged value)? displayNameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ShowPasswordPressed value)? showPasswordPressed,
+    TResult Function(CheckboxChanged value)? checkboxChanged,
     TResult Function(RegisterWithEmailAndPasswordPressed value)?
         registerWithEmailAndPasswordPressed,
     TResult Function(SignInWithEmailAndPasswordPressed value)?
@@ -1029,12 +1691,18 @@ class _$SignInFormStateTearOff {
   _SignInFormState call(
       {required EmailAddress emailAddress,
       required Password password,
+      required String displayName,
+      required bool checkboxState,
+      required bool isPasswordVisible,
       required bool showErrorMessages,
       required bool isSubmitting,
       required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) {
     return _SignInFormState(
       emailAddress: emailAddress,
       password: password,
+      displayName: displayName,
+      checkboxState: checkboxState,
+      isPasswordVisible: isPasswordVisible,
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
       authFailureOrSuccessOption: authFailureOrSuccessOption,
@@ -1049,6 +1717,9 @@ const $SignInFormState = _$SignInFormStateTearOff();
 mixin _$SignInFormState {
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
+  String get displayName => throw _privateConstructorUsedError;
+  bool get checkboxState => throw _privateConstructorUsedError;
+  bool get isPasswordVisible => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption =>
@@ -1067,6 +1738,9 @@ abstract class $SignInFormStateCopyWith<$Res> {
   $Res call(
       {EmailAddress emailAddress,
       Password password,
+      String displayName,
+      bool checkboxState,
+      bool isPasswordVisible,
       bool showErrorMessages,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
@@ -1085,6 +1759,9 @@ class _$SignInFormStateCopyWithImpl<$Res>
   $Res call({
     Object? emailAddress = freezed,
     Object? password = freezed,
+    Object? displayName = freezed,
+    Object? checkboxState = freezed,
+    Object? isPasswordVisible = freezed,
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? authFailureOrSuccessOption = freezed,
@@ -1098,6 +1775,18 @@ class _$SignInFormStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
+      checkboxState: checkboxState == freezed
+          ? _value.checkboxState
+          : checkboxState // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPasswordVisible: isPasswordVisible == freezed
+          ? _value.isPasswordVisible
+          : isPasswordVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -1124,6 +1813,9 @@ abstract class _$SignInFormStateCopyWith<$Res>
   $Res call(
       {EmailAddress emailAddress,
       Password password,
+      String displayName,
+      bool checkboxState,
+      bool isPasswordVisible,
       bool showErrorMessages,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
@@ -1144,6 +1836,9 @@ class __$SignInFormStateCopyWithImpl<$Res>
   $Res call({
     Object? emailAddress = freezed,
     Object? password = freezed,
+    Object? displayName = freezed,
+    Object? checkboxState = freezed,
+    Object? isPasswordVisible = freezed,
     Object? showErrorMessages = freezed,
     Object? isSubmitting = freezed,
     Object? authFailureOrSuccessOption = freezed,
@@ -1157,6 +1852,18 @@ class __$SignInFormStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
+      displayName: displayName == freezed
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
+      checkboxState: checkboxState == freezed
+          ? _value.checkboxState
+          : checkboxState // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPasswordVisible: isPasswordVisible == freezed
+          ? _value.isPasswordVisible
+          : isPasswordVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -1179,6 +1886,9 @@ class _$_SignInFormState implements _SignInFormState {
   const _$_SignInFormState(
       {required this.emailAddress,
       required this.password,
+      required this.displayName,
+      required this.checkboxState,
+      required this.isPasswordVisible,
       required this.showErrorMessages,
       required this.isSubmitting,
       required this.authFailureOrSuccessOption});
@@ -1188,6 +1898,12 @@ class _$_SignInFormState implements _SignInFormState {
   @override
   final Password password;
   @override
+  final String displayName;
+  @override
+  final bool checkboxState;
+  @override
+  final bool isPasswordVisible;
+  @override
   final bool showErrorMessages;
   @override
   final bool isSubmitting;
@@ -1196,7 +1912,7 @@ class _$_SignInFormState implements _SignInFormState {
 
   @override
   String toString() {
-    return 'SignInFormState(emailAddress: $emailAddress, password: $password, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'SignInFormState(emailAddress: $emailAddress, password: $password, displayName: $displayName, checkboxState: $checkboxState, isPasswordVisible: $isPasswordVisible, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
   }
 
   @override
@@ -1208,6 +1924,12 @@ class _$_SignInFormState implements _SignInFormState {
                 other.emailAddress == emailAddress) &&
             (identical(other.password, password) ||
                 other.password == password) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
+            (identical(other.checkboxState, checkboxState) ||
+                other.checkboxState == checkboxState) &&
+            (identical(other.isPasswordVisible, isPasswordVisible) ||
+                other.isPasswordVisible == isPasswordVisible) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
                 other.showErrorMessages == showErrorMessages) &&
             (identical(other.isSubmitting, isSubmitting) ||
@@ -1219,8 +1941,16 @@ class _$_SignInFormState implements _SignInFormState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, emailAddress, password,
-      showErrorMessages, isSubmitting, authFailureOrSuccessOption);
+  int get hashCode => Object.hash(
+      runtimeType,
+      emailAddress,
+      password,
+      displayName,
+      checkboxState,
+      isPasswordVisible,
+      showErrorMessages,
+      isSubmitting,
+      authFailureOrSuccessOption);
 
   @JsonKey(ignore: true)
   @override
@@ -1232,6 +1962,9 @@ abstract class _SignInFormState implements SignInFormState {
   const factory _SignInFormState(
       {required EmailAddress emailAddress,
       required Password password,
+      required String displayName,
+      required bool checkboxState,
+      required bool isPasswordVisible,
       required bool showErrorMessages,
       required bool isSubmitting,
       required Option<Either<AuthFailure, Unit>>
@@ -1241,6 +1974,12 @@ abstract class _SignInFormState implements SignInFormState {
   EmailAddress get emailAddress;
   @override
   Password get password;
+  @override
+  String get displayName;
+  @override
+  bool get checkboxState;
+  @override
+  bool get isPasswordVisible;
   @override
   bool get showErrorMessages;
   @override

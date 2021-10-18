@@ -21,15 +21,22 @@ class FirebaseAuthFacade implements IAuthFacade {
   );
 
   @override
-  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
-      {required EmailAddress emailAddress, required Password password}) async {
+  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
+    required EmailAddress emailAddress,
+    required Password password,
+    required String displayName,
+  }) async {
     final emailAddressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential result =
+          await _firebaseAuth.createUserWithEmailAndPassword(
         email: emailAddressStr,
         password: passwordStr,
       );
+      User user = result.user!;
+      user.updateDisplayName(displayName);
+
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {

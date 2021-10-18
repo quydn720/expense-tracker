@@ -29,6 +29,10 @@ class _$AuthFailureTearOff {
     return const EmailAlreadyInUse();
   }
 
+  NotAgreeTerms notAgreeTerms() {
+    return const NotAgreeTerms();
+  }
+
   InvalidEmailAndPasswordCombination invalidEmailAndPasswordCombination() {
     return const InvalidEmailAndPasswordCombination();
   }
@@ -44,6 +48,7 @@ mixin _$AuthFailure {
     required TResult Function() cancelledByUser,
     required TResult Function() serverError,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() notAgreeTerms,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +57,7 @@ mixin _$AuthFailure {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +66,7 @@ mixin _$AuthFailure {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) =>
@@ -69,6 +76,7 @@ mixin _$AuthFailure {
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(ServerError value) serverError,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(NotAgreeTerms value) notAgreeTerms,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) =>
@@ -78,6 +86,7 @@ mixin _$AuthFailure {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(ServerError value)? serverError,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) =>
@@ -87,6 +96,7 @@ mixin _$AuthFailure {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(ServerError value)? serverError,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),
@@ -154,6 +164,7 @@ class _$CancelledByUser implements CancelledByUser {
     required TResult Function() cancelledByUser,
     required TResult Function() serverError,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() notAgreeTerms,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return cancelledByUser();
@@ -165,6 +176,7 @@ class _$CancelledByUser implements CancelledByUser {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return cancelledByUser?.call();
@@ -176,6 +188,7 @@ class _$CancelledByUser implements CancelledByUser {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
@@ -191,6 +204,7 @@ class _$CancelledByUser implements CancelledByUser {
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(ServerError value) serverError,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(NotAgreeTerms value) notAgreeTerms,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) {
@@ -203,6 +217,7 @@ class _$CancelledByUser implements CancelledByUser {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(ServerError value)? serverError,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) {
@@ -215,6 +230,7 @@ class _$CancelledByUser implements CancelledByUser {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(ServerError value)? serverError,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),
@@ -273,6 +289,7 @@ class _$ServerError implements ServerError {
     required TResult Function() cancelledByUser,
     required TResult Function() serverError,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() notAgreeTerms,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return serverError();
@@ -284,6 +301,7 @@ class _$ServerError implements ServerError {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return serverError?.call();
@@ -295,6 +313,7 @@ class _$ServerError implements ServerError {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
@@ -310,6 +329,7 @@ class _$ServerError implements ServerError {
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(ServerError value) serverError,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(NotAgreeTerms value) notAgreeTerms,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) {
@@ -322,6 +342,7 @@ class _$ServerError implements ServerError {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(ServerError value)? serverError,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) {
@@ -334,6 +355,7 @@ class _$ServerError implements ServerError {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(ServerError value)? serverError,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),
@@ -393,6 +415,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     required TResult Function() cancelledByUser,
     required TResult Function() serverError,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() notAgreeTerms,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return emailAlreadyInUse();
@@ -404,6 +427,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return emailAlreadyInUse?.call();
@@ -415,6 +439,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
@@ -430,6 +455,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(ServerError value) serverError,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(NotAgreeTerms value) notAgreeTerms,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) {
@@ -442,6 +468,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(ServerError value)? serverError,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) {
@@ -454,6 +481,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(ServerError value)? serverError,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),
@@ -467,6 +495,131 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
 
 abstract class EmailAlreadyInUse implements AuthFailure {
   const factory EmailAlreadyInUse() = _$EmailAlreadyInUse;
+}
+
+/// @nodoc
+abstract class $NotAgreeTermsCopyWith<$Res> {
+  factory $NotAgreeTermsCopyWith(
+          NotAgreeTerms value, $Res Function(NotAgreeTerms) then) =
+      _$NotAgreeTermsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$NotAgreeTermsCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements $NotAgreeTermsCopyWith<$Res> {
+  _$NotAgreeTermsCopyWithImpl(
+      NotAgreeTerms _value, $Res Function(NotAgreeTerms) _then)
+      : super(_value, (v) => _then(v as NotAgreeTerms));
+
+  @override
+  NotAgreeTerms get _value => super._value as NotAgreeTerms;
+}
+
+/// @nodoc
+
+class _$NotAgreeTerms implements NotAgreeTerms {
+  const _$NotAgreeTerms();
+
+  @override
+  String toString() {
+    return 'AuthFailure.notAgreeTerms()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is NotAgreeTerms);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() serverError,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() notAgreeTerms,
+    required TResult Function() invalidEmailAndPasswordCombination,
+  }) {
+    return notAgreeTerms();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
+    TResult Function()? invalidEmailAndPasswordCombination,
+  }) {
+    return notAgreeTerms?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (notAgreeTerms != null) {
+      return notAgreeTerms();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(NotAgreeTerms value) notAgreeTerms,
+    required TResult Function(InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+  }) {
+    return notAgreeTerms(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+  }) {
+    return notAgreeTerms?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (notAgreeTerms != null) {
+      return notAgreeTerms(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotAgreeTerms implements AuthFailure {
+  const factory NotAgreeTerms() = _$NotAgreeTerms;
 }
 
 /// @nodoc
@@ -518,6 +671,7 @@ class _$InvalidEmailAndPasswordCombination
     required TResult Function() cancelledByUser,
     required TResult Function() serverError,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() notAgreeTerms,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return invalidEmailAndPasswordCombination();
@@ -529,6 +683,7 @@ class _$InvalidEmailAndPasswordCombination
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return invalidEmailAndPasswordCombination?.call();
@@ -540,6 +695,7 @@ class _$InvalidEmailAndPasswordCombination
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? notAgreeTerms,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
@@ -555,6 +711,7 @@ class _$InvalidEmailAndPasswordCombination
     required TResult Function(CancelledByUser value) cancelledByUser,
     required TResult Function(ServerError value) serverError,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(NotAgreeTerms value) notAgreeTerms,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) {
@@ -567,6 +724,7 @@ class _$InvalidEmailAndPasswordCombination
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(ServerError value)? serverError,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) {
@@ -579,6 +737,7 @@ class _$InvalidEmailAndPasswordCombination
     TResult Function(CancelledByUser value)? cancelledByUser,
     TResult Function(ServerError value)? serverError,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(NotAgreeTerms value)? notAgreeTerms,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),
