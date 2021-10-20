@@ -47,85 +47,85 @@ class Body extends StatelessWidget {
       }
     }
 
-    return BlocBuilder<AuthBloc, AuthState>(
-      builder: (context, state) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(kMediumPadding),
-            child: Column(
+    // return BlocBuilder<AuthBloc, AuthState>(
+    //   builder: (context, state) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(kMediumPadding),
+        child: Column(
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(
-                        left: kDefaultPadding,
-                        top: kDefaultPadding,
+                const Padding(
+                  padding: EdgeInsets.only(
+                    left: kDefaultPadding,
+                    top: kDefaultPadding,
+                  ),
+                  child: CircleAvatar(radius: 45),
+                ),
+                const SizedBox(width: kMediumPadding),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Username', style: body3),
+                      Text(
+                        'Ngoc Quy',
+                        style: title2.copyWith(color: kDark75),
                       ),
-                      child: CircleAvatar(radius: 45),
-                    ),
-                    const SizedBox(width: kMediumPadding),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    ],
+                  ),
+                ),
+                IconButton(
+                  icon: Image.asset('assets/icons/edit.png'),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            const SizedBox(height: 40),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(24.0),
+              ),
+              child: ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(kMediumPadding),
+                    child: InkWell(
+                      onTap: () => _onNavigate(index),
+                      child: Row(
                         children: [
-                          const Text('Username', style: body3),
-                          Text(
-                            'Ngoc Quy',
-                            style: title2.copyWith(color: kDark75),
+                          SquaredIconCard(
+                            imagePath: data[index]['img']!,
+                            size: 60,
+                            imageColor: index != 3 ? kViolet100 : kRed100,
+                            color: index != 3 ? kViolet20 : kRed20,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: kMediumPadding),
+                            child: Text(
+                              data[index]['title']!,
+                              style: title3.copyWith(color: kDark75),
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    IconButton(
-                      icon: Image.asset('assets/icons/edit.png'),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
-                  ),
-                  child: ListView.separated(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: data.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(kMediumPadding),
-                        child: InkWell(
-                          onTap: () => _onNavigate(index),
-                          child: Row(
-                            children: [
-                              SquaredIconCard(
-                                imagePath: data[index]['img']!,
-                                size: 60,
-                                imageColor: index != 3 ? kViolet100 : kRed100,
-                                color: index != 3 ? kViolet20 : kRed20,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: kMediumPadding),
-                                child: Text(
-                                  data[index]['title']!,
-                                  style: title3.copyWith(color: kDark75),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (context, index) =>
-                        const Divider(thickness: 1),
-                  ),
-                ),
-              ],
+                  );
+                },
+                separatorBuilder: (context, index) =>
+                    const Divider(thickness: 1),
+              ),
             ),
-          ),
-        );
-      },
+          ],
+        ),
+      ),
     );
+    //   },
+    // );
   }
 }

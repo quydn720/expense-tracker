@@ -1,17 +1,17 @@
+import 'package:expense_tracker/app/auth/auth_bloc.dart';
+import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
+import 'package:expense_tracker/domain/transaction/transaction.dart';
+import 'package:expense_tracker/injector.dart';
+import 'package:expense_tracker/presentations/pages/authentication/sign_in/sign_in_page.dart';
 import 'package:expense_tracker/presentations/pages/home/home_page.dart';
 import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
 import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/transaction_list.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
-
-import 'components/custom_bottom_nav_item.dart';
-
 import '../budget/budget_page.dart';
 import '../profile/profile_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainPage extends StatefulWidget {
   static String routeName = '/HomePage';
@@ -23,12 +23,12 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
-  final List _widgetOptions = <Widget>[
-    HomePage(),
-    TransactionPage(),
-    SizedBox.shrink(),
-    BudgetPage(),
-    ProfilePage(),
+  final List<Widget> _widgetOptions = [
+    const HomePage(),
+    const TransactionPage(),
+    const SizedBox.shrink(),
+    const BudgetPage(),
+    const ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -96,77 +96,44 @@ class _MainPageState extends State<MainPage> {
       child: const Icon(Icons.add, size: 30),
       backgroundColor: kPrimaryColor,
     );
-    return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
-      floatingActionButton: floatingActionButton,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: bottomAppBar,
-    );
-  }
-
-  // This is holy duplicated ...
-  BottomAppBar _buildBottomNav() {
-    return BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      notchMargin: 10.0,
-      child: Container(
-        height: SizeConfig.screenHeight * 0.075,
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomBottomNavItem(
-              icon: FontAwesomeIcons.calendarAlt,
-              title: Text(
-                'Daily',
-                style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                    color: _selectedIndex == 0 ? Colors.black : Colors.grey),
-              ),
-              onTap: () => setState(() {
-                _selectedIndex = 0;
-              }),
-              color: _selectedIndex == 0 ? kPrimaryColor : Colors.grey,
-            ),
-            CustomBottomNavItem(
-              icon: FontAwesomeIcons.chartBar,
-              title: Text(
-                'Stats',
-                style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                    color: _selectedIndex == 1 ? Colors.black : Colors.grey),
-              ),
-              onTap: () => setState(() {
-                _selectedIndex = 1;
-              }),
-              color: _selectedIndex == 1 ? kPrimaryColor : Colors.grey,
-            ),
-            SizedBox(width: SizeConfig.screenWidth * 0.1),
-            CustomBottomNavItem(
-              icon: FontAwesomeIcons.wallet,
-              title: Text(
-                'Budget',
-                style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                    color: _selectedIndex == 2 ? Colors.black : Colors.grey),
-              ),
-              onTap: () => setState(() {
-                _selectedIndex = 2;
-              }),
-              color: _selectedIndex == 2 ? kPrimaryColor : Colors.grey,
-            ),
-            CustomBottomNavItem(
-              icon: FontAwesomeIcons.user,
-              title: Text(
-                'User',
-                style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                    color: _selectedIndex == 3 ? Colors.black : Colors.grey),
-              ),
-              onTap: () => setState(() {
-                _selectedIndex = 3;
-              }),
-              color: _selectedIndex == 3 ? kPrimaryColor : Colors.grey,
-            ),
-          ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (context) =>
+                getIt<TransactionWatcherBloc>()..add(const WatchAll())),
+      ],
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<AuthBloc, AuthState>(listener: (context, state) {
+            state.maybeMap(
+              orElse: () {},
+              unauthenticated: (_) =>
+                  Navigator.pushReplacementNamed(context, SignInPage.routeName),
+            );
+          })
+        ],
+        child: Scaffold(
+          body: _widgetOptions.elementAt(_selectedIndex),
+          floatingActionButton: floatingActionButton,
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          bottomNavigationBar: bottomAppBar,
         ),
       ),
     );
+  }
+}
+
+class TransactionWidget extends StatelessWidget {
+  const TransactionWidget({
+    Key? key,
+    required this.transactions,
+    required this.child,
+  }) : super(key: key);
+  final List<Transaction> transactions;
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    return child;
   }
 }

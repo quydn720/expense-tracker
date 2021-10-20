@@ -79,6 +79,8 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
               emailAddress: state.emailAddress,
               password: state.password,
               displayName: state.displayName,
+              // TODO: Should move the display name to another event
+              // like [UpdateUserInfo]
             );
           }
           emit(state.copyWith(

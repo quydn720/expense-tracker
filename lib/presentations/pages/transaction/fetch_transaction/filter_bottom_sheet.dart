@@ -1,7 +1,7 @@
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/bars.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/presentations/pages/home/home_page.dart';
+import 'package:expense_tracker/presentations/components/tabs.dart';
 import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
 

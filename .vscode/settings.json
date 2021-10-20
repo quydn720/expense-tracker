@@ -1,0 +1,18 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/*.dart": false,
+    "lib\\infrastructure\\transaction/transaction_dto.freezed.dart": false,
+    "**/transaction_dto.freezed.dart": false,
+    "lib\\infrastructure\\transaction/*.dart": false,
+    "lib\\infrastructure\\transaction/*.*": false,
+    "transaction_dto.freezed.dart": false
+  },
+  "explorerExclude.backup": null,
+  "explorerExcludedFiles.show": false
+}

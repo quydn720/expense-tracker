@@ -1,3 +1,4 @@
+import 'package:expense_tracker/infrastructure/transaction/transaction_dto.dart';
 import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
 import 'package:flutter/material.dart';
 
@@ -7,8 +8,11 @@ class TransactionCard extends StatelessWidget {
   const TransactionCard({
     Key? key,
     this.elevation,
+    this.transaction,
   }) : super(key: key);
   final double? elevation;
+
+  final TransactionDTO? transaction;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -27,27 +31,28 @@ class TransactionCard extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Shopping',
+              Text(
+                transaction?.category ?? 'Placeholder',
                 style: body2,
               ),
               Text(
-                '-VND 200.000',
+                transaction?.amount.toString() ?? '-VND 200.000',
                 style: body2.copyWith(color: kGreen100),
               ),
             ],
           ),
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Expanded(
                 child: Text(
-                  'Buying something very long like this',
+                  transaction?.description ??
+                      'Buying something very long like this',
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 80,
                 child: Text(
                   '3h30 pm',

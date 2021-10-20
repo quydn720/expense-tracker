@@ -22,7 +22,8 @@ class TransactionPage extends StatelessWidget {
           onTap: () {},
         ),
         trail: Padding(
-          padding: const EdgeInsets.all(kDefaultPadding),
+          padding: const EdgeInsets.symmetric(
+              horizontal: kMediumPadding, vertical: kDefaultPadding),
           child: GestureDetector(
             onTap: () {
               showModalBottomSheet(
@@ -44,9 +45,7 @@ class TransactionPage extends StatelessWidget {
         child: Column(
           children: [
             DefaultBar(
-              onTap: () {
-                print('tap');
-              },
+              onTap: () {},
               color: kViolet20,
               title: Padding(
                 padding: const EdgeInsets.all(kMediumPadding),

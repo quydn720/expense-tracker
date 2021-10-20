@@ -1,5 +1,9 @@
+import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
+import 'package:expense_tracker/infrastructure/transaction/transaction_dto.dart';
+import 'package:expense_tracker/presentations/components/tabs.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants.dart';
 import '../../components/bars.dart';
@@ -12,147 +16,160 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const TopNavigation(),
-              const DefaultBar(
-                title: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Spend Frequency', style: title3),
-                ),
-              ),
-              SizedBox(
-                height: 180,
-                child: LineChart(
-                  LineChartData(
-                    gridData: FlGridData(show: false),
-                    titlesData: FlTitlesData(show: false),
-                    borderData: FlBorderData(show: false),
-                    minX: 0,
-                    maxX: 11,
-                    minY: 0,
-                    maxY: 6,
-                    lineBarsData: [
-                      LineChartBarData(
-                        spots: [
-                          FlSpot(0, 3),
-                          FlSpot(2.6, 2),
-                          FlSpot(4.9, 5),
-                          FlSpot(6.8, 3.1),
-                          FlSpot(8, 4),
-                          FlSpot(9.5, 3),
-                          FlSpot(11, 4),
-                        ],
-                        isCurved: true,
-                        colors: [kViolet100],
-                        barWidth: 5,
-                        isStrokeCapRound: true,
-                        dotData: FlDotData(
-                          show: false,
-                        ),
-                        belowBarData: BarAreaData(
-                          show: true,
-                          colors: [kViolet100]
-                              .map((color) => color.withOpacity(0.2))
-                              .toList(),
+    return BlocBuilder<TransactionWatcherBloc, TransactionWatcherState>(
+      builder: (context, state) {
+        return state.map(
+          initial: (_) => Container(),
+          loadingProgress: (_) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          loadSuccess: (state) {
+            return SafeArea(
+              child: Scaffold(
+                body: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const TopNavigation(),
+                      const DefaultBar(
+                        title: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text('Spend Frequency', style: title3),
                         ),
                       ),
+                      const LineChartWidget(),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Tabs(
+                          children: [
+                            Chip(
+                              backgroundColor: kYellow20,
+                              label: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text('Today'),
+                              ),
+                            ),
+                            Chip(
+                              backgroundColor: kLight100,
+                              label: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text('Week'),
+                              ),
+                            ),
+                            Chip(
+                              backgroundColor: kLight100,
+                              label: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text('Month'),
+                              ),
+                            ),
+                            Chip(
+                              backgroundColor: kLight100,
+                              label: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text('Year'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      DefaultBar(
+                        title: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text('Recent Transaction', style: title3),
+                        ),
+                        trailing: Chip(
+                          backgroundColor: const Color(0xffF1F1FA),
+                          label: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: kDefaultPadding),
+                            child: Text(
+                              'See All',
+                              style: body3.copyWith(color: kViolet100),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          final state =
+                              context.read<TransactionWatcherBloc>().state;
+                          var transactions = [];
+                          state.maybeMap(
+                              orElse: () {},
+                              loadSuccess: (a) {
+                                transactions = a.transactions;
+                              });
+                          final transaction = transactions[index];
+                          return TransactionCard(
+                            elevation: 2,
+                            transaction: TransactionDTO.fromDomain(transaction),
+                          );
+                        },
+                        itemCount: 3,
+                      ),
+                      const SizedBox(height: kMediumPadding),
                     ],
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Tabs(
-                  children: [
-                    Chip(
-                      backgroundColor: kYellow20,
-                      label: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text('Today'),
-                      ),
-                    ),
-                    Chip(
-                      backgroundColor: kLight100,
-                      label: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text('Week'),
-                      ),
-                    ),
-                    Chip(
-                      backgroundColor: kLight100,
-                      label: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text('Month'),
-                      ),
-                    ),
-                    Chip(
-                      backgroundColor: kLight100,
-                      label: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text('Year'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              DefaultBar(
-                title: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text('Recent Transaction', style: title3),
-                ),
-                trailing: Chip(
-                  backgroundColor: const Color(0xffF1F1FA),
-                  label: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    child: Text(
-                      'See All',
-                      style: body3.copyWith(color: kViolet100),
-                    ),
-                  ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: TransactionCard(),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: TransactionCard(),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: TransactionCard(),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: TransactionCard(),
-              ),
-              const SizedBox(height: kMediumPadding),
-            ],
-          ),
-        ),
-      ),
+            );
+          },
+          loadFailure: (_) {
+            return Container(
+              color: kRed100,
+              height: 100,
+              width: 100,
+            );
+          },
+        );
+      },
     );
   }
 }
 
-class Tabs extends StatelessWidget {
-  const Tabs({
+class LineChartWidget extends StatelessWidget {
+  const LineChartWidget({
     Key? key,
-    required this.children,
   }) : super(key: key);
-  final List<Widget> children;
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: children,
+    return SizedBox(
+      height: 180,
+      child: LineChart(
+        LineChartData(
+          gridData: FlGridData(show: false),
+          titlesData: FlTitlesData(show: false),
+          borderData: FlBorderData(show: false),
+          minX: 0,
+          maxX: 2,
+          minY: 0,
+          maxY: 25,
+          lineBarsData: [
+            LineChartBarData(
+              spots: [
+                FlSpot(0, 12),
+                FlSpot(1, 5),
+                FlSpot(2, 20),
+              ],
+              isCurved: true,
+              colors: [kViolet100],
+              barWidth: 5,
+              isStrokeCapRound: true,
+              dotData:
+                  FlDotData(show: false, checkToShowDot: (spot, data) => false),
+              belowBarData: BarAreaData(
+                show: true,
+                colors: [kViolet100]
+                    .map((color) => color.withOpacity(0.2))
+                    .toList(),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
