@@ -86,12 +86,8 @@ class _MainPageState extends State<MainPage> {
       ),
     );
     var floatingActionButton = FloatingActionButton(
-      onPressed: () async {
-        final a = await Navigator.pushNamed(
-          context,
-          AddNewTransactionPage.routeName,
-        );
-        print(a);
+      onPressed: () {
+        Navigator.pushNamed(context, AddNewTransactionPage.routeName);
       },
       child: const Icon(Icons.add, size: 30),
       backgroundColor: kPrimaryColor,

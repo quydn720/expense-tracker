@@ -1,4 +1,8 @@
 import 'package:expense_tracker/constants.dart';
+import 'package:expense_tracker/domain/core/value_object.dart';
+import 'package:expense_tracker/domain/transaction/models/category.dart';
+import 'package:expense_tracker/domain/transaction/models/wallet.dart';
+import 'package:expense_tracker/domain/transaction/transaction.dart';
 import 'package:expense_tracker/presentations/components/bars.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
@@ -68,8 +72,22 @@ class TransactionPage extends StatelessWidget {
               child: ListView.separated(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return const TransactionCard(
+                  return TransactionCard(
                     elevation: 0,
+                    transaction: Transaction(
+                      id: UniqueId(),
+                      category: Category.empty(),
+                      wallet: Wallet(
+                        id: UniqueId(),
+                        amount: 0,
+                        imagePath: 'assets/icons/wallet-3.png',
+                        name: WalletName('a'),
+                      ),
+                      amount: 1,
+                      description: 'description',
+                      date: DateTime.now(),
+                      type: TransactionType.expense,
+                    ),
                   );
                 },
                 separatorBuilder: (context, index) {
