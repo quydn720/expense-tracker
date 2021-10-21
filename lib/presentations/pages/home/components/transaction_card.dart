@@ -1,18 +1,18 @@
-import 'package:expense_tracker/infrastructure/transaction/transaction_dto.dart';
+import 'package:expense_tracker/constants.dart';
+import 'package:expense_tracker/domain/transaction/transaction.dart';
 import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../constants.dart';
+import 'package:expense_tracker/utils/extension_helper.dart';
 
 class TransactionCard extends StatelessWidget {
   const TransactionCard({
     Key? key,
     this.elevation,
-    this.transaction,
+    required this.transaction,
   }) : super(key: key);
   final double? elevation;
 
-  final TransactionDTO? transaction;
+  final Transaction transaction;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -32,12 +32,16 @@ class TransactionCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                transaction?.category ?? 'Placeholder',
+                transaction.category.name,
                 style: body2,
               ),
               Text(
-                transaction?.amount.toString() ?? '-VND 200.000',
-                style: body2.copyWith(color: kGreen100),
+                transaction.amount.toString(),
+                style: body2.copyWith(
+                  color: transaction.type == TransactionType.income
+                      ? kGreen100
+                      : kRed100,
+                ),
               ),
             ],
           ),
@@ -46,16 +50,15 @@ class TransactionCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  transaction?.description ??
-                      'Buying something very long like this',
+                  transaction.description ?? '',
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: 80,
                 child: Text(
-                  '3h30 pm',
+                  transaction.date.hourFormatted,
                   maxLines: 1,
                   textAlign: TextAlign.end,
                 ),

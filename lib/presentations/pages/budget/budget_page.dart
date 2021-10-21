@@ -1,6 +1,5 @@
 import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
 import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/infrastructure/transaction/transaction_dto.dart';
 import 'package:expense_tracker/presentations/pages/home/components/transaction_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +22,7 @@ class BudgetPage extends StatelessWidget {
                 final transaction = state.transactions[index];
                 return TransactionCard(
                   elevation: 2,
-                  transaction: TransactionDTO.fromDomain(transaction),
+                  transaction: transaction,
                 );
               },
               itemCount: state.transactions.length,
