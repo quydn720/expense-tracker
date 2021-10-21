@@ -22,13 +22,17 @@ class _$TransactionTearOff {
       required Category category,
       required Wallet wallet,
       required double amount,
-      required String? description}) {
+      required String? description,
+      required DateTime date,
+      required TransactionType type}) {
     return _Transaction(
       id: id,
       category: category,
       wallet: wallet,
       amount: amount,
       description: description,
+      date: date,
+      type: type,
     );
   }
 }
@@ -43,6 +47,8 @@ mixin _$Transaction {
   Wallet get wallet => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
+  TransactionType get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TransactionCopyWith<Transaction> get copyWith =>
@@ -59,7 +65,9 @@ abstract class $TransactionCopyWith<$Res> {
       Category category,
       Wallet wallet,
       double amount,
-      String? description});
+      String? description,
+      DateTime date,
+      TransactionType type});
 
   $CategoryCopyWith<$Res> get category;
   $WalletCopyWith<$Res> get wallet;
@@ -80,6 +88,8 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
     Object? wallet = freezed,
     Object? amount = freezed,
     Object? description = freezed,
+    Object? date = freezed,
+    Object? type = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -102,6 +112,14 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TransactionType,
     ));
   }
 
@@ -132,7 +150,9 @@ abstract class _$TransactionCopyWith<$Res>
       Category category,
       Wallet wallet,
       double amount,
-      String? description});
+      String? description,
+      DateTime date,
+      TransactionType type});
 
   @override
   $CategoryCopyWith<$Res> get category;
@@ -157,6 +177,8 @@ class __$TransactionCopyWithImpl<$Res> extends _$TransactionCopyWithImpl<$Res>
     Object? wallet = freezed,
     Object? amount = freezed,
     Object? description = freezed,
+    Object? date = freezed,
+    Object? type = freezed,
   }) {
     return _then(_Transaction(
       id: id == freezed
@@ -179,6 +201,14 @@ class __$TransactionCopyWithImpl<$Res> extends _$TransactionCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TransactionType,
     ));
   }
 }
@@ -191,7 +221,9 @@ class _$_Transaction implements _Transaction {
       required this.category,
       required this.wallet,
       required this.amount,
-      required this.description});
+      required this.description,
+      required this.date,
+      required this.type});
 
   @override
   final UniqueId id;
@@ -203,10 +235,14 @@ class _$_Transaction implements _Transaction {
   final double amount;
   @override
   final String? description;
+  @override
+  final DateTime date;
+  @override
+  final TransactionType type;
 
   @override
   String toString() {
-    return 'Transaction(id: $id, category: $category, wallet: $wallet, amount: $amount, description: $description)';
+    return 'Transaction(id: $id, category: $category, wallet: $wallet, amount: $amount, description: $description, date: $date, type: $type)';
   }
 
   @override
@@ -220,12 +256,14 @@ class _$_Transaction implements _Transaction {
             (identical(other.wallet, wallet) || other.wallet == wallet) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, category, wallet, amount, description);
+  int get hashCode => Object.hash(
+      runtimeType, id, category, wallet, amount, description, date, type);
 
   @JsonKey(ignore: true)
   @override
@@ -239,7 +277,9 @@ abstract class _Transaction implements Transaction {
       required Category category,
       required Wallet wallet,
       required double amount,
-      required String? description}) = _$_Transaction;
+      required String? description,
+      required DateTime date,
+      required TransactionType type}) = _$_Transaction;
 
   @override
   UniqueId get id;
@@ -251,6 +291,10 @@ abstract class _Transaction implements Transaction {
   double get amount;
   @override
   String? get description;
+  @override
+  DateTime get date;
+  @override
+  TransactionType get type;
   @override
   @JsonKey(ignore: true)
   _$TransactionCopyWith<_Transaction> get copyWith =>

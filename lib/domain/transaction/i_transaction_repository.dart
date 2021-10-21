@@ -4,9 +4,9 @@ import 'package:expense_tracker/domain/transaction/transaction.dart' as t;
 
 abstract class ITransactionRepository {
   Stream<Either<TransactionFailure, List<t.Transaction>>> watchAll();
-  Future<void> createNewTransaction();
-  Future<void> updateTransaction();
-  Future<void> deleteTransaction();
+  Future<Either<TransactionFailure, Unit>> create(t.Transaction t);
+  Future<Either<TransactionFailure, Unit>> update(t.Transaction t);
+  Future<Either<TransactionFailure, Unit>> delete(t.Transaction t);
   // CRUD
   // Read - fetch all, fetch with date, fetch with sorting ?
 }

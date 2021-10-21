@@ -41,20 +41,54 @@ class TransactionRepository implements ITransactionRepository {
   }
 
   @override
-  Future<void> createNewTransaction() {
-    // TODO: implement createNewTransaction
-    throw UnimplementedError();
+  Future<Either<TransactionFailure, Unit>> create(t.Transaction t) async {
+    try {
+      final userDoc = _firestore.userDocument();
+      TransactionDTO dto = TransactionDTO.fromDomain(t);
+      await userDoc.transactionCollection.doc(dto.id).set(dto.toJson());
+      return right(unit);
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('PERMISSION_DENIED')) {
+        return left(const TransactionFailure.insufficientPermission());
+      } else if (e.message!.contains('NOT_FOUND')) {
+        return left(const TransactionFailure.unableToUpdate());
+      } else {
+        return left(const TransactionFailure.unexpected());
+      }
+    }
   }
 
   @override
-  Future<void> deleteTransaction() {
-    // TODO: implement deleteTransaction
-    throw UnimplementedError();
+  Future<Either<TransactionFailure, Unit>> update(t.Transaction t) async {
+    try {
+      final userDoc = _firestore.userDocument();
+      final transactionId = t.id.getOrCrash();
+      await userDoc.transactionCollection.doc(transactionId).delete();
+      return right(unit);
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('PERMISSION_DENIED')) {
+        return left(const TransactionFailure.insufficientPermission());
+      } else if (e.message!.contains('NOT_FOUND')) {
+        return left(const TransactionFailure.unableToUpdate());
+      } else {
+        return left(const TransactionFailure.unexpected());
+      }
+    }
   }
 
   @override
-  Future<void> updateTransaction() {
-    // TODO: implement updateTransaction
-    throw UnimplementedError();
+  Future<Either<TransactionFailure, Unit>> delete(t.Transaction t) async {
+    try {
+      final userDoc = _firestore.userDocument();
+      TransactionDTO dto = TransactionDTO.fromDomain(t);
+      userDoc.transactionCollection.doc(dto.id).update(dto.toJson());
+      return right(unit);
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('PERMISSION_DENIED')) {
+        return left(const TransactionFailure.insufficientPermission());
+      } else {
+        return left(const TransactionFailure.unexpected());
+      }
+    }
   }
 }

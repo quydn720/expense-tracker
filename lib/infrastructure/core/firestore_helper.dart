@@ -16,4 +16,8 @@ extension FirestoreX on FirebaseFirestore {
 extension DocumentReferenceX on DocumentReference {
   CollectionReference<Map<String, dynamic>> get transactionCollection =>
       collection('transactions');
+  CollectionReference<Map<String, dynamic>> get walletCollection =>
+      collection('wallets');
+  CollectionReference<Map<String, dynamic>> get categoryCollection =>
+      collection('categories');
 }

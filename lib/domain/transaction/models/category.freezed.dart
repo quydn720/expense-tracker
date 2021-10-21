@@ -17,10 +17,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CategoryTearOff {
   const _$CategoryTearOff();
 
-  _Category call({required UniqueId id, required String name}) {
+  _Category call(
+      {required UniqueId id,
+      required String name,
+      required String imagePath,
+      required int color}) {
     return _Category(
       id: id,
       name: name,
+      imagePath: imagePath,
+      color: color,
     );
   }
 }
@@ -32,6 +38,8 @@ const $Category = _$CategoryTearOff();
 mixin _$Category {
   UniqueId get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get imagePath => throw _privateConstructorUsedError;
+  int get color => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CategoryCopyWith<Category> get copyWith =>
@@ -42,7 +50,7 @@ mixin _$Category {
 abstract class $CategoryCopyWith<$Res> {
   factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
       _$CategoryCopyWithImpl<$Res>;
-  $Res call({UniqueId id, String name});
+  $Res call({UniqueId id, String name, String imagePath, int color});
 }
 
 /// @nodoc
@@ -57,6 +65,8 @@ class _$CategoryCopyWithImpl<$Res> implements $CategoryCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? imagePath = freezed,
+    Object? color = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -67,6 +77,14 @@ class _$CategoryCopyWithImpl<$Res> implements $CategoryCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      color: color == freezed
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -76,7 +94,7 @@ abstract class _$CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
   factory _$CategoryCopyWith(_Category value, $Res Function(_Category) then) =
       __$CategoryCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, String name});
+  $Res call({UniqueId id, String name, String imagePath, int color});
 }
 
 /// @nodoc
@@ -92,6 +110,8 @@ class __$CategoryCopyWithImpl<$Res> extends _$CategoryCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? imagePath = freezed,
+    Object? color = freezed,
   }) {
     return _then(_Category(
       id: id == freezed
@@ -102,6 +122,14 @@ class __$CategoryCopyWithImpl<$Res> extends _$CategoryCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      color: color == freezed
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -109,16 +137,24 @@ class __$CategoryCopyWithImpl<$Res> extends _$CategoryCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Category implements _Category {
-  const _$_Category({required this.id, required this.name});
+  const _$_Category(
+      {required this.id,
+      required this.name,
+      required this.imagePath,
+      required this.color});
 
   @override
   final UniqueId id;
   @override
   final String name;
+  @override
+  final String imagePath;
+  @override
+  final int color;
 
   @override
   String toString() {
-    return 'Category(id: $id, name: $name)';
+    return 'Category(id: $id, name: $name, imagePath: $imagePath, color: $color)';
   }
 
   @override
@@ -127,11 +163,14 @@ class _$_Category implements _Category {
         (other.runtimeType == runtimeType &&
             other is _Category &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath) &&
+            (identical(other.color, color) || other.color == color));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, imagePath, color);
 
   @JsonKey(ignore: true)
   @override
@@ -140,13 +179,20 @@ class _$_Category implements _Category {
 }
 
 abstract class _Category implements Category {
-  const factory _Category({required UniqueId id, required String name}) =
-      _$_Category;
+  const factory _Category(
+      {required UniqueId id,
+      required String name,
+      required String imagePath,
+      required int color}) = _$_Category;
 
   @override
   UniqueId get id;
   @override
   String get name;
+  @override
+  String get imagePath;
+  @override
+  int get color;
   @override
   @JsonKey(ignore: true)
   _$CategoryCopyWith<_Category> get copyWith =>

@@ -19,12 +19,12 @@ class _$WalletTearOff {
 
   _Wallet call(
       {required UniqueId id,
-      required IconData iconData,
-      required String name,
+      required String imagePath,
+      required WalletName name,
       required double amount}) {
     return _Wallet(
       id: id,
-      iconData: iconData,
+      imagePath: imagePath,
       name: name,
       amount: amount,
     );
@@ -37,8 +37,8 @@ const $Wallet = _$WalletTearOff();
 /// @nodoc
 mixin _$Wallet {
   UniqueId get id => throw _privateConstructorUsedError;
-  IconData get iconData => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get imagePath => throw _privateConstructorUsedError;
+  WalletName get name => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ mixin _$Wallet {
 abstract class $WalletCopyWith<$Res> {
   factory $WalletCopyWith(Wallet value, $Res Function(Wallet) then) =
       _$WalletCopyWithImpl<$Res>;
-  $Res call({UniqueId id, IconData iconData, String name, double amount});
+  $Res call({UniqueId id, String imagePath, WalletName name, double amount});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$WalletCopyWithImpl<$Res> implements $WalletCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? iconData = freezed,
+    Object? imagePath = freezed,
     Object? name = freezed,
     Object? amount = freezed,
   }) {
@@ -72,14 +72,14 @@ class _$WalletCopyWithImpl<$Res> implements $WalletCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      iconData: iconData == freezed
-          ? _value.iconData
-          : iconData // ignore: cast_nullable_to_non_nullable
-              as IconData,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as WalletName,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -93,7 +93,7 @@ abstract class _$WalletCopyWith<$Res> implements $WalletCopyWith<$Res> {
   factory _$WalletCopyWith(_Wallet value, $Res Function(_Wallet) then) =
       __$WalletCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, IconData iconData, String name, double amount});
+  $Res call({UniqueId id, String imagePath, WalletName name, double amount});
 }
 
 /// @nodoc
@@ -108,7 +108,7 @@ class __$WalletCopyWithImpl<$Res> extends _$WalletCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? iconData = freezed,
+    Object? imagePath = freezed,
     Object? name = freezed,
     Object? amount = freezed,
   }) {
@@ -117,14 +117,14 @@ class __$WalletCopyWithImpl<$Res> extends _$WalletCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      iconData: iconData == freezed
-          ? _value.iconData
-          : iconData // ignore: cast_nullable_to_non_nullable
-              as IconData,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as WalletName,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -135,25 +135,26 @@ class __$WalletCopyWithImpl<$Res> extends _$WalletCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Wallet implements _Wallet {
+class _$_Wallet extends _Wallet {
   const _$_Wallet(
       {required this.id,
-      required this.iconData,
+      required this.imagePath,
       required this.name,
-      required this.amount});
+      required this.amount})
+      : super._();
 
   @override
   final UniqueId id;
   @override
-  final IconData iconData;
+  final String imagePath;
   @override
-  final String name;
+  final WalletName name;
   @override
   final double amount;
 
   @override
   String toString() {
-    return 'Wallet(id: $id, iconData: $iconData, name: $name, amount: $amount)';
+    return 'Wallet(id: $id, imagePath: $imagePath, name: $name, amount: $amount)';
   }
 
   @override
@@ -162,14 +163,14 @@ class _$_Wallet implements _Wallet {
         (other.runtimeType == runtimeType &&
             other is _Wallet &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.iconData, iconData) ||
-                other.iconData == iconData) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.amount, amount) || other.amount == amount));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, iconData, name, amount);
+  int get hashCode => Object.hash(runtimeType, id, imagePath, name, amount);
 
   @JsonKey(ignore: true)
   @override
@@ -177,19 +178,20 @@ class _$_Wallet implements _Wallet {
       __$WalletCopyWithImpl<_Wallet>(this, _$identity);
 }
 
-abstract class _Wallet implements Wallet {
+abstract class _Wallet extends Wallet {
   const factory _Wallet(
       {required UniqueId id,
-      required IconData iconData,
-      required String name,
+      required String imagePath,
+      required WalletName name,
       required double amount}) = _$_Wallet;
+  const _Wallet._() : super._();
 
   @override
   UniqueId get id;
   @override
-  IconData get iconData;
+  String get imagePath;
   @override
-  String get name;
+  WalletName get name;
   @override
   double get amount;
   @override

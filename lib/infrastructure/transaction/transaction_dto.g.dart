@@ -13,6 +13,8 @@ _$_TransactionDTO _$$_TransactionDTOFromJson(Map<String, dynamic> json) =>
       amount: (json['amount'] as num).toDouble(),
       description: json['description'] as String?,
       wallet: json['wallet'] as String,
+      serverTimestamp: const ServerTimestampConverter()
+          .fromJson(json['serverTimestamp'] as Object),
     );
 
 Map<String, dynamic> _$$_TransactionDTOToJson(_$_TransactionDTO instance) =>
@@ -22,4 +24,6 @@ Map<String, dynamic> _$$_TransactionDTOToJson(_$_TransactionDTO instance) =>
       'amount': instance.amount,
       'description': instance.description,
       'wallet': instance.wallet,
+      'serverTimestamp':
+          const ServerTimestampConverter().toJson(instance.serverTimestamp),
     };
