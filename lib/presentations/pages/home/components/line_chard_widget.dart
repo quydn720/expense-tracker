@@ -14,8 +14,14 @@ class LineChartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final a = transactions.groupBy((t) => t.date.day);
 
-    final dailyTotal = a.map((key, value) => MapEntry(
-        key, value.map((e) => e.amount).toList().reduce((a, b) => a + b)));
+    final dailyTotal = a.map(
+      (key, value) => MapEntry(
+          key,
+          value
+              .map((e) => e.amount.getOrCrash())
+              .toList()
+              .reduce((a, b) => a + b)),
+    );
     final spots = dailyTotal.entries
         .map((e) => FlSpot(e.key.toDouble(), e.value))
         .toList();

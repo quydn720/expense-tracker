@@ -39,7 +39,7 @@ class _$TransactionFormEventTearOff {
     );
   }
 
-  AmountChanged amountChanged(double amount) {
+  AmountChanged amountChanged(String amount) {
     return AmountChanged(
       amount,
     );
@@ -61,7 +61,7 @@ mixin _$TransactionFormEvent {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) =>
       throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ mixin _$TransactionFormEvent {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) =>
       throw _privateConstructorUsedError;
@@ -81,7 +81,7 @@ mixin _$TransactionFormEvent {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) =>
@@ -181,7 +181,7 @@ class _$Initialized implements Initialized {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return initialized();
@@ -194,7 +194,7 @@ class _$Initialized implements Initialized {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return initialized?.call();
@@ -207,7 +207,7 @@ class _$Initialized implements Initialized {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {
@@ -343,7 +343,7 @@ class _$CategoryChanged implements CategoryChanged {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return categoryChanged(category);
@@ -356,7 +356,7 @@ class _$CategoryChanged implements CategoryChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return categoryChanged?.call(category);
@@ -369,7 +369,7 @@ class _$CategoryChanged implements CategoryChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {
@@ -501,7 +501,7 @@ class _$DescriptionChanged implements DescriptionChanged {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return descriptionChanged(description);
@@ -514,7 +514,7 @@ class _$DescriptionChanged implements DescriptionChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return descriptionChanged?.call(description);
@@ -527,7 +527,7 @@ class _$DescriptionChanged implements DescriptionChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {
@@ -667,7 +667,7 @@ class _$WalletChanged implements WalletChanged {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return walletChanged(wallet);
@@ -680,7 +680,7 @@ class _$WalletChanged implements WalletChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return walletChanged?.call(wallet);
@@ -693,7 +693,7 @@ class _$WalletChanged implements WalletChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {
@@ -761,7 +761,7 @@ abstract class $AmountChangedCopyWith<$Res> {
   factory $AmountChangedCopyWith(
           AmountChanged value, $Res Function(AmountChanged) then) =
       _$AmountChangedCopyWithImpl<$Res>;
-  $Res call({double amount});
+  $Res call({String amount});
 }
 
 /// @nodoc
@@ -783,7 +783,7 @@ class _$AmountChangedCopyWithImpl<$Res>
       amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
     ));
   }
 }
@@ -794,7 +794,7 @@ class _$AmountChanged implements AmountChanged {
   const _$AmountChanged(this.amount);
 
   @override
-  final double amount;
+  final String amount;
 
   @override
   String toString() {
@@ -824,7 +824,7 @@ class _$AmountChanged implements AmountChanged {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return amountChanged(amount);
@@ -837,7 +837,7 @@ class _$AmountChanged implements AmountChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return amountChanged?.call(amount);
@@ -850,7 +850,7 @@ class _$AmountChanged implements AmountChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {
@@ -905,9 +905,9 @@ class _$AmountChanged implements AmountChanged {
 }
 
 abstract class AmountChanged implements TransactionFormEvent {
-  const factory AmountChanged(double amount) = _$AmountChanged;
+  const factory AmountChanged(String amount) = _$AmountChanged;
 
-  double get amount;
+  String get amount;
   @JsonKey(ignore: true)
   $AmountChangedCopyWith<AmountChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -958,7 +958,7 @@ class _$CommitPressed implements CommitPressed {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return commitPressed();
@@ -971,7 +971,7 @@ class _$CommitPressed implements CommitPressed {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return commitPressed?.call();
@@ -984,7 +984,7 @@ class _$CommitPressed implements CommitPressed {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {

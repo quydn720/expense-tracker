@@ -19,6 +19,7 @@ class TransactionRepository implements ITransactionRepository {
     final userDoc = _firestore.userDocument();
 
     yield* userDoc.transactionCollection
+        // sorting by date - timestamp
         .orderBy('serverTimestamp', descending: true)
         .snapshots()
         .map(

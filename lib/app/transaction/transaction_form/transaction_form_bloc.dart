@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:expense_tracker/domain/transaction/i_transaction_repository.dart';
 import 'package:expense_tracker/domain/transaction/models/category.dart';
+import 'package:expense_tracker/domain/transaction/models/value_object.dart';
 import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:expense_tracker/domain/transaction/transaction.dart';
 import 'package:expense_tracker/domain/transaction/transaction_failure.dart';
@@ -21,7 +22,8 @@ class TransactionFormBloc
     on<AmountChanged>((event, emit) {
       emit(state.copyWith(
         isEditing: true,
-        transaction: state.transaction.copyWith(amount: event.amount),
+        transaction:
+            state.transaction.copyWith(amount: MoneyAmount(event.amount)),
       ));
     });
     on<CategoryChanged>((event, emit) {
@@ -29,16 +31,23 @@ class TransactionFormBloc
           isEditing: true,
           transaction: state.transaction.copyWith(category: event.category)));
     });
+    on<WalletChanged>((event, emit) {
+      emit(state.copyWith(
+          isEditing: true,
+          transaction: state.transaction.copyWith(wallet: event.wallet)));
+    });
     on<CommitPressed>((event, emit) async {
       emit(state.copyWith(
         isSaving: true,
         saveFailureOrSuccessOption: none(),
       ));
-      Either<TransactionFailure, Unit> failureOrSuccess;
+      late Either<TransactionFailure, Unit> failureOrSuccess;
       //! Nếu không xảy ra lỗi (empty amount, .... )
       //! Cần xử lí lỗi ở đây
-      // if (state.note.failureOption.isNone()) {
-      failureOrSuccess = await _transactionRepository.create(state.transaction);
+      if (state.transaction.failureOption.isNone()) {
+        failureOrSuccess =
+            await _transactionRepository.create(state.transaction);
+      }
       emit(state.copyWith(
         isSaving: true,
         showErrorMessages: true,

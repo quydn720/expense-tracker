@@ -36,7 +36,8 @@ class TransactionCard extends StatelessWidget {
                 style: body2,
               ),
               Text(
-                transaction.amount.toString(),
+                // TODO: Consider to get the dto - or the stringlify obj
+                transaction.amount.getOrCrash().toString(),
                 style: body2.copyWith(
                   color: transaction.type == TransactionType.income
                       ? kGreen100
@@ -50,7 +51,9 @@ class TransactionCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  transaction.description ?? '',
+                  transaction.wallet.name.getOrCrash(),
+
+                  // transaction.description ?? '',
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
                 ),

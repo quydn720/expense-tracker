@@ -1,4 +1,5 @@
 import 'package:expense_tracker/domain/core/value_object.dart';
+import 'package:expense_tracker/domain/transaction/models/value_object.dart';
 import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -20,14 +21,14 @@ class WalletDTO with _$WalletDTO {
       id: UniqueId.fromUniqueString(id),
       imagePath: imagePath,
       name: WalletName(name),
-      amount: amount,
+      amount: MoneyAmount(amount.toString()),
     );
   }
 
   factory WalletDTO.fromDomain(Wallet w) {
     return WalletDTO(
       id: w.id.getOrCrash(),
-      amount: w.amount,
+      amount: w.amount.getOrCrash(),
       imagePath: w.imagePath,
       name: w.name.getOrCrash(),
     );

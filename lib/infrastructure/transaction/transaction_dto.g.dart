@@ -12,7 +12,7 @@ _$_TransactionDTO _$$_TransactionDTOFromJson(Map<String, dynamic> json) =>
       category: json['category'] as String,
       amount: (json['amount'] as num).toDouble(),
       description: json['description'] as String?,
-      wallet: json['wallet'] as String,
+      wallet: json['wallet'] as Map<String, dynamic>,
       serverTimestamp: const ServerTimestampConverter()
           .fromJson(json['serverTimestamp'] as Object),
     );

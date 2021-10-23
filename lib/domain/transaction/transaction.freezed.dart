@@ -21,7 +21,7 @@ class _$TransactionTearOff {
       {required UniqueId id,
       required Category category,
       required Wallet wallet,
-      required double amount,
+      required MoneyAmount amount,
       required String? description,
       required DateTime date,
       required TransactionType type}) {
@@ -45,7 +45,7 @@ mixin _$Transaction {
   UniqueId get id => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   Wallet get wallet => throw _privateConstructorUsedError;
-  double get amount => throw _privateConstructorUsedError;
+  MoneyAmount get amount => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
   TransactionType get type => throw _privateConstructorUsedError;
@@ -64,7 +64,7 @@ abstract class $TransactionCopyWith<$Res> {
       {UniqueId id,
       Category category,
       Wallet wallet,
-      double amount,
+      MoneyAmount amount,
       String? description,
       DateTime date,
       TransactionType type});
@@ -107,7 +107,7 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double,
+              as MoneyAmount,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -149,7 +149,7 @@ abstract class _$TransactionCopyWith<$Res>
       {UniqueId id,
       Category category,
       Wallet wallet,
-      double amount,
+      MoneyAmount amount,
       String? description,
       DateTime date,
       TransactionType type});
@@ -196,7 +196,7 @@ class __$TransactionCopyWithImpl<$Res> extends _$TransactionCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double,
+              as MoneyAmount,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -232,7 +232,7 @@ class _$_Transaction implements _Transaction {
   @override
   final Wallet wallet;
   @override
-  final double amount;
+  final MoneyAmount amount;
   @override
   final String? description;
   @override
@@ -276,7 +276,7 @@ abstract class _Transaction implements Transaction {
       {required UniqueId id,
       required Category category,
       required Wallet wallet,
-      required double amount,
+      required MoneyAmount amount,
       required String? description,
       required DateTime date,
       required TransactionType type}) = _$_Transaction;
@@ -288,7 +288,7 @@ abstract class _Transaction implements Transaction {
   @override
   Wallet get wallet;
   @override
-  double get amount;
+  MoneyAmount get amount;
   @override
   String? get description;
   @override

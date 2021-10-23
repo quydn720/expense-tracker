@@ -102,7 +102,10 @@ class HomePage extends StatelessWidget {
                             transaction: transaction,
                           );
                         },
-                        itemCount: maxTransactionDisplayed,
+                        itemCount: (state.transactions.length <
+                                maxTransactionDisplayed)
+                            ? state.transactions.length
+                            : maxTransactionDisplayed,
                       ),
                       const SizedBox(height: kMediumPadding),
                     ],
@@ -115,7 +118,7 @@ class HomePage extends StatelessWidget {
             return Container(
               color: kRed100,
               height: 100,
-              width: 100,
+              width: double.infinity,
             );
           },
         );

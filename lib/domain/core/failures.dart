@@ -18,4 +18,10 @@ class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.empty({
     required T failedValue,
   }) = Empty<T>;
+  const factory ValueFailure.negativeNumber({
+    required T failedValue,
+  }) = NegativeNumber<T>;
+  const factory ValueFailure.invalidNumber({
+    required T failedValue,
+  }) = InvalidNumber<T>;
 }

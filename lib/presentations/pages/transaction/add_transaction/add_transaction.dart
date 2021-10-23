@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:expense_tracker/app/transaction/transaction_form/transaction_form_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/domain/transaction/models/category.dart';
+import 'package:expense_tracker/domain/transaction/models/value_object.dart';
 import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:expense_tracker/injector.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
@@ -27,8 +28,8 @@ class AddNewTransactionPage extends StatelessWidget {
                 unableToUpdate: (_) => 'unableToUpdate',
               ),
               (r) {
-                //! Navigate here
                 print('successfully');
+                Navigator.pop(context);
               },
             ),
           );
@@ -62,9 +63,28 @@ class AddNewTransactionPage extends StatelessWidget {
                             'How much',
                             style: title3.copyWith(color: kLight80),
                           ),
-                          Text(
-                            '\$5000',
+                          TextFormField(
+                            keyboardType: TextInputType.number,
                             style: titleX.copyWith(color: kLight80),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: '0',
+                              prefixIcon: Text(
+                                '\$',
+                                style: titleX.copyWith(color: kLight80),
+                              ),
+                              hintStyle: titleX.copyWith(color: kLight80),
+                            ),
+                            textInputAction: TextInputAction.next,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
+                            onChanged: (v) => bloc.add(
+                              TransactionFormEvent.amountChanged(v),
+                            ),
                           ),
                         ],
                       ),

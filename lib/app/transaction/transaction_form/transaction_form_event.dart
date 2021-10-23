@@ -9,7 +9,7 @@ class TransactionFormEvent with _$TransactionFormEvent {
       DescriptionChanged;
   const factory TransactionFormEvent.walletChanged(Wallet wallet) =
       WalletChanged;
-  const factory TransactionFormEvent.amountChanged(double amount) =
+  const factory TransactionFormEvent.amountChanged(String amount) =
       AmountChanged;
   const factory TransactionFormEvent.commitPressed() = CommitPressed;
 

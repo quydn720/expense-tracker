@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_tracker/domain/core/value_object.dart';
 import 'package:expense_tracker/domain/transaction/models/category.dart';
+import 'package:expense_tracker/domain/transaction/models/value_object.dart';
 import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:expense_tracker/domain/transaction/transaction.dart' as et;
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'models/wallet_dto.dart';
 
 part 'transaction_dto.freezed.dart';
 part 'transaction_dto.g.dart';
@@ -17,17 +20,17 @@ class TransactionDTO with _$TransactionDTO {
     required String category,
     required double amount,
     required String? description,
-    required String wallet,
+    required Map<String, dynamic> wallet,
     @ServerTimestampConverter() required Timestamp serverTimestamp,
   }) = _TransactionDTO;
 
   factory TransactionDTO.fromDomain(et.Transaction t) {
     return TransactionDTO(
       id: t.id.getOrCrash(),
-      amount: t.amount,
+      amount: t.amount.getOrCrash(),
       category: t.category.name,
       description: t.description,
-      wallet: t.wallet.name.getOrCrash(),
+      wallet: WalletDTO.fromDomain(t.wallet).toJson(),
       serverTimestamp: Timestamp.fromDate(t.date),
     );
   }
@@ -42,8 +45,8 @@ class TransactionDTO with _$TransactionDTO {
         imagePath: '',
         name: category,
       ),
-      wallet: Wallet.empty(),
-      amount: amount,
+      wallet: WalletDTO.fromJson(wallet).toDomain(),
+      amount: MoneyAmount(amount.toString()),
       date: DateTime.fromMillisecondsSinceEpoch(
         serverTimestamp.millisecondsSinceEpoch,
       ),
