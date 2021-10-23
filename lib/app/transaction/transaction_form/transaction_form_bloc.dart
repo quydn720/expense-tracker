@@ -23,7 +23,7 @@ class TransactionFormBloc
       emit(state.copyWith(
         isEditing: true,
         transaction:
-            state.transaction.copyWith(amount: MoneyAmount(event.amount)),
+            state.transaction.copyWith(amount: TransactionAmount(event.amount)),
       ));
     });
     on<CategoryChanged>((event, emit) {
@@ -41,7 +41,8 @@ class TransactionFormBloc
         isSaving: true,
         saveFailureOrSuccessOption: none(),
       ));
-      late Either<TransactionFailure, Unit> failureOrSuccess;
+      Either<TransactionFailure, Unit> failureOrSuccess =
+          left(const TransactionFailure.unexpected());
       //! Nếu không xảy ra lỗi (empty amount, .... )
       //! Cần xử lí lỗi ở đây
       if (state.transaction.failureOption.isNone()) {

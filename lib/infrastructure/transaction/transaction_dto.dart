@@ -46,7 +46,7 @@ class TransactionDTO with _$TransactionDTO {
         name: category,
       ),
       wallet: WalletDTO.fromJson(wallet).toDomain(),
-      amount: MoneyAmount(amount.toString()),
+      amount: TransactionAmount(amount.toString()),
       date: DateTime.fromMillisecondsSinceEpoch(
         serverTimestamp.millisecondsSinceEpoch,
       ),

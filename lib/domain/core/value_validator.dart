@@ -44,11 +44,20 @@ Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
 Either<ValueFailure<double>, double> validateAmountIsValidNumber(String input) {
   final inputNumber = double.tryParse(input);
   try {
-    if (inputNumber! >= 0) {
+    if (inputNumber! > 0) {
       return right(inputNumber);
     } else {
       return left(ValueFailure.negativeNumber(failedValue: inputNumber));
     }
+  } catch (e) {
+    return left(const ValueFailure.invalidNumber(failedValue: -1));
+  }
+}
+
+Either<ValueFailure<double>, double> validateAmountIsValidMoney(String input) {
+  final inputNumber = double.tryParse(input);
+  try {
+    return right(inputNumber!);
   } catch (e) {
     return left(const ValueFailure.invalidNumber(failedValue: -1));
   }

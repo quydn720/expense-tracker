@@ -17,14 +17,14 @@ class Wallet with _$Wallet {
 
     /// User input - must be validated
     required WalletName name,
-    required MoneyAmount amount, //
+    required WalletAmount amount, //
   }) = _Wallet;
 
   factory Wallet.empty() {
     return Wallet(
       id: UniqueId(),
       name: WalletName('testing wallet'),
-      amount: MoneyAmount('0'),
+      amount: WalletAmount('-1'),
       imagePath: 'assets/icons/wallet-3.png',
     );
   }

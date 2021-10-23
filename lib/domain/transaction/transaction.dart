@@ -16,7 +16,7 @@ class Transaction with _$Transaction {
     required UniqueId id,
     required Category category,
     required Wallet wallet,
-    required MoneyAmount amount,
+    required TransactionAmount amount,
     required String? description,
     required DateTime date,
     required TransactionType type,
@@ -25,7 +25,7 @@ class Transaction with _$Transaction {
   factory Transaction.empty() {
     return Transaction(
       id: UniqueId.fromUniqueString(const Uuid().v1()),
-      amount: MoneyAmount('0'),
+      amount: TransactionAmount('0'),
       category: Category.empty(),
       date: DateTime.now(),
       description: '',

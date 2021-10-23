@@ -21,7 +21,7 @@ class WalletDTO with _$WalletDTO {
       id: UniqueId.fromUniqueString(id),
       imagePath: imagePath,
       name: WalletName(name),
-      amount: MoneyAmount(amount.toString()),
+      amount: WalletAmount(amount.toString()),
     );
   }
 

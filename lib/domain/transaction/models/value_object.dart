@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+
 import 'package:expense_tracker/domain/core/failures.dart';
 import 'package:expense_tracker/domain/core/value_object.dart';
 import 'package:expense_tracker/domain/core/value_validator.dart';
@@ -16,11 +17,40 @@ class WalletName extends ValueObject<String> {
   const WalletName._(this.value);
 }
 
-class MoneyAmount extends ValueObject<double> {
+class TransactionAmount extends ValueObject<double> {
   @override
   final Either<ValueFailure<double>, double> value;
-  factory MoneyAmount(String input) {
-    return MoneyAmount._(validateAmountIsValidNumber(input));
+  factory TransactionAmount(String input) {
+    return TransactionAmount._(validateAmountIsValidNumber(input));
   }
-  const MoneyAmount._(this.value);
+  const TransactionAmount._(this.value);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is TransactionAmount && other.value == value;
+  }
+
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class WalletAmount extends ValueObject<double> {
+  @override
+  final Either<ValueFailure<double>, double> value;
+  factory WalletAmount(String input) {
+    return WalletAmount._(validateAmountIsValidMoney(input));
+  }
+  const WalletAmount._(this.value);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is WalletAmount && other.value == value;
+  }
+
+  @override
+  int get hashCode => value.hashCode;
 }

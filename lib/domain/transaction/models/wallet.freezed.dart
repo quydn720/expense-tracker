@@ -21,7 +21,7 @@ class _$WalletTearOff {
       {required UniqueId id,
       required String imagePath,
       required WalletName name,
-      required MoneyAmount amount}) {
+      required WalletAmount amount}) {
     return _Wallet(
       id: id,
       imagePath: imagePath,
@@ -43,7 +43,7 @@ mixin _$Wallet {
 
   /// User input - must be validated
   WalletName get name => throw _privateConstructorUsedError;
-  MoneyAmount get amount => throw _privateConstructorUsedError;
+  WalletAmount get amount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WalletCopyWith<Wallet> get copyWith => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $WalletCopyWith<$Res> {
   factory $WalletCopyWith(Wallet value, $Res Function(Wallet) then) =
       _$WalletCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId id, String imagePath, WalletName name, MoneyAmount amount});
+      {UniqueId id, String imagePath, WalletName name, WalletAmount amount});
 }
 
 /// @nodoc
@@ -88,7 +88,7 @@ class _$WalletCopyWithImpl<$Res> implements $WalletCopyWith<$Res> {
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as MoneyAmount,
+              as WalletAmount,
     ));
   }
 }
@@ -99,7 +99,7 @@ abstract class _$WalletCopyWith<$Res> implements $WalletCopyWith<$Res> {
       __$WalletCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId id, String imagePath, WalletName name, MoneyAmount amount});
+      {UniqueId id, String imagePath, WalletName name, WalletAmount amount});
 }
 
 /// @nodoc
@@ -134,7 +134,7 @@ class __$WalletCopyWithImpl<$Res> extends _$WalletCopyWithImpl<$Res>
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as MoneyAmount,
+              as WalletAmount,
     ));
   }
 }
@@ -160,7 +160,7 @@ class _$_Wallet extends _Wallet {
   /// User input - must be validated
   final WalletName name;
   @override
-  final MoneyAmount amount;
+  final WalletAmount amount;
 
   @override
   String toString() {
@@ -193,7 +193,7 @@ abstract class _Wallet extends Wallet {
       {required UniqueId id,
       required String imagePath,
       required WalletName name,
-      required MoneyAmount amount}) = _$_Wallet;
+      required WalletAmount amount}) = _$_Wallet;
   const _Wallet._() : super._();
 
   @override
@@ -207,7 +207,7 @@ abstract class _Wallet extends Wallet {
   /// User input - must be validated
   WalletName get name;
   @override
-  MoneyAmount get amount;
+  WalletAmount get amount;
   @override
   @JsonKey(ignore: true)
   _$WalletCopyWith<_Wallet> get copyWith => throw _privateConstructorUsedError;

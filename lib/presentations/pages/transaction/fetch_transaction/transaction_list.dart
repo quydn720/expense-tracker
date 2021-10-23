@@ -80,11 +80,11 @@ class TransactionPage extends StatelessWidget {
                       category: Category.empty(),
                       wallet: Wallet(
                         id: UniqueId(),
-                        amount: MoneyAmount('0'),
+                        amount: WalletAmount('0'),
                         imagePath: 'assets/icons/wallet-3.png',
                         name: WalletName('a'),
                       ),
-                      amount: MoneyAmount('0'),
+                      amount: TransactionAmount('0'),
                       description: 'description',
                       date: DateTime.now(),
                       type: TransactionType.expense,
