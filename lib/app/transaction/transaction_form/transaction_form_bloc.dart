@@ -36,6 +36,14 @@ class TransactionFormBloc
           isEditing: true,
           transaction: state.transaction.copyWith(wallet: event.wallet)));
     });
+
+    on<DescriptionChanged>((event, emit) {
+      emit(state.copyWith(
+          isEditing: true,
+          transaction:
+              state.transaction.copyWith(description: event.description)));
+    });
+
     on<CommitPressed>((event, emit) async {
       emit(state.copyWith(
         isSaving: true,

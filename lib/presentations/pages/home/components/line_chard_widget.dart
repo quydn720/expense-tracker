@@ -12,8 +12,13 @@ class LineChartWidget extends StatelessWidget {
   final List<Transaction> transactions;
   @override
   Widget build(BuildContext context) {
-    final Map<DateTime, List<Transaction>> map =
-        transactions.groupBy((t) => t.date);
+    final Map<DateTime, List<Transaction>> map = transactions.groupBy(
+      (t) => DateTime(
+        t.date.year,
+        t.date.month,
+        t.date.day,
+      ),
+    );
     final dailyTotal = map.map(
       (key, value) => MapEntry(
         key,
@@ -34,14 +39,14 @@ class LineChartWidget extends StatelessWidget {
           gridData: FlGridData(show: false),
           titlesData: FlTitlesData(show: false),
           borderData: FlBorderData(show: false),
-          minX: 20,
-          maxX: 22, //dailyTotal.length.toDouble() - 1,
+          minX: 23,
+          maxX: 24,
           minY: 0,
           maxY: dailyTotal.values.reduce((c, n) => c > n ? c : n) + 25,
           lineBarsData: [
             LineChartBarData(
               spots: spots,
-              isCurved: false,
+              isCurved: true,
               colors: [kViolet100],
               barWidth: 5,
               isStrokeCapRound: true,

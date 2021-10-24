@@ -51,9 +51,9 @@ class TransactionCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  transaction.wallet.name.getOrCrash(),
+                  // transaction.wallet.name.getOrCrash(),
 
-                  // transaction.description ?? '',
+                  transaction.description ?? '',
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
                 ),
