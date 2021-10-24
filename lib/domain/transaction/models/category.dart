@@ -16,7 +16,7 @@ class Category with _$Category {
   factory Category.empty() {
     return Category(
       id: UniqueId(),
-      name: '',
+      name: 'empty category',
       color: kViolet60.value,
       imagePath: 'assets/icons/restaurant.png',
     );

@@ -4,7 +4,6 @@ import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/bars.dart';
 import 'package:expense_tracker/presentations/components/default_app_widget.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/presentations/pages/transaction/add_transaction/expense_income_form.dart';
 
 import 'export_result_page.dart';
 
@@ -33,11 +32,11 @@ class _ExportPageState extends State<ExportPage> {
                     title:
                         Text('What data do you want to export?', style: body1),
                   ),
-                  SelectionFormField(title: 'All'),
+                  // SelectionFormField(title: 'All'),
                   DefaultBar(
                     title: Text('When date range?', style: body1),
                   ),
-                  SelectionFormField(title: 'Last 30 days'),
+                  // SelectionFormField(title: 'Last 30 days'),
                   DefaultBar(
                     title: Text('What format do you want to export?',
                         style: body1),

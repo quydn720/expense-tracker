@@ -12,18 +12,19 @@ class LineChartWidget extends StatelessWidget {
   final List<Transaction> transactions;
   @override
   Widget build(BuildContext context) {
-    final a = transactions.groupBy((t) => t.date.day);
-
-    final dailyTotal = a.map(
+    final Map<DateTime, List<Transaction>> map =
+        transactions.groupBy((t) => t.date);
+    final dailyTotal = map.map(
       (key, value) => MapEntry(
-          key,
-          value
-              .map((e) => e.amount.getOrCrash())
-              .toList()
-              .reduce((a, b) => a + b)),
+        key,
+        value
+            .map((e) => e.amount.getOrCrash())
+            .toList()
+            .reduce((a, b) => a + b),
+      ),
     );
     final spots = dailyTotal.entries
-        .map((e) => FlSpot(e.key.toDouble(), e.value))
+        .map((e) => FlSpot(e.key.day.toDouble(), e.value))
         .toList();
 
     return SizedBox(

@@ -2,7 +2,6 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:expense_tracker/app/transaction/transaction_form/transaction_form_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/domain/transaction/models/category.dart';
-import 'package:expense_tracker/presentations/components/app_form_field.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,11 +38,13 @@ class ExpenseIncomeForm extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: kMediumPadding),
-                const AppFormField(
-                  hint: 'Description',
+                TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: 'Description',
+                  ),
                 ),
                 const SizedBox(height: kMediumPadding),
-                const SelectionFormField(title: 'Wallet'),
+                // const SelectionFormField(title: 'Wallet'),
                 const SizedBox(height: kMediumPadding),
                 DottedBorder(
                   borderType: BorderType.RRect,
@@ -90,21 +91,6 @@ class ExpenseIncomeForm extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class SelectionFormField extends StatelessWidget {
-  const SelectionFormField({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
-  final String title;
-  @override
-  Widget build(BuildContext context) {
-    return AppFormField(
-      hint: title,
-      suffix: Image.asset('assets/icons/arrow-down-2.png'),
     );
   }
 }

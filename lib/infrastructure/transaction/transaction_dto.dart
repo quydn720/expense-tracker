@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_tracker/domain/core/value_object.dart';
 import 'package:expense_tracker/domain/transaction/models/category.dart';
 import 'package:expense_tracker/domain/transaction/models/value_object.dart';
-import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:expense_tracker/domain/transaction/transaction.dart' as et;
 import 'package:freezed_annotation/freezed_annotation.dart';
 

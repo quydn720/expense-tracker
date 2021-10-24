@@ -1,8 +1,7 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:expense_tracker/app/transaction/transaction_form/transaction_form_bloc.dart';
 import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/domain/transaction/models/category.dart';
-import 'package:expense_tracker/domain/transaction/models/value_object.dart';
 import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:expense_tracker/injector.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
@@ -22,13 +21,16 @@ class AddNewTransactionPage extends StatelessWidget {
           state.saveFailureOrSuccessOption.fold(
             () {},
             (either) => either.fold(
-              (f) => f.map(
-                unexpected: (_) => 'unexpected',
-                insufficientPermission: (_) => 'insufficientPermission',
-                unableToUpdate: (_) => 'unableToUpdate',
-              ),
+              (f) {
+                Flushbar(
+                  message: f.map(
+                    unexpected: (_) => 'unexpected',
+                    insufficientPermission: (_) => 'insufficientPermission',
+                    unableToUpdate: (_) => 'unableToUpdate',
+                  ),
+                );
+              },
               (r) {
-                print('successfully');
                 Navigator.pop(context);
               },
             ),
@@ -67,6 +69,7 @@ class AddNewTransactionPage extends StatelessWidget {
                             keyboardType: TextInputType.number,
                             style: titleX.copyWith(color: kLight80),
                             decoration: InputDecoration(
+                              errorStyle: small.copyWith(color: kLight80),
                               border: InputBorder.none,
                               hintText: '0',
                               prefixIcon: Text(
@@ -75,13 +78,18 @@ class AddNewTransactionPage extends StatelessWidget {
                               ),
                               hintStyle: titleX.copyWith(color: kLight80),
                             ),
-                            textInputAction: TextInputAction.next,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
+                            validator: (_) =>
+                                state.transaction.amount.value.fold(
+                              (failure) => failure.maybeMap(
+                                invalidNumber: (_) => 'Invalid number',
+                                negativeNumber: (_) =>
+                                    'The value of expense must be greater than 0',
+                                orElse: () => null,
+                              ),
+                              (_) => null,
+                            ),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             onChanged: (v) => bloc.add(
                               TransactionFormEvent.amountChanged(v),
                             ),
@@ -105,19 +113,27 @@ class AddNewTransactionPage extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                    label: Text('Category')),
-                                textInputAction: TextInputAction.next,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter some text';
-                                  }
-                                  return null;
-                                },
-                                onChanged: (v) => bloc.add(
-                                  TransactionFormEvent.categoryChanged(
-                                      Category.empty()),
+                              DropdownButtonFormField<Categories>(
+                                onChanged: (v) {},
+                                hint: const Text('Category'),
+                                items: Categories.values
+                                    .map(
+                                      (e) => DropdownMenuItem(
+                                        value: e,
+                                        child: Text(e
+                                            .toString()
+                                            .split('.')
+                                            .elementAt(1)),
+                                      ),
+                                    )
+                                    .toList(),
+                                icon: Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: kDefaultPadding),
+                                  child: Image.asset(
+                                    'assets/icons/arrow-down-2.png',
+                                    color: kViolet100,
+                                  ),
                                 ),
                               ),
                               const SizedBox(height: kMediumPadding),
