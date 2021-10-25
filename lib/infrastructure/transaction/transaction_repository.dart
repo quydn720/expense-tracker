@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:expense_tracker/domain/transaction/i_transaction_repository.dart';
+import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:expense_tracker/domain/transaction/transaction.dart' as t;
 import 'package:expense_tracker/domain/transaction/transaction_failure.dart';
 import 'package:expense_tracker/infrastructure/transaction/transaction_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:expense_tracker/infrastructure/core/firestore_helper.dart';
+
+import 'models/wallet_dto.dart';
 
 @LazySingleton(as: ITransactionRepository)
 class TransactionRepository implements ITransactionRepository {
@@ -17,9 +20,7 @@ class TransactionRepository implements ITransactionRepository {
   @override
   Stream<Either<TransactionFailure, List<t.Transaction>>> watchAll() async* {
     final userDoc = _firestore.userDocument();
-
     yield* userDoc.transactionCollection
-        // sorting by date - timestamp
         .orderBy('serverTimestamp', descending: true)
         .snapshots()
         .map(
@@ -91,5 +92,16 @@ class TransactionRepository implements ITransactionRepository {
         return left(const TransactionFailure.unexpected());
       }
     }
+  }
+
+  @override
+  Stream<List<Wallet>> getAllWallets() {
+    final userDoc = _firestore.userDocument();
+    return userDoc.walletCollection.orderBy('name').snapshots().map((snap) {
+      return snap.docs
+          .map((doc) => WalletDTO.fromJson(doc.data()).toDomain())
+          .toList();
+    });
+    // TODO: Error handling
   }
 }
