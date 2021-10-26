@@ -44,21 +44,21 @@ class TransactionRepository implements ITransactionRepository {
   }
 
   @override
-  Future<Either<TransactionFailure, Unit>> create(t.Transaction t) async {
+  Future<Either<TransactionFailure, Unit>> create(
+      t.Transaction t, Wallet w) async {
     try {
       final userDoc = _firestore.userDocument();
-      TransactionDTO dto = TransactionDTO.fromDomain(t);
+      TransactionDTO transactionDto = TransactionDTO.fromDomain(t);
 
-      WalletDTO currentWallet = WalletDTO.fromDomain(t.wallet);
-      final afterWallet = currentWallet.copyWith(
-        amount: dto.amount * dto.type + currentWallet.amount,
+      final walletDto = WalletDTO.fromDomain(w);
+      final afterWallet = walletDto.copyWith(
+        amount: transactionDto.type * transactionDto.amount + walletDto.amount,
       );
-      print(dto.type);
-      print(currentWallet.amount);
-      print(afterWallet.amount);
-      await userDoc.transactionCollection.doc(dto.id).set(dto.toJson());
+      await userDoc.transactionCollection
+          .doc(transactionDto.id)
+          .set(transactionDto.toJson());
       await userDoc.walletCollection
-          .doc(afterWallet.id.trim())
+          .doc(walletDto.id.trim())
           .update(afterWallet.toJson());
       // TODO: Finish off those works: this one, the chart, and the profile page
       return right(unit);

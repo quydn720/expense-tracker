@@ -26,7 +26,7 @@ class _$TransactionDTOTearOff {
       required String category,
       required double amount,
       required String? description,
-      required Map<String, dynamic> wallet,
+      required String walletId,
       @ServerTimestampConverter() required Timestamp serverTimestamp,
       required int type}) {
     return _TransactionDTO(
@@ -34,7 +34,7 @@ class _$TransactionDTOTearOff {
       category: category,
       amount: amount,
       description: description,
-      wallet: wallet,
+      walletId: walletId,
       serverTimestamp: serverTimestamp,
       type: type,
     );
@@ -54,7 +54,7 @@ mixin _$TransactionDTO {
   String get category => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  Map<String, dynamic> get wallet => throw _privateConstructorUsedError;
+  String get walletId => throw _privateConstructorUsedError;
   @ServerTimestampConverter()
   Timestamp get serverTimestamp => throw _privateConstructorUsedError;
   int get type => throw _privateConstructorUsedError;
@@ -75,7 +75,7 @@ abstract class $TransactionDTOCopyWith<$Res> {
       String category,
       double amount,
       String? description,
-      Map<String, dynamic> wallet,
+      String walletId,
       @ServerTimestampConverter() Timestamp serverTimestamp,
       int type});
 }
@@ -95,7 +95,7 @@ class _$TransactionDTOCopyWithImpl<$Res>
     Object? category = freezed,
     Object? amount = freezed,
     Object? description = freezed,
-    Object? wallet = freezed,
+    Object? walletId = freezed,
     Object? serverTimestamp = freezed,
     Object? type = freezed,
   }) {
@@ -116,10 +116,10 @@ class _$TransactionDTOCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      wallet: wallet == freezed
-          ? _value.wallet
-          : wallet // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+      walletId: walletId == freezed
+          ? _value.walletId
+          : walletId // ignore: cast_nullable_to_non_nullable
+              as String,
       serverTimestamp: serverTimestamp == freezed
           ? _value.serverTimestamp
           : serverTimestamp // ignore: cast_nullable_to_non_nullable
@@ -144,7 +144,7 @@ abstract class _$TransactionDTOCopyWith<$Res>
       String category,
       double amount,
       String? description,
-      Map<String, dynamic> wallet,
+      String walletId,
       @ServerTimestampConverter() Timestamp serverTimestamp,
       int type});
 }
@@ -166,7 +166,7 @@ class __$TransactionDTOCopyWithImpl<$Res>
     Object? category = freezed,
     Object? amount = freezed,
     Object? description = freezed,
-    Object? wallet = freezed,
+    Object? walletId = freezed,
     Object? serverTimestamp = freezed,
     Object? type = freezed,
   }) {
@@ -187,10 +187,10 @@ class __$TransactionDTOCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      wallet: wallet == freezed
-          ? _value.wallet
-          : wallet // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+      walletId: walletId == freezed
+          ? _value.walletId
+          : walletId // ignore: cast_nullable_to_non_nullable
+              as String,
       serverTimestamp: serverTimestamp == freezed
           ? _value.serverTimestamp
           : serverTimestamp // ignore: cast_nullable_to_non_nullable
@@ -211,7 +211,7 @@ class _$_TransactionDTO extends _TransactionDTO {
       required this.category,
       required this.amount,
       required this.description,
-      required this.wallet,
+      required this.walletId,
       @ServerTimestampConverter() required this.serverTimestamp,
       required this.type})
       : super._();
@@ -228,7 +228,7 @@ class _$_TransactionDTO extends _TransactionDTO {
   @override
   final String? description;
   @override
-  final Map<String, dynamic> wallet;
+  final String walletId;
   @override
   @ServerTimestampConverter()
   final Timestamp serverTimestamp;
@@ -237,7 +237,7 @@ class _$_TransactionDTO extends _TransactionDTO {
 
   @override
   String toString() {
-    return 'TransactionDTO(id: $id, category: $category, amount: $amount, description: $description, wallet: $wallet, serverTimestamp: $serverTimestamp, type: $type)';
+    return 'TransactionDTO(id: $id, category: $category, amount: $amount, description: $description, walletId: $walletId, serverTimestamp: $serverTimestamp, type: $type)';
   }
 
   @override
@@ -251,22 +251,16 @@ class _$_TransactionDTO extends _TransactionDTO {
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other.wallet, wallet) &&
+            (identical(other.walletId, walletId) ||
+                other.walletId == walletId) &&
             (identical(other.serverTimestamp, serverTimestamp) ||
                 other.serverTimestamp == serverTimestamp) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      category,
-      amount,
-      description,
-      const DeepCollectionEquality().hash(wallet),
-      serverTimestamp,
-      type);
+  int get hashCode => Object.hash(runtimeType, id, category, amount,
+      description, walletId, serverTimestamp, type);
 
   @JsonKey(ignore: true)
   @override
@@ -285,7 +279,7 @@ abstract class _TransactionDTO extends TransactionDTO {
       required String category,
       required double amount,
       required String? description,
-      required Map<String, dynamic> wallet,
+      required String walletId,
       @ServerTimestampConverter() required Timestamp serverTimestamp,
       required int type}) = _$_TransactionDTO;
   const _TransactionDTO._() : super._();
@@ -302,7 +296,7 @@ abstract class _TransactionDTO extends TransactionDTO {
   @override
   String? get description;
   @override
-  Map<String, dynamic> get wallet;
+  String get walletId;
   @override
   @ServerTimestampConverter()
   Timestamp get serverTimestamp;

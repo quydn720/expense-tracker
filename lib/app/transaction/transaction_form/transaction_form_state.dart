@@ -4,6 +4,7 @@ part of 'transaction_form_bloc.dart';
 class TransactionFormState with _$TransactionFormState {
   const factory TransactionFormState({
     required Transaction transaction,
+    required Wallet wallet,
     required bool showErrorMessages,
     required bool isEditing,
     required bool isSaving,
@@ -13,6 +14,7 @@ class TransactionFormState with _$TransactionFormState {
 
   factory TransactionFormState.initial() => TransactionFormState(
         transaction: Transaction.empty(),
+        wallet: Wallet.empty(),
         showErrorMessages: false,
         isEditing: false,
         isSaving: false,

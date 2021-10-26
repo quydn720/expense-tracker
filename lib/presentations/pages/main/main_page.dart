@@ -23,6 +23,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
+  List<Wallet> listWallet = [];
+
   final List<Widget> _widgetOptions = [
     const HomePage(),
     const TransactionPage(),
@@ -39,7 +41,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<Wallet> listWallet = [];
     var bottomAppBar = BottomAppBar(
       shape: const CircularNotchedRectangle(),
       notchMargin: 6.0,
@@ -122,7 +123,9 @@ class _MainPageState extends State<MainPage> {
               state.maybeMap(
                 orElse: () {},
                 loadSuccess: (w) {
-                  listWallet = w.wallets;
+                  setState(() {
+                    listWallet = w.wallets;
+                  });
                 },
               );
             },

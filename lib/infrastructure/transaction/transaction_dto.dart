@@ -19,7 +19,7 @@ class TransactionDTO with _$TransactionDTO {
     required String category,
     required double amount,
     required String? description,
-    required Map<String, dynamic> wallet,
+    required String walletId,
     @ServerTimestampConverter() required Timestamp serverTimestamp,
     required int type,
   }) = _TransactionDTO;
@@ -30,7 +30,7 @@ class TransactionDTO with _$TransactionDTO {
       amount: t.amount.getOrCrash(),
       category: t.category.name,
       description: t.description,
-      wallet: WalletDTO.fromDomain(t.wallet).toJson(),
+      walletId: t.walletId.getOrCrash(),
       serverTimestamp: Timestamp.fromDate(t.date),
       type: t.type.value,
     );
@@ -46,7 +46,7 @@ class TransactionDTO with _$TransactionDTO {
         imagePath: '',
         name: category,
       ),
-      wallet: WalletDTO.fromJson(wallet).toDomain(),
+      walletId: UniqueId.fromUniqueString(walletId),
       amount: TransactionAmount(amount.toString()),
       date: DateTime.fromMillisecondsSinceEpoch(
         serverTimestamp.millisecondsSinceEpoch,

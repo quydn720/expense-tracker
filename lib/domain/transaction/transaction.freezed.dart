@@ -20,7 +20,7 @@ class _$TransactionTearOff {
   _Transaction call(
       {required UniqueId id,
       required Category category,
-      required Wallet wallet,
+      required UniqueId walletId,
       required TransactionAmount amount,
       required String? description,
       required DateTime date,
@@ -28,7 +28,7 @@ class _$TransactionTearOff {
     return _Transaction(
       id: id,
       category: category,
-      wallet: wallet,
+      walletId: walletId,
       amount: amount,
       description: description,
       date: date,
@@ -44,7 +44,7 @@ const $Transaction = _$TransactionTearOff();
 mixin _$Transaction {
   UniqueId get id => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
-  Wallet get wallet => throw _privateConstructorUsedError;
+  UniqueId get walletId => throw _privateConstructorUsedError;
   TransactionAmount get amount => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
@@ -63,14 +63,13 @@ abstract class $TransactionCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       Category category,
-      Wallet wallet,
+      UniqueId walletId,
       TransactionAmount amount,
       String? description,
       DateTime date,
       TransactionType type});
 
   $CategoryCopyWith<$Res> get category;
-  $WalletCopyWith<$Res> get wallet;
 }
 
 /// @nodoc
@@ -85,7 +84,7 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? category = freezed,
-    Object? wallet = freezed,
+    Object? walletId = freezed,
     Object? amount = freezed,
     Object? description = freezed,
     Object? date = freezed,
@@ -100,10 +99,10 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category,
-      wallet: wallet == freezed
-          ? _value.wallet
-          : wallet // ignore: cast_nullable_to_non_nullable
-              as Wallet,
+      walletId: walletId == freezed
+          ? _value.walletId
+          : walletId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -129,13 +128,6 @@ class _$TransactionCopyWithImpl<$Res> implements $TransactionCopyWith<$Res> {
       return _then(_value.copyWith(category: value));
     });
   }
-
-  @override
-  $WalletCopyWith<$Res> get wallet {
-    return $WalletCopyWith<$Res>(_value.wallet, (value) {
-      return _then(_value.copyWith(wallet: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -148,7 +140,7 @@ abstract class _$TransactionCopyWith<$Res>
   $Res call(
       {UniqueId id,
       Category category,
-      Wallet wallet,
+      UniqueId walletId,
       TransactionAmount amount,
       String? description,
       DateTime date,
@@ -156,8 +148,6 @@ abstract class _$TransactionCopyWith<$Res>
 
   @override
   $CategoryCopyWith<$Res> get category;
-  @override
-  $WalletCopyWith<$Res> get wallet;
 }
 
 /// @nodoc
@@ -174,7 +164,7 @@ class __$TransactionCopyWithImpl<$Res> extends _$TransactionCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? category = freezed,
-    Object? wallet = freezed,
+    Object? walletId = freezed,
     Object? amount = freezed,
     Object? description = freezed,
     Object? date = freezed,
@@ -189,10 +179,10 @@ class __$TransactionCopyWithImpl<$Res> extends _$TransactionCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category,
-      wallet: wallet == freezed
-          ? _value.wallet
-          : wallet // ignore: cast_nullable_to_non_nullable
-              as Wallet,
+      walletId: walletId == freezed
+          ? _value.walletId
+          : walletId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -219,7 +209,7 @@ class _$_Transaction implements _Transaction {
   const _$_Transaction(
       {required this.id,
       required this.category,
-      required this.wallet,
+      required this.walletId,
       required this.amount,
       required this.description,
       required this.date,
@@ -230,7 +220,7 @@ class _$_Transaction implements _Transaction {
   @override
   final Category category;
   @override
-  final Wallet wallet;
+  final UniqueId walletId;
   @override
   final TransactionAmount amount;
   @override
@@ -242,7 +232,7 @@ class _$_Transaction implements _Transaction {
 
   @override
   String toString() {
-    return 'Transaction(id: $id, category: $category, wallet: $wallet, amount: $amount, description: $description, date: $date, type: $type)';
+    return 'Transaction(id: $id, category: $category, walletId: $walletId, amount: $amount, description: $description, date: $date, type: $type)';
   }
 
   @override
@@ -253,7 +243,8 @@ class _$_Transaction implements _Transaction {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            (identical(other.wallet, wallet) || other.wallet == wallet) &&
+            (identical(other.walletId, walletId) ||
+                other.walletId == walletId) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -263,7 +254,7 @@ class _$_Transaction implements _Transaction {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, category, wallet, amount, description, date, type);
+      runtimeType, id, category, walletId, amount, description, date, type);
 
   @JsonKey(ignore: true)
   @override
@@ -275,7 +266,7 @@ abstract class _Transaction implements Transaction {
   const factory _Transaction(
       {required UniqueId id,
       required Category category,
-      required Wallet wallet,
+      required UniqueId walletId,
       required TransactionAmount amount,
       required String? description,
       required DateTime date,
@@ -286,7 +277,7 @@ abstract class _Transaction implements Transaction {
   @override
   Category get category;
   @override
-  Wallet get wallet;
+  UniqueId get walletId;
   @override
   TransactionAmount get amount;
   @override

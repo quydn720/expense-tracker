@@ -33,8 +33,9 @@ class TransactionFormBloc
     });
     on<WalletChanged>((event, emit) {
       emit(state.copyWith(
-          isEditing: true,
-          transaction: state.transaction.copyWith(wallet: event.wallet)));
+        isEditing: true,
+        wallet: event.wallet,
+      ));
     });
 
     on<DescriptionChanged>((event, emit) {
@@ -54,8 +55,8 @@ class TransactionFormBloc
       //! Nếu không xảy ra lỗi (empty amount, .... )
       //! Cần xử lí lỗi ở đây
       if (state.transaction.failureOption.isNone()) {
-        failureOrSuccess =
-            await _transactionRepository.create(state.transaction);
+        failureOrSuccess = await _transactionRepository.create(
+            state.transaction, state.wallet);
       }
       emit(state.copyWith(
         isSaving: true,

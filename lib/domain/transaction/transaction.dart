@@ -1,13 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:uuid/uuid.dart';
 
 import 'package:expense_tracker/domain/core/failures.dart';
 import 'package:expense_tracker/domain/core/value_object.dart';
 import 'package:expense_tracker/domain/transaction/models/value_object.dart';
 
 import 'models/category.dart';
-import 'models/wallet.dart';
 
 part 'transaction.freezed.dart';
 
@@ -16,7 +14,7 @@ class Transaction with _$Transaction {
   const factory Transaction({
     required UniqueId id,
     required Category category,
-    required Wallet wallet,
+    required UniqueId walletId,
     required TransactionAmount amount,
     required String? description,
     required DateTime date,
@@ -31,7 +29,7 @@ class Transaction with _$Transaction {
       date: DateTime.now(),
       description: '',
       type: TransactionType(-1),
-      wallet: Wallet.empty(),
+      walletId: UniqueId(),
     );
   }
 }

@@ -6,7 +6,7 @@ import 'models/wallet.dart';
 
 abstract class ITransactionRepository {
   Stream<Either<TransactionFailure, List<t.Transaction>>> watchAll();
-  Future<Either<TransactionFailure, Unit>> create(t.Transaction t);
+  Future<Either<TransactionFailure, Unit>> create(t.Transaction t, Wallet w);
   Future<Either<TransactionFailure, Unit>> update(t.Transaction t);
   Future<Either<TransactionFailure, Unit>> delete(t.Transaction t);
   // CRUD
