@@ -13,7 +13,7 @@ part 'wallet_bloc.freezed.dart';
 @injectable
 class WalletBloc extends Bloc<WalletEvent, WalletState> {
   final ITransactionRepository _transactionRepository;
-  late StreamSubscription _todosSubscription;
+  late StreamSubscription _walletsSubscription;
 
   WalletBloc(this._transactionRepository) : super(const _Initial()) {
     on<GetAllWallet>((event, emit) {
@@ -31,7 +31,7 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
 
   @override
   Future<void> close() {
-    _todosSubscription.cancel();
+    _walletsSubscription.cancel();
     return super.close();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:expense_tracker/app/misc/wallet_bloc.dart';
+import 'package:expense_tracker/domain/transaction/transaction.dart';
 import 'package:expense_tracker/presentations/pages/home/components/pills.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,10 +10,16 @@ import 'money_chip.dart';
 class TopNavigation extends StatelessWidget {
   const TopNavigation({
     Key? key,
+    required this.data,
   }) : super(key: key);
-
+  final Map<TransactionType, List<Transaction>> data;
   @override
   Widget build(BuildContext context) {
+    final incomeAndExpense = data.map(
+      (key, value) => MapEntry(key.value,
+          value.map((e) => e.amount.getOrCrash()).reduce((a, b) => a + b)),
+    );
+
     const linearGradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
@@ -83,17 +90,17 @@ class TopNavigation extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(kDefaultPadding),
                         child: Row(
-                          children: const [
+                          children: [
                             MoneyChip(
                               color: kGreen100,
-                              amount: 5000,
+                              amount: incomeAndExpense[1] ?? 0,
                               title: 'Income',
                               imagePath: 'assets/icons/income.png',
                             ),
-                            SizedBox(width: kMediumPadding),
+                            const SizedBox(width: kMediumPadding),
                             MoneyChip(
                               color: kRed100,
-                              amount: 1200,
+                              amount: incomeAndExpense[-1] ?? 0,
                               title: 'Expenses',
                               imagePath: 'assets/icons/expense.png',
                             ),

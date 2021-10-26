@@ -22,7 +22,8 @@ class Wallet with _$Wallet {
 
   factory Wallet.empty() {
     return Wallet(
-      id: UniqueId(),
+      // id: UniqueId(),
+      id: UniqueId.fromUniqueString('lR5yru6KmetG2o50kQD6'),
       name: WalletName('testing wallet'),
       amount: WalletAmount('-1'),
       imagePath: 'assets/icons/wallet-3.png',

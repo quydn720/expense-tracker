@@ -31,17 +31,22 @@ class TransactionCard extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                transaction.category.name,
-                style: body2,
+              Expanded(
+                child: Text(
+                  transaction.category.name,
+                  overflow: TextOverflow.ellipsis,
+                  style: body2,
+                ),
               ),
-              Text(
-                // TODO: Consider to get the dto - or the stringlify obj
-                transaction.amount.getOrCrash().toString(),
-                style: body2.copyWith(
-                  color: transaction.type == TransactionType.income
-                      ? kGreen100
-                      : kRed100,
+              FittedBox(
+                child: Text(
+                  // TODO: Consider to get the dto - or the stringlify obj
+                  transaction.amount.getOrCrash().toString(),
+                  style: body2.copyWith(
+                    color: transaction.type == TransactionType.income
+                        ? kGreen100
+                        : kRed100,
+                  ),
                 ),
               ),
             ],
@@ -51,8 +56,6 @@ class TransactionCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  // transaction.wallet.name.getOrCrash(),
-
                   transaction.description ?? '',
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,

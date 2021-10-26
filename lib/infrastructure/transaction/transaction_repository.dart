@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:expense_tracker/domain/core/value_object.dart';
 import 'package:expense_tracker/domain/transaction/i_transaction_repository.dart';
 import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:expense_tracker/domain/transaction/transaction.dart' as t;
@@ -47,7 +48,19 @@ class TransactionRepository implements ITransactionRepository {
     try {
       final userDoc = _firestore.userDocument();
       TransactionDTO dto = TransactionDTO.fromDomain(t);
+
+      WalletDTO currentWallet = WalletDTO.fromDomain(t.wallet);
+      final afterWallet = currentWallet.copyWith(
+        amount: dto.amount * dto.type + currentWallet.amount,
+      );
+      print(dto.type);
+      print(currentWallet.amount);
+      print(afterWallet.amount);
       await userDoc.transactionCollection.doc(dto.id).set(dto.toJson());
+      await userDoc.walletCollection
+          .doc(afterWallet.id.trim())
+          .update(afterWallet.toJson());
+      // TODO: Finish off those works: this one, the chart, and the profile page
       return right(unit);
     } on FirebaseException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {

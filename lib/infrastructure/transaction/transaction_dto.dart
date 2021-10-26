@@ -21,6 +21,7 @@ class TransactionDTO with _$TransactionDTO {
     required String? description,
     required Map<String, dynamic> wallet,
     @ServerTimestampConverter() required Timestamp serverTimestamp,
+    required int type,
   }) = _TransactionDTO;
 
   factory TransactionDTO.fromDomain(et.Transaction t) {
@@ -31,6 +32,7 @@ class TransactionDTO with _$TransactionDTO {
       description: t.description,
       wallet: WalletDTO.fromDomain(t.wallet).toJson(),
       serverTimestamp: Timestamp.fromDate(t.date),
+      type: t.type.value,
     );
   }
 
@@ -49,7 +51,7 @@ class TransactionDTO with _$TransactionDTO {
       date: DateTime.fromMillisecondsSinceEpoch(
         serverTimestamp.millisecondsSinceEpoch,
       ),
-      type: et.TransactionType.expense,
+      type: et.TransactionType(type),
     );
   }
 

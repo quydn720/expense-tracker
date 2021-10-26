@@ -13,7 +13,7 @@ class MoneyChip extends StatelessWidget {
   }) : super(key: key);
   final String imagePath;
   final String title;
-  final int amount;
+  final double amount;
   final Color color;
   @override
   Widget build(BuildContext context) {

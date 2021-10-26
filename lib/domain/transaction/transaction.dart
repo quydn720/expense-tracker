@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
+
 import 'package:expense_tracker/domain/core/failures.dart';
 import 'package:expense_tracker/domain/core/value_object.dart';
 import 'package:expense_tracker/domain/transaction/models/value_object.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:uuid/uuid.dart';
 
 import 'models/category.dart';
 import 'models/wallet.dart';
@@ -24,18 +25,41 @@ class Transaction with _$Transaction {
 
   factory Transaction.empty() {
     return Transaction(
-      id: UniqueId.fromUniqueString(const Uuid().v1()),
+      id: UniqueId(),
       amount: TransactionAmount('0'),
       category: Category.empty(),
       date: DateTime.now(),
       description: '',
-      type: TransactionType.empty,
+      type: TransactionType(-1),
       wallet: Wallet.empty(),
     );
   }
 }
 
-enum TransactionType { empty, expense, income, transfer }
+class TransactionType {
+  final int value;
+  const TransactionType._(this.value);
+
+  factory TransactionType(int input) {
+    return TransactionType._(input);
+  }
+
+  static TransactionType expense = TransactionType(-1);
+  static TransactionType income = TransactionType(1);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is TransactionType && other.value == value;
+  }
+
+  @override
+  int get hashCode => value.hashCode;
+
+  @override
+  String toString() => 'TransactionType(value: $value)';
+}
 
 extension TransactionX on Transaction {
   Option<ValueFailure<dynamic>> get failureOption {

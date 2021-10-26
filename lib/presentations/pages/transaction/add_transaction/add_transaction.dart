@@ -1,5 +1,6 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:expense_tracker/app/misc/wallet_bloc.dart';
 import 'package:expense_tracker/app/transaction/transaction_form/transaction_form_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/domain/transaction/models/wallet.dart';
@@ -12,8 +13,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AddNewTransactionPage extends StatelessWidget {
   const AddNewTransactionPage({Key? key}) : super(key: key);
   static String routeName = '/add_transaction';
+
   @override
   Widget build(BuildContext context) {
+    final wallets = ModalRoute.of(context)!.settings.arguments as List<Wallet>;
+
     return BlocProvider(
       create: (context) => getIt<TransactionFormBloc>(),
       child: BlocConsumer<TransactionFormBloc, TransactionFormState>(
@@ -113,17 +117,16 @@ class AddNewTransactionPage extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              DropdownButtonFormField<Categories>(
+                              DropdownButtonFormField<Wallet>(
                                 onChanged: (v) {},
                                 hint: const Text('Category'),
-                                items: Categories.values
+                                items: wallets
                                     .map(
                                       (e) => DropdownMenuItem(
                                         value: e,
-                                        child: Text(e
-                                            .toString()
-                                            .split('.')
-                                            .elementAt(1)),
+                                        child: Text(
+                                          e.name.getOrCrash().toString(),
+                                        ),
                                       ),
                                     )
                                     .toList(),
@@ -152,19 +155,27 @@ class AddNewTransactionPage extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: kMediumPadding),
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                    label: Text('Wallet')),
-                                textInputAction: TextInputAction.next,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter some text';
-                                  }
-                                  return null;
-                                },
+                              DropdownButtonFormField<Wallet>(
                                 onChanged: (v) => bloc.add(
-                                  TransactionFormEvent.walletChanged(
-                                    Wallet.empty(),
+                                  TransactionFormEvent.walletChanged(v!),
+                                ),
+                                hint: const Text('Wallet'),
+                                items: wallets
+                                    .map(
+                                      (e) => DropdownMenuItem(
+                                        value: e,
+                                        child: Text(
+                                          e.name.getOrCrash().toString(),
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                                icon: Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: kDefaultPadding),
+                                  child: Image.asset(
+                                    'assets/icons/arrow-down-2.png',
+                                    color: kViolet100,
                                   ),
                                 ),
                               ),

@@ -65,7 +65,6 @@ class AccountPage extends StatelessWidget {
                                   .replaceAll('\'', ''),
                               size: 48,
                               color: const Color(0xffF1F1FA),
-                              imageColor: kBlue100,
                             ),
                             Expanded(
                               child: Padding(

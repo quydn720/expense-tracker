@@ -1,6 +1,7 @@
 import 'package:expense_tracker/app/auth/auth_bloc.dart';
 import 'package:expense_tracker/app/misc/wallet_bloc.dart';
 import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
+import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:expense_tracker/injector.dart';
 import 'package:expense_tracker/presentations/pages/authentication/sign_in/sign_in_page.dart';
 import 'package:expense_tracker/presentations/pages/home/home_page.dart';
@@ -38,6 +39,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Wallet> listWallet = [];
     var bottomAppBar = BottomAppBar(
       shape: const CircularNotchedRectangle(),
       notchMargin: 6.0,
@@ -85,7 +87,11 @@ class _MainPageState extends State<MainPage> {
     );
     var floatingActionButton = FloatingActionButton(
       onPressed: () {
-        Navigator.pushNamed(context, AddNewTransactionPage.routeName);
+        Navigator.pushNamed(
+          context,
+          AddNewTransactionPage.routeName,
+          arguments: listWallet,
+        );
       },
       child: const Icon(Icons.add, size: 30),
       backgroundColor: kPrimaryColor,
@@ -110,7 +116,17 @@ class _MainPageState extends State<MainPage> {
                     context, SignInPage.routeName),
               );
             },
-          )
+          ),
+          BlocListener<WalletBloc, WalletState>(
+            listener: (context, state) {
+              state.maybeMap(
+                orElse: () {},
+                loadSuccess: (w) {
+                  listWallet = w.wallets;
+                },
+              );
+            },
+          ),
         ],
         child: Scaffold(
           body: _widgetOptions.elementAt(_selectedIndex),

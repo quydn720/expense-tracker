@@ -1,25 +1,17 @@
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/domain/transaction/transaction.dart';
-import 'package:expense_tracker/utils/collection_extension.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class LineChartWidget extends StatelessWidget {
   const LineChartWidget({
     Key? key,
-    required this.transactions,
+    required this.data,
   }) : super(key: key);
-  final List<Transaction> transactions;
+  final Map<DateTime, List<Transaction>> data;
   @override
   Widget build(BuildContext context) {
-    final Map<DateTime, List<Transaction>> map = transactions.groupBy(
-      (t) => DateTime(
-        t.date.year,
-        t.date.month,
-        t.date.day,
-      ),
-    );
-    final dailyTotal = map.map(
+    final dailyTotal = data.map(
       (key, value) => MapEntry(
         key,
         value
@@ -31,7 +23,6 @@ class LineChartWidget extends StatelessWidget {
     final spots = dailyTotal.entries
         .map((e) => FlSpot(e.key.day.toDouble(), e.value))
         .toList();
-
     return SizedBox(
       height: 180,
       child: LineChart(
@@ -39,14 +30,14 @@ class LineChartWidget extends StatelessWidget {
           gridData: FlGridData(show: false),
           titlesData: FlTitlesData(show: false),
           borderData: FlBorderData(show: false),
-          minX: 23,
-          maxX: 24,
+          minX: spots.map((e) => e.x).reduce((a, b) => a < b ? a : b),
+          maxX: spots.map((e) => e.x).reduce((a, b) => a > b ? a : b),
           minY: 0,
-          maxY: dailyTotal.values.reduce((c, n) => c > n ? c : n) + 25,
+          maxY: dailyTotal.values.reduce((c, n) => c > n ? c : n) + 15,
           lineBarsData: [
             LineChartBarData(
               spots: spots,
-              isCurved: true,
+              isCurved: false,
               colors: [kViolet100],
               barWidth: 5,
               isStrokeCapRound: true,

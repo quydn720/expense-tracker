@@ -27,7 +27,8 @@ class _$TransactionDTOTearOff {
       required double amount,
       required String? description,
       required Map<String, dynamic> wallet,
-      @ServerTimestampConverter() required Timestamp serverTimestamp}) {
+      @ServerTimestampConverter() required Timestamp serverTimestamp,
+      required int type}) {
     return _TransactionDTO(
       id: id,
       category: category,
@@ -35,6 +36,7 @@ class _$TransactionDTOTearOff {
       description: description,
       wallet: wallet,
       serverTimestamp: serverTimestamp,
+      type: type,
     );
   }
 
@@ -55,6 +57,7 @@ mixin _$TransactionDTO {
   Map<String, dynamic> get wallet => throw _privateConstructorUsedError;
   @ServerTimestampConverter()
   Timestamp get serverTimestamp => throw _privateConstructorUsedError;
+  int get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,7 +76,8 @@ abstract class $TransactionDTOCopyWith<$Res> {
       double amount,
       String? description,
       Map<String, dynamic> wallet,
-      @ServerTimestampConverter() Timestamp serverTimestamp});
+      @ServerTimestampConverter() Timestamp serverTimestamp,
+      int type});
 }
 
 /// @nodoc
@@ -93,6 +97,7 @@ class _$TransactionDTOCopyWithImpl<$Res>
     Object? description = freezed,
     Object? wallet = freezed,
     Object? serverTimestamp = freezed,
+    Object? type = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -119,6 +124,10 @@ class _$TransactionDTOCopyWithImpl<$Res>
           ? _value.serverTimestamp
           : serverTimestamp // ignore: cast_nullable_to_non_nullable
               as Timestamp,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -136,7 +145,8 @@ abstract class _$TransactionDTOCopyWith<$Res>
       double amount,
       String? description,
       Map<String, dynamic> wallet,
-      @ServerTimestampConverter() Timestamp serverTimestamp});
+      @ServerTimestampConverter() Timestamp serverTimestamp,
+      int type});
 }
 
 /// @nodoc
@@ -158,6 +168,7 @@ class __$TransactionDTOCopyWithImpl<$Res>
     Object? description = freezed,
     Object? wallet = freezed,
     Object? serverTimestamp = freezed,
+    Object? type = freezed,
   }) {
     return _then(_TransactionDTO(
       id: id == freezed
@@ -184,6 +195,10 @@ class __$TransactionDTOCopyWithImpl<$Res>
           ? _value.serverTimestamp
           : serverTimestamp // ignore: cast_nullable_to_non_nullable
               as Timestamp,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -197,7 +212,8 @@ class _$_TransactionDTO extends _TransactionDTO {
       required this.amount,
       required this.description,
       required this.wallet,
-      @ServerTimestampConverter() required this.serverTimestamp})
+      @ServerTimestampConverter() required this.serverTimestamp,
+      required this.type})
       : super._();
 
   factory _$_TransactionDTO.fromJson(Map<String, dynamic> json) =>
@@ -216,10 +232,12 @@ class _$_TransactionDTO extends _TransactionDTO {
   @override
   @ServerTimestampConverter()
   final Timestamp serverTimestamp;
+  @override
+  final int type;
 
   @override
   String toString() {
-    return 'TransactionDTO(id: $id, category: $category, amount: $amount, description: $description, wallet: $wallet, serverTimestamp: $serverTimestamp)';
+    return 'TransactionDTO(id: $id, category: $category, amount: $amount, description: $description, wallet: $wallet, serverTimestamp: $serverTimestamp, type: $type)';
   }
 
   @override
@@ -235,7 +253,8 @@ class _$_TransactionDTO extends _TransactionDTO {
                 other.description == description) &&
             const DeepCollectionEquality().equals(other.wallet, wallet) &&
             (identical(other.serverTimestamp, serverTimestamp) ||
-                other.serverTimestamp == serverTimestamp));
+                other.serverTimestamp == serverTimestamp) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
@@ -246,7 +265,8 @@ class _$_TransactionDTO extends _TransactionDTO {
       amount,
       description,
       const DeepCollectionEquality().hash(wallet),
-      serverTimestamp);
+      serverTimestamp,
+      type);
 
   @JsonKey(ignore: true)
   @override
@@ -261,13 +281,13 @@ class _$_TransactionDTO extends _TransactionDTO {
 
 abstract class _TransactionDTO extends TransactionDTO {
   const factory _TransactionDTO(
-          {required String id,
-          required String category,
-          required double amount,
-          required String? description,
-          required Map<String, dynamic> wallet,
-          @ServerTimestampConverter() required Timestamp serverTimestamp}) =
-      _$_TransactionDTO;
+      {required String id,
+      required String category,
+      required double amount,
+      required String? description,
+      required Map<String, dynamic> wallet,
+      @ServerTimestampConverter() required Timestamp serverTimestamp,
+      required int type}) = _$_TransactionDTO;
   const _TransactionDTO._() : super._();
 
   factory _TransactionDTO.fromJson(Map<String, dynamic> json) =
@@ -286,6 +306,8 @@ abstract class _TransactionDTO extends TransactionDTO {
   @override
   @ServerTimestampConverter()
   Timestamp get serverTimestamp;
+  @override
+  int get type;
   @override
   @JsonKey(ignore: true)
   _$TransactionDTOCopyWith<_TransactionDTO> get copyWith =>

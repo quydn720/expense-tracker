@@ -15,6 +15,7 @@ _$_TransactionDTO _$$_TransactionDTOFromJson(Map<String, dynamic> json) =>
       wallet: json['wallet'] as Map<String, dynamic>,
       serverTimestamp: const ServerTimestampConverter()
           .fromJson(json['serverTimestamp'] as Object),
+      type: json['type'] as int,
     );
 
 Map<String, dynamic> _$$_TransactionDTOToJson(_$_TransactionDTO instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$$_TransactionDTOToJson(_$_TransactionDTO instance) =>
       'wallet': instance.wallet,
       'serverTimestamp':
           const ServerTimestampConverter().toJson(instance.serverTimestamp),
+      'type': instance.type,
     };

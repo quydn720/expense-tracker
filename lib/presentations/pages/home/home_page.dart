@@ -1,4 +1,6 @@
+import 'package:expense_tracker/app/misc/wallet_bloc.dart';
 import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
+import 'package:expense_tracker/domain/transaction/transaction.dart';
 import 'package:expense_tracker/presentations/components/tabs.dart';
 import 'package:expense_tracker/presentations/pages/home/components/line_chard_widget.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,7 @@ import '../../../constants.dart';
 import '../../components/bars.dart';
 import 'components/top_navigation.dart';
 import 'components/transaction_card.dart';
+import 'package:expense_tracker/utils/collection_extension.dart';
 
 class HomePage extends StatelessWidget {
   static String routeName = '/daily_page';
@@ -24,13 +27,15 @@ class HomePage extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
           loadSuccess: (state) {
+            final map =
+                state.transactions.groupBy<TransactionType>((t) => t.type);
             return SafeArea(
               child: Scaffold(
                 body: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const TopNavigation(),
+                      TopNavigation(data: map),
                       const DefaultBar(
                         title: Padding(
                           padding: EdgeInsets.all(8.0),
@@ -38,7 +43,13 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       LineChartWidget(
-                        transactions: state.transactions,
+                        data: state.transactions.groupBy(
+                          (t) => DateTime(
+                            t.date.year,
+                            t.date.month,
+                            t.date.day,
+                          ),
+                        ),
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
