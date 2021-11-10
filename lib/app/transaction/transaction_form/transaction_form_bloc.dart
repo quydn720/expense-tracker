@@ -54,9 +54,12 @@ class TransactionFormBloc
           left(const TransactionFailure.unexpected());
       //! Nếu không xảy ra lỗi (empty amount, .... )
       //! Cần xử lí lỗi ở đây
-      if (state.transaction.failureOption.isNone()) {
+      if (state.transaction.failureOption.isNone() && state.wallet != null
+          //  &&
+          // state.category != null
+          ) {
         failureOrSuccess = await _transactionRepository.create(
-            state.transaction, state.wallet);
+            state.transaction, state.wallet!);
       }
       emit(state.copyWith(
         isSaving: true,

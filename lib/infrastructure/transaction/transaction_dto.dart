@@ -5,8 +5,6 @@ import 'package:expense_tracker/domain/transaction/models/value_object.dart';
 import 'package:expense_tracker/domain/transaction/transaction.dart' as et;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'models/wallet_dto.dart';
-
 part 'transaction_dto.freezed.dart';
 part 'transaction_dto.g.dart';
 
@@ -16,9 +14,9 @@ class TransactionDTO with _$TransactionDTO {
 
   const factory TransactionDTO({
     required String id,
-    required String category,
     required double amount,
     required String? description,
+    required String category,
     required String walletId,
     @ServerTimestampConverter() required Timestamp serverTimestamp,
     required int type,

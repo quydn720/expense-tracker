@@ -1,8 +1,8 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:expense_tracker/app/misc/wallet_bloc.dart';
 import 'package:expense_tracker/app/transaction/transaction_form/transaction_form_bloc.dart';
 import 'package:expense_tracker/constants.dart';
+import 'package:expense_tracker/domain/transaction/models/category.dart';
 import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:expense_tracker/injector.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
@@ -18,6 +18,12 @@ class AddNewTransactionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final wallets = ModalRoute.of(context)!.settings.arguments as List<Wallet>;
 
+    final items = [
+      Category.fromName('Food'),
+      Category.fromName('Shopping'),
+      Category.fromName('Family'),
+      Category.fromName('Some things'),
+    ];
     return BlocProvider(
       create: (context) => getIt<TransactionFormBloc>(),
       child: BlocConsumer<TransactionFormBloc, TransactionFormState>(
@@ -92,8 +98,7 @@ class AddNewTransactionPage extends StatelessWidget {
                               ),
                               (_) => null,
                             ),
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
+                            autovalidateMode: AutovalidateMode.always,
                             onChanged: (v) => bloc.add(
                               TransactionFormEvent.amountChanged(v),
                             ),
@@ -117,16 +122,17 @@ class AddNewTransactionPage extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              DropdownButtonFormField<Wallet>(
-                                onChanged: (v) {},
+                              DropdownButtonFormField<Category>(
+                                onChanged: (v) {
+                                  bloc.add(
+                                      TransactionFormEvent.categoryChanged(v!));
+                                },
                                 hint: const Text('Category'),
-                                items: wallets
+                                items: items
                                     .map(
                                       (e) => DropdownMenuItem(
                                         value: e,
-                                        child: Text(
-                                          e.name.getOrCrash().toString(),
-                                        ),
+                                        child: Text(e.name),
                                       ),
                                     )
                                     .toList(),
@@ -138,6 +144,14 @@ class AddNewTransactionPage extends StatelessWidget {
                                     color: kViolet100,
                                   ),
                                 ),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (value) {
+                                  if (value == null) {
+                                    return 'Please choose wallet';
+                                  }
+                                  return null;
+                                },
                               ),
                               const SizedBox(height: kMediumPadding),
                               TextFormField(
@@ -159,6 +173,13 @@ class AddNewTransactionPage extends StatelessWidget {
                                 onChanged: (v) => bloc.add(
                                   TransactionFormEvent.walletChanged(v!),
                                 ),
+                                autovalidateMode: AutovalidateMode.always,
+                                validator: (value) {
+                                  if (value == null) {
+                                    return 'Please choose wallet';
+                                  }
+                                  return null;
+                                },
                                 hint: const Text('Wallet'),
                                 items: wallets
                                     .map(

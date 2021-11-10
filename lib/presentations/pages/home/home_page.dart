@@ -1,4 +1,3 @@
-import 'package:expense_tracker/app/misc/wallet_bloc.dart';
 import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
 import 'package:expense_tracker/domain/transaction/transaction.dart';
 import 'package:expense_tracker/presentations/components/tabs.dart';

@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:expense_tracker/domain/core/value_object.dart';
 import 'package:expense_tracker/domain/transaction/i_transaction_repository.dart';
+import 'package:expense_tracker/domain/transaction/models/category.dart';
 import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:expense_tracker/domain/transaction/transaction.dart' as t;
 import 'package:expense_tracker/domain/transaction/transaction_failure.dart';
+import 'package:expense_tracker/infrastructure/transaction/models/category_dto.dart';
 import 'package:expense_tracker/infrastructure/transaction/transaction_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -60,7 +61,6 @@ class TransactionRepository implements ITransactionRepository {
       await userDoc.walletCollection
           .doc(walletDto.id.trim())
           .update(afterWallet.toJson());
-      // TODO: Finish off those works: this one, the chart, and the profile page
       return right(unit);
     } on FirebaseException catch (e) {
       if (e.message!.contains('PERMISSION_DENIED')) {
@@ -113,6 +113,17 @@ class TransactionRepository implements ITransactionRepository {
     return userDoc.walletCollection.orderBy('name').snapshots().map((snap) {
       return snap.docs
           .map((doc) => WalletDTO.fromJson(doc.data()).toDomain())
+          .toList();
+    });
+    // TODO: Error handling
+  }
+
+  @override
+  Stream<List<Category>> getAllCategories() {
+    final userDoc = _firestore.userDocument();
+    return userDoc.categoryCollection.orderBy('name').snapshots().map((snap) {
+      return snap.docs
+          .map((doc) => CategoryDTO.fromJson(doc.data()).toDomain())
           .toList();
     });
     // TODO: Error handling

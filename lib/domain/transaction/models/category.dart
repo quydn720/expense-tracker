@@ -21,4 +21,12 @@ class Category with _$Category {
       imagePath: 'assets/icons/restaurant.png',
     );
   }
+  factory Category.fromName(String name) {
+    return Category(
+      id: UniqueId(),
+      name: name,
+      color: kViolet60.value,
+      imagePath: 'assets/icons/restaurant.png',
+    );
+  }
 }

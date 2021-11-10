@@ -61,7 +61,8 @@ class TransactionType {
 
 extension TransactionX on Transaction {
   Option<ValueFailure<dynamic>> get failureOption {
-    return amount.failureOrUnit.fold((f) => some(f), (_) => none());
+    return amount.failureOrUnit
+        .fold((f) => some(f), (_) => none()); //.andThen(wallet);
     // category.fail
     //     .andThen(color.failureOrUnit)
     //     .andThen(todos.failureOrUnit)

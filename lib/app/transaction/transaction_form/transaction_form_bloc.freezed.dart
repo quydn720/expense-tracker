@@ -1048,7 +1048,8 @@ class _$TransactionFormStateTearOff {
 
   _TransactionFormState call(
       {required Transaction transaction,
-      required Wallet wallet,
+      required Wallet? wallet,
+      required Category? category,
       required bool showErrorMessages,
       required bool isEditing,
       required bool isSaving,
@@ -1057,6 +1058,7 @@ class _$TransactionFormStateTearOff {
     return _TransactionFormState(
       transaction: transaction,
       wallet: wallet,
+      category: category,
       showErrorMessages: showErrorMessages,
       isEditing: isEditing,
       isSaving: isSaving,
@@ -1071,7 +1073,8 @@ const $TransactionFormState = _$TransactionFormStateTearOff();
 /// @nodoc
 mixin _$TransactionFormState {
   Transaction get transaction => throw _privateConstructorUsedError;
-  Wallet get wallet => throw _privateConstructorUsedError;
+  Wallet? get wallet => throw _privateConstructorUsedError;
+  Category? get category => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
   bool get isSaving => throw _privateConstructorUsedError;
@@ -1090,14 +1093,16 @@ abstract class $TransactionFormStateCopyWith<$Res> {
       _$TransactionFormStateCopyWithImpl<$Res>;
   $Res call(
       {Transaction transaction,
-      Wallet wallet,
+      Wallet? wallet,
+      Category? category,
       bool showErrorMessages,
       bool isEditing,
       bool isSaving,
       Option<Either<TransactionFailure, Unit>> saveFailureOrSuccessOption});
 
   $TransactionCopyWith<$Res> get transaction;
-  $WalletCopyWith<$Res> get wallet;
+  $WalletCopyWith<$Res>? get wallet;
+  $CategoryCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -1113,6 +1118,7 @@ class _$TransactionFormStateCopyWithImpl<$Res>
   $Res call({
     Object? transaction = freezed,
     Object? wallet = freezed,
+    Object? category = freezed,
     Object? showErrorMessages = freezed,
     Object? isEditing = freezed,
     Object? isSaving = freezed,
@@ -1126,7 +1132,11 @@ class _$TransactionFormStateCopyWithImpl<$Res>
       wallet: wallet == freezed
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
-              as Wallet,
+              as Wallet?,
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category?,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -1154,9 +1164,24 @@ class _$TransactionFormStateCopyWithImpl<$Res>
   }
 
   @override
-  $WalletCopyWith<$Res> get wallet {
-    return $WalletCopyWith<$Res>(_value.wallet, (value) {
+  $WalletCopyWith<$Res>? get wallet {
+    if (_value.wallet == null) {
+      return null;
+    }
+
+    return $WalletCopyWith<$Res>(_value.wallet!, (value) {
       return _then(_value.copyWith(wallet: value));
+    });
+  }
+
+  @override
+  $CategoryCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CategoryCopyWith<$Res>(_value.category!, (value) {
+      return _then(_value.copyWith(category: value));
     });
   }
 }
@@ -1170,7 +1195,8 @@ abstract class _$TransactionFormStateCopyWith<$Res>
   @override
   $Res call(
       {Transaction transaction,
-      Wallet wallet,
+      Wallet? wallet,
+      Category? category,
       bool showErrorMessages,
       bool isEditing,
       bool isSaving,
@@ -1179,7 +1205,9 @@ abstract class _$TransactionFormStateCopyWith<$Res>
   @override
   $TransactionCopyWith<$Res> get transaction;
   @override
-  $WalletCopyWith<$Res> get wallet;
+  $WalletCopyWith<$Res>? get wallet;
+  @override
+  $CategoryCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -1197,6 +1225,7 @@ class __$TransactionFormStateCopyWithImpl<$Res>
   $Res call({
     Object? transaction = freezed,
     Object? wallet = freezed,
+    Object? category = freezed,
     Object? showErrorMessages = freezed,
     Object? isEditing = freezed,
     Object? isSaving = freezed,
@@ -1210,7 +1239,11 @@ class __$TransactionFormStateCopyWithImpl<$Res>
       wallet: wallet == freezed
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
-              as Wallet,
+              as Wallet?,
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category?,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -1237,6 +1270,7 @@ class _$_TransactionFormState implements _TransactionFormState {
   const _$_TransactionFormState(
       {required this.transaction,
       required this.wallet,
+      required this.category,
       required this.showErrorMessages,
       required this.isEditing,
       required this.isSaving,
@@ -1245,7 +1279,9 @@ class _$_TransactionFormState implements _TransactionFormState {
   @override
   final Transaction transaction;
   @override
-  final Wallet wallet;
+  final Wallet? wallet;
+  @override
+  final Category? category;
   @override
   final bool showErrorMessages;
   @override
@@ -1257,7 +1293,7 @@ class _$_TransactionFormState implements _TransactionFormState {
 
   @override
   String toString() {
-    return 'TransactionFormState(transaction: $transaction, wallet: $wallet, showErrorMessages: $showErrorMessages, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'TransactionFormState(transaction: $transaction, wallet: $wallet, category: $category, showErrorMessages: $showErrorMessages, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -1268,6 +1304,8 @@ class _$_TransactionFormState implements _TransactionFormState {
             (identical(other.transaction, transaction) ||
                 other.transaction == transaction) &&
             (identical(other.wallet, wallet) || other.wallet == wallet) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
                 other.showErrorMessages == showErrorMessages) &&
             (identical(other.isEditing, isEditing) ||
@@ -1281,7 +1319,7 @@ class _$_TransactionFormState implements _TransactionFormState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, transaction, wallet,
+  int get hashCode => Object.hash(runtimeType, transaction, wallet, category,
       showErrorMessages, isEditing, isSaving, saveFailureOrSuccessOption);
 
   @JsonKey(ignore: true)
@@ -1294,7 +1332,8 @@ class _$_TransactionFormState implements _TransactionFormState {
 abstract class _TransactionFormState implements TransactionFormState {
   const factory _TransactionFormState(
       {required Transaction transaction,
-      required Wallet wallet,
+      required Wallet? wallet,
+      required Category? category,
       required bool showErrorMessages,
       required bool isEditing,
       required bool isSaving,
@@ -1304,7 +1343,9 @@ abstract class _TransactionFormState implements TransactionFormState {
   @override
   Transaction get transaction;
   @override
-  Wallet get wallet;
+  Wallet? get wallet;
+  @override
+  Category? get category;
   @override
   bool get showErrorMessages;
   @override

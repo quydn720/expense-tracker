@@ -15,64 +15,83 @@ class TransactionCard extends StatelessWidget {
   final Transaction transaction;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: elevation,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        child: ListTile(
-          tileColor: kLight80,
-          horizontalTitleGap: kDefaultPadding,
-          leading: const SquaredIconCard(
-            color: kYellow20,
-            size: 60,
-            imagePath: 'assets/icons/shopping-bag.png',
-            imageColor: kYellow100,
-          ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  transaction.category.name,
-                  overflow: TextOverflow.ellipsis,
-                  style: body2,
-                ),
-              ),
-              FittedBox(
-                child: Text(
-                  // TODO: Consider to get the dto - or the stringlify obj
-                  transaction.amount.getOrCrash().toString(),
-                  style: body2.copyWith(
-                    color: transaction.type == TransactionType.income
-                        ? kGreen100
-                        : kRed100,
+    return InkWell(
+      onTap: () => Navigator.pushNamed(
+        context,
+        TransactionDetailPage.routeName,
+        arguments: transaction,
+      ),
+      child: Card(
+        elevation: elevation,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: ListTile(
+            tileColor: kLight80,
+            horizontalTitleGap: kDefaultPadding,
+            leading: const SquaredIconCard(
+              color: kYellow20,
+              size: 60,
+              imagePath: 'assets/icons/shopping-bag.png',
+              imageColor: kYellow100,
+            ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    transaction.category.name,
+                    overflow: TextOverflow.ellipsis,
+                    style: body2,
                   ),
                 ),
-              ),
-            ],
-          ),
-          subtitle: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  transaction.description ?? '',
-                  softWrap: true,
-                  overflow: TextOverflow.ellipsis,
+                FittedBox(
+                  child: Text(
+                    // TODO: Consider to get the dto - or the stringlify obj
+                    transaction.amount.getOrCrash().toString(),
+                    style: body2.copyWith(
+                      color: transaction.type == TransactionType.income
+                          ? kGreen100
+                          : kRed100,
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 80,
-                child: Text(
-                  transaction.date.hourFormatted,
-                  maxLines: 1,
-                  textAlign: TextAlign.end,
+              ],
+            ),
+            subtitle: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    transaction.description ?? '',
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(
+                  width: 80,
+                  child: Text(
+                    transaction.date.hourFormatted,
+                    maxLines: 1,
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+}
+
+class TransactionDetailPage extends StatelessWidget {
+  const TransactionDetailPage({Key? key}) : super(key: key);
+  static String routeName = '/transaction_detail';
+  @override
+  Widget build(BuildContext context) {
+    final transaction =
+        ModalRoute.of(context)!.settings.arguments as Transaction;
+
+    return Scaffold();
   }
 }
