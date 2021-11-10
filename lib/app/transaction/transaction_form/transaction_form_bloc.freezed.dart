@@ -39,7 +39,7 @@ class _$TransactionFormEventTearOff {
     );
   }
 
-  AmountChanged amountChanged(double amount) {
+  AmountChanged amountChanged(String amount) {
     return AmountChanged(
       amount,
     );
@@ -61,7 +61,7 @@ mixin _$TransactionFormEvent {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) =>
       throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ mixin _$TransactionFormEvent {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) =>
       throw _privateConstructorUsedError;
@@ -81,7 +81,7 @@ mixin _$TransactionFormEvent {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) =>
@@ -181,7 +181,7 @@ class _$Initialized implements Initialized {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return initialized();
@@ -194,7 +194,7 @@ class _$Initialized implements Initialized {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return initialized?.call();
@@ -207,7 +207,7 @@ class _$Initialized implements Initialized {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {
@@ -343,7 +343,7 @@ class _$CategoryChanged implements CategoryChanged {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return categoryChanged(category);
@@ -356,7 +356,7 @@ class _$CategoryChanged implements CategoryChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return categoryChanged?.call(category);
@@ -369,7 +369,7 @@ class _$CategoryChanged implements CategoryChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {
@@ -501,7 +501,7 @@ class _$DescriptionChanged implements DescriptionChanged {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return descriptionChanged(description);
@@ -514,7 +514,7 @@ class _$DescriptionChanged implements DescriptionChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return descriptionChanged?.call(description);
@@ -527,7 +527,7 @@ class _$DescriptionChanged implements DescriptionChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {
@@ -667,7 +667,7 @@ class _$WalletChanged implements WalletChanged {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return walletChanged(wallet);
@@ -680,7 +680,7 @@ class _$WalletChanged implements WalletChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return walletChanged?.call(wallet);
@@ -693,7 +693,7 @@ class _$WalletChanged implements WalletChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {
@@ -761,7 +761,7 @@ abstract class $AmountChangedCopyWith<$Res> {
   factory $AmountChangedCopyWith(
           AmountChanged value, $Res Function(AmountChanged) then) =
       _$AmountChangedCopyWithImpl<$Res>;
-  $Res call({double amount});
+  $Res call({String amount});
 }
 
 /// @nodoc
@@ -783,7 +783,7 @@ class _$AmountChangedCopyWithImpl<$Res>
       amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
     ));
   }
 }
@@ -794,7 +794,7 @@ class _$AmountChanged implements AmountChanged {
   const _$AmountChanged(this.amount);
 
   @override
-  final double amount;
+  final String amount;
 
   @override
   String toString() {
@@ -824,7 +824,7 @@ class _$AmountChanged implements AmountChanged {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return amountChanged(amount);
@@ -837,7 +837,7 @@ class _$AmountChanged implements AmountChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return amountChanged?.call(amount);
@@ -850,7 +850,7 @@ class _$AmountChanged implements AmountChanged {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {
@@ -905,9 +905,9 @@ class _$AmountChanged implements AmountChanged {
 }
 
 abstract class AmountChanged implements TransactionFormEvent {
-  const factory AmountChanged(double amount) = _$AmountChanged;
+  const factory AmountChanged(String amount) = _$AmountChanged;
 
-  double get amount;
+  String get amount;
   @JsonKey(ignore: true)
   $AmountChangedCopyWith<AmountChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -958,7 +958,7 @@ class _$CommitPressed implements CommitPressed {
     required TResult Function(Category category) categoryChanged,
     required TResult Function(String description) descriptionChanged,
     required TResult Function(Wallet wallet) walletChanged,
-    required TResult Function(double amount) amountChanged,
+    required TResult Function(String amount) amountChanged,
     required TResult Function() commitPressed,
   }) {
     return commitPressed();
@@ -971,7 +971,7 @@ class _$CommitPressed implements CommitPressed {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
   }) {
     return commitPressed?.call();
@@ -984,7 +984,7 @@ class _$CommitPressed implements CommitPressed {
     TResult Function(Category category)? categoryChanged,
     TResult Function(String description)? descriptionChanged,
     TResult Function(Wallet wallet)? walletChanged,
-    TResult Function(double amount)? amountChanged,
+    TResult Function(String amount)? amountChanged,
     TResult Function()? commitPressed,
     required TResult orElse(),
   }) {
@@ -1048,6 +1048,8 @@ class _$TransactionFormStateTearOff {
 
   _TransactionFormState call(
       {required Transaction transaction,
+      required Wallet? wallet,
+      required Category? category,
       required bool showErrorMessages,
       required bool isEditing,
       required bool isSaving,
@@ -1055,6 +1057,8 @@ class _$TransactionFormStateTearOff {
           saveFailureOrSuccessOption}) {
     return _TransactionFormState(
       transaction: transaction,
+      wallet: wallet,
+      category: category,
       showErrorMessages: showErrorMessages,
       isEditing: isEditing,
       isSaving: isSaving,
@@ -1069,6 +1073,8 @@ const $TransactionFormState = _$TransactionFormStateTearOff();
 /// @nodoc
 mixin _$TransactionFormState {
   Transaction get transaction => throw _privateConstructorUsedError;
+  Wallet? get wallet => throw _privateConstructorUsedError;
+  Category? get category => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
   bool get isSaving => throw _privateConstructorUsedError;
@@ -1087,12 +1093,16 @@ abstract class $TransactionFormStateCopyWith<$Res> {
       _$TransactionFormStateCopyWithImpl<$Res>;
   $Res call(
       {Transaction transaction,
+      Wallet? wallet,
+      Category? category,
       bool showErrorMessages,
       bool isEditing,
       bool isSaving,
       Option<Either<TransactionFailure, Unit>> saveFailureOrSuccessOption});
 
   $TransactionCopyWith<$Res> get transaction;
+  $WalletCopyWith<$Res>? get wallet;
+  $CategoryCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -1107,6 +1117,8 @@ class _$TransactionFormStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? transaction = freezed,
+    Object? wallet = freezed,
+    Object? category = freezed,
     Object? showErrorMessages = freezed,
     Object? isEditing = freezed,
     Object? isSaving = freezed,
@@ -1117,6 +1129,14 @@ class _$TransactionFormStateCopyWithImpl<$Res>
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
               as Transaction,
+      wallet: wallet == freezed
+          ? _value.wallet
+          : wallet // ignore: cast_nullable_to_non_nullable
+              as Wallet?,
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category?,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -1142,6 +1162,28 @@ class _$TransactionFormStateCopyWithImpl<$Res>
       return _then(_value.copyWith(transaction: value));
     });
   }
+
+  @override
+  $WalletCopyWith<$Res>? get wallet {
+    if (_value.wallet == null) {
+      return null;
+    }
+
+    return $WalletCopyWith<$Res>(_value.wallet!, (value) {
+      return _then(_value.copyWith(wallet: value));
+    });
+  }
+
+  @override
+  $CategoryCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CategoryCopyWith<$Res>(_value.category!, (value) {
+      return _then(_value.copyWith(category: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -1153,6 +1195,8 @@ abstract class _$TransactionFormStateCopyWith<$Res>
   @override
   $Res call(
       {Transaction transaction,
+      Wallet? wallet,
+      Category? category,
       bool showErrorMessages,
       bool isEditing,
       bool isSaving,
@@ -1160,6 +1204,10 @@ abstract class _$TransactionFormStateCopyWith<$Res>
 
   @override
   $TransactionCopyWith<$Res> get transaction;
+  @override
+  $WalletCopyWith<$Res>? get wallet;
+  @override
+  $CategoryCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -1176,6 +1224,8 @@ class __$TransactionFormStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? transaction = freezed,
+    Object? wallet = freezed,
+    Object? category = freezed,
     Object? showErrorMessages = freezed,
     Object? isEditing = freezed,
     Object? isSaving = freezed,
@@ -1186,6 +1236,14 @@ class __$TransactionFormStateCopyWithImpl<$Res>
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
               as Transaction,
+      wallet: wallet == freezed
+          ? _value.wallet
+          : wallet // ignore: cast_nullable_to_non_nullable
+              as Wallet?,
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category?,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -1211,6 +1269,8 @@ class __$TransactionFormStateCopyWithImpl<$Res>
 class _$_TransactionFormState implements _TransactionFormState {
   const _$_TransactionFormState(
       {required this.transaction,
+      required this.wallet,
+      required this.category,
       required this.showErrorMessages,
       required this.isEditing,
       required this.isSaving,
@@ -1218,6 +1278,10 @@ class _$_TransactionFormState implements _TransactionFormState {
 
   @override
   final Transaction transaction;
+  @override
+  final Wallet? wallet;
+  @override
+  final Category? category;
   @override
   final bool showErrorMessages;
   @override
@@ -1229,7 +1293,7 @@ class _$_TransactionFormState implements _TransactionFormState {
 
   @override
   String toString() {
-    return 'TransactionFormState(transaction: $transaction, showErrorMessages: $showErrorMessages, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'TransactionFormState(transaction: $transaction, wallet: $wallet, category: $category, showErrorMessages: $showErrorMessages, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -1239,6 +1303,9 @@ class _$_TransactionFormState implements _TransactionFormState {
             other is _TransactionFormState &&
             (identical(other.transaction, transaction) ||
                 other.transaction == transaction) &&
+            (identical(other.wallet, wallet) || other.wallet == wallet) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
                 other.showErrorMessages == showErrorMessages) &&
             (identical(other.isEditing, isEditing) ||
@@ -1252,8 +1319,8 @@ class _$_TransactionFormState implements _TransactionFormState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, transaction, showErrorMessages,
-      isEditing, isSaving, saveFailureOrSuccessOption);
+  int get hashCode => Object.hash(runtimeType, transaction, wallet, category,
+      showErrorMessages, isEditing, isSaving, saveFailureOrSuccessOption);
 
   @JsonKey(ignore: true)
   @override
@@ -1265,6 +1332,8 @@ class _$_TransactionFormState implements _TransactionFormState {
 abstract class _TransactionFormState implements TransactionFormState {
   const factory _TransactionFormState(
       {required Transaction transaction,
+      required Wallet? wallet,
+      required Category? category,
       required bool showErrorMessages,
       required bool isEditing,
       required bool isSaving,
@@ -1273,6 +1342,10 @@ abstract class _TransactionFormState implements TransactionFormState {
 
   @override
   Transaction get transaction;
+  @override
+  Wallet? get wallet;
+  @override
+  Category? get category;
   @override
   bool get showErrorMessages;
   @override

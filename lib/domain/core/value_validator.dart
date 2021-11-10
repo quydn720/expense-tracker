@@ -25,7 +25,6 @@ Either<ValueFailure<String>, String> validateMaxStringLength(
   String input,
   int maxLength,
 ) {
-  // You can also add some advanced password checks (uppercase/lowercase, at least 1 number, ...)
   if (input.length <= maxLength) {
     return right(input);
   } else {
@@ -35,10 +34,31 @@ Either<ValueFailure<String>, String> validateMaxStringLength(
 }
 
 Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
-  // You can also add some advanced password checks (uppercase/lowercase, at least 1 number, ...)
   if (input.isNotEmpty) {
     return right(input);
   } else {
     return left(ValueFailure.empty(failedValue: input));
+  }
+}
+
+Either<ValueFailure<double>, double> validateAmountIsValidNumber(String input) {
+  final inputNumber = double.tryParse(input);
+  try {
+    if (inputNumber! > 0) {
+      return right(inputNumber);
+    } else {
+      return left(ValueFailure.negativeNumber(failedValue: inputNumber));
+    }
+  } catch (e) {
+    return left(const ValueFailure.invalidNumber(failedValue: -1));
+  }
+}
+
+Either<ValueFailure<double>, double> validateAmountIsValidMoney(String input) {
+  final inputNumber = double.tryParse(input);
+  try {
+    return right(inputNumber!);
+  } catch (e) {
+    return left(const ValueFailure.invalidNumber(failedValue: -1));
   }
 }

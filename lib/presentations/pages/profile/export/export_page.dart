@@ -4,7 +4,6 @@ import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/bars.dart';
 import 'package:expense_tracker/presentations/components/default_app_widget.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/presentations/pages/transaction/add_transaction/expense_income_form.dart';
 
 import 'export_result_page.dart';
 
@@ -29,16 +28,14 @@ class _ExportPageState extends State<ExportPage> {
             Expanded(
               child: Column(
                 children: [
-                  DefaultBar(
+                  const DefaultBar(
                     title:
                         Text('What data do you want to export?', style: body1),
                   ),
-                  SelectionFormField(title: 'All'),
-                  DefaultBar(
+                  const DefaultBar(
                     title: Text('When date range?', style: body1),
                   ),
-                  SelectionFormField(title: 'Last 30 days'),
-                  DefaultBar(
+                  const DefaultBar(
                     title: Text('What format do you want to export?',
                         style: body1),
                   ),
@@ -78,31 +75,3 @@ class _ExportPageState extends State<ExportPage> {
     );
   }
 }
-
-// class SelectionFormFieldx extends StatelessWidget {
-//   const SelectionFormFieldx({
-//     Key? key,
-//     required this.selectionItems,
-//   }) : super(key: key);
-
-//   final List<String> selectionItems;
-//   @override
-//   Widget build(BuildContext context) {
-//     return DropdownButtonFormField<int>(
-//       value: bloc.state.value.,
-//       onChanged: (v) => setState(() {
-//         _selected = v!;
-//       }),
-//       items: [0, 1, 2]
-//           .map((e) => DropdownMenuItem(value: e, child: Text(selectionItems[e])))
-//           .toList(),
-//       icon: Padding(
-//         padding: const EdgeInsets.only(right: kDefaultPadding),
-//         child: Image.asset(
-//           'assets/icons/arrow-down-2.png',
-//           color: kViolet100,
-//         ),
-//       ),
-//     );
-//   }
-// }

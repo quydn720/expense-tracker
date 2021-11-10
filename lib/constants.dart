@@ -93,3 +93,13 @@ const title3 = TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
 const title2 = TextStyle(fontSize: 24, fontWeight: FontWeight.w600);
 const title1 = TextStyle(fontSize: 32, fontWeight: FontWeight.w700);
 const titleX = TextStyle(fontSize: 64, fontWeight: FontWeight.w700);
+
+// Default Category
+enum Categories {
+  Food,
+  Shopping,
+  Transportation,
+  Family,
+  Personal,
+  Other,
+}

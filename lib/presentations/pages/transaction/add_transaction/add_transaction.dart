@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:expense_tracker/app/transaction/transaction_form/transaction_form_bloc.dart';
 import 'package:expense_tracker/constants.dart';
@@ -12,8 +13,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AddNewTransactionPage extends StatelessWidget {
   const AddNewTransactionPage({Key? key}) : super(key: key);
   static String routeName = '/add_transaction';
+
   @override
   Widget build(BuildContext context) {
+    final wallets = ModalRoute.of(context)!.settings.arguments as List<Wallet>;
+
+    final items = [
+      Category.fromName('Food'),
+      Category.fromName('Shopping'),
+      Category.fromName('Family'),
+      Category.fromName('Some things'),
+    ];
     return BlocProvider(
       create: (context) => getIt<TransactionFormBloc>(),
       child: BlocConsumer<TransactionFormBloc, TransactionFormState>(
@@ -21,14 +31,17 @@ class AddNewTransactionPage extends StatelessWidget {
           state.saveFailureOrSuccessOption.fold(
             () {},
             (either) => either.fold(
-              (f) => f.map(
-                unexpected: (_) => 'unexpected',
-                insufficientPermission: (_) => 'insufficientPermission',
-                unableToUpdate: (_) => 'unableToUpdate',
-              ),
+              (f) {
+                Flushbar(
+                  message: f.map(
+                    unexpected: (_) => 'unexpected',
+                    insufficientPermission: (_) => 'insufficientPermission',
+                    unableToUpdate: (_) => 'unableToUpdate',
+                  ),
+                );
+              },
               (r) {
-                //! Navigate here
-                print('successfully');
+                Navigator.pop(context);
               },
             ),
           );
@@ -62,9 +75,33 @@ class AddNewTransactionPage extends StatelessWidget {
                             'How much',
                             style: title3.copyWith(color: kLight80),
                           ),
-                          Text(
-                            '\$5000',
+                          TextFormField(
+                            keyboardType: TextInputType.number,
                             style: titleX.copyWith(color: kLight80),
+                            decoration: InputDecoration(
+                              errorStyle: small.copyWith(color: kLight80),
+                              border: InputBorder.none,
+                              hintText: '0',
+                              prefixIcon: Text(
+                                '\$',
+                                style: titleX.copyWith(color: kLight80),
+                              ),
+                              hintStyle: titleX.copyWith(color: kLight80),
+                            ),
+                            validator: (_) =>
+                                state.transaction.amount.value.fold(
+                              (failure) => failure.maybeMap(
+                                invalidNumber: (_) => 'Invalid number',
+                                negativeNumber: (_) =>
+                                    'The value of expense must be greater than 0',
+                                orElse: () => null,
+                              ),
+                              (_) => null,
+                            ),
+                            autovalidateMode: AutovalidateMode.always,
+                            onChanged: (v) => bloc.add(
+                              TransactionFormEvent.amountChanged(v),
+                            ),
                           ),
                         ],
                       ),
@@ -85,20 +122,36 @@ class AddNewTransactionPage extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                    label: Text('Category')),
-                                textInputAction: TextInputAction.next,
+                              DropdownButtonFormField<Category>(
+                                onChanged: (v) {
+                                  bloc.add(
+                                      TransactionFormEvent.categoryChanged(v!));
+                                },
+                                hint: const Text('Category'),
+                                items: items
+                                    .map(
+                                      (e) => DropdownMenuItem(
+                                        value: e,
+                                        child: Text(e.name),
+                                      ),
+                                    )
+                                    .toList(),
+                                icon: Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: kDefaultPadding),
+                                  child: Image.asset(
+                                    'assets/icons/arrow-down-2.png',
+                                    color: kViolet100,
+                                  ),
+                                ),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter some text';
+                                  if (value == null) {
+                                    return 'Please choose wallet';
                                   }
                                   return null;
                                 },
-                                onChanged: (v) => bloc.add(
-                                  TransactionFormEvent.categoryChanged(
-                                      Category.empty()),
-                                ),
                               ),
                               const SizedBox(height: kMediumPadding),
                               TextFormField(
@@ -116,19 +169,34 @@ class AddNewTransactionPage extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: kMediumPadding),
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                    label: Text('Wallet')),
-                                textInputAction: TextInputAction.next,
+                              DropdownButtonFormField<Wallet>(
+                                onChanged: (v) => bloc.add(
+                                  TransactionFormEvent.walletChanged(v!),
+                                ),
+                                autovalidateMode: AutovalidateMode.always,
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter some text';
+                                  if (value == null) {
+                                    return 'Please choose wallet';
                                   }
                                   return null;
                                 },
-                                onChanged: (v) => bloc.add(
-                                  TransactionFormEvent.walletChanged(
-                                    Wallet.empty(),
+                                hint: const Text('Wallet'),
+                                items: wallets
+                                    .map(
+                                      (e) => DropdownMenuItem(
+                                        value: e,
+                                        child: Text(
+                                          e.name.getOrCrash().toString(),
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                                icon: Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: kDefaultPadding),
+                                  child: Image.asset(
+                                    'assets/icons/arrow-down-2.png',
+                                    color: kViolet100,
                                   ),
                                 ),
                               ),

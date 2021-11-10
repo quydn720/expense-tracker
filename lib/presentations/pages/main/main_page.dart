@@ -1,6 +1,7 @@
 import 'package:expense_tracker/app/auth/auth_bloc.dart';
+import 'package:expense_tracker/app/misc/wallet_bloc.dart';
 import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
-import 'package:expense_tracker/domain/transaction/transaction.dart';
+import 'package:expense_tracker/domain/transaction/models/wallet.dart';
 import 'package:expense_tracker/injector.dart';
 import 'package:expense_tracker/presentations/pages/authentication/sign_in/sign_in_page.dart';
 import 'package:expense_tracker/presentations/pages/home/home_page.dart';
@@ -8,7 +9,6 @@ import 'package:expense_tracker/presentations/pages/transaction/add_transaction/
 import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/transaction_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants.dart';
-import '../../../size_config.dart';
 import '../budget/budget_page.dart';
 import '../profile/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +23,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
+  List<Wallet> listWallet = [];
+
   final List<Widget> _widgetOptions = [
     const HomePage(),
     const TransactionPage(),
@@ -39,7 +41,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context); // remove later
     var bottomAppBar = BottomAppBar(
       shape: const CircularNotchedRectangle(),
       notchMargin: 6.0,
@@ -87,7 +88,11 @@ class _MainPageState extends State<MainPage> {
     );
     var floatingActionButton = FloatingActionButton(
       onPressed: () {
-        Navigator.pushNamed(context, AddNewTransactionPage.routeName);
+        Navigator.pushNamed(
+          context,
+          AddNewTransactionPage.routeName,
+          arguments: listWallet,
+        );
       },
       child: const Icon(Icons.add, size: 30),
       backgroundColor: kPrimaryColor,
@@ -95,18 +100,36 @@ class _MainPageState extends State<MainPage> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) =>
-                getIt<TransactionWatcherBloc>()..add(const WatchAll())),
+          create: (context) =>
+              getIt<TransactionWatcherBloc>()..add(const WatchAll()),
+        ),
+        BlocProvider(
+          create: (context) => getIt<WalletBloc>()..add(const GetAllWallet()),
+        ),
       ],
       child: MultiBlocListener(
         listeners: [
-          BlocListener<AuthBloc, AuthState>(listener: (context, state) {
-            state.maybeMap(
-              orElse: () {},
-              unauthenticated: (_) =>
-                  Navigator.pushReplacementNamed(context, SignInPage.routeName),
-            );
-          })
+          BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) {
+              state.maybeMap(
+                orElse: () {},
+                unauthenticated: (_) => Navigator.pushReplacementNamed(
+                    context, SignInPage.routeName),
+              );
+            },
+          ),
+          BlocListener<WalletBloc, WalletState>(
+            listener: (context, state) {
+              state.maybeMap(
+                orElse: () {},
+                loadSuccess: (w) {
+                  setState(() {
+                    listWallet = w.wallets;
+                  });
+                },
+              );
+            },
+          ),
         ],
         child: Scaffold(
           body: _widgetOptions.elementAt(_selectedIndex),
@@ -117,19 +140,5 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
     );
-  }
-}
-
-class TransactionWidget extends StatelessWidget {
-  const TransactionWidget({
-    Key? key,
-    required this.transactions,
-    required this.child,
-  }) : super(key: key);
-  final List<Transaction> transactions;
-  final Widget child;
-  @override
-  Widget build(BuildContext context) {
-    return child;
   }
 }

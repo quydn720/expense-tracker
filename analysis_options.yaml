@@ -5,3 +5,4 @@ analyzer:
     missing_return: error
     must_be_immutable: error
     non_constant_identifier_names: ignore
+    constant_identifier_names: ignore

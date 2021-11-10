@@ -1,4 +1,5 @@
 import 'package:expense_tracker/app/auth/auth_bloc.dart';
+import 'package:expense_tracker/app/misc/wallet_bloc.dart';
 import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
 import 'package:expense_tracker/presentations/pages/authentication/sign_in/sign_in_page.dart';
 import 'package:expense_tracker/presentations/pages/profile/account/account_page.dart';
@@ -32,7 +33,11 @@ class Body extends StatelessWidget {
     _onNavigate(index) {
       switch (index) {
         case 0:
-          Navigator.pushNamed(context, AccountPage.routeName);
+          Navigator.pushNamed(
+            context,
+            AccountPage.routeName,
+            arguments: context.read<WalletBloc>(),
+          );
           break;
         case 1:
           Navigator.pushNamed(context, SettingPage.routeName);
@@ -47,8 +52,6 @@ class Body extends StatelessWidget {
       }
     }
 
-    // return BlocBuilder<AuthBloc, AuthState>(
-    //   builder: (context, state) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(kMediumPadding),
@@ -92,10 +95,10 @@ class Body extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: data.length,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(kMediumPadding),
-                    child: InkWell(
-                      onTap: () => _onNavigate(index),
+                  return InkWell(
+                    onTap: () => _onNavigate(index),
+                    child: Padding(
+                      padding: const EdgeInsets.all(kMediumPadding),
                       child: Row(
                         children: [
                           SquaredIconCard(
@@ -125,7 +128,5 @@ class Body extends StatelessWidget {
         ),
       ),
     );
-    //   },
-    // );
   }
 }

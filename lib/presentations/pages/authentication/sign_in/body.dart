@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:expense_tracker/app/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:expense_tracker/presentations/components/default_outlined_button.dart';
 import 'package:expense_tracker/presentations/pages/authentication/forgot_password/forgot_pw_page.dart';
 import 'package:expense_tracker/presentations/pages/main/main_page.dart';
 import 'package:flutter/material.dart';
