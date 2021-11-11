@@ -67,6 +67,7 @@ class Body extends StatelessWidget {
               children: [
                 Row(
                   children: [
+                    const SizedBox(width: 8),
                     Avatar(photo: user?.photo),
                     const SizedBox(width: kMediumPadding),
                     Expanded(

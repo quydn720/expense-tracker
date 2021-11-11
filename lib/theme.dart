@@ -8,13 +8,18 @@ final theme = ThemeData(
   primaryColorLight: kPrimaryColor,
   primaryColor: kPrimaryColor,
   elevatedButtonTheme: elevatedButtonTheme,
-  colorScheme: const ColorScheme.light(secondary: Color(0xFF009688)),
+  colorScheme: const ColorScheme.light(secondary: kPrimaryColor),
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(
       borderSide: const BorderSide(color: Color(0xffF1F1FA)),
       borderRadius: BorderRadius.circular(kDefaultRadius),
     ),
   ),
+  appBarTheme: AppBarTheme(
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: Colors.white,
+      titleTextStyle: title3.copyWith(color: kDark100)),
   scaffoldBackgroundColor: kLight100,
   bottomSheetTheme: bottomSheetThemeData,
 );

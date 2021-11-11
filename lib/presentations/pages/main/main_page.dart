@@ -1,5 +1,6 @@
 import 'package:expense_tracker/blocs/tab/tab_bloc.dart';
 import 'package:expense_tracker/presentations/pages/home/home_page.dart';
+import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
 import 'package:expense_tracker/size_config.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants.dart';
@@ -10,8 +11,6 @@ class MainPage extends StatelessWidget {
   static String routeName = '/main_page';
   const MainPage({Key? key}) : super(key: key);
 
-  static Page page() => const MaterialPage<void>(child: MainPage());
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -19,6 +18,15 @@ class MainPage extends StatelessWidget {
       builder: (context, currentTab) {
         return Scaffold(
           body: getCurrentWidget(currentTab),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+            tooltip: 'Add new transaction',
+            child: const Icon(Icons.add, color: Colors.white),
+            onPressed: () {
+              Navigator.of(context).pushNamed(AddNewTransactionPage.routeName);
+            },
+          ),
           bottomNavigationBar: TabSelector(
             activeTab: currentTab,
             onTabSelected: (tab) {
@@ -66,41 +74,46 @@ class TabSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      unselectedItemColor: kDark25,
-      selectedItemColor: kViolet100,
-      selectedFontSize: 12.5,
-      unselectedFontSize: 12.5,
-      type: BottomNavigationBarType.fixed,
-      currentIndex: AppTab.values.indexOf(activeTab),
-      onTap: (index) => onTabSelected(AppTab.values[index]),
-      items: AppTab.values.map((tab) {
-        String iconPath;
-        String label;
-        final color = tab == activeTab ? kViolet100 : kDark25;
-        switch (tab) {
-          case AppTab.home:
-            iconPath = 'assets/icons/home.png';
-            label = 'Home';
-            break;
-          case AppTab.transaction:
-            iconPath = 'assets/icons/transaction_bw.png';
-            label = 'Transaction';
-            break;
-          case AppTab.budget:
-            iconPath = 'assets/icons/pie-chart.png';
-            label = 'Budget';
-            break;
-          case AppTab.user:
-            iconPath = 'assets/icons/user.png';
-            label = 'User';
-            break;
-        }
-        return BottomNavigationBarItem(
-          icon: Image.asset(iconPath, color: color),
-          label: label,
-        );
-      }).toList(),
+    return BottomAppBar(
+      notchMargin: 10.0,
+      clipBehavior: Clip.antiAlias,
+      shape: const CircularNotchedRectangle(),
+      child: BottomNavigationBar(
+        unselectedItemColor: kDark25,
+        selectedItemColor: kViolet100,
+        selectedFontSize: 12.5,
+        unselectedFontSize: 12.5,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: AppTab.values.indexOf(activeTab),
+        onTap: (index) => onTabSelected(AppTab.values[index]),
+        items: AppTab.values.map((tab) {
+          String iconPath;
+          String label;
+          final color = tab == activeTab ? kViolet100 : kDark25;
+          switch (tab) {
+            case AppTab.home:
+              iconPath = 'assets/icons/home.png';
+              label = 'Home';
+              break;
+            case AppTab.transaction:
+              iconPath = 'assets/icons/transaction_bw.png';
+              label = 'Transaction';
+              break;
+            case AppTab.budget:
+              iconPath = 'assets/icons/pie-chart.png';
+              label = 'Budget';
+              break;
+            case AppTab.user:
+              iconPath = 'assets/icons/user.png';
+              label = 'User';
+              break;
+          }
+          return BottomNavigationBarItem(
+            icon: Image.asset(iconPath, color: color),
+            label: label,
+          );
+        }).toList(),
+      ),
     );
   }
 }
