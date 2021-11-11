@@ -1,10 +1,14 @@
 import 'package:expense_tracker/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final theme = ThemeData(
-  fontFamily: 'Inter',
+  textTheme: GoogleFonts.interTextTheme(),
+  primaryColorDark: kPrimaryColor,
+  primaryColorLight: kPrimaryColor,
   primaryColor: kPrimaryColor,
   elevatedButtonTheme: elevatedButtonTheme,
+  colorScheme: const ColorScheme.light(secondary: Color(0xFF009688)),
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(
       borderSide: const BorderSide(color: Color(0xffF1F1FA)),
@@ -12,7 +16,6 @@ final theme = ThemeData(
     ),
   ),
   scaffoldBackgroundColor: kLight100,
-  appBarTheme: appBarTheme,
   bottomSheetTheme: bottomSheetThemeData,
 );
 
@@ -23,12 +26,6 @@ const bottomSheetThemeData = BottomSheetThemeData(
       topRight: Radius.circular(kBottomSheetRadius),
     ),
   ),
-);
-
-const appBarTheme = AppBarTheme(
-  elevation: 0,
-  centerTitle: true,
-  backgroundColor: kLight100,
 );
 
 final elevatedButtonTheme = ElevatedButtonThemeData(

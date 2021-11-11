@@ -210,7 +210,7 @@ class AddNewTransactionPage extends StatelessWidget {
                                       BorderRadius.circular(kDefaultRadius),
                                   child: DefaultButton(
                                     elevation: 0,
-                                    onPress: () {},
+                                    onPressed: () {},
                                     middle: Row(
                                       children: [
                                         Image.asset(
@@ -254,7 +254,7 @@ class AddNewTransactionPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(kMediumPadding),
                         child: DefaultButton(
-                          onPress: () {
+                          onPressed: () {
                             bloc.add(const CommitPressed());
                           },
                           title: 'Continue',

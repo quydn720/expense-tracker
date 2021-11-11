@@ -29,7 +29,7 @@ class ExportDataPromptPage extends StatelessWidget {
               ),
               DefaultButton(
                 title: 'Back to Home',
-                onPress: () {
+                onPressed: () {
                   Navigator.pushReplacementNamed(context, MainPage.routeName);
                 },
               )

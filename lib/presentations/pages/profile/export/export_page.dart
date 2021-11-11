@@ -61,7 +61,7 @@ class _ExportPageState extends State<ExportPage> {
             ),
             DefaultButton(
               title: 'Export',
-              onPress: () {
+              onPressed: () {
                 // TODO: Bloc add Send file to email
                 Navigator.pushReplacementNamed(
                     context, ExportDataPromptPage.routeName);

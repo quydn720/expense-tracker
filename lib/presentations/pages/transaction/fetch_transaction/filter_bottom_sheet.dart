@@ -133,7 +133,7 @@ class FilterBottomSheet extends StatelessWidget {
           const SizedBox(height: kDefaultPadding),
           DefaultButton(
             title: 'Apply',
-            onPress: () {},
+            onPressed: () {},
           ),
         ],
       ),

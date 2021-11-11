@@ -7,6 +7,9 @@ import '../../../../constants.dart';
 class ForgotPasswordPage extends StatelessWidget {
   static String routeName = '/forgot_pw';
   const ForgotPasswordPage({Key? key}) : super(key: key);
+  static Route route() {
+    return MaterialPageRoute<void>(builder: (_) => const ForgotPasswordPage());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,7 @@ class Body extends StatelessWidget {
             const SizedBox(height: kLargePadding),
             TextFormField(),
             const SizedBox(height: kLargePadding),
-            DefaultButton(title: 'Continue', onPress: () {})
+            DefaultButton(title: 'Continue', onPressed: () {})
           ],
         ),
       ),

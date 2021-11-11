@@ -6,7 +6,7 @@ class DefaultButton extends StatelessWidget {
   const DefaultButton({
     Key? key,
     required this.title,
-    required this.onPress,
+    required this.onPressed,
     this.icon,
     this.isSecondary = false,
     this.isSmall = false,
@@ -16,7 +16,7 @@ class DefaultButton extends StatelessWidget {
   }) : super(key: key);
   final String title;
   final Widget? middle;
-  final VoidCallback onPress;
+  final VoidCallback? onPressed;
   final Widget? icon;
   final bool isSecondary;
   final bool isSmall;
@@ -42,7 +42,7 @@ class DefaultButton extends StatelessWidget {
         ),
       ),
       child: ElevatedButton(
-        onPressed: onPress,
+        onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -54,7 +54,7 @@ class ExpenseIncomeForm extends StatelessWidget {
                     borderRadius: BorderRadius.circular(kDefaultRadius),
                     child: DefaultButton(
                       elevation: 0,
-                      onPress: () {},
+                      onPressed: () {},
                       middle: Row(
                         children: [
                           Image.asset(

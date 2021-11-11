@@ -1,136 +1,47 @@
-import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
-import 'package:expense_tracker/domain/transaction/transaction.dart';
-import 'package:expense_tracker/presentations/components/tabs.dart';
-import 'package:expense_tracker/presentations/pages/home/components/line_chard_widget.dart';
+import 'package:expense_tracker/app/app.dart';
+import 'package:expense_tracker/blocs/tab/tab_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../constants.dart';
-import '../../components/bars.dart';
-import 'components/top_navigation.dart';
-import 'components/transaction_card.dart';
-import 'package:expense_tracker/utils/collection_extension.dart';
+import 'widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
   static String routeName = '/daily_page';
-  static const int maxTransactionDisplayed = 5;
   const HomePage({Key? key}) : super(key: key);
+  static Page page() => const MaterialPage<void>(child: HomePage());
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TransactionWatcherBloc, TransactionWatcherState>(
-      builder: (context, state) {
-        return state.map(
-          initial: (_) => Container(),
-          loadingProgress: (_) => const Center(
-            child: CircularProgressIndicator(),
-          ),
-          loadSuccess: (state) {
-            final map =
-                state.transactions.groupBy<TransactionType>((t) => t.type);
-            return SafeArea(
-              child: Scaffold(
-                body: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TopNavigation(data: map),
-                      const DefaultBar(
-                        title: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('Spend Frequency', style: title3),
-                        ),
-                      ),
-                      LineChartWidget(
-                        data: state.transactions.groupBy(
-                          (t) => DateTime(
-                            t.date.year,
-                            t.date.month,
-                            t.date.day,
-                          ),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Tabs(
-                          children: [
-                            Chip(
-                              backgroundColor: kYellow20,
-                              label: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text('Today'),
-                              ),
-                            ),
-                            Chip(
-                              backgroundColor: kLight100,
-                              label: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text('Week'),
-                              ),
-                            ),
-                            Chip(
-                              backgroundColor: kLight100,
-                              label: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text('Month'),
-                              ),
-                            ),
-                            Chip(
-                              backgroundColor: kLight100,
-                              label: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text('Year'),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      DefaultBar(
-                        title: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('Recent Transaction', style: title3),
-                        ),
-                        trailing: Chip(
-                          backgroundColor: const Color(0xffF1F1FA),
-                          label: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: kDefaultPadding),
-                            child: Text(
-                              'See All',
-                              style: body3.copyWith(color: kViolet100),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          final transaction = state.transactions[index];
-                          return TransactionCard(
-                            elevation: 2,
-                            transaction: transaction,
-                          );
-                        },
-                        itemCount: (state.transactions.length <
-                                maxTransactionDisplayed)
-                            ? state.transactions.length
-                            : maxTransactionDisplayed,
-                      ),
-                      const SizedBox(height: kMediumPadding),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-          loadFailure: (_) {
-            return Container(
-              color: kRed100,
-              height: 100,
-              width: double.infinity,
-            );
-          },
+    final user = context.select(
+      (AppBloc bloc) {
+        if (bloc.state is Authenticated) {
+          return (bloc.state as Authenticated).user;
+        }
+      },
+    );
+    return BlocBuilder<TabBloc, AppTab>(
+      builder: (context, currentTab) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            AppBar(
+              title: const Text('Home'),
+              actions: <Widget>[
+                IconButton(
+                  key: const Key('homePage_logout_iconButton'),
+                  icon: const Icon(Icons.exit_to_app),
+                  onPressed: () =>
+                      context.read<AppBloc>().add(const AppLogOutRequested()),
+                )
+              ],
+            ),
+            const SizedBox(height: 4),
+            Avatar(photo: user?.photo),
+            const SizedBox(height: 4),
+            Text(user?.email ?? ''),
+            const SizedBox(height: 4),
+            Text(user?.name ?? ''),
+          ],
         );
       },
     );

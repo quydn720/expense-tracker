@@ -94,7 +94,7 @@ class AccountPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(kMediumPadding),
                   child: DefaultButton(
-                    onPress: () {},
+                    onPressed: () {},
                     title: '+  Add new wallet',
                   ),
                 ),

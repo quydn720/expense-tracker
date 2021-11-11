@@ -1,144 +1,106 @@
-import 'package:expense_tracker/app/auth/auth_bloc.dart';
-import 'package:expense_tracker/app/misc/wallet_bloc.dart';
-import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
-import 'package:expense_tracker/domain/transaction/models/wallet.dart';
-import 'package:expense_tracker/injector.dart';
-import 'package:expense_tracker/presentations/pages/authentication/sign_in/sign_in_page.dart';
+import 'package:expense_tracker/blocs/tab/tab_bloc.dart';
 import 'package:expense_tracker/presentations/pages/home/home_page.dart';
-import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
-import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/transaction_list.dart';
+import 'package:expense_tracker/size_config.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants.dart';
-import '../budget/budget_page.dart';
 import '../profile/profile_page.dart';
 import 'package:flutter/material.dart';
 
-class MainPage extends StatefulWidget {
-  static String routeName = '/HomePage';
+class MainPage extends StatelessWidget {
+  static String routeName = '/main_page';
   const MainPage({Key? key}) : super(key: key);
 
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 0;
-  List<Wallet> listWallet = [];
-
-  final List<Widget> _widgetOptions = [
-    const HomePage(),
-    const TransactionPage(),
-    const SizedBox.shrink(),
-    const BudgetPage(),
-    const ProfilePage(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  static Page page() => const MaterialPage<void>(child: MainPage());
 
   @override
   Widget build(BuildContext context) {
-    var bottomAppBar = BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      notchMargin: 6.0,
-      clipBehavior: Clip.antiAlias,
-      child: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        unselectedItemColor: kDark25,
-        selectedItemColor: kViolet100,
-        selectedFontSize: 12.5,
-        unselectedFontSize: 12.5,
-        type: BottomNavigationBarType.fixed,
-        onTap: _onItemTapped,
-        items: [
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/home.png',
-              color: (_selectedIndex == 0) ? kViolet100 : kDark25,
-            ),
-            label: "Home",
+    SizeConfig().init(context);
+    return BlocBuilder<TabBloc, AppTab>(
+      builder: (context, currentTab) {
+        return Scaffold(
+          body: getCurrentWidget(currentTab),
+          bottomNavigationBar: TabSelector(
+            activeTab: currentTab,
+            onTabSelected: (tab) {
+              context.read<TabBloc>().add(TabChanged(tab));
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/transaction_bw.png',
-              color: (_selectedIndex == 1) ? kViolet100 : kDark25,
-            ),
-            label: "Trans",
-          ),
-          const BottomNavigationBarItem(icon: SizedBox.shrink(), label: ""),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/pie-chart.png',
-              color: (_selectedIndex == 3) ? kViolet100 : kDark25,
-            ),
-            label: "Budget",
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/user.png',
-              color: (_selectedIndex == 4) ? kViolet100 : kDark25,
-            ),
-            label: "Profile",
-          ),
-        ],
-      ),
-    );
-    var floatingActionButton = FloatingActionButton(
-      onPressed: () {
-        Navigator.pushNamed(
-          context,
-          AddNewTransactionPage.routeName,
-          arguments: listWallet,
         );
       },
-      child: const Icon(Icons.add, size: 30),
-      backgroundColor: kPrimaryColor,
     );
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              getIt<TransactionWatcherBloc>()..add(const WatchAll()),
-        ),
-        BlocProvider(
-          create: (context) => getIt<WalletBloc>()..add(const GetAllWallet()),
-        ),
-      ],
-      child: MultiBlocListener(
-        listeners: [
-          BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
-              state.maybeMap(
-                orElse: () {},
-                unauthenticated: (_) => Navigator.pushReplacementNamed(
-                    context, SignInPage.routeName),
-              );
-            },
-          ),
-          BlocListener<WalletBloc, WalletState>(
-            listener: (context, state) {
-              state.maybeMap(
-                orElse: () {},
-                loadSuccess: (w) {
-                  setState(() {
-                    listWallet = w.wallets;
-                  });
-                },
-              );
-            },
-          ),
-        ],
-        child: Scaffold(
-          body: _widgetOptions.elementAt(_selectedIndex),
-          floatingActionButton: floatingActionButton,
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          bottomNavigationBar: bottomAppBar,
-        ),
-      ),
+  }
+
+  Widget getCurrentWidget(AppTab tab) {
+    if (tab == AppTab.budget) {
+      return const AnotherPage();
+    } else if (tab == AppTab.transaction) {
+      return const AnotherPage();
+    } else if (tab == AppTab.user) {
+      return const ProfilePage();
+    } else {
+      return const HomePage();
+    }
+  }
+}
+
+class AnotherPage extends StatelessWidget {
+  const AnotherPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text('this is another page'),
+    );
+  }
+}
+
+class TabSelector extends StatelessWidget {
+  final AppTab activeTab;
+  final Function(AppTab) onTabSelected;
+
+  const TabSelector({
+    Key? key,
+    required this.activeTab,
+    required this.onTabSelected,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      unselectedItemColor: kDark25,
+      selectedItemColor: kViolet100,
+      selectedFontSize: 12.5,
+      unselectedFontSize: 12.5,
+      type: BottomNavigationBarType.fixed,
+      currentIndex: AppTab.values.indexOf(activeTab),
+      onTap: (index) => onTabSelected(AppTab.values[index]),
+      items: AppTab.values.map((tab) {
+        String iconPath;
+        String label;
+        final color = tab == activeTab ? kViolet100 : kDark25;
+        switch (tab) {
+          case AppTab.home:
+            iconPath = 'assets/icons/home.png';
+            label = 'Home';
+            break;
+          case AppTab.transaction:
+            iconPath = 'assets/icons/transaction_bw.png';
+            label = 'Transaction';
+            break;
+          case AppTab.budget:
+            iconPath = 'assets/icons/pie-chart.png';
+            label = 'Budget';
+            break;
+          case AppTab.user:
+            iconPath = 'assets/icons/user.png';
+            label = 'User';
+            break;
+        }
+        return BottomNavigationBarItem(
+          icon: Image.asset(iconPath, color: color),
+          label: label,
+        );
+      }).toList(),
     );
   }
 }
