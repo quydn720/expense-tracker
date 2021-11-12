@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:transaction_repository/src/entities/entities.dart';
 import 'package:uuid/uuid.dart';
@@ -10,6 +11,7 @@ class Transaction {
   final String wallet;
   final String description;
   final TransactionType type;
+  final DateTime date;
 
   Transaction({
     String? id,
@@ -18,7 +20,9 @@ class Transaction {
     required this.category,
     required this.wallet,
     required this.type,
+    DateTime? date,
   })  : id = id ?? const Uuid().v4(),
+        date = date ?? DateTime.now(),
         description = description ?? '';
 
   TransactionEntity toEntity() {
@@ -28,6 +32,7 @@ class Transaction {
       category: category,
       wallet: wallet,
       type: type,
+      timestamp: Timestamp.fromDate(date),
     );
   }
 
@@ -39,6 +44,7 @@ class Transaction {
       category: entity.category,
       wallet: entity.wallet,
       type: entity.type,
+      date: entity.timestamp.toDate(),
     );
   }
 
@@ -83,6 +89,11 @@ class Transaction {
         wallet.hashCode ^
         description.hashCode ^
         type.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'Transaction(amount: $amount, description: $description)';
   }
 }
 
