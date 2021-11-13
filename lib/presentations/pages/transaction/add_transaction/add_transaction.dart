@@ -1,11 +1,13 @@
 import 'package:expense_tracker/blocs/add_transaction/add_transaction_cubit.dart';
 import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
+import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:transaction_repository/transaction_repository.dart';
+import 'package:wallet_repository/wallet_repository.dart';
 
 class AddNewTransactionPage extends StatelessWidget {
   const AddNewTransactionPage({Key? key}) : super(key: key);
@@ -71,7 +73,11 @@ class AddTransactionForm extends StatelessWidget {
             children: [
               _CategoryDropdown(items: items),
               const _DescriptionInput(),
-              _WalletDropdown(items: items),
+              _WalletDropdown(
+                  items: context
+                      .read<WalletBloc>()
+                      .walletRepository
+                      .currentWallets),
               const _SubmitButton(),
             ],
           ),
@@ -133,7 +139,7 @@ class _SubmitButton extends StatelessWidget {
                                 amount: addBloc.amount.value,
                                 category: addBloc.category,
                                 type: TransactionType.expense,
-                                wallet: addBloc.wallet,
+                                wallet: addBloc.wallet!.name,
                                 description: addBloc.description,
                                 date: DateTime.now(),
                               ),
@@ -154,21 +160,21 @@ class _WalletDropdown extends StatelessWidget {
     required this.items,
   }) : super(key: key);
 
-  final List<String> items;
+  final List<Wallet> items;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AddTransactionCubit, AddTransactionState>(
       buildWhen: (previous, current) => previous.wallet != current.wallet,
       builder: (context, state) {
-        return DropdownButtonFormField<String>(
+        return DropdownButtonFormField<Wallet>(
           key: const Key('addTransactionForm_wallet_buttomFormField'),
           hint: const Text('Wallet'),
           onChanged: (v) {
             context.read<AddTransactionCubit>().walletChanged(v!);
           },
           items: items
-              .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+              .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
               .toList(),
           icon: Padding(
             padding: const EdgeInsets.only(right: kDefaultPadding),

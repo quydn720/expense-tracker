@@ -36,7 +36,6 @@ class Body extends StatelessWidget {
           Navigator.pushNamed(
             context,
             AccountPage.routeName,
-            arguments: context.read<WalletBloc>(),
           );
           break;
         case 1:
