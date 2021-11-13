@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:wallet_repository/wallet_repository.dart';
 
 part 'add_transaction_state.dart';
 part 'add_transaction_cubit.freezed.dart';
@@ -25,7 +26,7 @@ class AddTransactionCubit extends Cubit<AddTransactionState> {
     emit(state.copyWith(category: category));
   }
 
-  void walletChanged(String wallet) {
+  void walletChanged(Wallet wallet) {
     emit(state.copyWith(wallet: wallet));
   }
 

@@ -20,7 +20,7 @@ class _$AddTransactionStateTearOff {
   _AddTransactionState call(
       {MoneyAmount amount = const MoneyAmount.pure(),
       String category = 'Category',
-      String wallet = 'Wallet',
+      Wallet? wallet,
       String? description,
       FormzStatus status = FormzStatus.pure}) {
     return _AddTransactionState(
@@ -40,7 +40,7 @@ const $AddTransactionState = _$AddTransactionStateTearOff();
 mixin _$AddTransactionState {
   MoneyAmount get amount => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
-  String get wallet => throw _privateConstructorUsedError;
+  Wallet? get wallet => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
 
@@ -57,7 +57,7 @@ abstract class $AddTransactionStateCopyWith<$Res> {
   $Res call(
       {MoneyAmount amount,
       String category,
-      String wallet,
+      Wallet? wallet,
       String? description,
       FormzStatus status});
 }
@@ -91,7 +91,7 @@ class _$AddTransactionStateCopyWithImpl<$Res>
       wallet: wallet == freezed
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Wallet?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -114,7 +114,7 @@ abstract class _$AddTransactionStateCopyWith<$Res>
   $Res call(
       {MoneyAmount amount,
       String category,
-      String wallet,
+      Wallet? wallet,
       String? description,
       FormzStatus status});
 }
@@ -150,7 +150,7 @@ class __$AddTransactionStateCopyWithImpl<$Res>
       wallet: wallet == freezed
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Wallet?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -169,7 +169,7 @@ class _$_AddTransactionState implements _AddTransactionState {
   const _$_AddTransactionState(
       {this.amount = const MoneyAmount.pure(),
       this.category = 'Category',
-      this.wallet = 'Wallet',
+      this.wallet,
       this.description,
       this.status = FormzStatus.pure});
 
@@ -179,9 +179,8 @@ class _$_AddTransactionState implements _AddTransactionState {
   @JsonKey(defaultValue: 'Category')
   @override
   final String category;
-  @JsonKey(defaultValue: 'Wallet')
   @override
-  final String wallet;
+  final Wallet? wallet;
   @override
   final String? description;
   @JsonKey(defaultValue: FormzStatus.pure)
@@ -222,7 +221,7 @@ abstract class _AddTransactionState implements AddTransactionState {
   const factory _AddTransactionState(
       {MoneyAmount amount,
       String category,
-      String wallet,
+      Wallet? wallet,
       String? description,
       FormzStatus status}) = _$_AddTransactionState;
 
@@ -231,7 +230,7 @@ abstract class _AddTransactionState implements AddTransactionState {
   @override
   String get category;
   @override
-  String get wallet;
+  Wallet? get wallet;
   @override
   String? get description;
   @override
