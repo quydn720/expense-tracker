@@ -952,6 +952,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.4.0"
+  wallet_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/wallet_repository"
+      relative: true
+    source: path
+    version: "0.0.1"
   watcher:
     dependency: transitive
     description:

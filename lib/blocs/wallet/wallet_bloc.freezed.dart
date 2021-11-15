@@ -294,11 +294,12 @@ class _$AddWallet implements AddWallet {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is AddWallet &&
-            (identical(other.wallet, wallet) || other.wallet == wallet));
+            const DeepCollectionEquality().equals(other.wallet, wallet));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, wallet);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(wallet));
 
   @JsonKey(ignore: true)
   @override
@@ -444,11 +445,12 @@ class _$DeleteWallet implements DeleteWallet {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is DeleteWallet &&
-            (identical(other.wallet, wallet) || other.wallet == wallet));
+            const DeepCollectionEquality().equals(other.wallet, wallet));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, wallet);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(wallet));
 
   @JsonKey(ignore: true)
   @override
@@ -594,12 +596,13 @@ class _$UpdateWallet implements UpdateWallet {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is UpdateWallet &&
-            (identical(other.updatedWallet, updatedWallet) ||
-                other.updatedWallet == updatedWallet));
+            const DeepCollectionEquality()
+                .equals(other.updatedWallet, updatedWallet));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, updatedWallet);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(updatedWallet));
 
   @JsonKey(ignore: true)
   @override

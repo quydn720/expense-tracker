@@ -1,5 +1,4 @@
 import 'package:expense_tracker/app/app.dart';
-import 'package:expense_tracker/app/misc/wallet_bloc.dart';
 import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
 import 'package:expense_tracker/presentations/pages/home/widgets/widgets.dart';
 import 'package:expense_tracker/presentations/pages/profile/account/account_page.dart';

@@ -1,4 +1,4 @@
-import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
+import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/bars.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
@@ -59,61 +59,45 @@ class TransPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(kMediumPadding),
-      child: BlocBuilder<TransactionWatcherBloc, TransactionWatcherState>(
+      child: BlocBuilder<TransactionBloc, TransactionState>(
         builder: (context, state) {
-          return state.map(
-            initial: (_) => Container(),
-            loadingProgress: (_) => const Center(
-              child: CircularProgressIndicator(),
-            ),
-            loadSuccess: (state) {
-              final map = state.transactions.groupBy(
-                (t) => DateTime(
-                  t.date.year,
-                  t.date.month,
-                  t.date.day,
-                ),
-              );
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    DefaultBar(
-                      onTap: () {},
-                      color: kViolet20,
-                      title: Padding(
-                        padding: const EdgeInsets.all(kMediumPadding),
-                        child: Text(
-                          'See your finanical report',
-                          style: body3.copyWith(
-                            color: kViolet100,
-                          ),
-                        ),
-                      ),
-                      trailing: Padding(
-                        padding: const EdgeInsets.all(kDefaultPadding),
-                        child: Image.asset(
-                          'assets/icons/arrow-right-2.png',
-                          color: kViolet100,
-                        ),
+          if (state is TransactionLoaded) {
+            return Column(
+              children: [
+                DefaultBar(
+                  onTap: () {},
+                  color: kViolet20,
+                  title: Padding(
+                    padding: const EdgeInsets.all(kMediumPadding),
+                    child: Text(
+                      'See your finanical report',
+                      style: body3.copyWith(
+                        color: kViolet100,
                       ),
                     ),
-                    Column(
-                      children: map.entries
-                          .map((e) => ListTransactionWithHeader(map: e))
-                          .toList(),
+                  ),
+                  trailing: Padding(
+                    padding: const EdgeInsets.all(kDefaultPadding),
+                    child: Image.asset(
+                      'assets/icons/arrow-right-2.png',
+                      color: kViolet100,
                     ),
-                  ],
+                  ),
                 ),
-              );
-            },
-            loadFailure: (state) {
-              return Container(
-                color: kRed100,
-                height: 100,
-                width: double.infinity,
-              );
-            },
-          );
+                Column(
+                  children: context
+                      .read<TransactionBloc>()
+                      .transactionRepository
+                      .mapDateTransaction
+                      .entries
+                      .map((e) => Text(e.toString()))
+                      .toList(),
+                ),
+              ],
+            );
+          } else {
+            return const CircularProgressIndicator();
+          }
         },
       ),
     );

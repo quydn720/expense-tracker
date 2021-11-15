@@ -89,10 +89,10 @@ class _MoneyAmount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _total =
-        context.read<WalletBloc>().walletRepository.totalAmount.toString();
     return BlocBuilder<WalletBloc, WalletState>(
       builder: (context, state) {
+        final _total =
+            context.read<WalletBloc>().walletRepository.totalAmount.toString();
         if (state is WalletLoaded) {
           return Text(
             _total.toString(),
