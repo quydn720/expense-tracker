@@ -11,8 +11,7 @@ import 'package:google_sign_in/google_sign_in.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i6;
 
-import 'infrastructure/core/firebase_injectable_module.dart' as _i7;
-import 'injector.dart' as _i8; // ignore_for_file: unnecessary_lambdas
+import 'injector.dart' as _i7; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -35,4 +34,4 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
 
 class _$FirebaseInjectableModule extends _i7.FirebaseInjectableModule {}
 
-class _$SharedPreferencesModule extends _i8.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i7.SharedPreferencesModule {}

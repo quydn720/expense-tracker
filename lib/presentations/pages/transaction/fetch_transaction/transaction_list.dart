@@ -1,99 +1,100 @@
 import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/bars.dart';
-import 'package:expense_tracker/presentations/components/default_app_bar.dart';
-import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
-import 'package:expense_tracker/presentations/pages/home/components/pills.dart';
-import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/filter_bottom_sheet.dart';
-import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/list_transaction_with_day_header.dart';
-import 'package:expense_tracker/utils/collection_extension.dart';
+import 'package:expense_tracker/presentations/components/common_components.dart';
+import 'package:expense_tracker/utils/extension_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'filter_bottom_sheet.dart';
 
 class TransactionPage extends StatelessWidget {
   const TransactionPage({Key? key}) : super(key: key);
   static String routeName = '/transaction_page';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: DefaultAppBar(
-        lead: ExpandedPill(
-          label: Text(
-            'September',
-            style: body3.copyWith(color: kDark100),
-          ),
-          onTap: () {},
-        ),
-        trail: Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: kMediumPadding, vertical: kDefaultPadding),
-          child: GestureDetector(
-            onTap: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return const FilterBottomSheet();
-                },
-              );
-            },
-            child: const SquaredIconCard(
-              size: 48,
-              imagePath: 'assets/icons/sort.png',
-            ),
-          ),
-        ),
-      ),
-      body: const TransPageBody(),
-    );
-  }
-}
-
-//* Deal with the data - filtering is now being handle at the client side
-
-class TransPageBody extends StatelessWidget {
-  const TransPageBody({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(kMediumPadding),
+    return SafeArea(
       child: BlocBuilder<TransactionBloc, TransactionState>(
         builder: (context, state) {
           if (state is TransactionLoaded) {
-            return Column(
-              children: [
-                DefaultBar(
-                  onTap: () {},
-                  color: kViolet20,
-                  title: Padding(
-                    padding: const EdgeInsets.all(kMediumPadding),
-                    child: Text(
-                      'See your finanical report',
-                      style: body3.copyWith(
-                        color: kViolet100,
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppBar(
+                    leadingWidth: 150,
+                    leading: const Chip(label: Text('November')),
+                    actions: [
+                      IconButton(
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return const FilterBottomSheet();
+                            },
+                          );
+                        },
+                        icon: Image.asset('assets/icons/sort.png'),
+                      )
+                    ],
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: kViolet20,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    margin: const EdgeInsets.all(kMediumPadding),
+                    padding: const EdgeInsets.only(
+                      left: kMediumPadding,
+                      top: kDefaultPadding,
+                      bottom: kDefaultPadding,
+                      right: kDefaultPadding,
+                    ),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'See your finanical report',
+                            style: body3.copyWith(color: kViolet100),
+                          ),
+                          Image.asset(
+                            'assets/icons/arrow-right-2.png',
+                            color: kViolet100,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  trailing: Padding(
-                    padding: const EdgeInsets.all(kDefaultPadding),
-                    child: Image.asset(
-                      'assets/icons/arrow-right-2.png',
-                      color: kViolet100,
-                    ),
-                  ),
-                ),
-                Column(
-                  children: context
+                  ...context
                       .read<TransactionBloc>()
                       .transactionRepository
                       .mapDateTransaction
                       .entries
-                      .map((e) => Text(e.toString()))
-                      .toList(),
-                ),
-              ],
+                      .map(
+                        (e) => Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: kMediumPadding,
+                            vertical: kDefaultPadding,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Text(e.key.onlyDateFormatted,
+                                    style: title3),
+                              ),
+                              ...e.value
+                                  .map((e) => TransactionTile(transaction: e))
+                                  .toList(),
+                            ],
+                          ),
+                        ),
+                      ),
+                ],
+              ),
             );
           } else {
             return const CircularProgressIndicator();

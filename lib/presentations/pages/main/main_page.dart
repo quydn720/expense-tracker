@@ -1,7 +1,9 @@
 import 'package:expense_tracker/blocs/tab/tab_bloc.dart';
 import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
+import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:expense_tracker/presentations/pages/home/home_page.dart';
 import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
+import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/transaction_list.dart';
 import 'package:expense_tracker/size_config.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants.dart';
@@ -44,7 +46,7 @@ class MainPage extends StatelessWidget {
     if (tab == AppTab.budget) {
       return const AnotherPage();
     } else if (tab == AppTab.transaction) {
-      return const AnotherPage();
+      return const TransactionPage();
     } else if (tab == AppTab.user) {
       return const ProfilePage();
     } else {
@@ -59,46 +61,56 @@ class AnotherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            AppBar(
-              leadingWidth: 150,
-              leading: Chip(label: Text('November')),
-              actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset('assets/icons/sort.png'),
-                )
-              ],
-            ),
-            ...context
-                .read<TransactionBloc>()
-                .transactionRepository
-                .mapDateTransaction
-                .entries
-                .map(
-                  (e) => Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: kMediumPadding,
-                      vertical: kDefaultPadding,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Text(e.key.onlyDateFormatted, style: title3),
-                        ),
-                        ...e.value
-                            .map((e) => TransactionTile(transaction: e))
-                            .toList(),
-                      ],
-                    ),
+      child: BlocBuilder<TransactionBloc, TransactionState>(
+        builder: (context, state) {
+          if (state is TransactionLoaded) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  AppBar(
+                    leadingWidth: 150,
+                    leading: Chip(label: Text('November')),
+                    actions: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: Image.asset('assets/icons/sort.png'),
+                      )
+                    ],
                   ),
-                ),
-          ],
-        ),
+                  ...context
+                      .read<TransactionBloc>()
+                      .transactionRepository
+                      .mapDateTransaction
+                      .entries
+                      .map(
+                        (e) => Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: kMediumPadding,
+                            vertical: kDefaultPadding,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Text(e.key.onlyDateFormatted,
+                                    style: title3),
+                              ),
+                              ...e.value
+                                  .map((e) => TransactionTile(transaction: e))
+                                  .toList(),
+                            ],
+                          ),
+                        ),
+                      ),
+                ],
+              ),
+            );
+          } else {
+            return const CircularProgressIndicator();
+          }
+        },
       ),
     );
   }

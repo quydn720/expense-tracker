@@ -200,15 +200,15 @@ class _$_AddTransactionState implements _AddTransactionState {
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            const DeepCollectionEquality().equals(other.wallet, wallet) &&
+            (identical(other.wallet, wallet) || other.wallet == wallet) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, amount, category,
-      const DeepCollectionEquality().hash(wallet), description, status);
+  int get hashCode =>
+      Object.hash(runtimeType, amount, category, wallet, description, status);
 
   @JsonKey(ignore: true)
   @override
