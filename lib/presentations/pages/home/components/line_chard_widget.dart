@@ -23,7 +23,7 @@ class LineChartWidget extends StatelessWidget {
     final spots = dailyTotal.entries
         .map((e) => FlSpot(e.key.day.toDouble(), e.value))
         .toList();
-    return spots.length != 0
+    return spots.isNotEmpty
         ? SizedBox(
             height: 180,
             child: LineChart(

@@ -1,4 +1,5 @@
 import 'package:expense_tracker/blocs/tab/tab_bloc.dart';
+import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/presentations/pages/home/home_page.dart';
 import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
 import 'package:expense_tracker/size_config.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants.dart';
 import '../profile/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:expense_tracker/utils/extension_helper.dart';
 
 class MainPage extends StatelessWidget {
   static String routeName = '/main_page';
@@ -56,8 +58,48 @@ class AnotherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('this is another page'),
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            AppBar(
+              leadingWidth: 150,
+              leading: Chip(label: Text('November')),
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Image.asset('assets/icons/sort.png'),
+                )
+              ],
+            ),
+            ...context
+                .read<TransactionBloc>()
+                .transactionRepository
+                .mapDateTransaction
+                .entries
+                .map(
+                  (e) => Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: kMediumPadding,
+                      vertical: kDefaultPadding,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(e.key.onlyDateFormatted, style: title3),
+                        ),
+                        ...e.value
+                            .map((e) => TransactionTile(transaction: e))
+                            .toList(),
+                      ],
+                    ),
+                  ),
+                ),
+          ],
+        ),
+      ),
     );
   }
 }
