@@ -23,7 +23,7 @@ class Wallet {
 
   WalletEntity toEntity() {
     return WalletEntity(
-      id: id,
+      id: id.trim(),
       amount: amount,
       name: name,
       iconPath: iconPath,
@@ -33,6 +33,7 @@ class Wallet {
 
   factory Wallet.fromEntity(WalletEntity entity) {
     return Wallet(
+      id: entity.id.trim(),
       amount: entity.amount,
       color: entity.color,
       iconPath: entity.iconPath,

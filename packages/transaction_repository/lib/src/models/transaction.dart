@@ -30,6 +30,7 @@ class Transaction {
       id: id,
       amount: amount,
       category: category,
+      description: description,
       wallet: wallet,
       type: type,
       timestamp: Timestamp.fromDate(date),
