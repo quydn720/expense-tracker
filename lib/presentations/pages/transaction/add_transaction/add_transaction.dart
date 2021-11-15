@@ -145,10 +145,6 @@ class _SubmitButton extends StatelessWidget {
                               ),
                             ),
                           );
-                      final cAmount = addBloc.wallet!.amount;
-                      final e = addBloc.amount.value;
-                      context.read<WalletBloc>().add(UpdateWallet(
-                          addBloc.wallet!.copyWith(amount: cAmount + e)));
                       Navigator.pop(context);
                     }
                   : null,
