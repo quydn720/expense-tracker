@@ -4,12 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:transaction_repository/src/models/models.dart';
+import 'package:wallet_repository/wallet_repository.dart';
 
 class TransactionEntity extends Equatable {
   final String id;
   final double amount;
   final String category;
-  final String wallet;
+  final Wallet wallet;
   final String? description;
   final TransactionType type;
   final Timestamp timestamp;
@@ -53,7 +54,7 @@ class TransactionEntity extends Equatable {
       id: map['id'] as String,
       amount: map['amount'] as double,
       category: map['category'] as String,
-      wallet: map['wallet'] as String,
+      wallet: map['wallet'],
       description: map['description'] as String,
       type: TransactionType.values[map['type']],
       timestamp: map['timestamp'] as Timestamp,
@@ -77,7 +78,7 @@ class TransactionEntity extends Equatable {
       amount: data['amount'].toDouble(),
       category: data['category'],
       type: TransactionType.values[data['type']],
-      wallet: data['wallet'],
+      wallet: Wallet.fromEntity(WalletEntity.fromMap(data['wallet'])),
       description: data['description'],
     );
   }
@@ -87,7 +88,7 @@ class TransactionEntity extends Equatable {
       'id': id,
       'amount': amount,
       'category': category,
-      'wallet': wallet,
+      'wallet': wallet.toEntity().toMap(),
       'type': type.index,
       'description': description,
       'timestamp': timestamp,

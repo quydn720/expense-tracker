@@ -50,6 +50,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppStarted>(_onAppStarted);
 
     @override
+    // ignore: unused_element
     Future<void> close() {
       _userSubscription.cancel();
       return super.close();

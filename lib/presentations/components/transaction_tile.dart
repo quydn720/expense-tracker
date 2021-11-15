@@ -70,7 +70,6 @@ class TransactionTile extends StatelessWidget {
       ),
       onLongPress: () {
         context.read<TransactionBloc>().add(DeleteTransactions(transaction));
-        // context.read<WalletBloc>().add(UpdateWallet(transaction.wallet));
       },
     );
   }

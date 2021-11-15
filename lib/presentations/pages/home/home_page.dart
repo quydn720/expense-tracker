@@ -15,6 +15,7 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             TopNavigation(),
             LineChartWidget(),

@@ -68,7 +68,7 @@ class WalletEntity extends Equatable {
   factory WalletEntity.fromMap(Map<String, dynamic> map) {
     return WalletEntity(
       id: map['id'],
-      amount: map['amount'],
+      amount: map['amount'].toDouble(),
       name: map['name'],
       iconPath: map['iconPath'],
       color: Color(map['color']),

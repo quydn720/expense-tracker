@@ -69,7 +69,7 @@ class AnotherPage extends StatelessWidget {
                 children: [
                   AppBar(
                     leadingWidth: 150,
-                    leading: Chip(label: Text('November')),
+                    leading: const Chip(label: Text('November')),
                     actions: [
                       IconButton(
                         onPressed: () {},

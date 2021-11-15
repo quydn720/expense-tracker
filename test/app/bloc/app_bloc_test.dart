@@ -18,7 +18,7 @@ void main() {
   group('AppBloc', () {
     late SharedPreferences sharedPreferences;
     late AuthenticationRepository authenticationRepository;
-    final user = MockUser();
+    // final user = MockUser();
 
     setUp(() {
       authenticationRepository = MockAuthenticationRepository();

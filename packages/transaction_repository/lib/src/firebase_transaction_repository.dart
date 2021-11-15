@@ -2,31 +2,48 @@ import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:transaction_repository/src/entities/entities.dart';
 import 'package:transaction_repository/src/models/transaction.dart';
 import 'package:transaction_repository/src/transaction_repository.dart';
+import 'package:wallet_repository/wallet_repository.dart';
 
 const cachedTransactionKey = 'cached_transaction_key';
 
 class FirebaseTransactionRepository implements TransactionRepository {
   final transactionCollection =
       firestore.FirebaseFirestore.instance.collection('transactions');
-  final walletCollection =
-      firestore.FirebaseFirestore.instance.collection('wallets');
+
+  //TODO: Should move to one app-data-repo for consistency
+  final WalletRepository walletRepository;
 
   final Map<String, List<Transaction>> cachedTransactions;
 
-  FirebaseTransactionRepository({required this.cachedTransactions});
-// TODO: A AppRepo wrapper - with all 3 repo
-// When we add transaction, we want to call update wallet at WalletRepo
+  FirebaseTransactionRepository({
+    required this.walletRepository,
+    required this.cachedTransactions,
+  });
 
   @override
   Future<void> addNewTransaction(Transaction transaction) {
+    final updatedTransaction = transaction.copyWith(
+      wallet: transaction.wallet
+          .copyWith(amount: transaction.wallet.amount + transaction.amount * 1),
+    );
+    walletRepository.updateWallet(
+      transaction.wallet.copyWith(amount: updatedTransaction.wallet.amount),
+    );
     return transactionCollection
-        .doc(transaction.id)
-        .set(transaction.toEntity().toDocument());
+        .doc(updatedTransaction.id)
+        .set(updatedTransaction.toEntity().toDocument());
   }
 
   @override
   Future<void> deleteTransaction(Transaction transaction) async {
-    return transactionCollection.doc(transaction.id).delete();
+    final updatedTransaction = transaction.copyWith(
+      wallet: transaction.wallet.copyWith(
+          amount: transaction.wallet.amount + transaction.amount * -1),
+    );
+    walletRepository.updateWallet(
+      transaction.wallet.copyWith(amount: updatedTransaction.wallet.amount),
+    );
+    return transactionCollection.doc(updatedTransaction.id).delete();
   }
 
   @override

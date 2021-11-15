@@ -37,35 +37,43 @@ class LineChartWidget extends StatelessWidget {
                 final spots = dailyTotal.entries
                     .map((e) => FlSpot(e.key.day.toDouble(), e.value))
                     .toList();
-                return LineChart(
-                  LineChartData(
-                    gridData: FlGridData(show: false),
-                    titlesData: FlTitlesData(show: false),
-                    borderData: FlBorderData(show: false),
-                    minX: spots.map((e) => e.x).reduce((a, b) => a < b ? a : b),
-                    maxX: spots.map((e) => e.x).reduce((a, b) => a > b ? a : b),
-                    minY: 0,
-                    maxY:
-                        dailyTotal.values.reduce((c, n) => c > n ? c : n) + 15,
-                    lineBarsData: [
-                      LineChartBarData(
-                        spots: spots,
-                        isCurved: false,
-                        colors: [kViolet100],
-                        barWidth: 5,
-                        isStrokeCapRound: true,
-                        dotData: FlDotData(
-                            show: false, checkToShowDot: (spot, data) => false),
-                        belowBarData: BarAreaData(
-                          show: true,
-                          colors: [kViolet100]
-                              .map((color) => color.withOpacity(0.2))
-                              .toList(),
+                return spots.isNotEmpty
+                    ? LineChart(
+                        LineChartData(
+                          gridData: FlGridData(show: false),
+                          titlesData: FlTitlesData(show: false),
+                          borderData: FlBorderData(show: false),
+                          minX: spots
+                              .map((e) => e.x)
+                              .reduce((a, b) => a < b ? a : b),
+                          maxX: spots
+                              .map((e) => e.x)
+                              .reduce((a, b) => a > b ? a : b),
+                          minY: 0,
+                          maxY: dailyTotal.values
+                                  .reduce((c, n) => c > n ? c : n) +
+                              15,
+                          lineBarsData: [
+                            LineChartBarData(
+                              spots: spots,
+                              isCurved: false,
+                              colors: [kViolet100],
+                              barWidth: 5,
+                              isStrokeCapRound: true,
+                              dotData: FlDotData(
+                                  show: false,
+                                  checkToShowDot: (spot, data) => false),
+                              belowBarData: BarAreaData(
+                                show: true,
+                                colors: [kViolet100]
+                                    .map((color) => color.withOpacity(0.2))
+                                    .toList(),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                );
+                      )
+                    : const SizedBox(height: 180);
               } else {
                 return Container();
               }

@@ -2,13 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:transaction_repository/src/entities/entities.dart';
 import 'package:uuid/uuid.dart';
+import 'package:wallet_repository/wallet_repository.dart';
 
 @immutable
 class Transaction {
   final String id;
   final double amount;
   final String category;
-  final String wallet;
+  final Wallet wallet;
   final String description;
   final TransactionType type;
   final DateTime date;
@@ -53,7 +54,7 @@ class Transaction {
     String? id,
     double? amount,
     String? category,
-    String? wallet,
+    Wallet? wallet,
     String? description,
     TransactionType? type,
   }) {
