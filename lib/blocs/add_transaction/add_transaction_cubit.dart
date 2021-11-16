@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bloc/bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
@@ -16,7 +18,10 @@ class AddTransactionCubit extends Cubit<AddTransactionState> {
       state.copyWith(
         amount: amount,
         status: Formz.validate(
-          [amount],
+          [
+            amount,
+            state.wallet,
+          ],
         ),
       ),
     );
@@ -27,7 +32,17 @@ class AddTransactionCubit extends Cubit<AddTransactionState> {
   }
 
   void walletChanged(Wallet wallet) {
-    emit(state.copyWith(wallet: wallet));
+    final w = Wallet.dirty(
+        wallet.id, wallet.amount, wallet.name, wallet.iconPath, wallet.color);
+    emit(state.copyWith(
+      wallet: wallet,
+      status: Formz.validate(
+        [
+          state.amount,
+          w,
+        ],
+      ),
+    ));
   }
 
   void descriptionChanged(String description) {

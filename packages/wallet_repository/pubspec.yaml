@@ -12,6 +12,7 @@ dependencies:
   equatable: ^2.0.3
   flutter:
     sdk: flutter
+  formz: ^0.4.1
   uuid: ^3.0.5
 
 dev_dependencies:

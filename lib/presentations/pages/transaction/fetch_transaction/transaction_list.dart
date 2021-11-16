@@ -20,22 +20,25 @@ class TransactionPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppBar(
-                    leadingWidth: 150,
-                    leading: const Chip(label: Text('November')),
-                    actions: [
-                      IconButton(
-                        onPressed: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return const FilterBottomSheet();
-                            },
-                          );
-                        },
-                        icon: Image.asset('assets/icons/sort.png'),
-                      )
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: kMediumPadding),
+                    child: AppBar(
+                      leadingWidth: 150,
+                      leading: const Chip(label: Text('November')),
+                      actions: [
+                        IconButton(
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return const FilterBottomSheet();
+                              },
+                            );
+                          },
+                          icon: Image.asset('assets/icons/sort.png'),
+                        )
+                      ],
+                    ),
                   ),
                   Container(
                     decoration: BoxDecoration(

@@ -13,7 +13,6 @@ class AccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black),
         title: const Text('Account', style: TextStyle(color: Colors.black)),
         backgroundColor: Colors.white,
       ),

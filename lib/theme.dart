@@ -16,10 +16,12 @@ final theme = ThemeData(
     ),
   ),
   appBarTheme: AppBarTheme(
-      centerTitle: true,
-      elevation: 0,
-      backgroundColor: Colors.white,
-      titleTextStyle: title3.copyWith(color: kDark100)),
+    centerTitle: true,
+    elevation: 0,
+    backgroundColor: Colors.white,
+    titleTextStyle: title3.copyWith(color: kDark100),
+    iconTheme: const IconThemeData(color: Colors.black),
+  ),
   scaffoldBackgroundColor: kLight100,
   bottomSheetTheme: bottomSheetThemeData,
 );

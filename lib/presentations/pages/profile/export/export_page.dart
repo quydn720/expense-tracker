@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/bars.dart';
-import 'package:expense_tracker/presentations/components/default_app_widget.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
 
 import 'export_result_page.dart';
@@ -20,7 +19,8 @@ class _ExportPageState extends State<ExportPage> {
   int _selected = 0;
   @override
   Widget build(BuildContext context) {
-    return DefaultAppWidget(
+    return Scaffold(
+      appBar: AppBar(title: const Text('Export')),
       body: Padding(
         padding: const EdgeInsets.all(kMediumPadding),
         child: Column(
@@ -71,7 +71,6 @@ class _ExportPageState extends State<ExportPage> {
           ],
         ),
       ),
-      title: 'Export Data',
     );
   }
 }
