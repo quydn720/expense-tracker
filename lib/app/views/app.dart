@@ -1,5 +1,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:expense_tracker/app/bloc/app_bloc.dart';
+import 'package:expense_tracker/blocs/filter/filter_bloc.dart';
 import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
 import 'package:expense_tracker/injector.dart';
@@ -41,6 +42,10 @@ class App extends StatelessWidget {
             create: (context) => WalletBloc(
               walletRepository,
             )..add(const LoadWallets()),
+          ),
+          BlocProvider<FilterBloc>(
+            create: (context) =>
+                FilterBloc(transactionBloc: context.read<TransactionBloc>()),
           ),
         ],
         child: const AppView(),
