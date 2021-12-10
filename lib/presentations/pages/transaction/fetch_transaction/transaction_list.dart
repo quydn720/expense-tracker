@@ -1,3 +1,4 @@
+import 'package:expense_tracker/blocs/filter/filter_bloc.dart';
 import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
@@ -13,9 +14,12 @@ class TransactionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocBuilder<TransactionBloc, TransactionState>(
+      child: BlocBuilder<FilterBloc, FilterState>(
         builder: (context, state) {
-          if (state is TransactionLoaded) {
+          if (state is FilterLoading) {
+            return const CircularProgressIndicator();
+          } else if (state is FilterLoaded) {
+            final transactions = state.transactions;
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,9 +34,7 @@ class TransactionPage extends StatelessWidget {
                           onPressed: () {
                             showModalBottomSheet(
                               context: context,
-                              builder: (context) {
-                                return const FilterBottomSheet();
-                              },
+                              builder: (context) => const FilterBottomSheet(),
                             );
                           },
                           icon: Image.asset('assets/icons/sort.png'),
@@ -69,6 +71,9 @@ class TransactionPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  ...transactions
+                      .map((e) => TransactionTile(transaction: e))
+                      .toList(),
                   ...context
                       .read<TransactionBloc>()
                       .transactionRepository
@@ -100,7 +105,7 @@ class TransactionPage extends StatelessWidget {
               ),
             );
           } else {
-            return const CircularProgressIndicator();
+            return const SizedBox();
           }
         },
       ),

@@ -22,9 +22,10 @@ class FirebaseTransactionRepository implements TransactionRepository {
 
   @override
   Future<void> addNewTransaction(Transaction transaction) {
+    int offset = transaction.type == TransactionType.income ? 1 : -1;
     final updatedTransaction = transaction.copyWith(
-      wallet: transaction.wallet
-          .copyWith(amount: transaction.wallet.amount + transaction.amount * 1),
+      wallet: transaction.wallet.copyWith(
+          amount: transaction.wallet.amount + transaction.amount * offset),
     );
     walletRepository.updateWallet(
       transaction.wallet.copyWith(amount: updatedTransaction.wallet.amount),
@@ -36,9 +37,11 @@ class FirebaseTransactionRepository implements TransactionRepository {
 
   @override
   Future<void> deleteTransaction(Transaction transaction) async {
+    int offset = transaction.type == TransactionType.income ? -1 : 1;
+
     final updatedTransaction = transaction.copyWith(
       wallet: transaction.wallet.copyWith(
-          amount: transaction.wallet.amount + transaction.amount * -1),
+          amount: transaction.wallet.amount + transaction.amount * offset),
     );
     walletRepository.updateWallet(
       transaction.wallet.copyWith(amount: updatedTransaction.wallet.amount),

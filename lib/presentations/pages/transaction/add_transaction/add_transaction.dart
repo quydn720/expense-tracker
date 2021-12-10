@@ -19,6 +19,7 @@ class AddNewTransactionPage extends StatelessWidget {
       create: (context) => AddTransactionCubit(),
       child: Scaffold(
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
           title: const Text('Expense', style: TextStyle(color: Colors.white)),
           backgroundColor: kRed100,
         ),
@@ -72,12 +73,14 @@ class AddTransactionForm extends StatelessWidget {
           child: Column(
             children: [
               _CategoryDropdown(items: items),
+              const SizedBox(height: kMediumPadding),
               const _DescriptionInput(),
+              const SizedBox(height: kMediumPadding),
               _WalletDropdown(
-                  items: context
-                      .read<WalletBloc>()
-                      .walletRepository
-                      .currentWallets),
+                items:
+                    context.read<WalletBloc>().walletRepository.currentWallets,
+              ),
+              const SizedBox(height: kMediumPadding),
               const _SubmitButton(),
             ],
           ),
@@ -104,118 +107,13 @@ class _AmountInput extends StatelessWidget {
             final amount = double.tryParse(v);
             context.read<AddTransactionCubit>().amountChanged(amount ?? 0);
           },
+          style: titleX.copyWith(color: kLight80),
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: '0',
             hintStyle: titleX.copyWith(color: kLight80),
             prefixIcon: Text('\$', style: titleX.copyWith(color: kLight80)),
-            helperText: '',
           ),
-        );
-      },
-    );
-  }
-}
-
-class _SubmitButton extends StatelessWidget {
-  const _SubmitButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AddTransactionCubit, AddTransactionState>(
-      buildWhen: (previous, current) => previous.status != current.status,
-      builder: (context, state) {
-        return DefaultButton(
-          title: 'Add',
-          onPressed:
-              context.read<AddTransactionCubit>().state.status.isValidated
-                  ? () {
-                      final addBloc = context.read<AddTransactionCubit>().state;
-                      context.read<TransactionBloc>().add(
-                            AddTransactions(
-                              Transaction(
-                                amount: addBloc.amount.value,
-                                category: addBloc.category,
-                                type: TransactionType.expense,
-                                wallet: addBloc.wallet!,
-                                description: addBloc.description,
-                                date: DateTime.now(),
-                              ),
-                            ),
-                          );
-                      // final cAmount = addBloc.wallet!.amount;
-                      // final e = addBloc.amount.value;
-                      // context.read<WalletBloc>().add(UpdateWallet(
-                      //     addBloc.wallet!.copyWith(amount: cAmount + e)));
-                      Navigator.pop(context);
-                    }
-                  : null,
-        );
-      },
-    );
-  }
-}
-
-class _WalletDropdown extends StatelessWidget {
-  const _WalletDropdown({
-    Key? key,
-    required this.items,
-  }) : super(key: key);
-
-  final List<Wallet> items;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AddTransactionCubit, AddTransactionState>(
-      buildWhen: (previous, current) => previous.wallet != current.wallet,
-      builder: (context, state) {
-        return DropdownButtonFormField<Wallet>(
-          key: const Key('addTransactionForm_wallet_buttomFormField'),
-          hint: const Text('Wallet'),
-          onChanged: (v) {
-            context.read<AddTransactionCubit>().walletChanged(v!);
-          },
-          items: items
-              .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
-              .toList(),
-          icon: Padding(
-            padding: const EdgeInsets.only(right: kDefaultPadding),
-            child: Image.asset(
-              'assets/icons/arrow-down-2.png',
-              color: kViolet100,
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _DescriptionInput extends StatelessWidget {
-  const _DescriptionInput({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AddTransactionCubit, AddTransactionState>(
-      buildWhen: (previous, current) =>
-          previous.description != current.description,
-      builder: (context, state) {
-        return TextField(
-          key: const Key('addTransactionForm_description_textField'),
-          keyboardType: TextInputType.text,
-          textInputAction: TextInputAction.done,
-          onChanged: (v) {
-            context.read<AddTransactionCubit>().descriptionChanged(v);
-          },
-          decoration: const InputDecoration(
-            labelText: 'Description',
-            helperText: '',
-          ),
-          scrollPadding: EdgeInsets.zero,
         );
       },
     );
@@ -251,6 +149,107 @@ class _CategoryDropdown extends StatelessWidget {
               color: kViolet100,
             ),
           ),
+        );
+      },
+    );
+  }
+}
+
+class _DescriptionInput extends StatelessWidget {
+  const _DescriptionInput({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AddTransactionCubit, AddTransactionState>(
+      buildWhen: (previous, current) =>
+          previous.description != current.description,
+      builder: (context, state) {
+        return TextField(
+          key: const Key('addTransactionForm_description_textField'),
+          keyboardType: TextInputType.text,
+          maxLines: 1,
+          textInputAction: TextInputAction.done,
+          onChanged: (v) {
+            context.read<AddTransactionCubit>().descriptionChanged(v);
+          },
+          decoration: const InputDecoration(
+            labelText: 'Description',
+          ),
+          scrollPadding: EdgeInsets.zero,
+        );
+      },
+    );
+  }
+}
+
+class _WalletDropdown extends StatelessWidget {
+  const _WalletDropdown({
+    Key? key,
+    required this.items,
+  }) : super(key: key);
+
+  final List<Wallet> items;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AddTransactionCubit, AddTransactionState>(
+      buildWhen: (previous, current) => previous.wallet != current.wallet,
+      builder: (context, state) {
+        return DropdownButtonFormField<Wallet>(
+          key: const Key('addTransactionForm_wallet_buttomFormField'),
+          hint: const Text('Wallet (required)'),
+          onChanged: (v) {
+            context.read<AddTransactionCubit>().walletChanged(v!);
+          },
+          items: items
+              .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
+              .toList(),
+          icon: Padding(
+            padding: const EdgeInsets.only(right: kDefaultPadding),
+            child: Image.asset(
+              'assets/icons/arrow-down-2.png',
+              color: kViolet100,
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _SubmitButton extends StatelessWidget {
+  const _SubmitButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AddTransactionCubit, AddTransactionState>(
+      buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) {
+        return DefaultButton(
+          title: 'Add',
+          onPressed:
+              context.read<AddTransactionCubit>().state.status.isValidated
+                  ? () {
+                      final addBloc = context.read<AddTransactionCubit>().state;
+                      context.read<TransactionBloc>().add(
+                            AddTransactions(
+                              Transaction(
+                                amount: addBloc.amount.value,
+                                category: addBloc.category,
+                                type: TransactionType.expense,
+                                wallet: addBloc.wallet,
+                                description: addBloc.description,
+                                date: DateTime.now(),
+                              ),
+                            ),
+                          );
+                      Navigator.pop(context);
+                    }
+                  : null,
         );
       },
     );

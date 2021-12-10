@@ -1,4 +1,5 @@
 import 'package:expense_tracker/app/app.dart';
+import 'package:expense_tracker/presentations/components/transaction_tile.dart';
 import 'package:expense_tracker/presentations/pages/forgot_password/forgot_pw_page.dart';
 import 'package:expense_tracker/presentations/pages/home/home_page.dart';
 import 'package:expense_tracker/presentations/pages/login/login_page.dart';
@@ -47,5 +48,5 @@ final Map<String, WidgetBuilder> routes = {
   SettingPage.routeName: (context) => const SettingPage(),
   ExportPage.routeName: (context) => const ExportPage(),
   ExportDataPromptPage.routeName: (context) => const ExportDataPromptPage(),
-  // TransactionDetailPage.routeName: (context) => const TransactionDetailPage(),
+  TransactionDetailPage.routeName: (context) => const TransactionDetailPage(),
 };

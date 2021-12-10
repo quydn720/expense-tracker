@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
-  static String routeName = '/daily_page';
+  static String routeName = '/home_page';
   const HomePage({Key? key}) : super(key: key);
 
   @override
