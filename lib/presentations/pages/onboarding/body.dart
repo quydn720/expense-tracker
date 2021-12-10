@@ -1,7 +1,8 @@
+import 'package:expense_tracker/presentations/pages/login/login_page.dart';
+import 'package:expense_tracker/signup/views/signup_page.dart';
+
 import '../../../constants.dart';
 import '../../../size_config.dart';
-import '../authentication/sign_in/sign_in_page.dart';
-import '../authentication/sign_up/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/default_button.dart';
@@ -83,18 +84,16 @@ class _BodyState extends State<Body> {
                 children: [
                   DefaultButton(
                     title: 'Sign in',
-                    onPress: () => Navigator.pushNamed(
-                      context,
-                      SignInPage.routeName,
+                    onPressed: () => Navigator.of(context).push<void>(
+                      SignInPage.route(),
                     ),
                   ),
                   const SizedBox(height: kMediumPadding),
                   DefaultButton(
                     isSecondary: true,
                     title: 'Sign up',
-                    onPress: () => Navigator.pushNamed(
-                      context,
-                      SignUpPage.routeName,
+                    onPressed: () => Navigator.of(context).push<void>(
+                      SignUpPage.route(),
                     ),
                   ),
                 ],

@@ -1,138 +1,66 @@
-import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
-import 'package:expense_tracker/domain/transaction/transaction.dart';
-import 'package:expense_tracker/presentations/components/tabs.dart';
-import 'package:expense_tracker/presentations/pages/home/components/line_chard_widget.dart';
+import 'package:expense_tracker/constants.dart';
+import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:flutter/material.dart';
+import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../constants.dart';
-import '../../components/bars.dart';
-import 'components/top_navigation.dart';
-import 'components/transaction_card.dart';
-import 'package:expense_tracker/utils/collection_extension.dart';
+import 'widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
-  static String routeName = '/daily_page';
-  static const int maxTransactionDisplayed = 5;
+  static String routeName = '/home_page';
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TransactionWatcherBloc, TransactionWatcherState>(
-      builder: (context, state) {
-        return state.map(
-          initial: (_) => Container(),
-          loadingProgress: (_) => const Center(
-            child: CircularProgressIndicator(),
-          ),
-          loadSuccess: (state) {
-            final map =
-                state.transactions.groupBy<TransactionType>((t) => t.type);
-            return SafeArea(
-              child: Scaffold(
-                body: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TopNavigation(data: map),
-                      const DefaultBar(
-                        title: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('Spend Frequency', style: title3),
-                        ),
-                      ),
-                      LineChartWidget(
-                        data: state.transactions.groupBy(
-                          (t) => DateTime(
-                            t.date.year,
-                            t.date.month,
-                            t.date.day,
-                          ),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Tabs(
-                          children: [
-                            Chip(
-                              backgroundColor: kYellow20,
-                              label: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text('Today'),
-                              ),
-                            ),
-                            Chip(
-                              backgroundColor: kLight100,
-                              label: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text('Week'),
-                              ),
-                            ),
-                            Chip(
-                              backgroundColor: kLight100,
-                              label: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text('Month'),
-                              ),
-                            ),
-                            Chip(
-                              backgroundColor: kLight100,
-                              label: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text('Year'),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      DefaultBar(
-                        title: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('Recent Transaction', style: title3),
-                        ),
-                        trailing: Chip(
-                          backgroundColor: const Color(0xffF1F1FA),
-                          label: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: kDefaultPadding),
-                            child: Text(
-                              'See All',
-                              style: body3.copyWith(color: kViolet100),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          final transaction = state.transactions[index];
-                          return TransactionCard(
-                            elevation: 2,
-                            transaction: transaction,
-                          );
-                        },
-                        itemCount: (state.transactions.length <
-                                maxTransactionDisplayed)
-                            ? state.transactions.length
-                            : maxTransactionDisplayed,
-                      ),
-                      const SizedBox(height: kMediumPadding),
-                    ],
-                  ),
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            TopNavigation(),
+            LineChartWidget(),
+            HomeView(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomeView extends StatelessWidget {
+  const HomeView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: BlocBuilder<TransactionBloc, TransactionState>(
+        builder: (context, state) {
+          if (state is TransactionLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is TransactionLoaded) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text('Recent Transaction', style: title3),
                 ),
-              ),
+                Column(
+                  children: state.transactions
+                      .map((t) => TransactionTile(transaction: t))
+                      .toList(),
+                ),
+              ],
             );
-          },
-          loadFailure: (_) {
-            return Container(
-              color: kRed100,
-              height: 100,
-              width: double.infinity,
-            );
-          },
-        );
-      },
+          } else {
+            return Container();
+          }
+        },
+      ),
     );
   }
 }

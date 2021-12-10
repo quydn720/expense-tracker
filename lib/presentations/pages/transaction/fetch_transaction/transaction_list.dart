@@ -1,119 +1,112 @@
-import 'package:expense_tracker/app/transaction/transaction_watcher_bloc.dart';
+import 'package:expense_tracker/blocs/filter/filter_bloc.dart';
+import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/bars.dart';
-import 'package:expense_tracker/presentations/components/default_app_bar.dart';
-import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
-import 'package:expense_tracker/presentations/pages/home/components/pills.dart';
-import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/filter_bottom_sheet.dart';
-import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/list_transaction_with_day_header.dart';
-import 'package:expense_tracker/utils/collection_extension.dart';
+import 'package:expense_tracker/presentations/components/common_components.dart';
+import 'package:expense_tracker/utils/extension_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'filter_bottom_sheet.dart';
 
 class TransactionPage extends StatelessWidget {
   const TransactionPage({Key? key}) : super(key: key);
   static String routeName = '/transaction_page';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: DefaultAppBar(
-        lead: ExpandedPill(
-          label: Text(
-            'September',
-            style: body3.copyWith(color: kDark100),
-          ),
-          onTap: () {},
-        ),
-        trail: Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: kMediumPadding, vertical: kDefaultPadding),
-          child: GestureDetector(
-            onTap: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return const FilterBottomSheet();
-                },
-              );
-            },
-            child: const SquaredIconCard(
-              size: 48,
-              imagePath: 'assets/icons/sort.png',
-            ),
-          ),
-        ),
-      ),
-      body: const TransPageBody(),
-    );
-  }
-}
-
-//* Deal with the data - filtering is now being handle at the client side
-
-class TransPageBody extends StatelessWidget {
-  const TransPageBody({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(kMediumPadding),
-      child: BlocBuilder<TransactionWatcherBloc, TransactionWatcherState>(
+    return SafeArea(
+      child: BlocBuilder<FilterBloc, FilterState>(
         builder: (context, state) {
-          return state.map(
-            initial: (_) => Container(),
-            loadingProgress: (_) => const Center(
-              child: CircularProgressIndicator(),
-            ),
-            loadSuccess: (state) {
-              final map = state.transactions.groupBy(
-                (t) => DateTime(
-                  t.date.year,
-                  t.date.month,
-                  t.date.day,
-                ),
-              );
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    DefaultBar(
-                      onTap: () {},
+          if (state is FilterLoading) {
+            return const CircularProgressIndicator();
+          } else if (state is FilterLoaded) {
+            final transactions = state.transactions;
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: kMediumPadding),
+                    child: AppBar(
+                      leadingWidth: 150,
+                      leading: const Chip(label: Text('November')),
+                      actions: [
+                        IconButton(
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) => const FilterBottomSheet(),
+                            );
+                          },
+                          icon: Image.asset('assets/icons/sort.png'),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
                       color: kViolet20,
-                      title: Padding(
-                        padding: const EdgeInsets.all(kMediumPadding),
-                        child: Text(
-                          'See your finanical report',
-                          style: body3.copyWith(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    margin: const EdgeInsets.all(kMediumPadding),
+                    padding: const EdgeInsets.only(
+                      left: kMediumPadding,
+                      top: kDefaultPadding,
+                      bottom: kDefaultPadding,
+                      right: kDefaultPadding,
+                    ),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'See your finanical report',
+                            style: body3.copyWith(color: kViolet100),
+                          ),
+                          Image.asset(
+                            'assets/icons/arrow-right-2.png',
                             color: kViolet100,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  ...transactions
+                      .map((e) => TransactionTile(transaction: e))
+                      .toList(),
+                  ...context
+                      .read<TransactionBloc>()
+                      .transactionRepository
+                      .mapDateTransaction
+                      .entries
+                      .map(
+                        (e) => Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: kMediumPadding,
+                            vertical: kDefaultPadding,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Text(e.key.onlyDateFormatted,
+                                    style: title3),
+                              ),
+                              ...e.value
+                                  .map((e) => TransactionTile(transaction: e))
+                                  .toList(),
+                            ],
                           ),
                         ),
                       ),
-                      trailing: Padding(
-                        padding: const EdgeInsets.all(kDefaultPadding),
-                        child: Image.asset(
-                          'assets/icons/arrow-right-2.png',
-                          color: kViolet100,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      children: map.entries
-                          .map((e) => ListTransactionWithHeader(map: e))
-                          .toList(),
-                    ),
-                  ],
-                ),
-              );
-            },
-            loadFailure: (state) {
-              return Container(
-                color: kRed100,
-                height: 100,
-                width: double.infinity,
-              );
-            },
-          );
+                ],
+              ),
+            );
+          } else {
+            return const SizedBox();
+          }
         },
       ),
     );

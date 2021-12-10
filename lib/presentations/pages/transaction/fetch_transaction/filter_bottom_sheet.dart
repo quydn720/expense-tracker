@@ -1,14 +1,14 @@
+import 'package:expense_tracker/blocs/filter/filter_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/bars.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:expense_tracker/presentations/components/tabs.dart';
 import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FilterBottomSheet extends StatelessWidget {
-  const FilterBottomSheet({
-    Key? key,
-  }) : super(key: key);
+  const FilterBottomSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,28 +40,25 @@ class FilterBottomSheet extends StatelessWidget {
               color: kDark100,
             ),
           ),
-          const Tabs(
+          Row(
             children: [
-              Chip(
-                backgroundColor: kViolet20,
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text('Income'),
-                ),
+              TextButton(
+                onPressed: () => context.read<FilterBloc>().add(
+                      const FilterChanged(
+                        ActiveFilter.expense,
+                        ActiveSort.highest,
+                      ),
+                    ),
+                child: Text('Expense'),
               ),
-              Chip(
-                backgroundColor: kLight100,
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text('Expense'),
-                ),
-              ),
-              Chip(
-                backgroundColor: kLight100,
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text('Transfer'),
-                ),
+              TextButton(
+                onPressed: () => context.read<FilterBloc>().add(
+                      const FilterChanged(
+                        ActiveFilter.income,
+                        ActiveSort.lowest,
+                      ),
+                    ),
+                child: Text('Income'),
               ),
             ],
           ),
@@ -70,6 +67,46 @@ class FilterBottomSheet extends StatelessWidget {
             style: title3.copyWith(
               color: kDark100,
             ),
+          ),
+          Row(
+            children: [
+              TextButton(
+                onPressed: () => context.read<FilterBloc>().add(
+                      const FilterChanged(
+                        ActiveFilter.empty,
+                        ActiveSort.highest,
+                      ),
+                    ),
+                child: Text('Highest'),
+              ),
+              TextButton(
+                onPressed: () => context.read<FilterBloc>().add(
+                      const FilterChanged(
+                        ActiveFilter.empty,
+                        ActiveSort.lowest,
+                      ),
+                    ),
+                child: Text('Lowest'),
+              ),
+              TextButton(
+                onPressed: () => context.read<FilterBloc>().add(
+                      const FilterChanged(
+                        ActiveFilter.empty,
+                        ActiveSort.newest,
+                      ),
+                    ),
+                child: Text('Newest'),
+              ),
+              TextButton(
+                onPressed: () => context.read<FilterBloc>().add(
+                      const FilterChanged(
+                        ActiveFilter.empty,
+                        ActiveSort.oldest,
+                      ),
+                    ),
+                child: Text('Oldest'),
+              ),
+            ],
           ),
           const Tabs(
             children: [
@@ -133,7 +170,7 @@ class FilterBottomSheet extends StatelessWidget {
           const SizedBox(height: kDefaultPadding),
           DefaultButton(
             title: 'Apply',
-            onPress: () {},
+            onPressed: () {},
           ),
         ],
       ),
