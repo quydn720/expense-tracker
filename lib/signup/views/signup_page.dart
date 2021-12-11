@@ -1,5 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:expense_tracker/constants.dart';
+import 'package:expense_tracker/presentations/pages/login/login_page.dart';
+import 'package:expense_tracker/presentations/pages/login/widgets.dart';
 import 'package:expense_tracker/signup/cubit/signup_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +25,18 @@ class SignUpPage extends StatelessWidget {
       ),
       body: BlocProvider<SignupCubit>(
         create: (_) => SignupCubit(context.read<AuthenticationRepository>()),
-        child: const SignUpForm(),
+        child: Column(
+          children: [
+            const SignUpForm(),
+            HyperlinkText(
+              linkText: 'Login',
+              normalText: 'Already have an account? ',
+              onTap: () {
+                Navigator.of(context).push<void>(SignInPage.route());
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

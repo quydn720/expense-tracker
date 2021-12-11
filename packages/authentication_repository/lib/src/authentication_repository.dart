@@ -191,8 +191,8 @@ class AuthenticationRepository {
   /// Returns the current cached user.
   /// Defaults to [User.empty] if there is no cached user.
   User get currentUser {
-    return _firebaseAuth.currentUser!.toUser;
-    // _cache.read<User>(key: userCacheKey) ?? User.empty;
+    // _firebaseAuth.currentUser!.toUser;
+    return _cache.read<User>(key: userCacheKey) ?? User.empty;
   }
 
   /// Creates a new user with the provided [email] and [password].

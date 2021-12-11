@@ -13,11 +13,12 @@ import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
 
 class App extends StatelessWidget {
-  const App(
-      {Key? key,
-      required this.authenticationRepository,
-      required this.walletRepository})
-      : super(key: key);
+  const App({
+    Key? key,
+    required this.authenticationRepository,
+    required this.walletRepository,
+  }) : super(key: key);
+
   final AuthenticationRepository authenticationRepository;
   final FirebaseWalletRepository walletRepository;
   @override
@@ -30,7 +31,7 @@ class App extends StatelessWidget {
             create: (context) => AppBloc(
               authenticationRepository: authenticationRepository,
               sharedPreferences: getIt<SharedPreferences>(),
-            ),
+            )..add(const AppStarted()),
           ),
           BlocProvider<TransactionBloc>(
             create: (context) => TransactionBloc(

@@ -84,7 +84,7 @@ class _BodyState extends State<Body> {
                 children: [
                   DefaultButton(
                     title: 'Sign in',
-                    onPressed: () => Navigator.of(context).push<void>(
+                    onPressed: () => Navigator.of(context).pushReplacement(
                       SignInPage.route(),
                     ),
                   ),
@@ -92,7 +92,7 @@ class _BodyState extends State<Body> {
                   DefaultButton(
                     isSecondary: true,
                     title: 'Sign up',
-                    onPressed: () => Navigator.of(context).push<void>(
+                    onPressed: () => Navigator.of(context).pushReplacement(
                       SignUpPage.route(),
                     ),
                   ),
