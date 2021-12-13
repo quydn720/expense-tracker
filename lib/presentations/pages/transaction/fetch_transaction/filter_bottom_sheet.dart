@@ -27,12 +27,7 @@ class FilterBottomSheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ResetFilter(filterBloc: _filterBloc),
-          Text(
-            'Filter by',
-            style: title3.copyWith(
-              color: kDark100,
-            ),
-          ),
+          Text('Filter by', style: title3.copyWith(color: kDark100)),
           Wrap(
             spacing: 16,
             children: [
@@ -48,10 +43,7 @@ class FilterBottomSheet extends StatelessWidget {
               ),
             ],
           ),
-          Text(
-            'Sort by',
-            style: title3.copyWith(color: kDark100),
-          ),
+          Text('Sort by', style: title3.copyWith(color: kDark100)),
           Wrap(
             spacing: 16,
             children: [
@@ -77,12 +69,7 @@ class FilterBottomSheet extends StatelessWidget {
               ),
             ],
           ),
-          Text(
-            'Category',
-            style: title3.copyWith(
-              color: kDark100,
-            ),
-          ),
+          Text('Category', style: title3.copyWith(color: kDark100)),
           DefaultBar(
             title: Text(
               'Choose category',

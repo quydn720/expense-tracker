@@ -80,7 +80,9 @@ class TransactionPage extends StatelessWidget {
                   ),
                   ...te.entries
                       .where(
-                        (element) => element.key.month == DateTime.now().month,
+                        // (element) => element.key.month == DateTime.now().month,
+                        (element) =>
+                            element.key.month == DateTime(2021, 11).month,
                       ) // TODO: equality with the choosen month
                       .map(
                         (e) => Padding(
