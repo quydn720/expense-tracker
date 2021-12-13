@@ -35,6 +35,11 @@ class LineChartWidget extends StatelessWidget {
                       ),
                     );
                 final spots = dailyTotal.entries
+                    .where(
+                      (e) =>
+                          e.key.month == DateTime.now().month &&
+                          e.key.year == DateTime.now().year,
+                    )
                     .map((e) => FlSpot(e.key.day.toDouble(), e.value))
                     .toList();
                 return spots.isNotEmpty

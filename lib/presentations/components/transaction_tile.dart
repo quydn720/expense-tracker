@@ -4,7 +4,7 @@ import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
 import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/src/provider.dart';
+import 'package:provider/provider.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
 class TransactionTile extends StatelessWidget {

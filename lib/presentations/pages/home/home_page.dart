@@ -19,6 +19,10 @@ class HomePage extends StatelessWidget {
           children: const [
             TopNavigation(),
             LineChartWidget(),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text('Recent Transaction', style: title3),
+            ),
             HomeView(),
           ],
         ),
@@ -41,20 +45,13 @@ class HomeView extends StatelessWidget {
           if (state is TransactionLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is TransactionLoaded) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text('Recent Transaction', style: title3),
-                ),
-                Column(
-                  children: state.transactions
-                      .map((t) => TransactionTile(transaction: t))
-                      .toList(),
-                ),
-              ],
+            return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 5,
+              itemBuilder: (_, index) {
+                return TransactionTile(transaction: state.transactions[index]);
+              },
             );
           } else {
             return Container();

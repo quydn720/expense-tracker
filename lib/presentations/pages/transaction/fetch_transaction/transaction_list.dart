@@ -1,10 +1,10 @@
 import 'package:expense_tracker/blocs/filter/filter_bloc.dart';
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:expense_tracker/utils/extension_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
 import 'filter_bottom_sheet.dart';
 
@@ -20,6 +20,13 @@ class TransactionPage extends StatelessWidget {
             return const CircularProgressIndicator();
           } else if (state is FilterLoaded) {
             final transactions = state.transactions;
+            var te = transactions.groupBy(
+              (trans) => DateTime(
+                trans.date.year,
+                trans.date.month,
+                trans.date.day,
+              ),
+            );
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +35,7 @@ class TransactionPage extends StatelessWidget {
                     padding: const EdgeInsets.only(right: kMediumPadding),
                     child: AppBar(
                       leadingWidth: 150,
-                      leading: const Chip(label: Text('November')),
+                      leading: const Chip(label: Text('December')),
                       actions: [
                         IconButton(
                           onPressed: () {
@@ -71,14 +78,10 @@ class TransactionPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ...transactions
-                      .map((e) => TransactionTile(transaction: e))
-                      .toList(),
-                  ...context
-                      .read<TransactionBloc>()
-                      .transactionRepository
-                      .mapDateTransaction
-                      .entries
+                  ...te.entries
+                      .where(
+                        (element) => element.key.month == DateTime.now().month,
+                      ) // TODO: equality with the choosen month
                       .map(
                         (e) => Padding(
                           padding: const EdgeInsets.symmetric(
