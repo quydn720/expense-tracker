@@ -2,7 +2,7 @@ import 'package:expense_tracker/blocs/login/login_cubit.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:expense_tracker/presentations/pages/forgot_password/forgot_pw_page.dart';
 import 'package:expense_tracker/presentations/pages/login/widgets.dart';
-import 'package:expense_tracker/signup/views/signup_page.dart';
+import 'package:expense_tracker/presentations/pages/signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';

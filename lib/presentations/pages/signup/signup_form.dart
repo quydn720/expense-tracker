@@ -1,7 +1,7 @@
+import 'package:expense_tracker/blocs/signup/signup_cubit.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:expense_tracker/presentations/pages/login/widgets.dart';
-import 'package:expense_tracker/signup/cubit/signup_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';

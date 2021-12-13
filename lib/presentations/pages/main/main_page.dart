@@ -1,7 +1,9 @@
 import 'package:expense_tracker/blocs/tab/tab_bloc.dart';
 import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
+import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:expense_tracker/presentations/pages/home/home_page.dart';
+import 'package:expense_tracker/presentations/pages/login/widgets.dart';
 import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
 import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/transaction_list.dart';
 import 'package:expense_tracker/size_config.dart';
@@ -44,7 +46,7 @@ class MainPage extends StatelessWidget {
 
   Widget getCurrentWidget(AppTab tab) {
     if (tab == AppTab.budget) {
-      return const AnotherPage();
+      return const BudgetPage();
     } else if (tab == AppTab.transaction) {
       return const TransactionPage();
     } else if (tab == AppTab.user) {
@@ -55,62 +57,70 @@ class MainPage extends StatelessWidget {
   }
 }
 
-class AnotherPage extends StatelessWidget {
-  const AnotherPage({Key? key}) : super(key: key);
+class BudgetPage extends StatelessWidget {
+  const BudgetPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocBuilder<TransactionBloc, TransactionState>(
-        builder: (context, state) {
-          if (state is TransactionLoaded) {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  AppBar(
-                    leadingWidth: 150,
-                    leading: const Chip(label: Text('November')),
-                    actions: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Image.asset('assets/icons/sort.png'),
-                      )
-                    ],
-                  ),
-                  ...context
-                      .read<TransactionBloc>()
-                      .transactionRepository
-                      .mapDateTransaction
-                      .entries
-                      .map(
-                        (e) => Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: kMediumPadding,
-                            vertical: kDefaultPadding,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Text(e.key.onlyDateFormatted,
-                                    style: title3),
-                              ),
-                              ...e.value
-                                  .map((e) => TransactionTile(transaction: e))
-                                  .toList(),
-                            ],
-                          ),
-                        ),
-                      ),
-                ],
+      child: Container(
+        color: kViolet100,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 140,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(
+                      'assets/icons/arrow-left-2.png',
+                      color: Colors.white,
+                    ),
+                    Text(
+                      'December',
+                      style: title3.copyWith(color: Colors.white),
+                    ),
+                    Image.asset(
+                      'assets/icons/arrow-right-2.png',
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
               ),
-            );
-          } else {
-            return const CircularProgressIndicator();
-          }
-        },
+            ),
+            Expanded(
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    topRight: Radius.circular(24),
+                  ),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Spacer(),
+                    Text('Let\'s make one so you in control'),
+                    Text('You don\'t have a budget.'),
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(kMediumPadding),
+                      child: DefaultButton(
+                        key: const Key('budgetPage_addNewBudget_button'),
+                        onPressed: () {},
+                        title: '+  Create a budget',
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

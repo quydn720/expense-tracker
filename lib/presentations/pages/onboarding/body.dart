@@ -1,6 +1,5 @@
 import 'package:expense_tracker/presentations/pages/login/login_page.dart';
-import 'package:expense_tracker/signup/views/signup_page.dart';
-
+import 'package:expense_tracker/presentations/pages/signup/signup_page.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 import 'package:flutter/material.dart';

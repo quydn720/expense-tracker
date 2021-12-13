@@ -1,4 +1,4 @@
-import 'package:expense_tracker/app/app.dart';
+import 'package:expense_tracker/blocs/app_bloc/app_bloc.dart';
 import 'package:expense_tracker/presentations/components/transaction_tile.dart';
 import 'package:expense_tracker/presentations/pages/forgot_password/forgot_pw_page.dart';
 import 'package:expense_tracker/presentations/pages/home/home_page.dart';

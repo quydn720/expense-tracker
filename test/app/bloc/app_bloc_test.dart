@@ -2,7 +2,7 @@
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
-import 'package:expense_tracker/app/bloc/app_bloc.dart';
+import 'package:expense_tracker/blocs/app_bloc/app_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
