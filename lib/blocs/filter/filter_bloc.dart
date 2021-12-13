@@ -12,59 +12,31 @@ part 'filter_bloc.freezed.dart';
 class FilterBloc extends Bloc<FilterEvent, FilterState> {
   final TransactionBloc transactionBloc;
   late StreamSubscription _transactionSubscription;
+
+  ActiveFilter _filter = ActiveFilter.empty;
+  ActiveSort _sort = ActiveSort.newest;
+
+  ActiveFilter get currentFilter => _filter;
+  ActiveSort get currentSort => _sort;
+
   FilterBloc({required this.transactionBloc})
-      : super(
-          transactionBloc.state is TransactionLoaded
-              ? FilterLoaded(
-                  (transactionBloc.state as TransactionLoaded).transactions,
-                  ActiveFilter.empty,
-                  ActiveSort.newest,
-                )
-              : const FilterLoading(),
-        ) {
+      : super(transactionBloc.state is TransactionLoaded
+            ? FilterLoaded(
+                (transactionBloc.state as TransactionLoaded).transactions,
+                ActiveFilter.empty,
+                ActiveSort.newest,
+              )
+            : const FilterLoading()) {
+    on<FilterReseted>(_onResetedFilter);
+    on<FilterSubmitted>(_onFilterSubmitted);
+    on<TransactionsUpdated>(_onUpdatedTransactions);
+    on<SortChanged>(_onSortChanged);
     on<FilterChanged>(_onFilterChanged);
-    on<UpdateTransactions>(_onUpdatedTransactions);
     _transactionSubscription = transactionBloc.stream.listen((state) {
       if (state is TransactionLoaded) {
-        add(UpdateTransactions(state.transactions));
+        add(TransactionsUpdated(state.transactions));
       }
     });
-  }
-
-  void _onFilterChanged(FilterChanged event, Emitter<FilterState> emit) {
-    final state = transactionBloc.state;
-    if (state is TransactionLoaded) {
-      emit(FilterLoaded(
-        _mapTransactionsToFilteredTransactions(
-          state.transactions,
-          event.filter,
-          event.sort,
-        ),
-        event.filter,
-        event.sort,
-      ));
-    }
-  }
-
-  void _onUpdatedTransactions(
-    UpdateTransactions event,
-    Emitter<FilterState> emit,
-  ) {
-    final state = this.state;
-    final activeFilter =
-        state is FilterLoaded ? state.activeFilter : ActiveFilter.empty;
-    final activeSort =
-        state is FilterLoaded ? state.activeSort : ActiveSort.newest;
-
-    emit(FilterLoaded(
-      _mapTransactionsToFilteredTransactions(
-        (transactionBloc.state as TransactionLoaded).transactions,
-        activeFilter,
-        activeSort,
-      ),
-      activeFilter,
-      activeSort,
-    ));
   }
 
   List<Transaction> _mapTransactionsToFilteredTransactions(
@@ -92,6 +64,71 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
       }
     });
     return filteredTransactions;
+  }
+
+  void _onResetedFilter(FilterReseted event, Emitter<FilterState> emit) {
+    _filter = ActiveFilter.empty;
+    _sort = ActiveSort.newest;
+    final state = this.state;
+    emit(
+      FilterLoaded(
+        (state as FilterLoaded).transactions,
+        _filter,
+        _sort,
+      ),
+    );
+  }
+
+  void _onFilterSubmitted(FilterSubmitted event, Emitter<FilterState> emit) {
+    final state = transactionBloc.state;
+    if (state is TransactionLoaded) {
+      emit(
+        FilterLoaded(
+          _mapTransactionsToFilteredTransactions(
+            state.transactions,
+            _filter,
+            _sort,
+          ),
+          _filter,
+          _sort,
+        ),
+      );
+    }
+  }
+
+  void _onFilterChanged(FilterChanged event, Emitter<FilterState> emit) {
+    final state = this.state;
+    _filter = event.filter;
+    emit(FilterLoaded(
+      (state as FilterLoaded).transactions,
+      event.filter,
+      _sort,
+    ));
+  }
+
+  void _onSortChanged(SortChanged event, Emitter<FilterState> emit) {
+    final state = this.state;
+    _sort = event.sort;
+    emit(FilterLoaded(
+      (state as FilterLoaded).transactions,
+      _filter,
+      event.sort,
+    ));
+  }
+
+  void _onUpdatedTransactions(
+    TransactionsUpdated event,
+    Emitter<FilterState> emit,
+  ) {
+    emit(FilterLoaded(
+      _mapTransactionsToFilteredTransactions(
+        (transactionBloc.state as TransactionLoaded).transactions,
+        _filter,
+        _sort,
+      ),
+      _filter,
+      _sort,
+    ));
   }
 
   @override

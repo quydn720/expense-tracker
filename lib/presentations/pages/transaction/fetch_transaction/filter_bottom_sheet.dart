@@ -2,7 +2,6 @@ import 'package:expense_tracker/blocs/filter/filter_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/bars.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/presentations/components/tabs.dart';
 import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,131 +11,69 @@ class FilterBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _filterBloc = context.read<FilterBloc>();
     return Container(
       padding: const EdgeInsets.all(kMediumPadding),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(24),
+          topRight: Radius.circular(24),
+        ),
+        color: Colors.white,
+      ),
       height: SizeConfig.screenHeight * 0.6,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DefaultBar(
-            title: const Text('Filter transaction', style: title3),
-            trailing: Chip(
-              backgroundColor: const Color(0xffF1F1FA),
-              label: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: kDefaultPadding,
-                ),
-                child: Text(
-                  'Reset',
-                  style: body3.copyWith(color: kViolet100),
-                ),
-              ),
-            ),
-          ),
+          ResetFilter(filterBloc: _filterBloc),
           Text(
             'Filter by',
             style: title3.copyWith(
               color: kDark100,
             ),
           ),
-          Row(
+          Wrap(
+            spacing: 16,
             children: [
-              TextButton(
-                onPressed: () => context.read<FilterBloc>().add(
-                      const FilterChanged(
-                        ActiveFilter.expense,
-                        ActiveSort.highest,
-                      ),
-                    ),
-                child: Text('Expense'),
+              FilterChip(
+                filterBloc: _filterBloc,
+                filter: ActiveFilter.expense,
+                filterString: "Expense",
               ),
-              TextButton(
-                onPressed: () => context.read<FilterBloc>().add(
-                      const FilterChanged(
-                        ActiveFilter.income,
-                        ActiveSort.lowest,
-                      ),
-                    ),
-                child: Text('Income'),
+              FilterChip(
+                filterBloc: _filterBloc,
+                filter: ActiveFilter.income,
+                filterString: "Income",
               ),
             ],
           ),
           Text(
             'Sort by',
-            style: title3.copyWith(
-              color: kDark100,
-            ),
+            style: title3.copyWith(color: kDark100),
           ),
-          Row(
+          Wrap(
+            spacing: 16,
             children: [
-              TextButton(
-                onPressed: () => context.read<FilterBloc>().add(
-                      const FilterChanged(
-                        ActiveFilter.empty,
-                        ActiveSort.highest,
-                      ),
-                    ),
-                child: Text('Highest'),
+              SortChip(
+                filterBloc: _filterBloc,
+                sort: ActiveSort.highest,
+                sortString: "Highest",
               ),
-              TextButton(
-                onPressed: () => context.read<FilterBloc>().add(
-                      const FilterChanged(
-                        ActiveFilter.empty,
-                        ActiveSort.lowest,
-                      ),
-                    ),
-                child: Text('Lowest'),
+              SortChip(
+                filterBloc: _filterBloc,
+                sort: ActiveSort.lowest,
+                sortString: "Lowest",
               ),
-              TextButton(
-                onPressed: () => context.read<FilterBloc>().add(
-                      const FilterChanged(
-                        ActiveFilter.empty,
-                        ActiveSort.newest,
-                      ),
-                    ),
-                child: Text('Newest'),
+              SortChip(
+                filterBloc: _filterBloc,
+                sort: ActiveSort.newest,
+                sortString: "Newest",
               ),
-              TextButton(
-                onPressed: () => context.read<FilterBloc>().add(
-                      const FilterChanged(
-                        ActiveFilter.empty,
-                        ActiveSort.oldest,
-                      ),
-                    ),
-                child: Text('Oldest'),
-              ),
-            ],
-          ),
-          const Tabs(
-            children: [
-              Chip(
-                backgroundColor: kViolet20,
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text('Highest'),
-                ),
-              ),
-              Chip(
-                backgroundColor: kLight100,
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text('Lowest'),
-                ),
-              ),
-              Chip(
-                backgroundColor: kLight100,
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text('Newest'),
-                ),
-              ),
-              Chip(
-                backgroundColor: kLight100,
-                label: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text('Oldest'),
-                ),
+              SortChip(
+                filterBloc: _filterBloc,
+                sort: ActiveSort.oldest,
+                sortString: "Oldest",
               ),
             ],
           ),
@@ -170,10 +107,122 @@ class FilterBottomSheet extends StatelessWidget {
           const SizedBox(height: kDefaultPadding),
           DefaultButton(
             title: 'Apply',
-            onPressed: () {},
+            onPressed: () {
+              _filterBloc.add(const FilterSubmitted());
+              Navigator.pop(context);
+            },
           ),
         ],
       ),
+    );
+  }
+}
+
+class ResetFilter extends StatelessWidget {
+  const ResetFilter({
+    Key? key,
+    required FilterBloc filterBloc,
+  })  : _filterBloc = filterBloc,
+        super(key: key);
+
+  final FilterBloc _filterBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultBar(
+      title: const Text('Filter transaction', style: title3),
+      trailing: Chip(
+        backgroundColor: const Color(0xffF1F1FA),
+        label: InkWell(
+          onTap: () => _filterBloc.add(const FilterReseted()),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: kDefaultPadding,
+            ),
+            child: Text(
+              'Reset',
+              style: body3.copyWith(color: kViolet100),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SortChip extends StatelessWidget {
+  const SortChip({
+    Key? key,
+    required FilterBloc filterBloc,
+    required ActiveSort sort,
+    required String sortString,
+  })  : _filterBloc = filterBloc,
+        _sort = sort,
+        _sortString = sortString,
+        super(key: key);
+
+  final FilterBloc _filterBloc;
+  final ActiveSort _sort;
+  final String _sortString;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FilterBloc, FilterState>(
+      builder: (context, state) {
+        if (state is FilterLoaded) {
+          return InkWell(
+            onTap: () => _filterBloc.add(SortChanged(_sort)),
+            child: Chip(
+              backgroundColor: state.activeSort == _sort ? kViolet40 : kLight40,
+              label: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(_sortString),
+              ),
+            ),
+          );
+        } else {
+          return Container();
+        }
+      },
+    );
+  }
+}
+
+class FilterChip extends StatelessWidget {
+  const FilterChip({
+    Key? key,
+    required FilterBloc filterBloc,
+    required ActiveFilter filter,
+    required String filterString,
+  })  : _filterBloc = filterBloc,
+        _filter = filter,
+        _filterString = filterString,
+        super(key: key);
+
+  final FilterBloc _filterBloc;
+  final ActiveFilter _filter;
+  final String _filterString;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FilterBloc, FilterState>(
+      builder: (context, state) {
+        if (state is FilterLoaded) {
+          return InkWell(
+            onTap: () => _filterBloc.add(FilterChanged(_filter)),
+            child: Chip(
+              backgroundColor:
+                  state.activeFilter == _filter ? kViolet40 : kLight40,
+              label: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(_filterString),
+              ),
+            ),
+          );
+        } else {
+          return Container();
+        }
+      },
     );
   }
 }

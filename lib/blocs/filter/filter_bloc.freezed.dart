@@ -17,16 +17,29 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$FilterEventTearOff {
   const _$FilterEventTearOff();
 
-  FilterChanged filterChanged(ActiveFilter filter, ActiveSort sort) {
-    return FilterChanged(
-      filter,
+  TransactionsUpdated transactionsUpdated(List<Transaction> transactions) {
+    return TransactionsUpdated(
+      transactions,
+    );
+  }
+
+  FilterReseted filterReseted() {
+    return const FilterReseted();
+  }
+
+  FilterSubmitted filterSubmitted() {
+    return const FilterSubmitted();
+  }
+
+  SortChanged sortChanged(ActiveSort sort) {
+    return SortChanged(
       sort,
     );
   }
 
-  UpdateTransactions updateTransactions(List<Transaction> transactions) {
-    return UpdateTransactions(
-      transactions,
+  FilterChanged filterChanged(ActiveFilter filter) {
+    return FilterChanged(
+      filter,
     );
   }
 }
@@ -38,41 +51,58 @@ const $FilterEvent = _$FilterEventTearOff();
 mixin _$FilterEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ActiveFilter filter, ActiveSort sort)
-        filterChanged,
     required TResult Function(List<Transaction> transactions)
-        updateTransactions,
+        transactionsUpdated,
+    required TResult Function() filterReseted,
+    required TResult Function() filterSubmitted,
+    required TResult Function(ActiveSort sort) sortChanged,
+    required TResult Function(ActiveFilter filter) filterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ActiveFilter filter, ActiveSort sort)? filterChanged,
-    TResult Function(List<Transaction> transactions)? updateTransactions,
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ActiveFilter filter, ActiveSort sort)? filterChanged,
-    TResult Function(List<Transaction> transactions)? updateTransactions,
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(TransactionsUpdated value) transactionsUpdated,
+    required TResult Function(FilterReseted value) filterReseted,
+    required TResult Function(FilterSubmitted value) filterSubmitted,
+    required TResult Function(SortChanged value) sortChanged,
     required TResult Function(FilterChanged value) filterChanged,
-    required TResult Function(UpdateTransactions value) updateTransactions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
-    TResult Function(UpdateTransactions value)? updateTransactions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
-    TResult Function(UpdateTransactions value)? updateTransactions,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -95,11 +125,564 @@ class _$FilterEventCopyWithImpl<$Res> implements $FilterEventCopyWith<$Res> {
 }
 
 /// @nodoc
+abstract class $TransactionsUpdatedCopyWith<$Res> {
+  factory $TransactionsUpdatedCopyWith(
+          TransactionsUpdated value, $Res Function(TransactionsUpdated) then) =
+      _$TransactionsUpdatedCopyWithImpl<$Res>;
+  $Res call({List<Transaction> transactions});
+}
+
+/// @nodoc
+class _$TransactionsUpdatedCopyWithImpl<$Res>
+    extends _$FilterEventCopyWithImpl<$Res>
+    implements $TransactionsUpdatedCopyWith<$Res> {
+  _$TransactionsUpdatedCopyWithImpl(
+      TransactionsUpdated _value, $Res Function(TransactionsUpdated) _then)
+      : super(_value, (v) => _then(v as TransactionsUpdated));
+
+  @override
+  TransactionsUpdated get _value => super._value as TransactionsUpdated;
+
+  @override
+  $Res call({
+    Object? transactions = freezed,
+  }) {
+    return _then(TransactionsUpdated(
+      transactions == freezed
+          ? _value.transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<Transaction>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TransactionsUpdated implements TransactionsUpdated {
+  const _$TransactionsUpdated(this.transactions);
+
+  @override
+  final List<Transaction> transactions;
+
+  @override
+  String toString() {
+    return 'FilterEvent.transactionsUpdated(transactions: $transactions)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TransactionsUpdated &&
+            const DeepCollectionEquality()
+                .equals(other.transactions, transactions));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(transactions));
+
+  @JsonKey(ignore: true)
+  @override
+  $TransactionsUpdatedCopyWith<TransactionsUpdated> get copyWith =>
+      _$TransactionsUpdatedCopyWithImpl<TransactionsUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Transaction> transactions)
+        transactionsUpdated,
+    required TResult Function() filterReseted,
+    required TResult Function() filterSubmitted,
+    required TResult Function(ActiveSort sort) sortChanged,
+    required TResult Function(ActiveFilter filter) filterChanged,
+  }) {
+    return transactionsUpdated(transactions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
+  }) {
+    return transactionsUpdated?.call(transactions);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
+    required TResult orElse(),
+  }) {
+    if (transactionsUpdated != null) {
+      return transactionsUpdated(transactions);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TransactionsUpdated value) transactionsUpdated,
+    required TResult Function(FilterReseted value) filterReseted,
+    required TResult Function(FilterSubmitted value) filterSubmitted,
+    required TResult Function(SortChanged value) sortChanged,
+    required TResult Function(FilterChanged value) filterChanged,
+  }) {
+    return transactionsUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
+    TResult Function(FilterChanged value)? filterChanged,
+  }) {
+    return transactionsUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
+    TResult Function(FilterChanged value)? filterChanged,
+    required TResult orElse(),
+  }) {
+    if (transactionsUpdated != null) {
+      return transactionsUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TransactionsUpdated implements FilterEvent {
+  const factory TransactionsUpdated(List<Transaction> transactions) =
+      _$TransactionsUpdated;
+
+  List<Transaction> get transactions;
+  @JsonKey(ignore: true)
+  $TransactionsUpdatedCopyWith<TransactionsUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FilterResetedCopyWith<$Res> {
+  factory $FilterResetedCopyWith(
+          FilterReseted value, $Res Function(FilterReseted) then) =
+      _$FilterResetedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$FilterResetedCopyWithImpl<$Res> extends _$FilterEventCopyWithImpl<$Res>
+    implements $FilterResetedCopyWith<$Res> {
+  _$FilterResetedCopyWithImpl(
+      FilterReseted _value, $Res Function(FilterReseted) _then)
+      : super(_value, (v) => _then(v as FilterReseted));
+
+  @override
+  FilterReseted get _value => super._value as FilterReseted;
+}
+
+/// @nodoc
+
+class _$FilterReseted implements FilterReseted {
+  const _$FilterReseted();
+
+  @override
+  String toString() {
+    return 'FilterEvent.filterReseted()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is FilterReseted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Transaction> transactions)
+        transactionsUpdated,
+    required TResult Function() filterReseted,
+    required TResult Function() filterSubmitted,
+    required TResult Function(ActiveSort sort) sortChanged,
+    required TResult Function(ActiveFilter filter) filterChanged,
+  }) {
+    return filterReseted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
+  }) {
+    return filterReseted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
+    required TResult orElse(),
+  }) {
+    if (filterReseted != null) {
+      return filterReseted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TransactionsUpdated value) transactionsUpdated,
+    required TResult Function(FilterReseted value) filterReseted,
+    required TResult Function(FilterSubmitted value) filterSubmitted,
+    required TResult Function(SortChanged value) sortChanged,
+    required TResult Function(FilterChanged value) filterChanged,
+  }) {
+    return filterReseted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
+    TResult Function(FilterChanged value)? filterChanged,
+  }) {
+    return filterReseted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
+    TResult Function(FilterChanged value)? filterChanged,
+    required TResult orElse(),
+  }) {
+    if (filterReseted != null) {
+      return filterReseted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FilterReseted implements FilterEvent {
+  const factory FilterReseted() = _$FilterReseted;
+}
+
+/// @nodoc
+abstract class $FilterSubmittedCopyWith<$Res> {
+  factory $FilterSubmittedCopyWith(
+          FilterSubmitted value, $Res Function(FilterSubmitted) then) =
+      _$FilterSubmittedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$FilterSubmittedCopyWithImpl<$Res>
+    extends _$FilterEventCopyWithImpl<$Res>
+    implements $FilterSubmittedCopyWith<$Res> {
+  _$FilterSubmittedCopyWithImpl(
+      FilterSubmitted _value, $Res Function(FilterSubmitted) _then)
+      : super(_value, (v) => _then(v as FilterSubmitted));
+
+  @override
+  FilterSubmitted get _value => super._value as FilterSubmitted;
+}
+
+/// @nodoc
+
+class _$FilterSubmitted implements FilterSubmitted {
+  const _$FilterSubmitted();
+
+  @override
+  String toString() {
+    return 'FilterEvent.filterSubmitted()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is FilterSubmitted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Transaction> transactions)
+        transactionsUpdated,
+    required TResult Function() filterReseted,
+    required TResult Function() filterSubmitted,
+    required TResult Function(ActiveSort sort) sortChanged,
+    required TResult Function(ActiveFilter filter) filterChanged,
+  }) {
+    return filterSubmitted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
+  }) {
+    return filterSubmitted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
+    required TResult orElse(),
+  }) {
+    if (filterSubmitted != null) {
+      return filterSubmitted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TransactionsUpdated value) transactionsUpdated,
+    required TResult Function(FilterReseted value) filterReseted,
+    required TResult Function(FilterSubmitted value) filterSubmitted,
+    required TResult Function(SortChanged value) sortChanged,
+    required TResult Function(FilterChanged value) filterChanged,
+  }) {
+    return filterSubmitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
+    TResult Function(FilterChanged value)? filterChanged,
+  }) {
+    return filterSubmitted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
+    TResult Function(FilterChanged value)? filterChanged,
+    required TResult orElse(),
+  }) {
+    if (filterSubmitted != null) {
+      return filterSubmitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FilterSubmitted implements FilterEvent {
+  const factory FilterSubmitted() = _$FilterSubmitted;
+}
+
+/// @nodoc
+abstract class $SortChangedCopyWith<$Res> {
+  factory $SortChangedCopyWith(
+          SortChanged value, $Res Function(SortChanged) then) =
+      _$SortChangedCopyWithImpl<$Res>;
+  $Res call({ActiveSort sort});
+}
+
+/// @nodoc
+class _$SortChangedCopyWithImpl<$Res> extends _$FilterEventCopyWithImpl<$Res>
+    implements $SortChangedCopyWith<$Res> {
+  _$SortChangedCopyWithImpl(
+      SortChanged _value, $Res Function(SortChanged) _then)
+      : super(_value, (v) => _then(v as SortChanged));
+
+  @override
+  SortChanged get _value => super._value as SortChanged;
+
+  @override
+  $Res call({
+    Object? sort = freezed,
+  }) {
+    return _then(SortChanged(
+      sort == freezed
+          ? _value.sort
+          : sort // ignore: cast_nullable_to_non_nullable
+              as ActiveSort,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SortChanged implements SortChanged {
+  const _$SortChanged(this.sort);
+
+  @override
+  final ActiveSort sort;
+
+  @override
+  String toString() {
+    return 'FilterEvent.sortChanged(sort: $sort)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SortChanged &&
+            (identical(other.sort, sort) || other.sort == sort));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, sort);
+
+  @JsonKey(ignore: true)
+  @override
+  $SortChangedCopyWith<SortChanged> get copyWith =>
+      _$SortChangedCopyWithImpl<SortChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Transaction> transactions)
+        transactionsUpdated,
+    required TResult Function() filterReseted,
+    required TResult Function() filterSubmitted,
+    required TResult Function(ActiveSort sort) sortChanged,
+    required TResult Function(ActiveFilter filter) filterChanged,
+  }) {
+    return sortChanged(sort);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
+  }) {
+    return sortChanged?.call(sort);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
+    required TResult orElse(),
+  }) {
+    if (sortChanged != null) {
+      return sortChanged(sort);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TransactionsUpdated value) transactionsUpdated,
+    required TResult Function(FilterReseted value) filterReseted,
+    required TResult Function(FilterSubmitted value) filterSubmitted,
+    required TResult Function(SortChanged value) sortChanged,
+    required TResult Function(FilterChanged value) filterChanged,
+  }) {
+    return sortChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
+    TResult Function(FilterChanged value)? filterChanged,
+  }) {
+    return sortChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
+    TResult Function(FilterChanged value)? filterChanged,
+    required TResult orElse(),
+  }) {
+    if (sortChanged != null) {
+      return sortChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SortChanged implements FilterEvent {
+  const factory SortChanged(ActiveSort sort) = _$SortChanged;
+
+  ActiveSort get sort;
+  @JsonKey(ignore: true)
+  $SortChangedCopyWith<SortChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class $FilterChangedCopyWith<$Res> {
   factory $FilterChangedCopyWith(
           FilterChanged value, $Res Function(FilterChanged) then) =
       _$FilterChangedCopyWithImpl<$Res>;
-  $Res call({ActiveFilter filter, ActiveSort sort});
+  $Res call({ActiveFilter filter});
 }
 
 /// @nodoc
@@ -115,17 +698,12 @@ class _$FilterChangedCopyWithImpl<$Res> extends _$FilterEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? filter = freezed,
-    Object? sort = freezed,
   }) {
     return _then(FilterChanged(
       filter == freezed
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
               as ActiveFilter,
-      sort == freezed
-          ? _value.sort
-          : sort // ignore: cast_nullable_to_non_nullable
-              as ActiveSort,
     ));
   }
 }
@@ -133,16 +711,14 @@ class _$FilterChangedCopyWithImpl<$Res> extends _$FilterEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FilterChanged implements FilterChanged {
-  const _$FilterChanged(this.filter, this.sort);
+  const _$FilterChanged(this.filter);
 
   @override
   final ActiveFilter filter;
-  @override
-  final ActiveSort sort;
 
   @override
   String toString() {
-    return 'FilterEvent.filterChanged(filter: $filter, sort: $sort)';
+    return 'FilterEvent.filterChanged(filter: $filter)';
   }
 
   @override
@@ -150,12 +726,11 @@ class _$FilterChanged implements FilterChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is FilterChanged &&
-            (identical(other.filter, filter) || other.filter == filter) &&
-            (identical(other.sort, sort) || other.sort == sort));
+            (identical(other.filter, filter) || other.filter == filter));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, filter, sort);
+  int get hashCode => Object.hash(runtimeType, filter);
 
   @JsonKey(ignore: true)
   @override
@@ -165,32 +740,40 @@ class _$FilterChanged implements FilterChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ActiveFilter filter, ActiveSort sort)
-        filterChanged,
     required TResult Function(List<Transaction> transactions)
-        updateTransactions,
+        transactionsUpdated,
+    required TResult Function() filterReseted,
+    required TResult Function() filterSubmitted,
+    required TResult Function(ActiveSort sort) sortChanged,
+    required TResult Function(ActiveFilter filter) filterChanged,
   }) {
-    return filterChanged(filter, sort);
+    return filterChanged(filter);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ActiveFilter filter, ActiveSort sort)? filterChanged,
-    TResult Function(List<Transaction> transactions)? updateTransactions,
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
   }) {
-    return filterChanged?.call(filter, sort);
+    return filterChanged?.call(filter);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ActiveFilter filter, ActiveSort sort)? filterChanged,
-    TResult Function(List<Transaction> transactions)? updateTransactions,
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
     required TResult orElse(),
   }) {
     if (filterChanged != null) {
-      return filterChanged(filter, sort);
+      return filterChanged(filter);
     }
     return orElse();
   }
@@ -198,8 +781,11 @@ class _$FilterChanged implements FilterChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(TransactionsUpdated value) transactionsUpdated,
+    required TResult Function(FilterReseted value) filterReseted,
+    required TResult Function(FilterSubmitted value) filterSubmitted,
+    required TResult Function(SortChanged value) sortChanged,
     required TResult Function(FilterChanged value) filterChanged,
-    required TResult Function(UpdateTransactions value) updateTransactions,
   }) {
     return filterChanged(this);
   }
@@ -207,8 +793,11 @@ class _$FilterChanged implements FilterChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
-    TResult Function(UpdateTransactions value)? updateTransactions,
   }) {
     return filterChanged?.call(this);
   }
@@ -216,8 +805,11 @@ class _$FilterChanged implements FilterChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
-    TResult Function(UpdateTransactions value)? updateTransactions,
     required TResult orElse(),
   }) {
     if (filterChanged != null) {
@@ -228,151 +820,11 @@ class _$FilterChanged implements FilterChanged {
 }
 
 abstract class FilterChanged implements FilterEvent {
-  const factory FilterChanged(ActiveFilter filter, ActiveSort sort) =
-      _$FilterChanged;
+  const factory FilterChanged(ActiveFilter filter) = _$FilterChanged;
 
   ActiveFilter get filter;
-  ActiveSort get sort;
   @JsonKey(ignore: true)
   $FilterChangedCopyWith<FilterChanged> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UpdateTransactionsCopyWith<$Res> {
-  factory $UpdateTransactionsCopyWith(
-          UpdateTransactions value, $Res Function(UpdateTransactions) then) =
-      _$UpdateTransactionsCopyWithImpl<$Res>;
-  $Res call({List<Transaction> transactions});
-}
-
-/// @nodoc
-class _$UpdateTransactionsCopyWithImpl<$Res>
-    extends _$FilterEventCopyWithImpl<$Res>
-    implements $UpdateTransactionsCopyWith<$Res> {
-  _$UpdateTransactionsCopyWithImpl(
-      UpdateTransactions _value, $Res Function(UpdateTransactions) _then)
-      : super(_value, (v) => _then(v as UpdateTransactions));
-
-  @override
-  UpdateTransactions get _value => super._value as UpdateTransactions;
-
-  @override
-  $Res call({
-    Object? transactions = freezed,
-  }) {
-    return _then(UpdateTransactions(
-      transactions == freezed
-          ? _value.transactions
-          : transactions // ignore: cast_nullable_to_non_nullable
-              as List<Transaction>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UpdateTransactions implements UpdateTransactions {
-  const _$UpdateTransactions(this.transactions);
-
-  @override
-  final List<Transaction> transactions;
-
-  @override
-  String toString() {
-    return 'FilterEvent.updateTransactions(transactions: $transactions)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UpdateTransactions &&
-            const DeepCollectionEquality()
-                .equals(other.transactions, transactions));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(transactions));
-
-  @JsonKey(ignore: true)
-  @override
-  $UpdateTransactionsCopyWith<UpdateTransactions> get copyWith =>
-      _$UpdateTransactionsCopyWithImpl<UpdateTransactions>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(ActiveFilter filter, ActiveSort sort)
-        filterChanged,
-    required TResult Function(List<Transaction> transactions)
-        updateTransactions,
-  }) {
-    return updateTransactions(transactions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ActiveFilter filter, ActiveSort sort)? filterChanged,
-    TResult Function(List<Transaction> transactions)? updateTransactions,
-  }) {
-    return updateTransactions?.call(transactions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ActiveFilter filter, ActiveSort sort)? filterChanged,
-    TResult Function(List<Transaction> transactions)? updateTransactions,
-    required TResult orElse(),
-  }) {
-    if (updateTransactions != null) {
-      return updateTransactions(transactions);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FilterChanged value) filterChanged,
-    required TResult Function(UpdateTransactions value) updateTransactions,
-  }) {
-    return updateTransactions(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FilterChanged value)? filterChanged,
-    TResult Function(UpdateTransactions value)? updateTransactions,
-  }) {
-    return updateTransactions?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FilterChanged value)? filterChanged,
-    TResult Function(UpdateTransactions value)? updateTransactions,
-    required TResult orElse(),
-  }) {
-    if (updateTransactions != null) {
-      return updateTransactions(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UpdateTransactions implements FilterEvent {
-  const factory UpdateTransactions(List<Transaction> transactions) =
-      _$UpdateTransactions;
-
-  List<Transaction> get transactions;
-  @JsonKey(ignore: true)
-  $UpdateTransactionsCopyWith<UpdateTransactions> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -382,6 +834,14 @@ class _$FilterStateTearOff {
 
   FilterLoading filterLoading() {
     return const FilterLoading();
+  }
+
+  FilterChanging filterChanging(
+      ActiveFilter activeFilter, ActiveSort activeSort) {
+    return FilterChanging(
+      activeFilter,
+      activeSort,
+    );
   }
 
   FilterLoaded filterLoaded(List<Transaction> transactions,
@@ -402,6 +862,8 @@ mixin _$FilterState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() filterLoading,
+    required TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)
+        filterChanging,
     required TResult Function(List<Transaction> transactions,
             ActiveFilter activeFilter, ActiveSort activeSort)
         filterLoaded,
@@ -410,6 +872,8 @@ mixin _$FilterState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? filterLoading,
+    TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
+        filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
             ActiveSort activeSort)?
         filterLoaded,
@@ -418,6 +882,8 @@ mixin _$FilterState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? filterLoading,
+    TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
+        filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
             ActiveSort activeSort)?
         filterLoaded,
@@ -427,18 +893,21 @@ mixin _$FilterState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FilterLoading value) filterLoading,
+    required TResult Function(FilterChanging value) filterChanging,
     required TResult Function(FilterLoaded value) filterLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(FilterLoading value)? filterLoading,
+    TResult Function(FilterChanging value)? filterChanging,
     TResult Function(FilterLoaded value)? filterLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FilterLoading value)? filterLoading,
+    TResult Function(FilterChanging value)? filterChanging,
     TResult Function(FilterLoaded value)? filterLoaded,
     required TResult orElse(),
   }) =>
@@ -502,6 +971,8 @@ class _$FilterLoading implements FilterLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() filterLoading,
+    required TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)
+        filterChanging,
     required TResult Function(List<Transaction> transactions,
             ActiveFilter activeFilter, ActiveSort activeSort)
         filterLoaded,
@@ -513,6 +984,8 @@ class _$FilterLoading implements FilterLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? filterLoading,
+    TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
+        filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
             ActiveSort activeSort)?
         filterLoaded,
@@ -524,6 +997,8 @@ class _$FilterLoading implements FilterLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? filterLoading,
+    TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
+        filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
             ActiveSort activeSort)?
         filterLoaded,
@@ -539,6 +1014,7 @@ class _$FilterLoading implements FilterLoading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FilterLoading value) filterLoading,
+    required TResult Function(FilterChanging value) filterChanging,
     required TResult Function(FilterLoaded value) filterLoaded,
   }) {
     return filterLoading(this);
@@ -548,6 +1024,7 @@ class _$FilterLoading implements FilterLoading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(FilterLoading value)? filterLoading,
+    TResult Function(FilterChanging value)? filterChanging,
     TResult Function(FilterLoaded value)? filterLoaded,
   }) {
     return filterLoading?.call(this);
@@ -557,6 +1034,7 @@ class _$FilterLoading implements FilterLoading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FilterLoading value)? filterLoading,
+    TResult Function(FilterChanging value)? filterChanging,
     TResult Function(FilterLoaded value)? filterLoaded,
     required TResult orElse(),
   }) {
@@ -569,6 +1047,165 @@ class _$FilterLoading implements FilterLoading {
 
 abstract class FilterLoading implements FilterState {
   const factory FilterLoading() = _$FilterLoading;
+}
+
+/// @nodoc
+abstract class $FilterChangingCopyWith<$Res> {
+  factory $FilterChangingCopyWith(
+          FilterChanging value, $Res Function(FilterChanging) then) =
+      _$FilterChangingCopyWithImpl<$Res>;
+  $Res call({ActiveFilter activeFilter, ActiveSort activeSort});
+}
+
+/// @nodoc
+class _$FilterChangingCopyWithImpl<$Res> extends _$FilterStateCopyWithImpl<$Res>
+    implements $FilterChangingCopyWith<$Res> {
+  _$FilterChangingCopyWithImpl(
+      FilterChanging _value, $Res Function(FilterChanging) _then)
+      : super(_value, (v) => _then(v as FilterChanging));
+
+  @override
+  FilterChanging get _value => super._value as FilterChanging;
+
+  @override
+  $Res call({
+    Object? activeFilter = freezed,
+    Object? activeSort = freezed,
+  }) {
+    return _then(FilterChanging(
+      activeFilter == freezed
+          ? _value.activeFilter
+          : activeFilter // ignore: cast_nullable_to_non_nullable
+              as ActiveFilter,
+      activeSort == freezed
+          ? _value.activeSort
+          : activeSort // ignore: cast_nullable_to_non_nullable
+              as ActiveSort,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilterChanging implements FilterChanging {
+  const _$FilterChanging(this.activeFilter, this.activeSort);
+
+  @override
+  final ActiveFilter activeFilter;
+  @override
+  final ActiveSort activeSort;
+
+  @override
+  String toString() {
+    return 'FilterState.filterChanging(activeFilter: $activeFilter, activeSort: $activeSort)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FilterChanging &&
+            (identical(other.activeFilter, activeFilter) ||
+                other.activeFilter == activeFilter) &&
+            (identical(other.activeSort, activeSort) ||
+                other.activeSort == activeSort));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, activeFilter, activeSort);
+
+  @JsonKey(ignore: true)
+  @override
+  $FilterChangingCopyWith<FilterChanging> get copyWith =>
+      _$FilterChangingCopyWithImpl<FilterChanging>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() filterLoading,
+    required TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)
+        filterChanging,
+    required TResult Function(List<Transaction> transactions,
+            ActiveFilter activeFilter, ActiveSort activeSort)
+        filterLoaded,
+  }) {
+    return filterChanging(activeFilter, activeSort);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? filterLoading,
+    TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
+        filterChanging,
+    TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
+            ActiveSort activeSort)?
+        filterLoaded,
+  }) {
+    return filterChanging?.call(activeFilter, activeSort);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? filterLoading,
+    TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
+        filterChanging,
+    TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
+            ActiveSort activeSort)?
+        filterLoaded,
+    required TResult orElse(),
+  }) {
+    if (filterChanging != null) {
+      return filterChanging(activeFilter, activeSort);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FilterLoading value) filterLoading,
+    required TResult Function(FilterChanging value) filterChanging,
+    required TResult Function(FilterLoaded value) filterLoaded,
+  }) {
+    return filterChanging(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(FilterLoading value)? filterLoading,
+    TResult Function(FilterChanging value)? filterChanging,
+    TResult Function(FilterLoaded value)? filterLoaded,
+  }) {
+    return filterChanging?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FilterLoading value)? filterLoading,
+    TResult Function(FilterChanging value)? filterChanging,
+    TResult Function(FilterLoaded value)? filterLoaded,
+    required TResult orElse(),
+  }) {
+    if (filterChanging != null) {
+      return filterChanging(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FilterChanging implements FilterState {
+  const factory FilterChanging(
+      ActiveFilter activeFilter, ActiveSort activeSort) = _$FilterChanging;
+
+  ActiveFilter get activeFilter;
+  ActiveSort get activeSort;
+  @JsonKey(ignore: true)
+  $FilterChangingCopyWith<FilterChanging> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -661,6 +1298,8 @@ class _$FilterLoaded implements FilterLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() filterLoading,
+    required TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)
+        filterChanging,
     required TResult Function(List<Transaction> transactions,
             ActiveFilter activeFilter, ActiveSort activeSort)
         filterLoaded,
@@ -672,6 +1311,8 @@ class _$FilterLoaded implements FilterLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? filterLoading,
+    TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
+        filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
             ActiveSort activeSort)?
         filterLoaded,
@@ -683,6 +1324,8 @@ class _$FilterLoaded implements FilterLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? filterLoading,
+    TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
+        filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
             ActiveSort activeSort)?
         filterLoaded,
@@ -698,6 +1341,7 @@ class _$FilterLoaded implements FilterLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FilterLoading value) filterLoading,
+    required TResult Function(FilterChanging value) filterChanging,
     required TResult Function(FilterLoaded value) filterLoaded,
   }) {
     return filterLoaded(this);
@@ -707,6 +1351,7 @@ class _$FilterLoaded implements FilterLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(FilterLoading value)? filterLoading,
+    TResult Function(FilterChanging value)? filterChanging,
     TResult Function(FilterLoaded value)? filterLoaded,
   }) {
     return filterLoaded?.call(this);
@@ -716,6 +1361,7 @@ class _$FilterLoaded implements FilterLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FilterLoading value)? filterLoading,
+    TResult Function(FilterChanging value)? filterChanging,
     TResult Function(FilterLoaded value)? filterLoaded,
     required TResult orElse(),
   }) {
