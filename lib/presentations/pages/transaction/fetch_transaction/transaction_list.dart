@@ -1,6 +1,9 @@
+import 'package:expense_tracker/presentations/components/common_components.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
+
 import '../../../../blocs/filter/filter_bloc.dart';
 import '../../../../constants.dart';
-import '../../../components/common_components.dart';
 import '../../../../utils/extension_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +38,40 @@ class TransactionPage extends StatelessWidget {
                     padding: const EdgeInsets.only(right: kMediumPadding),
                     child: AppBar(
                       leadingWidth: 150,
-                      leading: const Chip(label: Text('December')),
+                      leading: InkWell(
+                        child: BlocBuilder<FilterBloc, FilterState>(
+                          builder: (context, state) {
+                            if (state is FilterLoaded) {
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 16.0),
+                                child: Chip(
+                                  label: SizedBox(
+                                    width: double.infinity,
+                                    child: Text(
+                                      DateFormat(DateFormat.MONTH).format(
+                                        context.read<FilterBloc>().date,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            } else {
+                              return Container();
+                            }
+                          },
+                        ),
+                        onTap: () {
+                          DatePicker.showPicker(
+                            context,
+                            pickerModel: CustomMonthPicker(
+                              currentTime: DateTime.now(),
+                            ),
+                            onConfirm: (v) =>
+                                context.read<FilterBloc>().add(DateChanged(v)),
+                          );
+                        },
+                      ),
                       actions: [
                         IconButton(
                           onPressed: () {
@@ -78,12 +114,13 @@ class TransactionPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ...te.entries
-                      .where(
-                        // (element) => element.key.month == DateTime.now().month,
-                        (element) =>
-                            element.key.month == DateTime(2021, 12).month,
-                      ) // TODO: equality with the choosen month
+                  ...state.transactions
+                      .groupBy((trans) => DateTime(
+                            trans.date.year,
+                            trans.date.month,
+                            trans.date.day,
+                          ))
+                      .entries
                       .map(
                         (e) => Padding(
                           padding: const EdgeInsets.symmetric(
@@ -119,7 +156,8 @@ class TransactionPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                      ),
+                      )
+                      .toList(),
                 ],
               ),
             );

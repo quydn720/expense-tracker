@@ -15,9 +15,11 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
 
   ActiveFilter _filter = ActiveFilter.empty;
   ActiveSort _sort = ActiveSort.newest;
+  DateTime _date = DateTime.now();
 
   ActiveFilter get currentFilter => _filter;
   ActiveSort get currentSort => _sort;
+  DateTime get date => _date;
 
   FilterBloc({required this.transactionBloc})
       : super(transactionBloc.state is TransactionLoaded
@@ -25,6 +27,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
                 (transactionBloc.state as TransactionLoaded).transactions,
                 ActiveFilter.empty,
                 ActiveSort.newest,
+                DateTime.now(),
               )
             : const FilterLoading()) {
     on<FilterReseted>(_onResetedFilter);
@@ -32,11 +35,31 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     on<TransactionsUpdated>(_onUpdatedTransactions);
     on<SortChanged>(_onSortChanged);
     on<FilterChanged>(_onFilterChanged);
+    on<DateChanged>(_onDateChanged);
     _transactionSubscription = transactionBloc.stream.listen((state) {
       if (state is TransactionLoaded) {
         add(TransactionsUpdated(state.transactions));
       }
     });
+  }
+  List<Transaction> _dateChangedTransactions(
+    List<Transaction> transactions,
+    DateTime date,
+  ) {
+    var te = transactions.groupBy(
+      (trans) => DateTime(
+        trans.date.year,
+        trans.date.month,
+        trans.date.day,
+      ),
+    );
+    final c = te.entries
+        .where((e) => e.key.month == date.month)
+        .map((e) => e.value)
+        .toList()
+        .expand((e) => e)
+        .toList();
+    return c;
   }
 
   List<Transaction> _mapTransactionsToFilteredTransactions(
@@ -75,6 +98,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
         (state as FilterLoaded).transactions,
         _filter,
         _sort,
+        _date,
       ),
     );
   }
@@ -91,8 +115,22 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
           ),
           _filter,
           _sort,
+          _date,
         ),
       );
+    }
+  }
+
+  void _onDateChanged(DateChanged event, Emitter<FilterState> emit) {
+    final state = transactionBloc.state;
+    _date = event.date;
+    if (state is TransactionLoaded) {
+      emit(FilterLoaded(
+        _dateChangedTransactions(state.transactions, event.date),
+        _filter,
+        _sort,
+        _date,
+      ));
     }
   }
 
@@ -103,6 +141,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
       (state as FilterLoaded).transactions,
       event.filter,
       _sort,
+      _date,
     ));
   }
 
@@ -113,6 +152,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
       (state as FilterLoaded).transactions,
       _filter,
       event.sort,
+      _date,
     ));
   }
 
@@ -128,6 +168,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
       ),
       _filter,
       _sort,
+      _date,
     ));
   }
 

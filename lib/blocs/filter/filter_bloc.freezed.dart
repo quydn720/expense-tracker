@@ -42,6 +42,12 @@ class _$FilterEventTearOff {
       filter,
     );
   }
+
+  DateChanged dateChanged(DateTime date) {
+    return DateChanged(
+      date,
+    );
+  }
 }
 
 /// @nodoc
@@ -57,6 +63,7 @@ mixin _$FilterEvent {
     required TResult Function() filterSubmitted,
     required TResult Function(ActiveSort sort) sortChanged,
     required TResult Function(ActiveFilter filter) filterChanged,
+    required TResult Function(DateTime date) dateChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +73,7 @@ mixin _$FilterEvent {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +83,7 @@ mixin _$FilterEvent {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -85,6 +94,7 @@ mixin _$FilterEvent {
     required TResult Function(FilterSubmitted value) filterSubmitted,
     required TResult Function(SortChanged value) sortChanged,
     required TResult Function(FilterChanged value) filterChanged,
+    required TResult Function(DateChanged value) dateChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -94,6 +104,7 @@ mixin _$FilterEvent {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -103,6 +114,7 @@ mixin _$FilterEvent {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -196,6 +208,7 @@ class _$TransactionsUpdated implements TransactionsUpdated {
     required TResult Function() filterSubmitted,
     required TResult Function(ActiveSort sort) sortChanged,
     required TResult Function(ActiveFilter filter) filterChanged,
+    required TResult Function(DateTime date) dateChanged,
   }) {
     return transactionsUpdated(transactions);
   }
@@ -208,6 +221,7 @@ class _$TransactionsUpdated implements TransactionsUpdated {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
   }) {
     return transactionsUpdated?.call(transactions);
   }
@@ -220,6 +234,7 @@ class _$TransactionsUpdated implements TransactionsUpdated {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
     required TResult orElse(),
   }) {
     if (transactionsUpdated != null) {
@@ -236,6 +251,7 @@ class _$TransactionsUpdated implements TransactionsUpdated {
     required TResult Function(FilterSubmitted value) filterSubmitted,
     required TResult Function(SortChanged value) sortChanged,
     required TResult Function(FilterChanged value) filterChanged,
+    required TResult Function(DateChanged value) dateChanged,
   }) {
     return transactionsUpdated(this);
   }
@@ -248,6 +264,7 @@ class _$TransactionsUpdated implements TransactionsUpdated {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
   }) {
     return transactionsUpdated?.call(this);
   }
@@ -260,6 +277,7 @@ class _$TransactionsUpdated implements TransactionsUpdated {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
     required TResult orElse(),
   }) {
     if (transactionsUpdated != null) {
@@ -325,6 +343,7 @@ class _$FilterReseted implements FilterReseted {
     required TResult Function() filterSubmitted,
     required TResult Function(ActiveSort sort) sortChanged,
     required TResult Function(ActiveFilter filter) filterChanged,
+    required TResult Function(DateTime date) dateChanged,
   }) {
     return filterReseted();
   }
@@ -337,6 +356,7 @@ class _$FilterReseted implements FilterReseted {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
   }) {
     return filterReseted?.call();
   }
@@ -349,6 +369,7 @@ class _$FilterReseted implements FilterReseted {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
     required TResult orElse(),
   }) {
     if (filterReseted != null) {
@@ -365,6 +386,7 @@ class _$FilterReseted implements FilterReseted {
     required TResult Function(FilterSubmitted value) filterSubmitted,
     required TResult Function(SortChanged value) sortChanged,
     required TResult Function(FilterChanged value) filterChanged,
+    required TResult Function(DateChanged value) dateChanged,
   }) {
     return filterReseted(this);
   }
@@ -377,6 +399,7 @@ class _$FilterReseted implements FilterReseted {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
   }) {
     return filterReseted?.call(this);
   }
@@ -389,6 +412,7 @@ class _$FilterReseted implements FilterReseted {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
     required TResult orElse(),
   }) {
     if (filterReseted != null) {
@@ -449,6 +473,7 @@ class _$FilterSubmitted implements FilterSubmitted {
     required TResult Function() filterSubmitted,
     required TResult Function(ActiveSort sort) sortChanged,
     required TResult Function(ActiveFilter filter) filterChanged,
+    required TResult Function(DateTime date) dateChanged,
   }) {
     return filterSubmitted();
   }
@@ -461,6 +486,7 @@ class _$FilterSubmitted implements FilterSubmitted {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
   }) {
     return filterSubmitted?.call();
   }
@@ -473,6 +499,7 @@ class _$FilterSubmitted implements FilterSubmitted {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
     required TResult orElse(),
   }) {
     if (filterSubmitted != null) {
@@ -489,6 +516,7 @@ class _$FilterSubmitted implements FilterSubmitted {
     required TResult Function(FilterSubmitted value) filterSubmitted,
     required TResult Function(SortChanged value) sortChanged,
     required TResult Function(FilterChanged value) filterChanged,
+    required TResult Function(DateChanged value) dateChanged,
   }) {
     return filterSubmitted(this);
   }
@@ -501,6 +529,7 @@ class _$FilterSubmitted implements FilterSubmitted {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
   }) {
     return filterSubmitted?.call(this);
   }
@@ -513,6 +542,7 @@ class _$FilterSubmitted implements FilterSubmitted {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
     required TResult orElse(),
   }) {
     if (filterSubmitted != null) {
@@ -595,6 +625,7 @@ class _$SortChanged implements SortChanged {
     required TResult Function() filterSubmitted,
     required TResult Function(ActiveSort sort) sortChanged,
     required TResult Function(ActiveFilter filter) filterChanged,
+    required TResult Function(DateTime date) dateChanged,
   }) {
     return sortChanged(sort);
   }
@@ -607,6 +638,7 @@ class _$SortChanged implements SortChanged {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
   }) {
     return sortChanged?.call(sort);
   }
@@ -619,6 +651,7 @@ class _$SortChanged implements SortChanged {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
     required TResult orElse(),
   }) {
     if (sortChanged != null) {
@@ -635,6 +668,7 @@ class _$SortChanged implements SortChanged {
     required TResult Function(FilterSubmitted value) filterSubmitted,
     required TResult Function(SortChanged value) sortChanged,
     required TResult Function(FilterChanged value) filterChanged,
+    required TResult Function(DateChanged value) dateChanged,
   }) {
     return sortChanged(this);
   }
@@ -647,6 +681,7 @@ class _$SortChanged implements SortChanged {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
   }) {
     return sortChanged?.call(this);
   }
@@ -659,6 +694,7 @@ class _$SortChanged implements SortChanged {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
     required TResult orElse(),
   }) {
     if (sortChanged != null) {
@@ -746,6 +782,7 @@ class _$FilterChanged implements FilterChanged {
     required TResult Function() filterSubmitted,
     required TResult Function(ActiveSort sort) sortChanged,
     required TResult Function(ActiveFilter filter) filterChanged,
+    required TResult Function(DateTime date) dateChanged,
   }) {
     return filterChanged(filter);
   }
@@ -758,6 +795,7 @@ class _$FilterChanged implements FilterChanged {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
   }) {
     return filterChanged?.call(filter);
   }
@@ -770,6 +808,7 @@ class _$FilterChanged implements FilterChanged {
     TResult Function()? filterSubmitted,
     TResult Function(ActiveSort sort)? sortChanged,
     TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
     required TResult orElse(),
   }) {
     if (filterChanged != null) {
@@ -786,6 +825,7 @@ class _$FilterChanged implements FilterChanged {
     required TResult Function(FilterSubmitted value) filterSubmitted,
     required TResult Function(SortChanged value) sortChanged,
     required TResult Function(FilterChanged value) filterChanged,
+    required TResult Function(DateChanged value) dateChanged,
   }) {
     return filterChanged(this);
   }
@@ -798,6 +838,7 @@ class _$FilterChanged implements FilterChanged {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
   }) {
     return filterChanged?.call(this);
   }
@@ -810,6 +851,7 @@ class _$FilterChanged implements FilterChanged {
     TResult Function(FilterSubmitted value)? filterSubmitted,
     TResult Function(SortChanged value)? sortChanged,
     TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
     required TResult orElse(),
   }) {
     if (filterChanged != null) {
@@ -825,6 +867,163 @@ abstract class FilterChanged implements FilterEvent {
   ActiveFilter get filter;
   @JsonKey(ignore: true)
   $FilterChangedCopyWith<FilterChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DateChangedCopyWith<$Res> {
+  factory $DateChangedCopyWith(
+          DateChanged value, $Res Function(DateChanged) then) =
+      _$DateChangedCopyWithImpl<$Res>;
+  $Res call({DateTime date});
+}
+
+/// @nodoc
+class _$DateChangedCopyWithImpl<$Res> extends _$FilterEventCopyWithImpl<$Res>
+    implements $DateChangedCopyWith<$Res> {
+  _$DateChangedCopyWithImpl(
+      DateChanged _value, $Res Function(DateChanged) _then)
+      : super(_value, (v) => _then(v as DateChanged));
+
+  @override
+  DateChanged get _value => super._value as DateChanged;
+
+  @override
+  $Res call({
+    Object? date = freezed,
+  }) {
+    return _then(DateChanged(
+      date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DateChanged implements DateChanged {
+  const _$DateChanged(this.date);
+
+  @override
+  final DateTime date;
+
+  @override
+  String toString() {
+    return 'FilterEvent.dateChanged(date: $date)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DateChanged &&
+            (identical(other.date, date) || other.date == date));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, date);
+
+  @JsonKey(ignore: true)
+  @override
+  $DateChangedCopyWith<DateChanged> get copyWith =>
+      _$DateChangedCopyWithImpl<DateChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Transaction> transactions)
+        transactionsUpdated,
+    required TResult Function() filterReseted,
+    required TResult Function() filterSubmitted,
+    required TResult Function(ActiveSort sort) sortChanged,
+    required TResult Function(ActiveFilter filter) filterChanged,
+    required TResult Function(DateTime date) dateChanged,
+  }) {
+    return dateChanged(date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
+  }) {
+    return dateChanged?.call(date);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Transaction> transactions)? transactionsUpdated,
+    TResult Function()? filterReseted,
+    TResult Function()? filterSubmitted,
+    TResult Function(ActiveSort sort)? sortChanged,
+    TResult Function(ActiveFilter filter)? filterChanged,
+    TResult Function(DateTime date)? dateChanged,
+    required TResult orElse(),
+  }) {
+    if (dateChanged != null) {
+      return dateChanged(date);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TransactionsUpdated value) transactionsUpdated,
+    required TResult Function(FilterReseted value) filterReseted,
+    required TResult Function(FilterSubmitted value) filterSubmitted,
+    required TResult Function(SortChanged value) sortChanged,
+    required TResult Function(FilterChanged value) filterChanged,
+    required TResult Function(DateChanged value) dateChanged,
+  }) {
+    return dateChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
+    TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
+  }) {
+    return dateChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TransactionsUpdated value)? transactionsUpdated,
+    TResult Function(FilterReseted value)? filterReseted,
+    TResult Function(FilterSubmitted value)? filterSubmitted,
+    TResult Function(SortChanged value)? sortChanged,
+    TResult Function(FilterChanged value)? filterChanged,
+    TResult Function(DateChanged value)? dateChanged,
+    required TResult orElse(),
+  }) {
+    if (dateChanged != null) {
+      return dateChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DateChanged implements FilterEvent {
+  const factory DateChanged(DateTime date) = _$DateChanged;
+
+  DateTime get date;
+  @JsonKey(ignore: true)
+  $DateChangedCopyWith<DateChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -845,11 +1044,12 @@ class _$FilterStateTearOff {
   }
 
   FilterLoaded filterLoaded(List<Transaction> transactions,
-      ActiveFilter activeFilter, ActiveSort activeSort) {
+      ActiveFilter activeFilter, ActiveSort activeSort, DateTime date) {
     return FilterLoaded(
       transactions,
       activeFilter,
       activeSort,
+      date,
     );
   }
 }
@@ -865,7 +1065,7 @@ mixin _$FilterState {
     required TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)
         filterChanging,
     required TResult Function(List<Transaction> transactions,
-            ActiveFilter activeFilter, ActiveSort activeSort)
+            ActiveFilter activeFilter, ActiveSort activeSort, DateTime date)
         filterLoaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -875,7 +1075,7 @@ mixin _$FilterState {
     TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
         filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
-            ActiveSort activeSort)?
+            ActiveSort activeSort, DateTime date)?
         filterLoaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -885,7 +1085,7 @@ mixin _$FilterState {
     TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
         filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
-            ActiveSort activeSort)?
+            ActiveSort activeSort, DateTime date)?
         filterLoaded,
     required TResult orElse(),
   }) =>
@@ -974,7 +1174,7 @@ class _$FilterLoading implements FilterLoading {
     required TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)
         filterChanging,
     required TResult Function(List<Transaction> transactions,
-            ActiveFilter activeFilter, ActiveSort activeSort)
+            ActiveFilter activeFilter, ActiveSort activeSort, DateTime date)
         filterLoaded,
   }) {
     return filterLoading();
@@ -987,7 +1187,7 @@ class _$FilterLoading implements FilterLoading {
     TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
         filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
-            ActiveSort activeSort)?
+            ActiveSort activeSort, DateTime date)?
         filterLoaded,
   }) {
     return filterLoading?.call();
@@ -1000,7 +1200,7 @@ class _$FilterLoading implements FilterLoading {
     TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
         filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
-            ActiveSort activeSort)?
+            ActiveSort activeSort, DateTime date)?
         filterLoaded,
     required TResult orElse(),
   }) {
@@ -1126,7 +1326,7 @@ class _$FilterChanging implements FilterChanging {
     required TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)
         filterChanging,
     required TResult Function(List<Transaction> transactions,
-            ActiveFilter activeFilter, ActiveSort activeSort)
+            ActiveFilter activeFilter, ActiveSort activeSort, DateTime date)
         filterLoaded,
   }) {
     return filterChanging(activeFilter, activeSort);
@@ -1139,7 +1339,7 @@ class _$FilterChanging implements FilterChanging {
     TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
         filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
-            ActiveSort activeSort)?
+            ActiveSort activeSort, DateTime date)?
         filterLoaded,
   }) {
     return filterChanging?.call(activeFilter, activeSort);
@@ -1152,7 +1352,7 @@ class _$FilterChanging implements FilterChanging {
     TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
         filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
-            ActiveSort activeSort)?
+            ActiveSort activeSort, DateTime date)?
         filterLoaded,
     required TResult orElse(),
   }) {
@@ -1216,7 +1416,8 @@ abstract class $FilterLoadedCopyWith<$Res> {
   $Res call(
       {List<Transaction> transactions,
       ActiveFilter activeFilter,
-      ActiveSort activeSort});
+      ActiveSort activeSort,
+      DateTime date});
 }
 
 /// @nodoc
@@ -1234,6 +1435,7 @@ class _$FilterLoadedCopyWithImpl<$Res> extends _$FilterStateCopyWithImpl<$Res>
     Object? transactions = freezed,
     Object? activeFilter = freezed,
     Object? activeSort = freezed,
+    Object? date = freezed,
   }) {
     return _then(FilterLoaded(
       transactions == freezed
@@ -1248,6 +1450,10 @@ class _$FilterLoadedCopyWithImpl<$Res> extends _$FilterStateCopyWithImpl<$Res>
           ? _value.activeSort
           : activeSort // ignore: cast_nullable_to_non_nullable
               as ActiveSort,
+      date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -1255,7 +1461,8 @@ class _$FilterLoadedCopyWithImpl<$Res> extends _$FilterStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FilterLoaded implements FilterLoaded {
-  const _$FilterLoaded(this.transactions, this.activeFilter, this.activeSort);
+  const _$FilterLoaded(
+      this.transactions, this.activeFilter, this.activeSort, this.date);
 
   @override
   final List<Transaction> transactions;
@@ -1263,10 +1470,12 @@ class _$FilterLoaded implements FilterLoaded {
   final ActiveFilter activeFilter;
   @override
   final ActiveSort activeSort;
+  @override
+  final DateTime date;
 
   @override
   String toString() {
-    return 'FilterState.filterLoaded(transactions: $transactions, activeFilter: $activeFilter, activeSort: $activeSort)';
+    return 'FilterState.filterLoaded(transactions: $transactions, activeFilter: $activeFilter, activeSort: $activeSort, date: $date)';
   }
 
   @override
@@ -1279,7 +1488,8 @@ class _$FilterLoaded implements FilterLoaded {
             (identical(other.activeFilter, activeFilter) ||
                 other.activeFilter == activeFilter) &&
             (identical(other.activeSort, activeSort) ||
-                other.activeSort == activeSort));
+                other.activeSort == activeSort) &&
+            (identical(other.date, date) || other.date == date));
   }
 
   @override
@@ -1287,7 +1497,8 @@ class _$FilterLoaded implements FilterLoaded {
       runtimeType,
       const DeepCollectionEquality().hash(transactions),
       activeFilter,
-      activeSort);
+      activeSort,
+      date);
 
   @JsonKey(ignore: true)
   @override
@@ -1301,10 +1512,10 @@ class _$FilterLoaded implements FilterLoaded {
     required TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)
         filterChanging,
     required TResult Function(List<Transaction> transactions,
-            ActiveFilter activeFilter, ActiveSort activeSort)
+            ActiveFilter activeFilter, ActiveSort activeSort, DateTime date)
         filterLoaded,
   }) {
-    return filterLoaded(transactions, activeFilter, activeSort);
+    return filterLoaded(transactions, activeFilter, activeSort, date);
   }
 
   @override
@@ -1314,10 +1525,10 @@ class _$FilterLoaded implements FilterLoaded {
     TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
         filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
-            ActiveSort activeSort)?
+            ActiveSort activeSort, DateTime date)?
         filterLoaded,
   }) {
-    return filterLoaded?.call(transactions, activeFilter, activeSort);
+    return filterLoaded?.call(transactions, activeFilter, activeSort, date);
   }
 
   @override
@@ -1327,12 +1538,12 @@ class _$FilterLoaded implements FilterLoaded {
     TResult Function(ActiveFilter activeFilter, ActiveSort activeSort)?
         filterChanging,
     TResult Function(List<Transaction> transactions, ActiveFilter activeFilter,
-            ActiveSort activeSort)?
+            ActiveSort activeSort, DateTime date)?
         filterLoaded,
     required TResult orElse(),
   }) {
     if (filterLoaded != null) {
-      return filterLoaded(transactions, activeFilter, activeSort);
+      return filterLoaded(transactions, activeFilter, activeSort, date);
     }
     return orElse();
   }
@@ -1373,12 +1584,16 @@ class _$FilterLoaded implements FilterLoaded {
 }
 
 abstract class FilterLoaded implements FilterState {
-  const factory FilterLoaded(List<Transaction> transactions,
-      ActiveFilter activeFilter, ActiveSort activeSort) = _$FilterLoaded;
+  const factory FilterLoaded(
+      List<Transaction> transactions,
+      ActiveFilter activeFilter,
+      ActiveSort activeSort,
+      DateTime date) = _$FilterLoaded;
 
   List<Transaction> get transactions;
   ActiveFilter get activeFilter;
   ActiveSort get activeSort;
+  DateTime get date;
   @JsonKey(ignore: true)
   $FilterLoadedCopyWith<FilterLoaded> get copyWith =>
       throw _privateConstructorUsedError;
