@@ -1,4 +1,5 @@
-import 'package:expense_tracker/presentations/components/transaction_tile.dart';
+import '../../blocs/transaction/category_model.dart';
+import 'transaction_tile.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';

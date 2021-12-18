@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
+import '../transaction/transaction_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 

@@ -1,8 +1,8 @@
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:expense_tracker/blocs/signup/signup_cubit.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/pages/login/login_page.dart';
-import 'package:expense_tracker/presentations/pages/login/widgets.dart';
+import '../../../blocs/signup/signup_cubit.dart';
+import '../../../constants.dart';
+import '../login/login_page.dart';
+import '../login/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

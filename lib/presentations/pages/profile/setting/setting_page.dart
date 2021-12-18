@@ -1,6 +1,6 @@
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/bars.dart';
-import 'package:expense_tracker/presentations/components/default_app_widget.dart';
+import '../../../../constants.dart';
+import '../../../components/bars.dart';
+import '../../../components/default_app_widget.dart';
 import 'package:flutter/material.dart';
 
 class SettingPage extends StatelessWidget {

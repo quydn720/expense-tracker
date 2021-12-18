@@ -1,7 +1,7 @@
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/common_components.dart';
+import '../../../constants.dart';
+import '../../components/common_components.dart';
 import 'package:flutter/material.dart';
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
+import '../../../blocs/transaction/transaction_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'widgets/widgets.dart';

@@ -1,9 +1,9 @@
-import 'package:expense_tracker/blocs/app_bloc/app_bloc.dart';
-import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
-import 'package:expense_tracker/presentations/pages/home/widgets/widgets.dart';
-import 'package:expense_tracker/presentations/pages/profile/account/account_page.dart';
-import 'package:expense_tracker/presentations/pages/profile/export/export_page.dart';
-import 'package:expense_tracker/presentations/pages/profile/setting/setting_page.dart';
+import '../../../blocs/app_bloc/app_bloc.dart';
+import '../../components/squared_icon_card.dart';
+import '../home/widgets/widgets.dart';
+import 'account/account_page.dart';
+import 'export/export_page.dart';
+import 'setting/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

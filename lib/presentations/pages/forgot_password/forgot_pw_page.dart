@@ -1,5 +1,5 @@
-import 'package:expense_tracker/presentations/components/default_app_widget.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
+import '../../components/default_app_widget.dart';
+import '../../components/default_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';

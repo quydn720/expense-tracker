@@ -1,9 +1,10 @@
-import 'package:expense_tracker/blocs/add_transaction/add_transaction_cubit.dart';
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
-import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/presentations/components/transaction_tile.dart';
+import '../../../../blocs/add_transaction/add_transaction_cubit.dart';
+import '../../../../blocs/transaction/category_model.dart';
+import '../../../../blocs/transaction/transaction_bloc.dart';
+import '../../../../blocs/wallet/wallet_bloc.dart';
+import '../../../../constants.dart';
+import '../../../components/default_button.dart';
+import '../../../components/transaction_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -41,12 +42,6 @@ class AddTransactionForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = [
-      'Food',
-      'Shopping',
-      'Family',
-      'Some things',
-    ];
     return Column(
       children: [
         Padding(
