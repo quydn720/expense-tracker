@@ -71,6 +71,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/icons/banks/
+    - assets/icons/categories/
   fonts:
     - family: Inter
       fonts:

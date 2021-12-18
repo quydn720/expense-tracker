@@ -4,8 +4,61 @@ import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
 import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:transaction_repository/transaction_repository.dart';
+
+const categoryPath = 'assets/icons/categories';
+List<Category> categories = [
+  Category(
+    name: 'Food',
+    iconPath: '$categoryPath/restaurant.png',
+    backgroundColor: kRed20,
+    iconColor: kRed100,
+  ),
+  Category(
+    name: 'Salary',
+    iconPath: '$categoryPath/salary.png',
+    backgroundColor: kGreen20,
+    iconColor: kGreen100,
+  ),
+  Category(
+    name: 'Transportation',
+    iconPath: '$categoryPath/car.png',
+    backgroundColor: kBlue20,
+    iconColor: kBlue100,
+  ),
+  Category(
+    name: 'Subscriptions',
+    iconPath: '$categoryPath/recurring-bill.png',
+    backgroundColor: kViolet20,
+    iconColor: kViolet100,
+  ),
+  Category(
+    name: 'Shopping',
+    iconPath: '$categoryPath/shopping-bag.png',
+    backgroundColor: kYellow20,
+    iconColor: kYellow100,
+  ),
+];
+
+class Category {
+  final String name;
+  final String iconPath;
+  final Color backgroundColor;
+  final Color iconColor;
+
+  Category({
+    required this.iconColor,
+    required this.name,
+    required this.iconPath,
+    required this.backgroundColor,
+  });
+
+  factory Category.fromName(String name) {
+    return categories.where((element) => element.name.contains(name)).first;
+  }
+}
 
 class TransactionTile extends StatelessWidget {
   const TransactionTile({
@@ -17,36 +70,48 @@ class TransactionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Card(
-        elevation: 2,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24.0),
+        ),
         child: ListTile(
-          tileColor: kLight80,
-          leading: const SquaredIconCard(
-            size: 60,
-            color: kYellow20,
-            imagePath: 'assets/icons/shopping-bag.png',
-            imageColor: kYellow100,
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 6.0,
+            horizontal: 16.0,
           ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  transaction.category,
-                  overflow: TextOverflow.ellipsis,
-                  style: body2,
-                ),
-              ),
-              FittedBox(
-                child: Text(
-                  transaction.amount.toString(),
-                  style: body2.copyWith(
-                    color: transaction.type == TransactionType.income
-                        ? kGreen100
-                        : kRed100,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24.0),
+          ),
+          tileColor: kLight60,
+          leading: CategoryIconCard(
+            category: Category.fromName(transaction.category),
+          ),
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    transaction.category,
+                    overflow: TextOverflow.ellipsis,
+                    style: body2,
                   ),
                 ),
-              ),
-            ],
+                FittedBox(
+                  child: Text(
+                    (transaction.type == TransactionType.income ? '+' : '-') +
+                        '\$ ' +
+                        transaction.amount.toString(),
+                    style: body2.copyWith(
+                      color: transaction.type == TransactionType.income
+                          ? kGreen100
+                          : kRed100,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,7 +126,7 @@ class TransactionTile extends StatelessWidget {
               SizedBox(
                 width: 80,
                 child: Text(
-                  transaction.date.toString(),
+                  DateFormat(DateFormat.HOUR_MINUTE).format(transaction.date),
                   maxLines: 1,
                   textAlign: TextAlign.end,
                 ),

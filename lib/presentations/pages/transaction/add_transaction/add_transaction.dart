@@ -3,6 +3,7 @@ import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
+import 'package:expense_tracker/presentations/components/transaction_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -72,7 +73,7 @@ class AddTransactionForm extends StatelessWidget {
           ),
           child: Column(
             children: [
-              _CategoryDropdown(items: items),
+              _CategoryDropdown(items: categories.map((e) => e.name).toList()),
               const SizedBox(height: kMediumPadding),
               const _DescriptionInput(),
               const SizedBox(height: kMediumPadding),
