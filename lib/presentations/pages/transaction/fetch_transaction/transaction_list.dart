@@ -82,7 +82,7 @@ class TransactionPage extends StatelessWidget {
                       .where(
                         // (element) => element.key.month == DateTime.now().month,
                         (element) =>
-                            element.key.month == DateTime(2021, 11).month,
+                            element.key.month == DateTime(2021, 12).month,
                       ) // TODO: equality with the choosen month
                       .map(
                         (e) => Padding(
@@ -93,15 +93,29 @@ class TransactionPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Text(e.key.onlyDateFormatted,
-                                    style: title3),
+                              Text(
+                                e.key.onlyDateFormatted,
+                                style: title3,
                               ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text('Total: ', style: body1),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 16.0),
+                                    child: Text(
+                                      '${e.value.map((e) => e.amount * (e.type == TransactionType.income ? 1 : -1)).reduce((a, b) => a + b)}',
+                                      style: body2,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
                               ...e.value
                                   .map((e) => TransactionTile(transaction: e))
                                   .toList(),
+                              const Divider(),
                             ],
                           ),
                         ),
