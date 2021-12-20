@@ -20,16 +20,8 @@ class TransactionPage extends StatelessWidget {
       child: BlocBuilder<FilterBloc, FilterState>(
         builder: (context, state) {
           if (state is FilterLoading) {
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           } else if (state is FilterLoaded) {
-            final transactions = state.transactions;
-            var te = transactions.groupBy(
-              (trans) => DateTime(
-                trans.date.year,
-                trans.date.month,
-                trans.date.day,
-              ),
-            );
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,23 +57,47 @@ class TransactionPage extends StatelessWidget {
                           DatePicker.showPicker(
                             context,
                             pickerModel: CustomMonthPicker(
-                              currentTime: DateTime.now(),
+                              currentTime: context.read<FilterBloc>().date,
                             ),
                             onConfirm: (v) =>
                                 context.read<FilterBloc>().add(DateChanged(v)),
+                            theme: const DatePickerTheme(itemStyle: body1),
                           );
                         },
                       ),
                       actions: [
-                        IconButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) => const FilterBottomSheet(),
-                            );
-                          },
-                          icon: Image.asset('assets/icons/sort.png'),
-                        )
+                        Stack(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) =>
+                                      const FilterBottomSheet(),
+                                );
+                              },
+                              icon: Image.asset('assets/icons/sort.png'),
+                            ),
+                            Container(
+                              child:
+                                  context.read<FilterBloc>().filterCountStr !=
+                                          null
+                                      ? Positioned(
+                                          top: 4,
+                                          right: 0,
+                                          child: CircleAvatar(
+                                              radius: 10,
+                                              child: Text(
+                                                context
+                                                    .read<FilterBloc>()
+                                                    .filterCountStr!,
+                                                style: tiny,
+                                              )),
+                                        )
+                                      : Container(),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

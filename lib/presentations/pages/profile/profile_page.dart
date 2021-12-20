@@ -58,7 +58,6 @@ class Body extends StatelessWidget {
             }
           },
         );
-        print(user?.id);
         return Padding(
           padding: const EdgeInsets.all(kMediumPadding),
           child: SafeArea(

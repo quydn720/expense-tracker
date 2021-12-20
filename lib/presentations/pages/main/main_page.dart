@@ -1,9 +1,6 @@
 import '../../../blocs/tab/tab_bloc.dart';
-import '../../../blocs/transaction/transaction_bloc.dart';
-import '../../components/common_components.dart';
 import '../../components/default_button.dart';
 import '../home/home_page.dart';
-import '../login/widgets.dart';
 import '../transaction/add_transaction/add_transaction.dart';
 import '../transaction/fetch_transaction/transaction_list.dart';
 import '../../../size_config.dart';
@@ -11,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants.dart';
 import '../profile/profile_page.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/extension_helper.dart';
 
 class MainPage extends StatelessWidget {
   static String routeName = '/main_page';
@@ -102,10 +98,10 @@ class BudgetPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Spacer(),
-                    Text('Let\'s make one so you in control'),
-                    Text('You don\'t have a budget.'),
-                    Spacer(),
+                    const Spacer(),
+                    const Text('Let\'s make one so you in control'),
+                    const Text('You don\'t have a budget.'),
+                    const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(kMediumPadding),
                       child: DefaultButton(

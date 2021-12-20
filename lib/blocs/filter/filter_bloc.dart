@@ -16,10 +16,13 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
   ActiveFilter _filter = ActiveFilter.empty;
   ActiveSort _sort = ActiveSort.newest;
   DateTime _date = DateTime.now();
+  int _filterCount = 0;
 
   ActiveFilter get currentFilter => _filter;
   ActiveSort get currentSort => _sort;
   DateTime get date => _date;
+  String? get filterCountStr =>
+      _filterCount > 0 ? _filterCount.toString() : null;
 
   FilterBloc({required this.transactionBloc})
       : super(transactionBloc.state is TransactionLoaded
@@ -62,6 +65,18 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     return c;
   }
 
+  int _getFilterCount() {
+    if (_filter != ActiveFilter.empty && _sort != ActiveSort.newest) {
+      return 2;
+    } else if (_filter == ActiveFilter.empty && _sort == ActiveSort.newest) {
+      return 0;
+    } else if (_filter != ActiveFilter.empty) {
+      return 1;
+    } else {
+      return 1;
+    }
+  }
+
   List<Transaction> _mapTransactionsToFilteredTransactions(
       List<Transaction> transactions, ActiveFilter filter, ActiveSort sort) {
     var filteredTransactions = transactions.where(
@@ -93,6 +108,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     _filter = ActiveFilter.empty;
     _sort = ActiveSort.newest;
     final state = this.state;
+    _filterCount = _getFilterCount();
     emit(
       FilterLoaded(
         (state as FilterLoaded).transactions,
@@ -105,6 +121,8 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
 
   void _onFilterSubmitted(FilterSubmitted event, Emitter<FilterState> emit) {
     final state = transactionBloc.state;
+    _filterCount = _getFilterCount();
+
     if (state is TransactionLoaded) {
       emit(
         FilterLoaded(
@@ -136,6 +154,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
 
   void _onFilterChanged(FilterChanged event, Emitter<FilterState> emit) {
     final state = this.state;
+    _filterCount = _getFilterCount();
     _filter = event.filter;
     emit(FilterLoaded(
       (state as FilterLoaded).transactions,
@@ -147,6 +166,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
 
   void _onSortChanged(SortChanged event, Emitter<FilterState> emit) {
     final state = this.state;
+    _filterCount = _getFilterCount();
     _sort = event.sort;
     emit(FilterLoaded(
       (state as FilterLoaded).transactions,

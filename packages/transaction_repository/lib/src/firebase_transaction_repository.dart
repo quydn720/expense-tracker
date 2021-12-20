@@ -69,6 +69,15 @@ class FirebaseTransactionRepository implements TransactionRepository {
 
   @override
   Future<void> updateTransaction(Transaction transaction) {
+    // int offset = transaction.type == TransactionType.income ? -1 : 1;
+    // final updatedTransaction = transaction.copyWith(
+    //   wallet: transaction.wallet.copyWith(
+    //       amount: transaction.wallet.amount + transaction.amount * offset),
+    // );
+    // walletRepository.updateWallet(
+    //   transaction.wallet.copyWith(amount: updatedTransaction.wallet.amount),
+    // ); // TODO: fix db issues
+
     return transactionCollection
         .doc(transaction.id)
         .update(transaction.toEntity().toDocument());
