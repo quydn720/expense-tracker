@@ -18,19 +18,53 @@ class AddNewTransactionPage extends StatelessWidget {
     final _transaction =
         ModalRoute.of(context)!.settings.arguments as Transaction?;
     if (_transaction != null) {
-      return BlocProvider(
-        create: (context) => AddTransactionCubit(),
-        child: Scaffold(
-          appBar: AppBar(
-            iconTheme: const IconThemeData(color: Colors.white),
-            title: const Text(
-              'Edit Expense',
-              style: TextStyle(color: Colors.white),
-            ),
-            backgroundColor: kRed100,
-          ),
-          backgroundColor: kRed100,
-          body: Align(
+      return DefaultTabController(
+        length: 2,
+        child: BlocProvider(
+          create: (context) => AddTransactionCubit(),
+          child: AddTransactionView(transaction: _transaction),
+        ),
+      );
+    } else {
+      return const DefaultTabController(
+        length: 2,
+        child: AddTransactionView(transaction: null),
+      );
+    }
+  }
+}
+
+class AddTransactionView extends StatelessWidget {
+  const AddTransactionView({
+    Key? key,
+    required Transaction? transaction,
+  })  : _transaction = transaction,
+        super(key: key);
+
+  final Transaction? _transaction;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text(
+          'Edit Expense',
+          style: TextStyle(color: Colors.white),
+        ),
+        bottom: TabBar(
+          tabs: const [
+            Tab(icon: Text('Expense')),
+            Tab(icon: Text('Income')),
+          ],
+          onTap: (v) => context.read<AddTransactionCubit>().typeChanged(v),
+        ),
+        backgroundColor: kRed100,
+      ),
+      backgroundColor: kRed100,
+      body: TabBarView(
+        children: [
+          Align(
             alignment: Alignment.bottomCenter,
             child: SingleChildScrollView(
               child: AddTransactionForm(
@@ -38,27 +72,17 @@ class AddNewTransactionPage extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      );
-    } else {
-      return BlocProvider(
-        create: (context) => AddTransactionCubit(),
-        child: Scaffold(
-          appBar: AppBar(
-            iconTheme: const IconThemeData(color: Colors.white),
-            title: const Text('Expense', style: TextStyle(color: Colors.white)),
-            backgroundColor: kRed100,
-          ),
-          backgroundColor: kRed100,
-          body: const Align(
+          Align(
             alignment: Alignment.bottomCenter,
             child: SingleChildScrollView(
-              child: AddTransactionForm(),
+              child: AddTransactionForm(
+                transaction: _transaction,
+              ),
             ),
           ),
-        ),
-      );
-    }
+        ],
+      ),
+    );
   }
 }
 
@@ -352,7 +376,7 @@ class _SubmitButton extends StatelessWidget {
                             id: id!,
                             amount: addBloc.amount.value,
                             category: addBloc.category,
-                            type: type!,
+                            type: addBloc.type,
                             wallet: addBloc.wallet,
                             description: addBloc.description,
                             date: date,
@@ -370,7 +394,7 @@ class _SubmitButton extends StatelessWidget {
                               Transaction(
                                 amount: addBloc.amount.value,
                                 category: addBloc.category,
-                                type: TransactionType.expense,
+                                type: addBloc.type,
                                 wallet: addBloc.wallet,
                                 description: addBloc.description,
                                 date: DateTime.now(),

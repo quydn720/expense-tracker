@@ -8,5 +8,6 @@ class AddTransactionState with _$AddTransactionState {
     @Default(Wallet.pure('', 0, '', '', Color(0xff000000))) Wallet wallet,
     String? description,
     @Default(FormzStatus.pure) FormzStatus status,
+    @Default(TransactionType.expense) TransactionType type,
   }) = _AddTransactionState;
 }

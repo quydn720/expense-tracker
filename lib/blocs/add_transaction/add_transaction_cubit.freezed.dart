@@ -22,13 +22,15 @@ class _$AddTransactionStateTearOff {
       String category = 'Category',
       Wallet wallet = const Wallet.pure('', 0, '', '', Color(0xff000000)),
       String? description,
-      FormzStatus status = FormzStatus.pure}) {
+      FormzStatus status = FormzStatus.pure,
+      TransactionType type = TransactionType.expense}) {
     return _AddTransactionState(
       amount: amount,
       category: category,
       wallet: wallet,
       description: description,
       status: status,
+      type: type,
     );
   }
 }
@@ -43,6 +45,7 @@ mixin _$AddTransactionState {
   Wallet get wallet => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
+  TransactionType get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AddTransactionStateCopyWith<AddTransactionState> get copyWith =>
@@ -59,7 +62,8 @@ abstract class $AddTransactionStateCopyWith<$Res> {
       String category,
       Wallet wallet,
       String? description,
-      FormzStatus status});
+      FormzStatus status,
+      TransactionType type});
 }
 
 /// @nodoc
@@ -78,6 +82,7 @@ class _$AddTransactionStateCopyWithImpl<$Res>
     Object? wallet = freezed,
     Object? description = freezed,
     Object? status = freezed,
+    Object? type = freezed,
   }) {
     return _then(_value.copyWith(
       amount: amount == freezed
@@ -100,6 +105,10 @@ class _$AddTransactionStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TransactionType,
     ));
   }
 }
@@ -116,7 +125,8 @@ abstract class _$AddTransactionStateCopyWith<$Res>
       String category,
       Wallet wallet,
       String? description,
-      FormzStatus status});
+      FormzStatus status,
+      TransactionType type});
 }
 
 /// @nodoc
@@ -137,6 +147,7 @@ class __$AddTransactionStateCopyWithImpl<$Res>
     Object? wallet = freezed,
     Object? description = freezed,
     Object? status = freezed,
+    Object? type = freezed,
   }) {
     return _then(_AddTransactionState(
       amount: amount == freezed
@@ -159,6 +170,10 @@ class __$AddTransactionStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TransactionType,
     ));
   }
 }
@@ -171,7 +186,8 @@ class _$_AddTransactionState implements _AddTransactionState {
       this.category = 'Category',
       this.wallet = const Wallet.pure('', 0, '', '', Color(0xff000000)),
       this.description,
-      this.status = FormzStatus.pure});
+      this.status = FormzStatus.pure,
+      this.type = TransactionType.expense});
 
   @JsonKey(defaultValue: const MoneyAmount.pure())
   @override
@@ -187,10 +203,13 @@ class _$_AddTransactionState implements _AddTransactionState {
   @JsonKey(defaultValue: FormzStatus.pure)
   @override
   final FormzStatus status;
+  @JsonKey(defaultValue: TransactionType.expense)
+  @override
+  final TransactionType type;
 
   @override
   String toString() {
-    return 'AddTransactionState(amount: $amount, category: $category, wallet: $wallet, description: $description, status: $status)';
+    return 'AddTransactionState(amount: $amount, category: $category, wallet: $wallet, description: $description, status: $status, type: $type)';
   }
 
   @override
@@ -204,12 +223,13 @@ class _$_AddTransactionState implements _AddTransactionState {
             (identical(other.wallet, wallet) || other.wallet == wallet) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, amount, category, wallet, description, status);
+  int get hashCode => Object.hash(
+      runtimeType, amount, category, wallet, description, status, type);
 
   @JsonKey(ignore: true)
   @override
@@ -224,7 +244,8 @@ abstract class _AddTransactionState implements AddTransactionState {
       String category,
       Wallet wallet,
       String? description,
-      FormzStatus status}) = _$_AddTransactionState;
+      FormzStatus status,
+      TransactionType type}) = _$_AddTransactionState;
 
   @override
   MoneyAmount get amount;
@@ -236,6 +257,8 @@ abstract class _AddTransactionState implements AddTransactionState {
   String? get description;
   @override
   FormzStatus get status;
+  @override
+  TransactionType get type;
   @override
   @JsonKey(ignore: true)
   _$AddTransactionStateCopyWith<_AddTransactionState> get copyWith =>
