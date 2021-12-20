@@ -1,15 +1,16 @@
-import 'package:expense_tracker/app/app.dart';
-import 'package:expense_tracker/presentations/components/transaction_tile.dart';
-import 'package:expense_tracker/presentations/pages/forgot_password/forgot_pw_page.dart';
-import 'package:expense_tracker/presentations/pages/home/home_page.dart';
-import 'package:expense_tracker/presentations/pages/login/login_page.dart';
-import 'package:expense_tracker/presentations/pages/profile/account/account_page.dart';
-import 'package:expense_tracker/presentations/pages/profile/export/export_page.dart';
-import 'package:expense_tracker/presentations/pages/profile/export/export_result_page.dart';
-import 'package:expense_tracker/presentations/pages/profile/setting/setting_page.dart';
-import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
-import 'package:expense_tracker/presentations/pages/transaction/fetch_transaction/transaction_list.dart';
-import 'package:expense_tracker/size_config.dart';
+import 'package:expense_tracker/presentations/pages/detail/transaction_detail.dart';
+
+import '../blocs/app_bloc/app_bloc.dart';
+import '../presentations/pages/forgot_password/forgot_pw_page.dart';
+import '../presentations/pages/home/home_page.dart';
+import '../presentations/pages/login/login_page.dart';
+import '../presentations/pages/profile/account/account_page.dart';
+import '../presentations/pages/profile/export/export_page.dart';
+import '../presentations/pages/profile/export/export_result_page.dart';
+import '../presentations/pages/profile/setting/setting_page.dart';
+import '../presentations/pages/transaction/add_transaction/add_transaction.dart';
+import '../presentations/pages/transaction/fetch_transaction/transaction_list.dart';
+import '../size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

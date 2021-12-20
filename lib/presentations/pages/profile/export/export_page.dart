@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/bars.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
+import '../../../../constants.dart';
+import '../../../components/bars.dart';
+import '../../../components/default_button.dart';
 
 import 'export_result_page.dart';
 

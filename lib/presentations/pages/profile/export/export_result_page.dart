@@ -1,6 +1,6 @@
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/presentations/pages/main/main_page.dart';
+import '../../../../constants.dart';
+import '../../../components/default_button.dart';
+import '../../main/main_page.dart';
 import 'package:flutter/material.dart';
 
 class ExportDataPromptPage extends StatelessWidget {

@@ -1,8 +1,8 @@
-import 'package:expense_tracker/blocs/filter/filter_bloc.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/bars.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/size_config.dart';
+import '../../../../blocs/filter/filter_bloc.dart';
+import '../../../../constants.dart';
+import '../../../components/bars.dart';
+import '../../../components/default_button.dart';
+import '../../../../size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

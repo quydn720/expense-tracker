@@ -9,4 +9,5 @@ class FilterEvent with _$FilterEvent {
   const factory FilterEvent.filterSubmitted() = FilterSubmitted;
   const factory FilterEvent.sortChanged(ActiveSort sort) = SortChanged;
   const factory FilterEvent.filterChanged(ActiveFilter filter) = FilterChanged;
+  const factory FilterEvent.dateChanged(DateTime date) = DateChanged;
 }

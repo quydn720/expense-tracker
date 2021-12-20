@@ -7,6 +7,8 @@ import 'package:wallet_repository/wallet_repository.dart';
 const cachedTransactionKey = 'cached_transaction_key';
 
 class FirebaseTransactionRepository implements TransactionRepository {
+  final userCollection =
+      firestore.FirebaseFirestore.instance.collection('users');
   final transactionCollection =
       firestore.FirebaseFirestore.instance.collection('transactions');
 
@@ -23,6 +25,7 @@ class FirebaseTransactionRepository implements TransactionRepository {
   @override
   Future<void> addNewTransaction(Transaction transaction) {
     int offset = transaction.type == TransactionType.income ? 1 : -1;
+
     final updatedTransaction = transaction.copyWith(
       wallet: transaction.wallet.copyWith(
           amount: transaction.wallet.amount + transaction.amount * offset),
@@ -66,6 +69,15 @@ class FirebaseTransactionRepository implements TransactionRepository {
 
   @override
   Future<void> updateTransaction(Transaction transaction) {
+    // int offset = transaction.type == TransactionType.income ? -1 : 1;
+    // final updatedTransaction = transaction.copyWith(
+    //   wallet: transaction.wallet.copyWith(
+    //       amount: transaction.wallet.amount + transaction.amount * offset),
+    // );
+    // walletRepository.updateWallet(
+    //   transaction.wallet.copyWith(amount: updatedTransaction.wallet.amount),
+    // ); // TODO: fix db issues
+
     return transactionCollection
         .doc(transaction.id)
         .update(transaction.toEntity().toDocument());

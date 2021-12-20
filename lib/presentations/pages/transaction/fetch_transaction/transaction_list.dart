@@ -1,7 +1,10 @@
-import 'package:expense_tracker/blocs/filter/filter_bloc.dart';
-import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
-import 'package:expense_tracker/utils/extension_helper.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
+
+import '../../../../blocs/filter/filter_bloc.dart';
+import '../../../../constants.dart';
+import '../../../../utils/extension_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transaction_repository/transaction_repository.dart';
@@ -17,16 +20,8 @@ class TransactionPage extends StatelessWidget {
       child: BlocBuilder<FilterBloc, FilterState>(
         builder: (context, state) {
           if (state is FilterLoading) {
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           } else if (state is FilterLoaded) {
-            final transactions = state.transactions;
-            var te = transactions.groupBy(
-              (trans) => DateTime(
-                trans.date.year,
-                trans.date.month,
-                trans.date.day,
-              ),
-            );
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,17 +30,74 @@ class TransactionPage extends StatelessWidget {
                     padding: const EdgeInsets.only(right: kMediumPadding),
                     child: AppBar(
                       leadingWidth: 150,
-                      leading: const Chip(label: Text('December')),
-                      actions: [
-                        IconButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) => const FilterBottomSheet(),
-                            );
+                      leading: InkWell(
+                        child: BlocBuilder<FilterBloc, FilterState>(
+                          builder: (context, state) {
+                            if (state is FilterLoaded) {
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 16.0),
+                                child: Chip(
+                                  label: SizedBox(
+                                    width: double.infinity,
+                                    child: Text(
+                                      DateFormat(DateFormat.MONTH).format(
+                                        context.read<FilterBloc>().date,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            } else {
+                              return Container();
+                            }
                           },
-                          icon: Image.asset('assets/icons/sort.png'),
-                        )
+                        ),
+                        onTap: () {
+                          DatePicker.showPicker(
+                            context,
+                            pickerModel: CustomMonthPicker(
+                              currentTime: context.read<FilterBloc>().date,
+                            ),
+                            onConfirm: (v) =>
+                                context.read<FilterBloc>().add(DateChanged(v)),
+                            theme: const DatePickerTheme(itemStyle: body1),
+                          );
+                        },
+                      ),
+                      actions: [
+                        Stack(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) =>
+                                      const FilterBottomSheet(),
+                                );
+                              },
+                              icon: Image.asset('assets/icons/sort.png'),
+                            ),
+                            Container(
+                              child:
+                                  context.read<FilterBloc>().filterCountStr !=
+                                          null
+                                      ? Positioned(
+                                          top: 4,
+                                          right: 0,
+                                          child: CircleAvatar(
+                                              radius: 10,
+                                              child: Text(
+                                                context
+                                                    .read<FilterBloc>()
+                                                    .filterCountStr!,
+                                                style: tiny,
+                                              )),
+                                        )
+                                      : Container(),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -78,12 +130,13 @@ class TransactionPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ...te.entries
-                      .where(
-                        // (element) => element.key.month == DateTime.now().month,
-                        (element) =>
-                            element.key.month == DateTime(2021, 11).month,
-                      ) // TODO: equality with the choosen month
+                  ...state.transactions
+                      .groupBy((trans) => DateTime(
+                            trans.date.year,
+                            trans.date.month,
+                            trans.date.day,
+                          ))
+                      .entries
                       .map(
                         (e) => Padding(
                           padding: const EdgeInsets.symmetric(
@@ -93,19 +146,34 @@ class TransactionPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Text(e.key.onlyDateFormatted,
-                                    style: title3),
+                              Text(
+                                e.key.onlyDateFormatted,
+                                style: title3,
                               ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text('Total: ', style: body1),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 16.0),
+                                    child: Text(
+                                      '${e.value.map((e) => e.amount * (e.type == TransactionType.income ? 1 : -1)).reduce((a, b) => a + b)}',
+                                      style: body2,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
                               ...e.value
                                   .map((e) => TransactionTile(transaction: e))
                                   .toList(),
+                              const Divider(),
                             ],
                           ),
                         ),
-                      ),
+                      )
+                      .toList(),
                 ],
               ),
             );

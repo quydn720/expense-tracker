@@ -11,6 +11,7 @@ class FilterState with _$FilterState {
     List<Transaction> transactions,
     ActiveFilter activeFilter,
     ActiveSort activeSort,
+    DateTime date,
   ) = FilterLoaded;
 }
 

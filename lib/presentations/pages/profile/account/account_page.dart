@@ -1,7 +1,7 @@
-import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
+import '../../../../blocs/wallet/wallet_bloc.dart';
+import '../../../../constants.dart';
+import '../../../components/default_button.dart';
+import '../../../components/squared_icon_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

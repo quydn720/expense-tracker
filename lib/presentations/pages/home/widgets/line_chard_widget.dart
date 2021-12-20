@@ -1,5 +1,5 @@
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
-import 'package:expense_tracker/constants.dart';
+import '../../../../blocs/transaction/transaction_bloc.dart';
+import '../../../../constants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
