@@ -17,20 +17,10 @@ class AddNewTransactionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _transaction =
         ModalRoute.of(context)!.settings.arguments as Transaction?;
-    if (_transaction != null) {
-      return DefaultTabController(
-        length: 2,
-        child: BlocProvider(
-          create: (context) => AddTransactionCubit(),
-          child: AddTransactionView(transaction: _transaction),
-        ),
-      );
-    } else {
-      return const DefaultTabController(
-        length: 2,
-        child: AddTransactionView(transaction: null),
-      );
-    }
+    return BlocProvider(
+      create: (context) => AddTransactionCubit(),
+      child: AddTransactionView(transaction: _transaction),
+    );
   }
 }
 
@@ -45,44 +35,103 @@ class AddTransactionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text(
-          'Edit Expense',
-          style: TextStyle(color: Colors.white),
-        ),
-        bottom: TabBar(
-          tabs: const [
-            Tab(icon: Text('Expense')),
-            Tab(icon: Text('Income')),
-          ],
-          onTap: (v) => context.read<AddTransactionCubit>().typeChanged(v),
-        ),
-        backgroundColor: kRed100,
-      ),
-      backgroundColor: kRed100,
-      body: TabBarView(
-        children: [
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: SingleChildScrollView(
-              child: AddTransactionForm(
-                transaction: _transaction,
+    if (_transaction != null) {
+      context.read<AddTransactionCubit>().typeChanged(_transaction!.type.index);
+      return DefaultTabController(
+        initialIndex: _transaction!.type.index,
+        length: 2,
+        child: BlocBuilder<AddTransactionCubit, AddTransactionState>(
+          builder: (context, state) {
+            return Scaffold(
+              appBar: AppBar(
+                iconTheme: const IconThemeData(color: Colors.white),
+                title: const Text(
+                  'Edit Transaction',
+                  style: TextStyle(color: Colors.white),
+                ),
+                bottom: TabBar(
+                  tabs: const [
+                    Tab(icon: Text('Expense')),
+                    Tab(icon: Text('Income')),
+                  ],
+                  onTap: (v) =>
+                      context.read<AddTransactionCubit>().typeChanged(v),
+                ),
+                backgroundColor: (state.type.index == 0) ? kRed100 : kGreen100,
               ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: SingleChildScrollView(
-              child: AddTransactionForm(
-                transaction: _transaction,
+              backgroundColor: (state.type.index == 0) ? kRed100 : kGreen100,
+              body: TabBarView(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SingleChildScrollView(
+                      child: AddTransactionForm(
+                        transaction: _transaction,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SingleChildScrollView(
+                      child: AddTransactionForm(
+                        transaction: _transaction,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-        ],
-      ),
-    );
+            );
+          },
+        ),
+      );
+    } else {
+      return DefaultTabController(
+        length: 2,
+        child: BlocBuilder<AddTransactionCubit, AddTransactionState>(
+          builder: (context, state) {
+            return Scaffold(
+              appBar: AppBar(
+                iconTheme: const IconThemeData(color: Colors.white),
+                title: const Text(
+                  'Add Transaction',
+                  style: TextStyle(color: Colors.white),
+                ),
+                bottom: TabBar(
+                  tabs: const [
+                    Tab(icon: Text('Expense')),
+                    Tab(icon: Text('Income')),
+                  ],
+                  onTap: (v) =>
+                      context.read<AddTransactionCubit>().typeChanged(v),
+                ),
+                backgroundColor: (state.type.index == 0) ? kRed100 : kGreen100,
+              ),
+              backgroundColor: (state.type.index == 0) ? kRed100 : kGreen100,
+              body: TabBarView(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SingleChildScrollView(
+                      child: AddTransactionForm(
+                        transaction: _transaction,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SingleChildScrollView(
+                      child: AddTransactionForm(
+                        transaction: _transaction,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      );
+    }
   }
 }
 

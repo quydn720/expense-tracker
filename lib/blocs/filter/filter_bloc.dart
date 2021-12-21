@@ -126,10 +126,13 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     if (state is TransactionLoaded) {
       emit(
         FilterLoaded(
-          _mapTransactionsToFilteredTransactions(
-            state.transactions,
-            _filter,
-            _sort,
+          _dateChangedTransactions(
+            _mapTransactionsToFilteredTransactions(
+              state.transactions,
+              _filter,
+              _sort,
+            ),
+            _date,
           ),
           _filter,
           _sort,
