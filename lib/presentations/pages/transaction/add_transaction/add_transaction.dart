@@ -429,6 +429,7 @@ class _SubmitButton extends StatelessWidget {
                             wallet: addBloc.wallet,
                             description: addBloc.description,
                             date: date,
+                            walletId: addBloc.wallet.id,
                           ),
                         ),
                       );
@@ -447,6 +448,7 @@ class _SubmitButton extends StatelessWidget {
                                 wallet: addBloc.wallet,
                                 description: addBloc.description,
                                 date: DateTime.now(),
+                                walletId: addBloc.wallet.id,
                               ),
                             ),
                           );

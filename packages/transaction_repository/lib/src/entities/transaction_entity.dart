@@ -14,8 +14,10 @@ class TransactionEntity extends Equatable {
   final String? description;
   final TransactionType type;
   final Timestamp timestamp;
+  final String walletId;
 
   const TransactionEntity({
+    required this.walletId,
     required this.id,
     required this.amount,
     required this.category,
@@ -55,6 +57,7 @@ class TransactionEntity extends Equatable {
       amount: map['amount'] as double,
       category: map['category'] as String,
       wallet: map['wallet'],
+      walletId: map['walletId'],
       description: map['description'] as String,
       type: TransactionType.values[map['type']],
       timestamp: map['timestamp'] as Timestamp,
@@ -79,6 +82,7 @@ class TransactionEntity extends Equatable {
       category: data['category'],
       type: TransactionType.values[data['type']],
       wallet: Wallet.fromEntity(WalletEntity.fromMap(data['wallet'])),
+      walletId: data['walletId'],
       description: data['description'],
     );
   }
@@ -92,6 +96,7 @@ class TransactionEntity extends Equatable {
       'type': type.index,
       'description': description,
       'timestamp': timestamp,
+      'walletId': walletId,
     };
   }
 }

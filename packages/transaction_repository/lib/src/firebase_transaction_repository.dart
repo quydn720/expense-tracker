@@ -11,6 +11,8 @@ class FirebaseTransactionRepository implements TransactionRepository {
       firestore.FirebaseFirestore.instance.collection('users');
   final transactionCollection =
       firestore.FirebaseFirestore.instance.collection('transactions');
+  final walletCollection =
+      firestore.FirebaseFirestore.instance.collection('wallets');
 
   //TODO: Should move to one app-data-repo for consistency
   final WalletRepository walletRepository;
@@ -23,16 +25,24 @@ class FirebaseTransactionRepository implements TransactionRepository {
   });
 
   @override
-  Future<void> addNewTransaction(Transaction transaction) {
+  Future<void> addNewTransaction(Transaction transaction) async {
     int offset = transaction.type == TransactionType.income ? 1 : -1;
 
     final updatedTransaction = transaction.copyWith(
       wallet: transaction.wallet.copyWith(
           amount: transaction.wallet.amount + transaction.amount * offset),
     );
+    // walletRepository.updateWallet(
+    //   transaction.wallet.copyWith(amount: updatedTransaction.wallet.amount),
+    // );
+
+    final c = await walletCollection.doc(transaction.walletId).get();
+    final d = WalletEntity.fromSnapshot(c);
+
     walletRepository.updateWallet(
-      transaction.wallet.copyWith(amount: updatedTransaction.wallet.amount),
+      Wallet.fromEntity(d).copyWith(amount: updatedTransaction.wallet.amount),
     );
+
     return transactionCollection
         .doc(updatedTransaction.id)
         .set(updatedTransaction.toEntity().toDocument());

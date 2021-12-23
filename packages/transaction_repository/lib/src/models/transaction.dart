@@ -13,6 +13,7 @@ class Transaction {
   final String description;
   final TransactionType type;
   final DateTime date;
+  final String walletId;
 
   Transaction({
     String? id,
@@ -20,6 +21,7 @@ class Transaction {
     required this.amount,
     required this.category,
     required this.wallet,
+    required this.walletId,
     required this.type,
     DateTime? date,
   })  : id = id ?? const Uuid().v4(),
@@ -33,6 +35,7 @@ class Transaction {
       category: category,
       description: description,
       wallet: wallet,
+      walletId: wallet.id,
       type: type,
       timestamp: Timestamp.fromDate(date),
     );
@@ -47,6 +50,7 @@ class Transaction {
       wallet: entity.wallet,
       type: entity.type,
       date: entity.timestamp.toDate(),
+      walletId: entity.walletId,
     );
   }
 
@@ -56,6 +60,7 @@ class Transaction {
     String? category,
     Wallet? wallet,
     String? description,
+    String? walletId,
     TransactionType? type,
   }) {
     return Transaction(
@@ -65,6 +70,7 @@ class Transaction {
       category: category ?? this.category,
       wallet: wallet ?? this.wallet,
       type: type ?? this.type,
+      walletId: walletId ?? this.walletId,
     );
   }
 
