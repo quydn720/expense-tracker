@@ -48,7 +48,8 @@ class HomeView extends StatelessWidget {
             return ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: 5,
+              itemCount:
+                  state.transactions.length < 5 ? state.transactions.length : 5,
               itemBuilder: (_, index) {
                 return TransactionTile(transaction: state.transactions[index]);
               },
