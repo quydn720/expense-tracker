@@ -1,3 +1,4 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:wallet_repository/src/wallet_repository.dart';
 
@@ -9,28 +10,38 @@ const key = 'wallet_cached_key';
 class FirebaseWalletRepository implements WalletRepository {
   final Map<String, List<Wallet>> cachedWallet;
 
-  final walletCollection =
-      firestore.FirebaseFirestore.instance.collection('wallets');
+  final AuthenticationRepository authenticationRepository;
+  final String userId;
 
-  FirebaseWalletRepository({required this.cachedWallet});
-
+  FirebaseWalletRepository({
+    required this.cachedWallet,
+    required this.authenticationRepository,
+  }) : userId = authenticationRepository.currentUser.id;
   @override
   Future<void> addNewWallet(Wallet wallet) {
+    final walletCollection = firestore.FirebaseFirestore.instance
+        .collection('users/$userId/wallets');
     return walletCollection.doc(wallet.id).set(wallet.toEntity().toDocument());
   }
 
   @override
   Future<void> deleteWallet(Wallet wallet) async {
+    final walletCollection = firestore.FirebaseFirestore.instance
+        .collection('users/$userId/wallets');
     return walletCollection.doc(wallet.id).delete();
   }
 
   @override
   Stream<List<Wallet>> wallets() {
-    return walletCollection.snapshots().map((snapshot) {
+    final wC = firestore.FirebaseFirestore.instance
+        .collection('users/$userId/wallets');
+    return wC.snapshots().map((snapshot) {
       final wallets = snapshot.docs
-          .map((doc) => Wallet.fromEntity(
-                WalletEntity.fromSnapshot(doc),
-              ))
+          .map(
+            (doc) => Wallet.fromEntity(
+              WalletEntity.fromSnapshot(doc),
+            ),
+          )
           .toList();
       cachedWallet[key] = wallets;
       return wallets;
@@ -39,6 +50,8 @@ class FirebaseWalletRepository implements WalletRepository {
 
   @override
   Future<void> updateWallet(Wallet wallet) {
+    final walletCollection = firestore.FirebaseFirestore.instance
+        .collection('users/$userId/wallets');
     return walletCollection
         .doc(wallet.id)
         .update(wallet.toEntity().toDocument());

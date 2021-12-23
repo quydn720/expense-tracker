@@ -20,7 +20,10 @@ Future<void> main() async {
   runApp(
     App(
       authenticationRepository: authenticationRepository,
-      walletRepository: FirebaseWalletRepository(cachedWallet: {}),
+      walletRepository: FirebaseWalletRepository(
+        cachedWallet: {},
+        authenticationRepository: authenticationRepository,
+      ),
     ),
   );
 }

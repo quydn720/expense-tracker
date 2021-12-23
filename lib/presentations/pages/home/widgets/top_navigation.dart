@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import '../../../../blocs/wallet/wallet_bloc.dart';
 import '../../../../constants.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +39,15 @@ class TopNavigation extends StatelessWidget {
                 child: const Padding(
                   padding: EdgeInsets.all(kDefaultPadding),
                   child: CircleAvatar(),
+                ),
+              ),
+              SizedBox(
+                height: 56,
+                child: Center(
+                  child: Text(
+                    DateFormat(DateFormat.MONTH).format(DateTime.now()),
+                    style: body1,
+                  ),
                 ),
               ),
               IconButton(
