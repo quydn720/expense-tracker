@@ -9,7 +9,6 @@ class Transaction {
   final String id;
   final double amount;
   final String category;
-  final Wallet wallet;
   final String description;
   final TransactionType type;
   final DateTime date;
@@ -20,7 +19,6 @@ class Transaction {
     String? description,
     required this.amount,
     required this.category,
-    required this.wallet,
     required this.walletId,
     required this.type,
     DateTime? date,
@@ -34,8 +32,7 @@ class Transaction {
       amount: amount,
       category: category,
       description: description,
-      wallet: wallet,
-      walletId: wallet.id,
+      walletId: walletId,
       type: type,
       timestamp: Timestamp.fromDate(date),
     );
@@ -47,7 +44,6 @@ class Transaction {
       id: entity.id,
       amount: entity.amount,
       category: entity.category,
-      wallet: entity.wallet,
       type: entity.type,
       date: entity.timestamp.toDate(),
       walletId: entity.walletId,
@@ -68,7 +64,6 @@ class Transaction {
       description: description ?? this.description,
       amount: amount ?? this.amount,
       category: category ?? this.category,
-      wallet: wallet ?? this.wallet,
       type: type ?? this.type,
       walletId: walletId ?? this.walletId,
     );
@@ -84,7 +79,6 @@ class Transaction {
         other.id == id &&
         other.amount == amount &&
         other.category == category &&
-        other.wallet == wallet &&
         other.description == description &&
         other.type == type;
   }
@@ -94,7 +88,6 @@ class Transaction {
     return id.hashCode ^
         amount.hashCode ^
         category.hashCode ^
-        wallet.hashCode ^
         description.hashCode ^
         type.hashCode;
   }
