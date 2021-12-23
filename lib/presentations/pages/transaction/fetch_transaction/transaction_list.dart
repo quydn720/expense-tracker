@@ -1,4 +1,5 @@
 import 'package:expense_tracker/presentations/components/common_components.dart';
+import 'package:expense_tracker/presentations/pages/report/financial_report.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 
@@ -114,7 +115,14 @@ class TransactionPage extends StatelessWidget {
                       right: kDefaultPadding,
                     ),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const FinancialReportPage()),
+                        );
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

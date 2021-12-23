@@ -1,3 +1,4 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:transaction_repository/src/entities/entities.dart';
 import 'package:transaction_repository/src/models/transaction.dart';
@@ -15,11 +16,13 @@ class FirebaseTransactionRepository implements TransactionRepository {
       firestore.FirebaseFirestore.instance.collection('wallets');
 
   final WalletRepository walletRepository;
+  final AuthenticationRepository authenticationRepository;
 
   final Map<String, List<Transaction>> cachedTransactions;
 
   FirebaseTransactionRepository({
     required this.walletRepository,
+    required this.authenticationRepository,
     required this.cachedTransactions,
   });
 
@@ -33,7 +36,10 @@ class FirebaseTransactionRepository implements TransactionRepository {
         amount: updateWallet.amount + transaction.amount * offset);
 
     walletRepository.updateWallet(updateWallet);
-
+    userCollection
+        .doc('transactions')
+        .collection(transaction.id)
+        .add(transaction.toEntity().toDocument());
     return transactionCollection
         .doc(transaction.id)
         .set(transaction.toEntity().toDocument());
