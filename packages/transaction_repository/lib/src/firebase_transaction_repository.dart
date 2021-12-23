@@ -1,3 +1,4 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:transaction_repository/src/entities/entities.dart';
 import 'package:transaction_repository/src/models/transaction.dart';
@@ -11,45 +12,51 @@ class FirebaseTransactionRepository implements TransactionRepository {
       firestore.FirebaseFirestore.instance.collection('users');
   final transactionCollection =
       firestore.FirebaseFirestore.instance.collection('transactions');
+  final walletCollection =
+      firestore.FirebaseFirestore.instance.collection('wallets');
 
-  //TODO: Should move to one app-data-repo for consistency
   final WalletRepository walletRepository;
+  final AuthenticationRepository authenticationRepository;
 
   final Map<String, List<Transaction>> cachedTransactions;
 
   FirebaseTransactionRepository({
     required this.walletRepository,
+    required this.authenticationRepository,
     required this.cachedTransactions,
   });
 
   @override
-  Future<void> addNewTransaction(Transaction transaction) {
+  Future<void> addNewTransaction(Transaction transaction) async {
     int offset = transaction.type == TransactionType.income ? 1 : -1;
 
-    final updatedTransaction = transaction.copyWith(
-      wallet: transaction.wallet.copyWith(
-          amount: transaction.wallet.amount + transaction.amount * offset),
-    );
-    walletRepository.updateWallet(
-      transaction.wallet.copyWith(amount: updatedTransaction.wallet.amount),
-    );
+    final snap = await walletCollection.doc(transaction.walletId).get();
+    final updateWallet = Wallet.fromEntity(WalletEntity.fromSnapshot(snap));
+    updateWallet.copyWith(
+        amount: updateWallet.amount + transaction.amount * offset);
+
+    walletRepository.updateWallet(updateWallet);
+    userCollection
+        .doc('transactions')
+        .collection(transaction.id)
+        .add(transaction.toEntity().toDocument());
     return transactionCollection
-        .doc(updatedTransaction.id)
-        .set(updatedTransaction.toEntity().toDocument());
+        .doc(transaction.id)
+        .set(transaction.toEntity().toDocument());
   }
 
   @override
   Future<void> deleteTransaction(Transaction transaction) async {
     int offset = transaction.type == TransactionType.income ? -1 : 1;
 
-    final updatedTransaction = transaction.copyWith(
-      wallet: transaction.wallet.copyWith(
-          amount: transaction.wallet.amount + transaction.amount * offset),
-    );
+    final snap = await walletCollection.doc(transaction.walletId).get();
+    Wallet updateWallet = Wallet.fromEntity(WalletEntity.fromSnapshot(snap));
+
     walletRepository.updateWallet(
-      transaction.wallet.copyWith(amount: updatedTransaction.wallet.amount),
+      updateWallet.copyWith(
+          amount: updateWallet.amount + transaction.amount * offset),
     );
-    return transactionCollection.doc(updatedTransaction.id).delete();
+    return transactionCollection.doc(transaction.id).delete();
   }
 
   @override

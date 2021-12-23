@@ -1,4 +1,5 @@
 import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
+import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
@@ -144,7 +145,14 @@ class TransactionDetailPage extends StatelessWidget {
                               children: [
                                 const Text('Wallet'),
                                 Text(
-                                  _transaction.wallet.name,
+                                  context
+                                      .read<WalletBloc>()
+                                      .walletRepository
+                                      .currentWallets
+                                      .where(
+                                          (e) => e.id == _transaction.walletId)
+                                      .first
+                                      .name,
                                   style: body2,
                                 ),
                               ],

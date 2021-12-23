@@ -36,7 +36,10 @@ class App extends StatelessWidget {
           BlocProvider<TransactionBloc>(
             create: (context) => TransactionBloc(
               FirebaseTransactionRepository(
-                  walletRepository: walletRepository, cachedTransactions: {}),
+                authenticationRepository: authenticationRepository,
+                walletRepository: walletRepository,
+                cachedTransactions: {},
+              ),
             )..add(const LoadTransactions()),
           ),
           BlocProvider<WalletBloc>(

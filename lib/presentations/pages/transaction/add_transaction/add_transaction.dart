@@ -184,7 +184,12 @@ class AddTransactionForm extends StatelessWidget {
                       .read<WalletBloc>()
                       .walletRepository
                       .currentWallets,
-                  initWallet: transaction!.wallet,
+                  initWallet: context
+                      .read<WalletBloc>()
+                      .walletRepository
+                      .currentWallets
+                      .where((e) => e.id == transaction!.walletId)
+                      .first,
                 ),
                 const SizedBox(height: kMediumPadding),
                 _SubmitButton(
@@ -426,9 +431,9 @@ class _SubmitButton extends StatelessWidget {
                             amount: addBloc.amount.value,
                             category: addBloc.category,
                             type: addBloc.type,
-                            wallet: addBloc.wallet,
                             description: addBloc.description,
                             date: date,
+                            walletId: addBloc.wallet.id,
                           ),
                         ),
                       );
@@ -444,9 +449,9 @@ class _SubmitButton extends StatelessWidget {
                                 amount: addBloc.amount.value,
                                 category: addBloc.category,
                                 type: addBloc.type,
-                                wallet: addBloc.wallet,
                                 description: addBloc.description,
                                 date: DateTime.now(),
+                                walletId: addBloc.wallet.id,
                               ),
                             ),
                           );

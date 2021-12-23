@@ -82,12 +82,10 @@ class Wallet extends FormzInput<String, WalletValidatorError> {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Wallet && other.id == id;
-    //  &&
-    // other.amount == amount &&
-    // other.name == name &&
-    // other.iconPath == iconPath &&
-    // other.color == color;
+    return other is Wallet &&
+        other.id == id &&
+        other.amount == amount &&
+        other.name == name;
   }
 
   @override
