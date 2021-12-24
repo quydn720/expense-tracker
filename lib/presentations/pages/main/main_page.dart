@@ -1,3 +1,6 @@
+import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
+import 'package:expense_tracker/presentations/pages/profile/account/account_page.dart';
+
 import '../../../blocs/tab/tab_bloc.dart';
 import '../../components/default_button.dart';
 import '../home/home_page.dart';
@@ -16,25 +19,41 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return BlocBuilder<TabBloc, AppTab>(
-      builder: (context, currentTab) {
-        return Scaffold(
-          body: getCurrentWidget(currentTab),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: FloatingActionButton(
-            tooltip: 'Add new transaction',
-            child: const Icon(Icons.add, color: Colors.white),
-            onPressed: () {
-              Navigator.of(context).pushNamed(AddNewTransactionPage.routeName);
-            },
-          ),
-          bottomNavigationBar: TabSelector(
-            activeTab: currentTab,
-            onTabSelected: (tab) {
-              context.read<TabBloc>().add(TabChanged(tab));
-            },
-          ),
+    return BlocBuilder<WalletBloc, WalletState>(
+      builder: (context, state) {
+        if (state is WalletLoaded) {
+          if (state.wallets.isEmpty) {
+            return const AddNewWalletPage();
+          }
+        }
+        return BlocBuilder<TabBloc, AppTab>(
+          builder: (context, currentTab) {
+            return Scaffold(
+              body: getCurrentWidget(currentTab),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              floatingActionButton: FloatingActionButton(
+                tooltip: 'Add new transaction',
+                child: const Icon(Icons.add, color: Colors.white),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => BlocProvider.value(
+                        value: BlocProvider.of<WalletBloc>(context),
+                        child: const AddNewTransactionPage(),
+                      ),
+                    ),
+                  );
+                },
+              ),
+              bottomNavigationBar: TabSelector(
+                activeTab: currentTab,
+                onTabSelected: (tab) {
+                  context.read<TabBloc>().add(TabChanged(tab));
+                },
+              ),
+            );
+          },
         );
       },
     );

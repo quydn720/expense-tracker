@@ -188,6 +188,17 @@ class AuthenticationRepository {
     });
   }
 
+  // Stream<User> get userChange{
+  //   return _firebaseAuth
+  // .idTokenChanges()
+  // .listen((User? user) {
+  //   if (user == null) {
+  //     print('User is currently signed out!');
+  //   } else {
+  //     print('User is signed in!');
+  //   }
+  // });
+  // }
   /// Returns the current cached user.
   /// Defaults to [User.empty] if there is no cached user.
   User get currentUser {

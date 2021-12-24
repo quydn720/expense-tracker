@@ -18,7 +18,9 @@ class FirebaseWalletRepository implements WalletRepository {
     required this.authenticationRepository,
   }) : userId = authenticationRepository.currentUser.id;
   @override
-  Future<void> addNewWallet(Wallet wallet) {
+  Future<void> addNewWallet(Wallet wallet) async {
+    await authenticationRepository.user.first;
+
     final walletCollection = firestore.FirebaseFirestore.instance
         .collection('users/$userId/wallets');
     return walletCollection.doc(wallet.id).set(wallet.toEntity().toDocument());
@@ -65,10 +67,16 @@ class FirebaseWalletRepository implements WalletRepository {
   }
 
   @override
-  double get totalAmount =>
-      cachedWallet[key]
-          ?.map((e) => e.amount)
-          .toList()
-          .reduce((a, b) => a + b) ??
-      0;
+  double get totalAmount {
+    final list = cachedWallet[key]?.map((e) => e.amount);
+    if (list != null) {
+      if (list.isNotEmpty) {
+        return list.reduce((a, b) => a + b);
+      } else {
+        return 0;
+      }
+    } else {
+      return 0;
+    }
+  }
 }
