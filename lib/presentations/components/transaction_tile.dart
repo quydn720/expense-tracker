@@ -90,8 +90,15 @@ class TransactionTile extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => BlocProvider.value(
-              value: context.read<WalletBloc>(),
+            builder: (_) => MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: context.read<WalletBloc>(),
+                ),
+                BlocProvider.value(
+                  value: context.read<TransactionBloc>(),
+                ),
+              ],
               child: TransactionDetailPage(transaction: transaction),
             ),
           ),
@@ -99,6 +106,19 @@ class TransactionTile extends StatelessWidget {
       },
       onLongPress: () {
         context.read<TransactionBloc>().add(DeleteTransactions(transaction));
+        final wallet = context
+            .read<WalletBloc>()
+            .walletRepository
+            .currentWallets
+            .where((e) => e.id == transaction.walletId)
+            .first;
+        int offset = transaction.type == TransactionType.income ? 1 : -1;
+        context.read<WalletBloc>().add(
+              UpdateWallet(
+                wallet.copyWith(
+                    amount: wallet.amount + transaction.amount * -offset),
+              ),
+            );
       },
     );
   }

@@ -47,9 +47,9 @@ class AddTransactionView extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               iconTheme: const IconThemeData(color: Colors.white),
-              title: const Text(
-                'Edit Transaction',
-                style: TextStyle(color: Colors.white),
+              title: Text(
+                (_transaction != null) ? 'Edit Transaction' : 'Add Transaction',
+                style: const TextStyle(color: Colors.white),
               ),
               bottom: TabBar(
                 tabs: const [
@@ -84,6 +84,7 @@ class AddTransactionForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (transaction != null) {
+      context.read<AddTransactionCubit>().amountChanged(transaction!.amount);
       return Column(
         children: [
           Padding(
@@ -138,6 +139,8 @@ class AddTransactionForm extends StatelessWidget {
                   id: transaction!.id,
                   date: transaction!.date,
                   type: transaction!.type,
+                  oldAmount: transaction!.amount,
+                  offset: transaction!.type == TransactionType.expense ? 1 : -1,
                 ),
               ],
             ),
@@ -202,13 +205,12 @@ class _AmountInput extends StatelessWidget {
   final double? initAmount;
   @override
   Widget build(BuildContext context) {
-    // if (initAmount != null) {
-    //   context.read<AddTransactionCubit>().amountChanged(initAmount!);
-    // }
-
     return BlocBuilder<AddTransactionCubit, AddTransactionState>(
       buildWhen: (previous, current) => previous.amount != current.amount,
       builder: (context, state) {
+        // if (initAmount != null) {
+        //   context.read<AddTransactionCubit>().amountChanged(initAmount!);
+        // }
         return TextFormField(
           initialValue: (initAmount != null) ? initAmount.toString() : null,
           key: const Key('addTransactionForm_description_textField'),
@@ -349,10 +351,14 @@ class _SubmitButton extends StatelessWidget {
     this.id,
     this.date,
     this.type,
+    this.oldAmount,
+    this.offset,
   }) : super(key: key);
   final String? id;
   final DateTime? date;
   final TransactionType? type;
+  final double? oldAmount;
+  final int? offset;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AddTransactionCubit, AddTransactionState>(
@@ -374,6 +380,13 @@ class _SubmitButton extends StatelessWidget {
                           ),
                         ),
                       );
+                  int offsetB = state.type == TransactionType.income ? 1 : -1;
+                  double a = state.wallet.amount +
+                      oldAmount! * offset! +
+                      state.amount.value * offsetB;
+                  context
+                      .read<WalletBloc>()
+                      .add(UpdateWallet(state.wallet.copyWith(amount: a)));
                   Navigator.pop(context);
                   Navigator.pop(context);
                 }

@@ -37,43 +37,46 @@ class TransactionDetailPage extends StatelessWidget {
             onPressed: () {
               showModalBottomSheet(
                 context: context,
-                builder: (context) => SizedBox(
-                  height: 250,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: kMediumPadding),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Remove this transaction?', style: title3),
-                        const Text(
-                          'Are you sure do you wanna remove this transaction?',
-                          style: body1,
-                          textAlign: TextAlign.center,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            DefaultButton(
-                              isSmall: true,
-                              title: 'No',
-                              isSecondary: true,
-                              onPressed: () => Navigator.pop(context),
-                            ),
-                            DefaultButton(
-                              isSmall: true,
-                              title: 'Yes',
-                              onPressed: () {
-                                context
-                                    .read<TransactionBloc>()
-                                    .add(DeleteTransactions(_transaction));
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        )
-                      ],
+                builder: (context) => BlocProvider.value(
+                  value: context.read<TransactionBloc>(),
+                  child: SizedBox(
+                    height: 250,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.symmetric(vertical: kMediumPadding),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Remove this transaction?', style: title3),
+                          const Text(
+                            'Are you sure do you wanna remove this transaction?',
+                            style: body1,
+                            textAlign: TextAlign.center,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              DefaultButton(
+                                isSmall: true,
+                                title: 'No',
+                                isSecondary: true,
+                                onPressed: () => Navigator.pop(context),
+                              ),
+                              DefaultButton(
+                                isSmall: true,
+                                title: 'Yes',
+                                onPressed: () {
+                                  context
+                                      .read<TransactionBloc>()
+                                      .add(DeleteTransactions(_transaction));
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -177,10 +180,18 @@ class TransactionDetailPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => BlocProvider.value(
-                                  value: context.read<WalletBloc>(),
+                                builder: (_) => MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider.value(
+                                      value: context.read<WalletBloc>(),
+                                    ),
+                                    BlocProvider.value(
+                                      value: context.read<TransactionBloc>(),
+                                    ),
+                                  ],
                                   child: AddNewTransactionPage(
-                                      transaction: _transaction),
+                                    transaction: _transaction,
+                                  ),
                                 ),
                               ),
                             );
