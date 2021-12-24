@@ -11,12 +11,13 @@ import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
 
 class AddNewTransactionPage extends StatelessWidget {
-  const AddNewTransactionPage({Key? key}) : super(key: key);
+  const AddNewTransactionPage({Key? key, Transaction? transaction})
+      : _transaction = transaction,
+        super(key: key);
   static String routeName = '/add_transaction';
+  final Transaction? _transaction;
   @override
   Widget build(BuildContext context) {
-    final _transaction =
-        ModalRoute.of(context)!.settings.arguments as Transaction?;
     return BlocProvider(
       create: (context) => AddTransactionCubit(),
       child: AddTransactionView(transaction: _transaction),
@@ -44,7 +45,6 @@ class AddTransactionView extends StatelessWidget {
           initialIndex: (_transaction != null) ? _transaction!.type.index : 0,
           length: 2,
           child: Scaffold(
-            resizeToAvoidBottomInset: false,
             appBar: AppBar(
               iconTheme: const IconThemeData(color: Colors.white),
               title: const Text(
@@ -391,6 +391,13 @@ class _SubmitButton extends StatelessWidget {
                               ),
                             ),
                           );
+                      int offset =
+                          state.type == TransactionType.income ? 1 : -1;
+
+                      context.read<WalletBloc>().add(UpdateWallet(state.wallet
+                          .copyWith(
+                              amount: state.wallet.amount +
+                                  state.amount.value * offset)));
                       Navigator.pop(context);
                     }
                   : null,

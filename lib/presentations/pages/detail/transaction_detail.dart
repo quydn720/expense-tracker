@@ -5,17 +5,20 @@ import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
 import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
 class TransactionDetailPage extends StatelessWidget {
-  const TransactionDetailPage({Key? key}) : super(key: key);
+  const TransactionDetailPage({
+    Key? key,
+    required Transaction transaction,
+  })  : _transaction = transaction,
+        super(key: key);
   static String routeName = 'detail_page';
-
+  final Transaction _transaction;
   @override
   Widget build(BuildContext context) {
-    final _transaction =
-        ModalRoute.of(context)!.settings.arguments as Transaction;
     return Scaffold(
       appBar: AppBar(
         backgroundColor:
@@ -171,10 +174,15 @@ class TransactionDetailPage extends StatelessWidget {
                         child: DefaultButton(
                           title: 'Edit',
                           onPressed: () {
-                            Navigator.pushNamed(
+                            Navigator.push(
                               context,
-                              AddNewTransactionPage.routeName,
-                              arguments: _transaction,
+                              MaterialPageRoute(
+                                builder: (_) => BlocProvider.value(
+                                  value: context.read<WalletBloc>(),
+                                  child: AddNewTransactionPage(
+                                      transaction: _transaction),
+                                ),
+                              ),
                             );
                           },
                         ),

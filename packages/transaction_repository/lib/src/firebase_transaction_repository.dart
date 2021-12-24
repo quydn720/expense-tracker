@@ -28,16 +28,6 @@ class FirebaseTransactionRepository implements TransactionRepository {
 
     final transactionCollection = firestore.FirebaseFirestore.instance
         .collection('users/$userId/transactions');
-    final walletCollection = firestore.FirebaseFirestore.instance
-        .collection('users/$userId/wallets');
-
-    int offset = transaction.type == TransactionType.income ? 1 : -1;
-
-    final snap = await walletCollection.doc(transaction.walletId).get();
-    final updateWallet = Wallet.fromEntity(WalletEntity.fromSnapshot(snap));
-
-    // walletRepository.updateWallet(updateWallet.copyWith(
-    //     amount: updateWallet.amount + transaction.amount * offset));
 
     return transactionCollection
         .doc(transaction.id)

@@ -8,7 +8,6 @@ import '../blocs/filter/filter_bloc.dart';
 import '../blocs/transaction/transaction_bloc.dart';
 import '../blocs/wallet/wallet_bloc.dart';
 import '../injector.dart';
-import '../routes/routes.dart';
 import '../size_config.dart';
 import '../theme.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +91,6 @@ class AppView extends StatelessWidget {
           return const OnboardingPage();
         },
       ),
-      // routes: routes,
       debugShowCheckedModeBanner: false,
       theme: theme,
     );

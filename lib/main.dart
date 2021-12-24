@@ -16,13 +16,5 @@ Future<void> main() async {
   final authenticationRepository = AuthenticationRepository();
   await authenticationRepository.user.first;
 
-  runApp(
-    App(
-      authenticationRepository: authenticationRepository,
-    ),
-  );
+  runApp(App(authenticationRepository: authenticationRepository));
 }
-// walletRepository: FirebaseWalletRepository(
-//         cachedWallet: {},
-//         authenticationRepository: authenticationRepository,
-//       ),
