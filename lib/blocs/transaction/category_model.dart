@@ -52,4 +52,12 @@ class Category {
   factory Category.fromName(String name) {
     return categories.where((element) => element.name.contains(name)).first;
   }
+
+  factory Category.empty() => Category(
+        name: "Category",
+        iconColor: kGreen100,
+        backgroundColor: kGreen40,
+        iconPath: 'assets/icons/transaction_bw.png',
+      );
+  bool get isEmpty => name == "Category";
 }

@@ -1,3 +1,4 @@
+import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
 
 import '../../../blocs/app_bloc/app_bloc.dart';
@@ -37,8 +38,15 @@ class Body extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => BlocProvider.value(
-                value: context.read<WalletBloc>(),
+              builder: (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(
+                    value: context.read<WalletBloc>(),
+                  ),
+                  BlocProvider.value(
+                    value: context.read<TransactionBloc>(),
+                  ),
+                ],
                 child: const AccountPage(),
               ),
             ),
