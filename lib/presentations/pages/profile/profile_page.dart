@@ -1,3 +1,6 @@
+import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
+import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
+
 import '../../../blocs/app_bloc/app_bloc.dart';
 import '../../components/squared_icon_card.dart';
 import '../home/widgets/widgets.dart';
@@ -32,16 +35,38 @@ class Body extends StatelessWidget {
     _onNavigate(index) {
       switch (index) {
         case 0:
-          Navigator.pushNamed(
+          Navigator.push(
             context,
-            AccountPage.routeName,
+            MaterialPageRoute(
+              builder: (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(
+                    value: context.read<WalletBloc>(),
+                  ),
+                  BlocProvider.value(
+                    value: context.read<TransactionBloc>(),
+                  ),
+                ],
+                child: const AccountPage(),
+              ),
+            ),
           );
           break;
         case 1:
-          Navigator.pushNamed(context, SettingPage.routeName);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const SettingPage(),
+            ),
+          );
           break;
         case 2:
-          Navigator.pushNamed(context, ExportPage.routeName);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const ExportPage(),
+            ),
+          );
           break;
         case 3:
           context.read<AppBloc>().add(const AppLogOutRequested());

@@ -1,9 +1,16 @@
+import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
+import 'package:expense_tracker/presentations/pages/profile/account/add_new_account.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wallet_repository/wallet_repository.dart';
+
 import '../../../../blocs/wallet/wallet_bloc.dart';
 import '../../../../constants.dart';
 import '../../../components/default_button.dart';
 import '../../../components/squared_icon_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'account_detail.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -40,42 +47,71 @@ class _WalletList extends StatelessWidget {
         itemCount: _wallets.length,
         itemBuilder: (context, index) {
           final wallet = _wallets[index];
-          return InkWell(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: kMediumPadding,
-                vertical: kDefaultPadding,
-              ),
-              child: Row(
-                children: [
-                  SquaredIconCard(
-                    imagePath: wallet.iconPath.toString().replaceAll('\'', ''),
-                    size: 48,
-                    color: const Color(0xffF1F1FA),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: kMediumPadding),
-                      child: Text(
-                        wallet.name,
-                        style: title3.copyWith(color: kDark75),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '\$ ${wallet.amount}',
-                    style: title3.copyWith(color: kDark75),
-                  ),
-                ],
-              ),
-            ),
-          );
+          return WalletTile(wallet: wallet);
         },
         separatorBuilder: (context, index) => const Divider(
           thickness: 1,
           endIndent: kLargePadding,
           indent: kLargePadding,
+        ),
+      ),
+    );
+  }
+}
+
+class WalletTile extends StatelessWidget {
+  const WalletTile({
+    Key? key,
+    required Wallet wallet,
+  })  : _wallet = wallet,
+        super(key: key);
+  final Wallet _wallet;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(
+                    value: context.read<WalletBloc>(),
+                  ),
+                  BlocProvider.value(
+                    value: context.read<TransactionBloc>(),
+                  ),
+                ],
+                child: WalletDetailPage(wallet: _wallet),
+              ),
+            ));
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: kMediumPadding,
+          vertical: kDefaultPadding,
+        ),
+        child: Row(
+          children: [
+            SquaredIconCard(
+              imagePath: _wallet.iconPath.toString().replaceAll('\'', ''),
+              size: 48,
+              color: const Color(0xffF1F1FA),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: kMediumPadding),
+                child: Text(
+                  _wallet.name,
+                  style: title3.copyWith(color: kDark75),
+                ),
+              ),
+            ),
+            Text(
+              '\$ ${_wallet.amount.toStringAsFixed(1)}',
+              style: title3.copyWith(color: kDark75),
+            ),
+          ],
         ),
       ),
     );
@@ -93,7 +129,12 @@ class _AddNewWalletButton extends StatelessWidget {
       padding: const EdgeInsets.all(kMediumPadding),
       child: DefaultButton(
         key: const Key('accountPage_addNewWallet_button'),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddNewWalletPage()),
+          );
+        },
         title: '+  Add new wallet',
       ),
     );
@@ -116,7 +157,7 @@ class _StackImageAmount extends StatelessWidget {
             const Text('Account Balance', style: body3),
             const SizedBox(height: kDefaultPadding),
             Text(
-              _total.toString(),
+              _total.toStringAsFixed(1),
               style: title1,
             ),
           ],

@@ -1,4 +1,6 @@
+import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
 import 'package:expense_tracker/presentations/pages/detail/transaction_detail.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/transaction/category_model.dart';
 import '../../blocs/transaction/transaction_bloc.dart';
@@ -85,14 +87,38 @@ class TransactionTile extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.pushNamed(
+        Navigator.push(
           context,
-          TransactionDetailPage.routeName,
-          arguments: transaction,
+          MaterialPageRoute(
+            builder: (_) => MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: context.read<WalletBloc>(),
+                ),
+                BlocProvider.value(
+                  value: context.read<TransactionBloc>(),
+                ),
+              ],
+              child: TransactionDetailPage(transaction: transaction),
+            ),
+          ),
         );
       },
       onLongPress: () {
         context.read<TransactionBloc>().add(DeleteTransactions(transaction));
+        final wallet = context
+            .read<WalletBloc>()
+            .walletRepository
+            .currentWallets
+            .where((e) => e.id == transaction.walletId)
+            .first;
+        int offset = transaction.type == TransactionType.income ? 1 : -1;
+        context.read<WalletBloc>().add(
+              UpdateWallet(
+                wallet.copyWith(
+                    amount: wallet.amount + transaction.amount * -offset),
+              ),
+            );
       },
     );
   }

@@ -5,17 +5,20 @@ import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
 import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
 class TransactionDetailPage extends StatelessWidget {
-  const TransactionDetailPage({Key? key}) : super(key: key);
+  const TransactionDetailPage({
+    Key? key,
+    required Transaction transaction,
+  })  : _transaction = transaction,
+        super(key: key);
   static String routeName = 'detail_page';
-
+  final Transaction _transaction;
   @override
   Widget build(BuildContext context) {
-    final _transaction =
-        ModalRoute.of(context)!.settings.arguments as Transaction;
     return Scaffold(
       appBar: AppBar(
         backgroundColor:
@@ -34,43 +37,46 @@ class TransactionDetailPage extends StatelessWidget {
             onPressed: () {
               showModalBottomSheet(
                 context: context,
-                builder: (context) => SizedBox(
-                  height: 250,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: kMediumPadding),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Remove this transaction?', style: title3),
-                        const Text(
-                          'Are you sure do you wanna remove this transaction?',
-                          style: body1,
-                          textAlign: TextAlign.center,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            DefaultButton(
-                              isSmall: true,
-                              title: 'No',
-                              isSecondary: true,
-                              onPressed: () => Navigator.pop(context),
-                            ),
-                            DefaultButton(
-                              isSmall: true,
-                              title: 'Yes',
-                              onPressed: () {
-                                context
-                                    .read<TransactionBloc>()
-                                    .add(DeleteTransactions(_transaction));
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        )
-                      ],
+                builder: (context) => BlocProvider.value(
+                  value: context.read<TransactionBloc>(),
+                  child: SizedBox(
+                    height: 250,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.symmetric(vertical: kMediumPadding),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Remove this transaction?', style: title3),
+                          const Text(
+                            'Are you sure do you wanna remove this transaction?',
+                            style: body1,
+                            textAlign: TextAlign.center,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              DefaultButton(
+                                isSmall: true,
+                                title: 'No',
+                                isSecondary: true,
+                                onPressed: () => Navigator.pop(context),
+                              ),
+                              DefaultButton(
+                                isSmall: true,
+                                title: 'Yes',
+                                onPressed: () {
+                                  context
+                                      .read<TransactionBloc>()
+                                      .add(DeleteTransactions(_transaction));
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -171,10 +177,23 @@ class TransactionDetailPage extends StatelessWidget {
                         child: DefaultButton(
                           title: 'Edit',
                           onPressed: () {
-                            Navigator.pushNamed(
+                            Navigator.push(
                               context,
-                              AddNewTransactionPage.routeName,
-                              arguments: _transaction,
+                              MaterialPageRoute(
+                                builder: (_) => MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider.value(
+                                      value: context.read<WalletBloc>(),
+                                    ),
+                                    BlocProvider.value(
+                                      value: context.read<TransactionBloc>(),
+                                    ),
+                                  ],
+                                  child: AddNewTransactionPage(
+                                    transaction: _transaction,
+                                  ),
+                                ),
+                              ),
                             );
                           },
                         ),

@@ -33,7 +33,7 @@ class Wallet extends FormzInput<String, WalletValidatorError> {
     required this.color,
     required this.amount,
   })  : id = id ?? const Uuid().v4(),
-        super.dirty(id!);
+        super.dirty(name);
 
   WalletEntity toEntity() {
     return WalletEntity(

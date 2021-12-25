@@ -11,12 +11,13 @@ import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
 
 class AddNewTransactionPage extends StatelessWidget {
-  const AddNewTransactionPage({Key? key}) : super(key: key);
+  const AddNewTransactionPage({Key? key, Transaction? transaction})
+      : _transaction = transaction,
+        super(key: key);
   static String routeName = '/add_transaction';
+  final Transaction? _transaction;
   @override
   Widget build(BuildContext context) {
-    final _transaction =
-        ModalRoute.of(context)!.settings.arguments as Transaction?;
     return BlocProvider(
       create: (context) => AddTransactionCubit(),
       child: AddTransactionView(transaction: _transaction),
@@ -37,101 +38,42 @@ class AddTransactionView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (_transaction != null) {
       context.read<AddTransactionCubit>().typeChanged(_transaction!.type.index);
-      return DefaultTabController(
-        initialIndex: _transaction!.type.index,
-        length: 2,
-        child: BlocBuilder<AddTransactionCubit, AddTransactionState>(
-          builder: (context, state) {
-            return Scaffold(
-              appBar: AppBar(
-                iconTheme: const IconThemeData(color: Colors.white),
-                title: const Text(
-                  'Edit Transaction',
-                  style: TextStyle(color: Colors.white),
-                ),
-                bottom: TabBar(
-                  tabs: const [
-                    Tab(icon: Text('Expense')),
-                    Tab(icon: Text('Income')),
-                  ],
-                  onTap: (v) =>
-                      context.read<AddTransactionCubit>().typeChanged(v),
-                ),
-                backgroundColor: (state.type.index == 0) ? kRed100 : kGreen100,
-              ),
-              backgroundColor: (state.type.index == 0) ? kRed100 : kGreen100,
-              body: TabBarView(
-                children: [
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SingleChildScrollView(
-                      child: AddTransactionForm(
-                        transaction: _transaction,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SingleChildScrollView(
-                      child: AddTransactionForm(
-                        transaction: _transaction,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      );
-    } else {
-      return DefaultTabController(
-        length: 2,
-        child: BlocBuilder<AddTransactionCubit, AddTransactionState>(
-          builder: (context, state) {
-            return Scaffold(
-              appBar: AppBar(
-                iconTheme: const IconThemeData(color: Colors.white),
-                title: const Text(
-                  'Add Transaction',
-                  style: TextStyle(color: Colors.white),
-                ),
-                bottom: TabBar(
-                  tabs: const [
-                    Tab(icon: Text('Expense')),
-                    Tab(icon: Text('Income')),
-                  ],
-                  onTap: (v) =>
-                      context.read<AddTransactionCubit>().typeChanged(v),
-                ),
-                backgroundColor: (state.type.index == 0) ? kRed100 : kGreen100,
-              ),
-              backgroundColor: (state.type.index == 0) ? kRed100 : kGreen100,
-              body: TabBarView(
-                children: [
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SingleChildScrollView(
-                      child: AddTransactionForm(
-                        transaction: _transaction,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SingleChildScrollView(
-                      child: AddTransactionForm(
-                        transaction: _transaction,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      );
     }
+    return BlocBuilder<AddTransactionCubit, AddTransactionState>(
+      builder: (context, state) {
+        return DefaultTabController(
+          initialIndex: (_transaction != null) ? _transaction!.type.index : 0,
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              iconTheme: const IconThemeData(color: Colors.white),
+              title: Text(
+                (_transaction != null) ? 'Edit Transaction' : 'Add Transaction',
+                style: const TextStyle(color: Colors.white),
+              ),
+              bottom: TabBar(
+                tabs: const [
+                  Tab(icon: Text('Expense')),
+                  Tab(icon: Text('Income')),
+                ],
+                onTap: (v) =>
+                    context.read<AddTransactionCubit>().typeChanged(v),
+              ),
+              backgroundColor: state.type.index == 0 ? kRed100 : kGreen100,
+            ),
+            backgroundColor: state.type.index == 0 ? kRed100 : kGreen100,
+            body: Align(
+              alignment: Alignment.bottomCenter,
+              child: SingleChildScrollView(
+                child: AddTransactionForm(
+                  transaction: _transaction,
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -142,6 +84,7 @@ class AddTransactionForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (transaction != null) {
+      context.read<AddTransactionCubit>().amountChanged(transaction!.amount);
       return Column(
         children: [
           Padding(
@@ -196,6 +139,8 @@ class AddTransactionForm extends StatelessWidget {
                   id: transaction!.id,
                   date: transaction!.date,
                   type: transaction!.type,
+                  oldAmount: transaction!.amount,
+                  offset: transaction!.type == TransactionType.expense ? 1 : -1,
                 ),
               ],
             ),
@@ -260,13 +205,12 @@ class _AmountInput extends StatelessWidget {
   final double? initAmount;
   @override
   Widget build(BuildContext context) {
-    if (initAmount != null) {
-      context.read<AddTransactionCubit>().amountChanged(initAmount!);
-    }
-
     return BlocBuilder<AddTransactionCubit, AddTransactionState>(
       buildWhen: (previous, current) => previous.amount != current.amount,
       builder: (context, state) {
+        // if (initAmount != null) {
+        //   context.read<AddTransactionCubit>().amountChanged(initAmount!);
+        // }
         return TextFormField(
           initialValue: (initAmount != null) ? initAmount.toString() : null,
           key: const Key('addTransactionForm_description_textField'),
@@ -300,12 +244,12 @@ class _CategoryDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (initCategory != null) {
-      context.read<AddTransactionCubit>().categoryChanged(initCategory!);
-    }
     return BlocBuilder<AddTransactionCubit, AddTransactionState>(
       buildWhen: (previous, current) => previous.category != current.category,
       builder: (context, state) {
+        if (initCategory != null) {
+          context.read<AddTransactionCubit>().categoryChanged(initCategory!);
+        }
         return DropdownButtonFormField<String>(
           value: initCategory,
           key: const Key('addTransactionForm_category_buttomFormField'),
@@ -338,9 +282,6 @@ class _DescriptionInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (initDescription != null) {
-      context.read<AddTransactionCubit>().descriptionChanged(initDescription!);
-    }
     return BlocBuilder<AddTransactionCubit, AddTransactionState>(
       buildWhen: (previous, current) =>
           previous.description != current.description,
@@ -410,51 +351,66 @@ class _SubmitButton extends StatelessWidget {
     this.id,
     this.date,
     this.type,
+    this.oldAmount,
+    this.offset,
   }) : super(key: key);
   final String? id;
   final DateTime? date;
   final TransactionType? type;
+  final double? oldAmount;
+  final int? offset;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AddTransactionCubit, AddTransactionState>(
-      buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return DefaultButton(
           title: (id != null) ? 'Edit' : 'Add',
           onPressed: (id != null)
               ? () {
-                  final addBloc = context.read<AddTransactionCubit>().state;
                   context.read<TransactionBloc>().add(
                         UpdateTransactions(
                           Transaction(
                             id: id!,
-                            amount: addBloc.amount.value,
-                            category: addBloc.category,
-                            type: addBloc.type,
-                            description: addBloc.description,
+                            amount: state.amount.value,
+                            category: state.category,
+                            type: state.type,
+                            description: state.description,
                             date: date,
-                            walletId: addBloc.wallet.id,
+                            walletId: state.wallet.id,
                           ),
                         ),
                       );
+                  int offsetB = state.type == TransactionType.income ? 1 : -1;
+                  double a = state.wallet.amount +
+                      oldAmount! * offset! +
+                      state.amount.value * offsetB;
+                  context
+                      .read<WalletBloc>()
+                      .add(UpdateWallet(state.wallet.copyWith(amount: a)));
                   Navigator.pop(context);
                   Navigator.pop(context);
                 }
               : context.read<AddTransactionCubit>().state.status.isValidated
                   ? () {
-                      final addBloc = context.read<AddTransactionCubit>().state;
                       context.read<TransactionBloc>().add(
                             AddTransactions(
                               Transaction(
-                                amount: addBloc.amount.value,
-                                category: addBloc.category,
-                                type: addBloc.type,
-                                description: addBloc.description,
+                                amount: state.amount.value,
+                                category: state.category,
+                                type: state.type,
+                                description: state.description,
                                 date: DateTime.now(),
-                                walletId: addBloc.wallet.id,
+                                walletId: state.wallet.id,
                               ),
                             ),
                           );
+                      int offset =
+                          state.type == TransactionType.income ? 1 : -1;
+
+                      context.read<WalletBloc>().add(UpdateWallet(state.wallet
+                          .copyWith(
+                              amount: state.wallet.amount +
+                                  state.amount.value * offset)));
                       Navigator.pop(context);
                     }
                   : null,

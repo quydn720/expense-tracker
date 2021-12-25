@@ -1,5 +1,9 @@
+import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
+import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
+import 'package:expense_tracker/presentations/pages/budget/budget_page.dart';
+import 'package:expense_tracker/presentations/pages/profile/account/add_new_account.dart';
+
 import '../../../blocs/tab/tab_bloc.dart';
-import '../../components/default_button.dart';
 import '../home/home_page.dart';
 import '../transaction/add_transaction/add_transaction.dart';
 import '../transaction/fetch_transaction/transaction_list.dart';
@@ -16,25 +20,48 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return BlocBuilder<TabBloc, AppTab>(
-      builder: (context, currentTab) {
-        return Scaffold(
-          body: getCurrentWidget(currentTab),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: FloatingActionButton(
-            tooltip: 'Add new transaction',
-            child: const Icon(Icons.add, color: Colors.white),
-            onPressed: () {
-              Navigator.of(context).pushNamed(AddNewTransactionPage.routeName);
-            },
-          ),
-          bottomNavigationBar: TabSelector(
-            activeTab: currentTab,
-            onTabSelected: (tab) {
-              context.read<TabBloc>().add(TabChanged(tab));
-            },
-          ),
+    return BlocBuilder<WalletBloc, WalletState>(
+      builder: (context, state) {
+        if (state is WalletLoaded) {
+          if (state.wallets.isEmpty) {
+            return const AddNewWalletPage();
+          }
+        }
+        return BlocBuilder<TabBloc, AppTab>(
+          builder: (context, currentTab) {
+            return Scaffold(
+              body: getCurrentWidget(currentTab),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              floatingActionButton: FloatingActionButton(
+                tooltip: 'Add new transaction',
+                child: const Icon(Icons.add, color: Colors.white),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => MultiBlocProvider(
+                        providers: [
+                          BlocProvider.value(
+                            value: BlocProvider.of<WalletBloc>(context),
+                          ),
+                          BlocProvider.value(
+                            value: BlocProvider.of<TransactionBloc>(context),
+                          ),
+                        ],
+                        child: const AddNewTransactionPage(),
+                      ),
+                    ),
+                  );
+                },
+              ),
+              bottomNavigationBar: TabSelector(
+                activeTab: currentTab,
+                onTabSelected: (tab) {
+                  context.read<TabBloc>().add(TabChanged(tab));
+                },
+              ),
+            );
+          },
         );
       },
     );
@@ -50,75 +77,6 @@ class MainPage extends StatelessWidget {
     } else {
       return const HomePage();
     }
-  }
-}
-
-class BudgetPage extends StatelessWidget {
-  const BudgetPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        color: kViolet100,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 140,
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      'assets/icons/arrow-left-2.png',
-                      color: Colors.white,
-                    ),
-                    Text(
-                      'December',
-                      style: title3.copyWith(color: Colors.white),
-                    ),
-                    Image.asset(
-                      'assets/icons/arrow-right-2.png',
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(24),
-                    topRight: Radius.circular(24),
-                  ),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    const Text('Let\'s make one so you in control'),
-                    const Text('You don\'t have a budget.'),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(kMediumPadding),
-                      child: DefaultButton(
-                        key: const Key('budgetPage_addNewBudget_button'),
-                        onPressed: () {},
-                        title: '+  Create a budget',
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }
 

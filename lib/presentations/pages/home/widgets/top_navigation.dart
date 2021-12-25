@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import '../../../../blocs/wallet/wallet_bloc.dart';
 import '../../../../constants.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +41,15 @@ class TopNavigation extends StatelessWidget {
                   child: CircleAvatar(),
                 ),
               ),
+              SizedBox(
+                height: 56,
+                child: Center(
+                  child: Text(
+                    DateFormat(DateFormat.MONTH).format(DateTime.now()),
+                    style: body1,
+                  ),
+                ),
+              ),
               IconButton(
                 icon: Image.asset(
                   'assets/icons/notifiaction.png',
@@ -68,11 +79,14 @@ class _MoneyAmount extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WalletBloc, WalletState>(
       builder: (context, state) {
-        final _total =
-            context.read<WalletBloc>().walletRepository.totalAmount.toString();
+        final _total = context
+            .read<WalletBloc>()
+            .walletRepository
+            .totalAmount
+            .toStringAsFixed(1);
         if (state is WalletLoaded) {
           return Text(
-            _total.toString(),
+            _total,
             style: title2.copyWith(
               color: kDark75,
               fontSize: 48,

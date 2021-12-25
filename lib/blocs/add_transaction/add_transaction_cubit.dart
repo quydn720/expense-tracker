@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
+import 'package:expense_tracker/constants.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,8 +14,12 @@ part 'add_transaction_cubit.freezed.dart';
 class AddTransactionCubit extends Cubit<AddTransactionState> {
   AddTransactionCubit() : super(const _AddTransactionState());
 
+  int _type = 0;
+  Color get color => (_type == 0) ? kRed100 : kGreen100;
+
   void typeChanged(int type) {
     final transactionType = TransactionType.values[type];
+    _type = type;
     emit(state.copyWith(type: transactionType));
   }
 

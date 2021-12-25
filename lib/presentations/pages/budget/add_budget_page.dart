@@ -1,0 +1,164 @@
+import 'package:expense_tracker/blocs/transaction/category_model.dart';
+import 'package:expense_tracker/constants.dart';
+import 'package:expense_tracker/presentations/components/default_button.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class AddBudgetPage extends StatefulWidget {
+  const AddBudgetPage({Key? key}) : super(key: key);
+
+  @override
+  State<AddBudgetPage> createState() => _AddBudgetPageState();
+}
+
+class _AddBudgetPageState extends State<AddBudgetPage> {
+  final GlobalKey<FormState> _formKey =
+      GlobalKey<FormState>(debugLabel: 'addBudgetPage_formKey');
+  double _amount = 0;
+  Category _category = Category.empty();
+  bool _alert = false;
+  double _percent = 80;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text(
+          'Add new budget',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: kViolet100,
+      ),
+      backgroundColor: kViolet100,
+      body: SafeArea(
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: Form(
+            autovalidateMode: AutovalidateMode.always,
+            key: _formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'How much do yo want to spend?',
+                      style: title3.copyWith(color: kLight80),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.only(top: 8),
+                        isDense: true,
+                        hintText: '0.0',
+                        hintStyle: titleX.copyWith(color: kLight80),
+                        prefixIcon: Text(
+                          '\$',
+                          style: titleX.copyWith(color: kLight80),
+                        ),
+                        errorStyle:
+                            const TextStyle(color: kRed40, fontSize: 14),
+                      ),
+                      keyboardType: TextInputType.number,
+                      style: titleX.copyWith(color: kLight80),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      onSaved: (v) => setState(
+                        () => _amount = double.parse(v!),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(kLargeRadius),
+                        topRight: Radius.circular(kLargeRadius),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(kMediumPadding),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          DropdownButtonFormField<Category>(
+                            hint: const Text('Account Type'),
+                            validator: (Category? value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please choose a category';
+                              }
+                              return null;
+                            },
+                            items: categories
+                                .map(
+                                  (e) => DropdownMenuItem(
+                                    value: e,
+                                    child: Text(e.name),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (v) {
+                              _category = v!;
+                            },
+                          ),
+                          const SizedBox(height: kMediumPadding),
+                          ListTile(
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 5),
+                            subtitle: const Text(
+                              'Receive alert when it reaches some point.',
+                            ),
+                            title: const Text('Receive Alert'),
+                            trailing: CupertinoSwitch(
+                              value: _alert,
+                              activeColor: kViolet100,
+                              trackColor: kViolet40,
+                              onChanged: (v) => setState(() => _alert = v),
+                            ),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Slider(
+                              max: 100,
+                              min: 0,
+                              value: _percent,
+                              onChanged: (v) => setState(
+                                () => _percent = v,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: kMediumPadding),
+                          DefaultButton(
+                            title: 'Continue',
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                _formKey.currentState!.save();
+                                debugPrint(_formKey.currentState.toString());
+                                debugPrint(_amount.toString());
+                                debugPrint(_category.name);
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
