@@ -1,9 +1,9 @@
 import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
-import 'package:expense_tracker/presentations/pages/profile/account/account_page.dart';
+import 'package:expense_tracker/presentations/pages/budget/budget_page.dart';
+import 'package:expense_tracker/presentations/pages/profile/account/add_new_account.dart';
 
 import '../../../blocs/tab/tab_bloc.dart';
-import '../../components/default_button.dart';
 import '../home/home_page.dart';
 import '../transaction/add_transaction/add_transaction.dart';
 import '../transaction/fetch_transaction/transaction_list.dart';
@@ -77,75 +77,6 @@ class MainPage extends StatelessWidget {
     } else {
       return const HomePage();
     }
-  }
-}
-
-class BudgetPage extends StatelessWidget {
-  const BudgetPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        color: kViolet100,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 140,
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      'assets/icons/arrow-left-2.png',
-                      color: Colors.white,
-                    ),
-                    Text(
-                      'December',
-                      style: title3.copyWith(color: Colors.white),
-                    ),
-                    Image.asset(
-                      'assets/icons/arrow-right-2.png',
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(24),
-                    topRight: Radius.circular(24),
-                  ),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    const Text('Let\'s make one so you in control'),
-                    const Text('You don\'t have a budget.'),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(kMediumPadding),
-                      child: DefaultButton(
-                        key: const Key('budgetPage_addNewBudget_button'),
-                        onPressed: () {},
-                        title: '+  Create a budget',
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }
 
