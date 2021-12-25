@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:transaction_repository/src/entities/entities.dart';
 import 'package:transaction_repository/src/models/transaction.dart';
 import 'package:transaction_repository/src/transaction_repository.dart';
-import 'package:wallet_repository/wallet_repository.dart';
 
 const cachedTransactionKey = 'cached_transaction_key';
 
@@ -38,17 +37,6 @@ class FirebaseTransactionRepository implements TransactionRepository {
   Future<void> deleteTransaction(Transaction transaction) async {
     final transactionCollection = firestore.FirebaseFirestore.instance
         .collection('users/$userId/transactions');
-    final walletCollection = firestore.FirebaseFirestore.instance
-        .collection('users/$userId/wallets');
-    int offset = transaction.type == TransactionType.income ? -1 : 1;
-
-    final snap = await walletCollection.doc(transaction.walletId).get();
-    Wallet updateWallet = Wallet.fromEntity(WalletEntity.fromSnapshot(snap));
-
-    // walletRepository.updateWallet(
-    //   updateWallet.copyWith(
-    //       amount: updateWallet.amount + transaction.amount * offset),
-    // );
     return transactionCollection.doc(transaction.id).delete();
   }
 
@@ -75,18 +63,6 @@ class FirebaseTransactionRepository implements TransactionRepository {
   Future<void> updateTransaction(Transaction transaction) async {
     final transactionCollection = firestore.FirebaseFirestore.instance
         .collection('users/$userId/transactions');
-    // ); // TODO: fix db issues
-    final walletCollection = firestore.FirebaseFirestore.instance
-        .collection('users/$userId/wallets');
-    int offset = transaction.type == TransactionType.income ? -1 : 1;
-
-    final snap = await walletCollection.doc(transaction.walletId).get();
-    Wallet updateWallet = Wallet.fromEntity(WalletEntity.fromSnapshot(snap));
-
-    // walletRepository.updateWallet(
-    //   updateWallet.copyWith(
-    //       amount: updateWallet.amount + transaction.amount * offset),
-    // );
 
     return transactionCollection
         .doc(transaction.id)
