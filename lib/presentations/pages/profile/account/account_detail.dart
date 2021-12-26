@@ -38,39 +38,51 @@ class WalletDetailPage extends StatelessWidget {
                 ),
               ),
             ),
-            ...context
-                .read<TransactionBloc>()
-                .transactionRepository
-                .currentTransaction
-                .groupBy((trans) => DateTime(
-                      trans.date.year,
-                      trans.date.month,
-                      trans.date.day,
-                    ))
-                .entries
-                .map(
-                  (e) => Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: kMediumPadding,
-                      vertical: kDefaultPadding,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          e.key.onlyDateFormatted,
-                          style: title3,
-                        ),
-                        const SizedBox(height: 8),
-                        ...e.value
-                            .map((e) => TransactionTile(transaction: e))
-                            .toList(),
-                        const Divider(),
-                      ],
-                    ),
+            SizedBox(
+              height: SizeConfig.screenHeight * 0.55,
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+                      ...context
+                          .read<TransactionBloc>()
+                          .transactionRepository
+                          .currentTransaction
+                          .groupBy((trans) => DateTime(
+                                trans.date.year,
+                                trans.date.month,
+                                trans.date.day,
+                              ))
+                          .entries
+                          .map(
+                            (e) => Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: kMediumPadding,
+                                vertical: kDefaultPadding,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    e.key.onlyDateFormatted,
+                                    style: title3,
+                                  ),
+                                  const SizedBox(height: 8),
+                                  ...e.value
+                                      .map((e) =>
+                                          TransactionTile(transaction: e))
+                                      .toList(),
+                                  const Divider(),
+                                ],
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ],
                   ),
-                )
-                .toList(),
+                ),
+              ),
+            )
           ],
         ),
       ),
