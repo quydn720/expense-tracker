@@ -1,8 +1,11 @@
+import 'package:budget_repository/budget_repository.dart';
+import 'package:expense_tracker/blocs/budget/budget_bloc.dart';
 import 'package:expense_tracker/blocs/transaction/category_model.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 class AddBudgetPage extends StatefulWidget {
   const AddBudgetPage({Key? key}) : super(key: key);
@@ -16,8 +19,8 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
       GlobalKey<FormState>(debugLabel: 'addBudgetPage_formKey');
   double _amount = 0;
   Category _category = Category.empty();
-  bool _alert = false;
-  double _percent = 80;
+  bool _receiveAlert = false;
+  double? _percent;
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +102,7 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                               }
                               return null;
                             },
-                            items: categories
+                            items: Category.categories
                                 .map(
                                   (e) => DropdownMenuItem(
                                     value: e,
@@ -120,23 +123,31 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                             ),
                             title: const Text('Receive Alert'),
                             trailing: CupertinoSwitch(
-                              value: _alert,
+                              value: _receiveAlert,
                               activeColor: kViolet100,
                               trackColor: kViolet40,
-                              onChanged: (v) => setState(() => _alert = v),
+                              onChanged: (v) => setState(() {
+                                _receiveAlert = v;
+                              }),
                             ),
                           ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: Slider(
-                              max: 100,
-                              min: 0,
-                              value: _percent,
-                              onChanged: (v) => setState(
-                                () => _percent = v,
-                              ),
-                            ),
-                          ),
+                          Builder(builder: (context) {
+                            if (_receiveAlert == true) {
+                              return SizedBox(
+                                width: double.infinity,
+                                child: Slider(
+                                  max: 100,
+                                  min: 0,
+                                  value: _percent ?? 80,
+                                  onChanged: (v) => setState(
+                                    () => _percent = v,
+                                  ),
+                                ),
+                              );
+                            } else {
+                              return const SizedBox.shrink();
+                            }
+                          }),
                           const SizedBox(height: kMediumPadding),
                           DefaultButton(
                             title: 'Continue',
@@ -146,6 +157,16 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                                 debugPrint(_formKey.currentState.toString());
                                 debugPrint(_amount.toString());
                                 debugPrint(_category.name);
+                                context.read<BudgetBloc>().add(
+                                      BudgetEvent.addBudget(
+                                        Budget(
+                                          amount: _amount,
+                                          category: _category.name,
+                                          monthApply: DateTime.now().month,
+                                        ),
+                                      ),
+                                    );
+                                Navigator.pop(context);
                               }
                             },
                           ),

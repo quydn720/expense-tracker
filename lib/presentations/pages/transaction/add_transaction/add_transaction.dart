@@ -114,7 +114,7 @@ class AddTransactionForm extends StatelessWidget {
             child: Column(
               children: [
                 _CategoryDropdown(
-                  items: categories.map((e) => e.name).toList(),
+                  items: Category.categories.map((e) => e.name).toList(),
                   initCategory: transaction!.category,
                 ),
                 const SizedBox(height: kMediumPadding),
@@ -175,7 +175,7 @@ class AddTransactionForm extends StatelessWidget {
             child: Column(
               children: [
                 _CategoryDropdown(
-                  items: categories.map((e) => e.name).toList(),
+                  items: Category.categories.map((e) => e.name).toList(),
                 ),
                 const SizedBox(height: kMediumPadding),
                 const _DescriptionInput(),

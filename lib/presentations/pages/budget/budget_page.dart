@@ -1,8 +1,14 @@
+import 'package:budget_repository/src/models/budget.dart';
+import 'package:expense_tracker/blocs/budget/budget_bloc.dart';
+import 'package:expense_tracker/blocs/transaction/category_model.dart';
+import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
 import 'add_budget_page.dart';
 
@@ -12,114 +18,302 @@ class BudgetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        color: kViolet100,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 140,
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      'assets/icons/arrow-left-2.png',
-                      color: Colors.white,
-                    ),
-                    Text(
-                      'December',
-                      style: title3.copyWith(color: Colors.white),
-                    ),
-                    Image.asset(
-                      'assets/icons/arrow-right-2.png',
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
+      child: Column(
+        children: [
+          Container(
+            color: kViolet100,
+            height: 112,
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset(
+                    'assets/icons/arrow-left-2.png',
+                    color: Colors.white,
+                  ),
+                  Text(
+                    'December',
+                    style: title3.copyWith(color: Colors.white),
+                  ),
+                  Image.asset(
+                    'assets/icons/arrow-right-2.png',
+                    color: Colors.white,
+                  ),
+                ],
               ),
             ),
-            Expanded(
+          ),
+          const Expanded(child: SingleChildScrollView(child: BudgetsList())),
+          Container(
+            alignment: Alignment.bottomCenter,
+            margin: const EdgeInsets.only(bottom: 32),
+            color: kLight100,
+            child: Padding(
+              padding: const EdgeInsets.all(kMediumPadding),
+              child: DefaultButton(
+                key: const Key('budgetPage_addNewBudget_button'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => BlocProvider.value(
+                        value: context.read<BudgetBloc>(),
+                        child: const AddBudgetPage(),
+                      ),
+                    ),
+                  );
+                },
+                title: '+  Create a budget',
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BudgetsList extends StatelessWidget {
+  const BudgetsList({
+    Key? key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<BudgetBloc, BudgetState>(
+      builder: (context, state) {
+        if (state is BudgetsLoaded) {
+          if (state.budgets.isEmpty) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: const [
+                  Center(
+                    child: Text(
+                      """You don't have any budgets.\nCreate one to manage.""",
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return Container(
+              color: kViolet100,
               child: Container(
-                alignment: Alignment.bottomCenter,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24),
                     topRight: Radius.circular(24),
                   ),
-                  color: kLight80,
+                  color: kLight100,
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(kMediumPadding),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Chip(
-                                    label: Row(
-                                      children: const [
-                                        CircleAvatar(
-                                          radius: 8,
-                                          backgroundColor: Colors.green,
-                                        ),
-                                        SizedBox(width: 6),
-                                        Text('Medical'),
-                                      ],
-                                    ),
-                                  ),
-                                  Image.asset(
-                                    'assets/icons/warning.png',
-                                    color: kRed100,
-                                  ),
-                                ],
-                              ),
-                              const Text("Remaining \$0"),
-                              const Text("\$1200 of \$1000"),
-                              const Text("You've exceeded the limit"),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    const Text('Let\'s make one so you in control'),
-                    const Text('You don\'t have a budget.'),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(kMediumPadding),
-                      child: DefaultButton(
-                        key: const Key('budgetPage_addNewBudget_button'),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const AddBudgetPage(),
-                            ),
-                          );
-                        },
-                        title: '+  Create a budget',
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                      children: state.budgets
+                          .map((bud) => BudgetCard(budget: bud))
+                          .toList()),
                 ),
               ),
+            );
+          }
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
+    );
+  }
+}
+
+class BudgetCard extends StatelessWidget {
+  const BudgetCard({
+    Key? key,
+    required this.budget,
+  }) : super(key: key);
+
+  final Budget budget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.0)),
+      child: Padding(
+        padding: const EdgeInsets.all(kMediumPadding),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Chip(
+                  label: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 8,
+                        backgroundColor: Category.colorByName(
+                          budget.category,
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Text(budget.category),
+                    ],
+                  ),
+                ),
+                _WarningIcon(budget: budget),
+              ],
             ),
+            _RemainText(budget: budget),
+            const SizedBox(height: 8),
+            _ProgressBar(budget: budget),
+            const SizedBox(height: 8),
+            _UsedOfAmount(budget: budget),
+            const SizedBox(height: 8),
+            _ExceedText(budget: budget),
           ],
         ),
       ),
     );
+  }
+}
+
+class _ExceedText extends StatelessWidget {
+  const _ExceedText({
+    Key? key,
+    required this.budget,
+  }) : super(key: key);
+  final Budget budget;
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TransactionBloc, TransactionState>(
+      builder: (context, state) {
+        if (state is TransactionLoaded) {
+          final used = state.transactions._totalOfCategory(budget.category);
+          final isExceeded = used > budget.amount;
+          if (isExceeded) {
+            return Text(
+              "You've exceeded the limit",
+              style: body3.copyWith(color: kRed100),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
+    );
+  }
+}
+
+class _WarningIcon extends StatelessWidget {
+  const _WarningIcon({
+    Key? key,
+    required this.budget,
+  }) : super(key: key);
+  final Budget budget;
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TransactionBloc, TransactionState>(
+      builder: (context, state) {
+        if (state is TransactionLoaded) {
+          final used = state.transactions._totalOfCategory(budget.category);
+          final isExceeded = used > budget.amount;
+          if (isExceeded) {
+            return Image.asset(
+              'assets/icons/warning.png',
+              color: kRed100,
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
+    );
+  }
+}
+
+class _UsedOfAmount extends StatelessWidget {
+  const _UsedOfAmount({
+    Key? key,
+    required this.budget,
+  }) : super(key: key);
+
+  final Budget budget;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TransactionBloc, TransactionState>(
+      builder: (context, state) {
+        if (state is TransactionLoaded) {
+          final used = state.transactions._totalOfCategory(budget.category);
+          return Text(
+            "\$$used of \$${budget.amount}",
+            style: body1.copyWith(color: kDark25),
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
+    );
+  }
+}
+
+class _RemainText extends StatelessWidget {
+  const _RemainText({Key? key, required this.budget}) : super(key: key);
+  final Budget budget;
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TransactionBloc, TransactionState>(
+      builder: (context, state) {
+        if (state is TransactionLoaded) {
+          final used = state.transactions._totalOfCategory(budget.category);
+          final isExceeded = used > budget.amount;
+          return Text(
+            "Remaining \$${(isExceeded) ? 0 : (budget.amount - used)}",
+            style: title2,
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
+    );
+  }
+}
+
+class _ProgressBar extends StatelessWidget {
+  const _ProgressBar({Key? key, required this.budget}) : super(key: key);
+  final Budget budget;
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TransactionBloc, TransactionState>(
+      builder: (context, state) {
+        if (state is TransactionLoaded) {
+          final used = state.transactions._totalOfCategory(budget.category);
+          return ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            child: LinearProgressIndicator(
+              value: used / budget.amount,
+              backgroundColor: kLight20,
+              minHeight: 12,
+              color: Category.colorByName(budget.category),
+            ),
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
+    );
+  }
+}
+
+extension ListTransactionExtension on List<Transaction> {
+  double _totalOfCategory(String category) {
+    final list = where((e) => e.category == category);
+    final List<double> list2 =
+        list.isNotEmpty ? list.map((e) => e.amount).toList() : [];
+    return list2.isNotEmpty ? list2.reduce((a, b) => a + b) : 0;
   }
 }
