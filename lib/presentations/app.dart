@@ -1,4 +1,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:budget_repository/budget_repository.dart';
+import 'package:expense_tracker/blocs/budget/budget_bloc.dart';
 import 'package:expense_tracker/blocs/tab/tab_bloc.dart';
 import 'package:expense_tracker/presentations/pages/login/login_page.dart';
 import 'package:expense_tracker/presentations/pages/main/main_page.dart';
@@ -76,6 +78,14 @@ class AppView extends StatelessWidget {
                       cachedWallet: {},
                     ),
                   )..add(const LoadWallets()),
+                ),
+                BlocProvider(
+                  create: (context) => BudgetBloc(
+                    FirebaseBudgetRepository(
+                      authenticationRepository: authenticationRepository,
+                      cachedBudget: {},
+                    ),
+                  )..add(const LoadBudgets()),
                 ),
                 BlocProvider<FilterBloc>(
                   create: (context) => FilterBloc(
