@@ -85,6 +85,13 @@ class FirebaseTransactionRepository implements TransactionRepository {
           trans.date.day,
         ),
       );
+  @override
+  double totalOfCategory(String category) {
+    final list = currentTransaction.where((e) => e.category == category);
+    final List<double> list2 =
+        list.isNotEmpty ? list.map((e) => e.amount).toList() : [];
+    return list2.isNotEmpty ? list2.reduce((a, b) => a + b) : 0;
+  }
 }
 
 extension Iterables<E> on Iterable<E> {
