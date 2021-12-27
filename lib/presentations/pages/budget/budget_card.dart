@@ -1,4 +1,5 @@
 import 'package:budget_repository/budget_repository.dart';
+import 'package:expense_tracker/blocs/budget/budget_bloc.dart';
 import 'package:expense_tracker/blocs/transaction/category_model.dart';
 import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/constants.dart';
@@ -23,8 +24,15 @@ class BudgetCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => BlocProvider.value(
-              value: context.read<TransactionBloc>(),
+            builder: (_) => MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: context.read<TransactionBloc>(),
+                ),
+                BlocProvider.value(
+                  value: context.read<BudgetBloc>(),
+                ),
+              ],
               child: BudgetDetail(budget),
             ),
           ),
@@ -169,7 +177,7 @@ class RemainText extends StatelessWidget {
           final used = state.transactions.totalOfCategory(budget.category);
           final isExceeded = used > budget.amount;
           return Text(
-            "Remaining \$${(isExceeded) ? 0 : (budget.amount - used)}",
+            "Remaining \$${(isExceeded) ? 0 : (budget.amount - used).toStringAsFixed(1)}",
             style: title2,
           );
         } else {

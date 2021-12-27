@@ -160,6 +160,7 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                                 context.read<BudgetBloc>().add(
                                       BudgetEvent.addBudget(
                                         Budget(
+                                          exceedLimit: _percent,
                                           amount: _amount,
                                           category: _category.name,
                                           monthApply: DateTime.now().month,
