@@ -5,7 +5,7 @@ import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/src/provider.dart';
+import 'package:provider/provider.dart';
 
 class AddBudgetPage extends StatefulWidget {
   const AddBudgetPage({Key? key}) : super(key: key);
@@ -160,6 +160,7 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                                 context.read<BudgetBloc>().add(
                                       BudgetEvent.addBudget(
                                         Budget(
+                                          exceedLimit: _percent,
                                           amount: _amount,
                                           category: _category.name,
                                           monthApply: DateTime.now().month,

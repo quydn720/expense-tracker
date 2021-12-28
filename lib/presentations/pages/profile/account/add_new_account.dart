@@ -53,6 +53,10 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                     padding: const EdgeInsets.only(left: 8.0),
                     child: TextFormField(
                       decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.only(top: 8),
+                        isDense: true,
+                        errorStyle:
+                            const TextStyle(color: kRed40, fontSize: 14),
                         border: InputBorder.none,
                         hintText: '0.0',
                         hintStyle: titleX.copyWith(color: kLight80),
@@ -74,6 +78,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                       },
                     ),
                   ),
+                  const SizedBox(height: 8),
                   Container(
                     decoration: const BoxDecoration(
                       color: Colors.white,
@@ -162,7 +167,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
   }
 }
 
-class BankWidget extends StatelessWidget {
+class BankWidget extends StatefulWidget {
   const BankWidget({
     Key? key,
     required String selectedAccountType,
@@ -174,9 +179,15 @@ class BankWidget extends StatelessWidget {
   final String _selectedAccountType;
 
   @override
+  State<BankWidget> createState() => _BankWidgetState();
+}
+
+class _BankWidgetState extends State<BankWidget> {
+  int i = 0;
+  @override
   Widget build(BuildContext context) {
     return Builder(builder: (_) {
-      if (!(_selectedAccountType == 'Wallet')) {
+      if ((widget._selectedAccountType == 'Bank')) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -196,7 +207,7 @@ class BankWidget extends StatelessWidget {
                 (index) {
                   if (index == 7) {
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {}, // If have more bank to show
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 4),
                         decoration: BoxDecoration(
@@ -208,14 +219,23 @@ class BankWidget extends StatelessWidget {
                     );
                   } else {
                     return InkWell(
-                      onTap: () => _onIconPathChanged(
-                        'assets/icons/banks/${_imageAssets[index]}.png',
-                      ),
+                      onTap: () {
+                        setState(() {
+                          i = index;
+                        });
+                        widget._onIconPathChanged(
+                          'assets/icons/banks/${_imageAssets[index]}.png',
+                        );
+                      },
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 4),
                         decoration: BoxDecoration(
+                          border:
+                              i == index ? Border.all(color: kViolet100) : null,
                           borderRadius: BorderRadius.circular(8),
-                          color: const Color(0xffEEE5FF),
+                          color: i == index
+                              ? const Color(0xffEEE5FF)
+                              : const Color(0xffF1F1FA),
                           image: DecorationImage(
                             image: AssetImage(
                               'assets/icons/banks/${_imageAssets[index]}.png',

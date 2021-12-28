@@ -15,8 +15,10 @@ class TransactionTile extends StatelessWidget {
   const TransactionTile({
     Key? key,
     required this.transaction,
+    this.canTouch = true,
   }) : super(key: key);
   final Transaction transaction;
+  final bool canTouch;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -86,40 +88,46 @@ class TransactionTile extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => MultiBlocProvider(
-              providers: [
-                BlocProvider.value(
-                  value: context.read<WalletBloc>(),
+      onTap: (canTouch == true)
+          ? () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider.value(
+                        value: context.read<WalletBloc>(),
+                      ),
+                      BlocProvider.value(
+                        value: context.read<TransactionBloc>(),
+                      ),
+                    ],
+                    child: TransactionDetailPage(transaction: transaction),
+                  ),
                 ),
-                BlocProvider.value(
-                  value: context.read<TransactionBloc>(),
-                ),
-              ],
-              child: TransactionDetailPage(transaction: transaction),
-            ),
-          ),
-        );
-      },
-      onLongPress: () {
-        context.read<TransactionBloc>().add(DeleteTransactions(transaction));
-        final wallet = context
-            .read<WalletBloc>()
-            .walletRepository
-            .currentWallets
-            .where((e) => e.id == transaction.walletId)
-            .first;
-        int offset = transaction.type == TransactionType.income ? 1 : -1;
-        context.read<WalletBloc>().add(
-              UpdateWallet(
-                wallet.copyWith(
-                    amount: wallet.amount + transaction.amount * -offset),
-              ),
-            );
-      },
+              );
+            }
+          : null,
+      onLongPress: (canTouch == true)
+          ? () {
+              context
+                  .read<TransactionBloc>()
+                  .add(DeleteTransactions(transaction));
+              final wallet = context
+                  .read<WalletBloc>()
+                  .walletRepository
+                  .currentWallets
+                  .where((e) => e.id == transaction.walletId)
+                  .first;
+              int offset = transaction.type == TransactionType.income ? 1 : -1;
+              context.read<WalletBloc>().add(
+                    UpdateWallet(
+                      wallet.copyWith(
+                          amount: wallet.amount + transaction.amount * -offset),
+                    ),
+                  );
+            }
+          : null,
     );
   }
 }
