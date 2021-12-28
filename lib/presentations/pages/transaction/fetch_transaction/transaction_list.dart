@@ -73,8 +73,10 @@ class TransactionPage extends StatelessWidget {
                               onPressed: () {
                                 showModalBottomSheet(
                                   context: context,
-                                  builder: (context) =>
-                                      const FilterBottomSheet(),
+                                  builder: (_) => BlocProvider.value(
+                                    value: context.read<FilterBloc>(),
+                                    child: const FilterBottomSheet(),
+                                  ),
                                 );
                               },
                               icon: Image.asset('assets/icons/sort.png'),

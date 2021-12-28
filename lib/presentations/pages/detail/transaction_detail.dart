@@ -6,6 +6,7 @@ import 'package:expense_tracker/presentations/pages/transaction/add_transaction/
 import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
@@ -67,8 +68,11 @@ class TransactionDetailPage extends StatelessWidget {
                       style: titleX.copyWith(color: Colors.white)),
                   Text(_transaction.description,
                       style: body1.copyWith(color: Colors.white)),
-                  Text(_transaction.date.toString(),
-                      style: body3.copyWith(color: Colors.white)),
+                  Text(
+                    DateFormat(DateFormat.YEAR_MONTH_WEEKDAY_DAY)
+                        .format(_transaction.date),
+                    style: body3.copyWith(color: Colors.white),
+                  ),
                 ],
               )),
           Align(

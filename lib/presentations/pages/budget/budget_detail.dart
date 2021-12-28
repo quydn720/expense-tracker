@@ -122,17 +122,19 @@ class BudgetDetail extends StatelessWidget {
                       state.transactions.totalOfCategory(budget.category);
                   final isExceeded = used > budget.amount;
                   if (isExceeded) {
-                    return Chip(
-                      backgroundColor: kRed100,
-                      label: Row(
-                        children: [
-                          Image.asset(
-                            'assets/icons/warning.png',
-                            color: kLight100,
-                          ),
-                          Text("You've exceed the limit",
-                              style: body3.copyWith(color: kLight100)),
-                        ],
+                    return FittedBox(
+                      child: Chip(
+                        backgroundColor: kRed100,
+                        label: Row(
+                          children: [
+                            Image.asset(
+                              'assets/icons/warning.png',
+                              color: kLight100,
+                            ),
+                            Text("You've exceed the limit",
+                                style: body3.copyWith(color: kLight100)),
+                          ],
+                        ),
                       ),
                     );
                   } else {
