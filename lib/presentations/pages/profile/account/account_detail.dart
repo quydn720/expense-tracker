@@ -48,6 +48,8 @@ class WalletDetailPage extends StatelessWidget {
                           .read<TransactionBloc>()
                           .transactionRepository
                           .currentTransaction
+                          .where((e) => e.walletId == _wallet.id)
+                          .toList()
                           .groupBy((trans) => DateTime(
                                 trans.date.year,
                                 trans.date.month,
@@ -69,8 +71,10 @@ class WalletDetailPage extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 8),
                                   ...e.value
-                                      .map((e) =>
-                                          TransactionTile(transaction: e))
+                                      .map((e) => TransactionTile(
+                                            transaction: e,
+                                            canTouch: false,
+                                          ))
                                       .toList(),
                                   const Divider(),
                                 ],
