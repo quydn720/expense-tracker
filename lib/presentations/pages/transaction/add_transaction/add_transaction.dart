@@ -1,4 +1,3 @@
-import '../../../../blocs/add_transaction/add_transaction_cubit.dart';
 import '../../../../blocs/transaction/category_model.dart';
 import '../../../../blocs/transaction/transaction_bloc.dart';
 import '../../../../blocs/wallet/wallet_bloc.dart';
@@ -6,7 +5,6 @@ import '../../../../constants.dart';
 import '../../../components/default_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
 
@@ -415,6 +413,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
 
                                   context.read<WalletBloc>().add(UpdateWallet(
                                       _wallet.copyWith(amount: a)));
+                                  Navigator.pop(context);
                                   Navigator.pop(context);
                                 }
                               },
