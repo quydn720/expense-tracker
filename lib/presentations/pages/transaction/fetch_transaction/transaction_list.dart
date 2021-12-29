@@ -153,42 +153,74 @@ class TransactionPage extends StatelessWidget {
                           ))
                       .entries
                       .map(
-                        (e) => Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: kMediumPadding,
-                            vertical: kDefaultPadding,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                e.key.onlyDateFormatted,
-                                style: title3,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text('Total: ', style: body1),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 16.0),
-                                    child: Text(
-                                      '${e.value.map((e) => e.amount * (e.type == TransactionType.income ? 1 : -1)).reduce((a, b) => a + b)}',
-                                      style: body2,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 8),
-                              ...e.value
-                                  .map((e) => TransactionTile(transaction: e))
-                                  .toList(),
-                              const Divider(),
-                            ],
-                          ),
+                    (e) {
+                      final date = (e.key.month == state.date.month &&
+                              e.key.year == state.date.year)
+                          ? e.key.onlyDateFormatted
+                          : '';
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: kMediumPadding,
+                          vertical: kDefaultPadding,
                         ),
-                      )
-                      .toList(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Builder(builder: (context) {
+                              final date = (e.key.month == state.date.month &&
+                                      e.key.year == state.date.year)
+                                  ? e.key.onlyDateFormatted
+                                  : '';
+                              return Text(
+                                date,
+                                style: title3,
+                              );
+                            }),
+                            Builder(builder: (context) {
+                              final list = e.value
+                                  .where((e) =>
+                                      e.date.month == state.date.month &&
+                                      e.date.year == state.date.year)
+                                  .toList();
+                              final text = list.isNotEmpty
+                                  ? e.value
+                                      .map((e) =>
+                                          e.amount *
+                                          (e.type == TransactionType.income
+                                              ? 1
+                                              : -1))
+                                      .reduce((a, b) => a + b)
+                                      .toStringAsFixed(1)
+                                  : '';
+                              return list.isNotEmpty
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text('Total: ', style: body1),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 16.0),
+                                          child: Text('$text', style: body2),
+                                        ),
+                                      ],
+                                    )
+                                  : SizedBox();
+                            }),
+                            const SizedBox(height: 8),
+                            ...e.value
+                                .where((e) =>
+                                    e.date.month == state.date.month &&
+                                    e.date.year == state.date.year)
+                                .toList()
+                                .map((e) => TransactionTile(transaction: e))
+                                .toList(),
+                            const Divider(),
+                          ],
+                        ),
+                      );
+                    },
+                  ).toList(),
                 ],
               ),
             );
@@ -255,15 +287,29 @@ class TotalTextByType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TransactionBloc, TransactionState>(
-      builder: (context, state) {
-        if (state is TransactionLoaded) {
-          final listOfTypeT =
-              state.transactions.where((trans) => trans.type == type).toList();
-          final text = (listOfTypeT.isNotEmpty)
-              ? listOfTypeT.map((e) => e.amount).reduce((a, b) => a + b)
-              : 0;
-          final prefix = type == TransactionType.expense ? '-' : '+';
-          return Text('$prefix $text');
+      builder: (context, state1) {
+        if (state1 is TransactionLoaded) {
+          return BlocBuilder<FilterBloc, FilterState>(
+            builder: (context, state) {
+              final prefix = type == TransactionType.expense ? '-' : '+';
+              if (state is FilterLoaded) {
+                final listOfTypeTInMonth = state1.transactions
+                    .where((e) =>
+                        e.date.month == state.date.month &&
+                        e.date.year == state.date.year)
+                    .toList();
+                final listOfTypeT = listOfTypeTInMonth
+                    .where((trans) => trans.type == type)
+                    .toList();
+                final text = (listOfTypeT.isNotEmpty)
+                    ? listOfTypeT.map((e) => e.amount).reduce((a, b) => a + b)
+                    : 0;
+                return Text('$prefix $text');
+              } else {
+                return const Text('Loading...');
+              }
+            },
+          );
         } else {
           return const Text('Loading...');
         }
@@ -281,26 +327,39 @@ class TotalText extends StatelessWidget {
     return BlocBuilder<TransactionBloc, TransactionState>(
       builder: (context, state) {
         if (state is TransactionLoaded) {
-          final listOfExpense = state.transactions
-              .where((trans) => trans.type == TransactionType.expense)
-              .toList();
-          final listOfIncome = state.transactions
-              .where((trans) => trans.type == TransactionType.income)
-              .toList();
-          final expense = (listOfExpense.isNotEmpty)
-              ? listOfExpense.map((e) => e.amount).reduce((a, b) => a + b)
-              : 0;
-          final income = (listOfIncome.isNotEmpty)
-              ? listOfIncome.map((e) => e.amount).reduce((a, b) => a + b)
-              : 0;
-          final text = income - expense;
-          return Text(
-            '$text',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: text > 0 ? kGreen100 : kRed100,
-            ),
+          return BlocBuilder<FilterBloc, FilterState>(
+            builder: (context, state) {
+              if (state is FilterLoaded) {
+                final listOfTypeTInMonth = state.transactions
+                    .where((e) =>
+                        e.date.month == state.date.month &&
+                        e.date.year == state.date.year)
+                    .toList();
+                final listOfExpense = listOfTypeTInMonth
+                    .where((trans) => trans.type == TransactionType.expense)
+                    .toList();
+                final listOfIncome = listOfTypeTInMonth
+                    .where((trans) => trans.type == TransactionType.income)
+                    .toList();
+                final expense = (listOfExpense.isNotEmpty)
+                    ? listOfExpense.map((e) => e.amount).reduce((a, b) => a + b)
+                    : 0;
+                final income = (listOfIncome.isNotEmpty)
+                    ? listOfIncome.map((e) => e.amount).reduce((a, b) => a + b)
+                    : 0;
+                final text = income - expense;
+                return Text(
+                  '$text',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: text > 0 ? kGreen100 : kRed100,
+                  ),
+                );
+              } else {
+                return const Text('Loading...');
+              }
+            },
           );
         } else {
           return const Text('Loading...');

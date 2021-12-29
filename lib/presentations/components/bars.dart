@@ -42,6 +42,7 @@ class DefaultBar extends StatelessWidget {
 class SelectionBar extends DefaultBar {
   final String sectionTitle;
   final String? currentSelected;
+  // ignore: overridden_fields, annotate_overrides
   final VoidCallback onTap;
   SelectionBar({
     required this.onTap,
