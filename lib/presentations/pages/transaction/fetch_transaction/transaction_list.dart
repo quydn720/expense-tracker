@@ -1,5 +1,6 @@
+import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
-import 'package:expense_tracker/presentations/pages/report/financial_report.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 
@@ -104,42 +105,46 @@ class TransactionPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: kViolet20,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    margin: const EdgeInsets.all(kMediumPadding),
-                    padding: const EdgeInsets.only(
-                      left: kMediumPadding,
-                      top: kDefaultPadding,
-                      bottom: kDefaultPadding,
-                      right: kDefaultPadding,
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const FinancialReportPage()),
-                        );
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'See your finanical report',
-                            style: body3.copyWith(color: kViolet100),
-                          ),
-                          Image.asset(
-                            'assets/icons/arrow-right-2.png',
-                            color: kViolet100,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  const Divider(),
+                  const MonthReport(),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //     color: kViolet20,
+                  //     borderRadius: BorderRadius.circular(10),
+                  //   ),
+                  //   margin: const EdgeInsets.all(kMediumPadding),
+                  //   padding: const EdgeInsets.only(
+                  //     left: kMediumPadding,
+                  //     top: kDefaultPadding,
+                  //     bottom: kDefaultPadding,
+                  //     right: kDefaultPadding,
+                  //   ),
+                  //   child: InkWell(
+                  //     onTap: () {
+                  //       Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //             builder: (context) =>
+                  //                 const FinancialReportPage()),
+                  //       );
+                  //     },
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //       children: [
+                  //         Text(
+                  //           'See your finanical report',
+                  //           style: body3.copyWith(color: kViolet100),
+                  //         ),
+                  //         Image.asset(
+                  //           'assets/icons/arrow-right-2.png',
+                  //           color: kViolet100,
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  const Divider(),
+
                   ...state.transactions
                       .groupBy((trans) => DateTime(
                             trans.date.year,
@@ -192,6 +197,115 @@ class TransactionPage extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+}
+
+class MonthReport extends StatelessWidget {
+  const MonthReport({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(
+        left: kMediumPadding,
+        top: kDefaultPadding,
+        bottom: kDefaultPadding,
+        right: kDefaultPadding,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text('Income'),
+              TotalTextByType(TransactionType.income)
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text('Expense'),
+              TotalTextByType(TransactionType.expense),
+            ],
+          ),
+          const Divider(thickness: 3, color: kDark25),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text('Total'),
+              TotalText(),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TotalTextByType extends StatelessWidget {
+  const TotalTextByType(
+    this.type, {
+    Key? key,
+  }) : super(key: key);
+  final TransactionType type;
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TransactionBloc, TransactionState>(
+      builder: (context, state) {
+        if (state is TransactionLoaded) {
+          final listOfTypeT =
+              state.transactions.where((trans) => trans.type == type).toList();
+          final text = (listOfTypeT.isNotEmpty)
+              ? listOfTypeT.map((e) => e.amount).reduce((a, b) => a + b)
+              : 0;
+          final prefix = type == TransactionType.expense ? '-' : '+';
+          return Text('$prefix $text');
+        } else {
+          return const Text('Loading...');
+        }
+      },
+    );
+  }
+}
+
+class TotalText extends StatelessWidget {
+  const TotalText({
+    Key? key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TransactionBloc, TransactionState>(
+      builder: (context, state) {
+        if (state is TransactionLoaded) {
+          final listOfExpense = state.transactions
+              .where((trans) => trans.type == TransactionType.expense)
+              .toList();
+          final listOfIncome = state.transactions
+              .where((trans) => trans.type == TransactionType.income)
+              .toList();
+          final expense = (listOfExpense.isNotEmpty)
+              ? listOfExpense.map((e) => e.amount).reduce((a, b) => a + b)
+              : 0;
+          final income = (listOfIncome.isNotEmpty)
+              ? listOfIncome.map((e) => e.amount).reduce((a, b) => a + b)
+              : 0;
+          final text = income - expense;
+          return Text(
+            '$text',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: text > 0 ? kGreen100 : kRed100,
+            ),
+          );
+        } else {
+          return const Text('Loading...');
+        }
+      },
     );
   }
 }

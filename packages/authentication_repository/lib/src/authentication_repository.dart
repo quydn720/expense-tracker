@@ -259,6 +259,15 @@ class AuthenticationRepository {
     }
   }
 
+  ///
+  Future<void> changeAvatar(String avtUrl) async {
+    try {
+      await _firebaseAuth.currentUser!.updatePhotoURL(avtUrl);
+    } catch (e) {
+      throw Exception('Can not change avatar');
+    }
+  }
+
   /// Signs out the current user which will emit
   /// [User.empty] from the [user] Stream.
   ///

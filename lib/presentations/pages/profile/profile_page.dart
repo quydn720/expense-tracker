@@ -107,7 +107,10 @@ class Body extends StatelessWidget {
                     ),
                     IconButton(
                       icon: Image.asset('assets/icons/edit.png'),
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<AppBloc>().add(const UserChangeAvatar(
+                            'https://picsum.photos/200'));
+                      },
                     ),
                   ],
                 ),

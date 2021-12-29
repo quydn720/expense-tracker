@@ -84,7 +84,7 @@ class AddTransactionForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (transaction != null) {
-      context.read<AddTransactionCubit>().amountChanged(transaction!.amount);
+      // context.read<AddTransactionCubit>().amountChanged(transaction!.amount);
       return Column(
         children: [
           Padding(

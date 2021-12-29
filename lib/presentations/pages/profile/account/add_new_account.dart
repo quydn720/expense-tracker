@@ -150,6 +150,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                                           color: kViolet100,
                                           amount: _balance),
                                     );
+                                Navigator.pop(context);
                               }
                             },
                           ),
