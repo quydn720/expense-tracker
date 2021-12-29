@@ -1,5 +1,6 @@
 import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
+import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:expense_tracker/presentations/pages/budget/budget_page.dart';
 import 'package:expense_tracker/presentations/pages/profile/account/add_new_account.dart';
 
@@ -24,7 +25,7 @@ class MainPage extends StatelessWidget {
       builder: (context, state) {
         if (state is WalletLoaded) {
           if (state.wallets.isEmpty) {
-            return const AddNewWalletPage();
+            return const NewUserPage();
           }
         }
         return BlocBuilder<TabBloc, AppTab>(
@@ -131,6 +132,46 @@ class TabSelector extends StatelessWidget {
             label: label,
           );
         }).toList(),
+      ),
+    );
+  }
+}
+
+class NewUserPage extends StatelessWidget {
+  const NewUserPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 100),
+              const Text("Let’s setup your account!", style: title1),
+              const SizedBox(height: 20),
+              const Text(
+                "Account can be your bank, credit card or your wallet.",
+                style: body3,
+              ),
+              const Spacer(),
+              DefaultButton(
+                  title: "Let's go",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => BlocProvider.value(
+                            value: context.read<WalletBloc>(),
+                            child: const AddNewWalletPage()),
+                      ),
+                    );
+                  })
+            ],
+          ),
+        ),
       ),
     );
   }

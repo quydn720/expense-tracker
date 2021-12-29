@@ -40,21 +40,26 @@ class _WalletList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _wallets = context.read<WalletBloc>().walletRepository.currentWallets;
-    return Expanded(
-      child: ListView.separated(
-        shrinkWrap: true,
-        itemCount: _wallets.length,
-        itemBuilder: (context, index) {
-          final wallet = _wallets[index];
-          return WalletTile(wallet: wallet);
-        },
-        separatorBuilder: (context, index) => const Divider(
-          thickness: 1,
-          endIndent: kLargePadding,
-          indent: kLargePadding,
-        ),
-      ),
+    // final _wallets = context.read<WalletBloc>().walletRepository.currentWallets;
+    return BlocBuilder<WalletBloc, WalletState>(
+      builder: (context, state) {
+        final _wallets = (state as WalletLoaded).wallets;
+        return Expanded(
+          child: ListView.separated(
+            shrinkWrap: true,
+            itemCount: _wallets.length,
+            itemBuilder: (context, index) {
+              final wallet = _wallets[index];
+              return WalletTile(wallet: wallet);
+            },
+            separatorBuilder: (context, index) => const Divider(
+              thickness: 1,
+              endIndent: kLargePadding,
+              indent: kLargePadding,
+            ),
+          ),
+        );
+      },
     );
   }
 }
