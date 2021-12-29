@@ -78,7 +78,14 @@ class LineChartWidget extends StatelessWidget {
                           ],
                         ),
                       )
-                    : const SizedBox(height: 180);
+                    : const SizedBox(
+                        height: 180,
+                        child: Center(
+                          child: Text(
+                            "You haven't had any transactions",
+                          ),
+                        ),
+                      );
               } else {
                 return Container();
               }

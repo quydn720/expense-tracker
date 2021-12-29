@@ -1,9 +1,12 @@
+import 'package:expense_tracker/blocs/app_bloc/app_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../blocs/wallet/wallet_bloc.dart';
 import '../../../../constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'avatar.dart';
 
 class TopNavigation extends StatelessWidget {
   const TopNavigation({
@@ -13,15 +16,14 @@ class TopNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
       padding: const EdgeInsets.all(kDefaultPadding),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: <Color>[
-            Color(0xFFFFF6E5),
-            Color(0xFFF8EDD8),
+            Color(0xFFFFF6A5),
+            Color(0xFFFFF6FF),
           ],
         ),
         borderRadius: BorderRadius.only(
@@ -36,9 +38,14 @@ class TopNavigation extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
-                child: const Padding(
-                  padding: EdgeInsets.all(kDefaultPadding),
-                  child: CircleAvatar(),
+                child: Padding(
+                  padding: const EdgeInsets.all(kDefaultPadding),
+                  child: Avatar(
+                    size: 16,
+                    photo: (context.read<AppBloc>().state as Authenticated)
+                        .user
+                        .photo,
+                  ),
                 ),
               ),
               SizedBox(
@@ -63,7 +70,8 @@ class TopNavigation extends StatelessWidget {
             'Account Balance',
             style: body1.copyWith(color: kDark50),
           ),
-          const _MoneyAmount()
+          const _MoneyAmount(),
+          const SizedBox(height: 16),
         ],
       ),
     );
@@ -86,14 +94,14 @@ class _MoneyAmount extends StatelessWidget {
             .toStringAsFixed(1);
         if (state is WalletLoaded) {
           return Text(
-            _total,
+            "\$$_total",
             style: title2.copyWith(
               color: kDark75,
               fontSize: 48,
             ),
           );
         } else {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
       },
     );

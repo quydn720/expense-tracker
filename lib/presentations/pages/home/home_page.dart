@@ -45,15 +45,28 @@ class HomeView extends StatelessWidget {
           if (state is TransactionLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is TransactionLoaded) {
-            return ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount:
-                  state.transactions.length < 5 ? state.transactions.length : 5,
-              itemBuilder: (_, index) {
-                return TransactionTile(transaction: state.transactions[index]);
-              },
-            );
+            if (state.transactions.isEmpty) {
+              return const SizedBox(
+                height: 180,
+                child: Center(
+                  child: Text(
+                    "You haven't had any transactions",
+                  ),
+                ),
+              );
+            } else {
+              return ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: state.transactions.length < 5
+                    ? state.transactions.length
+                    : 5,
+                itemBuilder: (_, index) {
+                  return TransactionTile(
+                      transaction: state.transactions[index]);
+                },
+              );
+            }
           } else {
             return Container();
           }

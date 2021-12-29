@@ -29,6 +29,7 @@ class BudgetDetail extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(width: 4),
         ],
       ),
       body: Center(
