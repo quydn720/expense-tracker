@@ -155,7 +155,7 @@ class TransactionDetailPage extends StatelessWidget {
                                       value: context.read<TransactionBloc>(),
                                     ),
                                   ],
-                                  child: AddNewTransactionPage(
+                                  child: EditTransactionPage(
                                     transaction: _transaction,
                                   ),
                                 ),

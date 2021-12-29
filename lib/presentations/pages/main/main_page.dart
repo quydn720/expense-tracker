@@ -49,7 +49,8 @@ class MainPage extends StatelessWidget {
                             value: BlocProvider.of<TransactionBloc>(context),
                           ),
                         ],
-                        child: const AddNewTransactionPage(),
+                        // child: const AddNewTransactionPage(),
+                        child: const AddTransactionPage(),
                       ),
                     ),
                   );
