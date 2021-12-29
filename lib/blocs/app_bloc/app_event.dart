@@ -5,4 +5,5 @@ class AppEvent with _$AppEvent {
   const factory AppEvent.appStarted() = AppStarted;
   const factory AppEvent.appLogOutRequested() = AppLogOutRequested;
   const factory AppEvent.appUserChanged(User user) = AppUserChanged;
+  const factory AppEvent.userChangeAvatar(String avt) = UserChangeAvatar;
 }

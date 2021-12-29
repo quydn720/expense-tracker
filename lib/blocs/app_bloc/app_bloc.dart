@@ -45,9 +45,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       }
     }
 
+    void _onUserChangeAvatar(UserChangeAvatar event, Emitter<AppState> emit) {
+      authenticationRepository.changeAvatar(event.avt);
+      emit(AppState.authenticated(user: authenticationRepository.currentUser));
+    }
+
     on<AppUserChanged>(_onUserChanged);
     on<AppLogOutRequested>(_onLogoutRequested);
     on<AppStarted>(_onAppStarted);
+    on<UserChangeAvatar>(_onUserChangeAvatar);
 
     @override
     // ignore: unused_element

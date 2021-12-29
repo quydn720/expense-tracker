@@ -30,6 +30,12 @@ class _$AppEventTearOff {
       user,
     );
   }
+
+  UserChangeAvatar userChangeAvatar(String avt) {
+    return UserChangeAvatar(
+      avt,
+    );
+  }
 }
 
 /// @nodoc
@@ -42,6 +48,7 @@ mixin _$AppEvent {
     required TResult Function() appStarted,
     required TResult Function() appLogOutRequested,
     required TResult Function(User user) appUserChanged,
+    required TResult Function(String avt) userChangeAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,6 +56,7 @@ mixin _$AppEvent {
     TResult Function()? appStarted,
     TResult Function()? appLogOutRequested,
     TResult Function(User user)? appUserChanged,
+    TResult Function(String avt)? userChangeAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +64,7 @@ mixin _$AppEvent {
     TResult Function()? appStarted,
     TResult Function()? appLogOutRequested,
     TResult Function(User user)? appUserChanged,
+    TResult Function(String avt)? userChangeAvatar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +73,7 @@ mixin _$AppEvent {
     required TResult Function(AppStarted value) appStarted,
     required TResult Function(AppLogOutRequested value) appLogOutRequested,
     required TResult Function(AppUserChanged value) appUserChanged,
+    required TResult Function(UserChangeAvatar value) userChangeAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +81,7 @@ mixin _$AppEvent {
     TResult Function(AppStarted value)? appStarted,
     TResult Function(AppLogOutRequested value)? appLogOutRequested,
     TResult Function(AppUserChanged value)? appUserChanged,
+    TResult Function(UserChangeAvatar value)? userChangeAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +89,7 @@ mixin _$AppEvent {
     TResult Function(AppStarted value)? appStarted,
     TResult Function(AppLogOutRequested value)? appLogOutRequested,
     TResult Function(AppUserChanged value)? appUserChanged,
+    TResult Function(UserChangeAvatar value)? userChangeAvatar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,6 +152,7 @@ class _$AppStarted implements AppStarted {
     required TResult Function() appStarted,
     required TResult Function() appLogOutRequested,
     required TResult Function(User user) appUserChanged,
+    required TResult Function(String avt) userChangeAvatar,
   }) {
     return appStarted();
   }
@@ -150,6 +163,7 @@ class _$AppStarted implements AppStarted {
     TResult Function()? appStarted,
     TResult Function()? appLogOutRequested,
     TResult Function(User user)? appUserChanged,
+    TResult Function(String avt)? userChangeAvatar,
   }) {
     return appStarted?.call();
   }
@@ -160,6 +174,7 @@ class _$AppStarted implements AppStarted {
     TResult Function()? appStarted,
     TResult Function()? appLogOutRequested,
     TResult Function(User user)? appUserChanged,
+    TResult Function(String avt)? userChangeAvatar,
     required TResult orElse(),
   }) {
     if (appStarted != null) {
@@ -174,6 +189,7 @@ class _$AppStarted implements AppStarted {
     required TResult Function(AppStarted value) appStarted,
     required TResult Function(AppLogOutRequested value) appLogOutRequested,
     required TResult Function(AppUserChanged value) appUserChanged,
+    required TResult Function(UserChangeAvatar value) userChangeAvatar,
   }) {
     return appStarted(this);
   }
@@ -184,6 +200,7 @@ class _$AppStarted implements AppStarted {
     TResult Function(AppStarted value)? appStarted,
     TResult Function(AppLogOutRequested value)? appLogOutRequested,
     TResult Function(AppUserChanged value)? appUserChanged,
+    TResult Function(UserChangeAvatar value)? userChangeAvatar,
   }) {
     return appStarted?.call(this);
   }
@@ -194,6 +211,7 @@ class _$AppStarted implements AppStarted {
     TResult Function(AppStarted value)? appStarted,
     TResult Function(AppLogOutRequested value)? appLogOutRequested,
     TResult Function(AppUserChanged value)? appUserChanged,
+    TResult Function(UserChangeAvatar value)? userChangeAvatar,
     required TResult orElse(),
   }) {
     if (appStarted != null) {
@@ -251,6 +269,7 @@ class _$AppLogOutRequested implements AppLogOutRequested {
     required TResult Function() appStarted,
     required TResult Function() appLogOutRequested,
     required TResult Function(User user) appUserChanged,
+    required TResult Function(String avt) userChangeAvatar,
   }) {
     return appLogOutRequested();
   }
@@ -261,6 +280,7 @@ class _$AppLogOutRequested implements AppLogOutRequested {
     TResult Function()? appStarted,
     TResult Function()? appLogOutRequested,
     TResult Function(User user)? appUserChanged,
+    TResult Function(String avt)? userChangeAvatar,
   }) {
     return appLogOutRequested?.call();
   }
@@ -271,6 +291,7 @@ class _$AppLogOutRequested implements AppLogOutRequested {
     TResult Function()? appStarted,
     TResult Function()? appLogOutRequested,
     TResult Function(User user)? appUserChanged,
+    TResult Function(String avt)? userChangeAvatar,
     required TResult orElse(),
   }) {
     if (appLogOutRequested != null) {
@@ -285,6 +306,7 @@ class _$AppLogOutRequested implements AppLogOutRequested {
     required TResult Function(AppStarted value) appStarted,
     required TResult Function(AppLogOutRequested value) appLogOutRequested,
     required TResult Function(AppUserChanged value) appUserChanged,
+    required TResult Function(UserChangeAvatar value) userChangeAvatar,
   }) {
     return appLogOutRequested(this);
   }
@@ -295,6 +317,7 @@ class _$AppLogOutRequested implements AppLogOutRequested {
     TResult Function(AppStarted value)? appStarted,
     TResult Function(AppLogOutRequested value)? appLogOutRequested,
     TResult Function(AppUserChanged value)? appUserChanged,
+    TResult Function(UserChangeAvatar value)? userChangeAvatar,
   }) {
     return appLogOutRequested?.call(this);
   }
@@ -305,6 +328,7 @@ class _$AppLogOutRequested implements AppLogOutRequested {
     TResult Function(AppStarted value)? appStarted,
     TResult Function(AppLogOutRequested value)? appLogOutRequested,
     TResult Function(AppUserChanged value)? appUserChanged,
+    TResult Function(UserChangeAvatar value)? userChangeAvatar,
     required TResult orElse(),
   }) {
     if (appLogOutRequested != null) {
@@ -384,6 +408,7 @@ class _$AppUserChanged implements AppUserChanged {
     required TResult Function() appStarted,
     required TResult Function() appLogOutRequested,
     required TResult Function(User user) appUserChanged,
+    required TResult Function(String avt) userChangeAvatar,
   }) {
     return appUserChanged(user);
   }
@@ -394,6 +419,7 @@ class _$AppUserChanged implements AppUserChanged {
     TResult Function()? appStarted,
     TResult Function()? appLogOutRequested,
     TResult Function(User user)? appUserChanged,
+    TResult Function(String avt)? userChangeAvatar,
   }) {
     return appUserChanged?.call(user);
   }
@@ -404,6 +430,7 @@ class _$AppUserChanged implements AppUserChanged {
     TResult Function()? appStarted,
     TResult Function()? appLogOutRequested,
     TResult Function(User user)? appUserChanged,
+    TResult Function(String avt)? userChangeAvatar,
     required TResult orElse(),
   }) {
     if (appUserChanged != null) {
@@ -418,6 +445,7 @@ class _$AppUserChanged implements AppUserChanged {
     required TResult Function(AppStarted value) appStarted,
     required TResult Function(AppLogOutRequested value) appLogOutRequested,
     required TResult Function(AppUserChanged value) appUserChanged,
+    required TResult Function(UserChangeAvatar value) userChangeAvatar,
   }) {
     return appUserChanged(this);
   }
@@ -428,6 +456,7 @@ class _$AppUserChanged implements AppUserChanged {
     TResult Function(AppStarted value)? appStarted,
     TResult Function(AppLogOutRequested value)? appLogOutRequested,
     TResult Function(AppUserChanged value)? appUserChanged,
+    TResult Function(UserChangeAvatar value)? userChangeAvatar,
   }) {
     return appUserChanged?.call(this);
   }
@@ -438,6 +467,7 @@ class _$AppUserChanged implements AppUserChanged {
     TResult Function(AppStarted value)? appStarted,
     TResult Function(AppLogOutRequested value)? appLogOutRequested,
     TResult Function(AppUserChanged value)? appUserChanged,
+    TResult Function(UserChangeAvatar value)? userChangeAvatar,
     required TResult orElse(),
   }) {
     if (appUserChanged != null) {
@@ -453,6 +483,150 @@ abstract class AppUserChanged implements AppEvent {
   User get user;
   @JsonKey(ignore: true)
   $AppUserChangedCopyWith<AppUserChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserChangeAvatarCopyWith<$Res> {
+  factory $UserChangeAvatarCopyWith(
+          UserChangeAvatar value, $Res Function(UserChangeAvatar) then) =
+      _$UserChangeAvatarCopyWithImpl<$Res>;
+  $Res call({String avt});
+}
+
+/// @nodoc
+class _$UserChangeAvatarCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
+    implements $UserChangeAvatarCopyWith<$Res> {
+  _$UserChangeAvatarCopyWithImpl(
+      UserChangeAvatar _value, $Res Function(UserChangeAvatar) _then)
+      : super(_value, (v) => _then(v as UserChangeAvatar));
+
+  @override
+  UserChangeAvatar get _value => super._value as UserChangeAvatar;
+
+  @override
+  $Res call({
+    Object? avt = freezed,
+  }) {
+    return _then(UserChangeAvatar(
+      avt == freezed
+          ? _value.avt
+          : avt // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserChangeAvatar implements UserChangeAvatar {
+  const _$UserChangeAvatar(this.avt);
+
+  @override
+  final String avt;
+
+  @override
+  String toString() {
+    return 'AppEvent.userChangeAvatar(avt: $avt)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UserChangeAvatar &&
+            (identical(other.avt, avt) || other.avt == avt));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, avt);
+
+  @JsonKey(ignore: true)
+  @override
+  $UserChangeAvatarCopyWith<UserChangeAvatar> get copyWith =>
+      _$UserChangeAvatarCopyWithImpl<UserChangeAvatar>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() appStarted,
+    required TResult Function() appLogOutRequested,
+    required TResult Function(User user) appUserChanged,
+    required TResult Function(String avt) userChangeAvatar,
+  }) {
+    return userChangeAvatar(avt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? appStarted,
+    TResult Function()? appLogOutRequested,
+    TResult Function(User user)? appUserChanged,
+    TResult Function(String avt)? userChangeAvatar,
+  }) {
+    return userChangeAvatar?.call(avt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? appStarted,
+    TResult Function()? appLogOutRequested,
+    TResult Function(User user)? appUserChanged,
+    TResult Function(String avt)? userChangeAvatar,
+    required TResult orElse(),
+  }) {
+    if (userChangeAvatar != null) {
+      return userChangeAvatar(avt);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppStarted value) appStarted,
+    required TResult Function(AppLogOutRequested value) appLogOutRequested,
+    required TResult Function(AppUserChanged value) appUserChanged,
+    required TResult Function(UserChangeAvatar value) userChangeAvatar,
+  }) {
+    return userChangeAvatar(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AppStarted value)? appStarted,
+    TResult Function(AppLogOutRequested value)? appLogOutRequested,
+    TResult Function(AppUserChanged value)? appUserChanged,
+    TResult Function(UserChangeAvatar value)? userChangeAvatar,
+  }) {
+    return userChangeAvatar?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppStarted value)? appStarted,
+    TResult Function(AppLogOutRequested value)? appLogOutRequested,
+    TResult Function(AppUserChanged value)? appUserChanged,
+    TResult Function(UserChangeAvatar value)? userChangeAvatar,
+    required TResult orElse(),
+  }) {
+    if (userChangeAvatar != null) {
+      return userChangeAvatar(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserChangeAvatar implements AppEvent {
+  const factory UserChangeAvatar(String avt) = _$UserChangeAvatar;
+
+  String get avt;
+  @JsonKey(ignore: true)
+  $UserChangeAvatarCopyWith<UserChangeAvatar> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
