@@ -8,7 +8,6 @@ import '../../constants.dart';
 import 'squared_icon_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
 class TransactionTile extends StatelessWidget {

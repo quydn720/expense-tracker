@@ -6,7 +6,6 @@ import '../presentations/pages/profile/account/account_page.dart';
 import '../presentations/pages/profile/export/export_page.dart';
 import '../presentations/pages/profile/export/export_result_page.dart';
 import '../presentations/pages/profile/setting/setting_page.dart';
-import '../presentations/pages/transaction/add_transaction/add_transaction.dart';
 import '../presentations/pages/transaction/fetch_transaction/transaction_list.dart';
 import '../size_config.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +40,6 @@ final Map<String, WidgetBuilder> routes = {
   // SplashPage.routeName: (context) => const SplashPage(),
   MainPage.routeName: (context) => const MainPage(),
   HomePage.routeName: (context) => const HomePage(),
-  AddNewTransactionPage.routeName: (context) => const AddNewTransactionPage(),
   ForgotPasswordPage.routeName: (context) => const ForgotPasswordPage(),
   TransactionPage.routeName: (context) => const TransactionPage(),
   AccountPage.routeName: (context) => const AccountPage(),

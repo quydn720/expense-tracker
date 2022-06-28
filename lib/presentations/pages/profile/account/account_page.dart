@@ -8,7 +8,6 @@ import '../../../../constants.dart';
 import '../../../components/default_button.dart';
 import '../../../components/squared_icon_card.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import 'account_detail.dart';
 

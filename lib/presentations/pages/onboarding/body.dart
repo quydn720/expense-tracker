@@ -17,7 +17,7 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    final data = kOnboardingData;
+    const data = kOnboardingData;
 
     return Padding(
       padding: const EdgeInsets.all(kMediumPadding),

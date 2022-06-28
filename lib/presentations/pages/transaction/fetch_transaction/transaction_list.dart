@@ -1,6 +1,5 @@
 import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 
@@ -154,10 +153,6 @@ class TransactionPage extends StatelessWidget {
                       .entries
                       .map(
                     (e) {
-                      final date = (e.key.month == state.date.month &&
-                              e.key.year == state.date.year)
-                          ? e.key.onlyDateFormatted
-                          : '';
                       return Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: kMediumPadding,
@@ -201,11 +196,11 @@ class TransactionPage extends StatelessWidget {
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               right: 16.0),
-                                          child: Text('$text', style: body2),
+                                          child: Text(text, style: body2),
                                         ),
                                       ],
                                     )
-                                  : SizedBox();
+                                  : const SizedBox();
                             }),
                             const SizedBox(height: 8),
                             ...e.value
