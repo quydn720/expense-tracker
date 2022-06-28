@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 class DefaultAppBar extends AppBar {
-  final Widget? middle;
-  final Widget? lead;
-  final Widget? trail;
-  final Color? color;
   DefaultAppBar({
     this.color,
     this.lead,
@@ -20,4 +16,8 @@ class DefaultAppBar extends AppBar {
           actions: [trail ?? const SizedBox.shrink()],
           title: middle ?? const SizedBox.shrink(),
         );
+  final Widget? middle;
+  final Widget? lead;
+  final Widget? trail;
+  final Color? color;
 }

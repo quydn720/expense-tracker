@@ -1,11 +1,12 @@
 import 'package:budget_repository/budget_repository.dart';
-import 'package:expense_tracker/blocs/budget/budget_bloc.dart';
-import 'package:expense_tracker/blocs/transaction/category_model.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../blocs/budget/budget_bloc.dart';
+import '../../../blocs/transaction/category_model.dart';
+import '../../../constants.dart';
+import '../../components/default_button.dart';
 
 class AddBudgetPage extends StatefulWidget {
   const AddBudgetPage({Key? key}) : super(key: key);
@@ -45,14 +46,14 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(left: 8),
                     child: Text(
                       'How much do yo want to spend?',
                       style: title3.copyWith(color: kLight80),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(left: 8),
                     child: TextFormField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -61,7 +62,7 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                         hintText: '0.0',
                         hintStyle: titleX.copyWith(color: kLight80),
                         prefixIcon: Text(
-                          '\$',
+                          r'$',
                           style: titleX.copyWith(color: kLight80),
                         ),
                         errorStyle:
@@ -81,7 +82,7 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Container(
+                  DecoratedBox(
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -137,7 +138,6 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                                 width: double.infinity,
                                 child: Slider(
                                   max: 100,
-                                  min: 0,
                                   value: _percent ?? 80,
                                   onChanged: (v) => setState(
                                     () => _percent = v,
@@ -147,7 +147,7 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                             } else {
                               return const SizedBox.shrink();
                             }
-                          }),
+                          },),
                           const SizedBox(height: kMediumPadding),
                           DefaultButton(
                             title: 'Continue',

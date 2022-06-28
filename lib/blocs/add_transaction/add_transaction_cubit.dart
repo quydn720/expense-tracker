@@ -44,16 +44,18 @@ class AddTransactionCubit extends Cubit<AddTransactionState> {
 
   void walletChanged(Wallet wallet) {
     final w = Wallet.dirty(
-        wallet.id, wallet.amount, wallet.name, wallet.iconPath, wallet.color);
-    emit(state.copyWith(
-      wallet: wallet,
-      status: Formz.validate(
-        [
-          state.amount,
-          w,
-        ],
+      wallet.id,
+      wallet.amount,
+      wallet.name,
+      wallet.iconPath,
+      wallet.color,
+    );
+    emit(
+      state.copyWith(
+        wallet: wallet,
+        status: Formz.validate([state.amount, w]),
       ),
-    ));
+    );
   }
 
   void descriptionChanged(String description) {

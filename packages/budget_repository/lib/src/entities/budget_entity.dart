@@ -6,11 +6,6 @@ import 'package:meta/meta.dart';
 
 @immutable
 class BudgetEntity extends Equatable {
-  final String id;
-  final double amount;
-  final String category;
-  final int monthApply;
-  final double? exceedLimit;
 
   const BudgetEntity({
     this.exceedLimit,
@@ -20,15 +15,33 @@ class BudgetEntity extends Equatable {
     required this.monthApply,
   });
 
+  factory BudgetEntity.fromMap(Map<String, dynamic> map) {
+    return BudgetEntity(
+      id: map['id'] as String ,
+      amount: map['amount'] as double,
+      category: map['category'] as String,
+      monthApply: map['monthApply'] as int,
+      exceedLimit: map['exceedLimit'] as double,
+    );
+  }
+
+  factory BudgetEntity.fromJson(String source) =>
+      BudgetEntity.fromMap(json.decode(source) as Map<String, dynamic>);
+  final String id;
+  final double amount;
+  final String category;
+  final int monthApply;
+  final double? exceedLimit;
+
   static BudgetEntity fromSnapshot(DocumentSnapshot snap) {
     final data = snap.data() as Map<String, dynamic>?;
     if (data == null) throw Exception();
     return BudgetEntity(
-      id: data['id'],
-      amount: data['amount'].toDouble(),
-      category: data['category'],
-      monthApply: data['monthApply'],
-      exceedLimit: data['exceedLimit']?.toDouble(),
+      id: data['id'] as String,
+      amount: data['amount'] as double,
+      category: data['category']as String,
+      monthApply: data['monthApply']as int,
+      exceedLimit: data['exceedLimit'] as double,
     );
   }
 
@@ -54,20 +67,7 @@ class BudgetEntity extends Equatable {
     };
   }
 
-  factory BudgetEntity.fromMap(Map<String, dynamic> map) {
-    return BudgetEntity(
-      id: map['id'] ?? '',
-      amount: map['amount']?.toDouble() ?? 0.0,
-      category: map['category'] ?? '',
-      monthApply: map['monthApply']?.toInt() ?? 0,
-      exceedLimit: map['exceedLimit']?.toDouble(),
-    );
-  }
-
   String toJson() => json.encode(toMap());
-
-  factory BudgetEntity.fromJson(String source) =>
-      BudgetEntity.fromMap(json.decode(source));
 }
 
 enum TransactionType { expense, income }

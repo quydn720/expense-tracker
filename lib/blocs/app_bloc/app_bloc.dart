@@ -9,7 +9,7 @@ part 'app_event.dart';
 part 'app_state.dart';
 part 'app_bloc.freezed.dart';
 
-const first_time_key = 'first_time_app_started';
+const firstTimeKey = 'first_time_app_started';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
@@ -23,19 +23,21 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     );
 
     void _onUserChanged(AppUserChanged event, Emitter<AppState> emit) {
-      emit(event.user.isNotEmpty
-          ? AppState.authenticated(user: event.user)
-          : const AppState.unauthenticated());
+      emit(
+        event.user.isNotEmpty
+            ? AppState.authenticated(user: event.user)
+            : const AppState.unauthenticated(),
+      );
     }
 
     void _onLogoutRequested(AppLogOutRequested event, Emitter<AppState> emit) {
       unawaited(authenticationRepository.logOut());
     }
 
-    void _onAppStarted(AppStarted event, Emitter<AppState> emit) async {
-      final used = sharedPreferences.getString(first_time_key);
+    Future<void> _onAppStarted(AppStarted event, Emitter<AppState> emit) async {
+      final used = sharedPreferences.getString(firstTimeKey);
       if (used == null) {
-        await sharedPreferences.setString(first_time_key, 'YES');
+        await sharedPreferences.setString(firstTimeKey, 'YES');
         emit(const AppState.firstTimeOpened());
       } else {
         final state = authenticationRepository.currentUser.isNotEmpty

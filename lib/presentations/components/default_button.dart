@@ -48,7 +48,7 @@ class DefaultButton extends StatelessWidget {
           children: [
             icon ?? const SizedBox.shrink(),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: middle ??
                   Text(
                     title,
@@ -98,7 +98,7 @@ class DefaultOutlinedButton extends StatelessWidget {
           children: [
             icon ?? const SizedBox(),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
                 title,
                 style: title3.copyWith(color: kDark100),

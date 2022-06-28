@@ -1,3 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../blocs/tab/tab_bloc.dart';
+import '../../presentations/pages/main/main_page.dart';
+import '../../presentations/pages/onboarding/onboarding_page.dart';
 import '../blocs/app_bloc/app_bloc.dart';
 import '../presentations/pages/forgot_password/forgot_pw_page.dart';
 import '../presentations/pages/home/home_page.dart';
@@ -8,12 +14,6 @@ import '../presentations/pages/profile/export/export_result_page.dart';
 import '../presentations/pages/profile/setting/setting_page.dart';
 import '../presentations/pages/transaction/fetch_transaction/transaction_list.dart';
 import '../size_config.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../blocs/tab/tab_bloc.dart';
-import '../../presentations/pages/main/main_page.dart';
-import '../../presentations/pages/onboarding/onboarding_page.dart';
 
 final Map<String, WidgetBuilder> routes = {
   '/': (context) {

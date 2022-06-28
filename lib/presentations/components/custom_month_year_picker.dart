@@ -2,9 +2,6 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 
 class CustomMonthPicker extends BasePickerModel {
-  String digits(int value, int length) {
-    return '$value'.padLeft(length, "0");
-  }
 
   CustomMonthPicker({
     required this.currentTime,
@@ -12,6 +9,9 @@ class CustomMonthPicker extends BasePickerModel {
     setLeftIndex(currentTime.month);
     setMiddleIndex(currentTime.month);
     setRightIndex(currentTime.year);
+  }
+  String digits(int value, int length) {
+    return '$value'.padLeft(length, '0');
   }
   String month(int value) {
     return DateFormat(DateFormat.MONTH).format(DateTime(0, value));

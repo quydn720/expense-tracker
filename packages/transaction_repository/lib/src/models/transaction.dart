@@ -5,13 +5,6 @@ import 'package:uuid/uuid.dart';
 
 @immutable
 class Transaction {
-  final String id;
-  final double amount;
-  final String category;
-  final String description;
-  final TransactionType type;
-  final DateTime date;
-  final String walletId;
 
   Transaction({
     String? id,
@@ -25,18 +18,6 @@ class Transaction {
         date = date ?? DateTime.now(),
         description = description ?? '';
 
-  TransactionEntity toEntity() {
-    return TransactionEntity(
-      id: id,
-      amount: amount,
-      category: category,
-      description: description,
-      walletId: walletId,
-      type: type,
-      timestamp: Timestamp.fromDate(date),
-    );
-  }
-
   factory Transaction.fromEntity(TransactionEntity entity) {
     return Transaction(
       description: entity.description,
@@ -46,6 +27,25 @@ class Transaction {
       type: entity.type,
       date: entity.timestamp.toDate(),
       walletId: entity.walletId,
+    );
+  }
+  final String id;
+  final double amount;
+  final String category;
+  final String description;
+  final TransactionType type;
+  final DateTime date;
+  final String walletId;
+
+  TransactionEntity toEntity() {
+    return TransactionEntity(
+      id: id,
+      amount: amount,
+      category: category,
+      description: description,
+      walletId: walletId,
+      type: type,
+      timestamp: Timestamp.fromDate(date),
     );
   }
 

@@ -1,15 +1,16 @@
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
-import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
-import 'package:expense_tracker/presentations/components/transaction_tile.dart';
-import 'package:expense_tracker/size_config.dart';
-import 'package:expense_tracker/utils/extension_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
+
+import '../../../../blocs/transaction/transaction_bloc.dart';
+import '../../../../blocs/wallet/wallet_bloc.dart';
+import '../../../../constants.dart';
+import '../../../../size_config.dart';
+import '../../../../utils/extension_helper.dart';
+import '../../../components/default_button.dart';
+import '../../../components/squared_icon_card.dart';
+import '../../../components/transaction_tile.dart';
 
 class WalletDetailPage extends StatelessWidget {
   const WalletDetailPage({Key? key, required Wallet wallet})
@@ -27,7 +28,7 @@ class WalletDetailPage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
+                MaterialPageRoute<void>(
                   builder: (_) => BlocProvider.value(
                     value: context.read<WalletBloc>(),
                     child: _EditWalletPage(wallet: _wallet),
@@ -69,11 +70,13 @@ class WalletDetailPage extends StatelessWidget {
                           .currentTransaction
                           .where((e) => e.walletId == _wallet.id)
                           .toList()
-                          .groupBy((trans) => DateTime(
-                                trans.date.year,
-                                trans.date.month,
-                                trans.date.day,
-                              ))
+                          .groupBy(
+                            (trans) => DateTime(
+                              trans.date.year,
+                              trans.date.month,
+                              trans.date.day,
+                            ),
+                          )
                           .entries
                           .map(
                             (e) => Padding(
@@ -90,10 +93,12 @@ class WalletDetailPage extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 8),
                                   ...e.value
-                                      .map((e) => TransactionTile(
-                                            transaction: e,
-                                            canTouch: false,
-                                          ))
+                                      .map(
+                                        (e) => TransactionTile(
+                                          transaction: e,
+                                          canTouch: false,
+                                        ),
+                                      )
                                       .toList(),
                                   const Divider(),
                                 ],
@@ -122,7 +127,7 @@ class _EditWalletPage extends StatefulWidget {
 
 class __EditWalletPageState extends State<_EditWalletPage> {
   String _selectedAccountType = '';
-  double _balance = 0.0;
+  double _balance = 0;
   String _name = '';
   String _iconPath = '';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -159,14 +164,14 @@ class __EditWalletPageState extends State<_EditWalletPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(left: 8),
                     child: Text(
                       'Balance',
                       style: title3.copyWith(color: kLight80),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(left: 8),
                     child: TextFormField(
                       initialValue: _balance.toStringAsFixed(1),
                       decoration: InputDecoration(
@@ -178,7 +183,7 @@ class __EditWalletPageState extends State<_EditWalletPage> {
                         hintText: '0.0',
                         hintStyle: titleX.copyWith(color: kLight80),
                         prefixIcon: Text(
-                          '\$',
+                          r'$',
                           style: titleX.copyWith(color: kLight80),
                         ),
                       ),
@@ -196,7 +201,7 @@ class __EditWalletPageState extends State<_EditWalletPage> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Container(
+                  DecoratedBox(
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -214,7 +219,7 @@ class __EditWalletPageState extends State<_EditWalletPage> {
                             decoration: const InputDecoration(hintText: 'Name'),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return "You must fullfill the field";
+                                return 'You must fullfill the field';
                               } else {
                                 return null;
                               }
@@ -228,14 +233,18 @@ class __EditWalletPageState extends State<_EditWalletPage> {
                             hint: const Text('Account Type'),
                             validator: (v) {
                               if (v == null) {
-                                return "You must select account type";
+                                return 'You must select account type';
                               } else {
                                 return null;
                               }
                             },
                             items: _items
-                                .map((e) =>
-                                    DropdownMenuItem(value: e, child: Text(e)))
+                                .map(
+                                  (e) => DropdownMenuItem(
+                                    value: e,
+                                    child: Text(e),
+                                  ),
+                                )
                                 .toList(),
                             onChanged: (v) {
                               setState(() {
@@ -262,19 +271,22 @@ class __EditWalletPageState extends State<_EditWalletPage> {
                                 debugPrint(_selectedAccountType);
                                 debugPrint(_iconPath);
                                 if (_selectedAccountType == 'Wallet') {
-                                  setState(() =>
-                                      _iconPath = 'assets/icons/wallet-3.png');
+                                  setState(
+                                    () =>
+                                        _iconPath = 'assets/icons/wallet-3.png',
+                                  );
                                 }
                                 context
                                     .read<WalletBloc>()
                                     .walletRepository
                                     .updateWallet(
                                       Wallet(
-                                          id: widget.wallet.id,
-                                          name: _name,
-                                          iconPath: _iconPath,
-                                          color: kViolet100,
-                                          amount: _balance),
+                                        id: widget.wallet.id,
+                                        name: _name,
+                                        iconPath: _iconPath,
+                                        color: kViolet100,
+                                        amount: _balance,
+                                      ),
                                     );
                                 Navigator.pop(context);
                                 Navigator.pop(context);
@@ -299,11 +311,11 @@ class BankWidget extends StatefulWidget {
   const BankWidget({
     Key? key,
     required String selectedAccountType,
-    required Function(String) onIconPathChanged,
+    required void Function(String) onIconPathChanged,
   })  : _selectedAccountType = selectedAccountType,
         _onIconPathChanged = onIconPathChanged,
         super(key: key);
-  final Function(String) _onIconPathChanged;
+  final void Function(String) _onIconPathChanged;
   final String _selectedAccountType;
 
   @override
@@ -314,74 +326,77 @@ class _BankWidgetState extends State<BankWidget> {
   int i = 0;
   @override
   Widget build(BuildContext context) {
-    return Builder(builder: (_) {
-      if ((widget._selectedAccountType == 'Bank')) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Bank',
-              style: body2,
-            ),
-            const SizedBox(height: 8),
-            GridView.count(
-              childAspectRatio: 1.6,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              crossAxisCount: 4,
-              crossAxisSpacing: 10,
-              children: List.generate(
-                8,
-                (index) {
-                  if (index == 7) {
-                    return InkWell(
-                      onTap: () {}, // If have more bank to show
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 4),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: const Color(0xffEEE5FF),
+    return Builder(
+      builder: (_) {
+        if (widget._selectedAccountType == 'Bank') {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Bank',
+                style: body2,
+              ),
+              const SizedBox(height: 8),
+              GridView.count(
+                childAspectRatio: 1.6,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                crossAxisCount: 4,
+                crossAxisSpacing: 10,
+                children: List.generate(
+                  8,
+                  (index) {
+                    if (index == 7) {
+                      return InkWell(
+                        onTap: () {}, // If have more bank to show
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 4),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: const Color(0xffEEE5FF),
+                          ),
+                          child: const Center(child: Text('See other')),
                         ),
-                        child: const Center(child: Text('See other')),
-                      ),
-                    );
-                  } else {
-                    return InkWell(
-                      onTap: () {
-                        setState(() {
-                          i = index;
-                        });
-                        widget._onIconPathChanged(
-                          'assets/icons/banks/${_imageAssets[index]}.png',
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 4),
-                        decoration: BoxDecoration(
-                          border:
-                              i == index ? Border.all(color: kViolet100) : null,
-                          borderRadius: BorderRadius.circular(8),
-                          color: i == index
-                              ? const Color(0xffEEE5FF)
-                              : const Color(0xffF1F1FA),
-                          image: DecorationImage(
-                            image: AssetImage(
-                              'assets/icons/banks/${_imageAssets[index]}.png',
+                      );
+                    } else {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            i = index;
+                          });
+                          widget._onIconPathChanged(
+                            'assets/icons/banks/${_imageAssets[index]}.png',
+                          );
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 4),
+                          decoration: BoxDecoration(
+                            border: i == index
+                                ? Border.all(color: kViolet100)
+                                : null,
+                            borderRadius: BorderRadius.circular(8),
+                            color: i == index
+                                ? const Color(0xffEEE5FF)
+                                : const Color(0xffF1F1FA),
+                            image: DecorationImage(
+                              image: AssetImage(
+                                'assets/icons/banks/${_imageAssets[index]}.png',
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  }
-                },
+                      );
+                    }
+                  },
+                ),
               ),
-            ),
-          ],
-        );
-      } else {
-        return const SizedBox.shrink();
-      }
-    });
+            ],
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
+    );
   }
 }
 

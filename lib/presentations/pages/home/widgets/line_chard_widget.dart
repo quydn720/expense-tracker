@@ -1,8 +1,9 @@
-import '../../../../blocs/transaction/transaction_bloc.dart';
-import '../../../../constants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../blocs/transaction/transaction_bloc.dart';
+import '../../../../constants.dart';
 
 class LineChartWidget extends StatelessWidget {
   const LineChartWidget({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class LineChartWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8),
           child: Text('Spend frequency', style: title3),
         ),
         SizedBox(
@@ -67,7 +68,7 @@ class LineChartWidget extends StatelessWidget {
                               isStrokeCapRound: true,
                               dotData: FlDotData(
                                   show: false,
-                                  checkToShowDot: (spot, data) => false),
+                                  checkToShowDot: (spot, data) => false,),
                               belowBarData: BarAreaData(
                                 show: true,
                                 colors: [kViolet100]

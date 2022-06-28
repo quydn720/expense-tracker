@@ -8,15 +8,15 @@ import 'entities/budget_entity.dart';
 const key = 'budget_cached_key';
 
 class FirebaseBudgetRepository implements BudgetRepository {
-  final Map<String, List<Budget>> cachedBudget;
-
-  final AuthenticationRepository authenticationRepository;
-  final String userId;
 
   FirebaseBudgetRepository({
     required this.cachedBudget,
     required this.authenticationRepository,
   }) : userId = authenticationRepository.currentUser.id;
+  final Map<String, List<Budget>> cachedBudget;
+
+  final AuthenticationRepository authenticationRepository;
+  final String userId;
 
   @override
   Future<void> addNewBudget(Budget budget) async {

@@ -8,15 +8,15 @@ import 'models/models.dart';
 const key = 'wallet_cached_key';
 
 class FirebaseWalletRepository implements WalletRepository {
-  final Map<String, List<Wallet>> cachedWallet;
-
-  final AuthenticationRepository authenticationRepository;
-  final String userId;
 
   FirebaseWalletRepository({
     required this.cachedWallet,
     required this.authenticationRepository,
   }) : userId = authenticationRepository.currentUser.id;
+  final Map<String, List<Wallet>> cachedWallet;
+
+  final AuthenticationRepository authenticationRepository;
+  final String userId;
   @override
   Future<void> addNewWallet(Wallet wallet) async {
     await authenticationRepository.user.first;

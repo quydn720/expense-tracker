@@ -1,6 +1,7 @@
-import 'constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'constants.dart';
 
 final theme = ThemeData(
   textTheme: GoogleFonts.interTextTheme(),

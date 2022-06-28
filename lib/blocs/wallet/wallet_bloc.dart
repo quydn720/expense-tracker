@@ -18,9 +18,7 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
   Future<void> _onLoadWallet(LoadWallets event, Emitter<WalletState> emit) {
     return emit.onEach<List<Wallet>>(
       walletRepository.wallets(),
-      onData: (wallet) => add(
-        (WalletEvent.walletUpdated(wallet)),
-      ),
+      onData: (wallet) => add(WalletEvent.walletUpdated(wallet)),
     );
   }
 

@@ -1,15 +1,15 @@
 import 'package:authentication_repository/authentication_repository.dart';
-import '../../../blocs/login/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../constants.dart';
+import '../../../blocs/login/login_cubit.dart';
 import 'login_form.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
-  static Page page() => const MaterialPage<void>(child: SignInPage());
-  static Route route() {
+  static Page<void> page() => const MaterialPage<void>(child: SignInPage());
+  static Route<void> route() {
     return MaterialPageRoute<void>(builder: (_) => const SignInPage());
   }
 

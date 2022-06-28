@@ -1,9 +1,10 @@
-import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet_repository/wallet_repository.dart';
+
+import '../../../../blocs/wallet/wallet_bloc.dart';
+import '../../../../constants.dart';
+import '../../../components/default_button.dart';
 
 class AddNewWalletPage extends StatefulWidget {
   const AddNewWalletPage({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class AddNewWalletPage extends StatefulWidget {
 
 class _AddNewWalletPageState extends State<AddNewWalletPage> {
   String _selectedAccountType = '';
-  double _balance = 0.0;
+  double _balance = 0;
   String _name = '';
   String _iconPath = '';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -43,14 +44,14 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(left: 8),
                     child: Text(
                       'Balance',
                       style: title3.copyWith(color: kLight80),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(left: 8),
                     child: TextFormField(
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(top: 8),
@@ -61,7 +62,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                         hintText: '0.0',
                         hintStyle: titleX.copyWith(color: kLight80),
                         prefixIcon: Text(
-                          '\$',
+                          r'$',
                           style: titleX.copyWith(color: kLight80),
                         ),
                       ),
@@ -79,7 +80,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Container(
+                  DecoratedBox(
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -96,7 +97,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                             decoration: const InputDecoration(hintText: 'Name'),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return "You must fullfill the field";
+                                return 'You must fullfill the field';
                               } else {
                                 return null;
                               }
@@ -110,7 +111,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                             hint: const Text('Account Type'),
                             items: _items
                                 .map((e) =>
-                                    DropdownMenuItem(value: e, child: Text(e)))
+                                    DropdownMenuItem(value: e, child: Text(e)),)
                                 .toList(),
                             onChanged: (v) {
                               setState(() {
@@ -138,7 +139,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                                 debugPrint(_iconPath);
                                 if (_selectedAccountType == 'Wallet') {
                                   setState(() =>
-                                      _iconPath = 'assets/icons/wallet-3.png');
+                                      _iconPath = 'assets/icons/wallet-3.png',);
                                 }
                                 context
                                     .read<WalletBloc>()
@@ -148,7 +149,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                                           name: _name,
                                           iconPath: _iconPath,
                                           color: kViolet100,
-                                          amount: _balance),
+                                          amount: _balance,),
                                     );
                                 Navigator.pop(context);
                               }
@@ -172,11 +173,11 @@ class BankWidget extends StatefulWidget {
   const BankWidget({
     Key? key,
     required String selectedAccountType,
-    required Function(String) onIconPathChanged,
+    required void Function(String) onIconPathChanged,
   })  : _selectedAccountType = selectedAccountType,
         _onIconPathChanged = onIconPathChanged,
         super(key: key);
-  final Function(String) _onIconPathChanged;
+  final void Function(String) _onIconPathChanged;
   final String _selectedAccountType;
 
   @override
@@ -188,7 +189,7 @@ class _BankWidgetState extends State<BankWidget> {
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (_) {
-      if ((widget._selectedAccountType == 'Bank')) {
+      if (widget._selectedAccountType == 'Bank') {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -254,7 +255,7 @@ class _BankWidgetState extends State<BankWidget> {
       } else {
         return const SizedBox.shrink();
       }
-    });
+    },);
   }
 }
 

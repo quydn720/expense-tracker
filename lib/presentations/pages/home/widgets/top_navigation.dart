@@ -1,11 +1,10 @@
-import 'package:expense_tracker/blocs/app_bloc/app_bloc.dart';
-import 'package:intl/intl.dart';
-
-import '../../../../blocs/wallet/wallet_bloc.dart';
-import '../../../../constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
+import '../../../../blocs/app_bloc/app_bloc.dart';
+import '../../../../blocs/wallet/wallet_bloc.dart';
+import '../../../../constants.dart';
 import 'avatar.dart';
 
 class TopNavigation extends StatelessWidget {
@@ -94,7 +93,7 @@ class _MoneyAmount extends StatelessWidget {
             .toStringAsFixed(1);
         if (state is WalletLoaded) {
           return Text(
-            "\$$_total",
+            '\$$_total',
             style: title2.copyWith(
               color: kDark75,
               fontSize: 48,

@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
+
 import '../../../blocs/signup/signup_cubit.dart';
 import '../../../constants.dart';
 import '../../components/default_button.dart';
 import '../login/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key? key}) : super(key: key);

@@ -1,13 +1,14 @@
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
-import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/presentations/pages/transaction/add_transaction/add_transaction.dart';
-import 'package:expense_tracker/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:transaction_repository/transaction_repository.dart';
+
+import '../../../blocs/transaction/transaction_bloc.dart';
+import '../../../blocs/wallet/wallet_bloc.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
+import '../../components/default_button.dart';
+import '../transaction/add_transaction/add_transaction.dart';
 
 class TransactionDetailPage extends StatelessWidget {
   const TransactionDetailPage({
@@ -35,7 +36,7 @@ class TransactionDetailPage extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              showModalBottomSheet(
+              showModalBottomSheet<void>(
                 context: context,
                 builder: (_) => BlocProvider.value(
                   value: context.read<TransactionBloc>(),
@@ -64,16 +65,16 @@ class TransactionDetailPage extends StatelessWidget {
               child: Column(
                 children: [
                   Text('${_transaction.amount}',
-                      style: titleX.copyWith(color: Colors.white)),
+                      style: titleX.copyWith(color: Colors.white),),
                   Text(_transaction.description,
-                      style: body1.copyWith(color: Colors.white)),
+                      style: body1.copyWith(color: Colors.white),),
                   Text(
                     DateFormat(DateFormat.YEAR_MONTH_WEEKDAY_DAY)
                         .format(_transaction.date),
                     style: body3.copyWith(color: Colors.white),
                   ),
                 ],
-              )),
+              ),),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
@@ -85,6 +86,14 @@ class TransactionDetailPage extends StatelessWidget {
                 ),
                 elevation: 10,
                 child: Container(
+                  decoration: const BoxDecoration(
+                    color: kLight100,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(kDefaultRadius),
+                      topRight: Radius.circular(kDefaultRadius),
+                    ),
+                  ),
+                  height: SizeConfig.screenHeight * 3 / 5 + 65,
                   child: Column(
                     children: [
                       Padding(
@@ -121,7 +130,7 @@ class TransactionDetailPage extends StatelessWidget {
                                       .walletRepository
                                       .currentWallets
                                       .where(
-                                          (e) => e.id == _transaction.walletId)
+                                          (e) => e.id == _transaction.walletId,)
                                       .first
                                       .name,
                                   style: body2,
@@ -138,13 +147,13 @@ class TransactionDetailPage extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: DefaultButton(
                           title: 'Edit',
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
+                              MaterialPageRoute<void>(
                                 builder: (_) => MultiBlocProvider(
                                   providers: [
                                     BlocProvider.value(
@@ -166,14 +175,6 @@ class TransactionDetailPage extends StatelessWidget {
                       const SizedBox(height: 20),
                     ],
                   ),
-                  decoration: const BoxDecoration(
-                    color: kLight100,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(kDefaultRadius),
-                      topRight: Radius.circular(kDefaultRadius),
-                    ),
-                  ),
-                  height: SizeConfig.screenHeight * 3 / 5 + 65,
                 ),
               ),
             ),

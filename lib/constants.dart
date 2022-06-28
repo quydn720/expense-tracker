@@ -50,18 +50,18 @@ const Color kBlue100 = Color(0xff0077FF);
 
 const int kAnimationDuration = 100;
 
-const double kDefaultRadius = 16.0;
-const double kBottomSheetRadius = 24.0;
-const double kLargeRadius = 32.0;
+const double kDefaultRadius = 16;
+const double kBottomSheetRadius = 24;
+const double kLargeRadius = 32;
 
-const double kDefaultPadding = 8.0;
-const double kMediumPadding = 16.0;
-const double kLargePadding = 32.0;
+const double kDefaultPadding = 8;
+const double kMediumPadding = 16;
+const double kLargePadding = 32;
 
-const Size kLargeButtonSize = Size(double.infinity, 56.0);
+const Size kLargeButtonSize = Size(double.infinity, 56);
 const Size kSmallButtonSize = Size(164, 56);
 
-final kFirstDay = DateTime(2020, 01, 01);
+final kFirstDay = DateTime(2020);
 final kLastDay = DateTime.utc(2030, 12, 31);
 
 const kOnboardingData = [
@@ -96,10 +96,10 @@ const titleX = TextStyle(fontSize: 64, fontWeight: FontWeight.w700);
 
 // Default Category
 enum Categories {
-  Food,
-  Shopping,
-  Transportation,
-  Family,
-  Personal,
-  Other,
+  food,
+  shopping,
+  transportation,
+  family,
+  personal,
+  other,
 }

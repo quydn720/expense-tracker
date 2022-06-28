@@ -1,16 +1,15 @@
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
-import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/app_bloc/app_bloc.dart';
+import '../../../blocs/transaction/transaction_bloc.dart';
+import '../../../blocs/wallet/wallet_bloc.dart';
+import '../../../constants.dart';
 import '../../components/squared_icon_card.dart';
 import '../home/widgets/widgets.dart';
 import 'account/account_page.dart';
 import 'export/export_page.dart';
 import 'setting/setting_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../constants.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class ProfilePage extends StatelessWidget {
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
-  final data = const [
+  List<Map<String, String>> get data => const [
     {'img': 'assets/icons/wallet-3.png', 'title': 'Account'},
     {'img': 'assets/icons/settings.png', 'title': 'Settings'},
     {'img': 'assets/icons/download.png', 'title': 'Export Data'},
@@ -32,12 +31,12 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _onNavigate(index) {
+    void _onNavigate(int index) {
       switch (index) {
         case 0:
           Navigator.push(
             context,
-            MaterialPageRoute(
+            MaterialPageRoute<void>(
               builder: (_) => MultiBlocProvider(
                 providers: [
                   BlocProvider.value(
@@ -55,7 +54,7 @@ class Body extends StatelessWidget {
         case 1:
           Navigator.push(
             context,
-            MaterialPageRoute(
+            MaterialPageRoute<void>(
               builder: (_) => const SettingPage(),
             ),
           );
@@ -63,7 +62,7 @@ class Body extends StatelessWidget {
         case 2:
           Navigator.push(
             context,
-            MaterialPageRoute(
+            MaterialPageRoute<void>(
               builder: (_) => const ExportPage(),
             ),
           );
@@ -108,8 +107,11 @@ class Body extends StatelessWidget {
                     IconButton(
                       icon: Image.asset('assets/icons/edit.png'),
                       onPressed: () {
-                        context.read<AppBloc>().add(const UserChangeAvatar(
-                            'https://picsum.photos/200'));
+                        context.read<AppBloc>().add(
+                              const UserChangeAvatar(
+                                'https://picsum.photos/200',
+                              ),
+                            );
                       },
                     ),
                   ],
@@ -118,7 +120,7 @@ class Body extends StatelessWidget {
                 Card(
                   elevation: 4,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                    borderRadius: BorderRadius.circular(24),
                   ),
                   child: ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),

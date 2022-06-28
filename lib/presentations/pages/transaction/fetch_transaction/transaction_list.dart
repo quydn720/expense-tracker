@@ -1,15 +1,14 @@
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
-import 'package:expense_tracker/presentations/components/common_components.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:intl/intl.dart';
-
-import '../../../../blocs/filter/filter_bloc.dart';
-import '../../../../constants.dart';
-import '../../../../utils/extension_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
+import '../../../../blocs/filter/filter_bloc.dart';
+import '../../../../blocs/transaction/transaction_bloc.dart';
+import '../../../../constants.dart';
+import '../../../../utils/extension_helper.dart';
+import '../../../components/common_components.dart';
 import 'filter_bottom_sheet.dart';
 
 class TransactionPage extends StatelessWidget {
@@ -36,7 +35,7 @@ class TransactionPage extends StatelessWidget {
                           builder: (context, state) {
                             if (state is FilterLoaded) {
                               return Padding(
-                                padding: const EdgeInsets.only(left: 16.0),
+                                padding: const EdgeInsets.only(left: 16),
                                 child: Chip(
                                   label: SizedBox(
                                     width: double.infinity,
@@ -71,7 +70,7 @@ class TransactionPage extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () {
-                                showModalBottomSheet(
+                                showModalBottomSheet<void>(
                                   context: context,
                                   builder: (_) => BlocProvider.value(
                                     value: context.read<FilterBloc>(),
@@ -89,13 +88,14 @@ class TransactionPage extends StatelessWidget {
                                           top: 4,
                                           right: 0,
                                           child: CircleAvatar(
-                                              radius: 10,
-                                              child: Text(
-                                                context
-                                                    .read<FilterBloc>()
-                                                    .filterCountStr!,
-                                                style: tiny,
-                                              )),
+                                            radius: 10,
+                                            child: Text(
+                                              context
+                                                  .read<FilterBloc>()
+                                                  .filterCountStr!,
+                                              style: tiny,
+                                            ),
+                                          ),
                                         )
                                       : Container(),
                             ),
@@ -122,7 +122,7 @@ class TransactionPage extends StatelessWidget {
                   //     onTap: () {
                   //       Navigator.push(
                   //         context,
-                  //         MaterialPageRoute(
+                  //         MaterialPageRoute<void>(
                   //             builder: (context) =>
                   //                 const FinancialReportPage()),
                   //       );
@@ -145,11 +145,13 @@ class TransactionPage extends StatelessWidget {
                   const Divider(),
 
                   ...state.transactions
-                      .groupBy((trans) => DateTime(
-                            trans.date.year,
-                            trans.date.month,
-                            trans.date.day,
-                          ))
+                      .groupBy(
+                        (trans) => DateTime(
+                          trans.date.year,
+                          trans.date.month,
+                          trans.date.day,
+                        ),
+                      )
                       .entries
                       .map(
                     (e) {
@@ -161,52 +163,63 @@ class TransactionPage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Builder(builder: (context) {
-                              final date = (e.key.month == state.date.month &&
-                                      e.key.year == state.date.year)
-                                  ? e.key.onlyDateFormatted
-                                  : '';
-                              return Text(
-                                date,
-                                style: title3,
-                              );
-                            }),
-                            Builder(builder: (context) {
-                              final list = e.value
-                                  .where((e) =>
-                                      e.date.month == state.date.month &&
-                                      e.date.year == state.date.year)
-                                  .toList();
-                              final text = list.isNotEmpty
-                                  ? e.value
-                                      .map((e) =>
-                                          e.amount *
-                                          (e.type == TransactionType.income
-                                              ? 1
-                                              : -1))
-                                      .reduce((a, b) => a + b)
-                                      .toStringAsFixed(1)
-                                  : '';
-                              return list.isNotEmpty
-                                  ? Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        const Text('Total: ', style: body1),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 16.0),
-                                          child: Text(text, style: body2),
-                                        ),
-                                      ],
+                            Builder(
+                              builder: (context) {
+                                final date = (e.key.month == state.date.month &&
+                                        e.key.year == state.date.year)
+                                    ? e.key.onlyDateFormatted
+                                    : '';
+                                return Text(
+                                  date,
+                                  style: title3,
+                                );
+                              },
+                            ),
+                            Builder(
+                              builder: (context) {
+                                final list = e.value
+                                    .where(
+                                      (e) =>
+                                          e.date.month == state.date.month &&
+                                          e.date.year == state.date.year,
                                     )
-                                  : const SizedBox();
-                            }),
+                                    .toList();
+                                final text = list.isNotEmpty
+                                    ? e.value
+                                        .map(
+                                          (e) =>
+                                              e.amount *
+                                              (e.type == TransactionType.income
+                                                  ? 1
+                                                  : -1),
+                                        )
+                                        .reduce((a, b) => a + b)
+                                        .toStringAsFixed(1)
+                                    : '';
+                                return list.isNotEmpty
+                                    ? Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text('Total: ', style: body1),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              right: 16,
+                                            ),
+                                            child: Text(text, style: body2),
+                                          ),
+                                        ],
+                                      )
+                                    : const SizedBox();
+                              },
+                            ),
                             const SizedBox(height: 8),
                             ...e.value
-                                .where((e) =>
-                                    e.date.month == state.date.month &&
-                                    e.date.year == state.date.year)
+                                .where(
+                                  (e) =>
+                                      e.date.month == state.date.month &&
+                                      e.date.year == state.date.year,
+                                )
                                 .toList()
                                 .map((e) => TransactionTile(transaction: e))
                                 .toList(),
@@ -289,9 +302,11 @@ class TotalTextByType extends StatelessWidget {
               final prefix = type == TransactionType.expense ? '-' : '+';
               if (state is FilterLoaded) {
                 final listOfTypeTInMonth = state1.transactions
-                    .where((e) =>
-                        e.date.month == state.date.month &&
-                        e.date.year == state.date.year)
+                    .where(
+                      (e) =>
+                          e.date.month == state.date.month &&
+                          e.date.year == state.date.year,
+                    )
                     .toList();
                 final listOfTypeT = listOfTypeTInMonth
                     .where((trans) => trans.type == type)
@@ -326,9 +341,11 @@ class TotalText extends StatelessWidget {
             builder: (context, state) {
               if (state is FilterLoaded) {
                 final listOfTypeTInMonth = state.transactions
-                    .where((e) =>
-                        e.date.month == state.date.month &&
-                        e.date.year == state.date.year)
+                    .where(
+                      (e) =>
+                          e.date.month == state.date.month &&
+                          e.date.year == state.date.year,
+                    )
                     .toList();
                 final listOfExpense = listOfTypeTInMonth
                     .where((trans) => trans.type == TransactionType.expense)

@@ -1,22 +1,23 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:budget_repository/budget_repository.dart';
-import 'package:expense_tracker/blocs/budget/budget_bloc.dart';
-import 'package:expense_tracker/blocs/tab/tab_bloc.dart';
-import 'package:expense_tracker/presentations/pages/login/login_page.dart';
-import 'package:expense_tracker/presentations/pages/main/main_page.dart';
-import 'package:expense_tracker/presentations/pages/onboarding/onboarding_page.dart';
-import '../blocs/app_bloc/app_bloc.dart';
-import '../blocs/filter/filter_bloc.dart';
-import '../blocs/transaction/transaction_bloc.dart';
-import '../blocs/wallet/wallet_bloc.dart';
-import '../injector.dart';
-import '../size_config.dart';
-import '../theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
+
+import '../blocs/app_bloc/app_bloc.dart';
+import '../blocs/budget/budget_bloc.dart';
+import '../blocs/filter/filter_bloc.dart';
+import '../blocs/tab/tab_bloc.dart';
+import '../blocs/transaction/transaction_bloc.dart';
+import '../blocs/wallet/wallet_bloc.dart';
+import '../injector.dart';
+import '../size_config.dart';
+import '../theme.dart';
+import 'pages/login/login_page.dart';
+import 'pages/main/main_page.dart';
+import 'pages/onboarding/onboarding_page.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -89,7 +90,8 @@ class AppView extends StatelessWidget {
                 ),
                 BlocProvider<FilterBloc>(
                   create: (context) => FilterBloc(
-                      transactionBloc: context.read<TransactionBloc>()),
+                    transactionBloc: context.read<TransactionBloc>(),
+                  ),
                 ),
               ],
               child: const MainPage(),

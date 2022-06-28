@@ -1,6 +1,6 @@
-import '../../blocs/transaction/category_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../blocs/transaction/category_model.dart';
 import '../../constants.dart';
 
 class SquaredIconCard extends StatelessWidget {

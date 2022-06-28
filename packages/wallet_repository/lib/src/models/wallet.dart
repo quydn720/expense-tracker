@@ -9,22 +9,6 @@ enum WalletValidatorError { invalid }
 
 @immutable
 class Wallet extends FormzInput<String, WalletValidatorError> {
-  final String id;
-  final double amount;
-  final String name;
-  final String iconPath;
-  final Color color;
-
-  const Wallet.pure(this.id, this.amount, this.name, this.iconPath, this.color)
-      : super.pure('');
-
-  const Wallet.dirty(
-    this.id,
-    this.amount,
-    this.name,
-    this.iconPath,
-    this.color,
-  ) : super.pure(id);
 
   Wallet({
     String? id,
@@ -35,15 +19,8 @@ class Wallet extends FormzInput<String, WalletValidatorError> {
   })  : id = id ?? const Uuid().v4(),
         super.dirty(name);
 
-  WalletEntity toEntity() {
-    return WalletEntity(
-      id: id.trim(),
-      amount: amount,
-      name: name,
-      iconPath: iconPath.trim(),
-      color: color,
-    );
-  }
+  const Wallet.pure(this.id, this.amount, this.name, this.iconPath, this.color)
+      : super.pure('');
 
   factory Wallet.fromEntity(WalletEntity entity) {
     return Wallet(
@@ -52,6 +29,29 @@ class Wallet extends FormzInput<String, WalletValidatorError> {
       color: entity.color,
       iconPath: entity.iconPath.trim(),
       name: entity.name,
+    );
+  }
+
+  const Wallet.dirty(
+    this.id,
+    this.amount,
+    this.name,
+    this.iconPath,
+    this.color,
+  ) : super.pure(id);
+  final String id;
+  final double amount;
+  final String name;
+  final String iconPath;
+  final Color color;
+
+  WalletEntity toEntity() {
+    return WalletEntity(
+      id: id.trim(),
+      amount: amount,
+      name: name,
+      iconPath: iconPath.trim(),
+      color: color,
     );
   }
 

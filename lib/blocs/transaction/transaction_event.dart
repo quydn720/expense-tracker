@@ -8,7 +8,9 @@ class TransactionEvent with _$TransactionEvent {
   const factory TransactionEvent.deleteTransaction(Transaction transaction) =
       DeleteTransactions;
   const factory TransactionEvent.updateTransaction(
-      Transaction updatedTransaction) = UpdateTransactions;
+    Transaction updatedTransaction,
+  ) = UpdateTransactions;
   const factory TransactionEvent.transactionUpdated(
-      List<Transaction> transactions) = TransactionUpdated;
+    List<Transaction> transactions,
+  ) = TransactionUpdated;
 }

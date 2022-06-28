@@ -1,12 +1,9 @@
 import 'package:budget_repository/src/entities/budget_entity.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:uuid/uuid.dart';
 
+@immutable
 class Budget {
-  final String id;
-  final double amount;
-  final String category;
-  final int monthApply;
-  final double? exceedLimit;
 
   Budget({
     String? id,
@@ -16,15 +13,6 @@ class Budget {
     this.exceedLimit,
   }) : id = id ?? const Uuid().v4();
 
-  BudgetEntity toEntity() {
-    return BudgetEntity(
-      id: id,
-      amount: amount,
-      category: category,
-      monthApply: monthApply,
-    );
-  }
-
   factory Budget.fromEntity(BudgetEntity entity) {
     return Budget(
       id: entity.id,
@@ -32,6 +20,20 @@ class Budget {
       category: entity.category,
       monthApply: entity.monthApply,
       exceedLimit: entity.exceedLimit,
+    );
+  }
+  final String id;
+  final double amount;
+  final String category;
+  final int monthApply;
+  final double? exceedLimit;
+
+  BudgetEntity toEntity() {
+    return BudgetEntity(
+      id: id,
+      amount: amount,
+      category: category,
+      monthApply: monthApply,
     );
   }
 

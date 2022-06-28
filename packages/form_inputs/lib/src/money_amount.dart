@@ -7,10 +7,11 @@ class MoneyAmount extends FormzInput<double, MoneyValidationAmountError> {
 
   @override
   MoneyValidationAmountError? validator(double value) {
-    if (value <= 0)
+    if (value <= 0) {
       return MoneyValidationAmountError.invalid;
-    else
+    } else {
       return null;
+    }
   }
 }
 

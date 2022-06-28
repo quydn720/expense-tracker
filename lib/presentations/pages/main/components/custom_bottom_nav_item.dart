@@ -9,7 +9,7 @@ class CustomBottomNavItem extends StatelessWidget {
       required this.title,
       required this.onTap,
       this.color = Colors.grey,
-      Key? key})
+      Key? key,})
       : super(key: key);
 
   final IconData icon;
@@ -26,7 +26,7 @@ class CustomBottomNavItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FaIcon(icon, size: 20.0, color: color),
+            FaIcon(icon, size: 20, color: color),
             title,
           ],
         ),

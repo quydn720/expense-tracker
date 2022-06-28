@@ -1,21 +1,22 @@
-import '../../../../blocs/transaction/category_model.dart';
-import '../../../../blocs/transaction/transaction_bloc.dart';
-import '../../../../blocs/wallet/wallet_bloc.dart';
-import '../../../../constants.dart';
-import '../../../components/default_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
 
+import '../../../../blocs/transaction/category_model.dart';
+import '../../../../blocs/transaction/transaction_bloc.dart';
+import '../../../../blocs/wallet/wallet_bloc.dart';
+import '../../../../constants.dart';
+import '../../../components/default_button.dart';
+
 class AddTransactionPage extends StatefulWidget {
   const AddTransactionPage({Key? key}) : super(key: key);
 
   @override
-  _AddTransactionPageState createState() => _AddTransactionPageState();
+  AddTransactionPageState createState() => AddTransactionPageState();
 }
 
-class _AddTransactionPageState extends State<AddTransactionPage> {
+class AddTransactionPageState extends State<AddTransactionPage> {
   int _type = 0;
   double _amount = 0;
   late Wallet _wallet;
@@ -54,14 +55,14 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.only(left: 8),
                       child: Text(
                         'How much?',
                         style: title3.copyWith(color: kLight80),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.only(left: 8),
                       child: TextFormField(
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -70,7 +71,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                           hintText: '0.0',
                           hintStyle: titleX.copyWith(color: kLight80),
                           prefixIcon: Text(
-                            '\$',
+                            r'$',
                             style: titleX.copyWith(color: kLight80),
                           ),
                           errorStyle:
@@ -90,7 +91,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Container(
+                    DecoratedBox(
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
@@ -148,7 +149,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                                   .walletRepository
                                   .currentWallets
                                   .map((e) => DropdownMenuItem(
-                                      value: e, child: Text(e.name)))
+                                      value: e, child: Text(e.name),),)
                                   .toList(),
                               onChanged: (v) {
                                 setState(() {
@@ -179,12 +180,12 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                                           ),
                                         ),
                                       );
-                                  int offset = (_type == 1) ? 1 : -1;
+                                  final offset = (_type == 1) ? 1 : -1;
 
                                   context.read<WalletBloc>().add(UpdateWallet(
                                       _wallet.copyWith(
                                           amount: _wallet.amount +
-                                              _amount * offset)));
+                                              _amount * offset,),),);
                                   Navigator.pop(context);
                                 }
                               },
@@ -209,10 +210,10 @@ class EditTransactionPage extends StatefulWidget {
       : super(key: key);
   final Transaction transaction;
   @override
-  _EditTransactionPageState createState() => _EditTransactionPageState();
+  EditTransactionPageState createState() => EditTransactionPageState();
 }
 
-class _EditTransactionPageState extends State<EditTransactionPage> {
+class EditTransactionPageState extends State<EditTransactionPage> {
   int _type = 0;
   double _amount = 0;
   late Wallet _wallet;
@@ -269,14 +270,14 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.only(left: 8),
                       child: Text(
                         'How much?',
                         style: title3.copyWith(color: kLight80),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.only(left: 8),
                       child: TextFormField(
                         initialValue: _amount.toStringAsFixed(1),
                         decoration: InputDecoration(
@@ -286,7 +287,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                           hintText: '0.0',
                           hintStyle: titleX.copyWith(color: kLight80),
                           prefixIcon: Text(
-                            '\$',
+                            r'$',
                             style: titleX.copyWith(color: kLight80),
                           ),
                           errorStyle:
@@ -306,7 +307,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Container(
+                    DecoratedBox(
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
@@ -367,7 +368,7 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                                   .walletRepository
                                   .currentWallets
                                   .map((e) => DropdownMenuItem(
-                                      value: e, child: Text(e.name)))
+                                      value: e, child: Text(e.name),),)
                                   .toList(),
                               onChanged: (v) {
                                 setState(() {
@@ -400,19 +401,19 @@ class _EditTransactionPageState extends State<EditTransactionPage> {
                                           ),
                                         ),
                                       );
-                                  int offsetB = _type == 1 ? 1 : -1;
-                                  int offsetA = (widget.transaction.type ==
+                                  final offsetB = _type == 1 ? 1 : -1;
+                                  final offsetA = (widget.transaction.type ==
                                           TransactionType.expense)
                                       ? 1
                                       : -1;
 
-                                  double a = _wallet.amount +
+                                  final a = _wallet.amount +
                                       widget.transaction.amount * offsetA +
                                       _amount * offsetB;
                                   debugPrint(a.toString());
 
                                   context.read<WalletBloc>().add(UpdateWallet(
-                                      _wallet.copyWith(amount: a)));
+                                      _wallet.copyWith(amount: a),),);
                                   Navigator.pop(context);
                                   Navigator.pop(context);
                                 }

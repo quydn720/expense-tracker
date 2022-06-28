@@ -1,9 +1,9 @@
-import 'package:expense_tracker/blocs/budget/budget_bloc.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../blocs/budget/budget_bloc.dart';
+import '../../../constants.dart';
+import '../../components/default_button.dart';
 import 'add_budget_page.dart';
 import 'budget_card.dart';
 
@@ -50,7 +50,7 @@ class BudgetPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    MaterialPageRoute<void>(
                       builder: (_) => BlocProvider.value(
                         value: context.read<BudgetBloc>(),
                         child: const AddBudgetPage(),
@@ -79,7 +79,7 @@ class BudgetsList extends StatelessWidget {
         if (state is BudgetsLoaded) {
           if (state.budgets.isEmpty) {
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Column(
                 children: const [
                   Center(
@@ -92,9 +92,9 @@ class BudgetsList extends StatelessWidget {
               ),
             );
           } else {
-            return Container(
+            return ColoredBox(
               color: kViolet100,
-              child: Container(
+              child: DecoratedBox(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24),
@@ -103,11 +103,11 @@ class BudgetsList extends StatelessWidget {
                   color: kLight100,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: Column(
                       children: state.budgets
                           .map((bud) => BudgetCard(budget: bud))
-                          .toList()),
+                          .toList(),),
                 ),
               ),
             );

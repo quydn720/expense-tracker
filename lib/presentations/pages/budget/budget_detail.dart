@@ -1,14 +1,15 @@
 import 'package:budget_repository/budget_repository.dart';
-import 'package:expense_tracker/blocs/budget/budget_bloc.dart';
-import 'package:expense_tracker/blocs/transaction/category_model.dart';
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
-import 'package:expense_tracker/constants.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/presentations/components/squared_icon_card.dart';
-import 'package:expense_tracker/presentations/pages/budget/budget_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../blocs/budget/budget_bloc.dart';
+import '../../../blocs/transaction/category_model.dart';
+import '../../../blocs/transaction/transaction_bloc.dart';
+import '../../../constants.dart';
+import '../../components/default_button.dart';
+import '../../components/squared_icon_card.dart';
+import 'budget_card.dart';
 
 class BudgetDetail extends StatelessWidget {
   const BudgetDetail(this.budget, {Key? key}) : super(key: key);
@@ -20,8 +21,8 @@ class BudgetDetail extends StatelessWidget {
         title: const Text('Detail Budget'),
         actions: [
           IconButton(
-            icon: Image.asset("assets/icons/trash.png"),
-            onPressed: () => showModalBottomSheet(
+            icon: Image.asset('assets/icons/trash.png'),
+            onPressed: () => showModalBottomSheet<void>(
               context: context,
               builder: (_) => BlocProvider.value(
                 value: context.read<BudgetBloc>(),
@@ -72,7 +73,7 @@ class BudgetDetail extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             const Text(
-              "Remaining",
+              'Remaining',
               style: title2,
               textAlign: TextAlign.center,
             ),
@@ -83,7 +84,7 @@ class BudgetDetail extends StatelessWidget {
                       state.transactions.totalOfCategory(budget.category);
                   final isExceeded = used > budget.amount;
                   return Text(
-                    "\$${(isExceeded) ? 0 : (budget.amount - used).toStringAsFixed(1)}",
+                    '\$${isExceeded ? 0 : (budget.amount - used).toStringAsFixed(1)}',
                     style: titleX,
                     textAlign: TextAlign.center,
                   );
@@ -94,7 +95,7 @@ class BudgetDetail extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               child: BlocBuilder<TransactionBloc, TransactionState>(
                 builder: (context, state) {
                   if (state is TransactionLoaded) {
@@ -132,8 +133,10 @@ class BudgetDetail extends StatelessWidget {
                               'assets/icons/warning.png',
                               color: kLight100,
                             ),
-                            Text("You've exceed the limit",
-                                style: body3.copyWith(color: kLight100)),
+                            Text(
+                              "You've exceed the limit",
+                              style: body3.copyWith(color: kLight100),
+                            ),
                           ],
                         ),
                       ),
@@ -153,18 +156,19 @@ class BudgetDetail extends StatelessWidget {
                 vertical: 32,
               ),
               child: DefaultButton(
-                  title: 'Edit',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => BlocProvider.value(
-                          value: context.read<BudgetBloc>(),
-                          child: _EditBudgetPage(budget: budget),
-                        ),
+                title: 'Edit',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (_) => BlocProvider.value(
+                        value: context.read<BudgetBloc>(),
+                        child: _EditBudgetPage(budget: budget),
                       ),
-                    );
-                  }),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -192,7 +196,7 @@ class DeleteBudgetBottomSheet extends StatelessWidget {
           children: [
             const Text('Remove this budget?', style: title3),
             const Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16),
               child: Text(
                 'Are you sure do you wanna remove this budget?',
                 style: body1,
@@ -276,14 +280,14 @@ class _EditBudgetState extends State<_EditBudgetPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(left: 8),
                     child: Text(
                       'How much do yo want to spend?',
                       style: title3.copyWith(color: kLight80),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(left: 8),
                     child: TextFormField(
                       initialValue: _amount.toStringAsFixed(1),
                       decoration: InputDecoration(
@@ -293,7 +297,7 @@ class _EditBudgetState extends State<_EditBudgetPage> {
                         hintText: '0.0',
                         hintStyle: titleX.copyWith(color: kLight80),
                         prefixIcon: Text(
-                          '\$',
+                          r'$',
                           style: titleX.copyWith(color: kLight80),
                         ),
                         errorStyle:
@@ -313,7 +317,7 @@ class _EditBudgetState extends State<_EditBudgetPage> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Container(
+                  DecoratedBox(
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -364,23 +368,24 @@ class _EditBudgetState extends State<_EditBudgetPage> {
                               }),
                             ),
                           ),
-                          Builder(builder: (context) {
-                            if (_receiveAlert == true) {
-                              return SizedBox(
-                                width: double.infinity,
-                                child: Slider(
-                                  max: 100,
-                                  min: 0,
-                                  value: _percent ?? 80,
-                                  onChanged: (v) => setState(
-                                    () => _percent = v,
+                          Builder(
+                            builder: (context) {
+                              if (_receiveAlert == true) {
+                                return SizedBox(
+                                  width: double.infinity,
+                                  child: Slider(
+                                    max: 100,
+                                    value: _percent ?? 80,
+                                    onChanged: (v) => setState(
+                                      () => _percent = v,
+                                    ),
                                   ),
-                                ),
-                              );
-                            } else {
-                              return const SizedBox.shrink();
-                            }
-                          }),
+                                );
+                              } else {
+                                return const SizedBox.shrink();
+                              }
+                            },
+                          ),
                           const SizedBox(height: kMediumPadding),
                           DefaultButton(
                             title: 'Continue',

@@ -1,13 +1,13 @@
-import '../../components/default_app_widget.dart';
-import '../../components/default_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
+import '../../components/default_app_widget.dart';
+import '../../components/default_button.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
-  static String routeName = '/forgot_pw';
   const ForgotPasswordPage({Key? key}) : super(key: key);
-  static Route route() {
+  static String routeName = '/forgot_pw';
+  static Route<void> route() {
     return MaterialPageRoute<void>(builder: (_) => const ForgotPasswordPage());
   }
 

@@ -1,38 +1,27 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import '../transaction/transaction_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
+import '../transaction/transaction_bloc.dart';
+
+part 'filter_bloc.freezed.dart';
 part 'filter_event.dart';
 part 'filter_state.dart';
-part 'filter_bloc.freezed.dart';
 
 class FilterBloc extends Bloc<FilterEvent, FilterState> {
-  final TransactionBloc transactionBloc;
-  late StreamSubscription _transactionSubscription;
-
-  ActiveFilter _filter = ActiveFilter.empty;
-  ActiveSort _sort = ActiveSort.newest;
-  DateTime _date = DateTime.now();
-  int _filterCount = 0;
-
-  ActiveFilter get currentFilter => _filter;
-  ActiveSort get currentSort => _sort;
-  DateTime get date => _date;
-  String? get filterCountStr =>
-      _filterCount > 0 ? _filterCount.toString() : null;
-
   FilterBloc({required this.transactionBloc})
-      : super(transactionBloc.state is TransactionLoaded
-            ? FilterLoaded(
-                (transactionBloc.state as TransactionLoaded).transactions,
-                ActiveFilter.empty,
-                ActiveSort.newest,
-                DateTime.now(),
-              )
-            : const FilterLoading()) {
+      : super(
+          transactionBloc.state is TransactionLoaded
+              ? FilterLoaded(
+                  (transactionBloc.state as TransactionLoaded).transactions,
+                  ActiveFilter.empty,
+                  ActiveSort.newest,
+                  DateTime.now(),
+                )
+              : const FilterLoading(),
+        ) {
     on<FilterReseted>(_onResetedFilter);
     on<FilterSubmitted>(_onFilterSubmitted);
     on<TransactionsUpdated>(_onUpdatedTransactions);
@@ -45,11 +34,24 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
       }
     });
   }
+  final TransactionBloc transactionBloc;
+  late StreamSubscription<TransactionState> _transactionSubscription;
+
+  ActiveFilter _filter = ActiveFilter.empty;
+  ActiveSort _sort = ActiveSort.newest;
+  DateTime _date = DateTime.now();
+  int _filterCount = 0;
+
+  ActiveFilter get currentFilter => _filter;
+  ActiveSort get currentSort => _sort;
+  DateTime get date => _date;
+  String? get filterCountStr =>
+      _filterCount > 0 ? _filterCount.toString() : null;
   List<Transaction> _dateChangedTransactions(
     List<Transaction> transactions,
     DateTime date,
   ) {
-    var te = transactions.groupBy(
+    final te = transactions.groupBy(
       (trans) => DateTime(
         trans.date.year,
         trans.date.month,
@@ -78,8 +80,11 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
   }
 
   List<Transaction> _mapTransactionsToFilteredTransactions(
-      List<Transaction> transactions, ActiveFilter filter, ActiveSort sort) {
-    var filteredTransactions = transactions.where(
+    List<Transaction> transactions,
+    ActiveFilter filter,
+    ActiveSort sort,
+  ) {
+    final filteredTransactions = transactions.where(
       (transaction) {
         if (filter == ActiveFilter.empty) {
           return true;
@@ -89,18 +94,20 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
           return transaction.type == TransactionType.income;
         }
       },
-    ).toList();
-    filteredTransactions.sort((a, b) {
-      if (sort == ActiveSort.lowest) {
-        return a.amount.compareTo(b.amount);
-      } else if (sort == ActiveSort.highest) {
-        return b.amount.compareTo(a.amount);
-      } else if (sort == ActiveSort.oldest) {
-        return a.date.compareTo(b.date);
-      } else {
-        return b.date.compareTo(a.date);
-      }
-    });
+    ).toList()
+      ..sort(
+        (a, b) {
+          if (sort == ActiveSort.lowest) {
+            return a.amount.compareTo(b.amount);
+          } else if (sort == ActiveSort.highest) {
+            return b.amount.compareTo(a.amount);
+          } else if (sort == ActiveSort.oldest) {
+            return a.date.compareTo(b.date);
+          } else {
+            return b.date.compareTo(a.date);
+          }
+        },
+      );
     return filteredTransactions;
   }
 
@@ -146,12 +153,14 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     final state = transactionBloc.state;
     _date = event.date;
     if (state is TransactionLoaded) {
-      emit(FilterLoaded(
-        _dateChangedTransactions(state.transactions, event.date),
-        _filter,
-        _sort,
-        _date,
-      ));
+      emit(
+        FilterLoaded(
+          _dateChangedTransactions(state.transactions, event.date),
+          _filter,
+          _sort,
+          _date,
+        ),
+      );
     }
   }
 
@@ -159,40 +168,46 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     final state = this.state;
     _filterCount = _getFilterCount();
     _filter = event.filter;
-    emit(FilterLoaded(
-      (state as FilterLoaded).transactions,
-      event.filter,
-      _sort,
-      _date,
-    ));
+    emit(
+      FilterLoaded(
+        (state as FilterLoaded).transactions,
+        event.filter,
+        _sort,
+        _date,
+      ),
+    );
   }
 
   void _onSortChanged(SortChanged event, Emitter<FilterState> emit) {
     final state = this.state;
     _filterCount = _getFilterCount();
     _sort = event.sort;
-    emit(FilterLoaded(
-      (state as FilterLoaded).transactions,
-      _filter,
-      event.sort,
-      _date,
-    ));
+    emit(
+      FilterLoaded(
+        (state as FilterLoaded).transactions,
+        _filter,
+        event.sort,
+        _date,
+      ),
+    );
   }
 
   void _onUpdatedTransactions(
     TransactionsUpdated event,
     Emitter<FilterState> emit,
   ) {
-    emit(FilterLoaded(
-      _mapTransactionsToFilteredTransactions(
-        (transactionBloc.state as TransactionLoaded).transactions,
+    emit(
+      FilterLoaded(
+        _mapTransactionsToFilteredTransactions(
+          (transactionBloc.state as TransactionLoaded).transactions,
+          _filter,
+          _sort,
+        ),
         _filter,
         _sort,
+        _date,
       ),
-      _filter,
-      _sort,
-      _date,
-    ));
+    );
   }
 
   @override

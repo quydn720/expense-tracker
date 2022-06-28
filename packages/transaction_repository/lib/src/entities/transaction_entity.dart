@@ -6,13 +6,6 @@ import 'package:equatable/equatable.dart';
 import 'package:transaction_repository/src/models/models.dart';
 
 class TransactionEntity extends Equatable {
-  final String id;
-  final double amount;
-  final String category;
-  final String? description;
-  final TransactionType type;
-  final Timestamp timestamp;
-  final String walletId;
 
   const TransactionEntity({
     required this.walletId,
@@ -23,6 +16,28 @@ class TransactionEntity extends Equatable {
     required this.timestamp,
     this.description,
   });
+
+  factory TransactionEntity.fromMap(Map<String, dynamic> map) {
+    return TransactionEntity(
+      id: map['id'] as String,
+      amount: map['amount'] as double,
+      category: map['category'] as String,
+      walletId: map['walletId'] as String,
+      description: map['description'] as String,
+      type: TransactionType.values[map['type'] as int],
+      timestamp: map['timestamp'] as Timestamp,
+    );
+  }
+
+  factory TransactionEntity.fromJson(String source) =>
+      TransactionEntity.fromMap(json.decode(source) as Map<String, dynamic>);
+  final String id;
+  final double amount;
+  final String category;
+  final String? description;
+  final TransactionType type;
+  final Timestamp timestamp;
+  final String walletId;
 
   @override
   List<Object?> get props {
@@ -47,22 +62,7 @@ class TransactionEntity extends Equatable {
     };
   }
 
-  factory TransactionEntity.fromMap(Map<String, dynamic> map) {
-    return TransactionEntity(
-      id: map['id'] as String,
-      amount: map['amount'] as double,
-      category: map['category'] as String,
-      walletId: map['walletId'],
-      description: map['description'] as String,
-      type: TransactionType.values[map['type']],
-      timestamp: map['timestamp'] as Timestamp,
-    );
-  }
-
   String toJson() => json.encode(toMap());
-
-  factory TransactionEntity.fromJson(String source) =>
-      TransactionEntity.fromMap(json.decode(source));
 
   @override
   bool get stringify => true;
@@ -71,13 +71,13 @@ class TransactionEntity extends Equatable {
     final data = snap.data() as Map<String, dynamic>?;
     if (data == null) throw Exception();
     return TransactionEntity(
-      id: data['id'],
-      timestamp: data['timestamp'],
-      amount: data['amount'].toDouble(),
-      category: data['category'],
-      type: TransactionType.values[data['type']],
-      walletId: data['walletId'],
-      description: data['description'],
+      id: data['id'] as String,
+      timestamp: data['timestamp'] as Timestamp,
+      amount: data['amount'] as double,
+      category: data['category'] as String,
+      type: TransactionType.values[data['type'] as int],
+      walletId: data['walletId'] as String,
+      description: data['description'] as String,
     );
   }
 

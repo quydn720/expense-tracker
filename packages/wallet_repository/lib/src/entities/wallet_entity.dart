@@ -5,11 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class WalletEntity extends Equatable {
-  final String id;
-  final double amount;
-  final String name;
-  final String iconPath;
-  final Color color;
 
   const WalletEntity({
     required this.id,
@@ -19,6 +14,24 @@ class WalletEntity extends Equatable {
     required this.color,
   });
 
+  factory WalletEntity.fromMap(Map<String, dynamic> map) {
+    return WalletEntity(
+      id: map['id'] as String,
+      amount: map['amount'] as double,
+      name: map['name'] as String,
+      iconPath: map['iconPath'] as String,
+      color: Color(map['color'] as int),
+    );
+  }
+
+  factory WalletEntity.fromJson(String source) =>
+      WalletEntity.fromMap(json.decode(source) as Map<String, dynamic>);
+  final String id;
+  final double amount;
+  final String name;
+  final String iconPath;
+  final Color color;
+
   @override
   bool get stringify => true;
 
@@ -26,11 +39,11 @@ class WalletEntity extends Equatable {
     final data = snap.data() as Map<String, dynamic>?;
     if (data == null) throw Exception();
     return WalletEntity(
-      id: data['id'],
-      amount: data['amount'].toDouble(),
-      name: data['name'],
-      iconPath: data['iconPath'],
-      color: Color(data['color']),
+      id: data['id'] as String,
+      amount: data['amount'] as double,
+      name: data['name'] as String,
+      iconPath: data['iconPath'] as String,
+      color: Color(data['color'] as int),
     );
   }
 
@@ -65,18 +78,5 @@ class WalletEntity extends Equatable {
     };
   }
 
-  factory WalletEntity.fromMap(Map<String, dynamic> map) {
-    return WalletEntity(
-      id: map['id'],
-      amount: map['amount'].toDouble(),
-      name: map['name'],
-      iconPath: map['iconPath'],
-      color: Color(map['color']),
-    );
-  }
-
   String toJson() => json.encode(toMap());
-
-  factory WalletEntity.fromJson(String source) =>
-      WalletEntity.fromMap(json.decode(source));
 }

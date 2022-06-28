@@ -1,12 +1,12 @@
 import 'package:budget_repository/budget_repository.dart';
-import 'package:expense_tracker/blocs/budget/budget_bloc.dart';
-import 'package:expense_tracker/blocs/transaction/category_model.dart';
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
-import 'package:expense_tracker/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
+import '../../../blocs/budget/budget_bloc.dart';
+import '../../../blocs/transaction/category_model.dart';
+import '../../../blocs/transaction/transaction_bloc.dart';
+import '../../../constants.dart';
 import 'budget_detail.dart';
 
 class BudgetCard extends StatelessWidget {
@@ -23,7 +23,7 @@ class BudgetCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
+          MaterialPageRoute<void>(
             builder: (_) => MultiBlocProvider(
               providers: [
                 BlocProvider.value(
@@ -41,7 +41,7 @@ class BudgetCard extends StatelessWidget {
       child: Card(
         elevation: 2,
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         child: Padding(
           padding: const EdgeInsets.all(kMediumPadding),
           child: Column(
@@ -155,7 +155,7 @@ class UsedOfAmount extends StatelessWidget {
         if (state is TransactionLoaded) {
           final used = state.transactions.totalOfCategory(budget.category);
           return Text(
-            "\$$used of \$${budget.amount}",
+            '\$$used of \$${budget.amount}',
             style: body1.copyWith(color: kDark25),
           );
         } else {
@@ -177,7 +177,7 @@ class RemainText extends StatelessWidget {
           final used = state.transactions.totalOfCategory(budget.category);
           final isExceeded = used > budget.amount;
           return Text(
-            "Remaining \$${(isExceeded) ? 0 : (budget.amount - used).toStringAsFixed(1)}",
+            'Remaining \$${isExceeded ? 0 : (budget.amount - used).toStringAsFixed(1)}',
             style: title2,
           );
         } else {
@@ -217,8 +217,12 @@ class ProgressBar extends StatelessWidget {
 extension ListTransactionExtension on List<Transaction> {
   double totalOfCategory(String category) {
     final list = where((e) => e.category == category);
-    final List<double> list2 =
-        list.isNotEmpty ? list.map((e) => e.amount).toList() : [];
+    final List<double> list2;
+    if (list.isNotEmpty) {
+      list2 = list.map((e) => e.amount).toList();
+    } else {
+      list2 = [];
+    }
     return list2.isNotEmpty ? list2.reduce((a, b) => a + b) : 0;
   }
 }

@@ -5,10 +5,6 @@ import '../../constants.dart';
 const categoryPath = 'assets/icons/categories';
 
 class Category {
-  final String name;
-  final String iconPath;
-  final Color backgroundColor;
-  final Color iconColor;
 
   Category({
     required this.iconColor,
@@ -22,12 +18,16 @@ class Category {
   }
 
   factory Category.empty() => Category(
-        name: "Category",
+        name: 'Category',
         iconColor: kGreen100,
         backgroundColor: kGreen40,
         iconPath: 'assets/icons/transaction_bw.png',
       );
-  bool get isEmpty => name == "Category";
+  final String name;
+  final String iconPath;
+  final Color backgroundColor;
+  final Color iconColor;
+  bool get isEmpty => name == 'Category';
 
   static List<Category> categories = [
     Category(

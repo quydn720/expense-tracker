@@ -7,7 +7,6 @@ part 'budget_state.dart';
 part 'budget_bloc.freezed.dart';
 
 class BudgetBloc extends Bloc<BudgetEvent, BudgetState> {
-  final BudgetRepository budgetRepository;
   BudgetBloc(this.budgetRepository)
       : super(const BudgetState.budgetsLoading()) {
     on<LoadBudgets>(_onLoadBudgets);
@@ -16,13 +15,12 @@ class BudgetBloc extends Bloc<BudgetEvent, BudgetState> {
     on<UpdateBudget>(_onUpdateBudget);
     on<DeleteBudget>(_onDeleteBudget);
   }
+  final BudgetRepository budgetRepository;
 
   Future<void> _onLoadBudgets(LoadBudgets event, Emitter<BudgetState> emit) {
     return emit.onEach<List<Budget>>(
       budgetRepository.budgets(),
-      onData: (buds) => add(
-        (BudgetEvent.budgetUpdated(buds)),
-      ),
+      onData: (buds) => add(BudgetEvent.budgetUpdated(buds)),
     );
   }
 

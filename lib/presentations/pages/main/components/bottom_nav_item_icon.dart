@@ -11,7 +11,7 @@ class BottomNavItemIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       FaIcon(icon),
-      const SizedBox(height: 4.0),
-    ]);
+      const SizedBox(height: 4),
+    ],);
   }
 }

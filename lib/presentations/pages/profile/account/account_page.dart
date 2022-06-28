@@ -1,15 +1,14 @@
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
-import 'package:expense_tracker/presentations/pages/profile/account/add_new_account.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_repository/wallet_repository.dart';
 
+import '../../../../blocs/transaction/transaction_bloc.dart';
 import '../../../../blocs/wallet/wallet_bloc.dart';
 import '../../../../constants.dart';
 import '../../../components/default_button.dart';
 import '../../../components/squared_icon_card.dart';
-import 'package:flutter/material.dart';
-
 import 'account_detail.dart';
+import 'add_new_account.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -39,7 +38,6 @@ class _WalletList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final _wallets = context.read<WalletBloc>().walletRepository.currentWallets;
     return BlocBuilder<WalletBloc, WalletState>(
       builder: (context, state) {
         final _wallets = (state as WalletLoaded).wallets;
@@ -75,20 +73,21 @@ class WalletTile extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => MultiBlocProvider(
-                providers: [
-                  BlocProvider.value(
-                    value: context.read<WalletBloc>(),
-                  ),
-                  BlocProvider.value(
-                    value: context.read<TransactionBloc>(),
-                  ),
-                ],
-                child: WalletDetailPage(wallet: _wallet),
-              ),
-            ));
+          context,
+          MaterialPageRoute<void>(
+            builder: (_) => MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: context.read<WalletBloc>(),
+                ),
+                BlocProvider.value(
+                  value: context.read<TransactionBloc>(),
+                ),
+              ],
+              child: WalletDetailPage(wallet: _wallet),
+            ),
+          ),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -98,7 +97,7 @@ class WalletTile extends StatelessWidget {
         child: Row(
           children: [
             SquaredIconCard(
-              imagePath: _wallet.iconPath.toString().replaceAll('\'', ''),
+              imagePath: _wallet.iconPath.replaceAll("'", ''),
               size: 48,
               color: const Color(0xffF1F1FA),
             ),
@@ -136,7 +135,9 @@ class _AddNewWalletButton extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const AddNewWalletPage()),
+            MaterialPageRoute<void>(
+              builder: (context) => const AddNewWalletPage(),
+            ),
           );
         },
         title: '+  Add new wallet',

@@ -1,10 +1,11 @@
-import '../../../../blocs/filter/filter_bloc.dart';
-import '../../../../constants.dart';
-import '../../../components/bars.dart';
-import '../../../components/default_button.dart';
-import '../../../../size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../blocs/filter/filter_bloc.dart';
+import '../../../../constants.dart';
+import '../../../../size_config.dart';
+import '../../../components/bars.dart';
+import '../../../components/default_button.dart';
 
 class FilterBottomSheet extends StatelessWidget {
   const FilterBottomSheet({Key? key}) : super(key: key);
@@ -34,12 +35,12 @@ class FilterBottomSheet extends StatelessWidget {
               FilterChip(
                 filterBloc: _filterBloc,
                 filter: ActiveFilter.expense,
-                filterString: "Expense",
+                filterString: 'Expense',
               ),
               FilterChip(
                 filterBloc: _filterBloc,
                 filter: ActiveFilter.income,
-                filterString: "Income",
+                filterString: 'Income',
               ),
             ],
           ),
@@ -50,22 +51,22 @@ class FilterBottomSheet extends StatelessWidget {
               SortChip(
                 filterBloc: _filterBloc,
                 sort: ActiveSort.highest,
-                sortString: "Highest",
+                sortString: 'Highest',
               ),
               SortChip(
                 filterBloc: _filterBloc,
                 sort: ActiveSort.lowest,
-                sortString: "Lowest",
+                sortString: 'Lowest',
               ),
               SortChip(
                 filterBloc: _filterBloc,
                 sort: ActiveSort.newest,
-                sortString: "Newest",
+                sortString: 'Newest',
               ),
               SortChip(
                 filterBloc: _filterBloc,
                 sort: ActiveSort.oldest,
-                sortString: "Oldest",
+                sortString: 'Oldest',
               ),
             ],
           ),
@@ -162,7 +163,7 @@ class SortChip extends StatelessWidget {
             child: Chip(
               backgroundColor: state.activeSort == _sort ? kViolet40 : kLight40,
               label: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(_sortString),
               ),
             ),
@@ -201,7 +202,7 @@ class FilterChip extends StatelessWidget {
               backgroundColor:
                   state.activeFilter == _filter ? kViolet40 : kLight40,
               label: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(_filterString),
               ),
             ),

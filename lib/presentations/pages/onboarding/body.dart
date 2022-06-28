@@ -1,10 +1,10 @@
-import '../login/login_page.dart';
-import '../signup/signup_page.dart';
-import '../../../constants.dart';
-import '../../../size_config.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
+import '../../../size_config.dart';
 import '../../components/default_button.dart';
+import '../login/login_page.dart';
+import '../signup/signup_page.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -64,13 +64,13 @@ class _BodyState extends State<Body> {
             ),
           ),
           Container(
-            height: 16.0,
+            height: 16,
             margin: const EdgeInsets.symmetric(vertical: kDefaultPadding),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 data.length,
-                (index) => buildIndicators(index),
+                buildIndicators,
               ),
             ),
           ),

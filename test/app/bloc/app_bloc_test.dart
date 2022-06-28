@@ -50,16 +50,16 @@ void main() {
         ),
         act: (bloc) => bloc.add(AppStarted()),
         verify: (_) {
-          verify(() => sharedPreferences.getString(first_time_key)).called(1);
+          verify(() => sharedPreferences.getString(firstTimeKey)).called(1);
           // verify(() => authenticationRepository.currentUser).called(1);
           verify(
-            () => sharedPreferences.setString(first_time_key, 'YES'),
+            () => sharedPreferences.setString(firstTimeKey, 'YES'),
           ).called(1);
         },
       );
 
       test('description', () {
-        final result = sharedPreferences.getString(first_time_key);
+        final result = sharedPreferences.getString(firstTimeKey);
         expect(result, isNull);
       });
     });

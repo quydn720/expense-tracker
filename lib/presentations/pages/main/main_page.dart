@@ -1,22 +1,22 @@
-import 'package:expense_tracker/blocs/transaction/transaction_bloc.dart';
-import 'package:expense_tracker/blocs/wallet/wallet_bloc.dart';
-import 'package:expense_tracker/presentations/components/default_button.dart';
-import 'package:expense_tracker/presentations/pages/budget/budget_page.dart';
-import 'package:expense_tracker/presentations/pages/profile/account/add_new_account.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/tab/tab_bloc.dart';
+import '../../../blocs/transaction/transaction_bloc.dart';
+import '../../../blocs/wallet/wallet_bloc.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
+import '../../components/default_button.dart';
+import '../budget/budget_page.dart';
 import '../home/home_page.dart';
+import '../profile/account/add_new_account.dart';
+import '../profile/profile_page.dart';
 import '../transaction/add_transaction/add_transaction.dart';
 import '../transaction/fetch_transaction/transaction_list.dart';
-import '../../../size_config.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../constants.dart';
-import '../profile/profile_page.dart';
-import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {
-  static String routeName = '/main_page';
   const MainPage({Key? key}) : super(key: key);
+  static String routeName = '/main_page';
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class MainPage extends StatelessWidget {
                 child: const Icon(Icons.add, color: Colors.white),
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(
+                    MaterialPageRoute<void>(
                       builder: (_) => MultiBlocProvider(
                         providers: [
                           BlocProvider.value(
@@ -83,19 +83,19 @@ class MainPage extends StatelessWidget {
 }
 
 class TabSelector extends StatelessWidget {
-  final AppTab activeTab;
-  final Function(AppTab) onTabSelected;
 
   const TabSelector({
     Key? key,
     required this.activeTab,
     required this.onTabSelected,
   }) : super(key: key);
+  final AppTab activeTab;
+  final void Function(AppTab) onTabSelected;
 
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      notchMargin: 10.0,
+      notchMargin: 10,
       clipBehavior: Clip.antiAlias,
       shape: const CircularNotchedRectangle(),
       child: BottomNavigationBar(
@@ -146,15 +146,15 @@ class NewUserPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 100),
-              const Text("Let’s setup your account!", style: title1),
+              const Text('Let’s setup your account!', style: title1),
               const SizedBox(height: 20),
               const Text(
-                "Account can be your bank, credit card or your wallet.",
+                'Account can be your bank, credit card or your wallet.',
                 style: body3,
               ),
               const Spacer(),
@@ -163,13 +163,13 @@ class NewUserPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
+                      MaterialPageRoute<void>(
                         builder: (_) => BlocProvider.value(
                             value: context.read<WalletBloc>(),
-                            child: const AddNewWalletPage()),
+                            child: const AddNewWalletPage(),),
                       ),
                     );
-                  })
+                  },)
             ],
           ),
         ),

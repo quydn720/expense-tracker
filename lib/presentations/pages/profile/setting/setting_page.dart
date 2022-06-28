@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../../../../constants.dart';
 import '../../../components/bars.dart';
 import '../../../components/default_app_widget.dart';
-import 'package:flutter/material.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({Key? key}) : super(key: key);
