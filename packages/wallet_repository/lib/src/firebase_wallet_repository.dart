@@ -7,8 +7,32 @@ import 'models/models.dart';
 
 const key = 'wallet_cached_key';
 
-class FirebaseWalletRepository implements WalletRepository {
+class FakeWalletRepo implements WalletRepository {
+  List<Wallet> memoryWallets = [];
+  @override
+  Future<void> addNewWallet(Wallet wallet) async => memoryWallets.add(wallet);
 
+  @override
+  List<Wallet> get currentWallets => memoryWallets;
+
+  @override
+  Future<void> deleteWallet(Wallet wallet) {
+    throw UnimplementedError();
+  }
+
+  @override
+  double get totalAmount => 0;
+
+  @override
+  Future<void> updateWallet(Wallet wallet) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<List<Wallet>> wallets() => Stream.value(memoryWallets);
+}
+
+class FirebaseWalletRepository implements WalletRepository {
   FirebaseWalletRepository({
     required this.cachedWallet,
     required this.authenticationRepository,

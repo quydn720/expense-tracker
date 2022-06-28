@@ -63,17 +63,16 @@ class LineChartWidget extends StatelessWidget {
                             LineChartBarData(
                               spots: spots,
                               isCurved: false,
-                              colors: [kViolet100],
+                              color: kViolet100,
                               barWidth: 5,
                               isStrokeCapRound: true,
                               dotData: FlDotData(
-                                  show: false,
-                                  checkToShowDot: (spot, data) => false,),
+                                show: false,
+                                checkToShowDot: (spot, data) => false,
+                              ),
                               belowBarData: BarAreaData(
                                 show: true,
-                                colors: [kViolet100]
-                                    .map((color) => color.withOpacity(0.2))
-                                    .toList(),
+                                color: kViolet20,
                               ),
                             ),
                           ],

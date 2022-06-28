@@ -6,8 +6,39 @@ import 'package:transaction_repository/src/transaction_repository.dart';
 
 const cachedTransactionKey = 'cached_transaction_key';
 
-class FirebaseTransactionRepository implements TransactionRepository {
+class FakeTransactionRepo implements TransactionRepository {
+  @override
+  Future<void> addNewTransaction(Transaction transaction) {
+    throw UnimplementedError();
+  }
 
+  @override
+  List<Transaction> get currentTransaction => throw UnimplementedError();
+
+  @override
+  Future<void> deleteTransaction(Transaction transaction) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Map<DateTime, List<Transaction>> get mapDateTransaction =>
+      throw UnimplementedError();
+
+  @override
+  double totalOfCategory(String category) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<List<Transaction>> transactions() => Stream.value(<Transaction>[]);
+
+  @override
+  Future<void> updateTransaction(Transaction transaction) {
+    throw UnimplementedError();
+  }
+}
+
+class FirebaseTransactionRepository implements TransactionRepository {
   FirebaseTransactionRepository({
     required this.authenticationRepository,
     required this.cachedTransactions,
@@ -51,8 +82,10 @@ class FirebaseTransactionRepository implements TransactionRepository {
         .snapshots()
         .map((snapshot) {
       final transactions = snapshot.docs
-          .map((doc) =>
-              Transaction.fromEntity(TransactionEntity.fromSnapshot(doc)),)
+          .map(
+            (doc) =>
+                Transaction.fromEntity(TransactionEntity.fromSnapshot(doc)),
+          )
           .toList();
       cachedTransactions[cachedTransactionKey] = transactions;
       return transactions;
@@ -100,7 +133,8 @@ class FirebaseTransactionRepository implements TransactionRepository {
 
 extension Iterables<E> on Iterable<E> {
   Map<K, List<E>> groupBy<K>(K Function(E) keyFunction) => fold(
-      <K, List<E>>{},
-      (Map<K, List<E>> map, E element) =>
-          map..putIfAbsent(keyFunction(element), () => <E>[]).add(element),);
+        <K, List<E>>{},
+        (Map<K, List<E>> map, E element) =>
+            map..putIfAbsent(keyFunction(element), () => <E>[]).add(element),
+      );
 }

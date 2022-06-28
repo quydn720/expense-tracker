@@ -65,28 +65,16 @@ class AppView extends StatelessWidget {
                   create: (context) => TabBloc(),
                 ),
                 BlocProvider<TransactionBloc>(
-                  create: (context) => TransactionBloc(
-                    FirebaseTransactionRepository(
-                      authenticationRepository: authenticationRepository,
-                      cachedTransactions: {},
-                    ),
-                  )..add(const LoadTransactions()),
+                  create: (context) => TransactionBloc(FakeTransactionRepo())
+                    ..add(const LoadTransactions()),
                 ),
                 BlocProvider<WalletBloc>(
-                  create: (context) => WalletBloc(
-                    FirebaseWalletRepository(
-                      authenticationRepository: authenticationRepository,
-                      cachedWallet: {},
-                    ),
-                  )..add(const LoadWallets()),
+                  create: (context) =>
+                      WalletBloc(FakeWalletRepo())..add(const LoadWallets()),
                 ),
                 BlocProvider(
-                  create: (context) => BudgetBloc(
-                    FirebaseBudgetRepository(
-                      authenticationRepository: authenticationRepository,
-                      cachedBudget: {},
-                    ),
-                  )..add(const LoadBudgets()),
+                  create: (context) => BudgetBloc(FakeBudgetRepository())
+                    ..add(const LoadBudgets()),
                 ),
                 BlocProvider<FilterBloc>(
                   create: (context) => FilterBloc(

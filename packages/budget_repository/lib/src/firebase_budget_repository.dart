@@ -7,8 +7,32 @@ import 'entities/budget_entity.dart';
 
 const key = 'budget_cached_key';
 
-class FirebaseBudgetRepository implements BudgetRepository {
+class FakeBudgetRepository implements BudgetRepository {
+  @override
+  Future<void> addNewBudget(Budget budget) {
+    throw UnimplementedError();
+  }
 
+  @override
+  Stream<List<Budget>> budgets() {
+    throw UnimplementedError();
+  }
+
+  @override
+  List<Budget> get currentBudget => throw UnimplementedError();
+
+  @override
+  Future<void> deleteBudget(Budget budget) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateBudget(Budget budget) {
+    throw UnimplementedError();
+  }
+}
+
+class FirebaseBudgetRepository implements BudgetRepository {
   FirebaseBudgetRepository({
     required this.cachedBudget,
     required this.authenticationRepository,

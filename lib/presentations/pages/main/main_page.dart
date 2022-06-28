@@ -83,7 +83,6 @@ class MainPage extends StatelessWidget {
 }
 
 class TabSelector extends StatelessWidget {
-
   const TabSelector({
     Key? key,
     required this.activeTab,
@@ -159,17 +158,19 @@ class NewUserPage extends StatelessWidget {
               ),
               const Spacer(),
               DefaultButton(
-                  title: "Let's go",
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (_) => BlocProvider.value(
-                            value: context.read<WalletBloc>(),
-                            child: const AddNewWalletPage(),),
+                title: "Let's go",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (_) => BlocProvider.value(
+                        value: context.read<WalletBloc>(),
+                        child: const AddNewWalletPage(),
                       ),
-                    );
-                  },)
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

@@ -284,6 +284,52 @@ class AuthenticationRepository {
   }
 }
 
+class AuthenticateRepo implements AuthenticationRepository {
+  @override
+  bool isWeb = kIsWeb;
+
+  @override
+  Future<void> changeAvatar(String avtUrl) {
+    throw UnimplementedError();
+  }
+
+  @override
+  User get currentUser => const User(id: 'id');
+
+  @override
+  Future<void> logInWithEmailAndPassword(
+      {required String email, required String password}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> logInWithGoogle() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> logOut() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> signUp({required String email, required String password}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<User> get user => Stream.value(const User(id: 'id'));
+
+  @override
+  CacheClient get _cache => throw UnimplementedError();
+
+  @override
+  firebase_auth.FirebaseAuth get _firebaseAuth => throw UnimplementedError();
+
+  @override
+  GoogleSignIn get _googleSignIn => throw UnimplementedError();
+}
+
 extension on firebase_auth.User {
   User get toUser {
     return User(id: uid, email: email, name: displayName, photo: photoURL);
