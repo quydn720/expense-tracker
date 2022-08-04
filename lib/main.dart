@@ -7,7 +7,7 @@ import 'presentations/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureInjection(Environment.prod);
+  await configureInjection(Environment.prod);
 
   final authenticationRepository = AuthenticateRepo();
   await authenticationRepository.user.first;
