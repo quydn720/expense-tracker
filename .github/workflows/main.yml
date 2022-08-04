@@ -4,5 +4,6 @@ on: pull_request
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      flutter_version: "3.0.5"
