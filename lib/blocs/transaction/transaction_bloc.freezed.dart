@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'transaction_bloc.dart';
@@ -11,43 +12,7 @@ part of 'transaction_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$TransactionEventTearOff {
-  const _$TransactionEventTearOff();
-
-  LoadTransactions loadTransactions() {
-    return const LoadTransactions();
-  }
-
-  AddTransactions addTransaction(Transaction transaction) {
-    return AddTransactions(
-      transaction,
-    );
-  }
-
-  DeleteTransactions deleteTransaction(Transaction transaction) {
-    return DeleteTransactions(
-      transaction,
-    );
-  }
-
-  UpdateTransactions updateTransaction(Transaction updatedTransaction) {
-    return UpdateTransactions(
-      updatedTransaction,
-    );
-  }
-
-  TransactionUpdated transactionUpdated(List<Transaction> transactions) {
-    return TransactionUpdated(
-      transactions,
-    );
-  }
-}
-
-/// @nodoc
-const $TransactionEvent = _$TransactionEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$TransactionEvent {
@@ -128,22 +93,22 @@ class _$TransactionEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $LoadTransactionsCopyWith<$Res> {
-  factory $LoadTransactionsCopyWith(
-          LoadTransactions value, $Res Function(LoadTransactions) then) =
-      _$LoadTransactionsCopyWithImpl<$Res>;
+abstract class _$$LoadTransactionsCopyWith<$Res> {
+  factory _$$LoadTransactionsCopyWith(
+          _$LoadTransactions value, $Res Function(_$LoadTransactions) then) =
+      __$$LoadTransactionsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadTransactionsCopyWithImpl<$Res>
+class __$$LoadTransactionsCopyWithImpl<$Res>
     extends _$TransactionEventCopyWithImpl<$Res>
-    implements $LoadTransactionsCopyWith<$Res> {
-  _$LoadTransactionsCopyWithImpl(
-      LoadTransactions _value, $Res Function(LoadTransactions) _then)
-      : super(_value, (v) => _then(v as LoadTransactions));
+    implements _$$LoadTransactionsCopyWith<$Res> {
+  __$$LoadTransactionsCopyWithImpl(
+      _$LoadTransactions _value, $Res Function(_$LoadTransactions) _then)
+      : super(_value, (v) => _then(v as _$LoadTransactions));
 
   @override
-  LoadTransactions get _value => super._value as LoadTransactions;
+  _$LoadTransactions get _value => super._value as _$LoadTransactions;
 }
 
 /// @nodoc
@@ -159,7 +124,7 @@ class _$LoadTransactions implements LoadTransactions {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is LoadTransactions);
+        (other.runtimeType == runtimeType && other is _$LoadTransactions);
   }
 
   @override
@@ -252,29 +217,29 @@ abstract class LoadTransactions implements TransactionEvent {
 }
 
 /// @nodoc
-abstract class $AddTransactionsCopyWith<$Res> {
-  factory $AddTransactionsCopyWith(
-          AddTransactions value, $Res Function(AddTransactions) then) =
-      _$AddTransactionsCopyWithImpl<$Res>;
+abstract class _$$AddTransactionsCopyWith<$Res> {
+  factory _$$AddTransactionsCopyWith(
+          _$AddTransactions value, $Res Function(_$AddTransactions) then) =
+      __$$AddTransactionsCopyWithImpl<$Res>;
   $Res call({Transaction transaction});
 }
 
 /// @nodoc
-class _$AddTransactionsCopyWithImpl<$Res>
+class __$$AddTransactionsCopyWithImpl<$Res>
     extends _$TransactionEventCopyWithImpl<$Res>
-    implements $AddTransactionsCopyWith<$Res> {
-  _$AddTransactionsCopyWithImpl(
-      AddTransactions _value, $Res Function(AddTransactions) _then)
-      : super(_value, (v) => _then(v as AddTransactions));
+    implements _$$AddTransactionsCopyWith<$Res> {
+  __$$AddTransactionsCopyWithImpl(
+      _$AddTransactions _value, $Res Function(_$AddTransactions) _then)
+      : super(_value, (v) => _then(v as _$AddTransactions));
 
   @override
-  AddTransactions get _value => super._value as AddTransactions;
+  _$AddTransactions get _value => super._value as _$AddTransactions;
 
   @override
   $Res call({
     Object? transaction = freezed,
   }) {
-    return _then(AddTransactions(
+    return _then(_$AddTransactions(
       transaction == freezed
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
@@ -300,18 +265,19 @@ class _$AddTransactions implements AddTransactions {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AddTransactions &&
-            (identical(other.transaction, transaction) ||
-                other.transaction == transaction));
+            other is _$AddTransactions &&
+            const DeepCollectionEquality()
+                .equals(other.transaction, transaction));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, transaction);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(transaction));
 
   @JsonKey(ignore: true)
   @override
-  $AddTransactionsCopyWith<AddTransactions> get copyWith =>
-      _$AddTransactionsCopyWithImpl<AddTransactions>(this, _$identity);
+  _$$AddTransactionsCopyWith<_$AddTransactions> get copyWith =>
+      __$$AddTransactionsCopyWithImpl<_$AddTransactions>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -396,38 +362,39 @@ class _$AddTransactions implements AddTransactions {
 }
 
 abstract class AddTransactions implements TransactionEvent {
-  const factory AddTransactions(Transaction transaction) = _$AddTransactions;
+  const factory AddTransactions(final Transaction transaction) =
+      _$AddTransactions;
 
-  Transaction get transaction;
+  Transaction get transaction => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AddTransactionsCopyWith<AddTransactions> get copyWith =>
+  _$$AddTransactionsCopyWith<_$AddTransactions> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DeleteTransactionsCopyWith<$Res> {
-  factory $DeleteTransactionsCopyWith(
-          DeleteTransactions value, $Res Function(DeleteTransactions) then) =
-      _$DeleteTransactionsCopyWithImpl<$Res>;
+abstract class _$$DeleteTransactionsCopyWith<$Res> {
+  factory _$$DeleteTransactionsCopyWith(_$DeleteTransactions value,
+          $Res Function(_$DeleteTransactions) then) =
+      __$$DeleteTransactionsCopyWithImpl<$Res>;
   $Res call({Transaction transaction});
 }
 
 /// @nodoc
-class _$DeleteTransactionsCopyWithImpl<$Res>
+class __$$DeleteTransactionsCopyWithImpl<$Res>
     extends _$TransactionEventCopyWithImpl<$Res>
-    implements $DeleteTransactionsCopyWith<$Res> {
-  _$DeleteTransactionsCopyWithImpl(
-      DeleteTransactions _value, $Res Function(DeleteTransactions) _then)
-      : super(_value, (v) => _then(v as DeleteTransactions));
+    implements _$$DeleteTransactionsCopyWith<$Res> {
+  __$$DeleteTransactionsCopyWithImpl(
+      _$DeleteTransactions _value, $Res Function(_$DeleteTransactions) _then)
+      : super(_value, (v) => _then(v as _$DeleteTransactions));
 
   @override
-  DeleteTransactions get _value => super._value as DeleteTransactions;
+  _$DeleteTransactions get _value => super._value as _$DeleteTransactions;
 
   @override
   $Res call({
     Object? transaction = freezed,
   }) {
-    return _then(DeleteTransactions(
+    return _then(_$DeleteTransactions(
       transaction == freezed
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
@@ -453,18 +420,20 @@ class _$DeleteTransactions implements DeleteTransactions {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DeleteTransactions &&
-            (identical(other.transaction, transaction) ||
-                other.transaction == transaction));
+            other is _$DeleteTransactions &&
+            const DeepCollectionEquality()
+                .equals(other.transaction, transaction));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, transaction);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(transaction));
 
   @JsonKey(ignore: true)
   @override
-  $DeleteTransactionsCopyWith<DeleteTransactions> get copyWith =>
-      _$DeleteTransactionsCopyWithImpl<DeleteTransactions>(this, _$identity);
+  _$$DeleteTransactionsCopyWith<_$DeleteTransactions> get copyWith =>
+      __$$DeleteTransactionsCopyWithImpl<_$DeleteTransactions>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -549,39 +518,39 @@ class _$DeleteTransactions implements DeleteTransactions {
 }
 
 abstract class DeleteTransactions implements TransactionEvent {
-  const factory DeleteTransactions(Transaction transaction) =
+  const factory DeleteTransactions(final Transaction transaction) =
       _$DeleteTransactions;
 
-  Transaction get transaction;
+  Transaction get transaction => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DeleteTransactionsCopyWith<DeleteTransactions> get copyWith =>
+  _$$DeleteTransactionsCopyWith<_$DeleteTransactions> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UpdateTransactionsCopyWith<$Res> {
-  factory $UpdateTransactionsCopyWith(
-          UpdateTransactions value, $Res Function(UpdateTransactions) then) =
-      _$UpdateTransactionsCopyWithImpl<$Res>;
+abstract class _$$UpdateTransactionsCopyWith<$Res> {
+  factory _$$UpdateTransactionsCopyWith(_$UpdateTransactions value,
+          $Res Function(_$UpdateTransactions) then) =
+      __$$UpdateTransactionsCopyWithImpl<$Res>;
   $Res call({Transaction updatedTransaction});
 }
 
 /// @nodoc
-class _$UpdateTransactionsCopyWithImpl<$Res>
+class __$$UpdateTransactionsCopyWithImpl<$Res>
     extends _$TransactionEventCopyWithImpl<$Res>
-    implements $UpdateTransactionsCopyWith<$Res> {
-  _$UpdateTransactionsCopyWithImpl(
-      UpdateTransactions _value, $Res Function(UpdateTransactions) _then)
-      : super(_value, (v) => _then(v as UpdateTransactions));
+    implements _$$UpdateTransactionsCopyWith<$Res> {
+  __$$UpdateTransactionsCopyWithImpl(
+      _$UpdateTransactions _value, $Res Function(_$UpdateTransactions) _then)
+      : super(_value, (v) => _then(v as _$UpdateTransactions));
 
   @override
-  UpdateTransactions get _value => super._value as UpdateTransactions;
+  _$UpdateTransactions get _value => super._value as _$UpdateTransactions;
 
   @override
   $Res call({
     Object? updatedTransaction = freezed,
   }) {
-    return _then(UpdateTransactions(
+    return _then(_$UpdateTransactions(
       updatedTransaction == freezed
           ? _value.updatedTransaction
           : updatedTransaction // ignore: cast_nullable_to_non_nullable
@@ -607,18 +576,20 @@ class _$UpdateTransactions implements UpdateTransactions {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UpdateTransactions &&
-            (identical(other.updatedTransaction, updatedTransaction) ||
-                other.updatedTransaction == updatedTransaction));
+            other is _$UpdateTransactions &&
+            const DeepCollectionEquality()
+                .equals(other.updatedTransaction, updatedTransaction));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, updatedTransaction);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(updatedTransaction));
 
   @JsonKey(ignore: true)
   @override
-  $UpdateTransactionsCopyWith<UpdateTransactions> get copyWith =>
-      _$UpdateTransactionsCopyWithImpl<UpdateTransactions>(this, _$identity);
+  _$$UpdateTransactionsCopyWith<_$UpdateTransactions> get copyWith =>
+      __$$UpdateTransactionsCopyWithImpl<_$UpdateTransactions>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -703,41 +674,41 @@ class _$UpdateTransactions implements UpdateTransactions {
 }
 
 abstract class UpdateTransactions implements TransactionEvent {
-  const factory UpdateTransactions(Transaction updatedTransaction) =
+  const factory UpdateTransactions(final Transaction updatedTransaction) =
       _$UpdateTransactions;
 
-  Transaction get updatedTransaction;
+  Transaction get updatedTransaction => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateTransactionsCopyWith<UpdateTransactions> get copyWith =>
+  _$$UpdateTransactionsCopyWith<_$UpdateTransactions> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TransactionUpdatedCopyWith<$Res> {
-  factory $TransactionUpdatedCopyWith(
-          TransactionUpdated value, $Res Function(TransactionUpdated) then) =
-      _$TransactionUpdatedCopyWithImpl<$Res>;
+abstract class _$$TransactionUpdatedCopyWith<$Res> {
+  factory _$$TransactionUpdatedCopyWith(_$TransactionUpdated value,
+          $Res Function(_$TransactionUpdated) then) =
+      __$$TransactionUpdatedCopyWithImpl<$Res>;
   $Res call({List<Transaction> transactions});
 }
 
 /// @nodoc
-class _$TransactionUpdatedCopyWithImpl<$Res>
+class __$$TransactionUpdatedCopyWithImpl<$Res>
     extends _$TransactionEventCopyWithImpl<$Res>
-    implements $TransactionUpdatedCopyWith<$Res> {
-  _$TransactionUpdatedCopyWithImpl(
-      TransactionUpdated _value, $Res Function(TransactionUpdated) _then)
-      : super(_value, (v) => _then(v as TransactionUpdated));
+    implements _$$TransactionUpdatedCopyWith<$Res> {
+  __$$TransactionUpdatedCopyWithImpl(
+      _$TransactionUpdated _value, $Res Function(_$TransactionUpdated) _then)
+      : super(_value, (v) => _then(v as _$TransactionUpdated));
 
   @override
-  TransactionUpdated get _value => super._value as TransactionUpdated;
+  _$TransactionUpdated get _value => super._value as _$TransactionUpdated;
 
   @override
   $Res call({
     Object? transactions = freezed,
   }) {
-    return _then(TransactionUpdated(
+    return _then(_$TransactionUpdated(
       transactions == freezed
-          ? _value.transactions
+          ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<Transaction>,
     ));
@@ -747,10 +718,15 @@ class _$TransactionUpdatedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TransactionUpdated implements TransactionUpdated {
-  const _$TransactionUpdated(this.transactions);
+  const _$TransactionUpdated(final List<Transaction> transactions)
+      : _transactions = transactions;
 
+  final List<Transaction> _transactions;
   @override
-  final List<Transaction> transactions;
+  List<Transaction> get transactions {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactions);
+  }
 
   @override
   String toString() {
@@ -761,19 +737,20 @@ class _$TransactionUpdated implements TransactionUpdated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TransactionUpdated &&
+            other is _$TransactionUpdated &&
             const DeepCollectionEquality()
-                .equals(other.transactions, transactions));
+                .equals(other._transactions, _transactions));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(transactions));
+      runtimeType, const DeepCollectionEquality().hash(_transactions));
 
   @JsonKey(ignore: true)
   @override
-  $TransactionUpdatedCopyWith<TransactionUpdated> get copyWith =>
-      _$TransactionUpdatedCopyWithImpl<TransactionUpdated>(this, _$identity);
+  _$$TransactionUpdatedCopyWith<_$TransactionUpdated> get copyWith =>
+      __$$TransactionUpdatedCopyWithImpl<_$TransactionUpdated>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -858,36 +835,14 @@ class _$TransactionUpdated implements TransactionUpdated {
 }
 
 abstract class TransactionUpdated implements TransactionEvent {
-  const factory TransactionUpdated(List<Transaction> transactions) =
+  const factory TransactionUpdated(final List<Transaction> transactions) =
       _$TransactionUpdated;
 
-  List<Transaction> get transactions;
+  List<Transaction> get transactions => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TransactionUpdatedCopyWith<TransactionUpdated> get copyWith =>
+  _$$TransactionUpdatedCopyWith<_$TransactionUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$TransactionStateTearOff {
-  const _$TransactionStateTearOff();
-
-  TransactionLoaded transactionSuccess(List<Transaction> transactions) {
-    return TransactionLoaded(
-      transactions,
-    );
-  }
-
-  TransactionLoading transactionLoading() {
-    return const TransactionLoading();
-  }
-
-  TransactionError transactionError() {
-    return const TransactionError();
-  }
-}
-
-/// @nodoc
-const $TransactionState = _$TransactionStateTearOff();
 
 /// @nodoc
 mixin _$TransactionState {
@@ -956,31 +911,31 @@ class _$TransactionStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $TransactionLoadedCopyWith<$Res> {
-  factory $TransactionLoadedCopyWith(
-          TransactionLoaded value, $Res Function(TransactionLoaded) then) =
-      _$TransactionLoadedCopyWithImpl<$Res>;
+abstract class _$$TransactionLoadedCopyWith<$Res> {
+  factory _$$TransactionLoadedCopyWith(
+          _$TransactionLoaded value, $Res Function(_$TransactionLoaded) then) =
+      __$$TransactionLoadedCopyWithImpl<$Res>;
   $Res call({List<Transaction> transactions});
 }
 
 /// @nodoc
-class _$TransactionLoadedCopyWithImpl<$Res>
+class __$$TransactionLoadedCopyWithImpl<$Res>
     extends _$TransactionStateCopyWithImpl<$Res>
-    implements $TransactionLoadedCopyWith<$Res> {
-  _$TransactionLoadedCopyWithImpl(
-      TransactionLoaded _value, $Res Function(TransactionLoaded) _then)
-      : super(_value, (v) => _then(v as TransactionLoaded));
+    implements _$$TransactionLoadedCopyWith<$Res> {
+  __$$TransactionLoadedCopyWithImpl(
+      _$TransactionLoaded _value, $Res Function(_$TransactionLoaded) _then)
+      : super(_value, (v) => _then(v as _$TransactionLoaded));
 
   @override
-  TransactionLoaded get _value => super._value as TransactionLoaded;
+  _$TransactionLoaded get _value => super._value as _$TransactionLoaded;
 
   @override
   $Res call({
     Object? transactions = freezed,
   }) {
-    return _then(TransactionLoaded(
+    return _then(_$TransactionLoaded(
       transactions == freezed
-          ? _value.transactions
+          ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<Transaction>,
     ));
@@ -990,10 +945,15 @@ class _$TransactionLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TransactionLoaded implements TransactionLoaded {
-  const _$TransactionLoaded(this.transactions);
+  const _$TransactionLoaded(final List<Transaction> transactions)
+      : _transactions = transactions;
 
+  final List<Transaction> _transactions;
   @override
-  final List<Transaction> transactions;
+  List<Transaction> get transactions {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactions);
+  }
 
   @override
   String toString() {
@@ -1004,19 +964,19 @@ class _$TransactionLoaded implements TransactionLoaded {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TransactionLoaded &&
+            other is _$TransactionLoaded &&
             const DeepCollectionEquality()
-                .equals(other.transactions, transactions));
+                .equals(other._transactions, _transactions));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(transactions));
+      runtimeType, const DeepCollectionEquality().hash(_transactions));
 
   @JsonKey(ignore: true)
   @override
-  $TransactionLoadedCopyWith<TransactionLoaded> get copyWith =>
-      _$TransactionLoadedCopyWithImpl<TransactionLoaded>(this, _$identity);
+  _$$TransactionLoadedCopyWith<_$TransactionLoaded> get copyWith =>
+      __$$TransactionLoadedCopyWithImpl<_$TransactionLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1089,32 +1049,32 @@ class _$TransactionLoaded implements TransactionLoaded {
 }
 
 abstract class TransactionLoaded implements TransactionState {
-  const factory TransactionLoaded(List<Transaction> transactions) =
+  const factory TransactionLoaded(final List<Transaction> transactions) =
       _$TransactionLoaded;
 
-  List<Transaction> get transactions;
+  List<Transaction> get transactions => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TransactionLoadedCopyWith<TransactionLoaded> get copyWith =>
+  _$$TransactionLoadedCopyWith<_$TransactionLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TransactionLoadingCopyWith<$Res> {
-  factory $TransactionLoadingCopyWith(
-          TransactionLoading value, $Res Function(TransactionLoading) then) =
-      _$TransactionLoadingCopyWithImpl<$Res>;
+abstract class _$$TransactionLoadingCopyWith<$Res> {
+  factory _$$TransactionLoadingCopyWith(_$TransactionLoading value,
+          $Res Function(_$TransactionLoading) then) =
+      __$$TransactionLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TransactionLoadingCopyWithImpl<$Res>
+class __$$TransactionLoadingCopyWithImpl<$Res>
     extends _$TransactionStateCopyWithImpl<$Res>
-    implements $TransactionLoadingCopyWith<$Res> {
-  _$TransactionLoadingCopyWithImpl(
-      TransactionLoading _value, $Res Function(TransactionLoading) _then)
-      : super(_value, (v) => _then(v as TransactionLoading));
+    implements _$$TransactionLoadingCopyWith<$Res> {
+  __$$TransactionLoadingCopyWithImpl(
+      _$TransactionLoading _value, $Res Function(_$TransactionLoading) _then)
+      : super(_value, (v) => _then(v as _$TransactionLoading));
 
   @override
-  TransactionLoading get _value => super._value as TransactionLoading;
+  _$TransactionLoading get _value => super._value as _$TransactionLoading;
 }
 
 /// @nodoc
@@ -1130,7 +1090,7 @@ class _$TransactionLoading implements TransactionLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is TransactionLoading);
+        (other.runtimeType == runtimeType && other is _$TransactionLoading);
   }
 
   @override
@@ -1211,22 +1171,22 @@ abstract class TransactionLoading implements TransactionState {
 }
 
 /// @nodoc
-abstract class $TransactionErrorCopyWith<$Res> {
-  factory $TransactionErrorCopyWith(
-          TransactionError value, $Res Function(TransactionError) then) =
-      _$TransactionErrorCopyWithImpl<$Res>;
+abstract class _$$TransactionErrorCopyWith<$Res> {
+  factory _$$TransactionErrorCopyWith(
+          _$TransactionError value, $Res Function(_$TransactionError) then) =
+      __$$TransactionErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TransactionErrorCopyWithImpl<$Res>
+class __$$TransactionErrorCopyWithImpl<$Res>
     extends _$TransactionStateCopyWithImpl<$Res>
-    implements $TransactionErrorCopyWith<$Res> {
-  _$TransactionErrorCopyWithImpl(
-      TransactionError _value, $Res Function(TransactionError) _then)
-      : super(_value, (v) => _then(v as TransactionError));
+    implements _$$TransactionErrorCopyWith<$Res> {
+  __$$TransactionErrorCopyWithImpl(
+      _$TransactionError _value, $Res Function(_$TransactionError) _then)
+      : super(_value, (v) => _then(v as _$TransactionError));
 
   @override
-  TransactionError get _value => super._value as TransactionError;
+  _$TransactionError get _value => super._value as _$TransactionError;
 }
 
 /// @nodoc
@@ -1242,7 +1202,7 @@ class _$TransactionError implements TransactionError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is TransactionError);
+        (other.runtimeType == runtimeType && other is _$TransactionError);
   }
 
   @override

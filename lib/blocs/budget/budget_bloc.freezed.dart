@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'budget_bloc.dart';
@@ -11,43 +12,7 @@ part of 'budget_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BudgetEventTearOff {
-  const _$BudgetEventTearOff();
-
-  LoadBudgets loadBudgets() {
-    return const LoadBudgets();
-  }
-
-  AddBudget addBudget(Budget budget) {
-    return AddBudget(
-      budget,
-    );
-  }
-
-  DeleteBudget deleteBudget(Budget budget) {
-    return DeleteBudget(
-      budget,
-    );
-  }
-
-  UpdateBudget updateBudget(Budget updatedBudget) {
-    return UpdateBudget(
-      updatedBudget,
-    );
-  }
-
-  BudgetsUpdated budgetUpdated(List<Budget> budgets) {
-    return BudgetsUpdated(
-      budgets,
-    );
-  }
-}
-
-/// @nodoc
-const $BudgetEvent = _$BudgetEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BudgetEvent {
@@ -126,21 +91,21 @@ class _$BudgetEventCopyWithImpl<$Res> implements $BudgetEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $LoadBudgetsCopyWith<$Res> {
-  factory $LoadBudgetsCopyWith(
-          LoadBudgets value, $Res Function(LoadBudgets) then) =
-      _$LoadBudgetsCopyWithImpl<$Res>;
+abstract class _$$LoadBudgetsCopyWith<$Res> {
+  factory _$$LoadBudgetsCopyWith(
+          _$LoadBudgets value, $Res Function(_$LoadBudgets) then) =
+      __$$LoadBudgetsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadBudgetsCopyWithImpl<$Res> extends _$BudgetEventCopyWithImpl<$Res>
-    implements $LoadBudgetsCopyWith<$Res> {
-  _$LoadBudgetsCopyWithImpl(
-      LoadBudgets _value, $Res Function(LoadBudgets) _then)
-      : super(_value, (v) => _then(v as LoadBudgets));
+class __$$LoadBudgetsCopyWithImpl<$Res> extends _$BudgetEventCopyWithImpl<$Res>
+    implements _$$LoadBudgetsCopyWith<$Res> {
+  __$$LoadBudgetsCopyWithImpl(
+      _$LoadBudgets _value, $Res Function(_$LoadBudgets) _then)
+      : super(_value, (v) => _then(v as _$LoadBudgets));
 
   @override
-  LoadBudgets get _value => super._value as LoadBudgets;
+  _$LoadBudgets get _value => super._value as _$LoadBudgets;
 }
 
 /// @nodoc
@@ -156,7 +121,7 @@ class _$LoadBudgets implements LoadBudgets {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is LoadBudgets);
+        (other.runtimeType == runtimeType && other is _$LoadBudgets);
   }
 
   @override
@@ -248,26 +213,28 @@ abstract class LoadBudgets implements BudgetEvent {
 }
 
 /// @nodoc
-abstract class $AddBudgetCopyWith<$Res> {
-  factory $AddBudgetCopyWith(AddBudget value, $Res Function(AddBudget) then) =
-      _$AddBudgetCopyWithImpl<$Res>;
+abstract class _$$AddBudgetCopyWith<$Res> {
+  factory _$$AddBudgetCopyWith(
+          _$AddBudget value, $Res Function(_$AddBudget) then) =
+      __$$AddBudgetCopyWithImpl<$Res>;
   $Res call({Budget budget});
 }
 
 /// @nodoc
-class _$AddBudgetCopyWithImpl<$Res> extends _$BudgetEventCopyWithImpl<$Res>
-    implements $AddBudgetCopyWith<$Res> {
-  _$AddBudgetCopyWithImpl(AddBudget _value, $Res Function(AddBudget) _then)
-      : super(_value, (v) => _then(v as AddBudget));
+class __$$AddBudgetCopyWithImpl<$Res> extends _$BudgetEventCopyWithImpl<$Res>
+    implements _$$AddBudgetCopyWith<$Res> {
+  __$$AddBudgetCopyWithImpl(
+      _$AddBudget _value, $Res Function(_$AddBudget) _then)
+      : super(_value, (v) => _then(v as _$AddBudget));
 
   @override
-  AddBudget get _value => super._value as AddBudget;
+  _$AddBudget get _value => super._value as _$AddBudget;
 
   @override
   $Res call({
     Object? budget = freezed,
   }) {
-    return _then(AddBudget(
+    return _then(_$AddBudget(
       budget == freezed
           ? _value.budget
           : budget // ignore: cast_nullable_to_non_nullable
@@ -293,17 +260,18 @@ class _$AddBudget implements AddBudget {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AddBudget &&
-            (identical(other.budget, budget) || other.budget == budget));
+            other is _$AddBudget &&
+            const DeepCollectionEquality().equals(other.budget, budget));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, budget);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(budget));
 
   @JsonKey(ignore: true)
   @override
-  $AddBudgetCopyWith<AddBudget> get copyWith =>
-      _$AddBudgetCopyWithImpl<AddBudget>(this, _$identity);
+  _$$AddBudgetCopyWith<_$AddBudget> get copyWith =>
+      __$$AddBudgetCopyWithImpl<_$AddBudget>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -387,37 +355,37 @@ class _$AddBudget implements AddBudget {
 }
 
 abstract class AddBudget implements BudgetEvent {
-  const factory AddBudget(Budget budget) = _$AddBudget;
+  const factory AddBudget(final Budget budget) = _$AddBudget;
 
-  Budget get budget;
+  Budget get budget => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AddBudgetCopyWith<AddBudget> get copyWith =>
+  _$$AddBudgetCopyWith<_$AddBudget> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DeleteBudgetCopyWith<$Res> {
-  factory $DeleteBudgetCopyWith(
-          DeleteBudget value, $Res Function(DeleteBudget) then) =
-      _$DeleteBudgetCopyWithImpl<$Res>;
+abstract class _$$DeleteBudgetCopyWith<$Res> {
+  factory _$$DeleteBudgetCopyWith(
+          _$DeleteBudget value, $Res Function(_$DeleteBudget) then) =
+      __$$DeleteBudgetCopyWithImpl<$Res>;
   $Res call({Budget budget});
 }
 
 /// @nodoc
-class _$DeleteBudgetCopyWithImpl<$Res> extends _$BudgetEventCopyWithImpl<$Res>
-    implements $DeleteBudgetCopyWith<$Res> {
-  _$DeleteBudgetCopyWithImpl(
-      DeleteBudget _value, $Res Function(DeleteBudget) _then)
-      : super(_value, (v) => _then(v as DeleteBudget));
+class __$$DeleteBudgetCopyWithImpl<$Res> extends _$BudgetEventCopyWithImpl<$Res>
+    implements _$$DeleteBudgetCopyWith<$Res> {
+  __$$DeleteBudgetCopyWithImpl(
+      _$DeleteBudget _value, $Res Function(_$DeleteBudget) _then)
+      : super(_value, (v) => _then(v as _$DeleteBudget));
 
   @override
-  DeleteBudget get _value => super._value as DeleteBudget;
+  _$DeleteBudget get _value => super._value as _$DeleteBudget;
 
   @override
   $Res call({
     Object? budget = freezed,
   }) {
-    return _then(DeleteBudget(
+    return _then(_$DeleteBudget(
       budget == freezed
           ? _value.budget
           : budget // ignore: cast_nullable_to_non_nullable
@@ -443,17 +411,18 @@ class _$DeleteBudget implements DeleteBudget {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DeleteBudget &&
-            (identical(other.budget, budget) || other.budget == budget));
+            other is _$DeleteBudget &&
+            const DeepCollectionEquality().equals(other.budget, budget));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, budget);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(budget));
 
   @JsonKey(ignore: true)
   @override
-  $DeleteBudgetCopyWith<DeleteBudget> get copyWith =>
-      _$DeleteBudgetCopyWithImpl<DeleteBudget>(this, _$identity);
+  _$$DeleteBudgetCopyWith<_$DeleteBudget> get copyWith =>
+      __$$DeleteBudgetCopyWithImpl<_$DeleteBudget>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -537,37 +506,37 @@ class _$DeleteBudget implements DeleteBudget {
 }
 
 abstract class DeleteBudget implements BudgetEvent {
-  const factory DeleteBudget(Budget budget) = _$DeleteBudget;
+  const factory DeleteBudget(final Budget budget) = _$DeleteBudget;
 
-  Budget get budget;
+  Budget get budget => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DeleteBudgetCopyWith<DeleteBudget> get copyWith =>
+  _$$DeleteBudgetCopyWith<_$DeleteBudget> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UpdateBudgetCopyWith<$Res> {
-  factory $UpdateBudgetCopyWith(
-          UpdateBudget value, $Res Function(UpdateBudget) then) =
-      _$UpdateBudgetCopyWithImpl<$Res>;
+abstract class _$$UpdateBudgetCopyWith<$Res> {
+  factory _$$UpdateBudgetCopyWith(
+          _$UpdateBudget value, $Res Function(_$UpdateBudget) then) =
+      __$$UpdateBudgetCopyWithImpl<$Res>;
   $Res call({Budget updatedBudget});
 }
 
 /// @nodoc
-class _$UpdateBudgetCopyWithImpl<$Res> extends _$BudgetEventCopyWithImpl<$Res>
-    implements $UpdateBudgetCopyWith<$Res> {
-  _$UpdateBudgetCopyWithImpl(
-      UpdateBudget _value, $Res Function(UpdateBudget) _then)
-      : super(_value, (v) => _then(v as UpdateBudget));
+class __$$UpdateBudgetCopyWithImpl<$Res> extends _$BudgetEventCopyWithImpl<$Res>
+    implements _$$UpdateBudgetCopyWith<$Res> {
+  __$$UpdateBudgetCopyWithImpl(
+      _$UpdateBudget _value, $Res Function(_$UpdateBudget) _then)
+      : super(_value, (v) => _then(v as _$UpdateBudget));
 
   @override
-  UpdateBudget get _value => super._value as UpdateBudget;
+  _$UpdateBudget get _value => super._value as _$UpdateBudget;
 
   @override
   $Res call({
     Object? updatedBudget = freezed,
   }) {
-    return _then(UpdateBudget(
+    return _then(_$UpdateBudget(
       updatedBudget == freezed
           ? _value.updatedBudget
           : updatedBudget // ignore: cast_nullable_to_non_nullable
@@ -593,18 +562,19 @@ class _$UpdateBudget implements UpdateBudget {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UpdateBudget &&
-            (identical(other.updatedBudget, updatedBudget) ||
-                other.updatedBudget == updatedBudget));
+            other is _$UpdateBudget &&
+            const DeepCollectionEquality()
+                .equals(other.updatedBudget, updatedBudget));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, updatedBudget);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(updatedBudget));
 
   @JsonKey(ignore: true)
   @override
-  $UpdateBudgetCopyWith<UpdateBudget> get copyWith =>
-      _$UpdateBudgetCopyWithImpl<UpdateBudget>(this, _$identity);
+  _$$UpdateBudgetCopyWith<_$UpdateBudget> get copyWith =>
+      __$$UpdateBudgetCopyWithImpl<_$UpdateBudget>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -688,39 +658,40 @@ class _$UpdateBudget implements UpdateBudget {
 }
 
 abstract class UpdateBudget implements BudgetEvent {
-  const factory UpdateBudget(Budget updatedBudget) = _$UpdateBudget;
+  const factory UpdateBudget(final Budget updatedBudget) = _$UpdateBudget;
 
-  Budget get updatedBudget;
+  Budget get updatedBudget => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateBudgetCopyWith<UpdateBudget> get copyWith =>
+  _$$UpdateBudgetCopyWith<_$UpdateBudget> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BudgetsUpdatedCopyWith<$Res> {
-  factory $BudgetsUpdatedCopyWith(
-          BudgetsUpdated value, $Res Function(BudgetsUpdated) then) =
-      _$BudgetsUpdatedCopyWithImpl<$Res>;
+abstract class _$$BudgetsUpdatedCopyWith<$Res> {
+  factory _$$BudgetsUpdatedCopyWith(
+          _$BudgetsUpdated value, $Res Function(_$BudgetsUpdated) then) =
+      __$$BudgetsUpdatedCopyWithImpl<$Res>;
   $Res call({List<Budget> budgets});
 }
 
 /// @nodoc
-class _$BudgetsUpdatedCopyWithImpl<$Res> extends _$BudgetEventCopyWithImpl<$Res>
-    implements $BudgetsUpdatedCopyWith<$Res> {
-  _$BudgetsUpdatedCopyWithImpl(
-      BudgetsUpdated _value, $Res Function(BudgetsUpdated) _then)
-      : super(_value, (v) => _then(v as BudgetsUpdated));
+class __$$BudgetsUpdatedCopyWithImpl<$Res>
+    extends _$BudgetEventCopyWithImpl<$Res>
+    implements _$$BudgetsUpdatedCopyWith<$Res> {
+  __$$BudgetsUpdatedCopyWithImpl(
+      _$BudgetsUpdated _value, $Res Function(_$BudgetsUpdated) _then)
+      : super(_value, (v) => _then(v as _$BudgetsUpdated));
 
   @override
-  BudgetsUpdated get _value => super._value as BudgetsUpdated;
+  _$BudgetsUpdated get _value => super._value as _$BudgetsUpdated;
 
   @override
   $Res call({
     Object? budgets = freezed,
   }) {
-    return _then(BudgetsUpdated(
+    return _then(_$BudgetsUpdated(
       budgets == freezed
-          ? _value.budgets
+          ? _value._budgets
           : budgets // ignore: cast_nullable_to_non_nullable
               as List<Budget>,
     ));
@@ -730,10 +701,14 @@ class _$BudgetsUpdatedCopyWithImpl<$Res> extends _$BudgetEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BudgetsUpdated implements BudgetsUpdated {
-  const _$BudgetsUpdated(this.budgets);
+  const _$BudgetsUpdated(final List<Budget> budgets) : _budgets = budgets;
 
+  final List<Budget> _budgets;
   @override
-  final List<Budget> budgets;
+  List<Budget> get budgets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_budgets);
+  }
 
   @override
   String toString() {
@@ -744,18 +719,18 @@ class _$BudgetsUpdated implements BudgetsUpdated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is BudgetsUpdated &&
-            const DeepCollectionEquality().equals(other.budgets, budgets));
+            other is _$BudgetsUpdated &&
+            const DeepCollectionEquality().equals(other._budgets, _budgets));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(budgets));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_budgets));
 
   @JsonKey(ignore: true)
   @override
-  $BudgetsUpdatedCopyWith<BudgetsUpdated> get copyWith =>
-      _$BudgetsUpdatedCopyWithImpl<BudgetsUpdated>(this, _$identity);
+  _$$BudgetsUpdatedCopyWith<_$BudgetsUpdated> get copyWith =>
+      __$$BudgetsUpdatedCopyWithImpl<_$BudgetsUpdated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -839,31 +814,13 @@ class _$BudgetsUpdated implements BudgetsUpdated {
 }
 
 abstract class BudgetsUpdated implements BudgetEvent {
-  const factory BudgetsUpdated(List<Budget> budgets) = _$BudgetsUpdated;
+  const factory BudgetsUpdated(final List<Budget> budgets) = _$BudgetsUpdated;
 
-  List<Budget> get budgets;
+  List<Budget> get budgets => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BudgetsUpdatedCopyWith<BudgetsUpdated> get copyWith =>
+  _$$BudgetsUpdatedCopyWith<_$BudgetsUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$BudgetStateTearOff {
-  const _$BudgetStateTearOff();
-
-  BudgetsLoading budgetsLoading() {
-    return const BudgetsLoading();
-  }
-
-  BudgetsLoaded budgetsLoaded(List<Budget> budgets) {
-    return BudgetsLoaded(
-      budgets,
-    );
-  }
-}
-
-/// @nodoc
-const $BudgetState = _$BudgetStateTearOff();
 
 /// @nodoc
 mixin _$BudgetState {
@@ -924,21 +881,22 @@ class _$BudgetStateCopyWithImpl<$Res> implements $BudgetStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $BudgetsLoadingCopyWith<$Res> {
-  factory $BudgetsLoadingCopyWith(
-          BudgetsLoading value, $Res Function(BudgetsLoading) then) =
-      _$BudgetsLoadingCopyWithImpl<$Res>;
+abstract class _$$BudgetsLoadingCopyWith<$Res> {
+  factory _$$BudgetsLoadingCopyWith(
+          _$BudgetsLoading value, $Res Function(_$BudgetsLoading) then) =
+      __$$BudgetsLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$BudgetsLoadingCopyWithImpl<$Res> extends _$BudgetStateCopyWithImpl<$Res>
-    implements $BudgetsLoadingCopyWith<$Res> {
-  _$BudgetsLoadingCopyWithImpl(
-      BudgetsLoading _value, $Res Function(BudgetsLoading) _then)
-      : super(_value, (v) => _then(v as BudgetsLoading));
+class __$$BudgetsLoadingCopyWithImpl<$Res>
+    extends _$BudgetStateCopyWithImpl<$Res>
+    implements _$$BudgetsLoadingCopyWith<$Res> {
+  __$$BudgetsLoadingCopyWithImpl(
+      _$BudgetsLoading _value, $Res Function(_$BudgetsLoading) _then)
+      : super(_value, (v) => _then(v as _$BudgetsLoading));
 
   @override
-  BudgetsLoading get _value => super._value as BudgetsLoading;
+  _$BudgetsLoading get _value => super._value as _$BudgetsLoading;
 }
 
 /// @nodoc
@@ -954,7 +912,7 @@ class _$BudgetsLoading implements BudgetsLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is BudgetsLoading);
+        (other.runtimeType == runtimeType && other is _$BudgetsLoading);
   }
 
   @override
@@ -1028,30 +986,31 @@ abstract class BudgetsLoading implements BudgetState {
 }
 
 /// @nodoc
-abstract class $BudgetsLoadedCopyWith<$Res> {
-  factory $BudgetsLoadedCopyWith(
-          BudgetsLoaded value, $Res Function(BudgetsLoaded) then) =
-      _$BudgetsLoadedCopyWithImpl<$Res>;
+abstract class _$$BudgetsLoadedCopyWith<$Res> {
+  factory _$$BudgetsLoadedCopyWith(
+          _$BudgetsLoaded value, $Res Function(_$BudgetsLoaded) then) =
+      __$$BudgetsLoadedCopyWithImpl<$Res>;
   $Res call({List<Budget> budgets});
 }
 
 /// @nodoc
-class _$BudgetsLoadedCopyWithImpl<$Res> extends _$BudgetStateCopyWithImpl<$Res>
-    implements $BudgetsLoadedCopyWith<$Res> {
-  _$BudgetsLoadedCopyWithImpl(
-      BudgetsLoaded _value, $Res Function(BudgetsLoaded) _then)
-      : super(_value, (v) => _then(v as BudgetsLoaded));
+class __$$BudgetsLoadedCopyWithImpl<$Res>
+    extends _$BudgetStateCopyWithImpl<$Res>
+    implements _$$BudgetsLoadedCopyWith<$Res> {
+  __$$BudgetsLoadedCopyWithImpl(
+      _$BudgetsLoaded _value, $Res Function(_$BudgetsLoaded) _then)
+      : super(_value, (v) => _then(v as _$BudgetsLoaded));
 
   @override
-  BudgetsLoaded get _value => super._value as BudgetsLoaded;
+  _$BudgetsLoaded get _value => super._value as _$BudgetsLoaded;
 
   @override
   $Res call({
     Object? budgets = freezed,
   }) {
-    return _then(BudgetsLoaded(
+    return _then(_$BudgetsLoaded(
       budgets == freezed
-          ? _value.budgets
+          ? _value._budgets
           : budgets // ignore: cast_nullable_to_non_nullable
               as List<Budget>,
     ));
@@ -1061,10 +1020,14 @@ class _$BudgetsLoadedCopyWithImpl<$Res> extends _$BudgetStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BudgetsLoaded implements BudgetsLoaded {
-  const _$BudgetsLoaded(this.budgets);
+  const _$BudgetsLoaded(final List<Budget> budgets) : _budgets = budgets;
 
+  final List<Budget> _budgets;
   @override
-  final List<Budget> budgets;
+  List<Budget> get budgets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_budgets);
+  }
 
   @override
   String toString() {
@@ -1075,18 +1038,18 @@ class _$BudgetsLoaded implements BudgetsLoaded {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is BudgetsLoaded &&
-            const DeepCollectionEquality().equals(other.budgets, budgets));
+            other is _$BudgetsLoaded &&
+            const DeepCollectionEquality().equals(other._budgets, _budgets));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(budgets));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_budgets));
 
   @JsonKey(ignore: true)
   @override
-  $BudgetsLoadedCopyWith<BudgetsLoaded> get copyWith =>
-      _$BudgetsLoadedCopyWithImpl<BudgetsLoaded>(this, _$identity);
+  _$$BudgetsLoadedCopyWith<_$BudgetsLoaded> get copyWith =>
+      __$$BudgetsLoadedCopyWithImpl<_$BudgetsLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1152,10 +1115,10 @@ class _$BudgetsLoaded implements BudgetsLoaded {
 }
 
 abstract class BudgetsLoaded implements BudgetState {
-  const factory BudgetsLoaded(List<Budget> budgets) = _$BudgetsLoaded;
+  const factory BudgetsLoaded(final List<Budget> budgets) = _$BudgetsLoaded;
 
-  List<Budget> get budgets;
+  List<Budget> get budgets => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BudgetsLoadedCopyWith<BudgetsLoaded> get copyWith =>
+  _$$BudgetsLoadedCopyWith<_$BudgetsLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }

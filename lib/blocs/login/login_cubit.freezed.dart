@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'login_cubit.dart';
@@ -11,28 +12,7 @@ part of 'login_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$LoginStateTearOff {
-  const _$LoginStateTearOff();
-
-  _LoginState call(
-      {String? errorMessage,
-      Email email = const Email.pure(),
-      Password password = const Password.pure(),
-      FormzStatus status = FormzStatus.pure}) {
-    return _LoginState(
-      errorMessage: errorMessage,
-      email: email,
-      password: password,
-      status: status,
-    );
-  }
-}
-
-/// @nodoc
-const $LoginState = _$LoginStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$LoginState {
@@ -95,10 +75,11 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
-  factory _$LoginStateCopyWith(
-          _LoginState value, $Res Function(_LoginState) then) =
-      __$LoginStateCopyWithImpl<$Res>;
+abstract class _$$_LoginStateCopyWith<$Res>
+    implements $LoginStateCopyWith<$Res> {
+  factory _$$_LoginStateCopyWith(
+          _$_LoginState value, $Res Function(_$_LoginState) then) =
+      __$$_LoginStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? errorMessage,
@@ -108,14 +89,14 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements _$LoginStateCopyWith<$Res> {
-  __$LoginStateCopyWithImpl(
-      _LoginState _value, $Res Function(_LoginState) _then)
-      : super(_value, (v) => _then(v as _LoginState));
+class __$$_LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$_LoginStateCopyWith<$Res> {
+  __$$_LoginStateCopyWithImpl(
+      _$_LoginState _value, $Res Function(_$_LoginState) _then)
+      : super(_value, (v) => _then(v as _$_LoginState));
 
   @override
-  _LoginState get _value => super._value as _LoginState;
+  _$_LoginState get _value => super._value as _$_LoginState;
 
   @override
   $Res call({
@@ -124,7 +105,7 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     Object? password = freezed,
     Object? status = freezed,
   }) {
-    return _then(_LoginState(
+    return _then(_$_LoginState(
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -156,14 +137,14 @@ class _$_LoginState implements _LoginState {
 
   @override
   final String? errorMessage;
-  @JsonKey(defaultValue: const Email.pure())
   @override
+  @JsonKey()
   final Email email;
-  @JsonKey(defaultValue: const Password.pure())
   @override
+  @JsonKey()
   final Password password;
-  @JsonKey(defaultValue: FormzStatus.pure)
   @override
+  @JsonKey()
   final FormzStatus status;
 
   @override
@@ -175,42 +156,45 @@ class _$_LoginState implements _LoginState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LoginState &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.status, status) || other.status == status));
+            other is _$_LoginState &&
+            const DeepCollectionEquality()
+                .equals(other.errorMessage, errorMessage) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, errorMessage, email, password, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(errorMessage),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
-  _$LoginStateCopyWith<_LoginState> get copyWith =>
-      __$LoginStateCopyWithImpl<_LoginState>(this, _$identity);
+  _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>
+      __$$_LoginStateCopyWithImpl<_$_LoginState>(this, _$identity);
 }
 
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
-      {String? errorMessage,
-      Email email,
-      Password password,
-      FormzStatus status}) = _$_LoginState;
+      {final String? errorMessage,
+      final Email email,
+      final Password password,
+      final FormzStatus status}) = _$_LoginState;
 
   @override
-  String? get errorMessage;
+  String? get errorMessage => throw _privateConstructorUsedError;
   @override
-  Email get email;
+  Email get email => throw _privateConstructorUsedError;
   @override
-  Password get password;
+  Password get password => throw _privateConstructorUsedError;
   @override
-  FormzStatus get status;
+  FormzStatus get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LoginStateCopyWith<_LoginState> get copyWith =>
+  _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>
       throw _privateConstructorUsedError;
 }

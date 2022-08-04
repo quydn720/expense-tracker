@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'filter_bloc.dart';
@@ -11,47 +12,7 @@ part of 'filter_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$FilterEventTearOff {
-  const _$FilterEventTearOff();
-
-  TransactionsUpdated transactionsUpdated(List<Transaction> transactions) {
-    return TransactionsUpdated(
-      transactions,
-    );
-  }
-
-  FilterReseted filterReseted() {
-    return const FilterReseted();
-  }
-
-  FilterSubmitted filterSubmitted() {
-    return const FilterSubmitted();
-  }
-
-  SortChanged sortChanged(ActiveSort sort) {
-    return SortChanged(
-      sort,
-    );
-  }
-
-  FilterChanged filterChanged(ActiveFilter filter) {
-    return FilterChanged(
-      filter,
-    );
-  }
-
-  DateChanged dateChanged(DateTime date) {
-    return DateChanged(
-      date,
-    );
-  }
-}
-
-/// @nodoc
-const $FilterEvent = _$FilterEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$FilterEvent {
@@ -137,31 +98,31 @@ class _$FilterEventCopyWithImpl<$Res> implements $FilterEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $TransactionsUpdatedCopyWith<$Res> {
-  factory $TransactionsUpdatedCopyWith(
-          TransactionsUpdated value, $Res Function(TransactionsUpdated) then) =
-      _$TransactionsUpdatedCopyWithImpl<$Res>;
+abstract class _$$TransactionsUpdatedCopyWith<$Res> {
+  factory _$$TransactionsUpdatedCopyWith(_$TransactionsUpdated value,
+          $Res Function(_$TransactionsUpdated) then) =
+      __$$TransactionsUpdatedCopyWithImpl<$Res>;
   $Res call({List<Transaction> transactions});
 }
 
 /// @nodoc
-class _$TransactionsUpdatedCopyWithImpl<$Res>
+class __$$TransactionsUpdatedCopyWithImpl<$Res>
     extends _$FilterEventCopyWithImpl<$Res>
-    implements $TransactionsUpdatedCopyWith<$Res> {
-  _$TransactionsUpdatedCopyWithImpl(
-      TransactionsUpdated _value, $Res Function(TransactionsUpdated) _then)
-      : super(_value, (v) => _then(v as TransactionsUpdated));
+    implements _$$TransactionsUpdatedCopyWith<$Res> {
+  __$$TransactionsUpdatedCopyWithImpl(
+      _$TransactionsUpdated _value, $Res Function(_$TransactionsUpdated) _then)
+      : super(_value, (v) => _then(v as _$TransactionsUpdated));
 
   @override
-  TransactionsUpdated get _value => super._value as TransactionsUpdated;
+  _$TransactionsUpdated get _value => super._value as _$TransactionsUpdated;
 
   @override
   $Res call({
     Object? transactions = freezed,
   }) {
-    return _then(TransactionsUpdated(
+    return _then(_$TransactionsUpdated(
       transactions == freezed
-          ? _value.transactions
+          ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<Transaction>,
     ));
@@ -171,10 +132,15 @@ class _$TransactionsUpdatedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TransactionsUpdated implements TransactionsUpdated {
-  const _$TransactionsUpdated(this.transactions);
+  const _$TransactionsUpdated(final List<Transaction> transactions)
+      : _transactions = transactions;
 
+  final List<Transaction> _transactions;
   @override
-  final List<Transaction> transactions;
+  List<Transaction> get transactions {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactions);
+  }
 
   @override
   String toString() {
@@ -185,19 +151,20 @@ class _$TransactionsUpdated implements TransactionsUpdated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TransactionsUpdated &&
+            other is _$TransactionsUpdated &&
             const DeepCollectionEquality()
-                .equals(other.transactions, transactions));
+                .equals(other._transactions, _transactions));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(transactions));
+      runtimeType, const DeepCollectionEquality().hash(_transactions));
 
   @JsonKey(ignore: true)
   @override
-  $TransactionsUpdatedCopyWith<TransactionsUpdated> get copyWith =>
-      _$TransactionsUpdatedCopyWithImpl<TransactionsUpdated>(this, _$identity);
+  _$$TransactionsUpdatedCopyWith<_$TransactionsUpdated> get copyWith =>
+      __$$TransactionsUpdatedCopyWithImpl<_$TransactionsUpdated>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -288,31 +255,32 @@ class _$TransactionsUpdated implements TransactionsUpdated {
 }
 
 abstract class TransactionsUpdated implements FilterEvent {
-  const factory TransactionsUpdated(List<Transaction> transactions) =
+  const factory TransactionsUpdated(final List<Transaction> transactions) =
       _$TransactionsUpdated;
 
-  List<Transaction> get transactions;
+  List<Transaction> get transactions => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TransactionsUpdatedCopyWith<TransactionsUpdated> get copyWith =>
+  _$$TransactionsUpdatedCopyWith<_$TransactionsUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FilterResetedCopyWith<$Res> {
-  factory $FilterResetedCopyWith(
-          FilterReseted value, $Res Function(FilterReseted) then) =
-      _$FilterResetedCopyWithImpl<$Res>;
+abstract class _$$FilterResetedCopyWith<$Res> {
+  factory _$$FilterResetedCopyWith(
+          _$FilterReseted value, $Res Function(_$FilterReseted) then) =
+      __$$FilterResetedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FilterResetedCopyWithImpl<$Res> extends _$FilterEventCopyWithImpl<$Res>
-    implements $FilterResetedCopyWith<$Res> {
-  _$FilterResetedCopyWithImpl(
-      FilterReseted _value, $Res Function(FilterReseted) _then)
-      : super(_value, (v) => _then(v as FilterReseted));
+class __$$FilterResetedCopyWithImpl<$Res>
+    extends _$FilterEventCopyWithImpl<$Res>
+    implements _$$FilterResetedCopyWith<$Res> {
+  __$$FilterResetedCopyWithImpl(
+      _$FilterReseted _value, $Res Function(_$FilterReseted) _then)
+      : super(_value, (v) => _then(v as _$FilterReseted));
 
   @override
-  FilterReseted get _value => super._value as FilterReseted;
+  _$FilterReseted get _value => super._value as _$FilterReseted;
 }
 
 /// @nodoc
@@ -328,7 +296,7 @@ class _$FilterReseted implements FilterReseted {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is FilterReseted);
+        (other.runtimeType == runtimeType && other is _$FilterReseted);
   }
 
   @override
@@ -427,22 +395,22 @@ abstract class FilterReseted implements FilterEvent {
 }
 
 /// @nodoc
-abstract class $FilterSubmittedCopyWith<$Res> {
-  factory $FilterSubmittedCopyWith(
-          FilterSubmitted value, $Res Function(FilterSubmitted) then) =
-      _$FilterSubmittedCopyWithImpl<$Res>;
+abstract class _$$FilterSubmittedCopyWith<$Res> {
+  factory _$$FilterSubmittedCopyWith(
+          _$FilterSubmitted value, $Res Function(_$FilterSubmitted) then) =
+      __$$FilterSubmittedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FilterSubmittedCopyWithImpl<$Res>
+class __$$FilterSubmittedCopyWithImpl<$Res>
     extends _$FilterEventCopyWithImpl<$Res>
-    implements $FilterSubmittedCopyWith<$Res> {
-  _$FilterSubmittedCopyWithImpl(
-      FilterSubmitted _value, $Res Function(FilterSubmitted) _then)
-      : super(_value, (v) => _then(v as FilterSubmitted));
+    implements _$$FilterSubmittedCopyWith<$Res> {
+  __$$FilterSubmittedCopyWithImpl(
+      _$FilterSubmitted _value, $Res Function(_$FilterSubmitted) _then)
+      : super(_value, (v) => _then(v as _$FilterSubmitted));
 
   @override
-  FilterSubmitted get _value => super._value as FilterSubmitted;
+  _$FilterSubmitted get _value => super._value as _$FilterSubmitted;
 }
 
 /// @nodoc
@@ -458,7 +426,7 @@ class _$FilterSubmitted implements FilterSubmitted {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is FilterSubmitted);
+        (other.runtimeType == runtimeType && other is _$FilterSubmitted);
   }
 
   @override
@@ -557,28 +525,28 @@ abstract class FilterSubmitted implements FilterEvent {
 }
 
 /// @nodoc
-abstract class $SortChangedCopyWith<$Res> {
-  factory $SortChangedCopyWith(
-          SortChanged value, $Res Function(SortChanged) then) =
-      _$SortChangedCopyWithImpl<$Res>;
+abstract class _$$SortChangedCopyWith<$Res> {
+  factory _$$SortChangedCopyWith(
+          _$SortChanged value, $Res Function(_$SortChanged) then) =
+      __$$SortChangedCopyWithImpl<$Res>;
   $Res call({ActiveSort sort});
 }
 
 /// @nodoc
-class _$SortChangedCopyWithImpl<$Res> extends _$FilterEventCopyWithImpl<$Res>
-    implements $SortChangedCopyWith<$Res> {
-  _$SortChangedCopyWithImpl(
-      SortChanged _value, $Res Function(SortChanged) _then)
-      : super(_value, (v) => _then(v as SortChanged));
+class __$$SortChangedCopyWithImpl<$Res> extends _$FilterEventCopyWithImpl<$Res>
+    implements _$$SortChangedCopyWith<$Res> {
+  __$$SortChangedCopyWithImpl(
+      _$SortChanged _value, $Res Function(_$SortChanged) _then)
+      : super(_value, (v) => _then(v as _$SortChanged));
 
   @override
-  SortChanged get _value => super._value as SortChanged;
+  _$SortChanged get _value => super._value as _$SortChanged;
 
   @override
   $Res call({
     Object? sort = freezed,
   }) {
-    return _then(SortChanged(
+    return _then(_$SortChanged(
       sort == freezed
           ? _value.sort
           : sort // ignore: cast_nullable_to_non_nullable
@@ -604,17 +572,18 @@ class _$SortChanged implements SortChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SortChanged &&
-            (identical(other.sort, sort) || other.sort == sort));
+            other is _$SortChanged &&
+            const DeepCollectionEquality().equals(other.sort, sort));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, sort);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(sort));
 
   @JsonKey(ignore: true)
   @override
-  $SortChangedCopyWith<SortChanged> get copyWith =>
-      _$SortChangedCopyWithImpl<SortChanged>(this, _$identity);
+  _$$SortChangedCopyWith<_$SortChanged> get copyWith =>
+      __$$SortChangedCopyWithImpl<_$SortChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -705,37 +674,38 @@ class _$SortChanged implements SortChanged {
 }
 
 abstract class SortChanged implements FilterEvent {
-  const factory SortChanged(ActiveSort sort) = _$SortChanged;
+  const factory SortChanged(final ActiveSort sort) = _$SortChanged;
 
-  ActiveSort get sort;
+  ActiveSort get sort => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SortChangedCopyWith<SortChanged> get copyWith =>
+  _$$SortChangedCopyWith<_$SortChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FilterChangedCopyWith<$Res> {
-  factory $FilterChangedCopyWith(
-          FilterChanged value, $Res Function(FilterChanged) then) =
-      _$FilterChangedCopyWithImpl<$Res>;
+abstract class _$$FilterChangedCopyWith<$Res> {
+  factory _$$FilterChangedCopyWith(
+          _$FilterChanged value, $Res Function(_$FilterChanged) then) =
+      __$$FilterChangedCopyWithImpl<$Res>;
   $Res call({ActiveFilter filter});
 }
 
 /// @nodoc
-class _$FilterChangedCopyWithImpl<$Res> extends _$FilterEventCopyWithImpl<$Res>
-    implements $FilterChangedCopyWith<$Res> {
-  _$FilterChangedCopyWithImpl(
-      FilterChanged _value, $Res Function(FilterChanged) _then)
-      : super(_value, (v) => _then(v as FilterChanged));
+class __$$FilterChangedCopyWithImpl<$Res>
+    extends _$FilterEventCopyWithImpl<$Res>
+    implements _$$FilterChangedCopyWith<$Res> {
+  __$$FilterChangedCopyWithImpl(
+      _$FilterChanged _value, $Res Function(_$FilterChanged) _then)
+      : super(_value, (v) => _then(v as _$FilterChanged));
 
   @override
-  FilterChanged get _value => super._value as FilterChanged;
+  _$FilterChanged get _value => super._value as _$FilterChanged;
 
   @override
   $Res call({
     Object? filter = freezed,
   }) {
-    return _then(FilterChanged(
+    return _then(_$FilterChanged(
       filter == freezed
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -761,17 +731,18 @@ class _$FilterChanged implements FilterChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FilterChanged &&
-            (identical(other.filter, filter) || other.filter == filter));
+            other is _$FilterChanged &&
+            const DeepCollectionEquality().equals(other.filter, filter));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, filter);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(filter));
 
   @JsonKey(ignore: true)
   @override
-  $FilterChangedCopyWith<FilterChanged> get copyWith =>
-      _$FilterChangedCopyWithImpl<FilterChanged>(this, _$identity);
+  _$$FilterChangedCopyWith<_$FilterChanged> get copyWith =>
+      __$$FilterChangedCopyWithImpl<_$FilterChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -862,37 +833,37 @@ class _$FilterChanged implements FilterChanged {
 }
 
 abstract class FilterChanged implements FilterEvent {
-  const factory FilterChanged(ActiveFilter filter) = _$FilterChanged;
+  const factory FilterChanged(final ActiveFilter filter) = _$FilterChanged;
 
-  ActiveFilter get filter;
+  ActiveFilter get filter => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FilterChangedCopyWith<FilterChanged> get copyWith =>
+  _$$FilterChangedCopyWith<_$FilterChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DateChangedCopyWith<$Res> {
-  factory $DateChangedCopyWith(
-          DateChanged value, $Res Function(DateChanged) then) =
-      _$DateChangedCopyWithImpl<$Res>;
+abstract class _$$DateChangedCopyWith<$Res> {
+  factory _$$DateChangedCopyWith(
+          _$DateChanged value, $Res Function(_$DateChanged) then) =
+      __$$DateChangedCopyWithImpl<$Res>;
   $Res call({DateTime date});
 }
 
 /// @nodoc
-class _$DateChangedCopyWithImpl<$Res> extends _$FilterEventCopyWithImpl<$Res>
-    implements $DateChangedCopyWith<$Res> {
-  _$DateChangedCopyWithImpl(
-      DateChanged _value, $Res Function(DateChanged) _then)
-      : super(_value, (v) => _then(v as DateChanged));
+class __$$DateChangedCopyWithImpl<$Res> extends _$FilterEventCopyWithImpl<$Res>
+    implements _$$DateChangedCopyWith<$Res> {
+  __$$DateChangedCopyWithImpl(
+      _$DateChanged _value, $Res Function(_$DateChanged) _then)
+      : super(_value, (v) => _then(v as _$DateChanged));
 
   @override
-  DateChanged get _value => super._value as DateChanged;
+  _$DateChanged get _value => super._value as _$DateChanged;
 
   @override
   $Res call({
     Object? date = freezed,
   }) {
-    return _then(DateChanged(
+    return _then(_$DateChanged(
       date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -918,17 +889,18 @@ class _$DateChanged implements DateChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DateChanged &&
-            (identical(other.date, date) || other.date == date));
+            other is _$DateChanged &&
+            const DeepCollectionEquality().equals(other.date, date));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, date);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(date));
 
   @JsonKey(ignore: true)
   @override
-  $DateChangedCopyWith<DateChanged> get copyWith =>
-      _$DateChangedCopyWithImpl<DateChanged>(this, _$identity);
+  _$$DateChangedCopyWith<_$DateChanged> get copyWith =>
+      __$$DateChangedCopyWithImpl<_$DateChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1019,43 +991,13 @@ class _$DateChanged implements DateChanged {
 }
 
 abstract class DateChanged implements FilterEvent {
-  const factory DateChanged(DateTime date) = _$DateChanged;
+  const factory DateChanged(final DateTime date) = _$DateChanged;
 
-  DateTime get date;
+  DateTime get date => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DateChangedCopyWith<DateChanged> get copyWith =>
+  _$$DateChangedCopyWith<_$DateChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$FilterStateTearOff {
-  const _$FilterStateTearOff();
-
-  FilterLoading filterLoading() {
-    return const FilterLoading();
-  }
-
-  FilterChanging filterChanging(
-      ActiveFilter activeFilter, ActiveSort activeSort) {
-    return FilterChanging(
-      activeFilter,
-      activeSort,
-    );
-  }
-
-  FilterLoaded filterLoaded(List<Transaction> transactions,
-      ActiveFilter activeFilter, ActiveSort activeSort, DateTime date) {
-    return FilterLoaded(
-      transactions,
-      activeFilter,
-      activeSort,
-      date,
-    );
-  }
-}
-
-/// @nodoc
-const $FilterState = _$FilterStateTearOff();
 
 /// @nodoc
 mixin _$FilterState {
@@ -1131,21 +1073,22 @@ class _$FilterStateCopyWithImpl<$Res> implements $FilterStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $FilterLoadingCopyWith<$Res> {
-  factory $FilterLoadingCopyWith(
-          FilterLoading value, $Res Function(FilterLoading) then) =
-      _$FilterLoadingCopyWithImpl<$Res>;
+abstract class _$$FilterLoadingCopyWith<$Res> {
+  factory _$$FilterLoadingCopyWith(
+          _$FilterLoading value, $Res Function(_$FilterLoading) then) =
+      __$$FilterLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FilterLoadingCopyWithImpl<$Res> extends _$FilterStateCopyWithImpl<$Res>
-    implements $FilterLoadingCopyWith<$Res> {
-  _$FilterLoadingCopyWithImpl(
-      FilterLoading _value, $Res Function(FilterLoading) _then)
-      : super(_value, (v) => _then(v as FilterLoading));
+class __$$FilterLoadingCopyWithImpl<$Res>
+    extends _$FilterStateCopyWithImpl<$Res>
+    implements _$$FilterLoadingCopyWith<$Res> {
+  __$$FilterLoadingCopyWithImpl(
+      _$FilterLoading _value, $Res Function(_$FilterLoading) _then)
+      : super(_value, (v) => _then(v as _$FilterLoading));
 
   @override
-  FilterLoading get _value => super._value as FilterLoading;
+  _$FilterLoading get _value => super._value as _$FilterLoading;
 }
 
 /// @nodoc
@@ -1161,7 +1104,7 @@ class _$FilterLoading implements FilterLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is FilterLoading);
+        (other.runtimeType == runtimeType && other is _$FilterLoading);
   }
 
   @override
@@ -1250,29 +1193,30 @@ abstract class FilterLoading implements FilterState {
 }
 
 /// @nodoc
-abstract class $FilterChangingCopyWith<$Res> {
-  factory $FilterChangingCopyWith(
-          FilterChanging value, $Res Function(FilterChanging) then) =
-      _$FilterChangingCopyWithImpl<$Res>;
+abstract class _$$FilterChangingCopyWith<$Res> {
+  factory _$$FilterChangingCopyWith(
+          _$FilterChanging value, $Res Function(_$FilterChanging) then) =
+      __$$FilterChangingCopyWithImpl<$Res>;
   $Res call({ActiveFilter activeFilter, ActiveSort activeSort});
 }
 
 /// @nodoc
-class _$FilterChangingCopyWithImpl<$Res> extends _$FilterStateCopyWithImpl<$Res>
-    implements $FilterChangingCopyWith<$Res> {
-  _$FilterChangingCopyWithImpl(
-      FilterChanging _value, $Res Function(FilterChanging) _then)
-      : super(_value, (v) => _then(v as FilterChanging));
+class __$$FilterChangingCopyWithImpl<$Res>
+    extends _$FilterStateCopyWithImpl<$Res>
+    implements _$$FilterChangingCopyWith<$Res> {
+  __$$FilterChangingCopyWithImpl(
+      _$FilterChanging _value, $Res Function(_$FilterChanging) _then)
+      : super(_value, (v) => _then(v as _$FilterChanging));
 
   @override
-  FilterChanging get _value => super._value as FilterChanging;
+  _$FilterChanging get _value => super._value as _$FilterChanging;
 
   @override
   $Res call({
     Object? activeFilter = freezed,
     Object? activeSort = freezed,
   }) {
-    return _then(FilterChanging(
+    return _then(_$FilterChanging(
       activeFilter == freezed
           ? _value.activeFilter
           : activeFilter // ignore: cast_nullable_to_non_nullable
@@ -1304,20 +1248,23 @@ class _$FilterChanging implements FilterChanging {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FilterChanging &&
-            (identical(other.activeFilter, activeFilter) ||
-                other.activeFilter == activeFilter) &&
-            (identical(other.activeSort, activeSort) ||
-                other.activeSort == activeSort));
+            other is _$FilterChanging &&
+            const DeepCollectionEquality()
+                .equals(other.activeFilter, activeFilter) &&
+            const DeepCollectionEquality()
+                .equals(other.activeSort, activeSort));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, activeFilter, activeSort);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(activeFilter),
+      const DeepCollectionEquality().hash(activeSort));
 
   @JsonKey(ignore: true)
   @override
-  $FilterChangingCopyWith<FilterChanging> get copyWith =>
-      _$FilterChangingCopyWithImpl<FilterChanging>(this, _$identity);
+  _$$FilterChangingCopyWith<_$FilterChanging> get copyWith =>
+      __$$FilterChangingCopyWithImpl<_$FilterChanging>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1399,20 +1346,21 @@ class _$FilterChanging implements FilterChanging {
 
 abstract class FilterChanging implements FilterState {
   const factory FilterChanging(
-      ActiveFilter activeFilter, ActiveSort activeSort) = _$FilterChanging;
+          final ActiveFilter activeFilter, final ActiveSort activeSort) =
+      _$FilterChanging;
 
-  ActiveFilter get activeFilter;
-  ActiveSort get activeSort;
+  ActiveFilter get activeFilter => throw _privateConstructorUsedError;
+  ActiveSort get activeSort => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FilterChangingCopyWith<FilterChanging> get copyWith =>
+  _$$FilterChangingCopyWith<_$FilterChanging> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FilterLoadedCopyWith<$Res> {
-  factory $FilterLoadedCopyWith(
-          FilterLoaded value, $Res Function(FilterLoaded) then) =
-      _$FilterLoadedCopyWithImpl<$Res>;
+abstract class _$$FilterLoadedCopyWith<$Res> {
+  factory _$$FilterLoadedCopyWith(
+          _$FilterLoaded value, $Res Function(_$FilterLoaded) then) =
+      __$$FilterLoadedCopyWithImpl<$Res>;
   $Res call(
       {List<Transaction> transactions,
       ActiveFilter activeFilter,
@@ -1421,14 +1369,14 @@ abstract class $FilterLoadedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FilterLoadedCopyWithImpl<$Res> extends _$FilterStateCopyWithImpl<$Res>
-    implements $FilterLoadedCopyWith<$Res> {
-  _$FilterLoadedCopyWithImpl(
-      FilterLoaded _value, $Res Function(FilterLoaded) _then)
-      : super(_value, (v) => _then(v as FilterLoaded));
+class __$$FilterLoadedCopyWithImpl<$Res> extends _$FilterStateCopyWithImpl<$Res>
+    implements _$$FilterLoadedCopyWith<$Res> {
+  __$$FilterLoadedCopyWithImpl(
+      _$FilterLoaded _value, $Res Function(_$FilterLoaded) _then)
+      : super(_value, (v) => _then(v as _$FilterLoaded));
 
   @override
-  FilterLoaded get _value => super._value as FilterLoaded;
+  _$FilterLoaded get _value => super._value as _$FilterLoaded;
 
   @override
   $Res call({
@@ -1437,9 +1385,9 @@ class _$FilterLoadedCopyWithImpl<$Res> extends _$FilterStateCopyWithImpl<$Res>
     Object? activeSort = freezed,
     Object? date = freezed,
   }) {
-    return _then(FilterLoaded(
+    return _then(_$FilterLoaded(
       transactions == freezed
-          ? _value.transactions
+          ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<Transaction>,
       activeFilter == freezed
@@ -1461,11 +1409,17 @@ class _$FilterLoadedCopyWithImpl<$Res> extends _$FilterStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FilterLoaded implements FilterLoaded {
-  const _$FilterLoaded(
-      this.transactions, this.activeFilter, this.activeSort, this.date);
+  const _$FilterLoaded(final List<Transaction> transactions, this.activeFilter,
+      this.activeSort, this.date)
+      : _transactions = transactions;
 
+  final List<Transaction> _transactions;
   @override
-  final List<Transaction> transactions;
+  List<Transaction> get transactions {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactions);
+  }
+
   @override
   final ActiveFilter activeFilter;
   @override
@@ -1482,28 +1436,28 @@ class _$FilterLoaded implements FilterLoaded {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FilterLoaded &&
+            other is _$FilterLoaded &&
             const DeepCollectionEquality()
-                .equals(other.transactions, transactions) &&
-            (identical(other.activeFilter, activeFilter) ||
-                other.activeFilter == activeFilter) &&
-            (identical(other.activeSort, activeSort) ||
-                other.activeSort == activeSort) &&
-            (identical(other.date, date) || other.date == date));
+                .equals(other._transactions, _transactions) &&
+            const DeepCollectionEquality()
+                .equals(other.activeFilter, activeFilter) &&
+            const DeepCollectionEquality()
+                .equals(other.activeSort, activeSort) &&
+            const DeepCollectionEquality().equals(other.date, date));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(transactions),
-      activeFilter,
-      activeSort,
-      date);
+      const DeepCollectionEquality().hash(_transactions),
+      const DeepCollectionEquality().hash(activeFilter),
+      const DeepCollectionEquality().hash(activeSort),
+      const DeepCollectionEquality().hash(date));
 
   @JsonKey(ignore: true)
   @override
-  $FilterLoadedCopyWith<FilterLoaded> get copyWith =>
-      _$FilterLoadedCopyWithImpl<FilterLoaded>(this, _$identity);
+  _$$FilterLoadedCopyWith<_$FilterLoaded> get copyWith =>
+      __$$FilterLoadedCopyWithImpl<_$FilterLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1585,16 +1539,16 @@ class _$FilterLoaded implements FilterLoaded {
 
 abstract class FilterLoaded implements FilterState {
   const factory FilterLoaded(
-      List<Transaction> transactions,
-      ActiveFilter activeFilter,
-      ActiveSort activeSort,
-      DateTime date) = _$FilterLoaded;
+      final List<Transaction> transactions,
+      final ActiveFilter activeFilter,
+      final ActiveSort activeSort,
+      final DateTime date) = _$FilterLoaded;
 
-  List<Transaction> get transactions;
-  ActiveFilter get activeFilter;
-  ActiveSort get activeSort;
-  DateTime get date;
+  List<Transaction> get transactions => throw _privateConstructorUsedError;
+  ActiveFilter get activeFilter => throw _privateConstructorUsedError;
+  ActiveSort get activeSort => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FilterLoadedCopyWith<FilterLoaded> get copyWith =>
+  _$$FilterLoadedCopyWith<_$FilterLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }

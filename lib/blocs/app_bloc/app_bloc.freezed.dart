@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'app_bloc.dart';
@@ -11,35 +12,7 @@ part of 'app_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AppEventTearOff {
-  const _$AppEventTearOff();
-
-  AppStarted appStarted() {
-    return const AppStarted();
-  }
-
-  AppLogOutRequested appLogOutRequested() {
-    return const AppLogOutRequested();
-  }
-
-  AppUserChanged appUserChanged(User user) {
-    return AppUserChanged(
-      user,
-    );
-  }
-
-  UserChangeAvatar userChangeAvatar(String avt) {
-    return UserChangeAvatar(
-      avt,
-    );
-  }
-}
-
-/// @nodoc
-const $AppEvent = _$AppEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AppEvent {
@@ -111,20 +84,21 @@ class _$AppEventCopyWithImpl<$Res> implements $AppEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $AppStartedCopyWith<$Res> {
-  factory $AppStartedCopyWith(
-          AppStarted value, $Res Function(AppStarted) then) =
-      _$AppStartedCopyWithImpl<$Res>;
+abstract class _$$AppStartedCopyWith<$Res> {
+  factory _$$AppStartedCopyWith(
+          _$AppStarted value, $Res Function(_$AppStarted) then) =
+      __$$AppStartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AppStartedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
-    implements $AppStartedCopyWith<$Res> {
-  _$AppStartedCopyWithImpl(AppStarted _value, $Res Function(AppStarted) _then)
-      : super(_value, (v) => _then(v as AppStarted));
+class __$$AppStartedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
+    implements _$$AppStartedCopyWith<$Res> {
+  __$$AppStartedCopyWithImpl(
+      _$AppStarted _value, $Res Function(_$AppStarted) _then)
+      : super(_value, (v) => _then(v as _$AppStarted));
 
   @override
-  AppStarted get _value => super._value as AppStarted;
+  _$AppStarted get _value => super._value as _$AppStarted;
 }
 
 /// @nodoc
@@ -140,7 +114,7 @@ class _$AppStarted implements AppStarted {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is AppStarted);
+        (other.runtimeType == runtimeType && other is _$AppStarted);
   }
 
   @override
@@ -226,22 +200,22 @@ abstract class AppStarted implements AppEvent {
 }
 
 /// @nodoc
-abstract class $AppLogOutRequestedCopyWith<$Res> {
-  factory $AppLogOutRequestedCopyWith(
-          AppLogOutRequested value, $Res Function(AppLogOutRequested) then) =
-      _$AppLogOutRequestedCopyWithImpl<$Res>;
+abstract class _$$AppLogOutRequestedCopyWith<$Res> {
+  factory _$$AppLogOutRequestedCopyWith(_$AppLogOutRequested value,
+          $Res Function(_$AppLogOutRequested) then) =
+      __$$AppLogOutRequestedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AppLogOutRequestedCopyWithImpl<$Res>
+class __$$AppLogOutRequestedCopyWithImpl<$Res>
     extends _$AppEventCopyWithImpl<$Res>
-    implements $AppLogOutRequestedCopyWith<$Res> {
-  _$AppLogOutRequestedCopyWithImpl(
-      AppLogOutRequested _value, $Res Function(AppLogOutRequested) _then)
-      : super(_value, (v) => _then(v as AppLogOutRequested));
+    implements _$$AppLogOutRequestedCopyWith<$Res> {
+  __$$AppLogOutRequestedCopyWithImpl(
+      _$AppLogOutRequested _value, $Res Function(_$AppLogOutRequested) _then)
+      : super(_value, (v) => _then(v as _$AppLogOutRequested));
 
   @override
-  AppLogOutRequested get _value => super._value as AppLogOutRequested;
+  _$AppLogOutRequested get _value => super._value as _$AppLogOutRequested;
 }
 
 /// @nodoc
@@ -257,7 +231,7 @@ class _$AppLogOutRequested implements AppLogOutRequested {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is AppLogOutRequested);
+        (other.runtimeType == runtimeType && other is _$AppLogOutRequested);
   }
 
   @override
@@ -343,28 +317,28 @@ abstract class AppLogOutRequested implements AppEvent {
 }
 
 /// @nodoc
-abstract class $AppUserChangedCopyWith<$Res> {
-  factory $AppUserChangedCopyWith(
-          AppUserChanged value, $Res Function(AppUserChanged) then) =
-      _$AppUserChangedCopyWithImpl<$Res>;
+abstract class _$$AppUserChangedCopyWith<$Res> {
+  factory _$$AppUserChangedCopyWith(
+          _$AppUserChanged value, $Res Function(_$AppUserChanged) then) =
+      __$$AppUserChangedCopyWithImpl<$Res>;
   $Res call({User user});
 }
 
 /// @nodoc
-class _$AppUserChangedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
-    implements $AppUserChangedCopyWith<$Res> {
-  _$AppUserChangedCopyWithImpl(
-      AppUserChanged _value, $Res Function(AppUserChanged) _then)
-      : super(_value, (v) => _then(v as AppUserChanged));
+class __$$AppUserChangedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
+    implements _$$AppUserChangedCopyWith<$Res> {
+  __$$AppUserChangedCopyWithImpl(
+      _$AppUserChanged _value, $Res Function(_$AppUserChanged) _then)
+      : super(_value, (v) => _then(v as _$AppUserChanged));
 
   @override
-  AppUserChanged get _value => super._value as AppUserChanged;
+  _$AppUserChanged get _value => super._value as _$AppUserChanged;
 
   @override
   $Res call({
     Object? user = freezed,
   }) {
-    return _then(AppUserChanged(
+    return _then(_$AppUserChanged(
       user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -390,17 +364,18 @@ class _$AppUserChanged implements AppUserChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AppUserChanged &&
-            (identical(other.user, user) || other.user == user));
+            other is _$AppUserChanged &&
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
   @override
-  $AppUserChangedCopyWith<AppUserChanged> get copyWith =>
-      _$AppUserChangedCopyWithImpl<AppUserChanged>(this, _$identity);
+  _$$AppUserChangedCopyWith<_$AppUserChanged> get copyWith =>
+      __$$AppUserChangedCopyWithImpl<_$AppUserChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -478,37 +453,38 @@ class _$AppUserChanged implements AppUserChanged {
 }
 
 abstract class AppUserChanged implements AppEvent {
-  const factory AppUserChanged(User user) = _$AppUserChanged;
+  const factory AppUserChanged(final User user) = _$AppUserChanged;
 
-  User get user;
+  User get user => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AppUserChangedCopyWith<AppUserChanged> get copyWith =>
+  _$$AppUserChangedCopyWith<_$AppUserChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserChangeAvatarCopyWith<$Res> {
-  factory $UserChangeAvatarCopyWith(
-          UserChangeAvatar value, $Res Function(UserChangeAvatar) then) =
-      _$UserChangeAvatarCopyWithImpl<$Res>;
+abstract class _$$UserChangeAvatarCopyWith<$Res> {
+  factory _$$UserChangeAvatarCopyWith(
+          _$UserChangeAvatar value, $Res Function(_$UserChangeAvatar) then) =
+      __$$UserChangeAvatarCopyWithImpl<$Res>;
   $Res call({String avt});
 }
 
 /// @nodoc
-class _$UserChangeAvatarCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
-    implements $UserChangeAvatarCopyWith<$Res> {
-  _$UserChangeAvatarCopyWithImpl(
-      UserChangeAvatar _value, $Res Function(UserChangeAvatar) _then)
-      : super(_value, (v) => _then(v as UserChangeAvatar));
+class __$$UserChangeAvatarCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res>
+    implements _$$UserChangeAvatarCopyWith<$Res> {
+  __$$UserChangeAvatarCopyWithImpl(
+      _$UserChangeAvatar _value, $Res Function(_$UserChangeAvatar) _then)
+      : super(_value, (v) => _then(v as _$UserChangeAvatar));
 
   @override
-  UserChangeAvatar get _value => super._value as UserChangeAvatar;
+  _$UserChangeAvatar get _value => super._value as _$UserChangeAvatar;
 
   @override
   $Res call({
     Object? avt = freezed,
   }) {
-    return _then(UserChangeAvatar(
+    return _then(_$UserChangeAvatar(
       avt == freezed
           ? _value.avt
           : avt // ignore: cast_nullable_to_non_nullable
@@ -534,17 +510,18 @@ class _$UserChangeAvatar implements UserChangeAvatar {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserChangeAvatar &&
-            (identical(other.avt, avt) || other.avt == avt));
+            other is _$UserChangeAvatar &&
+            const DeepCollectionEquality().equals(other.avt, avt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, avt);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(avt));
 
   @JsonKey(ignore: true)
   @override
-  $UserChangeAvatarCopyWith<UserChangeAvatar> get copyWith =>
-      _$UserChangeAvatarCopyWithImpl<UserChangeAvatar>(this, _$identity);
+  _$$UserChangeAvatarCopyWith<_$UserChangeAvatar> get copyWith =>
+      __$$UserChangeAvatarCopyWithImpl<_$UserChangeAvatar>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -622,49 +599,17 @@ class _$UserChangeAvatar implements UserChangeAvatar {
 }
 
 abstract class UserChangeAvatar implements AppEvent {
-  const factory UserChangeAvatar(String avt) = _$UserChangeAvatar;
+  const factory UserChangeAvatar(final String avt) = _$UserChangeAvatar;
 
-  String get avt;
+  String get avt => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserChangeAvatarCopyWith<UserChangeAvatar> get copyWith =>
+  _$$UserChangeAvatarCopyWith<_$UserChangeAvatar> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class _$AppStateTearOff {
-  const _$AppStateTearOff();
-
-  Unauthenticated unauthenticated(
-      {User user = User.empty, AppStatus status = AppStatus.unauthenticated}) {
-    return Unauthenticated(
-      user: user,
-      status: status,
-    );
-  }
-
-  Authenticated authenticated(
-      {AppStatus status = AppStatus.authenticated, required User user}) {
-    return Authenticated(
-      status: status,
-      user: user,
-    );
-  }
-
-  FirstTimeOpened firstTimeOpened(
-      {AppStatus status = AppStatus.firstTimeOpened}) {
-    return FirstTimeOpened(
-      status: status,
-    );
-  }
-}
-
-/// @nodoc
-const $AppState = _$AppStateTearOff();
-
-/// @nodoc
 mixin _$AppState {
   AppStatus get status => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(User user, AppStatus status) unauthenticated,
@@ -744,31 +689,31 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $UnauthenticatedCopyWith<$Res>
+abstract class _$$UnauthenticatedCopyWith<$Res>
     implements $AppStateCopyWith<$Res> {
-  factory $UnauthenticatedCopyWith(
-          Unauthenticated value, $Res Function(Unauthenticated) then) =
-      _$UnauthenticatedCopyWithImpl<$Res>;
+  factory _$$UnauthenticatedCopyWith(
+          _$Unauthenticated value, $Res Function(_$Unauthenticated) then) =
+      __$$UnauthenticatedCopyWithImpl<$Res>;
   @override
   $Res call({User user, AppStatus status});
 }
 
 /// @nodoc
-class _$UnauthenticatedCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
-    implements $UnauthenticatedCopyWith<$Res> {
-  _$UnauthenticatedCopyWithImpl(
-      Unauthenticated _value, $Res Function(Unauthenticated) _then)
-      : super(_value, (v) => _then(v as Unauthenticated));
+class __$$UnauthenticatedCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
+    implements _$$UnauthenticatedCopyWith<$Res> {
+  __$$UnauthenticatedCopyWithImpl(
+      _$Unauthenticated _value, $Res Function(_$Unauthenticated) _then)
+      : super(_value, (v) => _then(v as _$Unauthenticated));
 
   @override
-  Unauthenticated get _value => super._value as Unauthenticated;
+  _$Unauthenticated get _value => super._value as _$Unauthenticated;
 
   @override
   $Res call({
     Object? user = freezed,
     Object? status = freezed,
   }) {
-    return _then(Unauthenticated(
+    return _then(_$Unauthenticated(
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -788,11 +733,11 @@ class _$Unauthenticated extends Unauthenticated {
       {this.user = User.empty, this.status = AppStatus.unauthenticated})
       : super._();
 
-  @JsonKey(defaultValue: User.empty)
   @override
+  @JsonKey()
   final User user;
-  @JsonKey(defaultValue: AppStatus.unauthenticated)
   @override
+  @JsonKey()
   final AppStatus status;
 
   @override
@@ -804,18 +749,21 @@ class _$Unauthenticated extends Unauthenticated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Unauthenticated &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.status, status) || other.status == status));
+            other is _$Unauthenticated &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
-  $UnauthenticatedCopyWith<Unauthenticated> get copyWith =>
-      _$UnauthenticatedCopyWithImpl<Unauthenticated>(this, _$identity);
+  _$$UnauthenticatedCopyWith<_$Unauthenticated> get copyWith =>
+      __$$UnauthenticatedCopyWithImpl<_$Unauthenticated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -887,44 +835,45 @@ class _$Unauthenticated extends Unauthenticated {
 }
 
 abstract class Unauthenticated extends AppState {
-  const factory Unauthenticated({User user, AppStatus status}) =
+  const factory Unauthenticated({final User user, final AppStatus status}) =
       _$Unauthenticated;
   const Unauthenticated._() : super._();
 
-  User get user;
+  User get user => throw _privateConstructorUsedError;
   @override
-  AppStatus get status;
+  AppStatus get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $UnauthenticatedCopyWith<Unauthenticated> get copyWith =>
+  _$$UnauthenticatedCopyWith<_$Unauthenticated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthenticatedCopyWith<$Res> implements $AppStateCopyWith<$Res> {
-  factory $AuthenticatedCopyWith(
-          Authenticated value, $Res Function(Authenticated) then) =
-      _$AuthenticatedCopyWithImpl<$Res>;
+abstract class _$$AuthenticatedCopyWith<$Res>
+    implements $AppStateCopyWith<$Res> {
+  factory _$$AuthenticatedCopyWith(
+          _$Authenticated value, $Res Function(_$Authenticated) then) =
+      __$$AuthenticatedCopyWithImpl<$Res>;
   @override
   $Res call({AppStatus status, User user});
 }
 
 /// @nodoc
-class _$AuthenticatedCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
-    implements $AuthenticatedCopyWith<$Res> {
-  _$AuthenticatedCopyWithImpl(
-      Authenticated _value, $Res Function(Authenticated) _then)
-      : super(_value, (v) => _then(v as Authenticated));
+class __$$AuthenticatedCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
+    implements _$$AuthenticatedCopyWith<$Res> {
+  __$$AuthenticatedCopyWithImpl(
+      _$Authenticated _value, $Res Function(_$Authenticated) _then)
+      : super(_value, (v) => _then(v as _$Authenticated));
 
   @override
-  Authenticated get _value => super._value as Authenticated;
+  _$Authenticated get _value => super._value as _$Authenticated;
 
   @override
   $Res call({
     Object? status = freezed,
     Object? user = freezed,
   }) {
-    return _then(Authenticated(
+    return _then(_$Authenticated(
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -944,8 +893,8 @@ class _$Authenticated extends Authenticated {
       {this.status = AppStatus.authenticated, required this.user})
       : super._();
 
-  @JsonKey(defaultValue: AppStatus.authenticated)
   @override
+  @JsonKey()
   final AppStatus status;
   @override
   final User user;
@@ -959,18 +908,21 @@ class _$Authenticated extends Authenticated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Authenticated &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.user, user) || other.user == user));
+            other is _$Authenticated &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, user);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
   @override
-  $AuthenticatedCopyWith<Authenticated> get copyWith =>
-      _$AuthenticatedCopyWithImpl<Authenticated>(this, _$identity);
+  _$$AuthenticatedCopyWith<_$Authenticated> get copyWith =>
+      __$$AuthenticatedCopyWithImpl<_$Authenticated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1042,44 +994,44 @@ class _$Authenticated extends Authenticated {
 }
 
 abstract class Authenticated extends AppState {
-  const factory Authenticated({AppStatus status, required User user}) =
-      _$Authenticated;
+  const factory Authenticated(
+      {final AppStatus status, required final User user}) = _$Authenticated;
   const Authenticated._() : super._();
 
   @override
-  AppStatus get status;
-  User get user;
+  AppStatus get status => throw _privateConstructorUsedError;
+  User get user => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $AuthenticatedCopyWith<Authenticated> get copyWith =>
+  _$$AuthenticatedCopyWith<_$Authenticated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FirstTimeOpenedCopyWith<$Res>
+abstract class _$$FirstTimeOpenedCopyWith<$Res>
     implements $AppStateCopyWith<$Res> {
-  factory $FirstTimeOpenedCopyWith(
-          FirstTimeOpened value, $Res Function(FirstTimeOpened) then) =
-      _$FirstTimeOpenedCopyWithImpl<$Res>;
+  factory _$$FirstTimeOpenedCopyWith(
+          _$FirstTimeOpened value, $Res Function(_$FirstTimeOpened) then) =
+      __$$FirstTimeOpenedCopyWithImpl<$Res>;
   @override
   $Res call({AppStatus status});
 }
 
 /// @nodoc
-class _$FirstTimeOpenedCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
-    implements $FirstTimeOpenedCopyWith<$Res> {
-  _$FirstTimeOpenedCopyWithImpl(
-      FirstTimeOpened _value, $Res Function(FirstTimeOpened) _then)
-      : super(_value, (v) => _then(v as FirstTimeOpened));
+class __$$FirstTimeOpenedCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
+    implements _$$FirstTimeOpenedCopyWith<$Res> {
+  __$$FirstTimeOpenedCopyWithImpl(
+      _$FirstTimeOpened _value, $Res Function(_$FirstTimeOpened) _then)
+      : super(_value, (v) => _then(v as _$FirstTimeOpened));
 
   @override
-  FirstTimeOpened get _value => super._value as FirstTimeOpened;
+  _$FirstTimeOpened get _value => super._value as _$FirstTimeOpened;
 
   @override
   $Res call({
     Object? status = freezed,
   }) {
-    return _then(FirstTimeOpened(
+    return _then(_$FirstTimeOpened(
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -1094,8 +1046,8 @@ class _$FirstTimeOpened extends FirstTimeOpened {
   const _$FirstTimeOpened({this.status = AppStatus.firstTimeOpened})
       : super._();
 
-  @JsonKey(defaultValue: AppStatus.firstTimeOpened)
   @override
+  @JsonKey()
   final AppStatus status;
 
   @override
@@ -1107,17 +1059,18 @@ class _$FirstTimeOpened extends FirstTimeOpened {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FirstTimeOpened &&
-            (identical(other.status, status) || other.status == status));
+            other is _$FirstTimeOpened &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
-  $FirstTimeOpenedCopyWith<FirstTimeOpened> get copyWith =>
-      _$FirstTimeOpenedCopyWithImpl<FirstTimeOpened>(this, _$identity);
+  _$$FirstTimeOpenedCopyWith<_$FirstTimeOpened> get copyWith =>
+      __$$FirstTimeOpenedCopyWithImpl<_$FirstTimeOpened>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1189,13 +1142,13 @@ class _$FirstTimeOpened extends FirstTimeOpened {
 }
 
 abstract class FirstTimeOpened extends AppState {
-  const factory FirstTimeOpened({AppStatus status}) = _$FirstTimeOpened;
+  const factory FirstTimeOpened({final AppStatus status}) = _$FirstTimeOpened;
   const FirstTimeOpened._() : super._();
 
   @override
-  AppStatus get status;
+  AppStatus get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $FirstTimeOpenedCopyWith<FirstTimeOpened> get copyWith =>
+  _$$FirstTimeOpenedCopyWith<_$FirstTimeOpened> get copyWith =>
       throw _privateConstructorUsedError;
 }

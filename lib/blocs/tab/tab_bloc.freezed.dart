@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'tab_bloc.dart';
@@ -11,26 +12,11 @@ part of 'tab_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$TabEventTearOff {
-  const _$TabEventTearOff();
-
-  TabChanged tabChanged(AppTab tab) {
-    return TabChanged(
-      tab,
-    );
-  }
-}
-
-/// @nodoc
-const $TabEvent = _$TabEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$TabEvent {
   AppTab get tab => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppTab tab) tabChanged,
@@ -98,28 +84,29 @@ class _$TabEventCopyWithImpl<$Res> implements $TabEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $TabChangedCopyWith<$Res> implements $TabEventCopyWith<$Res> {
-  factory $TabChangedCopyWith(
-          TabChanged value, $Res Function(TabChanged) then) =
-      _$TabChangedCopyWithImpl<$Res>;
+abstract class _$$TabChangedCopyWith<$Res> implements $TabEventCopyWith<$Res> {
+  factory _$$TabChangedCopyWith(
+          _$TabChanged value, $Res Function(_$TabChanged) then) =
+      __$$TabChangedCopyWithImpl<$Res>;
   @override
   $Res call({AppTab tab});
 }
 
 /// @nodoc
-class _$TabChangedCopyWithImpl<$Res> extends _$TabEventCopyWithImpl<$Res>
-    implements $TabChangedCopyWith<$Res> {
-  _$TabChangedCopyWithImpl(TabChanged _value, $Res Function(TabChanged) _then)
-      : super(_value, (v) => _then(v as TabChanged));
+class __$$TabChangedCopyWithImpl<$Res> extends _$TabEventCopyWithImpl<$Res>
+    implements _$$TabChangedCopyWith<$Res> {
+  __$$TabChangedCopyWithImpl(
+      _$TabChanged _value, $Res Function(_$TabChanged) _then)
+      : super(_value, (v) => _then(v as _$TabChanged));
 
   @override
-  TabChanged get _value => super._value as TabChanged;
+  _$TabChanged get _value => super._value as _$TabChanged;
 
   @override
   $Res call({
     Object? tab = freezed,
   }) {
-    return _then(TabChanged(
+    return _then(_$TabChanged(
       tab == freezed
           ? _value.tab
           : tab // ignore: cast_nullable_to_non_nullable
@@ -145,17 +132,18 @@ class _$TabChanged implements TabChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TabChanged &&
-            (identical(other.tab, tab) || other.tab == tab));
+            other is _$TabChanged &&
+            const DeepCollectionEquality().equals(other.tab, tab));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, tab);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(tab));
 
   @JsonKey(ignore: true)
   @override
-  $TabChangedCopyWith<TabChanged> get copyWith =>
-      _$TabChangedCopyWithImpl<TabChanged>(this, _$identity);
+  _$$TabChangedCopyWith<_$TabChanged> get copyWith =>
+      __$$TabChangedCopyWithImpl<_$TabChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -215,12 +203,12 @@ class _$TabChanged implements TabChanged {
 }
 
 abstract class TabChanged implements TabEvent {
-  const factory TabChanged(AppTab tab) = _$TabChanged;
+  const factory TabChanged(final AppTab tab) = _$TabChanged;
 
   @override
-  AppTab get tab;
+  AppTab get tab => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $TabChangedCopyWith<TabChanged> get copyWith =>
+  _$$TabChangedCopyWith<_$TabChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }

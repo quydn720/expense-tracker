@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'signup_cubit.dart';
@@ -11,30 +12,7 @@ part of 'signup_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SignupStateTearOff {
-  const _$SignupStateTearOff();
-
-  _SignupState call(
-      {String? errorMessage,
-      Email email = const Email.pure(),
-      Password password = const Password.pure(),
-      ConfirmedPassword confirmedPassword = const ConfirmedPassword.pure(),
-      FormzStatus status = FormzStatus.pure}) {
-    return _SignupState(
-      errorMessage: errorMessage,
-      email: email,
-      password: password,
-      confirmedPassword: confirmedPassword,
-      status: status,
-    );
-  }
-}
-
-/// @nodoc
-const $SignupState = _$SignupStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SignupState {
@@ -104,11 +82,11 @@ class _$SignupStateCopyWithImpl<$Res> implements $SignupStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SignupStateCopyWith<$Res>
+abstract class _$$_SignupStateCopyWith<$Res>
     implements $SignupStateCopyWith<$Res> {
-  factory _$SignupStateCopyWith(
-          _SignupState value, $Res Function(_SignupState) then) =
-      __$SignupStateCopyWithImpl<$Res>;
+  factory _$$_SignupStateCopyWith(
+          _$_SignupState value, $Res Function(_$_SignupState) then) =
+      __$$_SignupStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? errorMessage,
@@ -119,14 +97,14 @@ abstract class _$SignupStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SignupStateCopyWithImpl<$Res> extends _$SignupStateCopyWithImpl<$Res>
-    implements _$SignupStateCopyWith<$Res> {
-  __$SignupStateCopyWithImpl(
-      _SignupState _value, $Res Function(_SignupState) _then)
-      : super(_value, (v) => _then(v as _SignupState));
+class __$$_SignupStateCopyWithImpl<$Res> extends _$SignupStateCopyWithImpl<$Res>
+    implements _$$_SignupStateCopyWith<$Res> {
+  __$$_SignupStateCopyWithImpl(
+      _$_SignupState _value, $Res Function(_$_SignupState) _then)
+      : super(_value, (v) => _then(v as _$_SignupState));
 
   @override
-  _SignupState get _value => super._value as _SignupState;
+  _$_SignupState get _value => super._value as _$_SignupState;
 
   @override
   $Res call({
@@ -136,7 +114,7 @@ class __$SignupStateCopyWithImpl<$Res> extends _$SignupStateCopyWithImpl<$Res>
     Object? confirmedPassword = freezed,
     Object? status = freezed,
   }) {
-    return _then(_SignupState(
+    return _then(_$_SignupState(
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -173,17 +151,17 @@ class _$_SignupState implements _SignupState {
 
   @override
   final String? errorMessage;
-  @JsonKey(defaultValue: const Email.pure())
   @override
+  @JsonKey()
   final Email email;
-  @JsonKey(defaultValue: const Password.pure())
   @override
+  @JsonKey()
   final Password password;
-  @JsonKey(defaultValue: const ConfirmedPassword.pure())
   @override
+  @JsonKey()
   final ConfirmedPassword confirmedPassword;
-  @JsonKey(defaultValue: FormzStatus.pure)
   @override
+  @JsonKey()
   final FormzStatus status;
 
   @override
@@ -195,47 +173,51 @@ class _$_SignupState implements _SignupState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SignupState &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.confirmedPassword, confirmedPassword) ||
-                other.confirmedPassword == confirmedPassword) &&
-            (identical(other.status, status) || other.status == status));
+            other is _$_SignupState &&
+            const DeepCollectionEquality()
+                .equals(other.errorMessage, errorMessage) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality()
+                .equals(other.confirmedPassword, confirmedPassword) &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, errorMessage, email, password, confirmedPassword, status);
+      runtimeType,
+      const DeepCollectionEquality().hash(errorMessage),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(confirmedPassword),
+      const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
-  _$SignupStateCopyWith<_SignupState> get copyWith =>
-      __$SignupStateCopyWithImpl<_SignupState>(this, _$identity);
+  _$$_SignupStateCopyWith<_$_SignupState> get copyWith =>
+      __$$_SignupStateCopyWithImpl<_$_SignupState>(this, _$identity);
 }
 
 abstract class _SignupState implements SignupState {
   const factory _SignupState(
-      {String? errorMessage,
-      Email email,
-      Password password,
-      ConfirmedPassword confirmedPassword,
-      FormzStatus status}) = _$_SignupState;
+      {final String? errorMessage,
+      final Email email,
+      final Password password,
+      final ConfirmedPassword confirmedPassword,
+      final FormzStatus status}) = _$_SignupState;
 
   @override
-  String? get errorMessage;
+  String? get errorMessage => throw _privateConstructorUsedError;
   @override
-  Email get email;
+  Email get email => throw _privateConstructorUsedError;
   @override
-  Password get password;
+  Password get password => throw _privateConstructorUsedError;
   @override
-  ConfirmedPassword get confirmedPassword;
+  ConfirmedPassword get confirmedPassword => throw _privateConstructorUsedError;
   @override
-  FormzStatus get status;
+  FormzStatus get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SignupStateCopyWith<_SignupState> get copyWith =>
+  _$$_SignupStateCopyWith<_$_SignupState> get copyWith =>
       throw _privateConstructorUsedError;
 }

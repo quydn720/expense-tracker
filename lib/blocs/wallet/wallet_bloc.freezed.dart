@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'wallet_bloc.dart';
@@ -11,43 +12,7 @@ part of 'wallet_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$WalletEventTearOff {
-  const _$WalletEventTearOff();
-
-  LoadWallets loadWallets() {
-    return const LoadWallets();
-  }
-
-  AddWallet addTransaction(Wallet wallet) {
-    return AddWallet(
-      wallet,
-    );
-  }
-
-  DeleteWallet deleteWallet(Wallet wallet) {
-    return DeleteWallet(
-      wallet,
-    );
-  }
-
-  UpdateWallet updateWallet(Wallet updatedWallet) {
-    return UpdateWallet(
-      updatedWallet,
-    );
-  }
-
-  WalletUpdated walletUpdated(List<Wallet> wallets) {
-    return WalletUpdated(
-      wallets,
-    );
-  }
-}
-
-/// @nodoc
-const $WalletEvent = _$WalletEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$WalletEvent {
@@ -126,21 +91,21 @@ class _$WalletEventCopyWithImpl<$Res> implements $WalletEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $LoadWalletsCopyWith<$Res> {
-  factory $LoadWalletsCopyWith(
-          LoadWallets value, $Res Function(LoadWallets) then) =
-      _$LoadWalletsCopyWithImpl<$Res>;
+abstract class _$$LoadWalletsCopyWith<$Res> {
+  factory _$$LoadWalletsCopyWith(
+          _$LoadWallets value, $Res Function(_$LoadWallets) then) =
+      __$$LoadWalletsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadWalletsCopyWithImpl<$Res> extends _$WalletEventCopyWithImpl<$Res>
-    implements $LoadWalletsCopyWith<$Res> {
-  _$LoadWalletsCopyWithImpl(
-      LoadWallets _value, $Res Function(LoadWallets) _then)
-      : super(_value, (v) => _then(v as LoadWallets));
+class __$$LoadWalletsCopyWithImpl<$Res> extends _$WalletEventCopyWithImpl<$Res>
+    implements _$$LoadWalletsCopyWith<$Res> {
+  __$$LoadWalletsCopyWithImpl(
+      _$LoadWallets _value, $Res Function(_$LoadWallets) _then)
+      : super(_value, (v) => _then(v as _$LoadWallets));
 
   @override
-  LoadWallets get _value => super._value as LoadWallets;
+  _$LoadWallets get _value => super._value as _$LoadWallets;
 }
 
 /// @nodoc
@@ -156,7 +121,7 @@ class _$LoadWallets implements LoadWallets {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is LoadWallets);
+        (other.runtimeType == runtimeType && other is _$LoadWallets);
   }
 
   @override
@@ -248,26 +213,28 @@ abstract class LoadWallets implements WalletEvent {
 }
 
 /// @nodoc
-abstract class $AddWalletCopyWith<$Res> {
-  factory $AddWalletCopyWith(AddWallet value, $Res Function(AddWallet) then) =
-      _$AddWalletCopyWithImpl<$Res>;
+abstract class _$$AddWalletCopyWith<$Res> {
+  factory _$$AddWalletCopyWith(
+          _$AddWallet value, $Res Function(_$AddWallet) then) =
+      __$$AddWalletCopyWithImpl<$Res>;
   $Res call({Wallet wallet});
 }
 
 /// @nodoc
-class _$AddWalletCopyWithImpl<$Res> extends _$WalletEventCopyWithImpl<$Res>
-    implements $AddWalletCopyWith<$Res> {
-  _$AddWalletCopyWithImpl(AddWallet _value, $Res Function(AddWallet) _then)
-      : super(_value, (v) => _then(v as AddWallet));
+class __$$AddWalletCopyWithImpl<$Res> extends _$WalletEventCopyWithImpl<$Res>
+    implements _$$AddWalletCopyWith<$Res> {
+  __$$AddWalletCopyWithImpl(
+      _$AddWallet _value, $Res Function(_$AddWallet) _then)
+      : super(_value, (v) => _then(v as _$AddWallet));
 
   @override
-  AddWallet get _value => super._value as AddWallet;
+  _$AddWallet get _value => super._value as _$AddWallet;
 
   @override
   $Res call({
     Object? wallet = freezed,
   }) {
-    return _then(AddWallet(
+    return _then(_$AddWallet(
       wallet == freezed
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
@@ -293,17 +260,18 @@ class _$AddWallet implements AddWallet {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AddWallet &&
-            (identical(other.wallet, wallet) || other.wallet == wallet));
+            other is _$AddWallet &&
+            const DeepCollectionEquality().equals(other.wallet, wallet));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, wallet);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(wallet));
 
   @JsonKey(ignore: true)
   @override
-  $AddWalletCopyWith<AddWallet> get copyWith =>
-      _$AddWalletCopyWithImpl<AddWallet>(this, _$identity);
+  _$$AddWalletCopyWith<_$AddWallet> get copyWith =>
+      __$$AddWalletCopyWithImpl<_$AddWallet>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -387,37 +355,37 @@ class _$AddWallet implements AddWallet {
 }
 
 abstract class AddWallet implements WalletEvent {
-  const factory AddWallet(Wallet wallet) = _$AddWallet;
+  const factory AddWallet(final Wallet wallet) = _$AddWallet;
 
-  Wallet get wallet;
+  Wallet get wallet => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AddWalletCopyWith<AddWallet> get copyWith =>
+  _$$AddWalletCopyWith<_$AddWallet> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DeleteWalletCopyWith<$Res> {
-  factory $DeleteWalletCopyWith(
-          DeleteWallet value, $Res Function(DeleteWallet) then) =
-      _$DeleteWalletCopyWithImpl<$Res>;
+abstract class _$$DeleteWalletCopyWith<$Res> {
+  factory _$$DeleteWalletCopyWith(
+          _$DeleteWallet value, $Res Function(_$DeleteWallet) then) =
+      __$$DeleteWalletCopyWithImpl<$Res>;
   $Res call({Wallet wallet});
 }
 
 /// @nodoc
-class _$DeleteWalletCopyWithImpl<$Res> extends _$WalletEventCopyWithImpl<$Res>
-    implements $DeleteWalletCopyWith<$Res> {
-  _$DeleteWalletCopyWithImpl(
-      DeleteWallet _value, $Res Function(DeleteWallet) _then)
-      : super(_value, (v) => _then(v as DeleteWallet));
+class __$$DeleteWalletCopyWithImpl<$Res> extends _$WalletEventCopyWithImpl<$Res>
+    implements _$$DeleteWalletCopyWith<$Res> {
+  __$$DeleteWalletCopyWithImpl(
+      _$DeleteWallet _value, $Res Function(_$DeleteWallet) _then)
+      : super(_value, (v) => _then(v as _$DeleteWallet));
 
   @override
-  DeleteWallet get _value => super._value as DeleteWallet;
+  _$DeleteWallet get _value => super._value as _$DeleteWallet;
 
   @override
   $Res call({
     Object? wallet = freezed,
   }) {
-    return _then(DeleteWallet(
+    return _then(_$DeleteWallet(
       wallet == freezed
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
@@ -443,17 +411,18 @@ class _$DeleteWallet implements DeleteWallet {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DeleteWallet &&
-            (identical(other.wallet, wallet) || other.wallet == wallet));
+            other is _$DeleteWallet &&
+            const DeepCollectionEquality().equals(other.wallet, wallet));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, wallet);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(wallet));
 
   @JsonKey(ignore: true)
   @override
-  $DeleteWalletCopyWith<DeleteWallet> get copyWith =>
-      _$DeleteWalletCopyWithImpl<DeleteWallet>(this, _$identity);
+  _$$DeleteWalletCopyWith<_$DeleteWallet> get copyWith =>
+      __$$DeleteWalletCopyWithImpl<_$DeleteWallet>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -537,37 +506,37 @@ class _$DeleteWallet implements DeleteWallet {
 }
 
 abstract class DeleteWallet implements WalletEvent {
-  const factory DeleteWallet(Wallet wallet) = _$DeleteWallet;
+  const factory DeleteWallet(final Wallet wallet) = _$DeleteWallet;
 
-  Wallet get wallet;
+  Wallet get wallet => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DeleteWalletCopyWith<DeleteWallet> get copyWith =>
+  _$$DeleteWalletCopyWith<_$DeleteWallet> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UpdateWalletCopyWith<$Res> {
-  factory $UpdateWalletCopyWith(
-          UpdateWallet value, $Res Function(UpdateWallet) then) =
-      _$UpdateWalletCopyWithImpl<$Res>;
+abstract class _$$UpdateWalletCopyWith<$Res> {
+  factory _$$UpdateWalletCopyWith(
+          _$UpdateWallet value, $Res Function(_$UpdateWallet) then) =
+      __$$UpdateWalletCopyWithImpl<$Res>;
   $Res call({Wallet updatedWallet});
 }
 
 /// @nodoc
-class _$UpdateWalletCopyWithImpl<$Res> extends _$WalletEventCopyWithImpl<$Res>
-    implements $UpdateWalletCopyWith<$Res> {
-  _$UpdateWalletCopyWithImpl(
-      UpdateWallet _value, $Res Function(UpdateWallet) _then)
-      : super(_value, (v) => _then(v as UpdateWallet));
+class __$$UpdateWalletCopyWithImpl<$Res> extends _$WalletEventCopyWithImpl<$Res>
+    implements _$$UpdateWalletCopyWith<$Res> {
+  __$$UpdateWalletCopyWithImpl(
+      _$UpdateWallet _value, $Res Function(_$UpdateWallet) _then)
+      : super(_value, (v) => _then(v as _$UpdateWallet));
 
   @override
-  UpdateWallet get _value => super._value as UpdateWallet;
+  _$UpdateWallet get _value => super._value as _$UpdateWallet;
 
   @override
   $Res call({
     Object? updatedWallet = freezed,
   }) {
-    return _then(UpdateWallet(
+    return _then(_$UpdateWallet(
       updatedWallet == freezed
           ? _value.updatedWallet
           : updatedWallet // ignore: cast_nullable_to_non_nullable
@@ -593,18 +562,19 @@ class _$UpdateWallet implements UpdateWallet {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UpdateWallet &&
-            (identical(other.updatedWallet, updatedWallet) ||
-                other.updatedWallet == updatedWallet));
+            other is _$UpdateWallet &&
+            const DeepCollectionEquality()
+                .equals(other.updatedWallet, updatedWallet));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, updatedWallet);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(updatedWallet));
 
   @JsonKey(ignore: true)
   @override
-  $UpdateWalletCopyWith<UpdateWallet> get copyWith =>
-      _$UpdateWalletCopyWithImpl<UpdateWallet>(this, _$identity);
+  _$$UpdateWalletCopyWith<_$UpdateWallet> get copyWith =>
+      __$$UpdateWalletCopyWithImpl<_$UpdateWallet>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -688,39 +658,40 @@ class _$UpdateWallet implements UpdateWallet {
 }
 
 abstract class UpdateWallet implements WalletEvent {
-  const factory UpdateWallet(Wallet updatedWallet) = _$UpdateWallet;
+  const factory UpdateWallet(final Wallet updatedWallet) = _$UpdateWallet;
 
-  Wallet get updatedWallet;
+  Wallet get updatedWallet => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateWalletCopyWith<UpdateWallet> get copyWith =>
+  _$$UpdateWalletCopyWith<_$UpdateWallet> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WalletUpdatedCopyWith<$Res> {
-  factory $WalletUpdatedCopyWith(
-          WalletUpdated value, $Res Function(WalletUpdated) then) =
-      _$WalletUpdatedCopyWithImpl<$Res>;
+abstract class _$$WalletUpdatedCopyWith<$Res> {
+  factory _$$WalletUpdatedCopyWith(
+          _$WalletUpdated value, $Res Function(_$WalletUpdated) then) =
+      __$$WalletUpdatedCopyWithImpl<$Res>;
   $Res call({List<Wallet> wallets});
 }
 
 /// @nodoc
-class _$WalletUpdatedCopyWithImpl<$Res> extends _$WalletEventCopyWithImpl<$Res>
-    implements $WalletUpdatedCopyWith<$Res> {
-  _$WalletUpdatedCopyWithImpl(
-      WalletUpdated _value, $Res Function(WalletUpdated) _then)
-      : super(_value, (v) => _then(v as WalletUpdated));
+class __$$WalletUpdatedCopyWithImpl<$Res>
+    extends _$WalletEventCopyWithImpl<$Res>
+    implements _$$WalletUpdatedCopyWith<$Res> {
+  __$$WalletUpdatedCopyWithImpl(
+      _$WalletUpdated _value, $Res Function(_$WalletUpdated) _then)
+      : super(_value, (v) => _then(v as _$WalletUpdated));
 
   @override
-  WalletUpdated get _value => super._value as WalletUpdated;
+  _$WalletUpdated get _value => super._value as _$WalletUpdated;
 
   @override
   $Res call({
     Object? wallets = freezed,
   }) {
-    return _then(WalletUpdated(
+    return _then(_$WalletUpdated(
       wallets == freezed
-          ? _value.wallets
+          ? _value._wallets
           : wallets // ignore: cast_nullable_to_non_nullable
               as List<Wallet>,
     ));
@@ -730,10 +701,14 @@ class _$WalletUpdatedCopyWithImpl<$Res> extends _$WalletEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$WalletUpdated implements WalletUpdated {
-  const _$WalletUpdated(this.wallets);
+  const _$WalletUpdated(final List<Wallet> wallets) : _wallets = wallets;
 
+  final List<Wallet> _wallets;
   @override
-  final List<Wallet> wallets;
+  List<Wallet> get wallets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_wallets);
+  }
 
   @override
   String toString() {
@@ -744,18 +719,18 @@ class _$WalletUpdated implements WalletUpdated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is WalletUpdated &&
-            const DeepCollectionEquality().equals(other.wallets, wallets));
+            other is _$WalletUpdated &&
+            const DeepCollectionEquality().equals(other._wallets, _wallets));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(wallets));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_wallets));
 
   @JsonKey(ignore: true)
   @override
-  $WalletUpdatedCopyWith<WalletUpdated> get copyWith =>
-      _$WalletUpdatedCopyWithImpl<WalletUpdated>(this, _$identity);
+  _$$WalletUpdatedCopyWith<_$WalletUpdated> get copyWith =>
+      __$$WalletUpdatedCopyWithImpl<_$WalletUpdated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -839,35 +814,13 @@ class _$WalletUpdated implements WalletUpdated {
 }
 
 abstract class WalletUpdated implements WalletEvent {
-  const factory WalletUpdated(List<Wallet> wallets) = _$WalletUpdated;
+  const factory WalletUpdated(final List<Wallet> wallets) = _$WalletUpdated;
 
-  List<Wallet> get wallets;
+  List<Wallet> get wallets => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $WalletUpdatedCopyWith<WalletUpdated> get copyWith =>
+  _$$WalletUpdatedCopyWith<_$WalletUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$WalletStateTearOff {
-  const _$WalletStateTearOff();
-
-  WalletLoaded walletSuccess(List<Wallet> wallets) {
-    return WalletLoaded(
-      wallets,
-    );
-  }
-
-  WalletLoading walletLoading() {
-    return const WalletLoading();
-  }
-
-  WalletError walletError() {
-    return const WalletError();
-  }
-}
-
-/// @nodoc
-const $WalletState = _$WalletStateTearOff();
 
 /// @nodoc
 mixin _$WalletState {
@@ -934,30 +887,30 @@ class _$WalletStateCopyWithImpl<$Res> implements $WalletStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $WalletLoadedCopyWith<$Res> {
-  factory $WalletLoadedCopyWith(
-          WalletLoaded value, $Res Function(WalletLoaded) then) =
-      _$WalletLoadedCopyWithImpl<$Res>;
+abstract class _$$WalletLoadedCopyWith<$Res> {
+  factory _$$WalletLoadedCopyWith(
+          _$WalletLoaded value, $Res Function(_$WalletLoaded) then) =
+      __$$WalletLoadedCopyWithImpl<$Res>;
   $Res call({List<Wallet> wallets});
 }
 
 /// @nodoc
-class _$WalletLoadedCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
-    implements $WalletLoadedCopyWith<$Res> {
-  _$WalletLoadedCopyWithImpl(
-      WalletLoaded _value, $Res Function(WalletLoaded) _then)
-      : super(_value, (v) => _then(v as WalletLoaded));
+class __$$WalletLoadedCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
+    implements _$$WalletLoadedCopyWith<$Res> {
+  __$$WalletLoadedCopyWithImpl(
+      _$WalletLoaded _value, $Res Function(_$WalletLoaded) _then)
+      : super(_value, (v) => _then(v as _$WalletLoaded));
 
   @override
-  WalletLoaded get _value => super._value as WalletLoaded;
+  _$WalletLoaded get _value => super._value as _$WalletLoaded;
 
   @override
   $Res call({
     Object? wallets = freezed,
   }) {
-    return _then(WalletLoaded(
+    return _then(_$WalletLoaded(
       wallets == freezed
-          ? _value.wallets
+          ? _value._wallets
           : wallets // ignore: cast_nullable_to_non_nullable
               as List<Wallet>,
     ));
@@ -967,10 +920,14 @@ class _$WalletLoadedCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$WalletLoaded implements WalletLoaded {
-  const _$WalletLoaded(this.wallets);
+  const _$WalletLoaded(final List<Wallet> wallets) : _wallets = wallets;
 
+  final List<Wallet> _wallets;
   @override
-  final List<Wallet> wallets;
+  List<Wallet> get wallets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_wallets);
+  }
 
   @override
   String toString() {
@@ -981,18 +938,18 @@ class _$WalletLoaded implements WalletLoaded {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is WalletLoaded &&
-            const DeepCollectionEquality().equals(other.wallets, wallets));
+            other is _$WalletLoaded &&
+            const DeepCollectionEquality().equals(other._wallets, _wallets));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(wallets));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_wallets));
 
   @JsonKey(ignore: true)
   @override
-  $WalletLoadedCopyWith<WalletLoaded> get copyWith =>
-      _$WalletLoadedCopyWithImpl<WalletLoaded>(this, _$identity);
+  _$$WalletLoadedCopyWith<_$WalletLoaded> get copyWith =>
+      __$$WalletLoadedCopyWithImpl<_$WalletLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1064,30 +1021,31 @@ class _$WalletLoaded implements WalletLoaded {
 }
 
 abstract class WalletLoaded implements WalletState {
-  const factory WalletLoaded(List<Wallet> wallets) = _$WalletLoaded;
+  const factory WalletLoaded(final List<Wallet> wallets) = _$WalletLoaded;
 
-  List<Wallet> get wallets;
+  List<Wallet> get wallets => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $WalletLoadedCopyWith<WalletLoaded> get copyWith =>
+  _$$WalletLoadedCopyWith<_$WalletLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WalletLoadingCopyWith<$Res> {
-  factory $WalletLoadingCopyWith(
-          WalletLoading value, $Res Function(WalletLoading) then) =
-      _$WalletLoadingCopyWithImpl<$Res>;
+abstract class _$$WalletLoadingCopyWith<$Res> {
+  factory _$$WalletLoadingCopyWith(
+          _$WalletLoading value, $Res Function(_$WalletLoading) then) =
+      __$$WalletLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WalletLoadingCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
-    implements $WalletLoadingCopyWith<$Res> {
-  _$WalletLoadingCopyWithImpl(
-      WalletLoading _value, $Res Function(WalletLoading) _then)
-      : super(_value, (v) => _then(v as WalletLoading));
+class __$$WalletLoadingCopyWithImpl<$Res>
+    extends _$WalletStateCopyWithImpl<$Res>
+    implements _$$WalletLoadingCopyWith<$Res> {
+  __$$WalletLoadingCopyWithImpl(
+      _$WalletLoading _value, $Res Function(_$WalletLoading) _then)
+      : super(_value, (v) => _then(v as _$WalletLoading));
 
   @override
-  WalletLoading get _value => super._value as WalletLoading;
+  _$WalletLoading get _value => super._value as _$WalletLoading;
 }
 
 /// @nodoc
@@ -1103,7 +1061,7 @@ class _$WalletLoading implements WalletLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is WalletLoading);
+        (other.runtimeType == runtimeType && other is _$WalletLoading);
   }
 
   @override
@@ -1183,21 +1141,21 @@ abstract class WalletLoading implements WalletState {
 }
 
 /// @nodoc
-abstract class $WalletErrorCopyWith<$Res> {
-  factory $WalletErrorCopyWith(
-          WalletError value, $Res Function(WalletError) then) =
-      _$WalletErrorCopyWithImpl<$Res>;
+abstract class _$$WalletErrorCopyWith<$Res> {
+  factory _$$WalletErrorCopyWith(
+          _$WalletError value, $Res Function(_$WalletError) then) =
+      __$$WalletErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WalletErrorCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
-    implements $WalletErrorCopyWith<$Res> {
-  _$WalletErrorCopyWithImpl(
-      WalletError _value, $Res Function(WalletError) _then)
-      : super(_value, (v) => _then(v as WalletError));
+class __$$WalletErrorCopyWithImpl<$Res> extends _$WalletStateCopyWithImpl<$Res>
+    implements _$$WalletErrorCopyWith<$Res> {
+  __$$WalletErrorCopyWithImpl(
+      _$WalletError _value, $Res Function(_$WalletError) _then)
+      : super(_value, (v) => _then(v as _$WalletError));
 
   @override
-  WalletError get _value => super._value as WalletError;
+  _$WalletError get _value => super._value as _$WalletError;
 }
 
 /// @nodoc
@@ -1213,7 +1171,7 @@ class _$WalletError implements WalletError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is WalletError);
+        (other.runtimeType == runtimeType && other is _$WalletError);
   }
 
   @override

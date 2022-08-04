@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'add_transaction_cubit.dart';
@@ -11,32 +12,7 @@ part of 'add_transaction_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AddTransactionStateTearOff {
-  const _$AddTransactionStateTearOff();
-
-  _AddTransactionState call(
-      {MoneyAmount amount = const MoneyAmount.pure(),
-      String category = 'Category',
-      Wallet wallet = const Wallet.pure('', 0, '', '', Color(0xff000000)),
-      String? description,
-      FormzStatus status = FormzStatus.pure,
-      TransactionType type = TransactionType.expense}) {
-    return _AddTransactionState(
-      amount: amount,
-      category: category,
-      wallet: wallet,
-      description: description,
-      status: status,
-      type: type,
-    );
-  }
-}
-
-/// @nodoc
-const $AddTransactionState = _$AddTransactionStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AddTransactionState {
@@ -114,11 +90,11 @@ class _$AddTransactionStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AddTransactionStateCopyWith<$Res>
+abstract class _$$_AddTransactionStateCopyWith<$Res>
     implements $AddTransactionStateCopyWith<$Res> {
-  factory _$AddTransactionStateCopyWith(_AddTransactionState value,
-          $Res Function(_AddTransactionState) then) =
-      __$AddTransactionStateCopyWithImpl<$Res>;
+  factory _$$_AddTransactionStateCopyWith(_$_AddTransactionState value,
+          $Res Function(_$_AddTransactionState) then) =
+      __$$_AddTransactionStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {MoneyAmount amount,
@@ -130,15 +106,15 @@ abstract class _$AddTransactionStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AddTransactionStateCopyWithImpl<$Res>
+class __$$_AddTransactionStateCopyWithImpl<$Res>
     extends _$AddTransactionStateCopyWithImpl<$Res>
-    implements _$AddTransactionStateCopyWith<$Res> {
-  __$AddTransactionStateCopyWithImpl(
-      _AddTransactionState _value, $Res Function(_AddTransactionState) _then)
-      : super(_value, (v) => _then(v as _AddTransactionState));
+    implements _$$_AddTransactionStateCopyWith<$Res> {
+  __$$_AddTransactionStateCopyWithImpl(_$_AddTransactionState _value,
+      $Res Function(_$_AddTransactionState) _then)
+      : super(_value, (v) => _then(v as _$_AddTransactionState));
 
   @override
-  _AddTransactionState get _value => super._value as _AddTransactionState;
+  _$_AddTransactionState get _value => super._value as _$_AddTransactionState;
 
   @override
   $Res call({
@@ -149,7 +125,7 @@ class __$AddTransactionStateCopyWithImpl<$Res>
     Object? status = freezed,
     Object? type = freezed,
   }) {
-    return _then(_AddTransactionState(
+    return _then(_$_AddTransactionState(
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -189,22 +165,22 @@ class _$_AddTransactionState implements _AddTransactionState {
       this.status = FormzStatus.pure,
       this.type = TransactionType.expense});
 
-  @JsonKey(defaultValue: const MoneyAmount.pure())
   @override
+  @JsonKey()
   final MoneyAmount amount;
-  @JsonKey(defaultValue: 'Category')
   @override
+  @JsonKey()
   final String category;
-  @JsonKey(defaultValue: const Wallet.pure('', 0, '', '', Color(0xff000000)))
   @override
+  @JsonKey()
   final Wallet wallet;
   @override
   final String? description;
-  @JsonKey(defaultValue: FormzStatus.pure)
   @override
+  @JsonKey()
   final FormzStatus status;
-  @JsonKey(defaultValue: TransactionType.expense)
   @override
+  @JsonKey()
   final TransactionType type;
 
   @override
@@ -216,51 +192,56 @@ class _$_AddTransactionState implements _AddTransactionState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AddTransactionState &&
-            (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.wallet, wallet) || other.wallet == wallet) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.type, type) || other.type == type));
+            other is _$_AddTransactionState &&
+            const DeepCollectionEquality().equals(other.amount, amount) &&
+            const DeepCollectionEquality().equals(other.category, category) &&
+            const DeepCollectionEquality().equals(other.wallet, wallet) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.type, type));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, amount, category, wallet, description, status, type);
+      runtimeType,
+      const DeepCollectionEquality().hash(amount),
+      const DeepCollectionEquality().hash(category),
+      const DeepCollectionEquality().hash(wallet),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(type));
 
   @JsonKey(ignore: true)
   @override
-  _$AddTransactionStateCopyWith<_AddTransactionState> get copyWith =>
-      __$AddTransactionStateCopyWithImpl<_AddTransactionState>(
+  _$$_AddTransactionStateCopyWith<_$_AddTransactionState> get copyWith =>
+      __$$_AddTransactionStateCopyWithImpl<_$_AddTransactionState>(
           this, _$identity);
 }
 
 abstract class _AddTransactionState implements AddTransactionState {
   const factory _AddTransactionState(
-      {MoneyAmount amount,
-      String category,
-      Wallet wallet,
-      String? description,
-      FormzStatus status,
-      TransactionType type}) = _$_AddTransactionState;
+      {final MoneyAmount amount,
+      final String category,
+      final Wallet wallet,
+      final String? description,
+      final FormzStatus status,
+      final TransactionType type}) = _$_AddTransactionState;
 
   @override
-  MoneyAmount get amount;
+  MoneyAmount get amount => throw _privateConstructorUsedError;
   @override
-  String get category;
+  String get category => throw _privateConstructorUsedError;
   @override
-  Wallet get wallet;
+  Wallet get wallet => throw _privateConstructorUsedError;
   @override
-  String? get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
-  FormzStatus get status;
+  FormzStatus get status => throw _privateConstructorUsedError;
   @override
-  TransactionType get type;
+  TransactionType get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AddTransactionStateCopyWith<_AddTransactionState> get copyWith =>
+  _$$_AddTransactionStateCopyWith<_$_AddTransactionState> get copyWith =>
       throw _privateConstructorUsedError;
 }
