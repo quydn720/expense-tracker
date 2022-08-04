@@ -4,7 +4,6 @@ import 'package:uuid/uuid.dart';
 
 @immutable
 class Budget {
-
   Budget({
     String? id,
     required this.amount,

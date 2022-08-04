@@ -16,4 +16,5 @@ class FilterState with _$FilterState {
 }
 
 enum ActiveFilter { empty, income, expense }
+
 enum ActiveSort { highest, lowest, newest, oldest }

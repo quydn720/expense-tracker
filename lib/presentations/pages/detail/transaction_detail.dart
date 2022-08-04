@@ -51,30 +51,35 @@ class TransactionDetailPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-              height: SizeConfig.screenHeight * 1 / 4,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: _transaction.type == TransactionType.expense
-                    ? kRed100
-                    : kGreen100,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(kDefaultRadius),
-                  bottomRight: Radius.circular(kDefaultRadius),
-                ),
+            height: SizeConfig.screenHeight * 1 / 4,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: _transaction.type == TransactionType.expense
+                  ? kRed100
+                  : kGreen100,
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(kDefaultRadius),
+                bottomRight: Radius.circular(kDefaultRadius),
               ),
-              child: Column(
-                children: [
-                  Text('${_transaction.amount}',
-                      style: titleX.copyWith(color: Colors.white),),
-                  Text(_transaction.description,
-                      style: body1.copyWith(color: Colors.white),),
-                  Text(
-                    DateFormat(DateFormat.YEAR_MONTH_WEEKDAY_DAY)
-                        .format(_transaction.date),
-                    style: body3.copyWith(color: Colors.white),
-                  ),
-                ],
-              ),),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  '${_transaction.amount}',
+                  style: titleX.copyWith(color: Colors.white),
+                ),
+                Text(
+                  _transaction.description,
+                  style: body1.copyWith(color: Colors.white),
+                ),
+                Text(
+                  DateFormat(DateFormat.YEAR_MONTH_WEEKDAY_DAY)
+                      .format(_transaction.date),
+                  style: body3.copyWith(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
@@ -130,7 +135,8 @@ class TransactionDetailPage extends StatelessWidget {
                                       .walletRepository
                                       .currentWallets
                                       .where(
-                                          (e) => e.id == _transaction.walletId,)
+                                        (e) => e.id == _transaction.walletId,
+                                      )
                                       .first
                                       .name,
                                   style: body2,

@@ -4,13 +4,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../size_config.dart';
 
 class CustomBottomNavItem extends StatelessWidget {
-  const CustomBottomNavItem(
-      {required this.icon,
-      required this.title,
-      required this.onTap,
-      this.color = Colors.grey,
-      Key? key,})
-      : super(key: key);
+  const CustomBottomNavItem({
+    required this.icon,
+    required this.title,
+    required this.onTap,
+    this.color = Colors.grey,
+    Key? key,
+  }) : super(key: key);
 
   final IconData icon;
   final Text title;

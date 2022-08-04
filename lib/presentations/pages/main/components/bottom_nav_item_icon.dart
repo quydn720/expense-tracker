@@ -9,9 +9,11 @@ class BottomNavItemIcon extends StatelessWidget {
   final IconData icon;
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      FaIcon(icon),
-      const SizedBox(height: 4),
-    ],);
+    return Column(
+      children: [
+        FaIcon(icon),
+        const SizedBox(height: 4),
+      ],
+    );
   }
 }

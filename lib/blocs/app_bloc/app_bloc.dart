@@ -13,7 +13,7 @@ const firstTimeKey = 'first_time_app_started';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
-    required AuthenticationRepository authenticationRepository,
+    required IAuthenticationRepository authenticationRepository,
     required SharedPreferences sharedPreferences,
   }) : super(const FirstTimeOpened()) {
     late final StreamSubscription<User> _userSubscription;

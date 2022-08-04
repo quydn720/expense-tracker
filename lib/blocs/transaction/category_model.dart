@@ -5,7 +5,6 @@ import '../../constants.dart';
 const categoryPath = 'assets/icons/categories';
 
 class Category {
-
   Category({
     required this.iconColor,
     required this.name,

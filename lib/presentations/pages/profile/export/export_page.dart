@@ -36,8 +36,10 @@ class _ExportPageState extends State<ExportPage> {
                     title: Text('When date range?', style: body1),
                   ),
                   const DefaultBar(
-                    title: Text('What format do you want to export?',
-                        style: body1,),
+                    title: Text(
+                      'What format do you want to export?',
+                      style: body1,
+                    ),
                   ),
                   DropdownButtonFormField<int>(
                     value: _selected,
@@ -45,8 +47,10 @@ class _ExportPageState extends State<ExportPage> {
                       _selected = v!;
                     }),
                     items: [0, 1, 2]
-                        .map((e) =>
-                            DropdownMenuItem(value: e, child: Text(items[e])),)
+                        .map(
+                          (e) =>
+                              DropdownMenuItem(value: e, child: Text(items[e])),
+                        )
                         .toList(),
                     icon: Padding(
                       padding: const EdgeInsets.only(right: kDefaultPadding),
@@ -64,7 +68,9 @@ class _ExportPageState extends State<ExportPage> {
               onPressed: () {
                 // TODO: Bloc add Send file to email
                 Navigator.pushReplacementNamed(
-                    context, ExportDataPromptPage.routeName,);
+                  context,
+                  ExportDataPromptPage.routeName,
+                );
               },
               icon: Image.asset('assets/icons/download.png', color: kLight100),
             ),

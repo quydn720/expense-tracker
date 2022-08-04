@@ -6,7 +6,6 @@ import 'package:meta/meta.dart';
 
 @immutable
 class BudgetEntity extends Equatable {
-
   const BudgetEntity({
     this.exceedLimit,
     required this.id,
@@ -17,7 +16,7 @@ class BudgetEntity extends Equatable {
 
   factory BudgetEntity.fromMap(Map<String, dynamic> map) {
     return BudgetEntity(
-      id: map['id'] as String ,
+      id: map['id'] as String,
       amount: map['amount'] as double,
       category: map['category'] as String,
       monthApply: map['monthApply'] as int,
@@ -39,8 +38,8 @@ class BudgetEntity extends Equatable {
     return BudgetEntity(
       id: data['id'] as String,
       amount: data['amount'] as double,
-      category: data['category']as String,
-      monthApply: data['monthApply']as int,
+      category: data['category'] as String,
+      monthApply: data['monthApply'] as int,
       exceedLimit: data['exceedLimit'] as double,
     );
   }

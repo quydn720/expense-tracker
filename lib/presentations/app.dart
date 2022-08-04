@@ -12,7 +12,7 @@ import '../blocs/filter/filter_bloc.dart';
 import '../blocs/tab/tab_bloc.dart';
 import '../blocs/transaction/transaction_bloc.dart';
 import '../blocs/wallet/wallet_bloc.dart';
-import '../injector.dart';
+import '../di/injector.dart';
 import '../size_config.dart';
 import '../theme.dart';
 import 'pages/login/login_page.dart';
@@ -20,14 +20,17 @@ import 'pages/main/main_page.dart';
 import 'pages/onboarding/onboarding_page.dart';
 
 class App extends StatelessWidget {
-  const App({
-    Key? key,
-    required this.authenticationRepository,
-  }) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
-  final AuthenticationRepository authenticationRepository;
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      title: getIt<String>(),
+      home: Scaffold(
+        appBar: AppBar(title: Text(getIt<String>())),
+      ),
+    );
+    final authenticationRepository = getIt<IAuthenticationRepository>();
     return RepositoryProvider.value(
       value: authenticationRepository,
       child: MultiBlocProvider(
@@ -50,7 +53,7 @@ class App extends StatelessWidget {
 class AppView extends StatelessWidget {
   const AppView({Key? key, required this.authenticationRepository})
       : super(key: key);
-  final AuthenticationRepository authenticationRepository;
+  final IAuthenticationRepository authenticationRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +68,9 @@ class AppView extends StatelessWidget {
                   create: (context) => TabBloc(),
                 ),
                 BlocProvider<TransactionBloc>(
-                  create: (context) => TransactionBloc(FakeTransactionRepo())
-                    ..add(const LoadTransactions()),
+                  create: (context) => TransactionBloc(
+                    getIt<FakeTransactionRepo>(),
+                  )..add(const LoadTransactions()),
                 ),
                 BlocProvider<WalletBloc>(
                   create: (context) =>
@@ -93,6 +97,7 @@ class AppView extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       theme: theme,
+      title: getIt<String>(),
     );
   }
 }

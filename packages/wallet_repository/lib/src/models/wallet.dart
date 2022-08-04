@@ -9,7 +9,6 @@ enum WalletValidatorError { invalid }
 
 @immutable
 class Wallet extends FormzInput<String, WalletValidatorError> {
-
   Wallet({
     String? id,
     required this.name,

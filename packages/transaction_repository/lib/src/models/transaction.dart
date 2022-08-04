@@ -5,7 +5,6 @@ import 'package:uuid/uuid.dart';
 
 @immutable
 class Transaction {
-
   Transaction({
     String? id,
     String? description,
