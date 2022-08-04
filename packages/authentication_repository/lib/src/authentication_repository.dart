@@ -148,10 +148,27 @@ class LogInWithGoogleFailure implements Exception {
 /// Thrown during the logout process if a failure occurs.
 class LogOutFailure implements Exception {}
 
+abstract class IAuthenticationRepository {
+  bool get isWeb;
+  Future<void> changeAvatar(String avtUrl);
+  User get currentUser;
+  Future<void> logInWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
+  Future<void> logInWithGoogle();
+  Future<void> logOut();
+  Future<void> signUp({required String email, required String password});
+  Stream<User> get user;
+  CacheClient get _cache;
+  firebase_auth.FirebaseAuth get _firebaseAuth;
+  GoogleSignIn get _googleSignIn;
+}
+
 /// {@template authentication_repository}
 /// Repository which manages user authentication.
 /// {@endtemplate}
-class AuthenticationRepository {
+class AuthenticationRepository implements IAuthenticationRepository {
   /// {@macro authentication_repository}
   AuthenticationRepository({
     CacheClient? cache,
@@ -161,13 +178,17 @@ class AuthenticationRepository {
         _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
         _googleSignIn = googleSignIn ?? GoogleSignIn.standard();
 
+  @override
   final CacheClient _cache;
+  @override
   final firebase_auth.FirebaseAuth _firebaseAuth;
+  @override
   final GoogleSignIn _googleSignIn;
 
   /// Whether or not the current environment is web
   /// Should only be overriden for testing purposes. Otherwise,
   /// defaults to [kIsWeb]
+  @override
   @visibleForTesting
   bool isWeb = kIsWeb;
 
@@ -180,6 +201,7 @@ class AuthenticationRepository {
   /// the authentication state changes.
   ///
   /// Emits [User.empty] if the user is not authenticated.
+  @override
   Stream<User> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
       final user = firebaseUser == null ? User.empty : firebaseUser.toUser;
@@ -190,6 +212,7 @@ class AuthenticationRepository {
 
   /// Returns the current cached user.
   /// Defaults to [User.empty] if there is no cached user.
+  @override
   User get currentUser {
     // _firebaseAuth.currentUser!.toUser;
     return _cache.read<User>(key: userCacheKey) ?? User.empty;
@@ -198,6 +221,7 @@ class AuthenticationRepository {
   /// Creates a new user with the provided [email] and [password].
   ///
   /// Throws a [SignUpWithEmailAndPasswordFailure] if an exception occurs.
+  @override
   Future<void> signUp({required String email, required String password}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
@@ -214,6 +238,7 @@ class AuthenticationRepository {
   /// Starts the Sign In with Google Flow.
   ///
   /// Throws a [LogInWithGoogleFailure] if an exception occurs.
+  @override
   Future<void> logInWithGoogle() async {
     try {
       late final firebase_auth.AuthCredential credential;
@@ -243,6 +268,7 @@ class AuthenticationRepository {
   /// Signs in with the provided [email] and [password].
   ///
   /// Throws a [LogInWithEmailAndPasswordFailure] if an exception occurs.
+  @override
   Future<void> logInWithEmailAndPassword({
     required String email,
     required String password,
@@ -260,6 +286,7 @@ class AuthenticationRepository {
   }
 
   ///
+  @override
   Future<void> changeAvatar(String avtUrl) async {
     try {
       await _firebaseAuth.currentUser!.updatePhotoURL(avtUrl);
@@ -272,6 +299,7 @@ class AuthenticationRepository {
   /// [User.empty] from the [user] Stream.
   ///
   /// Throws a [LogOutFailure] if an exception occurs.
+  @override
   Future<void> logOut() async {
     try {
       await Future.wait([
@@ -284,7 +312,7 @@ class AuthenticationRepository {
   }
 }
 
-class AuthenticateRepo implements AuthenticationRepository {
+class AuthenticateRepo implements IAuthenticationRepository {
   @override
   bool isWeb = kIsWeb;
 
@@ -297,8 +325,10 @@ class AuthenticateRepo implements AuthenticationRepository {
   User get currentUser => const User(id: 'id');
 
   @override
-  Future<void> logInWithEmailAndPassword(
-      {required String email, required String password}) {
+  Future<void> logInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) {
     throw UnimplementedError();
   }
 
