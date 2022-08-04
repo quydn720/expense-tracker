@@ -163,10 +163,7 @@ class AddTransactionPageState extends State<AddTransactionPage> {
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   _formKey.currentState!.save();
-                                  debugPrint(_formKey.currentState.toString());
-                                  debugPrint(_amount.toString());
-                                  debugPrint(_category.name);
-                                  debugPrint(_type.toString());
+                                 
 
                                   context.read<TransactionBloc>().add(
                                         AddTransactions(
@@ -382,11 +379,7 @@ class EditTransactionPageState extends State<EditTransactionPage> {
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   _formKey.currentState!.save();
-                                  debugPrint(_formKey.currentState.toString());
-                                  debugPrint(_amount.toString());
-                                  debugPrint(_category.name);
-                                  debugPrint(_type.toString());
-                                  debugPrint(_description);
+                                 
 
                                   context.read<TransactionBloc>().add(
                                         UpdateTransactions(
@@ -410,7 +403,6 @@ class EditTransactionPageState extends State<EditTransactionPage> {
                                   final a = _wallet.amount +
                                       widget.transaction.amount * offsetA +
                                       _amount * offsetB;
-                                  debugPrint(a.toString());
 
                                   context.read<WalletBloc>().add(UpdateWallet(
                                       _wallet.copyWith(amount: a),),);

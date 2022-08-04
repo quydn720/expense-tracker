@@ -132,31 +132,31 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                               }),
                             ),
                           ),
-                          Builder(builder: (context) {
-                            if (_receiveAlert == true) {
-                              return SizedBox(
-                                width: double.infinity,
-                                child: Slider(
-                                  max: 100,
-                                  value: _percent ?? 80,
-                                  onChanged: (v) => setState(
-                                    () => _percent = v,
+                          Builder(
+                            builder: (context) {
+                              if (_receiveAlert == true) {
+                                return SizedBox(
+                                  width: double.infinity,
+                                  child: Slider(
+                                    max: 100,
+                                    value: _percent ?? 80,
+                                    onChanged: (v) => setState(
+                                      () => _percent = v,
+                                    ),
                                   ),
-                                ),
-                              );
-                            } else {
-                              return const SizedBox.shrink();
-                            }
-                          },),
+                                );
+                              } else {
+                                return const SizedBox.shrink();
+                              }
+                            },
+                          ),
                           const SizedBox(height: kMediumPadding),
                           DefaultButton(
                             title: 'Continue',
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
-                                debugPrint(_formKey.currentState.toString());
-                                debugPrint(_amount.toString());
-                                debugPrint(_category.name);
+
                                 context.read<BudgetBloc>().add(
                                       BudgetEvent.addBudget(
                                         Budget(

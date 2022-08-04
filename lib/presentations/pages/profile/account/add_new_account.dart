@@ -132,11 +132,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
-                                debugPrint(_formKey.currentState.toString());
-                                debugPrint(_balance.toString());
-                                debugPrint(_name);
-                                debugPrint(_selectedAccountType);
-                                debugPrint(_iconPath);
+                               
                                 if (_selectedAccountType == 'Wallet') {
                                   setState(() =>
                                       _iconPath = 'assets/icons/wallet-3.png',);

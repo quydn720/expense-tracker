@@ -265,11 +265,7 @@ class __EditWalletPageState extends State<_EditWalletPage> {
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
-                                debugPrint(_formKey.currentState.toString());
-                                debugPrint(_balance.toString());
-                                debugPrint(_name);
-                                debugPrint(_selectedAccountType);
-                                debugPrint(_iconPath);
+                              
                                 if (_selectedAccountType == 'Wallet') {
                                   setState(
                                     () =>
