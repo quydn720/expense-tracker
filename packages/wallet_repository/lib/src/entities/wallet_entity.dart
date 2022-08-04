@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class WalletEntity extends Equatable {
-
   const WalletEntity({
     required this.id,
     required this.amount,

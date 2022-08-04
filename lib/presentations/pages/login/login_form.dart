@@ -144,7 +144,6 @@ class _GoogleLoginButton extends StatelessWidget {
   }
 }
 
-
 //                         TextFormField(
 //                           obscureText: bloc.state.isPasswordVisible,
 //                           decoration: InputDecoration(

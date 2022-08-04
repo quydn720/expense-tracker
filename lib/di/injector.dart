@@ -59,8 +59,6 @@ abstract class DevAppLocalPackageModule {
   String get prodTitle => '[Prod] Expense Tracker';
 }
 
-
-
 // @module
 // abstract class DevAppLocalPackageModule {
 //   @dev
@@ -69,7 +67,6 @@ abstract class DevAppLocalPackageModule {
 //   @dev
 //   TransactionRepository getTransactionRepoDev() => FakeTransactionRepo();
 // }
-
 
 // @module
 // abstract class ProdAppLocalPackageModule {

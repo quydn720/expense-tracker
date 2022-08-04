@@ -110,8 +110,10 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                           DropdownButtonFormField<String>(
                             hint: const Text('Account Type'),
                             items: _items
-                                .map((e) =>
-                                    DropdownMenuItem(value: e, child: Text(e)),)
+                                .map(
+                                  (e) => DropdownMenuItem(
+                                      value: e, child: Text(e)),
+                                )
                                 .toList(),
                             onChanged: (v) {
                               setState(() {
@@ -132,20 +134,23 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
-                               
+
                                 if (_selectedAccountType == 'Wallet') {
-                                  setState(() =>
-                                      _iconPath = 'assets/icons/wallet-3.png',);
+                                  setState(
+                                    () =>
+                                        _iconPath = 'assets/icons/wallet-3.png',
+                                  );
                                 }
                                 context
                                     .read<WalletBloc>()
                                     .walletRepository
                                     .addNewWallet(
                                       Wallet(
-                                          name: _name,
-                                          iconPath: _iconPath,
-                                          color: kViolet100,
-                                          amount: _balance,),
+                                        name: _name,
+                                        iconPath: _iconPath,
+                                        color: kViolet100,
+                                        amount: _balance,
+                                      ),
                                     );
                                 Navigator.pop(context);
                               }
@@ -184,74 +189,77 @@ class _BankWidgetState extends State<BankWidget> {
   int i = 0;
   @override
   Widget build(BuildContext context) {
-    return Builder(builder: (_) {
-      if (widget._selectedAccountType == 'Bank') {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Bank',
-              style: body2,
-            ),
-            const SizedBox(height: 8),
-            GridView.count(
-              childAspectRatio: 1.6,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              crossAxisCount: 4,
-              crossAxisSpacing: 10,
-              children: List.generate(
-                8,
-                (index) {
-                  if (index == 7) {
-                    return InkWell(
-                      onTap: () {}, // If have more bank to show
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 4),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: const Color(0xffEEE5FF),
+    return Builder(
+      builder: (_) {
+        if (widget._selectedAccountType == 'Bank') {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Bank',
+                style: body2,
+              ),
+              const SizedBox(height: 8),
+              GridView.count(
+                childAspectRatio: 1.6,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                crossAxisCount: 4,
+                crossAxisSpacing: 10,
+                children: List.generate(
+                  8,
+                  (index) {
+                    if (index == 7) {
+                      return InkWell(
+                        onTap: () {}, // If have more bank to show
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 4),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: const Color(0xffEEE5FF),
+                          ),
+                          child: const Center(child: Text('See other')),
                         ),
-                        child: const Center(child: Text('See other')),
-                      ),
-                    );
-                  } else {
-                    return InkWell(
-                      onTap: () {
-                        setState(() {
-                          i = index;
-                        });
-                        widget._onIconPathChanged(
-                          'assets/icons/banks/${_imageAssets[index]}.png',
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 4),
-                        decoration: BoxDecoration(
-                          border:
-                              i == index ? Border.all(color: kViolet100) : null,
-                          borderRadius: BorderRadius.circular(8),
-                          color: i == index
-                              ? const Color(0xffEEE5FF)
-                              : const Color(0xffF1F1FA),
-                          image: DecorationImage(
-                            image: AssetImage(
-                              'assets/icons/banks/${_imageAssets[index]}.png',
+                      );
+                    } else {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            i = index;
+                          });
+                          widget._onIconPathChanged(
+                            'assets/icons/banks/${_imageAssets[index]}.png',
+                          );
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 4),
+                          decoration: BoxDecoration(
+                            border: i == index
+                                ? Border.all(color: kViolet100)
+                                : null,
+                            borderRadius: BorderRadius.circular(8),
+                            color: i == index
+                                ? const Color(0xffEEE5FF)
+                                : const Color(0xffF1F1FA),
+                            image: DecorationImage(
+                              image: AssetImage(
+                                'assets/icons/banks/${_imageAssets[index]}.png',
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  }
-                },
+                      );
+                    }
+                  },
+                ),
               ),
-            ),
-          ],
-        );
-      } else {
-        return const SizedBox.shrink();
-      }
-    },);
+            ],
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
+    );
   }
 }
 

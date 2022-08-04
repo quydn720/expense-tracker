@@ -6,7 +6,6 @@ import 'package:equatable/equatable.dart';
 import 'package:transaction_repository/src/models/models.dart';
 
 class TransactionEntity extends Equatable {
-
   const TransactionEntity({
     required this.walletId,
     required this.id,

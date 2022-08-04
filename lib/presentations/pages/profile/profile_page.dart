@@ -23,11 +23,11 @@ class ProfilePage extends StatelessWidget {
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
   List<Map<String, String>> get data => const [
-    {'img': 'assets/icons/wallet-3.png', 'title': 'Account'},
-    {'img': 'assets/icons/settings.png', 'title': 'Settings'},
-    {'img': 'assets/icons/download.png', 'title': 'Export Data'},
-    {'img': 'assets/icons/logout.png', 'title': 'Logout'},
-  ];
+        {'img': 'assets/icons/wallet-3.png', 'title': 'Account'},
+        {'img': 'assets/icons/settings.png', 'title': 'Settings'},
+        {'img': 'assets/icons/download.png', 'title': 'Export Data'},
+        {'img': 'assets/icons/logout.png', 'title': 'Logout'},
+      ];
 
   @override
   Widget build(BuildContext context) {

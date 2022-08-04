@@ -40,8 +40,7 @@ class BudgetCard extends StatelessWidget {
       },
       child: Card(
         elevation: 2,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         child: Padding(
           padding: const EdgeInsets.all(kMediumPadding),
           child: Column(

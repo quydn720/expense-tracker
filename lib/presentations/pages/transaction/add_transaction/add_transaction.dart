@@ -148,8 +148,12 @@ class AddTransactionPageState extends State<AddTransactionPage> {
                                   .read<WalletBloc>()
                                   .walletRepository
                                   .currentWallets
-                                  .map((e) => DropdownMenuItem(
-                                      value: e, child: Text(e.name),),)
+                                  .map(
+                                    (e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text(e.name),
+                                    ),
+                                  )
                                   .toList(),
                               onChanged: (v) {
                                 setState(() {
@@ -163,7 +167,6 @@ class AddTransactionPageState extends State<AddTransactionPage> {
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   _formKey.currentState!.save();
-                                 
 
                                   context.read<TransactionBloc>().add(
                                         AddTransactions(
@@ -179,10 +182,14 @@ class AddTransactionPageState extends State<AddTransactionPage> {
                                       );
                                   final offset = (_type == 1) ? 1 : -1;
 
-                                  context.read<WalletBloc>().add(UpdateWallet(
-                                      _wallet.copyWith(
-                                          amount: _wallet.amount +
-                                              _amount * offset,),),);
+                                  context.read<WalletBloc>().add(
+                                        UpdateWallet(
+                                          _wallet.copyWith(
+                                            amount: _wallet.amount +
+                                                _amount * offset,
+                                          ),
+                                        ),
+                                      );
                                   Navigator.pop(context);
                                 }
                               },
@@ -364,8 +371,12 @@ class EditTransactionPageState extends State<EditTransactionPage> {
                                   .read<WalletBloc>()
                                   .walletRepository
                                   .currentWallets
-                                  .map((e) => DropdownMenuItem(
-                                      value: e, child: Text(e.name),),)
+                                  .map(
+                                    (e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text(e.name),
+                                    ),
+                                  )
                                   .toList(),
                               onChanged: (v) {
                                 setState(() {
@@ -379,7 +390,6 @@ class EditTransactionPageState extends State<EditTransactionPage> {
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   _formKey.currentState!.save();
-                                 
 
                                   context.read<TransactionBloc>().add(
                                         UpdateTransactions(
@@ -404,8 +414,11 @@ class EditTransactionPageState extends State<EditTransactionPage> {
                                       widget.transaction.amount * offsetA +
                                       _amount * offsetB;
 
-                                  context.read<WalletBloc>().add(UpdateWallet(
-                                      _wallet.copyWith(amount: a),),);
+                                  context.read<WalletBloc>().add(
+                                        UpdateWallet(
+                                          _wallet.copyWith(amount: a),
+                                        ),
+                                      );
                                   Navigator.pop(context);
                                   Navigator.pop(context);
                                 }

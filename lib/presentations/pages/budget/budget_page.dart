@@ -105,9 +105,10 @@ class BudgetsList extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8),
                   child: Column(
-                      children: state.budgets
-                          .map((bud) => BudgetCard(budget: bud))
-                          .toList(),),
+                    children: state.budgets
+                        .map((bud) => BudgetCard(budget: bud))
+                        .toList(),
+                  ),
                 ),
               ),
             );
