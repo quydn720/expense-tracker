@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 import '../blocs/app_bloc/app_bloc.dart';
 import '../blocs/budget/budget_bloc.dart';
@@ -19,6 +20,20 @@ import 'pages/login/login_page.dart';
 import 'pages/main/main_page.dart';
 import 'pages/onboarding/onboarding_page.dart';
 
+@WidgetbookApp.material(
+  name: 'Expense Tracker',
+  foldersExpanded: true,
+  widgetsExpanded: true,
+  // frames: [
+  //   WidgetbookFrame(allowsDevices: true, name: 'Device Frame'),
+  //   WidgetbookFrame(allowsDevices: false, name: 'None'),
+  // ],
+  textScaleFactors: [
+    1,
+    2,
+    3,
+  ],
+)
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
