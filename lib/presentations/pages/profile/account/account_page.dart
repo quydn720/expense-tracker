@@ -130,7 +130,7 @@ class _AddNewWalletButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(kMediumPadding),
-      child: DefaultButton(
+      child: AppButton(
         key: const Key('accountPage_addNewWallet_button'),
         onPressed: () {
           Navigator.push(

@@ -154,7 +154,7 @@ class TransactionDetailPage extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: DefaultButton(
+                        child: AppButton(
                           title: 'Edit',
                           onPressed: () {
                             Navigator.push(
@@ -218,13 +218,13 @@ class DeleteTransactionBottomSheet extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                DefaultButton(
+                AppButton(
                   isSmall: true,
                   title: 'No',
                   isSecondary: true,
                   onPressed: () => Navigator.pop(context),
                 ),
-                DefaultButton(
+                AppButton(
                   isSmall: true,
                   title: 'Yes',
                   onPressed: () {

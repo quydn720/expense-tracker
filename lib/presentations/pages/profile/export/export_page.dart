@@ -63,7 +63,7 @@ class _ExportPageState extends State<ExportPage> {
                 ],
               ),
             ),
-            DefaultButton(
+            AppButton(
               title: 'Export',
               onPressed: () {
                 // TODO: Bloc add Send file to email

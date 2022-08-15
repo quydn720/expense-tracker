@@ -151,7 +151,7 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                             },
                           ),
                           const SizedBox(height: kMediumPadding),
-                          DefaultButton(
+                          AppButton(
                             title: 'Continue',
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {

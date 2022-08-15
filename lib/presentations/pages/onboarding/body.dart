@@ -81,14 +81,14 @@ class BodyState extends State<Body> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  DefaultButton(
+                  AppButton(
                     title: 'Sign in',
                     onPressed: () => Navigator.of(context).pushReplacement(
                       SignInPage.route(),
                     ),
                   ),
                   const SizedBox(height: kMediumPadding),
-                  DefaultButton(
+                  AppButton(
                     isSecondary: true,
                     title: 'Sign up',
                     onPressed: () => Navigator.of(context).pushReplacement(
