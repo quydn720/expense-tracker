@@ -155,7 +155,7 @@ class BudgetDetail extends StatelessWidget {
                 horizontal: 16,
                 vertical: 32,
               ),
-              child: DefaultButton(
+              child: AppButton(
                 title: 'Edit',
                 onPressed: () {
                   Navigator.push(
@@ -206,13 +206,13 @@ class DeleteBudgetBottomSheet extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                DefaultButton(
+                AppButton(
                   isSmall: true,
                   title: 'No',
                   isSecondary: true,
                   onPressed: () => Navigator.pop(context),
                 ),
-                DefaultButton(
+                AppButton(
                   isSmall: true,
                   title: 'Yes',
                   onPressed: () {
@@ -387,7 +387,7 @@ class _EditBudgetState extends State<_EditBudgetPage> {
                             },
                           ),
                           const SizedBox(height: kMediumPadding),
-                          DefaultButton(
+                          AppButton(
                             title: 'Continue',
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {

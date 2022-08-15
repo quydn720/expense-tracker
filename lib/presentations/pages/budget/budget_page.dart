@@ -45,7 +45,7 @@ class BudgetPage extends StatelessWidget {
             color: kLight100,
             child: Padding(
               padding: const EdgeInsets.all(kMediumPadding),
-              child: DefaultButton(
+              child: AppButton(
                 key: const Key('budgetPage_addNewBudget_button'),
                 onPressed: () {
                   Navigator.push(

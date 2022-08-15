@@ -157,7 +157,7 @@ class NewUserPage extends StatelessWidget {
                 style: body3,
               ),
               const Spacer(),
-              DefaultButton(
+              AppButton(
                 title: "Let's go",
                 onPressed: () {
                   Navigator.push(

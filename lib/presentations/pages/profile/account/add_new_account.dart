@@ -129,7 +129,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                             ),
                           ),
                           const SizedBox(height: 8),
-                          DefaultButton(
+                          AppButton(
                             title: 'Continue',
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {

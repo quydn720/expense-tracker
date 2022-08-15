@@ -51,7 +51,7 @@ class Body extends StatelessWidget {
             const SizedBox(height: kLargePadding),
             TextFormField(),
             const SizedBox(height: kLargePadding),
-            DefaultButton(title: 'Continue', onPressed: () {})
+            AppButton(title: 'Continue', onPressed: () {})
           ],
         ),
       ),

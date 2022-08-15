@@ -123,7 +123,7 @@ class _SignUpButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
-            : DefaultButton(
+            : AppButton(
                 key: const Key('signUpForm_continue_raisedButton'),
                 onPressed: state.status.isValidated
                     ? () => context.read<SignupCubit>().signUpFormSubmitted()

@@ -162,7 +162,7 @@ class AddTransactionPageState extends State<AddTransactionPage> {
                               },
                             ),
                             const SizedBox(height: kMediumPadding),
-                            DefaultButton(
+                            AppButton(
                               title: 'Continue',
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
@@ -385,7 +385,7 @@ class EditTransactionPageState extends State<EditTransactionPage> {
                               },
                             ),
                             const SizedBox(height: kMediumPadding),
-                            DefaultButton(
+                            AppButton(
                               title: 'Continue',
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {

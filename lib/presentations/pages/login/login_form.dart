@@ -120,7 +120,7 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
-            : DefaultButton(
+            : AppButton(
                 key: const Key('loginForm_continue_raisedButton'),
                 onPressed: state.status.isValidated
                     ? () => context.read<LoginCubit>().logInWithCredentials()
