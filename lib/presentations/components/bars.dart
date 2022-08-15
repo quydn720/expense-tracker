@@ -5,8 +5,8 @@ import '../../constants.dart';
 
 @WidgetbookUseCase(name: 'Bar', type: DefaultBar)
 Widget barUsecase(BuildContext context) => const DefaultBar(
-  title: Text('Default Bar'),
-);
+      title: Text('Default Bar'),
+    );
 
 class DefaultBar extends StatelessWidget {
   const DefaultBar({
