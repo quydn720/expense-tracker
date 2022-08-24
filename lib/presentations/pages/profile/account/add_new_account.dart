@@ -112,7 +112,9 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                             items: _items
                                 .map(
                                   (e) => DropdownMenuItem(
-                                      value: e, child: Text(e),),
+                                    value: e,
+                                    child: Text(e),
+                                  ),
                                 )
                                 .toList(),
                             onChanged: (v) {

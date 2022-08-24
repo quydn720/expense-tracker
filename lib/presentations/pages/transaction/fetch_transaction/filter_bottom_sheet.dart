@@ -110,7 +110,7 @@ class ResetFilter extends StatelessWidget {
   const ResetFilter({
     super.key,
     required FilterBloc filterBloc,
-  })  : _filterBloc = filterBloc;
+  }) : _filterBloc = filterBloc;
 
   final FilterBloc _filterBloc;
 

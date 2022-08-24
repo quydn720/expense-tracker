@@ -14,7 +14,7 @@ class TransactionDetailPage extends StatelessWidget {
   const TransactionDetailPage({
     super.key,
     required Transaction transaction,
-  })  : _transaction = transaction;
+  }) : _transaction = transaction;
   static String routeName = 'detail_page';
   final Transaction _transaction;
   @override
@@ -194,7 +194,7 @@ class DeleteTransactionBottomSheet extends StatelessWidget {
   const DeleteTransactionBottomSheet({
     super.key,
     required Transaction transaction,
-  })  : _transaction = transaction;
+  }) : _transaction = transaction;
 
   final Transaction _transaction;
 
