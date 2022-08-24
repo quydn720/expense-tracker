@@ -1,5 +1,13 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:budget_repository/budget_repository.dart';
+import 'package:expense_tracker/app_text_theme.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/security_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
+import 'package:expense_tracker/locale_controller.dart';
+import 'package:expense_tracker/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,15 +28,24 @@ import 'pages/main/main_page.dart';
 import 'pages/onboarding/onboarding_page.dart';
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: getIt<String>(),
-      home: Scaffold(
-        appBar: AppBar(title: Text(getIt<String>())),
+      debugShowCheckedModeBanner: false,
+      title: getIt<AppConfigurations>().appName,
+      locale: context.watch<LocaleController>().locale,
+      themeMode: context.watch<ThemeController>().themeMode,
+      theme: ThemeData(
+        primaryColor: const Color(0xff7F3DFF),
+        textTheme: textTheme,
       ),
+      darkTheme: ThemeData.dark().copyWith(
+        textTheme: textTheme,
+        primaryColor: const Color(0xff7F3DFF),
+      ),
+      home: const NewWidget(),
     );
     final authenticationRepository = getIt<IAuthenticationRepository>();
     return RepositoryProvider.value(
@@ -50,9 +67,47 @@ class App extends StatelessWidget {
   }
 }
 
+class NewWidget extends StatelessWidget {
+  const NewWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: const SettingScreen(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+      ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: Text(
+          getIt<AppConfigurations>().appName,
+          style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              final newThemeMode =
+                  context.read<ThemeController>().themeMode != ThemeMode.dark
+                      ? ThemeMode.dark
+                      : ThemeMode.light;
+
+              context.read<ThemeController>().changeThemeMode(newThemeMode);
+            },
+            icon: Icon(
+              context.watch<ThemeController>().themeMode == ThemeMode.light
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
 class AppView extends StatelessWidget {
-  const AppView({Key? key, required this.authenticationRepository})
-      : super(key: key);
+  const AppView({super.key, required this.authenticationRepository});
   final IAuthenticationRepository authenticationRepository;
 
   @override
