@@ -9,8 +9,8 @@ import 'avatar.dart';
 
 class TopNavigation extends StatelessWidget {
   const TopNavigation({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +78,7 @@ class TopNavigation extends StatelessWidget {
 }
 
 class _MoneyAmount extends StatelessWidget {
-  const _MoneyAmount({
-    Key? key,
-  }) : super(key: key);
+  const _MoneyAmount();
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import '../../../components/bars.dart';
 import '../../../components/default_app_widget.dart';
 
 class SettingPage extends StatelessWidget {
-  const SettingPage({Key? key}) : super(key: key);
+  const SettingPage({super.key});
   static String routeName = '/Setting';
   @override
   Widget build(BuildContext context) {

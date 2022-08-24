@@ -12,7 +12,7 @@ import 'export/export_page.dart';
 import 'setting/setting_page.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class ProfilePage extends StatelessWidget {
 }
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  const Body({super.key});
   List<Map<String, String>> get data => const [
         {'img': 'assets/icons/wallet-3.png', 'title': 'Account'},
         {'img': 'assets/icons/settings.png', 'title': 'Settings'},

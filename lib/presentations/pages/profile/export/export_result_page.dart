@@ -5,7 +5,7 @@ import '../../../components/default_button.dart';
 import '../../main/main_page.dart';
 
 class ExportDataPromptPage extends StatelessWidget {
-  const ExportDataPromptPage({Key? key}) : super(key: key);
+  const ExportDataPromptPage({super.key});
   static String routeName = '/export_result';
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,11 @@ class ExportDataPromptPage extends StatelessWidget {
                     Image.asset('assets/images/data_table.png'),
                     const SizedBox(height: kMediumPadding),
                     const Text(
-                      'Check your email, we send you the financial report. In certain cases, it might take a little longer, depending on the time period and the volume of activity.',
+                      '''
+                      Check your email, we send you the financial report.
+                      In certain cases, it might take a little longer,
+                      depending on the time period and 
+                      the volume of activity.''',
                       style: body1,
                       textAlign: TextAlign.center,
                     ),

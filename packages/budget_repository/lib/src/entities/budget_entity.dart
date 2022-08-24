@@ -14,6 +14,18 @@ class BudgetEntity extends Equatable {
     required this.monthApply,
   });
 
+  factory BudgetEntity.fromSnapshot(DocumentSnapshot snap) {
+    final data = snap.data() as Map<String, dynamic>?;
+    if (data == null) throw Exception();
+    return BudgetEntity(
+      id: data['id'] as String,
+      amount: data['amount'] as double,
+      category: data['category'] as String,
+      monthApply: data['monthApply'] as int,
+      exceedLimit: data['exceedLimit'] as double,
+    );
+  }
+
   factory BudgetEntity.fromMap(Map<String, dynamic> map) {
     return BudgetEntity(
       id: map['id'] as String,
@@ -31,18 +43,6 @@ class BudgetEntity extends Equatable {
   final String category;
   final int monthApply;
   final double? exceedLimit;
-
-  static BudgetEntity fromSnapshot(DocumentSnapshot snap) {
-    final data = snap.data() as Map<String, dynamic>?;
-    if (data == null) throw Exception();
-    return BudgetEntity(
-      id: data['id'] as String,
-      amount: data['amount'] as double,
-      category: data['category'] as String,
-      monthApply: data['monthApply'] as int,
-      exceedLimit: data['exceedLimit'] as double,
-    );
-  }
 
   Map<String, Object?> toDocument() {
     return {

@@ -16,6 +16,20 @@ class TransactionEntity extends Equatable {
     this.description,
   });
 
+  factory TransactionEntity.fromSnapshot(DocumentSnapshot snap) {
+    final data = snap.data() as Map<String, dynamic>?;
+    if (data == null) throw Exception();
+    return TransactionEntity(
+      id: data['id'] as String,
+      timestamp: data['timestamp'] as Timestamp,
+      amount: data['amount'] as double,
+      category: data['category'] as String,
+      type: TransactionType.values[data['type'] as int],
+      walletId: data['walletId'] as String,
+      description: data['description'] as String,
+    );
+  }
+
   factory TransactionEntity.fromMap(Map<String, dynamic> map) {
     return TransactionEntity(
       id: map['id'] as String,
@@ -65,20 +79,6 @@ class TransactionEntity extends Equatable {
 
   @override
   bool get stringify => true;
-
-  static TransactionEntity fromSnapshot(DocumentSnapshot snap) {
-    final data = snap.data() as Map<String, dynamic>?;
-    if (data == null) throw Exception();
-    return TransactionEntity(
-      id: data['id'] as String,
-      timestamp: data['timestamp'] as Timestamp,
-      amount: data['amount'] as double,
-      category: data['category'] as String,
-      type: TransactionType.values[data['type'] as int],
-      walletId: data['walletId'] as String,
-      description: data['description'] as String,
-    );
-  }
 
   Map<String, Object?> toDocument() {
     return {

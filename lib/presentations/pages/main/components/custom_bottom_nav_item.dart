@@ -9,8 +9,8 @@ class CustomBottomNavItem extends StatelessWidget {
     required this.title,
     required this.onTap,
     this.color = Colors.grey,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final IconData icon;
   final Text title;

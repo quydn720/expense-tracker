@@ -5,12 +5,12 @@ import '../../constants.dart';
 
 class SquaredIconCard extends StatelessWidget {
   const SquaredIconCard({
-    Key? key,
+    super.key,
     required this.imagePath,
     required this.size,
     this.color = kLight100,
     this.imageColor,
-  }) : super(key: key);
+  });
 
   final String imagePath;
   final double size;
@@ -38,9 +38,9 @@ class SquaredIconCard extends StatelessWidget {
 
 class CategoryIconCard extends StatelessWidget {
   const CategoryIconCard({
-    Key? key,
+    super.key,
     required this.category,
-  }) : super(key: key);
+  });
 
   final Category category;
   @override

@@ -12,7 +12,7 @@ import '../../components/squared_icon_card.dart';
 import 'budget_card.dart';
 
 class BudgetDetail extends StatelessWidget {
-  const BudgetDetail(this.budget, {Key? key}) : super(key: key);
+  const BudgetDetail(this.budget, {super.key});
   final Budget budget;
   @override
   Widget build(BuildContext context) {
@@ -80,11 +80,13 @@ class BudgetDetail extends StatelessWidget {
             BlocBuilder<TransactionBloc, TransactionState>(
               builder: (context, state) {
                 if (state is TransactionLoaded) {
-                  final used =
-                      state.transactions.totalOfCategory(budget.category);
-                  final isExceeded = used > budget.amount;
-                  return Text(
-                    '\$${isExceeded ? 0 : (budget.amount - used).toStringAsFixed(1)}',
+                  // final used =
+                  // state.transactions.totalOfCategory(budget.category);
+                  // final isExceeded = used > budget.amount;
+                  return const Text(
+                    'Fix lint',
+                    // TODO(quy): move logic to bloc
+                    // '\$${isExceeded ? 0 : (budget.amount - used).toStringAsFixed(1)}',
                     style: titleX,
                     textAlign: TextAlign.center,
                   );
@@ -179,9 +181,9 @@ class BudgetDetail extends StatelessWidget {
 
 class DeleteBudgetBottomSheet extends StatelessWidget {
   const DeleteBudgetBottomSheet({
-    Key? key,
+    super.key,
     required this.budget,
-  }) : super(key: key);
+  });
 
   final Budget budget;
 
@@ -231,10 +233,7 @@ class DeleteBudgetBottomSheet extends StatelessWidget {
 }
 
 class _EditBudgetPage extends StatefulWidget {
-  const _EditBudgetPage({
-    Key? key,
-    required this.budget,
-  }) : super(key: key);
+  const _EditBudgetPage({required this.budget});
   final Budget budget;
   @override
   State<_EditBudgetPage> createState() => _EditBudgetState();

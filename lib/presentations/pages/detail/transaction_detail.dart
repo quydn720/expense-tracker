@@ -12,10 +12,9 @@ import '../transaction/add_transaction/add_transaction.dart';
 
 class TransactionDetailPage extends StatelessWidget {
   const TransactionDetailPage({
-    Key? key,
+    super.key,
     required Transaction transaction,
-  })  : _transaction = transaction,
-        super(key: key);
+  })  : _transaction = transaction;
   static String routeName = 'detail_page';
   final Transaction _transaction;
   @override
@@ -193,10 +192,9 @@ class TransactionDetailPage extends StatelessWidget {
 
 class DeleteTransactionBottomSheet extends StatelessWidget {
   const DeleteTransactionBottomSheet({
-    Key? key,
+    super.key,
     required Transaction transaction,
-  })  : _transaction = transaction,
-        super(key: key);
+  })  : _transaction = transaction;
 
   final Transaction _transaction;
 

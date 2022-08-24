@@ -5,13 +5,13 @@ import '../../../../../../constants.dart';
 
 class HyperlinkText extends StatelessWidget {
   const HyperlinkText({
-    Key? key,
+    super.key,
     required this.normalText,
     required this.linkText,
     this.normalTextStyle,
     this.linkTextStyle,
     this.onTap,
-  }) : super(key: key);
+  });
   final String normalText;
   final String linkText;
   final TextStyle? normalTextStyle;

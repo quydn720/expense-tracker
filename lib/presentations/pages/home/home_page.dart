@@ -7,7 +7,7 @@ import '../../components/common_components.dart';
 import 'widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
   static String routeName = '/home_page';
 
   @override
@@ -33,8 +33,8 @@ class HomePage extends StatelessWidget {
 
 class HomeView extends StatelessWidget {
   const HomeView({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

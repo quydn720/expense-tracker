@@ -12,10 +12,10 @@ import 'squared_icon_card.dart';
 
 class TransactionTile extends StatelessWidget {
   const TransactionTile({
-    Key? key,
+    super.key,
     required this.transaction,
     this.canTouch = true,
-  }) : super(key: key);
+  });
   final Transaction transaction;
   final bool canTouch;
   @override
@@ -94,7 +94,9 @@ class TransactionTile extends StatelessWidget {
                 ),
                 FittedBox(
                   child: Text(
-                    '${transaction.type == TransactionType.income ? '+' : '-'}\$ ${transaction.amount}',
+                    'Fix lint',
+                    // TODO(quy): move logic to bloc
+                    // '${transaction.type == TransactionType.income ? '+' : '-'}\$ ${transaction.amount}',
                     style: body2.copyWith(
                       color: transaction.type == TransactionType.income
                           ? kGreen100

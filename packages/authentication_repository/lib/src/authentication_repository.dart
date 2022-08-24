@@ -160,9 +160,9 @@ abstract class IAuthenticationRepository {
   Future<void> logOut();
   Future<void> signUp({required String email, required String password});
   Stream<User> get user;
-  CacheClient get _cache;
-  firebase_auth.FirebaseAuth get _firebaseAuth;
-  GoogleSignIn get _googleSignIn;
+  // CacheClient get _cache;
+  // firebase_auth.FirebaseAuth get _firebaseAuth;
+  // GoogleSignIn get _googleSignIn;
 }
 
 /// {@template authentication_repository}
@@ -178,11 +178,11 @@ class AuthenticationRepository implements IAuthenticationRepository {
         _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
         _googleSignIn = googleSignIn ?? GoogleSignIn.standard();
 
-  @override
+  // @override
   final CacheClient _cache;
-  @override
+  // @override
   final firebase_auth.FirebaseAuth _firebaseAuth;
-  @override
+  // @override
   final GoogleSignIn _googleSignIn;
 
   /// Whether or not the current environment is web
@@ -350,14 +350,14 @@ class AuthenticateRepo implements IAuthenticationRepository {
   @override
   Stream<User> get user => Stream.value(const User(id: 'id'));
 
-  @override
-  CacheClient get _cache => throw UnimplementedError();
+  // @override
+  // CacheClient get _cache => throw UnimplementedError();
 
-  @override
-  firebase_auth.FirebaseAuth get _firebaseAuth => throw UnimplementedError();
+  // @override
+  // firebase_auth.FirebaseAuth get _firebaseAuth => throw UnimplementedError();
 
-  @override
-  GoogleSignIn get _googleSignIn => throw UnimplementedError();
+  // @override
+  // GoogleSignIn get _googleSignIn => throw UnimplementedError();
 }
 
 extension on firebase_auth.User {

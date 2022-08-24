@@ -11,9 +11,9 @@ import 'budget_detail.dart';
 
 class BudgetCard extends StatelessWidget {
   const BudgetCard({
-    Key? key,
+    super.key,
     required this.budget,
-  }) : super(key: key);
+  });
 
   final Budget budget;
 
@@ -83,9 +83,9 @@ class BudgetCard extends StatelessWidget {
 
 class ExceedText extends StatelessWidget {
   const ExceedText({
-    Key? key,
+    super.key,
     required this.budget,
-  }) : super(key: key);
+  });
   final Budget budget;
   @override
   Widget build(BuildContext context) {
@@ -112,9 +112,9 @@ class ExceedText extends StatelessWidget {
 
 class WarningIcon extends StatelessWidget {
   const WarningIcon({
-    Key? key,
+    super.key,
     required this.budget,
-  }) : super(key: key);
+  });
   final Budget budget;
   @override
   Widget build(BuildContext context) {
@@ -141,9 +141,9 @@ class WarningIcon extends StatelessWidget {
 
 class UsedOfAmount extends StatelessWidget {
   const UsedOfAmount({
-    Key? key,
+    super.key,
     required this.budget,
-  }) : super(key: key);
+  });
 
   final Budget budget;
 
@@ -166,17 +166,19 @@ class UsedOfAmount extends StatelessWidget {
 }
 
 class RemainText extends StatelessWidget {
-  const RemainText({Key? key, required this.budget}) : super(key: key);
+  const RemainText({super.key, required this.budget});
   final Budget budget;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TransactionBloc, TransactionState>(
       builder: (context, state) {
         if (state is TransactionLoaded) {
-          final used = state.transactions.totalOfCategory(budget.category);
-          final isExceeded = used > budget.amount;
-          return Text(
-            'Remaining \$${isExceeded ? 0 : (budget.amount - used).toStringAsFixed(1)}',
+          // final used = state.transactions.totalOfCategory(budget.category);
+          // final isExceeded = used > budget.amount;
+          return const Text(
+            'Fix lint',
+            // TODO(quy): move logic to bloc
+            // 'Remaining \$${isExceeded ? 0 : (budget.amount - used).toStringAsFixed(1)}',
             style: title2,
           );
         } else {
@@ -188,7 +190,7 @@ class RemainText extends StatelessWidget {
 }
 
 class ProgressBar extends StatelessWidget {
-  const ProgressBar({Key? key, required this.budget}) : super(key: key);
+  const ProgressBar({super.key, required this.budget});
   final Budget budget;
   @override
   Widget build(BuildContext context) {

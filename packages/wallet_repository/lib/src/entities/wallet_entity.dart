@@ -12,6 +12,17 @@ class WalletEntity extends Equatable {
     required this.iconPath,
     required this.color,
   });
+  factory WalletEntity.fromSnapshot(DocumentSnapshot snap) {
+    final data = snap.data() as Map<String, dynamic>?;
+    if (data == null) throw Exception();
+    return WalletEntity(
+      id: data['id'] as String,
+      amount: data['amount'] as double,
+      name: data['name'] as String,
+      iconPath: data['iconPath'] as String,
+      color: Color(data['color'] as int),
+    );
+  }
 
   factory WalletEntity.fromMap(Map<String, dynamic> map) {
     return WalletEntity(
@@ -33,18 +44,6 @@ class WalletEntity extends Equatable {
 
   @override
   bool get stringify => true;
-
-  static WalletEntity fromSnapshot(DocumentSnapshot snap) {
-    final data = snap.data() as Map<String, dynamic>?;
-    if (data == null) throw Exception();
-    return WalletEntity(
-      id: data['id'] as String,
-      amount: data['amount'] as double,
-      name: data['name'] as String,
-      iconPath: data['iconPath'] as String,
-      color: Color(data['color'] as int),
-    );
-  }
 
   Map<String, Object?> toDocument() {
     return {

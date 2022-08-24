@@ -8,7 +8,7 @@ import '../../components/default_button.dart';
 import '../login/widgets.dart';
 
 class SignUpForm extends StatelessWidget {
-  const SignUpForm({Key? key}) : super(key: key);
+  const SignUpForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +136,7 @@ class _SignUpButton extends StatelessWidget {
 }
 
 class _TermCheckbox extends StatelessWidget {
-  const _TermCheckbox({Key? key}) : super(key: key);
+  const _TermCheckbox();
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,7 @@ import '../../../../constants.dart';
 import '../../../components/default_button.dart';
 
 class AddTransactionPage extends StatefulWidget {
-  const AddTransactionPage({Key? key}) : super(key: key);
+  const AddTransactionPage({super.key});
 
   @override
   AddTransactionPageState createState() => AddTransactionPageState();
@@ -210,8 +210,7 @@ class AddTransactionPageState extends State<AddTransactionPage> {
 }
 
 class EditTransactionPage extends StatefulWidget {
-  const EditTransactionPage({Key? key, required this.transaction})
-      : super(key: key);
+  const EditTransactionPage({super.key, required this.transaction});
   final Transaction transaction;
   @override
   EditTransactionPageState createState() => EditTransactionPageState();

@@ -8,7 +8,7 @@ import 'add_budget_page.dart';
 import 'budget_card.dart';
 
 class BudgetPage extends StatelessWidget {
-  const BudgetPage({Key? key}) : super(key: key);
+  const BudgetPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +70,8 @@ class BudgetPage extends StatelessWidget {
 
 class BudgetsList extends StatelessWidget {
   const BudgetsList({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BudgetBloc, BudgetState>(

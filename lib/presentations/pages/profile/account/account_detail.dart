@@ -13,9 +13,8 @@ import '../../../components/squared_icon_card.dart';
 import '../../../components/transaction_tile.dart';
 
 class WalletDetailPage extends StatelessWidget {
-  const WalletDetailPage({Key? key, required Wallet wallet})
-      : _wallet = wallet,
-        super(key: key);
+  const WalletDetailPage({super.key, required Wallet wallet})
+      : _wallet = wallet;
   final Wallet _wallet;
   @override
   Widget build(BuildContext context) {
@@ -119,7 +118,7 @@ class WalletDetailPage extends StatelessWidget {
 }
 
 class _EditWalletPage extends StatefulWidget {
-  const _EditWalletPage({Key? key, required this.wallet}) : super(key: key);
+  const _EditWalletPage({required this.wallet});
   final Wallet wallet;
   @override
   State<_EditWalletPage> createState() => __EditWalletPageState();
@@ -305,12 +304,11 @@ class __EditWalletPageState extends State<_EditWalletPage> {
 
 class BankWidget extends StatefulWidget {
   const BankWidget({
-    Key? key,
+    super.key,
     required String selectedAccountType,
     required void Function(String) onIconPathChanged,
   })  : _selectedAccountType = selectedAccountType,
-        _onIconPathChanged = onIconPathChanged,
-        super(key: key);
+        _onIconPathChanged = onIconPathChanged;
   final void Function(String) _onIconPathChanged;
   final String _selectedAccountType;
 

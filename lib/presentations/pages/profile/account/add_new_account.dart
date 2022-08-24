@@ -7,7 +7,7 @@ import '../../../../constants.dart';
 import '../../../components/default_button.dart';
 
 class AddNewWalletPage extends StatefulWidget {
-  const AddNewWalletPage({Key? key}) : super(key: key);
+  const AddNewWalletPage({super.key});
 
   @override
   State<AddNewWalletPage> createState() => _AddNewWalletPageState();
@@ -112,7 +112,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                             items: _items
                                 .map(
                                   (e) => DropdownMenuItem(
-                                      value: e, child: Text(e)),
+                                      value: e, child: Text(e),),
                                 )
                                 .toList(),
                             onChanged: (v) {
@@ -172,12 +172,11 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
 
 class BankWidget extends StatefulWidget {
   const BankWidget({
-    Key? key,
+    super.key,
     required String selectedAccountType,
     required void Function(String) onIconPathChanged,
   })  : _selectedAccountType = selectedAccountType,
-        _onIconPathChanged = onIconPathChanged,
-        super(key: key);
+        _onIconPathChanged = onIconPathChanged;
   final void Function(String) _onIconPathChanged;
   final String _selectedAccountType;
 

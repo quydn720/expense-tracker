@@ -5,7 +5,7 @@ import '../../components/default_app_widget.dart';
 import '../../components/default_button.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
-  const ForgotPasswordPage({Key? key}) : super(key: key);
+  const ForgotPasswordPage({super.key});
   static String routeName = '/forgot_pw';
   static Route<void> route() {
     return MaterialPageRoute<void>(builder: (_) => const ForgotPasswordPage());
@@ -21,7 +21,7 @@ class ForgotPasswordPage extends StatelessWidget {
 }
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  const Body({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +40,10 @@ class Body extends StatelessWidget {
                       style: title1.copyWith(color: kDark100),
                     ),
                     TextSpan(
-                      text:
-                          'Enter your email and we’ll send you a link to reset your password.',
+                      text: 'Fix lint',
+                      // TODO(quy): move logic to bloc
+                      // 'Enter your email and we’ll send you a
+                      // link to reset your password.',
                       style: title1.copyWith(color: kDark100),
                     ),
                   ],

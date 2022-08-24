@@ -73,11 +73,6 @@ class Wallet extends FormzInput<String, WalletValidatorError> {
   }
 
   @override
-  String toString() {
-    return 'Wallet(id: $id, amount: $amount, name: $name, iconPath: $iconPath, color: $color)';
-  }
-
-  @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 

@@ -11,7 +11,7 @@ import 'account_detail.dart';
 import 'add_new_account.dart';
 
 class AccountPage extends StatelessWidget {
-  const AccountPage({Key? key}) : super(key: key);
+  const AccountPage({super.key});
   static String routeName = '/account';
 
   @override
@@ -34,7 +34,7 @@ class AccountPage extends StatelessWidget {
 }
 
 class _WalletList extends StatelessWidget {
-  const _WalletList({Key? key}) : super(key: key);
+  const _WalletList();
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +63,9 @@ class _WalletList extends StatelessWidget {
 
 class WalletTile extends StatelessWidget {
   const WalletTile({
-    Key? key,
+    super.key,
     required Wallet wallet,
-  })  : _wallet = wallet,
-        super(key: key);
+  }) : _wallet = wallet;
   final Wallet _wallet;
   @override
   Widget build(BuildContext context) {
@@ -122,9 +121,7 @@ class WalletTile extends StatelessWidget {
 }
 
 class _AddNewWalletButton extends StatelessWidget {
-  const _AddNewWalletButton({
-    Key? key,
-  }) : super(key: key);
+  const _AddNewWalletButton();
 
   @override
   Widget build(BuildContext context) {
@@ -147,9 +144,7 @@ class _AddNewWalletButton extends StatelessWidget {
 }
 
 class _StackImageAmount extends StatelessWidget {
-  const _StackImageAmount({
-    Key? key,
-  }) : super(key: key);
+  const _StackImageAmount();
 
   @override
   Widget build(BuildContext context) {

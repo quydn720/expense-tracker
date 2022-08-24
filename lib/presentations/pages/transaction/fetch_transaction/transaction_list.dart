@@ -12,7 +12,7 @@ import '../../../components/common_components.dart';
 import 'filter_bottom_sheet.dart';
 
 class TransactionPage extends StatelessWidget {
-  const TransactionPage({Key? key}) : super(key: key);
+  const TransactionPage({super.key});
   static String routeName = '/transaction_page';
   @override
   Widget build(BuildContext context) {
@@ -243,8 +243,8 @@ class TransactionPage extends StatelessWidget {
 
 class MonthReport extends StatelessWidget {
   const MonthReport({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -289,8 +289,8 @@ class MonthReport extends StatelessWidget {
 class TotalTextByType extends StatelessWidget {
   const TotalTextByType(
     this.type, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final TransactionType type;
   @override
   Widget build(BuildContext context) {
@@ -330,8 +330,8 @@ class TotalTextByType extends StatelessWidget {
 
 class TotalText extends StatelessWidget {
   const TotalText({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TransactionBloc, TransactionState>(

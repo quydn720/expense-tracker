@@ -8,7 +8,7 @@ import '../../../components/bars.dart';
 import '../../../components/default_button.dart';
 
 class FilterBottomSheet extends StatelessWidget {
-  const FilterBottomSheet({Key? key}) : super(key: key);
+  const FilterBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -108,10 +108,9 @@ class FilterBottomSheet extends StatelessWidget {
 
 class ResetFilter extends StatelessWidget {
   const ResetFilter({
-    Key? key,
+    super.key,
     required FilterBloc filterBloc,
-  })  : _filterBloc = filterBloc,
-        super(key: key);
+  })  : _filterBloc = filterBloc;
 
   final FilterBloc _filterBloc;
 
@@ -140,14 +139,13 @@ class ResetFilter extends StatelessWidget {
 
 class SortChip extends StatelessWidget {
   const SortChip({
-    Key? key,
+    super.key,
     required FilterBloc filterBloc,
     required ActiveSort sort,
     required String sortString,
   })  : _filterBloc = filterBloc,
         _sort = sort,
-        _sortString = sortString,
-        super(key: key);
+        _sortString = sortString;
 
   final FilterBloc _filterBloc;
   final ActiveSort _sort;
@@ -178,14 +176,13 @@ class SortChip extends StatelessWidget {
 
 class FilterChip extends StatelessWidget {
   const FilterChip({
-    Key? key,
+    super.key,
     required FilterBloc filterBloc,
     required ActiveFilter filter,
     required String filterString,
   })  : _filterBloc = filterBloc,
         _filter = filter,
-        _filterString = filterString,
-        super(key: key);
+        _filterString = filterString;
 
   final FilterBloc _filterBloc;
   final ActiveFilter _filter;

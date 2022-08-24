@@ -55,11 +55,6 @@ class Budget {
   }
 
   @override
-  String toString() {
-    return 'Budget(id: $id, amount: $amount, category: $category, monthApply: $monthApply, exceedLimit: $exceedLimit)';
-  }
-
-  @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 

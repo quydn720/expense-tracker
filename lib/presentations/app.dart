@@ -1,16 +1,11 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:budget_repository/budget_repository.dart';
 import 'package:expense_tracker/app_text_theme.dart';
-import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
-import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
-import 'package:expense_tracker/features/settings/presentation/pages/security_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
-import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
 import 'package:expense_tracker/locale_controller.dart';
 import 'package:expense_tracker/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
 
@@ -47,23 +42,23 @@ class App extends StatelessWidget {
       ),
       home: const NewWidget(),
     );
-    final authenticationRepository = getIt<IAuthenticationRepository>();
-    return RepositoryProvider.value(
-      value: authenticationRepository,
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<AppBloc>(
-            create: (context) => AppBloc(
-              authenticationRepository: authenticationRepository,
-              sharedPreferences: getIt<SharedPreferences>(),
-            )..add(const AppStarted()),
-          ),
-        ],
-        child: AppView(
-          authenticationRepository: authenticationRepository,
-        ),
-      ),
-    );
+    // final authenticationRepository = getIt<IAuthenticationRepository>();
+    // return RepositoryProvider.value(
+    //   value: authenticationRepository,
+    //   child: MultiBlocProvider(
+    //     providers: [
+    //       BlocProvider<AppBloc>(
+    //         create: (context) => AppBloc(
+    //           authenticationRepository: authenticationRepository,
+    //           sharedPreferences: getIt<SharedPreferences>(),
+    //         )..add(const AppStarted()),
+    //       ),
+    //     ],
+    //     child: AppView(
+    //       authenticationRepository: authenticationRepository,
+    //     ),
+    //   ),
+    // );
   }
 }
 

@@ -4,7 +4,7 @@ import '../../constants.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({
-    Key? key,
+    super.key,
     required this.title,
     required this.onPressed,
     this.icon,
@@ -13,7 +13,7 @@ class DefaultButton extends StatelessWidget {
     this.isGhost = false,
     this.middle,
     this.elevation = 4,
-  }) : super(key: key);
+  });
   final String title;
   final Widget? middle;
   final VoidCallback? onPressed;
@@ -68,11 +68,11 @@ class DefaultButton extends StatelessWidget {
 
 class DefaultOutlinedButton extends StatelessWidget {
   const DefaultOutlinedButton({
-    Key? key,
+    super.key,
     required this.onPress,
     required this.title,
     this.icon,
-  }) : super(key: key);
+  });
   final VoidCallback onPress;
   final Widget? icon;
   final String title;

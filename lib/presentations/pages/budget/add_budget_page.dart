@@ -9,7 +9,7 @@ import '../../../constants.dart';
 import '../../components/default_button.dart';
 
 class AddBudgetPage extends StatefulWidget {
-  const AddBudgetPage({Key? key}) : super(key: key);
+  const AddBudgetPage({super.key});
 
   @override
   State<AddBudgetPage> createState() => _AddBudgetPageState();

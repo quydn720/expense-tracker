@@ -7,12 +7,12 @@ import 'default_app_bar.dart';
 ///
 class DefaultAppWidget extends StatelessWidget {
   const DefaultAppWidget({
-    Key? key,
+    super.key,
     this.color,
     required this.title,
     this.body,
     this.trail,
-  }) : super(key: key);
+  });
   final Color? color;
   final String title;
   final Widget? body;

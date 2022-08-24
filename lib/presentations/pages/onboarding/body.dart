@@ -7,7 +7,7 @@ import '../login/login_page.dart';
 import '../signup/signup_page.dart';
 
 class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+  const Body({super.key});
   @override
   BodyState createState() => BodyState();
 }

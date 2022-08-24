@@ -15,7 +15,7 @@ import '../transaction/add_transaction/add_transaction.dart';
 import '../transaction/fetch_transaction/transaction_list.dart';
 
 class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
   static String routeName = '/main_page';
 
   @override
@@ -84,10 +84,10 @@ class MainPage extends StatelessWidget {
 
 class TabSelector extends StatelessWidget {
   const TabSelector({
-    Key? key,
+    super.key,
     required this.activeTab,
     required this.onTabSelected,
-  }) : super(key: key);
+  });
   final AppTab activeTab;
   final void Function(AppTab) onTabSelected;
 
@@ -138,7 +138,7 @@ class TabSelector extends StatelessWidget {
 }
 
 class NewUserPage extends StatelessWidget {
-  const NewUserPage({Key? key}) : super(key: key);
+  const NewUserPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import '../../../blocs/login/login_cubit.dart';
 import 'login_form.dart';
 
 class SignInPage extends StatelessWidget {
-  const SignInPage({Key? key}) : super(key: key);
+  const SignInPage({super.key});
   static Page<void> page() => const MaterialPage<void>(child: SignInPage());
   static Route<void> route() {
     return MaterialPageRoute<void>(builder: (_) => const SignInPage());

@@ -4,13 +4,13 @@ import '../../constants.dart';
 
 class DefaultBar extends StatelessWidget {
   const DefaultBar({
-    Key? key,
+    super.key,
     this.title,
     this.trailing,
     this.color,
     this.height,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final Widget? title;
   final Widget? trailing;
@@ -45,9 +45,8 @@ class SelectionBar extends DefaultBar {
     required this.onTap,
     required this.sectionTitle,
     this.currentSelected,
-    Key? key,
+    super.key,
   }) : super(
-          key: key,
           onTap: onTap,
           height: 56,
           title: Padding(

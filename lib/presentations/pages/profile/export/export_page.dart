@@ -7,7 +7,7 @@ import '../../../components/default_button.dart';
 import 'export_result_page.dart';
 
 class ExportPage extends StatefulWidget {
-  const ExportPage({Key? key}) : super(key: key);
+  const ExportPage({super.key});
   static String routeName = '/Export';
 
   @override
@@ -66,7 +66,7 @@ class _ExportPageState extends State<ExportPage> {
             DefaultButton(
               title: 'Export',
               onPressed: () {
-                // TODO: Bloc add Send file to email
+                // TODO(quy): Bloc add Send file to email
                 Navigator.pushReplacementNamed(
                   context,
                   ExportDataPromptPage.routeName,

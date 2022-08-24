@@ -6,7 +6,7 @@ import '../../../../blocs/transaction/transaction_bloc.dart';
 import '../../../../constants.dart';
 
 class LineChartWidget extends StatelessWidget {
-  const LineChartWidget({Key? key}) : super(key: key);
+  const LineChartWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
