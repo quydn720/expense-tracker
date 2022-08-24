@@ -29,9 +29,9 @@ class _SettingTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final valueTextStyle = Theme.of(context).textTheme.subtitle2;
-    final titleTextStyle = Theme.of(context).textTheme.bodyText1?.copyWith(
-          color: const Color(0xff292B2D),
+    final titleTextStyle = Theme.of(context).textTheme.bodyText1;
+    final valueTextStyle = Theme.of(context).textTheme.subtitle2?.copyWith(
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
         );
 
     return ListTile(
