@@ -7,6 +7,7 @@ import 'presentations/app.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // TODO: try presolve
   // await Firebase.initializeApp();
 
   await configureInjection(Environment.prod);
