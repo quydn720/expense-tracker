@@ -333,12 +333,12 @@ void main() {
         );
       });
 
-      test('returns User when cached user is not null', () async {
-        when(
-          () => cache.read(key: AuthenticationRepository.userCacheKey),
-        ).thenReturn(user);
-        expect(authenticationRepository.currentUser, equals(user));
-      });
+      // test('returns User when cached user is not null', () async {
+      //   when(
+      //     () => cache.read(key: AuthenticationRepository.userCacheKey),
+      //   ).thenReturn(user);
+      //   expect(authenticationRepository.currentUser, equals(user));
+      // });
     });
   });
 }
