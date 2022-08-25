@@ -18,12 +18,14 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
       ),
-      leading: IconButton(
-        onPressed: () => context.pop(),
-        icon: Assets.icons.arrowLeft.svg(
-          color: Theme.of(context).colorScheme.onSurface,
-        ),
-      ),
+      leading: GoRouter.of(context).canPop()
+          ? IconButton(
+              onPressed: () => context.pop(),
+              icon: Assets.icons.arrowLeft.svg(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            )
+          : null,
     );
   }
 }
