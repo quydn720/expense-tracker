@@ -1,5 +1,5 @@
+import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 enum ScaffoldTab { home, transaction, budget, profile }
@@ -45,8 +45,7 @@ class AppScaffold extends StatelessWidget {
         iconSize: 32,
         items: [
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/home.svg',
+            icon: Assets.icons.home.svg(
               color: selectedTab.index == 0
                   ? const Color(0xff7F3DFF)
                   : Colors.grey,
@@ -54,8 +53,7 @@ class AppScaffold extends StatelessWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/transaction.svg',
+            icon: Assets.icons.transaction.svg(
               color: selectedTab.index == 1
                   ? const Color(0xff7F3DFF)
                   : Colors.grey,
@@ -63,8 +61,7 @@ class AppScaffold extends StatelessWidget {
             label: 'Transaction',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/pie-chart.svg',
+            icon: Assets.icons.pieChart.svg(
               color: selectedTab.index == 2
                   ? const Color(0xff7F3DFF)
                   : Colors.grey,
@@ -72,8 +69,7 @@ class AppScaffold extends StatelessWidget {
             label: 'Budget',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/user.svg',
+            icon: Assets.icons.user.svg(
               color: selectedTab.index == 3
                   ? const Color(0xff7F3DFF)
                   : Colors.grey,

@@ -1,5 +1,5 @@
+import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../presentations/components/default_app_bar.dart';
 
@@ -21,8 +21,7 @@ class SecurityScreen extends StatelessWidget {
             style: textStyle,
           ),
           minVerticalPadding: 17,
-          trailing: SvgPicture.asset(
-            'assets/icons/success.svg',
+          trailing: Assets.icons.success.svg(
             color: Theme.of(context).primaryColor,
           ),
         ),
