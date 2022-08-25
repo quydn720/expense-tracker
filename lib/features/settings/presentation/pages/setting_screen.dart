@@ -1,4 +1,10 @@
+import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/language_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/security_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -7,15 +13,39 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        children: const [
-          _SettingTile(title: 'Currency', value: 'USD'),
-          _SettingTile(title: 'Language', value: 'English'),
-          _SettingTile(title: 'Theme', value: 'Dark'),
-          _SettingTile(title: 'Security'),
-          _SettingTile(title: 'Notification'),
-          SizedBox(height: 32),
-          _SettingTile(title: 'About'),
-          _SettingTile(title: 'Help'),
+        children: [
+          _SettingTile(
+            title: 'Currency',
+            value: 'USD',
+            onTap: () => context.go(CurrencyScreen.routeName),
+          ),
+          _SettingTile(
+            title: 'Language',
+            value: 'English',
+            onTap: () => context.go(LanguageScreen.routeName),
+          ),
+          _SettingTile(
+            title: 'Theme',
+            value: 'Dark',
+            onTap: () => context.go(ThemeScreen.routeName),
+          ),
+          _SettingTile(
+            title: 'Security',
+            onTap: () => context.go(SecurityScreen.routeName),
+          ),
+          _SettingTile(
+            title: 'Notification',
+            onTap: () => context.go(NotificationScreen.routeName),
+          ),
+          const SizedBox(height: 32),
+          _SettingTile(
+            title: 'About',
+            onTap: () => context.go(CurrencyScreen.routeName),
+          ),
+          _SettingTile(
+            title: 'Help',
+            onTap: () => context.go(CurrencyScreen.routeName),
+          ),
         ],
       ),
     );
@@ -23,9 +53,10 @@ class SettingScreen extends StatelessWidget {
 }
 
 class _SettingTile extends StatelessWidget {
-  const _SettingTile({required this.title, this.value});
+  const _SettingTile({required this.title, this.value, this.onTap});
   final String title;
   final String? value;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +76,7 @@ class _SettingTile extends StatelessWidget {
         ],
       ),
       minVerticalPadding: 16,
+      onTap: onTap,
     );
   }
 }

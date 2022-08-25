@@ -4,8 +4,9 @@ import 'package:expense_tracker/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
+
+import 'app.dart';
 import 'di/injector.dart';
-import 'presentations/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

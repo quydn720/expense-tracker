@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
+  static const String routeName = '/setting/notification';
+
   @override
   Widget build(BuildContext context) {
     final titleTextStyle = Theme.of(context).textTheme.bodyText1?.copyWith(
@@ -13,6 +15,7 @@ class NotificationScreen extends StatelessWidget {
         );
 
     return Scaffold(
+      appBar: AppBar(),
       body: Column(
         children: [
           SwitchListTile.adaptive(

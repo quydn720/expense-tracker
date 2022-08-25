@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class ThemeScreen extends StatelessWidget {
   const ThemeScreen({super.key});
+  static const String routeName = '/setting/theme';
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +12,7 @@ class ThemeScreen extends StatelessWidget {
         );
 
     return Scaffold(
+      appBar: AppBar(),
       body: ListView.builder(
         itemBuilder: (_, index) => ListTile(
           title: Text(

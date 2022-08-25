@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class SecurityScreen extends StatelessWidget {
   const SecurityScreen({super.key});
+  static const String routeName = '/setting/security';
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +11,7 @@ class SecurityScreen extends StatelessWidget {
           color: const Color(0xff0D0E0F),
         );
     return Scaffold(
+      appBar: AppBar(),
       body: ListView.builder(
         itemBuilder: (_, index) => ListTile(
           title: Text(
