@@ -25,24 +25,3 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
-// }
-// class DefaultAppBar extends AppBar {
-//   DefaultAppBar({
-//     this.color,
-//     this.lead,
-//     this.trail,
-//     super.key,
-//     this.middle,
-//   }) : super(
-//           // leadingWidth: SizeConfig.screenWidth * 0.4,
-//           // automaticallyImplyLeading: false,
-//           backgroundColor: color,
-//           leading: lead ?? const SizedBox.shrink(),
-//           actions: [trail ?? const SizedBox.shrink()],
-//           title: middle ?? const SizedBox.shrink(),
-//         );
-//   final Widget? middle;
-//   final Widget? lead;
-//   final Widget? trail;
-//   final Color? color;
-// }
