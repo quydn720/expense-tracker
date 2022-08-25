@@ -1,16 +1,11 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:budget_repository/budget_repository.dart';
 import 'package:expense_tracker/app_text_theme.dart';
-import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
-import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
-import 'package:expense_tracker/home_screen.dart';
 import 'package:expense_tracker/locale_controller.dart';
-import 'package:expense_tracker/router.dart';
+import 'package:expense_tracker/routes/router.dart';
 import 'package:expense_tracker/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
 
@@ -48,6 +43,9 @@ class App extends StatelessWidget {
           color: Colors.white,
           iconTheme: IconThemeData(color: Color(0xff212325)),
         ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Color(0xff7F3DFF),
+        ),
         scaffoldBackgroundColor: Colors.white,
       ),
       darkTheme: ThemeData.dark().copyWith(
@@ -73,123 +71,6 @@ class App extends StatelessWidget {
     //     ),
     //   ),
     // );
-  }
-}
-
-enum ScaffoldTab { home, transaction, budget, profile }
-
-class NewWidget extends StatelessWidget {
-  const NewWidget({
-    super.key,
-    required this.selectedTab,
-    required this.child,
-  });
-
-  static const screens = [
-    HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
-    SettingScreen(),
-  ];
-
-  final Widget child;
-  final ScaffoldTab selectedTab;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: child,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        onTap: (idx) {
-          switch (ScaffoldTab.values[idx]) {
-            case ScaffoldTab.home:
-              context.go('/${ScaffoldTab.values[idx].name}');
-              break;
-            case ScaffoldTab.transaction:
-              context.go('/${ScaffoldTab.values[idx].name}');
-              break;
-            case ScaffoldTab.budget:
-              context.go('/${ScaffoldTab.values[idx].name}');
-              break;
-            case ScaffoldTab.profile:
-              context.go('/${ScaffoldTab.values[idx].name}');
-              break;
-          }
-        },
-        currentIndex: selectedTab.index,
-        selectedFontSize: 12,
-        selectedItemColor: const Color(0xff7F3DFF),
-        iconSize: 32,
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/home.svg',
-              color: selectedTab.index == 0
-                  ? const Color(0xff7F3DFF)
-                  : Colors.grey,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/transaction.svg',
-              color: selectedTab.index == 1
-                  ? const Color(0xff7F3DFF)
-                  : Colors.grey,
-            ),
-            label: 'Transaction',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/pie-chart.svg',
-              color: selectedTab.index == 2
-                  ? const Color(0xff7F3DFF)
-                  : Colors.grey,
-            ),
-            label: 'Budget',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/icons/user.svg',
-              color: selectedTab.index == 3
-                  ? const Color(0xff7F3DFF)
-                  : Colors.grey,
-            ),
-            label: 'Profile',
-          ),
-        ],
-      ),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: Text(
-          selectedTab.name.capitalize(),
-          style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              final newThemeMode =
-                  context.read<ThemeController>().themeMode != ThemeMode.dark
-                      ? ThemeMode.dark
-                      : ThemeMode.light;
-
-              context.read<ThemeController>().changeThemeMode(newThemeMode);
-            },
-            icon: Icon(
-              context.watch<ThemeController>().themeMode == ThemeMode.light
-                  ? Icons.light_mode
-                  : Icons.dark_mode,
-            ),
-          )
-        ],
-      ),
-    );
   }
 }
 
@@ -243,19 +124,3 @@ class AppView extends StatelessWidget {
     );
   }
 }
-
-enum TabItem { red, green, blue, profile }
-
-const Map<TabItem, String> tabName = {
-  TabItem.red: 'red',
-  TabItem.green: 'green',
-  TabItem.blue: 'blue',
-  TabItem.profile: 'Profile',
-};
-
-const Map<TabItem, Widget> activeTabColor = {
-  TabItem.red: HomeScreen(),
-  TabItem.green: HomeScreen(),
-  TabItem.blue: HomeScreen(),
-  TabItem.profile: SettingScreen(),
-};
