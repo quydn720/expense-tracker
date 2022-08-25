@@ -1,6 +1,5 @@
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {

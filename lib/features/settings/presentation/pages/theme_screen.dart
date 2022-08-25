@@ -2,7 +2,6 @@ import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:expense_tracker/theme_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class ThemeScreen extends StatelessWidget {
