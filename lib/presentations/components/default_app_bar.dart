@@ -20,7 +20,10 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       leading: IconButton(
         onPressed: () => context.pop(),
-        icon: SvgPicture.asset('assets/icons/arrow-left.svg'),
+        icon: SvgPicture.asset(
+          'assets/icons/arrow-left.svg',
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
       ),
     );
   }
