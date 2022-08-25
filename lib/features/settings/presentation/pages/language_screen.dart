@@ -1,3 +1,4 @@
+import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -12,7 +13,7 @@ class LanguageScreen extends StatelessWidget {
         );
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const DefaultAppBar(title: 'Language'),
       body: ListView.builder(
         itemBuilder: (_, index) => ListTile(
           title: Text(_languages[index]['name']!, style: textStyle),

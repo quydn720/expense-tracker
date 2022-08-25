@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../presentations/components/default_app_bar.dart';
+
 class CurrencyScreen extends StatelessWidget {
   const CurrencyScreen({super.key});
 
@@ -13,7 +15,7 @@ class CurrencyScreen extends StatelessWidget {
         );
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const DefaultAppBar(title: 'Currency'),
       body: ListView.builder(
         itemBuilder: (_, index) => ListTile(
           title: Text(_currencies[index]['name']!, style: textStyle),
