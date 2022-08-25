@@ -77,20 +77,9 @@ flutter:
     - assets/icons/
     - assets/icons/banks/
     - assets/icons/categories/
-  fonts:
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter/Inter-Medium.ttf
-        - asset: assets/fonts/Inter/Inter-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Inter/Inter-Bold.ttf
-          weight: 700
-  #   - family: Trajan 
-  
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_gen:
+  line_length: 80 
+
+  integrations:
+    flutter_svg: true

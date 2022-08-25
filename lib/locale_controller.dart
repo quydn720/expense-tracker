@@ -14,7 +14,7 @@ class LocaleController extends ChangeNotifier {
 
   Locale get locale => _locale;
   Future<void> changeLocale(Locale locale) async {
-    await _localCache.set(_key, _locale.countryCode);
+    await _localCache.set(_key, locale.languageCode);
     notifyListeners();
     logger.i('Locale change to: $_locale');
     _locale = locale;

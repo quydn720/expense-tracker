@@ -1,3 +1,4 @@
+import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -20,8 +21,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       leading: IconButton(
         onPressed: () => context.pop(),
-        icon: SvgPicture.asset(
-          'assets/icons/arrow-left.svg',
+        icon: Assets.icons.arrowLeft.svg(
           color: Theme.of(context).colorScheme.onSurface,
         ),
       ),

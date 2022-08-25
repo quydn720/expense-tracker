@@ -1,3 +1,4 @@
+import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -20,8 +21,7 @@ class CurrencyScreen extends StatelessWidget {
         itemBuilder: (_, index) => ListTile(
           title: Text(_currencies[index]['name']!, style: textStyle),
           minVerticalPadding: 17,
-          trailing: SvgPicture.asset(
-            'assets/icons/success.svg',
+          trailing: Assets.icons.success.svg(
             color: Theme.of(context).primaryColor,
           ),
         ),
