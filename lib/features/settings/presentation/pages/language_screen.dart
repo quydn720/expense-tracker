@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({super.key});
+  static const String routeName = '/setting/language';
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +12,7 @@ class LanguageScreen extends StatelessWidget {
         );
 
     return Scaffold(
+      appBar: AppBar(),
       body: ListView.builder(
         itemBuilder: (_, index) => ListTile(
           title: Text(_languages[index]['name']!, style: textStyle),

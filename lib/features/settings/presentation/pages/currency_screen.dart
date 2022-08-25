@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CurrencyScreen extends StatelessWidget {
   const CurrencyScreen({super.key});
 
+  static const String routeName = '/setting/currency';
+
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme.subtitle2?.copyWith(
@@ -11,6 +13,7 @@ class CurrencyScreen extends StatelessWidget {
         );
 
     return Scaffold(
+      appBar: AppBar(),
       body: ListView.builder(
         itemBuilder: (_, index) => ListTile(
           title: Text(_currencies[index]['name']!, style: textStyle),
