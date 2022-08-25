@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
 import 'default_app_bar.dart';
 
 /// Default scaffold widget with [DefaultAppBar]

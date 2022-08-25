@@ -1,10 +1,6 @@
-import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-
-import '../theme_controller.dart';
 
 enum ScaffoldTab { home, transaction, budget, profile }
 
