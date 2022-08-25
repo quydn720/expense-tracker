@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
 import 'default_app_bar.dart';
 
 /// Default scaffold widget with [DefaultAppBar]
@@ -21,15 +20,15 @@ class DefaultAppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(
-        color: color,
-        lead: GestureDetector(
-          child: Image.asset('assets/icons/arrow-left.png', color: kDark100),
-          onTap: () => Navigator.pop(context),
-        ),
-        middle: Text(title, style: title3.copyWith(color: kDark100)),
-        trail: trail,
-      ),
+      // appBar: DefaultAppBar(
+      // color: color,
+      // lead: GestureDetector(
+      //   child: Image.asset('assets/icons/arrow-left.png', color: kDark100),
+      //   onTap: () => Navigator.pop(context),
+      // ),
+      // middle: Text(title, style: title3.copyWith(color: kDark100)),
+      // trail: trail,
+      // ),
       body: body,
     );
   }

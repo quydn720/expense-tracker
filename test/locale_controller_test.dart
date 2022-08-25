@@ -6,12 +6,17 @@ import 'package:mocktail/mocktail.dart';
 class MockLocalCache extends Mock implements ILocalCache {}
 
 void main() {
+  late final MockLocalCache mockCache;
+  late final LocaleController sut;
+
+  setUpAll(() {
+    mockCache = MockLocalCache();
+    sut = LocaleController(mockCache);
+  });
+
   test(
     'default language code should be vi',
     () async {
-      final mockCache = MockLocalCache();
-      final sut = LocaleController(mockCache);
-
       expect(sut.locale.languageCode, 'vi');
     },
   );

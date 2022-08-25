@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../presentations/components/default_app_bar.dart';
+
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
@@ -15,7 +17,7 @@ class NotificationScreen extends StatelessWidget {
         );
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const DefaultAppBar(title: 'Notification'),
       body: Column(
         children: [
           SwitchListTile.adaptive(

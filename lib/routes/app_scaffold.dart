@@ -1,10 +1,6 @@
-import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-
-import '../theme_controller.dart';
 
 enum ScaffoldTab { home, transaction, budget, profile }
 
@@ -84,30 +80,6 @@ class AppScaffold extends StatelessWidget {
             ),
             label: 'Profile',
           ),
-        ],
-      ),
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: Text(
-          selectedTab.name.capitalize(),
-          style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              final newThemeMode =
-                  context.read<ThemeController>().themeMode != ThemeMode.dark
-                      ? ThemeMode.dark
-                      : ThemeMode.light;
-
-              context.read<ThemeController>().changeThemeMode(newThemeMode);
-            },
-            icon: Icon(
-              context.watch<ThemeController>().themeMode == ThemeMode.light
-                  ? Icons.light_mode
-                  : Icons.dark_mode,
-            ),
-          )
         ],
       ),
     );
