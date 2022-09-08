@@ -43,6 +43,13 @@ class $AssetsIconsGen {
 
   $AssetsIconsCategoriesGen get categories => const $AssetsIconsCategoriesGen();
 
+  /// File path: assets/icons/checkbox.svg
+  SvgGenImage get checkbox => const SvgGenImage('assets/icons/checkbox.svg');
+
+  /// File path: assets/icons/checkbox_blank.svg
+  SvgGenImage get checkboxBlank =>
+      const SvgGenImage('assets/icons/checkbox_blank.svg');
+
   /// File path: assets/icons/close.png
   AssetGenImage get close => const AssetGenImage('assets/icons/close.png');
 
@@ -167,6 +174,14 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/shopping.svg
   SvgGenImage get shopping => const SvgGenImage('assets/images/shopping.svg');
+
+  /// File path: assets/images/splash_background.png
+  AssetGenImage get splashBackground =>
+      const AssetGenImage('assets/images/splash_background.png');
+
+  /// File path: assets/images/splash_montra.png
+  AssetGenImage get splashMontra =>
+      const AssetGenImage('assets/images/splash_montra.png');
 }
 
 class $AssetsIconsBanksGen {
