@@ -36,12 +36,44 @@ class App extends StatelessWidget {
       locale: context.watch<LocaleController>().locale,
       themeMode: context.watch<ThemeController>().themeMode,
       theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff7F3DFF)),
         primaryColor: const Color(0xff7F3DFF),
         textTheme: textTheme,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: const EdgeInsets.symmetric(vertical: 16),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: const EdgeInsets.symmetric(vertical: 12),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
+            minimumSize: Size.zero,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            textStyle: const TextStyle(letterSpacing: 0),
+            splashFactory: NoSplash.splashFactory,
+          ),
+        ),
         appBarTheme: const AppBarTheme(
           elevation: 1,
           color: Colors.white,
           iconTheme: IconThemeData(color: Color(0xff212325)),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Color(0xffF1F1FA)),
+            borderRadius: BorderRadius.circular(16),
+          ),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Color(0xff7F3DFF),
