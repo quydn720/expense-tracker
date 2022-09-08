@@ -77,6 +77,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/gallery.png
   AssetGenImage get gallery => const AssetGenImage('assets/icons/gallery.png');
 
+  /// File path: assets/icons/google.svg
+  SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
+
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
@@ -112,7 +115,10 @@ class $AssetsIconsGen {
       const AssetGenImage('assets/icons/settings.png');
 
   /// File path: assets/icons/show.png
-  AssetGenImage get show => const AssetGenImage('assets/icons/show.png');
+  AssetGenImage get showPng => const AssetGenImage('assets/icons/show.png');
+
+  /// File path: assets/icons/show.svg
+  SvgGenImage get showSvg => const SvgGenImage('assets/icons/show.svg');
 
   /// File path: assets/icons/sort-highest-lowest.png
   AssetGenImage get sortHighestLowest =>
