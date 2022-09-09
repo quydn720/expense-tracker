@@ -14,8 +14,9 @@ class NormalText extends FormzInput<String, NormalTextError> {
   }
 }
 
-class NormalBoolInput extends FormzInput<bool, String> {
-  NormalBoolInput.pure(super.value) : super.pure();
+class TermsAgreementCheck extends FormzInput<bool, String> {
+  const TermsAgreementCheck.pure({bool value = false}) : super.pure(value);
+  const TermsAgreementCheck.dirty({required bool value}) : super.dirty(value);
 
   @override
   String? validator(bool value) {

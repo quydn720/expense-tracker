@@ -21,7 +21,9 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(
       state.copyWith(
         name: name,
-        status: Formz.validate([name, state.email, state.password]),
+        status: Formz.validate(
+          [name, state.email, state.password, state.termsAgreement],
+        ),
       ),
     );
   }
@@ -32,7 +34,9 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(
       state.copyWith(
         email: email,
-        status: Formz.validate([email, state.name, state.password]),
+        status: Formz.validate(
+          [email, state.name, state.password, state.termsAgreement],
+        ),
       ),
     );
   }
@@ -43,13 +47,25 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(
       state.copyWith(
         password: password,
-        status: Formz.validate([password, state.name, state.email]),
+        status: Formz.validate(
+          [password, state.name, state.email, state.termsAgreement],
+        ),
       ),
     );
   }
 
   void onTermAgreementCheck() {
-    emit(state.copyWith(termsAgreement: !state.termsAgreement));
+    final termsAgreement = TermsAgreementCheck.dirty(
+      value: !state.termsAgreement.value,
+    );
+    emit(
+      state.copyWith(
+        termsAgreement: termsAgreement,
+        status: Formz.validate(
+          [termsAgreement, state.name, state.email, state.password],
+        ),
+      ),
+    );
   }
 
   void onButtonClicked() {

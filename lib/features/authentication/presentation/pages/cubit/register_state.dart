@@ -6,7 +6,7 @@ class RegisterState with _$RegisterState {
     @Default(NormalText.pure('')) NormalText name,
     @Default(EmailInput.pure('')) EmailInput email,
     @Default(PasswordInput.pure('')) PasswordInput password,
-    @Default(false) bool termsAgreement,
+    @Default(TermsAgreementCheck.pure()) TermsAgreementCheck termsAgreement,
     @Default(FormzStatus.pure) FormzStatus status,
   }) = _RegisterState;
 }

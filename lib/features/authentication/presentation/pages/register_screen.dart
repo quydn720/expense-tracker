@@ -72,21 +72,38 @@ class _TermAgreementField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    final theme = Theme.of(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const _TermAgreementCheckbox(),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Text.rich(
-            TextSpan(
-              text: 'By signing up, you agree to the ',
-              children: [
+        Row(
+          children: [
+            const _TermAgreementCheckbox(),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text.rich(
                 TextSpan(
-                  text: 'Terms of Service and Privacy Policy',
-                  style: TextStyle(color: Theme.of(context).primaryColor),
-                  recognizer: TapGestureRecognizer()..onTap = () {},
-                )
-              ],
+                  text: 'By signing up, you agree to the ',
+                  children: [
+                    TextSpan(
+                      text: 'Terms of Service and Privacy Policy',
+                      style: TextStyle(color: theme.primaryColor),
+                      recognizer: TapGestureRecognizer()..onTap = () {},
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 4),
+        Padding(
+          padding: const EdgeInsets.only(left: 16 + 32 - 6),
+          child: Text(
+            'data',
+            style: theme.textTheme.caption?.copyWith(
+              color: theme.colorScheme.error,
             ),
           ),
         ),
@@ -241,7 +258,7 @@ class _TermAgreementCheckbox extends StatelessWidget {
       builder: (_, state) => InkWell(
         onTap: context.read<RegisterCubit>().onTermAgreementCheck,
         splashFactory: NoSplash.splashFactory,
-        child: state.termsAgreement
+        child: state.termsAgreement.value
             ? Assets.icons.checkbox.svg()
             : Assets.icons.checkboxBlank.svg(),
       ),

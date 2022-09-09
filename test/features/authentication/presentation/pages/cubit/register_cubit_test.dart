@@ -62,7 +62,11 @@ void main() {
           registerWithEmailAndPwUseCase: registerWithEmailAndPwUseCase,
         ),
         act: (bloc) => bloc.onTermAgreementCheck(),
-        expect: () => [const RegisterState(termsAgreement: true)],
+        expect: () => [
+          const RegisterState(
+            termsAgreement: TermsAgreementCheck.pure(value: true),
+          )
+        ],
       );
       test('default status is [RegisterState]', () {
         expect(

@@ -19,7 +19,7 @@ mixin _$RegisterState {
   NormalText get name => throw _privateConstructorUsedError;
   EmailInput get email => throw _privateConstructorUsedError;
   PasswordInput get password => throw _privateConstructorUsedError;
-  bool get termsAgreement => throw _privateConstructorUsedError;
+  TermsAgreementCheck get termsAgreement => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $RegisterStateCopyWith<$Res> {
       {NormalText name,
       EmailInput email,
       PasswordInput password,
-      bool termsAgreement,
+      TermsAgreementCheck termsAgreement,
       FormzStatus status});
 }
 
@@ -73,7 +73,7 @@ class _$RegisterStateCopyWithImpl<$Res>
       termsAgreement: termsAgreement == freezed
           ? _value.termsAgreement
           : termsAgreement // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as TermsAgreementCheck,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -93,7 +93,7 @@ abstract class _$$_RegisterStateCopyWith<$Res>
       {NormalText name,
       EmailInput email,
       PasswordInput password,
-      bool termsAgreement,
+      TermsAgreementCheck termsAgreement,
       FormzStatus status});
 }
 
@@ -132,7 +132,7 @@ class __$$_RegisterStateCopyWithImpl<$Res>
       termsAgreement: termsAgreement == freezed
           ? _value.termsAgreement
           : termsAgreement // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as TermsAgreementCheck,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -148,7 +148,7 @@ class _$_RegisterState implements _RegisterState {
       {this.name = const NormalText.pure(''),
       this.email = const EmailInput.pure(''),
       this.password = const PasswordInput.pure(''),
-      this.termsAgreement = false,
+      this.termsAgreement = const TermsAgreementCheck.pure(),
       this.status = FormzStatus.pure});
 
   @override
@@ -162,7 +162,7 @@ class _$_RegisterState implements _RegisterState {
   final PasswordInput password;
   @override
   @JsonKey()
-  final bool termsAgreement;
+  final TermsAgreementCheck termsAgreement;
   @override
   @JsonKey()
   final FormzStatus status;
@@ -205,7 +205,7 @@ abstract class _RegisterState implements RegisterState {
       {final NormalText name,
       final EmailInput email,
       final PasswordInput password,
-      final bool termsAgreement,
+      final TermsAgreementCheck termsAgreement,
       final FormzStatus status}) = _$_RegisterState;
 
   @override
@@ -215,7 +215,7 @@ abstract class _RegisterState implements RegisterState {
   @override
   PasswordInput get password;
   @override
-  bool get termsAgreement;
+  TermsAgreementCheck get termsAgreement;
   @override
   FormzStatus get status;
   @override
