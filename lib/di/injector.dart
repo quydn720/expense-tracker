@@ -1,7 +1,9 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expense_tracker/routes/router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -39,6 +41,16 @@ abstract class FirebaseInjectableModule {
 @module
 abstract class DevAppLocalPackageModule {
   @dev
+  @Named('init_location')
+  String get devInitialLocation => '/dev_view';
+  @prod
+  @Named('init_location')
+  String get initialLocation => '/';
+
+  @lazySingleton
+  GoRouter appRouterDev(@Named('init_location') String init) => router(init);
+
+  @dev
   IAuthenticationRepository getDev() => AuthenticateRepo();
 
   @prod
@@ -54,9 +66,6 @@ abstract class DevAppLocalPackageModule {
       authenticationRepository: getIt(),
     );
   }
-
-  @prod
-  String get prodTitle => '[Prod] Expense Tracker';
 }
 
 abstract class AppConfigurations {
