@@ -64,7 +64,8 @@ void main() {
         act: (bloc) => bloc.onTermAgreementCheck(),
         expect: () => [
           const RegisterState(
-            termsAgreement: TermsAgreementCheck.pure(value: true),
+            termsAgreement: TermsAgreementCheck.dirty(value: true),
+            status: FormzStatus.invalid,
           )
         ],
       );
@@ -90,10 +91,6 @@ void main() {
         build: () => RegisterCubit(
           registerWithEmailAndPwUseCase: registerWithEmailAndPwUseCase,
         ),
-        // seed: () => const RegisterState(
-        //   email: EmailInput.dirty('email'),
-        //   password: PasswordInput.dirty('password'),
-        // ),
         act: (bloc) {
           bloc
             ..onNameChanged('name')
@@ -115,7 +112,7 @@ void main() {
             name: NormalText.dirty('name'),
             email: EmailInput.dirty('email'),
             password: PasswordInput.dirty('pw'),
-            status: FormzStatus.valid,
+            status: FormzStatus.invalid,
           ),
         ],
         verify: (bloc) => verify(
