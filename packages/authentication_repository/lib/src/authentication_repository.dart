@@ -343,8 +343,11 @@ class AuthenticateRepo implements IAuthenticationRepository {
   }
 
   @override
-  Future<void> signUp({required String email, required String password}) {
-    throw UnimplementedError();
+  Future<void> signUp({
+    required String email,
+    required String password,
+  }) async {
+    // TODO(fitz): implements
   }
 
   @override

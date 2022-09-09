@@ -15,10 +15,10 @@
             ]
         },
         {
-            "name": "[PROD] expense-tracker (profile mode)",
+            "name": "[PROD] expense-tracker",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile",
+            "flutterMode": "release",
             "program": "lib/main_prod.dart"
         },
     ]

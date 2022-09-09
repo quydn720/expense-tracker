@@ -1,4 +1,3 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/presentation/pages/cubit/register_cubit.dart';
