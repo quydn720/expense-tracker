@@ -73,6 +73,19 @@ class _TermAgreementField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    Widget? error;
+    final termAgreementField =
+        context.watch<RegisterCubit>().state.termsAgreement;
+    if (termAgreementField.invalid) {
+      error = (termAgreementField.error == null)
+          ? const SizedBox.shrink()
+          : Text(
+              termAgreementField.error!,
+              style: theme.textTheme.caption?.copyWith(
+                color: theme.colorScheme.error,
+              ),
+            );
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -99,13 +112,8 @@ class _TermAgreementField extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Padding(
-          padding: const EdgeInsets.only(left: 16 + 32 - 6),
-          child: Text(
-            'data',
-            style: theme.textTheme.caption?.copyWith(
-              color: theme.colorScheme.error,
-            ),
-          ),
+          padding: const EdgeInsets.only(left: 42),
+          child: error ?? const SizedBox.shrink(),
         ),
       ],
     );
