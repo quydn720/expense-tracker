@@ -2,10 +2,10 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:budget_repository/budget_repository.dart';
 import 'package:expense_tracker/app_text_theme.dart';
 import 'package:expense_tracker/locale_controller.dart';
-import 'package:expense_tracker/routes/router.dart';
 import 'package:expense_tracker/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
 
@@ -27,6 +27,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final router = getIt<GoRouter>();
     return MaterialApp.router(
       routeInformationProvider: router.routeInformationProvider,
       routeInformationParser: router.routeInformationParser,

@@ -19,10 +19,7 @@ class RegisterProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => RegisterCubit(
-        registerWithEmailAndPwUseCase: RegisterWithEmailAndPwUseCase(
-          verificationService: VerificationService(),
-          auth: getIt<IAuthenticationRepository>(),
-        ),
+        registerWithEmailAndPwUseCase: getIt<RegisterWithEmailAndPwUseCase>(),
       ),
       child: const RegisterScreen(),
     );
@@ -104,13 +101,21 @@ class _MoveToLoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme.bodyText1;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('Already has account? '),
+        Text(
+          'Already has account? ',
+          style: textTheme?.copyWith(color: theme.colorScheme.outline),
+        ),
         TextButton(
           onPressed: () {},
-          child: const Text('Sign in'),
+          child: Text(
+            'Sign in',
+            style: textTheme?.copyWith(color: theme.colorScheme.primary),
+          ),
         ),
       ],
     );
@@ -143,6 +148,7 @@ class _RegisterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final isValid = context.watch<RegisterCubit>().state.status.isValidated;
     return ElevatedButton(
+      key: const Key('register_button'),
       onPressed: isValid ? context.read<RegisterCubit>().onButtonClicked : null,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -166,10 +172,10 @@ class _NameInputField extends StatelessWidget {
     if (nameField.invalid) {
       switch (nameField.error) {
         case NormalTextError.empty:
-          errorText = 'l10n.asdkjf';
+          errorText = "Name can't be empty";
           break;
         case NormalTextError.invalid:
-          errorText = 'l1';
+          errorText = 'Invalid name';
           break;
         case null:
           errorText = null;
