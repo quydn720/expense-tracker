@@ -206,7 +206,7 @@ abstract class TabChanged implements TabEvent {
   const factory TabChanged(final AppTab tab) = _$TabChanged;
 
   @override
-  AppTab get tab => throw _privateConstructorUsedError;
+  AppTab get tab;
   @override
   @JsonKey(ignore: true)
   _$$TabChangedCopyWith<_$TabChanged> get copyWith =>

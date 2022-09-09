@@ -258,7 +258,7 @@ abstract class TransactionsUpdated implements FilterEvent {
   const factory TransactionsUpdated(final List<Transaction> transactions) =
       _$TransactionsUpdated;
 
-  List<Transaction> get transactions => throw _privateConstructorUsedError;
+  List<Transaction> get transactions;
   @JsonKey(ignore: true)
   _$$TransactionsUpdatedCopyWith<_$TransactionsUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -676,7 +676,7 @@ class _$SortChanged implements SortChanged {
 abstract class SortChanged implements FilterEvent {
   const factory SortChanged(final ActiveSort sort) = _$SortChanged;
 
-  ActiveSort get sort => throw _privateConstructorUsedError;
+  ActiveSort get sort;
   @JsonKey(ignore: true)
   _$$SortChangedCopyWith<_$SortChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -835,7 +835,7 @@ class _$FilterChanged implements FilterChanged {
 abstract class FilterChanged implements FilterEvent {
   const factory FilterChanged(final ActiveFilter filter) = _$FilterChanged;
 
-  ActiveFilter get filter => throw _privateConstructorUsedError;
+  ActiveFilter get filter;
   @JsonKey(ignore: true)
   _$$FilterChangedCopyWith<_$FilterChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -993,7 +993,7 @@ class _$DateChanged implements DateChanged {
 abstract class DateChanged implements FilterEvent {
   const factory DateChanged(final DateTime date) = _$DateChanged;
 
-  DateTime get date => throw _privateConstructorUsedError;
+  DateTime get date;
   @JsonKey(ignore: true)
   _$$DateChangedCopyWith<_$DateChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1349,8 +1349,8 @@ abstract class FilterChanging implements FilterState {
           final ActiveFilter activeFilter, final ActiveSort activeSort) =
       _$FilterChanging;
 
-  ActiveFilter get activeFilter => throw _privateConstructorUsedError;
-  ActiveSort get activeSort => throw _privateConstructorUsedError;
+  ActiveFilter get activeFilter;
+  ActiveSort get activeSort;
   @JsonKey(ignore: true)
   _$$FilterChangingCopyWith<_$FilterChanging> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1544,10 +1544,10 @@ abstract class FilterLoaded implements FilterState {
       final ActiveSort activeSort,
       final DateTime date) = _$FilterLoaded;
 
-  List<Transaction> get transactions => throw _privateConstructorUsedError;
-  ActiveFilter get activeFilter => throw _privateConstructorUsedError;
-  ActiveSort get activeSort => throw _privateConstructorUsedError;
-  DateTime get date => throw _privateConstructorUsedError;
+  List<Transaction> get transactions;
+  ActiveFilter get activeFilter;
+  ActiveSort get activeSort;
+  DateTime get date;
   @JsonKey(ignore: true)
   _$$FilterLoadedCopyWith<_$FilterLoaded> get copyWith =>
       throw _privateConstructorUsedError;

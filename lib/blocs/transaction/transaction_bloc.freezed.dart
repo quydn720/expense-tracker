@@ -365,7 +365,7 @@ abstract class AddTransactions implements TransactionEvent {
   const factory AddTransactions(final Transaction transaction) =
       _$AddTransactions;
 
-  Transaction get transaction => throw _privateConstructorUsedError;
+  Transaction get transaction;
   @JsonKey(ignore: true)
   _$$AddTransactionsCopyWith<_$AddTransactions> get copyWith =>
       throw _privateConstructorUsedError;
@@ -521,7 +521,7 @@ abstract class DeleteTransactions implements TransactionEvent {
   const factory DeleteTransactions(final Transaction transaction) =
       _$DeleteTransactions;
 
-  Transaction get transaction => throw _privateConstructorUsedError;
+  Transaction get transaction;
   @JsonKey(ignore: true)
   _$$DeleteTransactionsCopyWith<_$DeleteTransactions> get copyWith =>
       throw _privateConstructorUsedError;
@@ -677,7 +677,7 @@ abstract class UpdateTransactions implements TransactionEvent {
   const factory UpdateTransactions(final Transaction updatedTransaction) =
       _$UpdateTransactions;
 
-  Transaction get updatedTransaction => throw _privateConstructorUsedError;
+  Transaction get updatedTransaction;
   @JsonKey(ignore: true)
   _$$UpdateTransactionsCopyWith<_$UpdateTransactions> get copyWith =>
       throw _privateConstructorUsedError;
@@ -838,7 +838,7 @@ abstract class TransactionUpdated implements TransactionEvent {
   const factory TransactionUpdated(final List<Transaction> transactions) =
       _$TransactionUpdated;
 
-  List<Transaction> get transactions => throw _privateConstructorUsedError;
+  List<Transaction> get transactions;
   @JsonKey(ignore: true)
   _$$TransactionUpdatedCopyWith<_$TransactionUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1052,7 +1052,7 @@ abstract class TransactionLoaded implements TransactionState {
   const factory TransactionLoaded(final List<Transaction> transactions) =
       _$TransactionLoaded;
 
-  List<Transaction> get transactions => throw _privateConstructorUsedError;
+  List<Transaction> get transactions;
   @JsonKey(ignore: true)
   _$$TransactionLoadedCopyWith<_$TransactionLoaded> get copyWith =>
       throw _privateConstructorUsedError;

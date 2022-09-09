@@ -357,7 +357,7 @@ class _$AddWallet implements AddWallet {
 abstract class AddWallet implements WalletEvent {
   const factory AddWallet(final Wallet wallet) = _$AddWallet;
 
-  Wallet get wallet => throw _privateConstructorUsedError;
+  Wallet get wallet;
   @JsonKey(ignore: true)
   _$$AddWalletCopyWith<_$AddWallet> get copyWith =>
       throw _privateConstructorUsedError;
@@ -508,7 +508,7 @@ class _$DeleteWallet implements DeleteWallet {
 abstract class DeleteWallet implements WalletEvent {
   const factory DeleteWallet(final Wallet wallet) = _$DeleteWallet;
 
-  Wallet get wallet => throw _privateConstructorUsedError;
+  Wallet get wallet;
   @JsonKey(ignore: true)
   _$$DeleteWalletCopyWith<_$DeleteWallet> get copyWith =>
       throw _privateConstructorUsedError;
@@ -660,7 +660,7 @@ class _$UpdateWallet implements UpdateWallet {
 abstract class UpdateWallet implements WalletEvent {
   const factory UpdateWallet(final Wallet updatedWallet) = _$UpdateWallet;
 
-  Wallet get updatedWallet => throw _privateConstructorUsedError;
+  Wallet get updatedWallet;
   @JsonKey(ignore: true)
   _$$UpdateWalletCopyWith<_$UpdateWallet> get copyWith =>
       throw _privateConstructorUsedError;
@@ -816,7 +816,7 @@ class _$WalletUpdated implements WalletUpdated {
 abstract class WalletUpdated implements WalletEvent {
   const factory WalletUpdated(final List<Wallet> wallets) = _$WalletUpdated;
 
-  List<Wallet> get wallets => throw _privateConstructorUsedError;
+  List<Wallet> get wallets;
   @JsonKey(ignore: true)
   _$$WalletUpdatedCopyWith<_$WalletUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1023,7 +1023,7 @@ class _$WalletLoaded implements WalletLoaded {
 abstract class WalletLoaded implements WalletState {
   const factory WalletLoaded(final List<Wallet> wallets) = _$WalletLoaded;
 
-  List<Wallet> get wallets => throw _privateConstructorUsedError;
+  List<Wallet> get wallets;
   @JsonKey(ignore: true)
   _$$WalletLoadedCopyWith<_$WalletLoaded> get copyWith =>
       throw _privateConstructorUsedError;

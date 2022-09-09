@@ -186,13 +186,13 @@ abstract class _LoginState implements LoginState {
       final FormzStatus status}) = _$_LoginState;
 
   @override
-  String? get errorMessage => throw _privateConstructorUsedError;
+  String? get errorMessage;
   @override
-  Email get email => throw _privateConstructorUsedError;
+  Email get email;
   @override
-  Password get password => throw _privateConstructorUsedError;
+  Password get password;
   @override
-  FormzStatus get status => throw _privateConstructorUsedError;
+  FormzStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>

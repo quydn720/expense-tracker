@@ -229,17 +229,17 @@ abstract class _AddTransactionState implements AddTransactionState {
       final TransactionType type}) = _$_AddTransactionState;
 
   @override
-  MoneyAmount get amount => throw _privateConstructorUsedError;
+  MoneyAmount get amount;
   @override
-  String get category => throw _privateConstructorUsedError;
+  String get category;
   @override
-  Wallet get wallet => throw _privateConstructorUsedError;
+  Wallet get wallet;
   @override
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
-  FormzStatus get status => throw _privateConstructorUsedError;
+  FormzStatus get status;
   @override
-  TransactionType get type => throw _privateConstructorUsedError;
+  TransactionType get type;
   @override
   @JsonKey(ignore: true)
   _$$_AddTransactionStateCopyWith<_$_AddTransactionState> get copyWith =>

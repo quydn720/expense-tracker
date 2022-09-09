@@ -455,7 +455,7 @@ class _$AppUserChanged implements AppUserChanged {
 abstract class AppUserChanged implements AppEvent {
   const factory AppUserChanged(final User user) = _$AppUserChanged;
 
-  User get user => throw _privateConstructorUsedError;
+  User get user;
   @JsonKey(ignore: true)
   _$$AppUserChangedCopyWith<_$AppUserChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -601,7 +601,7 @@ class _$UserChangeAvatar implements UserChangeAvatar {
 abstract class UserChangeAvatar implements AppEvent {
   const factory UserChangeAvatar(final String avt) = _$UserChangeAvatar;
 
-  String get avt => throw _privateConstructorUsedError;
+  String get avt;
   @JsonKey(ignore: true)
   _$$UserChangeAvatarCopyWith<_$UserChangeAvatar> get copyWith =>
       throw _privateConstructorUsedError;
@@ -839,9 +839,9 @@ abstract class Unauthenticated extends AppState {
       _$Unauthenticated;
   const Unauthenticated._() : super._();
 
-  User get user => throw _privateConstructorUsedError;
+  User get user;
   @override
-  AppStatus get status => throw _privateConstructorUsedError;
+  AppStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$UnauthenticatedCopyWith<_$Unauthenticated> get copyWith =>
@@ -999,8 +999,8 @@ abstract class Authenticated extends AppState {
   const Authenticated._() : super._();
 
   @override
-  AppStatus get status => throw _privateConstructorUsedError;
-  User get user => throw _privateConstructorUsedError;
+  AppStatus get status;
+  User get user;
   @override
   @JsonKey(ignore: true)
   _$$AuthenticatedCopyWith<_$Authenticated> get copyWith =>
@@ -1146,7 +1146,7 @@ abstract class FirstTimeOpened extends AppState {
   const FirstTimeOpened._() : super._();
 
   @override
-  AppStatus get status => throw _privateConstructorUsedError;
+  AppStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$FirstTimeOpenedCopyWith<_$FirstTimeOpened> get copyWith =>

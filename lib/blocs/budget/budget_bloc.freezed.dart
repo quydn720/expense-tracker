@@ -357,7 +357,7 @@ class _$AddBudget implements AddBudget {
 abstract class AddBudget implements BudgetEvent {
   const factory AddBudget(final Budget budget) = _$AddBudget;
 
-  Budget get budget => throw _privateConstructorUsedError;
+  Budget get budget;
   @JsonKey(ignore: true)
   _$$AddBudgetCopyWith<_$AddBudget> get copyWith =>
       throw _privateConstructorUsedError;
@@ -508,7 +508,7 @@ class _$DeleteBudget implements DeleteBudget {
 abstract class DeleteBudget implements BudgetEvent {
   const factory DeleteBudget(final Budget budget) = _$DeleteBudget;
 
-  Budget get budget => throw _privateConstructorUsedError;
+  Budget get budget;
   @JsonKey(ignore: true)
   _$$DeleteBudgetCopyWith<_$DeleteBudget> get copyWith =>
       throw _privateConstructorUsedError;
@@ -660,7 +660,7 @@ class _$UpdateBudget implements UpdateBudget {
 abstract class UpdateBudget implements BudgetEvent {
   const factory UpdateBudget(final Budget updatedBudget) = _$UpdateBudget;
 
-  Budget get updatedBudget => throw _privateConstructorUsedError;
+  Budget get updatedBudget;
   @JsonKey(ignore: true)
   _$$UpdateBudgetCopyWith<_$UpdateBudget> get copyWith =>
       throw _privateConstructorUsedError;
@@ -816,7 +816,7 @@ class _$BudgetsUpdated implements BudgetsUpdated {
 abstract class BudgetsUpdated implements BudgetEvent {
   const factory BudgetsUpdated(final List<Budget> budgets) = _$BudgetsUpdated;
 
-  List<Budget> get budgets => throw _privateConstructorUsedError;
+  List<Budget> get budgets;
   @JsonKey(ignore: true)
   _$$BudgetsUpdatedCopyWith<_$BudgetsUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1117,7 +1117,7 @@ class _$BudgetsLoaded implements BudgetsLoaded {
 abstract class BudgetsLoaded implements BudgetState {
   const factory BudgetsLoaded(final List<Budget> budgets) = _$BudgetsLoaded;
 
-  List<Budget> get budgets => throw _privateConstructorUsedError;
+  List<Budget> get budgets;
   @JsonKey(ignore: true)
   _$$BudgetsLoadedCopyWith<_$BudgetsLoaded> get copyWith =>
       throw _privateConstructorUsedError;

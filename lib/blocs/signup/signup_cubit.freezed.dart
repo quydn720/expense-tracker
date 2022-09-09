@@ -207,15 +207,15 @@ abstract class _SignupState implements SignupState {
       final FormzStatus status}) = _$_SignupState;
 
   @override
-  String? get errorMessage => throw _privateConstructorUsedError;
+  String? get errorMessage;
   @override
-  Email get email => throw _privateConstructorUsedError;
+  Email get email;
   @override
-  Password get password => throw _privateConstructorUsedError;
+  Password get password;
   @override
-  ConfirmedPassword get confirmedPassword => throw _privateConstructorUsedError;
+  ConfirmedPassword get confirmedPassword;
   @override
-  FormzStatus get status => throw _privateConstructorUsedError;
+  FormzStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_SignupStateCopyWith<_$_SignupState> get copyWith =>
