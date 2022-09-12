@@ -10,12 +10,13 @@ import 'package:authentication_repository/authentication_repository.dart'
 import 'package:cloud_firestore/cloud_firestore.dart' as _i5;
 import 'package:firebase_auth/firebase_auth.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
-import 'package:go_router/go_router.dart' as _i12;
+import 'package:go_router/go_router.dart' as _i13;
 import 'package:google_sign_in/google_sign_in.dart' as _i6;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i9;
 import 'package:transaction_repository/transaction_repository.dart' as _i10;
 
+import '../bloc/app_bloc.dart' as _i12;
 import '../common/cache/local_cache.dart' as _i8;
 import '../features/authentication/domain/usecases/register_with_email_and_pw.dart'
     as _i11;
@@ -40,10 +41,10 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       () => firebaseInjectableModule.firestore);
   gh.lazySingleton<_i6.GoogleSignIn>(
       () => firebaseInjectableModule.googleSignIn);
-  gh.factory<_i7.IAuthenticationRepository>(
+  gh.lazySingleton<_i7.IAuthenticationRepository>(
       () => devAppLocalPackageModule.getDev(),
       registerFor: {_dev});
-  gh.factory<_i7.IAuthenticationRepository>(
+  gh.lazySingleton<_i7.IAuthenticationRepository>(
       () => devAppLocalPackageModule.getProd(),
       registerFor: {_prod});
   gh.factory<_i8.ILocalCache>(() => _i8.InMemoryLocalCache());
@@ -61,7 +62,9 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       () => devAppLocalPackageModule.getTransactionRepoProd(),
       registerFor: {_prod});
   gh.factory<_i11.VerificationService>(() => _i11.VerificationService());
-  gh.lazySingleton<_i12.GoRouter>(() => devAppLocalPackageModule
+  gh.factory<_i12.AppBloc>(
+      () => _i12.AppBloc(get<_i7.IAuthenticationRepository>()));
+  gh.lazySingleton<_i13.GoRouter>(() => devAppLocalPackageModule
       .appRouterDev(get<String>(instanceName: 'init_location')));
   gh.factory<_i11.RegisterWithEmailAndPwUseCase>(() =>
       _i11.RegisterWithEmailAndPwUseCase(

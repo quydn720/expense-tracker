@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../bloc/app_bloc.dart';
 import '../features/settings/presentation/pages/language_screen.dart';
 import '../features/settings/presentation/pages/notification_screen.dart';
 import '../features/settings/presentation/pages/security_screen.dart';
@@ -15,7 +16,8 @@ import 'fade_transistion_page.dart';
 
 const ValueKey<String> _scaffoldKey = ValueKey<String>('App scaffold');
 
-GoRouter router([String? initialLocation]) => GoRouter(
+GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
+    GoRouter(
       initialLocation: initialLocation,
       routes: <GoRoute>[
         GoRoute(path: '/', redirect: (_) => '/home'),
@@ -90,11 +92,37 @@ GoRouter router([String? initialLocation]) => GoRouter(
           builder: (_, __) => const RegisterProvider(),
         ),
         GoRoute(
+          path: '/login',
+          builder: (_, __) => const RegisterProvider(),
+        ),
+        GoRoute(
           path: '/dev_view',
           builder: (_, __) => const AppDevelopmentView(),
         ),
       ],
       debugLogDiagnostics: true,
+      refreshListenable: GoRouterRefreshStream(appBloc.stream),
+      redirect: (state) {
+        final loggedIn = appBloc.state is Authenticated;
+        final loggingIn = state.subloc == '/login';
+        final registering = state.subloc == '/register';
+
+        if (!loggedIn) {
+          if (registering) {
+            return null;
+          } else if (loggingIn) {
+            return null;
+          } else {
+            return '/login';
+          }
+        }
+
+        if (loggingIn || registering) {
+          return '/';
+        }
+
+        return null;
+      },
     );
 
 class AppDevelopmentView extends StatelessWidget {

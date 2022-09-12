@@ -48,12 +48,15 @@ abstract class DevAppLocalPackageModule {
   String get initialLocation => '/';
 
   @lazySingleton
-  GoRouter appRouterDev(@Named('init_location') String init) => router(init);
+  GoRouter appRouterDev(@Named('init_location') String init) =>
+      router(initialLocation: init, appBloc: getIt());
 
   @dev
+  @lazySingleton
   IAuthenticationRepository getDev() => AuthenticateRepo();
 
   @prod
+  @lazySingleton
   IAuthenticationRepository getProd() => AuthenticationRepository();
 
   @dev
