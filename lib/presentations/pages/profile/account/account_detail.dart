@@ -6,7 +6,6 @@ import 'package:wallet_repository/wallet_repository.dart';
 import '../../../../blocs/transaction/transaction_bloc.dart';
 import '../../../../blocs/wallet/wallet_bloc.dart';
 import '../../../../constants.dart';
-import '../../../../size_config.dart';
 import '../../../../utils/extension_helper.dart';
 import '../../../components/default_button.dart';
 import '../../../components/squared_icon_card.dart';
@@ -43,7 +42,6 @@ class WalletDetailPage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: SizeConfig.screenHeight / 3.5,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +56,6 @@ class WalletDetailPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: SizeConfig.screenHeight * 0.55,
               child: SingleChildScrollView(
                 child: Center(
                   child: Column(

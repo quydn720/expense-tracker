@@ -19,7 +19,6 @@ import 'di/injector.dart';
 import 'presentations/pages/login/login_page.dart';
 import 'presentations/pages/main/main_page.dart';
 import 'presentations/pages/onboarding/onboarding_page.dart';
-import 'size_config.dart';
 import 'theme.dart';
 
 class App extends StatelessWidget {
@@ -116,7 +115,6 @@ class AppView extends StatelessWidget {
     return MaterialApp(
       home: BlocBuilder<AppBloc, AppState>(
         builder: (context, state) {
-          SizeConfig().init(context);
           if (state is Authenticated) {
             return MultiBlocProvider(
               providers: [

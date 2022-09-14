@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
-import '../../../size_config.dart';
 import '../../components/default_button.dart';
 import '../login/login_page.dart';
 import '../signup/signup_page.dart';
@@ -34,7 +33,6 @@ class BodyState extends State<Body> {
                 return Column(
                   children: [
                     SizedBox(
-                      width: SizeConfig.screenWidth * 0.7,
                       child: Image.asset(
                         data[index]['image'].toString(),
                       ),

@@ -6,7 +6,6 @@ import 'package:transaction_repository/transaction_repository.dart';
 import '../../../blocs/transaction/transaction_bloc.dart';
 import '../../../blocs/wallet/wallet_bloc.dart';
 import '../../../constants.dart';
-import '../../../size_config.dart';
 import '../../components/default_button.dart';
 import '../transaction/add_transaction/add_transaction.dart';
 
@@ -50,7 +49,6 @@ class TransactionDetailPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            height: SizeConfig.screenHeight * 1 / 4,
             width: double.infinity,
             decoration: BoxDecoration(
               color: _transaction.type == TransactionType.expense
@@ -97,7 +95,6 @@ class TransactionDetailPage extends StatelessWidget {
                       topRight: Radius.circular(kDefaultRadius),
                     ),
                   ),
-                  height: SizeConfig.screenHeight * 3 / 5 + 65,
                   child: Column(
                     children: [
                       Padding(

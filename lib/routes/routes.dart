@@ -13,11 +13,9 @@ import '../presentations/pages/profile/export/export_page.dart';
 import '../presentations/pages/profile/export/export_result_page.dart';
 import '../presentations/pages/profile/setting/setting_page.dart';
 import '../presentations/pages/transaction/fetch_transaction/transaction_list.dart';
-import '../size_config.dart';
 
 final Map<String, WidgetBuilder> routes = {
   '/': (context) {
-    SizeConfig().init(context);
     return BlocBuilder<AppBloc, AppState>(
       builder: (context, state) {
         if (state is Authenticated) {
