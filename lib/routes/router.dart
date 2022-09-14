@@ -1,7 +1,9 @@
 import 'package:expense_tracker/features/authentication/presentation/pages/register_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
+import 'package:expense_tracker/features/verify_email/register_verify_email.dart';
 import 'package:expense_tracker/home_screen.dart';
+import 'package:expense_tracker/transaction_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -36,7 +38,7 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
           pageBuilder: (context, state) => FadeTransitionPage(
             child: const AppScaffold(
               selectedTab: ScaffoldTab.transaction,
-              child: HomeScreen(),
+              child: TransactionsScreen(),
             ),
             key: _scaffoldKey,
           ),
@@ -46,7 +48,7 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
           pageBuilder: (context, state) => FadeTransitionPage(
             child: const AppScaffold(
               selectedTab: ScaffoldTab.budget,
-              child: HomeScreen(),
+              child: BudgetScreen(),
             ),
             key: _scaffoldKey,
           ),
@@ -101,34 +103,43 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
         ),
       ],
       debugLogDiagnostics: true,
-      refreshListenable: GoRouterRefreshStream(appBloc.stream),
-      redirect: (state) {
-        final loggedIn = appBloc.state is Authenticated;
-        final loggingIn = state.subloc == '/login';
-        final registering = state.subloc == '/register';
+      // refreshListenable: GoRouterRefreshStream(appBloc.stream),
+      // redirect: (state) {
+      //   final loggedIn = appBloc.state is Authenticated;
+      //   final loggingIn = state.subloc == '/login';
+      //   final registering = state.subloc == '/register';
 
-        if (!loggedIn) {
-          if (registering) {
-            return null;
-          } else if (loggingIn) {
-            return null;
-          } else {
-            return '/login';
-          }
-        }
+      //   if (!loggedIn) {
+      //     if (registering) {
+      //       return null;
+      //     } else if (loggingIn) {
+      //       return null;
+      //     } else {
+      //       return '/login';
+      //     }
+      //   }
 
-        if (loggingIn || registering) {
-          return '/';
-        }
+      //   if (loggingIn || registering) {
+      //     return '/';
+      //   }
 
-        return null;
-      },
+      //   return null;
+      // },
     );
+
+class BudgetScreen extends StatelessWidget {
+  const BudgetScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('Budget'));
+  }
+}
 
 class AppDevelopmentView extends StatelessWidget {
   const AppDevelopmentView({super.key});
   @override
   Widget build(BuildContext context) {
-    return const RegisterProvider();
+    return const VerificationEmailView();
   }
 }
