@@ -313,6 +313,8 @@ class AuthenticationRepository implements IAuthenticationRepository {
 }
 
 class AuthenticateRepo implements IAuthenticationRepository {
+  final StreamController<User> _streamController = StreamController.broadcast();
+
   @override
   bool isWeb = kIsWeb;
 
@@ -347,11 +349,12 @@ class AuthenticateRepo implements IAuthenticationRepository {
     required String email,
     required String password,
   }) async {
+    _streamController.add(const User(id: 'asd'));
     // TODO(fitz): implements
   }
 
   @override
-  Stream<User> get user => Stream.value(const User(id: 'id'));
+  Stream<User> get user => _streamController.stream;
 
   // @override
   // CacheClient get _cache => throw UnimplementedError();
