@@ -87,7 +87,7 @@ class TransactionDetailPage extends StatelessWidget {
                   topRight: Radius.circular(kDefaultRadius),
                 ),
                 elevation: 10,
-                child: Container(
+                child: DecoratedBox(
                   decoration: const BoxDecoration(
                     color: kLight100,
                     borderRadius: BorderRadius.only(
