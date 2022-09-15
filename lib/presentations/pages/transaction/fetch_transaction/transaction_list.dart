@@ -221,7 +221,13 @@ class TransactionPage extends StatelessWidget {
                                       e.date.year == state.date.year,
                                 )
                                 .toList()
-                                .map((e) => TransactionTile(transaction: e))
+                                .map(
+                                  (e) => TransactionTile(
+                                    transaction: e,
+                                    onLongPress: () {},
+                                    onPress: () {},
+                                  ),
+                                )
                                 .toList(),
                             const Divider(),
                           ],

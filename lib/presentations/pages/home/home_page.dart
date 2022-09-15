@@ -64,6 +64,8 @@ class HomeView extends StatelessWidget {
                 itemBuilder: (_, index) {
                   return TransactionTile(
                     transaction: state.transactions[index],
+                    onLongPress: () {},
+                    onPress: () {},
                   );
                 },
               );

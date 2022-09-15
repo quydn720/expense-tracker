@@ -92,7 +92,8 @@ class WalletDetailPage extends StatelessWidget {
                                       .map(
                                         (e) => TransactionTile(
                                           transaction: e,
-                                          canTouch: false,
+                                          onLongPress: () {},
+                                          onPress: () {},
                                         ),
                                       )
                                       .toList(),
