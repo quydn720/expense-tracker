@@ -53,7 +53,7 @@ abstract class DevAppLocalPackageModule {
 
   @dev
   @lazySingleton
-  IAuthenticationRepository getDev() => AuthenticateRepo();
+  IAuthenticationRepository getDev() => MockAuthenticateRepo();
 
   @prod
   @lazySingleton

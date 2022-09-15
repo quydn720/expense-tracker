@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'authentication_repository.dart';
 import 'models/models.dart';
 
-class AuthenticateRepo implements IAuthenticationRepository {
+class MockAuthenticateRepo implements IAuthenticationRepository {
   final StreamController<User> _streamController = StreamController.broadcast();
 
   @override
