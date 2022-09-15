@@ -9,23 +9,40 @@ part 'app_event.dart';
 part 'app_state.dart';
 part 'app_bloc.freezed.dart';
 
-@injectable
+@singleton
 class AppBloc extends Bloc<AppEvent, AppState> {
-  AppBloc(this.authenticationRepository) : super(const _Initial()) {
+  AppBloc({
+    required this.authenticationRepository,
+    @Named('isOnboardingCompleted') this.showOnboarding = true,
+  }) : super(
+          showOnboarding ? const Initial() : const Unauthenticated(),
+        ) {
     on<LogoutRequested>((event, emit) {
       emit(const Unauthenticated());
     });
     on<OnUserChanged>((event, emit) {
       emit(const Authenticated());
     });
+    on<OnEmailVerified>((event, emit) {
+      emit(const WaitForEmailVerification());
+    });
+    on<OnboardingCompleted>((event, emit) {
+      emit(const Unauthenticated());
+    });
+
     authStateSubcription = authenticationRepository.user.listen(
-      (event) {
-        add(const AppEvent.onUserChanged());
+      (user) {
+        if (user.verified) {
+          add(const AppEvent.onUserChanged());
+        } else {
+          add(const OnEmailVerified());
+        }
       },
     );
   }
 
   final IAuthenticationRepository authenticationRepository;
+  final bool showOnboarding;
   late final StreamSubscription<User> authStateSubcription;
 
   @override
