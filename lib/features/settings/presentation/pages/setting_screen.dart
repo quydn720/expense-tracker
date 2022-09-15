@@ -1,3 +1,4 @@
+import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/language_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
@@ -5,6 +6,8 @@ import 'package:expense_tracker/features/settings/presentation/pages/security_sc
 import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../bloc/app_bloc.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -44,7 +47,7 @@ class SettingScreen extends StatelessWidget {
           ),
           _SettingTile(
             title: 'Help',
-            onTap: () => context.go(CurrencyScreen.routeName),
+            onTap: () => getIt<AppBloc>().add(const LogoutRequested()),
           ),
         ],
       ),
