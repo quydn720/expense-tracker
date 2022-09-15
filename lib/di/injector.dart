@@ -1,6 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_tracker/routes/router.dart';
+import 'package:expense_tracker/user_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -24,6 +25,10 @@ Future<void> configureInjection(String env) async {
 abstract class SharedPreferencesModule {
   @preResolve
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
+
+  @Named('isOnboardingCompleted')
+  bool get isOnboardingCompeted =>
+      getIt<UserPreferences>().isOnboardingCompleted;
 }
 
 /// Wrapper for instantiate 3rd library in get_it
