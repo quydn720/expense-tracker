@@ -28,6 +28,16 @@ class Transaction {
       walletId: entity.walletId,
     );
   }
+
+  factory Transaction.empty() {
+    return Transaction(
+      amount: 0,
+      category: 'Food',
+      description: 'test description',
+      walletId: 'test-wallet-id',
+      type: TransactionType.income,
+    );
+  }
   final String id;
   final double amount;
   final String category;
