@@ -32,7 +32,7 @@ void main() {
           (_) => Stream.value(user),
         );
       },
-      build: () => AppBloc(authenticationRepository),
+      build: () => AppBloc(authenticationRepository: authenticationRepository),
       seed: AppState.unauthenticated,
       expect: () => [const AppState.authenticated()],
     );
@@ -44,7 +44,7 @@ void main() {
           (_) => Stream.value(User.empty),
         );
       },
-      build: () => AppBloc(authenticationRepository),
+      build: () => AppBloc(authenticationRepository: authenticationRepository),
       expect: () => [const AppState.authenticated()],
     );
   });
