@@ -9,6 +9,7 @@ class User extends Equatable {
   /// {@macro user}
   const User({
     required this.id,
+    this.verified = false,
     this.email,
     this.name,
     this.photo,
@@ -25,6 +26,9 @@ class User extends Equatable {
 
   /// Url for the current user's photo.
   final String? photo;
+
+  /// Is user's email verified
+  final bool verified;
 
   /// Empty user which represents an unauthenticated user.
   static const empty = User(id: '');
