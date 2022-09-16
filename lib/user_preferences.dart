@@ -1,19 +1,24 @@
-import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+@singleton
 class UserPreferences {
   UserPreferences({
-    required this.locale,
-    required this.themeMode,
-    required this.currency,
-    required this.notificationOption,
-    required this.securityOption,
+    required this.prefs,
   });
 
-  final Locale locale;
-  final ThemeMode themeMode;
-  final Currency currency;
-  final NotificationOption notificationOption;
-  final SecurityOption securityOption;
+  //  Locale get => locale;
+  //  ThemeMode get => themeMode;
+  //  Currency get => currency;
+  //  NotificationOption get => notificationOption;
+  //  SecurityOption get => securityOption;
+  bool get isOnboardingCompleted => prefs.getBool('isOn') ?? false;
+
+  final SharedPreferences prefs;
+
+  Future<void> completeOnboarding() async {
+    await prefs.setBool('isOn', false);
+  }
 }
 
 class SecurityOption {}

@@ -42,12 +42,22 @@ class MockAuthenticateRepo implements IAuthenticationRepository {
     required String email,
     required String password,
   }) async {
+    await sendVerificationEmail();
+
     _streamController.add(const User(id: 'asd'));
     // TODO(fitz): implements
   }
 
   @override
   Stream<User> get user => _streamController.stream;
+
+  Future<void> verifyEmail(String code) async {
+    if (code == '123456') {
+      _streamController.add(const User(id: 'asd', verified: true));
+    } else {
+      throw Exception('wrong password');
+    }
+  }
 
   @override
   Future<void> sendVerificationEmail() async {
