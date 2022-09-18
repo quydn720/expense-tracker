@@ -17,28 +17,36 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }) : super(
           showOnboarding ? const Initial() : const Unauthenticated(),
         ) {
-    on<LogoutRequested>((event, emit) {
-      emit(const Unauthenticated());
-    });
-    on<OnUserChanged>((event, emit) {
-      emit(const Authenticated());
-    });
-    on<OnEmailVerified>((event, emit) {
-      emit(const WaitForEmailVerification());
-    });
-    on<OnboardingCompleted>((event, emit) {
-      emit(const Unauthenticated());
-    });
+    on<LogoutRequested>((event, emit) => emit(const Unauthenticated()));
+    on<OnUserChanged>(_onUserChanged);
+    on<OnEmailVerified>(
+      (event, emit) => emit(const WaitForEmailVerification()),
+    );
+    on<OnboardingCompleted>((event, emit) => emit(const Unauthenticated()));
 
     authStateSubcription = authenticationRepository.user.listen(
       (user) {
-        if (user.verified) {
-          add(const AppEvent.onUserChanged());
-        } else {
-          add(const OnEmailVerified());
-        }
+        add(AppEvent.onUserChanged(user));
       },
     );
+  }
+
+  Future<void> _onUserChanged(
+    OnUserChanged event,
+    Emitter<AppState> emit,
+  ) async {
+    final user = event.user;
+    if (user.isNotEmpty) {
+      if (user.verified) {
+        emit(const Authenticated());
+      }
+      else {
+        emit(const WaitForEmailVerification());
+      }
+    }
+    else {
+      emit(const Unauthenticated());
+    }
   }
 
   final IAuthenticationRepository authenticationRepository;

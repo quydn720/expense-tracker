@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onUserChanged,
+    required TResult Function(User user) onUserChanged,
     required TResult Function() onEmailVerified,
     required TResult Function() logoutRequested,
     required TResult Function() onboardingCompleted,
@@ -26,7 +26,7 @@ mixin _$AppEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
     TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
     TResult Function()? onboardingCompleted,
@@ -34,7 +34,7 @@ mixin _$AppEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
     TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
     TResult Function()? onboardingCompleted,
@@ -88,6 +88,7 @@ abstract class _$$OnUserChangedCopyWith<$Res> {
   factory _$$OnUserChangedCopyWith(
           _$OnUserChanged value, $Res Function(_$OnUserChanged) then) =
       __$$OnUserChangedCopyWithImpl<$Res>;
+  $Res call({User user});
 }
 
 /// @nodoc
@@ -99,60 +100,83 @@ class __$$OnUserChangedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
 
   @override
   _$OnUserChanged get _value => super._value as _$OnUserChanged;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$OnUserChanged(
+      user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$OnUserChanged implements OnUserChanged {
-  const _$OnUserChanged();
+  const _$OnUserChanged(this.user);
+
+  @override
+  final User user;
 
   @override
   String toString() {
-    return 'AppEvent.onUserChanged()';
+    return 'AppEvent.onUserChanged(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnUserChanged);
+        (other.runtimeType == runtimeType &&
+            other is _$OnUserChanged &&
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$OnUserChangedCopyWith<_$OnUserChanged> get copyWith =>
+      __$$OnUserChangedCopyWithImpl<_$OnUserChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onUserChanged,
+    required TResult Function(User user) onUserChanged,
     required TResult Function() onEmailVerified,
     required TResult Function() logoutRequested,
     required TResult Function() onboardingCompleted,
   }) {
-    return onUserChanged();
+    return onUserChanged(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
     TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
     TResult Function()? onboardingCompleted,
   }) {
-    return onUserChanged?.call();
+    return onUserChanged?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
     TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
     TResult Function()? onboardingCompleted,
     required TResult orElse(),
   }) {
     if (onUserChanged != null) {
-      return onUserChanged();
+      return onUserChanged(user);
     }
     return orElse();
   }
@@ -196,7 +220,12 @@ class _$OnUserChanged implements OnUserChanged {
 }
 
 abstract class OnUserChanged implements AppEvent {
-  const factory OnUserChanged() = _$OnUserChanged;
+  const factory OnUserChanged(final User user) = _$OnUserChanged;
+
+  User get user;
+  @JsonKey(ignore: true)
+  _$$OnUserChangedCopyWith<_$OnUserChanged> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -239,7 +268,7 @@ class _$OnEmailVerified implements OnEmailVerified {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onUserChanged,
+    required TResult Function(User user) onUserChanged,
     required TResult Function() onEmailVerified,
     required TResult Function() logoutRequested,
     required TResult Function() onboardingCompleted,
@@ -250,7 +279,7 @@ class _$OnEmailVerified implements OnEmailVerified {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
     TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
     TResult Function()? onboardingCompleted,
@@ -261,7 +290,7 @@ class _$OnEmailVerified implements OnEmailVerified {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
     TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
     TResult Function()? onboardingCompleted,
@@ -355,7 +384,7 @@ class _$LogoutRequested implements LogoutRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onUserChanged,
+    required TResult Function(User user) onUserChanged,
     required TResult Function() onEmailVerified,
     required TResult Function() logoutRequested,
     required TResult Function() onboardingCompleted,
@@ -366,7 +395,7 @@ class _$LogoutRequested implements LogoutRequested {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
     TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
     TResult Function()? onboardingCompleted,
@@ -377,7 +406,7 @@ class _$LogoutRequested implements LogoutRequested {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
     TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
     TResult Function()? onboardingCompleted,
@@ -472,7 +501,7 @@ class _$OnboardingCompleted implements OnboardingCompleted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onUserChanged,
+    required TResult Function(User user) onUserChanged,
     required TResult Function() onEmailVerified,
     required TResult Function() logoutRequested,
     required TResult Function() onboardingCompleted,
@@ -483,7 +512,7 @@ class _$OnboardingCompleted implements OnboardingCompleted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
     TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
     TResult Function()? onboardingCompleted,
@@ -494,7 +523,7 @@ class _$OnboardingCompleted implements OnboardingCompleted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
     TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
     TResult Function()? onboardingCompleted,
