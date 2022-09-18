@@ -35,7 +35,7 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   final devAppLocalPackageModule = _$DevAppLocalPackageModule();
   final sharedPreferencesModule = _$SharedPreferencesModule();
   gh.singleton<_i3.AppConfigurations>(_i3.DevAppConfigurations(),
-      registerFor: {_dev});
+      registerFor: {_dev, _prod});
   gh.lazySingleton<_i4.FirebaseAuth>(
       () => firebaseInjectableModule.firebaseAuth);
   gh.lazySingleton<_i5.FirebaseFirestore>(

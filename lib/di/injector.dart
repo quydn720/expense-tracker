@@ -33,7 +33,6 @@ abstract class SharedPreferencesModule {
 
 /// Wrapper for instantiate 3rd library in get_it
 @module
-@prod
 abstract class FirebaseInjectableModule {
   @lazySingleton
   GoogleSignIn get googleSignIn => GoogleSignIn();
@@ -80,7 +79,7 @@ abstract class AppConfigurations {
   String get appName;
 }
 
-@Singleton(as: AppConfigurations, env: [Environment.dev])
+@Singleton(as: AppConfigurations, env: [Environment.dev, Environment.prod])
 class DevAppConfigurations implements AppConfigurations {
   @override
   String get appName => '[Dev] Expense Tracker';
