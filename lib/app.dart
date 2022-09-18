@@ -39,6 +39,10 @@ class App extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff7F3DFF)),
         primaryColor: const Color(0xff7F3DFF),
         textTheme: textTheme,
+        chipTheme: const ChipThemeData(
+          backgroundColor: Color(0xffEEE5FF),
+          labelPadding: EdgeInsets.symmetric(horizontal: 16),
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -79,6 +83,7 @@ class App extends StatelessWidget {
           selectedItemColor: Color(0xff7F3DFF),
         ),
         scaffoldBackgroundColor: Colors.white,
+        cardTheme: const CardTheme(elevation: 0, color: Color(0xffFCFCFC)),
       ),
       darkTheme: ThemeData.dark().copyWith(
         textTheme: textTheme,

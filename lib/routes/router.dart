@@ -3,10 +3,12 @@ import 'package:expense_tracker/features/settings/presentation/pages/currency_sc
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
 import 'package:expense_tracker/features/verify_email/register_verify_email.dart';
 import 'package:expense_tracker/home_screen.dart';
+import 'package:expense_tracker/presentations/components/common_components.dart';
+import 'package:expense_tracker/presentations/pages/onboarding/onboarding_page.dart';
 import 'package:expense_tracker/transaction_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
 import '../bloc/app_bloc.dart';
 import '../features/settings/presentation/pages/language_screen.dart';
@@ -24,8 +26,12 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
       routes: <GoRoute>[
         GoRoute(path: '/', redirect: (_) => '/home'),
         GoRoute(
+          path: '/splash',
+          builder: (_, __) => const OnboardingPage(),
+        ),
+        GoRoute(
           path: '/home',
-          pageBuilder: (context, state) => FadeTransitionPage(
+          pageBuilder: (_, __) => FadeTransitionPage(
             child: const AppScaffold(
               selectedTab: ScaffoldTab.home,
               child: HomeScreen(),
@@ -35,7 +41,7 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
         ),
         GoRoute(
           path: '/transaction',
-          pageBuilder: (context, state) => FadeTransitionPage(
+          pageBuilder: (_, __) => FadeTransitionPage(
             child: const AppScaffold(
               selectedTab: ScaffoldTab.transaction,
               child: TransactionsScreen(),
@@ -45,7 +51,7 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
         ),
         GoRoute(
           path: '/budget',
-          pageBuilder: (context, state) => FadeTransitionPage(
+          pageBuilder: (_, __) => FadeTransitionPage(
             child: const AppScaffold(
               selectedTab: ScaffoldTab.budget,
               child: BudgetScreen(),
@@ -59,7 +65,7 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
         ),
         GoRoute(
           path: '/setting',
-          pageBuilder: (context, state) => FadeTransitionPage(
+          pageBuilder: (_, __) => FadeTransitionPage(
             key: _scaffoldKey,
             child: const AppScaffold(
               selectedTab: ScaffoldTab.profile,
@@ -69,29 +75,33 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
           routes: [
             GoRoute(
               path: 'currency',
-              builder: (context, state) => const CurrencyScreen(),
+              builder: (_, __) => const CurrencyScreen(),
             ),
             GoRoute(
               path: 'language',
-              builder: (context, state) => const LanguageScreen(),
+              builder: (_, __) => const LanguageScreen(),
             ),
             GoRoute(
               path: 'theme',
-              builder: (context, state) => const ThemeScreen(),
+              builder: (_, __) => const ThemeScreen(),
             ),
             GoRoute(
               path: 'security',
-              builder: (context, state) => const SecurityScreen(),
+              builder: (_, __) => const SecurityScreen(),
             ),
             GoRoute(
               path: 'notification',
-              builder: (context, state) => const NotificationScreen(),
+              builder: (_, __) => const NotificationScreen(),
             ),
           ],
         ),
         GoRoute(
           path: '/register',
           builder: (_, __) => const RegisterProvider(),
+        ),
+        GoRoute(
+          path: '/verify',
+          builder: (_, __) => const VerificationEmailView(),
         ),
         GoRoute(
           path: '/login',
@@ -103,28 +113,42 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
         ),
       ],
       debugLogDiagnostics: true,
-      // refreshListenable: GoRouterRefreshStream(appBloc.stream),
-      // redirect: (state) {
-      //   final loggedIn = appBloc.state is Authenticated;
-      //   final loggingIn = state.subloc == '/login';
-      //   final registering = state.subloc == '/register';
+      refreshListenable: GoRouterRefreshStream(appBloc.stream),
+      redirect: (state) {
+        final initial = appBloc.state is Initial;
+        if (initial) {
+          if (state.subloc == '/splash') return null;
+          return '/splash';
+        }
 
-      //   if (!loggedIn) {
-      //     if (registering) {
-      //       return null;
-      //     } else if (loggingIn) {
-      //       return null;
-      //     } else {
-      //       return '/login';
-      //     }
-      //   }
+        final loggedIn = appBloc.state is Authenticated;
+        final verified = appBloc.state is WaitForEmailVerification;
 
-      //   if (loggingIn || registering) {
-      //     return '/';
-      //   }
+        final loggingIn = state.subloc == '/login';
+        final registering = state.subloc == '/register';
+        final verifying = state.subloc == '/verify';
 
-      //   return null;
-      // },
+        if (verified) {
+          if (verifying) return null;
+          if (!loggedIn) return '/verify';
+          return '/';
+        }
+        if (!loggedIn) {
+          if (registering) {
+            return null;
+          } else if (loggingIn) {
+            return null;
+          } else {
+            return '/login';
+          }
+        }
+
+        if (loggingIn || registering || verifying) {
+          return '/';
+        }
+
+        return null;
+      },
     );
 
 class BudgetScreen extends StatelessWidget {
@@ -140,6 +164,15 @@ class AppDevelopmentView extends StatelessWidget {
   const AppDevelopmentView({super.key});
   @override
   Widget build(BuildContext context) {
-    return const VerificationEmailView();
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: TransactionTile(
+          transaction: Transaction.empty(),
+          onLongPress: () {},
+          onPress: () {},
+        ),
+      ),
+    );
   }
 }

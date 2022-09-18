@@ -1,5 +1,10 @@
+// ignore_for_file: avoid_dynamic_calls
+
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../di/injector.dart';
 
 class VerificationEmailView extends StatelessWidget {
   const VerificationEmailView({super.key});
@@ -74,7 +79,11 @@ class VerificationEmailView extends StatelessWidget {
                   ),
                   const SizedBox(height: 48),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      (getIt<IAuthenticationRepository>()
+                              as MockAuthenticateRepo)
+                          .verifyEmail('123456');
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [

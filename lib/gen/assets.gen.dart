@@ -160,12 +160,31 @@ class $AssetsImagesGen {
   AssetGenImage get dataTable =>
       const AssetGenImage('assets/images/data_table.png');
 
+  /// File path: assets/images/export_data.svg
+  SvgGenImage get exportData =>
+      const SvgGenImage('assets/images/export_data.svg');
+
+  /// File path: assets/images/forgot_pw.svg
+  SvgGenImage get forgotPw => const SvgGenImage('assets/images/forgot_pw.svg');
+
   /// File path: assets/images/investment.svg
   SvgGenImage get investment =>
       const SvgGenImage('assets/images/investment.svg');
 
   /// File path: assets/images/money.png
   AssetGenImage get money => const AssetGenImage('assets/images/money.png');
+
+  /// File path: assets/images/onboarding_1.svg
+  SvgGenImage get onboarding1 =>
+      const SvgGenImage('assets/images/onboarding_1.svg');
+
+  /// File path: assets/images/onboarding_2.svg
+  SvgGenImage get onboarding2 =>
+      const SvgGenImage('assets/images/onboarding_2.svg');
+
+  /// File path: assets/images/onboarding_3.svg
+  SvgGenImage get onboarding3 =>
+      const SvgGenImage('assets/images/onboarding_3.svg');
 
   /// File path: assets/images/payments.svg
   SvgGenImage get payments => const SvgGenImage('assets/images/payments.svg');
