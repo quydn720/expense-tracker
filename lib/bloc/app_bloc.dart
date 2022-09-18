@@ -39,12 +39,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (user.isNotEmpty) {
       if (user.verified) {
         emit(const Authenticated());
-      }
-      else {
+      } else {
         emit(const WaitForEmailVerification());
       }
-    }
-    else {
+    } else {
       emit(const Unauthenticated());
     }
   }
