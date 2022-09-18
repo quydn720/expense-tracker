@@ -18,39 +18,51 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onUserChanged,
+    required TResult Function(User user) onUserChanged,
+    required TResult Function() onEmailVerified,
     required TResult Function() logoutRequested,
+    required TResult Function() onboardingCompleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
+    TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? onboardingCompleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
+    TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? onboardingCompleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OnUserChanged value) onUserChanged,
+    required TResult Function(OnEmailVerified value) onEmailVerified,
     required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(OnboardingCompleted value) onboardingCompleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -76,6 +88,7 @@ abstract class _$$OnUserChangedCopyWith<$Res> {
   factory _$$OnUserChangedCopyWith(
           _$OnUserChanged value, $Res Function(_$OnUserChanged) then) =
       __$$OnUserChangedCopyWithImpl<$Res>;
+  $Res call({User user});
 }
 
 /// @nodoc
@@ -87,54 +100,83 @@ class __$$OnUserChangedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
 
   @override
   _$OnUserChanged get _value => super._value as _$OnUserChanged;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$OnUserChanged(
+      user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$OnUserChanged implements OnUserChanged {
-  const _$OnUserChanged();
+  const _$OnUserChanged(this.user);
+
+  @override
+  final User user;
 
   @override
   String toString() {
-    return 'AppEvent.onUserChanged()';
+    return 'AppEvent.onUserChanged(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnUserChanged);
+        (other.runtimeType == runtimeType &&
+            other is _$OnUserChanged &&
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$OnUserChangedCopyWith<_$OnUserChanged> get copyWith =>
+      __$$OnUserChangedCopyWithImpl<_$OnUserChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onUserChanged,
+    required TResult Function(User user) onUserChanged,
+    required TResult Function() onEmailVerified,
     required TResult Function() logoutRequested,
+    required TResult Function() onboardingCompleted,
   }) {
-    return onUserChanged();
+    return onUserChanged(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
+    TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? onboardingCompleted,
   }) {
-    return onUserChanged?.call();
+    return onUserChanged?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
+    TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? onboardingCompleted,
     required TResult orElse(),
   }) {
     if (onUserChanged != null) {
-      return onUserChanged();
+      return onUserChanged(user);
     }
     return orElse();
   }
@@ -143,7 +185,9 @@ class _$OnUserChanged implements OnUserChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OnUserChanged value) onUserChanged,
+    required TResult Function(OnEmailVerified value) onEmailVerified,
     required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(OnboardingCompleted value) onboardingCompleted,
   }) {
     return onUserChanged(this);
   }
@@ -152,7 +196,9 @@ class _$OnUserChanged implements OnUserChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
   }) {
     return onUserChanged?.call(this);
   }
@@ -161,7 +207,9 @@ class _$OnUserChanged implements OnUserChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
     required TResult orElse(),
   }) {
     if (onUserChanged != null) {
@@ -172,7 +220,128 @@ class _$OnUserChanged implements OnUserChanged {
 }
 
 abstract class OnUserChanged implements AppEvent {
-  const factory OnUserChanged() = _$OnUserChanged;
+  const factory OnUserChanged(final User user) = _$OnUserChanged;
+
+  User get user;
+  @JsonKey(ignore: true)
+  _$$OnUserChangedCopyWith<_$OnUserChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnEmailVerifiedCopyWith<$Res> {
+  factory _$$OnEmailVerifiedCopyWith(
+          _$OnEmailVerified value, $Res Function(_$OnEmailVerified) then) =
+      __$$OnEmailVerifiedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OnEmailVerifiedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
+    implements _$$OnEmailVerifiedCopyWith<$Res> {
+  __$$OnEmailVerifiedCopyWithImpl(
+      _$OnEmailVerified _value, $Res Function(_$OnEmailVerified) _then)
+      : super(_value, (v) => _then(v as _$OnEmailVerified));
+
+  @override
+  _$OnEmailVerified get _value => super._value as _$OnEmailVerified;
+}
+
+/// @nodoc
+
+class _$OnEmailVerified implements OnEmailVerified {
+  const _$OnEmailVerified();
+
+  @override
+  String toString() {
+    return 'AppEvent.onEmailVerified()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OnEmailVerified);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user) onUserChanged,
+    required TResult Function() onEmailVerified,
+    required TResult Function() logoutRequested,
+    required TResult Function() onboardingCompleted,
+  }) {
+    return onEmailVerified();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? onUserChanged,
+    TResult Function()? onEmailVerified,
+    TResult Function()? logoutRequested,
+    TResult Function()? onboardingCompleted,
+  }) {
+    return onEmailVerified?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user)? onUserChanged,
+    TResult Function()? onEmailVerified,
+    TResult Function()? logoutRequested,
+    TResult Function()? onboardingCompleted,
+    required TResult orElse(),
+  }) {
+    if (onEmailVerified != null) {
+      return onEmailVerified();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnUserChanged value) onUserChanged,
+    required TResult Function(OnEmailVerified value) onEmailVerified,
+    required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(OnboardingCompleted value) onboardingCompleted,
+  }) {
+    return onEmailVerified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
+    TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
+  }) {
+    return onEmailVerified?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
+    TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
+    required TResult orElse(),
+  }) {
+    if (onEmailVerified != null) {
+      return onEmailVerified(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OnEmailVerified implements AppEvent {
+  const factory OnEmailVerified() = _$OnEmailVerified;
 }
 
 /// @nodoc
@@ -215,8 +384,10 @@ class _$LogoutRequested implements LogoutRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onUserChanged,
+    required TResult Function(User user) onUserChanged,
+    required TResult Function() onEmailVerified,
     required TResult Function() logoutRequested,
+    required TResult Function() onboardingCompleted,
   }) {
     return logoutRequested();
   }
@@ -224,8 +395,10 @@ class _$LogoutRequested implements LogoutRequested {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
+    TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? onboardingCompleted,
   }) {
     return logoutRequested?.call();
   }
@@ -233,8 +406,10 @@ class _$LogoutRequested implements LogoutRequested {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onUserChanged,
+    TResult Function(User user)? onUserChanged,
+    TResult Function()? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? onboardingCompleted,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -247,7 +422,9 @@ class _$LogoutRequested implements LogoutRequested {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OnUserChanged value) onUserChanged,
+    required TResult Function(OnEmailVerified value) onEmailVerified,
     required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(OnboardingCompleted value) onboardingCompleted,
   }) {
     return logoutRequested(this);
   }
@@ -256,7 +433,9 @@ class _$LogoutRequested implements LogoutRequested {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
   }) {
     return logoutRequested?.call(this);
   }
@@ -265,7 +444,9 @@ class _$LogoutRequested implements LogoutRequested {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -280,11 +461,129 @@ abstract class LogoutRequested implements AppEvent {
 }
 
 /// @nodoc
+abstract class _$$OnboardingCompletedCopyWith<$Res> {
+  factory _$$OnboardingCompletedCopyWith(_$OnboardingCompleted value,
+          $Res Function(_$OnboardingCompleted) then) =
+      __$$OnboardingCompletedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OnboardingCompletedCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res>
+    implements _$$OnboardingCompletedCopyWith<$Res> {
+  __$$OnboardingCompletedCopyWithImpl(
+      _$OnboardingCompleted _value, $Res Function(_$OnboardingCompleted) _then)
+      : super(_value, (v) => _then(v as _$OnboardingCompleted));
+
+  @override
+  _$OnboardingCompleted get _value => super._value as _$OnboardingCompleted;
+}
+
+/// @nodoc
+
+class _$OnboardingCompleted implements OnboardingCompleted {
+  const _$OnboardingCompleted();
+
+  @override
+  String toString() {
+    return 'AppEvent.onboardingCompleted()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OnboardingCompleted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user) onUserChanged,
+    required TResult Function() onEmailVerified,
+    required TResult Function() logoutRequested,
+    required TResult Function() onboardingCompleted,
+  }) {
+    return onboardingCompleted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? onUserChanged,
+    TResult Function()? onEmailVerified,
+    TResult Function()? logoutRequested,
+    TResult Function()? onboardingCompleted,
+  }) {
+    return onboardingCompleted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user)? onUserChanged,
+    TResult Function()? onEmailVerified,
+    TResult Function()? logoutRequested,
+    TResult Function()? onboardingCompleted,
+    required TResult orElse(),
+  }) {
+    if (onboardingCompleted != null) {
+      return onboardingCompleted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnUserChanged value) onUserChanged,
+    required TResult Function(OnEmailVerified value) onEmailVerified,
+    required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(OnboardingCompleted value) onboardingCompleted,
+  }) {
+    return onboardingCompleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
+    TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
+  }) {
+    return onboardingCompleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
+    TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
+    required TResult orElse(),
+  }) {
+    if (onboardingCompleted != null) {
+      return onboardingCompleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OnboardingCompleted implements AppEvent {
+  const factory OnboardingCompleted() = _$OnboardingCompleted;
+}
+
+/// @nodoc
 mixin _$AppState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() authenticated,
+    required TResult Function() waitForEmailVerification,
     required TResult Function() unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
@@ -292,6 +591,7 @@ mixin _$AppState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? authenticated,
+    TResult Function()? waitForEmailVerification,
     TResult Function()? unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
@@ -299,28 +599,33 @@ mixin _$AppState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? authenticated,
+    TResult Function()? waitForEmailVerification,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(Initial value) initial,
     required TResult Function(Authenticated value) authenticated,
+    required TResult Function(WaitForEmailVerification value)
+        waitForEmailVerification,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) =>
@@ -343,26 +648,25 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialCopyWith<$Res> {
+  factory _$$InitialCopyWith(_$Initial value, $Res Function(_$Initial) then) =
+      __$$InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
+class __$$InitialCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
+    implements _$$InitialCopyWith<$Res> {
+  __$$InitialCopyWithImpl(_$Initial _value, $Res Function(_$Initial) _then)
+      : super(_value, (v) => _then(v as _$Initial));
 
   @override
-  _$_Initial get _value => super._value as _$_Initial;
+  _$Initial get _value => super._value as _$Initial;
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$Initial implements Initial {
+  const _$Initial();
 
   @override
   String toString() {
@@ -372,7 +676,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$Initial);
   }
 
   @override
@@ -383,6 +687,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() authenticated,
+    required TResult Function() waitForEmailVerification,
     required TResult Function() unauthenticated,
   }) {
     return initial();
@@ -393,6 +698,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? authenticated,
+    TResult Function()? waitForEmailVerification,
     TResult Function()? unauthenticated,
   }) {
     return initial?.call();
@@ -403,6 +709,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? authenticated,
+    TResult Function()? waitForEmailVerification,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
@@ -415,8 +722,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(Initial value) initial,
     required TResult Function(Authenticated value) authenticated,
+    required TResult Function(WaitForEmailVerification value)
+        waitForEmailVerification,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) {
     return initial(this);
@@ -425,8 +734,9 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
   }) {
     return initial?.call(this);
@@ -435,8 +745,9 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
@@ -447,8 +758,8 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements AppState {
-  const factory _Initial() = _$_Initial;
+abstract class Initial implements AppState {
+  const factory Initial() = _$Initial;
 }
 
 /// @nodoc
@@ -493,6 +804,7 @@ class _$Authenticated implements Authenticated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() authenticated,
+    required TResult Function() waitForEmailVerification,
     required TResult Function() unauthenticated,
   }) {
     return authenticated();
@@ -503,6 +815,7 @@ class _$Authenticated implements Authenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? authenticated,
+    TResult Function()? waitForEmailVerification,
     TResult Function()? unauthenticated,
   }) {
     return authenticated?.call();
@@ -513,6 +826,7 @@ class _$Authenticated implements Authenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? authenticated,
+    TResult Function()? waitForEmailVerification,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
@@ -525,8 +839,10 @@ class _$Authenticated implements Authenticated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(Initial value) initial,
     required TResult Function(Authenticated value) authenticated,
+    required TResult Function(WaitForEmailVerification value)
+        waitForEmailVerification,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) {
     return authenticated(this);
@@ -535,8 +851,9 @@ class _$Authenticated implements Authenticated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
   }) {
     return authenticated?.call(this);
@@ -545,8 +862,9 @@ class _$Authenticated implements Authenticated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
@@ -559,6 +877,126 @@ class _$Authenticated implements Authenticated {
 
 abstract class Authenticated implements AppState {
   const factory Authenticated() = _$Authenticated;
+}
+
+/// @nodoc
+abstract class _$$WaitForEmailVerificationCopyWith<$Res> {
+  factory _$$WaitForEmailVerificationCopyWith(_$WaitForEmailVerification value,
+          $Res Function(_$WaitForEmailVerification) then) =
+      __$$WaitForEmailVerificationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$WaitForEmailVerificationCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res>
+    implements _$$WaitForEmailVerificationCopyWith<$Res> {
+  __$$WaitForEmailVerificationCopyWithImpl(_$WaitForEmailVerification _value,
+      $Res Function(_$WaitForEmailVerification) _then)
+      : super(_value, (v) => _then(v as _$WaitForEmailVerification));
+
+  @override
+  _$WaitForEmailVerification get _value =>
+      super._value as _$WaitForEmailVerification;
+}
+
+/// @nodoc
+
+class _$WaitForEmailVerification implements WaitForEmailVerification {
+  const _$WaitForEmailVerification();
+
+  @override
+  String toString() {
+    return 'AppState.waitForEmailVerification()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WaitForEmailVerification);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() authenticated,
+    required TResult Function() waitForEmailVerification,
+    required TResult Function() unauthenticated,
+  }) {
+    return waitForEmailVerification();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? authenticated,
+    TResult Function()? waitForEmailVerification,
+    TResult Function()? unauthenticated,
+  }) {
+    return waitForEmailVerification?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? authenticated,
+    TResult Function()? waitForEmailVerification,
+    TResult Function()? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (waitForEmailVerification != null) {
+      return waitForEmailVerification();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(WaitForEmailVerification value)
+        waitForEmailVerification,
+    required TResult Function(Unauthenticated value) unauthenticated,
+  }) {
+    return waitForEmailVerification(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
+    TResult Function(Unauthenticated value)? unauthenticated,
+  }) {
+    return waitForEmailVerification?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (waitForEmailVerification != null) {
+      return waitForEmailVerification(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class WaitForEmailVerification implements AppState {
+  const factory WaitForEmailVerification() = _$WaitForEmailVerification;
 }
 
 /// @nodoc
@@ -603,6 +1041,7 @@ class _$Unauthenticated implements Unauthenticated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() authenticated,
+    required TResult Function() waitForEmailVerification,
     required TResult Function() unauthenticated,
   }) {
     return unauthenticated();
@@ -613,6 +1052,7 @@ class _$Unauthenticated implements Unauthenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? authenticated,
+    TResult Function()? waitForEmailVerification,
     TResult Function()? unauthenticated,
   }) {
     return unauthenticated?.call();
@@ -623,6 +1063,7 @@ class _$Unauthenticated implements Unauthenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? authenticated,
+    TResult Function()? waitForEmailVerification,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
@@ -635,8 +1076,10 @@ class _$Unauthenticated implements Unauthenticated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(Initial value) initial,
     required TResult Function(Authenticated value) authenticated,
+    required TResult Function(WaitForEmailVerification value)
+        waitForEmailVerification,
     required TResult Function(Unauthenticated value) unauthenticated,
   }) {
     return unauthenticated(this);
@@ -645,8 +1088,9 @@ class _$Unauthenticated implements Unauthenticated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
   }) {
     return unauthenticated?.call(this);
@@ -655,8 +1099,9 @@ class _$Unauthenticated implements Unauthenticated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {

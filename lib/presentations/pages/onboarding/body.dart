@@ -1,9 +1,10 @@
+import 'package:expense_tracker/bloc/app_bloc.dart';
+import 'package:expense_tracker/di/injector.dart';
+import 'package:expense_tracker/gen/assets.gen.dart';
+import 'package:expense_tracker/user_preferences.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
-import '../../components/default_button.dart';
-import '../login/login_page.dart';
-import '../signup/signup_page.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -17,6 +18,12 @@ class BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     const data = kOnboardingData;
+
+    final images = [
+      Assets.images.money,
+      Assets.images.bill,
+      Assets.images.planning,
+    ];
 
     return Padding(
       padding: const EdgeInsets.all(kMediumPadding),
@@ -32,11 +39,7 @@ class BodyState extends State<Body> {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    SizedBox(
-                      child: Image.asset(
-                        data[index]['image'].toString(),
-                      ),
-                    ),
+                    SizedBox(child: images[index].image()),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -79,18 +82,28 @@ class BodyState extends State<Body> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  DefaultButton(
-                    title: 'Sign in',
-                    onPressed: () => Navigator.of(context).pushReplacement(
-                      SignInPage.route(),
+                  ElevatedButton(
+                    onPressed: completedOnboarding,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text('Sign In'),
+                      ],
                     ),
                   ),
                   const SizedBox(height: kMediumPadding),
-                  DefaultButton(
-                    isSecondary: true,
-                    title: 'Sign up',
-                    onPressed: () => Navigator.of(context).pushReplacement(
-                      SignUpPage.route(),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: kViolet20,
+                      onPrimary: kViolet100,
+                      elevation: 0,
+                    ),
+                    onPressed: completedOnboarding,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text('Sign up'),
+                      ],
                     ),
                   ),
                 ],
@@ -102,9 +115,16 @@ class BodyState extends State<Body> {
     );
   }
 
+  Future<void> completedOnboarding() async {
+    getIt<AppBloc>().add(const OnboardingCompleted());
+    await getIt<UserPreferences>().completeOnboarding();
+  }
+
   AnimatedContainer buildIndicators(int index) {
     return AnimatedContainer(
-      margin: const EdgeInsets.only(left: kMediumPadding),
+      margin: index != 0
+          ? const EdgeInsets.only(left: kMediumPadding)
+          : EdgeInsets.zero,
       height: index == selectedIndex ? 16.0 : 8.0,
       width: index == selectedIndex ? 16.0 : 8.0,
       decoration: BoxDecoration(

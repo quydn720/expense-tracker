@@ -14,15 +14,14 @@ TextTheme textTheme = TextTheme(
   ),
   headline3: GoogleFonts.inter(fontSize: 47, fontWeight: FontWeight.w400),
   headline4: GoogleFonts.inter(
-    fontSize: 33,
-    fontWeight: FontWeight.w400,
-    letterSpacing: 0.25,
-  ),
-  headline5: GoogleFonts.inter(fontSize: 23, fontWeight: FontWeight.w400),
-  headline6: GoogleFonts.inter(
-    fontSize: 19,
+    fontSize: 36,
     fontWeight: FontWeight.w500,
-    letterSpacing: 0.15,
+    color: const Color(0xff0D0E0F),
+  ),
+  headline5: GoogleFonts.inter(fontSize: 32, fontWeight: FontWeight.w700),
+  headline6: GoogleFonts.inter(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
   ),
   subtitle1: GoogleFonts.inter(
     fontSize: 16,
@@ -39,7 +38,7 @@ TextTheme textTheme = TextTheme(
     fontWeight: FontWeight.w500,
   ),
   bodyText2: GoogleFonts.inter(
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: FontWeight.w400,
   ),
   button: GoogleFonts.inter(
