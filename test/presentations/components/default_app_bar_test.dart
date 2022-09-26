@@ -36,7 +36,7 @@ void main() {
       routes: [
         GoRoute(
           path: '/',
-          redirect: (_) => '/button',
+          redirect: (_, __) => '/button',
           routes: [
             GoRoute(
               path: 'button',
