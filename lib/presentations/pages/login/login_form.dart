@@ -4,7 +4,6 @@ import 'package:formz/formz.dart';
 
 import '../../../../constants.dart';
 import '../../../blocs/login/login_cubit.dart';
-import '../../components/default_button.dart';
 import '../forgot_password/forgot_pw_page.dart';
 import '../signup/signup_page.dart';
 import 'widgets.dart';
@@ -120,12 +119,12 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
-            : DefaultButton(
+            : ElevatedButton(
                 key: const Key('loginForm_continue_raisedButton'),
                 onPressed: state.status.isValidated
                     ? () => context.read<LoginCubit>().logInWithCredentials()
                     : null,
-                title: 'Sign in',
+                child: const Text('Sign in'),
               );
       },
     );
@@ -135,11 +134,11 @@ class _LoginButton extends StatelessWidget {
 class _GoogleLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return DefaultOutlinedButton(
+    return OutlinedButton(
       key: const Key('loginForm_googleLogin_raisedButton'),
-      title: 'Sign in with Google',
-      onPress: () => context.read<LoginCubit>().logInWithGoogle(),
-      icon: Image.asset('assets/icons/flat-color-icons_google.png'),
+      child: const Text('Sign in with Google'),
+      onPressed: () => context.read<LoginCubit>().logInWithGoogle(),
+      // icon: Image.asset('assets/icons/flat-color-icons_google.png'),
     );
   }
 }

@@ -94,8 +94,8 @@ class BodyState extends State<Body> {
                   const SizedBox(height: kMediumPadding),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: kViolet20,
-                      onPrimary: kViolet100,
+                      backgroundColor: kViolet20,
+                      foregroundColor: kViolet100,
                       elevation: 0,
                     ),
                     onPressed: completedOnboarding,

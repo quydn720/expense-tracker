@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
 import '../../components/default_app_widget.dart';
-import '../../components/default_button.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
@@ -53,7 +52,7 @@ class Body extends StatelessWidget {
             const SizedBox(height: kLargePadding),
             TextFormField(),
             const SizedBox(height: kLargePadding),
-            DefaultButton(title: 'Continue', onPressed: () {})
+            ElevatedButton(child: const Text('Continue'), onPressed: () {})
           ],
         ),
       ),

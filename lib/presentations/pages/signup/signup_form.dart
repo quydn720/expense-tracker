@@ -4,7 +4,6 @@ import 'package:formz/formz.dart';
 
 import '../../../blocs/signup/signup_cubit.dart';
 import '../../../constants.dart';
-import '../../components/default_button.dart';
 import '../login/widgets.dart';
 
 class SignUpForm extends StatelessWidget {
@@ -123,12 +122,12 @@ class _SignUpButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
-            : DefaultButton(
+            : ElevatedButton(
                 key: const Key('signUpForm_continue_raisedButton'),
                 onPressed: state.status.isValidated
                     ? () => context.read<SignupCubit>().signUpFormSubmitted()
                     : null,
-                title: 'Sign up',
+                child: const Text('Sign up'),
               );
       },
     );

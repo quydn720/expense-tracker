@@ -4,7 +4,6 @@ import 'package:wallet_repository/wallet_repository.dart';
 
 import '../../../../blocs/wallet/wallet_bloc.dart';
 import '../../../../constants.dart';
-import '../../../components/default_button.dart';
 
 class AddNewWalletPage extends StatefulWidget {
   const AddNewWalletPage({super.key});
@@ -131,8 +130,8 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                             ),
                           ),
                           const SizedBox(height: 8),
-                          DefaultButton(
-                            title: 'Continue',
+                          ElevatedButton(
+                            child:const Text( 'Continue'),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();

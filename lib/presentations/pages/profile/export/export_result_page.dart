@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
-import '../../../components/default_button.dart';
 import '../../main/main_page.dart';
 
 class ExportDataPromptPage extends StatelessWidget {
@@ -32,8 +31,8 @@ class ExportDataPromptPage extends StatelessWidget {
                   ],
                 ),
               ),
-              DefaultButton(
-                title: 'Back to Home',
+              ElevatedButton(
+                child:const Text( 'Back to Home'),
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, MainPage.routeName);
                 },
