@@ -8,6 +8,7 @@ jobs:
       min_coverage: 0
       coverage_excludes: "*.g.dart *.freezed.dart firebase_options_dev.dart firebase_options.dart"
   upload:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
