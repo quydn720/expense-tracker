@@ -60,6 +60,7 @@ void main() {
     blocTest<AppBloc, AppState>(
       'emits authenticated when user is verified',
       setUp: () {
+        when(() => user.isNotEmpty).thenReturn(true);
         when(() => user.verified).thenReturn(true);
         when(() => authenticationRepository.user).thenAnswer(
           (_) => Stream.value(user),

@@ -1,6 +1,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
-// import 'package:pinput/pinput.dart';
+import 'package:pinput/pinput.dart';
 
 import '../../di/injector.dart';
 
@@ -25,22 +25,22 @@ class VerificationEmailView extends StatelessWidget {
                     style: textTheme.headline4,
                   ),
                   const SizedBox(height: 48),
-                  // Pinput(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //   crossAxisAlignment: CrossAxisAlignment.baseline,
-                  //   scrollPadding: EdgeInsets.zero,
-                  //   length: 6,
-                  //   showCursor: false,
-                  //   onCompleted: log,
-                  //   defaultPinTheme: PinTheme(
-                  //     decoration: const BoxDecoration(
-                  //       shape: BoxShape.circle,
-                  //       color: Colors.green,
-                  //     ),
-                  //     textStyle: textTheme.headline5,
-                  //     margin: const EdgeInsets.only(right: 32),
-                  //   ),
-                  // ),
+                  Pinput(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    scrollPadding: EdgeInsets.zero,
+                    length: 6,
+                    showCursor: false,
+                    onCompleted: logger.i,
+                    defaultPinTheme: PinTheme(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.green,
+                      ),
+                      textStyle: textTheme.headline5,
+                      margin: const EdgeInsets.only(right: 32),
+                    ),
+                  ),
                   const SizedBox(height: 48),
                   Text(
                     '4:59',
