@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
+      with:
+        path: main
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
