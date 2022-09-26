@@ -10,7 +10,3 @@ jobs:
         flutter_version: "3.3.0"
         min_coverage: 0
         coverage_excludes: "*.g.dart *.freezed.dart firebase_options_dev.dart firebase_options.dart"
-    
-    - uses: codecov/codecov-action@v3 
-      with:
-        file: coverage/lcov.info

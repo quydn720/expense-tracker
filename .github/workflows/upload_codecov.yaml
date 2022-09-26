@@ -1,0 +1,8 @@
+name: Upload Codecov
+on: [pull_request, push]
+
+jobs:
+  build:
+    uses: codecov/codecov-action@v3 
+    with:
+      file: coverage/lcov.info
