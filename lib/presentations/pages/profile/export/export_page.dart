@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
 import '../../../components/bars.dart';
-import '../../../components/default_button.dart';
 
 import 'export_result_page.dart';
 
@@ -63,8 +62,8 @@ class _ExportPageState extends State<ExportPage> {
                 ],
               ),
             ),
-            DefaultButton(
-              title: 'Export',
+            ElevatedButton(
+              child: const Text('Export'),
               onPressed: () {
                 // TODO(quy): Bloc add Send file to email
                 Navigator.pushReplacementNamed(
@@ -72,7 +71,7 @@ class _ExportPageState extends State<ExportPage> {
                   ExportDataPromptPage.routeName,
                 );
               },
-              icon: Image.asset('assets/icons/download.png', color: kLight100),
+              // icon: Image.asset('assets/icons/download.png', color: kLight100),
             ),
           ],
         ),

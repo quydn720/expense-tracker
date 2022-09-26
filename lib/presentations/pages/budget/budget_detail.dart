@@ -7,7 +7,6 @@ import '../../../blocs/budget/budget_bloc.dart';
 import '../../../blocs/transaction/category_model.dart';
 import '../../../blocs/transaction/transaction_bloc.dart';
 import '../../../constants.dart';
-import '../../components/default_button.dart';
 import '../../components/squared_icon_card.dart';
 import 'budget_card.dart';
 
@@ -157,8 +156,8 @@ class BudgetDetail extends StatelessWidget {
                 horizontal: 16,
                 vertical: 32,
               ),
-              child: DefaultButton(
-                title: 'Edit',
+              child: ElevatedButton(
+                child: const Text('Edit'),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -208,15 +207,12 @@ class DeleteBudgetBottomSheet extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                DefaultButton(
-                  isSmall: true,
-                  title: 'No',
-                  isSecondary: true,
+                ElevatedButton(
+                  child: const Text('No'),
                   onPressed: () => Navigator.pop(context),
                 ),
-                DefaultButton(
-                  isSmall: true,
-                  title: 'Yes',
+                ElevatedButton(
+                  child: const Text('Yes'),
                   onPressed: () {
                     context.read<BudgetBloc>().add(DeleteBudget(budget));
                     Navigator.pop(context);
@@ -386,8 +382,8 @@ class _EditBudgetState extends State<_EditBudgetPage> {
                             },
                           ),
                           const SizedBox(height: kMediumPadding),
-                          DefaultButton(
-                            title: 'Continue',
+                          ElevatedButton(
+                            child: const Text('Continue'),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();

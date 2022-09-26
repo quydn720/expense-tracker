@@ -5,7 +5,6 @@ import '../../../blocs/tab/tab_bloc.dart';
 import '../../../blocs/transaction/transaction_bloc.dart';
 import '../../../blocs/wallet/wallet_bloc.dart';
 import '../../../constants.dart';
-import '../../components/default_button.dart';
 import '../budget/budget_page.dart';
 import '../home/home_page.dart';
 import '../profile/account/add_new_account.dart';
@@ -155,8 +154,8 @@ class NewUserPage extends StatelessWidget {
                 style: body3,
               ),
               const Spacer(),
-              DefaultButton(
-                title: "Let's go",
+              ElevatedButton(
+                child: const Text("Let's go"),
                 onPressed: () {
                   Navigator.push(
                     context,

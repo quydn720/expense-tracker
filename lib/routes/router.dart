@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:expense_tracker/features/authentication/presentation/pages/register_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
-import 'package:expense_tracker/features/verify_email/register_verify_email.dart';
+import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
 import 'package:expense_tracker/home_screen.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:expense_tracker/presentations/pages/onboarding/onboarding_page.dart';
@@ -24,7 +26,11 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
     GoRouter(
       initialLocation: initialLocation,
       routes: <GoRoute>[
-        GoRoute(path: '/', redirect: (_) => '/home'),
+        GoRoute(path: '/', redirect: (_, __) => '/home'),
+        GoRoute(
+          path: '/splash',
+          builder: (_, __) => const OnboardingPage(),
+        ),
         GoRoute(
           path: '/splash',
           builder: (_, __) => const OnboardingPage(),
@@ -61,7 +67,7 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
         ),
         GoRoute(
           path: '/profile',
-          redirect: (state) => '/setting',
+          redirect: (_, __) => '/setting',
         ),
         GoRoute(
           path: '/setting',
@@ -114,7 +120,7 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
       ],
       debugLogDiagnostics: true,
       refreshListenable: GoRouterRefreshStream(appBloc.stream),
-      redirect: (state) {
+      redirect: (_, state) {
         final initial = appBloc.state is Initial;
         if (initial) {
           if (state.subloc == '/splash') return null;
@@ -174,5 +180,22 @@ class AppDevelopmentView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class GoRouterRefreshStream extends ChangeNotifier {
+  GoRouterRefreshStream(Stream<dynamic> stream) {
+    notifyListeners();
+    _subscription = stream.asBroadcastStream().listen(
+          (dynamic _) => notifyListeners(),
+        );
+  }
+
+  late final StreamSubscription<dynamic> _subscription;
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
   }
 }

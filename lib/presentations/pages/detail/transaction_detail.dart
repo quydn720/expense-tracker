@@ -6,7 +6,6 @@ import 'package:transaction_repository/transaction_repository.dart';
 import '../../../blocs/transaction/transaction_bloc.dart';
 import '../../../blocs/wallet/wallet_bloc.dart';
 import '../../../constants.dart';
-import '../../components/default_button.dart';
 import '../transaction/add_transaction/add_transaction.dart';
 
 class TransactionDetailPage extends StatelessWidget {
@@ -150,8 +149,8 @@ class TransactionDetailPage extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: DefaultButton(
-                          title: 'Edit',
+                        child: ElevatedButton(
+                          child: const Text('Edit'),
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -213,15 +212,12 @@ class DeleteTransactionBottomSheet extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                DefaultButton(
-                  isSmall: true,
-                  title: 'No',
-                  isSecondary: true,
+                ElevatedButton(
+                  child: const Text('No'),
                   onPressed: () => Navigator.pop(context),
                 ),
-                DefaultButton(
-                  isSmall: true,
-                  title: 'Yes',
+                ElevatedButton(
+                  child: const Text('Yes'),
                   onPressed: () {
                     context
                         .read<TransactionBloc>()

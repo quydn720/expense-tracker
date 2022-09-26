@@ -1,8 +1,6 @@
-// ignore_for_file: avoid_dynamic_calls
-
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:pinput/pinput.dart';
 
 import '../../di/injector.dart';
 
@@ -27,36 +25,21 @@ class VerificationEmailView extends StatelessWidget {
                     style: textTheme.headline4,
                   ),
                   const SizedBox(height: 48),
-                  Row(
-                    children: [
-                      Text('8', style: textTheme.headline5),
-                      const SizedBox(width: 16),
-                      Text('8', style: textTheme.headline5),
-                      const SizedBox(width: 16),
-                      Text('8', style: textTheme.headline5),
-                      const SizedBox(width: 16),
-                      Text('8', style: textTheme.headline5),
-                      const SizedBox(width: 16),
-                      Text('8', style: textTheme.headline5),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: TextField(
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(1),
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: '•',
-                            hintStyle: textTheme.headline5
-                                ?.copyWith(color: Colors.grey),
-                          ),
-                          showCursor: false,
-                          style: textTheme.headline5,
-                        ),
+                  Pinput(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    scrollPadding: EdgeInsets.zero,
+                    length: 6,
+                    showCursor: false,
+                    onCompleted: logger.i,
+                    defaultPinTheme: PinTheme(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.green,
                       ),
-                    ],
+                      textStyle: textTheme.headline5,
+                      margin: const EdgeInsets.only(right: 32),
+                    ),
                   ),
                   const SizedBox(height: 48),
                   Text(

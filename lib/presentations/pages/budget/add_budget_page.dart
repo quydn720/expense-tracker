@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../../../blocs/budget/budget_bloc.dart';
 import '../../../blocs/transaction/category_model.dart';
 import '../../../constants.dart';
-import '../../components/default_button.dart';
 
 class AddBudgetPage extends StatefulWidget {
   const AddBudgetPage({super.key});
@@ -151,8 +150,8 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                             },
                           ),
                           const SizedBox(height: kMediumPadding),
-                          DefaultButton(
-                            title: 'Continue',
+                          ElevatedButton(
+                            child: const Text('Continue'),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();

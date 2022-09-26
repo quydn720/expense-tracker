@@ -7,7 +7,6 @@ import '../../../../blocs/transaction/category_model.dart';
 import '../../../../blocs/transaction/transaction_bloc.dart';
 import '../../../../blocs/wallet/wallet_bloc.dart';
 import '../../../../constants.dart';
-import '../../../components/default_button.dart';
 
 class AddTransactionPage extends StatefulWidget {
   const AddTransactionPage({super.key});
@@ -162,8 +161,8 @@ class AddTransactionPageState extends State<AddTransactionPage> {
                               },
                             ),
                             const SizedBox(height: kMediumPadding),
-                            DefaultButton(
-                              title: 'Continue',
+                            ElevatedButton(
+                              child: const Text('Continue'),
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   _formKey.currentState!.save();
@@ -384,8 +383,8 @@ class EditTransactionPageState extends State<EditTransactionPage> {
                               },
                             ),
                             const SizedBox(height: kMediumPadding),
-                            DefaultButton(
-                              title: 'Continue',
+                            ElevatedButton(
+                              child: const Text('Continue'),
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   _formKey.currentState!.save();

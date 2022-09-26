@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../blocs/filter/filter_bloc.dart';
 import '../../../../constants.dart';
 import '../../../components/bars.dart';
-import '../../../components/default_button.dart';
 
 class FilterBottomSheet extends StatelessWidget {
   const FilterBottomSheet({super.key});
@@ -91,8 +90,8 @@ class FilterBottomSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: kDefaultPadding),
-          DefaultButton(
-            title: 'Apply',
+          ElevatedButton(
+            child: const Text('Apply'),
             onPressed: () {
               _filterBloc.add(const FilterSubmitted());
               Navigator.pop(context);

@@ -5,7 +5,6 @@ import 'package:wallet_repository/wallet_repository.dart';
 import '../../../../blocs/transaction/transaction_bloc.dart';
 import '../../../../blocs/wallet/wallet_bloc.dart';
 import '../../../../constants.dart';
-import '../../../components/default_button.dart';
 import '../../../components/squared_icon_card.dart';
 import 'account_detail.dart';
 import 'add_new_account.dart';
@@ -127,7 +126,7 @@ class _AddNewWalletButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(kMediumPadding),
-      child: DefaultButton(
+      child: ElevatedButton(
         key: const Key('accountPage_addNewWallet_button'),
         onPressed: () {
           Navigator.push(
@@ -137,7 +136,7 @@ class _AddNewWalletButton extends StatelessWidget {
             ),
           );
         },
-        title: '+  Add new wallet',
+        child: const Text('+  Add new wallet'),
       ),
     );
   }

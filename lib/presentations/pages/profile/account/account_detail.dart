@@ -7,7 +7,6 @@ import '../../../../blocs/transaction/transaction_bloc.dart';
 import '../../../../blocs/wallet/wallet_bloc.dart';
 import '../../../../constants.dart';
 import '../../../../utils/extension_helper.dart';
-import '../../../components/default_button.dart';
 import '../../../components/squared_icon_card.dart';
 import '../../../components/transaction_tile.dart';
 
@@ -257,8 +256,8 @@ class __EditWalletPageState extends State<_EditWalletPage> {
                             ),
                           ),
                           const SizedBox(height: 8),
-                          DefaultButton(
-                            title: 'Continue',
+                          ElevatedButton(
+                            child: const Text('Continue'),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();

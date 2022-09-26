@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/budget/budget_bloc.dart';
 import '../../../constants.dart';
-import '../../components/default_button.dart';
 import 'add_budget_page.dart';
 import 'budget_card.dart';
 
@@ -45,7 +44,7 @@ class BudgetPage extends StatelessWidget {
             color: kLight100,
             child: Padding(
               padding: const EdgeInsets.all(kMediumPadding),
-              child: DefaultButton(
+              child: ElevatedButton(
                 key: const Key('budgetPage_addNewBudget_button'),
                 onPressed: () {
                   Navigator.push(
@@ -58,7 +57,7 @@ class BudgetPage extends StatelessWidget {
                     ),
                   );
                 },
-                title: '+  Create a budget',
+                child: const Text('+  Create a budget'),
               ),
             ),
           ),
