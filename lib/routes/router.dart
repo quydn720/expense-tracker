@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:expense_tracker/features/authentication/presentation/pages/register_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
-import 'package:expense_tracker/features/verify_email/register_verify_email.dart';
+import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
 import 'package:expense_tracker/home_screen.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:expense_tracker/presentations/pages/onboarding/onboarding_page.dart';
@@ -27,6 +27,10 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
       initialLocation: initialLocation,
       routes: <GoRoute>[
         GoRoute(path: '/', redirect: (_, __) => '/home'),
+        GoRoute(
+          path: '/splash',
+          builder: (_, __) => const OnboardingPage(),
+        ),
         GoRoute(
           path: '/splash',
           builder: (_, __) => const OnboardingPage(),
