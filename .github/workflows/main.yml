@@ -3,14 +3,15 @@ name: my_flutter_package
 on: [pull_request, push]
 
 jobs:
-  - name: Very Good Workflows
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
-    with:
-      flutter_version: "3.3.0"
-      min_coverage: 0
-      coverage_excludes: "*.g.dart *.freezed.dart firebase_options_dev.dart firebase_options.dart"
+  build:
+    - name: Very Good Workflows
+      uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+      with:
+        flutter_version: "3.3.0"
+        min_coverage: 0
+        coverage_excludes: "*.g.dart *.freezed.dart firebase_options_dev.dart firebase_options.dart"
   
-  - name: Upload coverage to Codecov 
-    uses: codecov/codecov-action@v3 
-    with:
-      file: coverage/lcov.info
+    - name: Upload coverage to Codecov 
+      uses: codecov/codecov-action@v3 
+      with:
+        file: coverage/lcov.info
