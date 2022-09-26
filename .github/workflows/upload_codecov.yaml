@@ -1,5 +1,5 @@
 name: Example workflow for Codecov
-on: [push, pull_request]
+on: push
 jobs:
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
