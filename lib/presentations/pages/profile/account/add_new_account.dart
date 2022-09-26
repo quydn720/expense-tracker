@@ -131,7 +131,7 @@ class _AddNewWalletPageState extends State<AddNewWalletPage> {
                           ),
                           const SizedBox(height: 8),
                           ElevatedButton(
-                            child:const Text( 'Continue'),
+                            child: const Text('Continue'),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();

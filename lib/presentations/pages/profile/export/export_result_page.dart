@@ -32,7 +32,7 @@ class ExportDataPromptPage extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                child:const Text( 'Back to Home'),
+                child: const Text('Back to Home'),
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, MainPage.routeName);
                 },

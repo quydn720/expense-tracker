@@ -155,7 +155,7 @@ class NewUserPage extends StatelessWidget {
               ),
               const Spacer(),
               ElevatedButton(
-                child:const Text( "Let's go"),
+                child: const Text("Let's go"),
                 onPressed: () {
                   Navigator.push(
                     context,

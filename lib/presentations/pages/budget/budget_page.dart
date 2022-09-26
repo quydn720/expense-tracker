@@ -57,7 +57,7 @@ class BudgetPage extends StatelessWidget {
                     ),
                   );
                 },
-                child:const Text( '+  Create a budget'),
+                child: const Text('+  Create a budget'),
               ),
             ),
           ),
