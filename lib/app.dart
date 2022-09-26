@@ -6,6 +6,7 @@ import 'package:expense_tracker/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
 
@@ -22,17 +23,21 @@ import 'presentations/pages/onboarding/onboarding_page.dart';
 import 'theme.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({
+    super.key,
+    required this.router,
+    required this.appName,
+  });
+
+  final GoRouter router;
+  final String appName;
 
   @override
   Widget build(BuildContext context) {
-    final router = getIt<GoRouter>();
     return MaterialApp.router(
-      routeInformationProvider: router.routeInformationProvider,
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
-      title: getIt<AppConfigurations>().appName,
+      title: appName,
       locale: context.watch<LocaleController>().locale,
       themeMode: context.watch<ThemeController>().themeMode,
       theme: ThemeData(
