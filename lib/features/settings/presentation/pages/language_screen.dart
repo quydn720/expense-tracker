@@ -1,6 +1,8 @@
 import 'package:expense_tracker/gen/assets.gen.dart';
+import 'package:expense_tracker/locale_controller.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({super.key});
@@ -16,6 +18,9 @@ class LanguageScreen extends StatelessWidget {
       appBar: const DefaultAppBar(title: 'Language'),
       body: ListView.builder(
         itemBuilder: (_, index) => ListTile(
+          onTap: () => context.read<LocaleController>().changeLocale(
+                const Locale('vi'),
+              ),
           title: Text(_languages[index]['name']!, style: textStyle),
           minVerticalPadding: 17,
           trailing: Assets.icons.success.svg(
