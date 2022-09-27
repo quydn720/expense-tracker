@@ -6,4 +6,10 @@ linter:
 analyzer:
   errors:
     invalid_annotation_target: ignore
-  exclude: [build/**, lib/**.freezed.dart, lib/**.g.dart, lib/**.config.dart]
+  exclude: [
+    build/**,
+    lib/**.freezed.dart,
+    lib/**.g.dart,
+    lib/**.config.dart,
+    lib/l10n/gen/
+  ]
