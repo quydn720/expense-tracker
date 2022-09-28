@@ -2,6 +2,7 @@ import 'package:expense_tracker/features/authentication/domain/usecases/register
 import 'package:expense_tracker/features/authentication/presentation/pages/cubit/register_cubit.dart';
 import 'package:expense_tracker/features/authentication/presentation/pages/register_form.dart';
 import 'package:expense_tracker/features/authentication/presentation/pages/register_screen.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -65,8 +66,8 @@ void main() {
 
       await tester.pumpWidget(materialApp(registerCubit));
 
-      expect(find.text('Button'), findsOneWidget);
-      await tester.tap(find.text('Button'));
+      expect(find.text('Sign Up'), findsOneWidget);
+      await tester.tap(find.text('Sign Up'));
       await tester.pumpAndSettle();
 
       verify(registerCubit.onButtonClicked).called(1);
@@ -137,6 +138,7 @@ void main() {
 
 MaterialApp materialApp(RegisterCubit registerCubit) {
   return MaterialApp.router(
+    localizationsDelegates: LocalizationFactory.localizationsDelegates,
     routeInformationParser: mockRouter(
       initialLocation: '/register',
       registerCubit: registerCubit,
