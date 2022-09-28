@@ -1,4 +1,5 @@
 import 'package:expense_tracker/gen/assets.gen.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -50,7 +51,7 @@ class AppScaffold extends StatelessWidget {
                   ? const Color(0xff7F3DFF)
                   : Colors.grey,
             ),
-            label: 'Home',
+            label: context.l10n.home,
           ),
           BottomNavigationBarItem(
             icon: Assets.icons.transaction.svg(
@@ -58,7 +59,7 @@ class AppScaffold extends StatelessWidget {
                   ? const Color(0xff7F3DFF)
                   : Colors.grey,
             ),
-            label: 'Transaction',
+            label: context.l10n.transactions,
           ),
           BottomNavigationBarItem(
             icon: Assets.icons.pieChart.svg(
@@ -66,7 +67,7 @@ class AppScaffold extends StatelessWidget {
                   ? const Color(0xff7F3DFF)
                   : Colors.grey,
             ),
-            label: 'Budget',
+            label: context.l10n.budget,
           ),
           BottomNavigationBarItem(
             icon: Assets.icons.user.svg(
@@ -74,7 +75,7 @@ class AppScaffold extends StatelessWidget {
                   ? const Color(0xff7F3DFF)
                   : Colors.grey,
             ),
-            label: 'Profile',
+            label: context.l10n.profile,
           ),
         ],
       ),
