@@ -15,9 +15,9 @@ void main() {
   });
 
   test(
-    'default language code should be vi',
+    'default language code should be en',
     () async {
-      expect(sut.locale.languageCode, 'vi');
+      expect(sut.locale.languageCode, 'en');
     },
   );
 }

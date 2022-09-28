@@ -2,6 +2,7 @@ import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/presentation/pages/cubit/register_cubit.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -176,9 +177,7 @@ class _RegisterButton extends StatelessWidget {
       onPressed: isValid ? context.read<RegisterCubit>().onButtonClicked : null,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text('Button'),
-        ],
+        children: [Text(context.l10n.signUp)],
       ),
     );
   }

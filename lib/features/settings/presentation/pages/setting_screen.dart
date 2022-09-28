@@ -4,6 +4,7 @@ import 'package:expense_tracker/features/settings/presentation/pages/language_sc
 import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/security_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,35 +19,35 @@ class SettingScreen extends StatelessWidget {
       body: ListView(
         children: [
           _SettingTile(
-            title: 'Currency',
+            title: context.l10n.currency,
             value: 'USD',
             onTap: () => context.go(CurrencyScreen.routeName),
           ),
           _SettingTile(
-            title: 'Language',
+            title: context.l10n.language,
             value: 'English',
             onTap: () => context.go(LanguageScreen.routeName),
           ),
           _SettingTile(
-            title: 'Theme',
+            title: context.l10n.theme,
             value: 'Dark',
             onTap: () => context.go(ThemeScreen.routeName),
           ),
           _SettingTile(
-            title: 'Security',
+            title: context.l10n.security,
             onTap: () => context.go(SecurityScreen.routeName),
           ),
           _SettingTile(
-            title: 'Notification',
+            title: context.l10n.notification,
             onTap: () => context.go(NotificationScreen.routeName),
           ),
           const SizedBox(height: 32),
           _SettingTile(
-            title: 'About',
+            title: context.l10n.about,
             onTap: () => context.go(CurrencyScreen.routeName),
           ),
           _SettingTile(
-            title: 'Help',
+            title: context.l10n.help,
             onTap: () => getIt<AppBloc>().add(const LogoutRequested()),
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:expense_tracker/gen/assets.gen.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:expense_tracker/theme_controller.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class ThemeScreen extends StatelessWidget {
     final themeMode = context.watch<ThemeController>().themeMode;
 
     return Scaffold(
-      appBar: const DefaultAppBar(title: 'Theme'),
+      appBar: DefaultAppBar(title: context.l10n.theme),
       body: ListView.builder(
         itemBuilder: (_, index) {
           final mode = ThemeMode.values[index];

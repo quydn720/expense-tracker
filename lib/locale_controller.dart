@@ -5,7 +5,7 @@ import 'di/injector.dart';
 
 class LocaleController extends ChangeNotifier {
   LocaleController(this._localCache)
-      : _locale = _localCache.get<Locale?>(_key) ?? const Locale('vi');
+      : _locale = _localCache.get<Locale?>(_key) ?? const Locale('en');
 
   static const _key = 'locale-key';
 
@@ -14,9 +14,9 @@ class LocaleController extends ChangeNotifier {
 
   Locale get locale => _locale;
   Future<void> changeLocale(Locale locale) async {
-    await _localCache.set(_key, locale.languageCode);
-    notifyListeners();
-    logger.i('Locale change to: $_locale');
+    await _localCache.set<Locale>(_key, locale);
     _locale = locale;
+    notifyListeners();
+    logger.i('Locale change to: $locale');
   }
 }

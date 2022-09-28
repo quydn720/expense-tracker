@@ -35,7 +35,7 @@ void main() {
     themeController = MockThemeController();
     when(() => themeController.themeMode).thenReturn(ThemeMode.dark);
     localeController = MockLocaleController();
-    when(() => localeController.locale).thenReturn(const Locale('vi'));
+    when(() => localeController.locale).thenReturn(const Locale('en'));
   });
 
   group('a', () {
@@ -49,8 +49,10 @@ void main() {
             ChangeNotifierProvider.value(value: themeController),
             ChangeNotifierProvider.value(value: localeController),
           ],
-          child:
-              App(router: router(appBloc: appBloc), appName: 'Testing App 1'),
+          child: App(
+            router: router(appBloc: appBloc),
+            appName: 'Testing App 1',
+          ),
         ),
       );
 
@@ -67,7 +69,16 @@ void main() {
       when(() => appBloc.state).thenAnswer((_) => const Authenticated());
 
       await tester.pumpWidget(
-        MaterialApp.router(routerConfig: router(appBloc: appBloc)),
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(value: themeController),
+            ChangeNotifierProvider.value(value: localeController),
+          ],
+          child: App(
+            router: router(appBloc: appBloc),
+            appName: 'Testing App 1',
+          ),
+        ),
       );
       await tester.tap(find.text('Profile'));
       await tester.pumpAndSettle();
