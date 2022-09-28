@@ -1,4 +1,27 @@
 {
     "@@locale": "en",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "profile": "Profile",
+    "home": "Home",
+    "transactions": "Transactions",
+    "language": "Language",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "useDeviceTheme": "Use device theme",
+    "currency": "Currency",
+    "settings": "Settings",
+    "security": "Security",
+    "pin": "PIN",
+    "fingerprint": "Fingerprint",
+    "faceId": "Face ID",
+    "notification": "Notification",
+    "expenseAlert": "Expense Alert",
+    "expenseAlertDescription": "Get notification about you’re expense",
+    "budget": "Budget",
+    "budgetDescription": "Get notification when you’re budget exceeding the limit",
+    "tipsAndArticles": "Tips and Articles",
+    "tipsAndArticlesDescription": "Small & useful pieces of pratical financial advice",
+    "about": "About",
+    "help": "Help"
 }

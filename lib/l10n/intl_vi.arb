@@ -1,4 +1,27 @@
 {
     "@@locale": "vi",
-    "signUp": "Đăng ký"
+    "signUp": "Đăng ký",
+    "profile": "Hồ sơ",
+    "home": "Trang chủ",
+    "transactions": "Giao dịch",
+    "language": "Ngôn ngữ",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "useDeviceTheme": "Use device theme",
+    "currency": "Đơn vị tiền tệ",
+    "settings": "Cài đặt",
+    "security": "Bảo mật",
+    "pin": "PIN",
+    "fingerprint": "Fingerprint",
+    "faceId": "Face ID",
+    "notification": "Thông báo",
+    "expenseAlert": "Expense Alert",
+    "expenseAlertDescription": "Get notification about you’re expense",
+    "budget": "Ví của bạn",
+    "budgetDescription": "Get notification when you’re budget exceeding the limit",
+    "tipsAndArticles": "Tips and Articles",
+    "tipsAndArticlesDescription": "Small & useful pieces of pratical financial advice",
+    "about": "Về chúng tôi",
+    "help": "Bạn cần giúp đỡ?"
 }

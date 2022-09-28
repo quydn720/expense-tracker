@@ -3,6 +3,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'gen/app_localizations.dart';
 
+/// Command for generations
+/// flutter gen-l10n --arb-dir=lib/l10n --output-dir=lib/l10n/gen --output-localization-file=app_localizations.dart --output-class=AppLocalizations --no-synthetic-package --template-arb-file=intl_en.arb
 class LocalizationFactory {
   static List<LocalizationsDelegate<Object>> localizationsDelegates = const [
     AppLocalizations.delegate,
