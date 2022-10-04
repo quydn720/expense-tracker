@@ -1,6 +1,12 @@
 {
     "@@locale": "en",
     "signUp": "Sign Up",
+    "login": "Login",
+    "invalidEmail": "Email is not valid or badly formatted.",
+    "userDisabled": "This user has been disabled. Please contact support for help.",
+    "userNotFound": "Email is not found, please create an account.",
+    "wrongPassword": "Incorrect password, please try again.",
+    "unknownException": "An unknown exception occurred.",
     "profile": "Profile",
     "home": "Home",
     "transactions": "Transactions",

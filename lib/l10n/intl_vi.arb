@@ -1,6 +1,12 @@
 {
     "@@locale": "vi",
     "signUp": "Đăng ký",
+    "login": "Đăng nhập",
+    "invalidEmail": "Email không đúng định dạng.",
+    "userDisabled": "Người dùng này đã bị vô hiệu hóa. Vui lòng liên hệ chúng tôi để được hỗ trợ.",
+    "userNotFound": "Không tìm thấy tài khoản nào với email này, hãy tạo tài khoản mới.",
+    "unknownException": "Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ.",
+    "wrongPassword": "Sai mật khẩu. Mời bạn thử lại.",
     "profile": "Hồ sơ",
     "home": "Trang chủ",
     "transactions": "Giao dịch",
@@ -21,7 +27,7 @@
     "budget": "Ví của bạn",
     "budgetDescription": "Get notification when you’re budget exceeding the limit",
     "tipsAndArticles": "Tips and Articles",
-    "tipsAndArticlesDescription": "Small & useful pieces of pratical financial advice",
+    "tipsAndArticlesDescription": "Dich sang tieng Viet",
     "about": "Về chúng tôi",
     "help": "Bạn cần giúp đỡ?"
 }

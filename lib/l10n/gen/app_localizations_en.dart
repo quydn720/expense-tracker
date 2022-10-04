@@ -8,6 +8,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUp => 'Sign Up';
 
   @override
+  String get login => 'Login';
+
+  @override
+  String get invalidEmail => 'Email is not valid or badly formatted.';
+
+  @override
+  String get userDisabled => 'This user has been disabled. Please contact support for help.';
+
+  @override
+  String get userNotFound => 'Email is not found, please create an account.';
+
+  @override
+  String get wrongPassword => 'Incorrect password, please try again.';
+
+  @override
+  String get unknownException => 'An unknown exception occurred.';
+
+  @override
   String get profile => 'Profile';
 
   @override
@@ -62,15 +80,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get budget => 'Budget';
 
   @override
-  String get budgetDescription =>
-      'Get notification when you’re budget exceeding the limit';
+  String get budgetDescription => 'Get notification when you’re budget exceeding the limit';
 
   @override
   String get tipsAndArticles => 'Tips and Articles';
 
   @override
-  String get tipsAndArticlesDescription =>
-      'Small & useful pieces of pratical financial advice';
+  String get tipsAndArticlesDescription => 'Small & useful pieces of pratical financial advice';
 
   @override
   String get about => 'About';
