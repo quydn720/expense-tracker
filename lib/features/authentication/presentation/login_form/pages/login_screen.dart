@@ -87,13 +87,15 @@ class LoginScreen extends StatelessWidget {
   ) {
     switch (failure.runtimeType) {
       case InvalidEmail:
-        return context.l10n.about;
+        return context.l10n.invalidEmail;
       case WrongPassword:
-        return context.l10n.budgetDescription;
+        return context.l10n.wrongPassword;
       case UserDisabled:
-        return context.l10n.expenseAlertDescription;
+        return context.l10n.userDisabled;
+      case UserNotFound:
+        return context.l10n.userNotFound;
       default:
-        return context.l10n.tipsAndArticlesDescription;
+        return context.l10n.unknownException;
     }
   }
 }
