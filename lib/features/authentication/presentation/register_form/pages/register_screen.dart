@@ -1,6 +1,5 @@
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
-import 'package:expense_tracker/features/authentication/presentation/pages/cubit/register_cubit.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
@@ -9,8 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:formz/formz.dart';
+import 'package:go_router/go_router.dart';
 
-import 'register_form.dart';
+import '../../../domain/entities/form_value.dart';
+import '../cubit/register_form_cubit.dart';
 
 class RegisterProvider extends StatelessWidget {
   const RegisterProvider({super.key});
@@ -18,7 +19,7 @@ class RegisterProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => RegisterCubit(
+      create: (_) => RegisterFormCubit(
         registerWithEmailAndPwUseCase: getIt<RegisterWithEmailAndPwUseCase>(),
       ),
       child: const RegisterScreen(),
@@ -76,7 +77,7 @@ class _TermAgreementField extends StatelessWidget {
     final theme = Theme.of(context);
     Widget? error;
     final termAgreementField =
-        context.watch<RegisterCubit>().state.termsAgreement;
+        context.watch<RegisterFormCubit>().state.termsAgreement;
     if (termAgreementField.invalid) {
       error = (termAgreementField.error == null)
           ? const SizedBox.shrink()
@@ -136,7 +137,7 @@ class _MoveToLoginButton extends StatelessWidget {
           style: textTheme?.copyWith(color: theme.colorScheme.outline),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () => context.go('login'),
           child: Text(
             'Sign in',
             style: textTheme?.copyWith(color: theme.colorScheme.primary),
@@ -171,10 +172,11 @@ class _RegisterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isValid = context.watch<RegisterCubit>().state.status.isValidated;
+    final isValid = context.watch<RegisterFormCubit>().state.status.isValidated;
     return ElevatedButton(
       key: const Key('register_button'),
-      onPressed: isValid ? context.read<RegisterCubit>().onButtonClicked : null,
+      onPressed:
+          isValid ? context.read<RegisterFormCubit>().onButtonClicked : null,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [Text(context.l10n.signUp)],
@@ -188,7 +190,7 @@ class _NameInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nameField = context.watch<RegisterCubit>().state.name;
+    final nameField = context.watch<RegisterFormCubit>().state.name;
 
     String? errorText;
 
@@ -208,7 +210,7 @@ class _NameInputField extends StatelessWidget {
 
     return TextField(
       key: const Key('name_input_field'),
-      onChanged: (v) => context.read<RegisterCubit>().onNameChanged(v),
+      onChanged: (v) => context.read<RegisterFormCubit>().onNameChanged(v),
       decoration: InputDecoration(hintText: 'Name', errorText: errorText),
     );
   }
@@ -221,11 +223,11 @@ class _EmailInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       key: const Key('email_input_field'),
-      onChanged: (v) => context.read<RegisterCubit>().onEmailChanged(v),
+      onChanged: (v) => context.read<RegisterFormCubit>().onEmailChanged(v),
       decoration: InputDecoration(
         hintText: 'Email',
-        errorText: context.watch<RegisterCubit>().state.email.invalid
-            ? context.watch<RegisterCubit>().state.email.error
+        errorText: context.watch<RegisterFormCubit>().state.email.invalid
+            ? context.watch<RegisterFormCubit>().state.email.error
             : null,
       ),
     );
@@ -237,11 +239,12 @@ class _PasswordInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegisterCubit, RegisterState>(
+    return BlocBuilder<RegisterFormCubit, RegisterState>(
       builder: (_, state) {
         return TextFormField(
           key: const Key('pw_input_field'),
-          onChanged: (v) => context.read<RegisterCubit>().onPasswordChanged(v),
+          onChanged: (v) =>
+              context.read<RegisterFormCubit>().onPasswordChanged(v),
           decoration: InputDecoration(
             hintText: 'Password',
             errorText: state.password.invalid ? state.password.error : null,
@@ -261,9 +264,9 @@ class _TermAgreementCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegisterCubit, RegisterState>(
+    return BlocBuilder<RegisterFormCubit, RegisterState>(
       builder: (_, state) => InkWell(
-        onTap: context.read<RegisterCubit>().onTermAgreementCheck,
+        onTap: context.read<RegisterFormCubit>().onTermAgreementCheck,
         splashFactory: NoSplash.splashFactory,
         child: state.termsAgreement.value
             ? Assets.icons.checkbox.svg()

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'register_cubit.dart';
+part of 'register_form_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -20,6 +20,7 @@ mixin _$RegisterState {
   EmailInput get email => throw _privateConstructorUsedError;
   PasswordInput get password => throw _privateConstructorUsedError;
   TermsAgreementCheck get termsAgreement => throw _privateConstructorUsedError;
+  bool get isObscured => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -37,6 +38,7 @@ abstract class $RegisterStateCopyWith<$Res> {
       EmailInput email,
       PasswordInput password,
       TermsAgreementCheck termsAgreement,
+      bool isObscured,
       FormzStatus status});
 }
 
@@ -55,6 +57,7 @@ class _$RegisterStateCopyWithImpl<$Res>
     Object? email = freezed,
     Object? password = freezed,
     Object? termsAgreement = freezed,
+    Object? isObscured = freezed,
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
@@ -74,6 +77,10 @@ class _$RegisterStateCopyWithImpl<$Res>
           ? _value.termsAgreement
           : termsAgreement // ignore: cast_nullable_to_non_nullable
               as TermsAgreementCheck,
+      isObscured: isObscured == freezed
+          ? _value.isObscured
+          : isObscured // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -94,6 +101,7 @@ abstract class _$$_RegisterStateCopyWith<$Res>
       EmailInput email,
       PasswordInput password,
       TermsAgreementCheck termsAgreement,
+      bool isObscured,
       FormzStatus status});
 }
 
@@ -114,6 +122,7 @@ class __$$_RegisterStateCopyWithImpl<$Res>
     Object? email = freezed,
     Object? password = freezed,
     Object? termsAgreement = freezed,
+    Object? isObscured = freezed,
     Object? status = freezed,
   }) {
     return _then(_$_RegisterState(
@@ -133,6 +142,10 @@ class __$$_RegisterStateCopyWithImpl<$Res>
           ? _value.termsAgreement
           : termsAgreement // ignore: cast_nullable_to_non_nullable
               as TermsAgreementCheck,
+      isObscured: isObscured == freezed
+          ? _value.isObscured
+          : isObscured // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -149,6 +162,7 @@ class _$_RegisterState implements _RegisterState {
       this.email = const EmailInput.pure(''),
       this.password = const PasswordInput.pure(''),
       this.termsAgreement = const TermsAgreementCheck.pure(),
+      this.isObscured = true,
       this.status = FormzStatus.pure});
 
   @override
@@ -165,11 +179,14 @@ class _$_RegisterState implements _RegisterState {
   final TermsAgreementCheck termsAgreement;
   @override
   @JsonKey()
+  final bool isObscured;
+  @override
+  @JsonKey()
   final FormzStatus status;
 
   @override
   String toString() {
-    return 'RegisterState(name: $name, email: $email, password: $password, termsAgreement: $termsAgreement, status: $status)';
+    return 'RegisterState(name: $name, email: $email, password: $password, termsAgreement: $termsAgreement, isObscured: $isObscured, status: $status)';
   }
 
   @override
@@ -182,6 +199,8 @@ class _$_RegisterState implements _RegisterState {
             const DeepCollectionEquality().equals(other.password, password) &&
             const DeepCollectionEquality()
                 .equals(other.termsAgreement, termsAgreement) &&
+            const DeepCollectionEquality()
+                .equals(other.isObscured, isObscured) &&
             const DeepCollectionEquality().equals(other.status, status));
   }
 
@@ -192,6 +211,7 @@ class _$_RegisterState implements _RegisterState {
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(termsAgreement),
+      const DeepCollectionEquality().hash(isObscured),
       const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
@@ -206,6 +226,7 @@ abstract class _RegisterState implements RegisterState {
       final EmailInput email,
       final PasswordInput password,
       final TermsAgreementCheck termsAgreement,
+      final bool isObscured,
       final FormzStatus status}) = _$_RegisterState;
 
   @override
@@ -216,6 +237,8 @@ abstract class _RegisterState implements RegisterState {
   PasswordInput get password;
   @override
   TermsAgreementCheck get termsAgreement;
+  @override
+  bool get isObscured;
   @override
   FormzStatus get status;
   @override

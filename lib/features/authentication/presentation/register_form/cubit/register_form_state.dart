@@ -1,4 +1,4 @@
-part of 'register_cubit.dart';
+part of 'register_form_cubit.dart';
 
 @freezed
 class RegisterState with _$RegisterState {
@@ -7,6 +7,7 @@ class RegisterState with _$RegisterState {
     @Default(EmailInput.pure('')) EmailInput email,
     @Default(PasswordInput.pure('')) PasswordInput password,
     @Default(TermsAgreementCheck.pure()) TermsAgreementCheck termsAgreement,
+    @Default(true) bool isObscured,
     @Default(FormzStatus.pure) FormzStatus status,
   }) = _RegisterState;
 }

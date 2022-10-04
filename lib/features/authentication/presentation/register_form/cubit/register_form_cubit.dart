@@ -1,14 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
-import 'package:expense_tracker/features/authentication/presentation/pages/register_form.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'register_state.dart';
-part 'register_cubit.freezed.dart';
+import '../../../domain/entities/form_value.dart';
 
-class RegisterCubit extends Cubit<RegisterState> {
-  RegisterCubit({
+part 'register_form_state.dart';
+part 'register_form_cubit.freezed.dart';
+
+class RegisterFormCubit extends Cubit<RegisterState> {
+  RegisterFormCubit({
     required RegisterWithEmailAndPwUseCase registerWithEmailAndPwUseCase,
   })  : _registerWithEmailAndPwUseCase = registerWithEmailAndPwUseCase,
         super(const RegisterState());
