@@ -3,6 +3,7 @@ import 'package:expense_tracker/features/settings/presentation/pages/language_sc
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/locale_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
@@ -37,7 +38,8 @@ void main() {
     );
 
     expect(find.text('Language'), findsOneWidget);
-    await tester.tap(find.text('Vietnam (VI)'));
+    expect(find.byType(SvgPicture), findsOneWidget);
+    await tester.tap(find.text('Vietnamese'));
     await tester.pumpAndSettle();
     expect(find.text('Ngôn ngữ'), findsOneWidget);
   });

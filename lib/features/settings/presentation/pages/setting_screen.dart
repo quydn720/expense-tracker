@@ -6,7 +6,9 @@ import 'package:expense_tracker/features/settings/presentation/pages/security_sc
 import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
+import 'package:expense_tracker/locale_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/bloc/app_bloc.dart';
@@ -16,6 +18,8 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentLocale = context.read<LocaleController>().locale;
+
     return Scaffold(
       body: ListView(
         children: [
@@ -26,7 +30,7 @@ class SettingScreen extends StatelessWidget {
           ),
           _SettingTile(
             title: context.l10n.language,
-            value: 'English',
+            value: currentLocale.cityLocalizedName(context),
             onTap: () => context.go(LanguageScreen.routeName),
           ),
           _SettingTile(

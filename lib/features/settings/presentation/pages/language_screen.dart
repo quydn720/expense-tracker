@@ -1,4 +1,3 @@
-import 'package:expense_tracker/features/settings/domain/entities/language.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/locale_controller.dart';
@@ -12,25 +11,28 @@ class LanguageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.subtitle2?.copyWith(
-          color: const Color(0xff0D0E0F),
-        );
+    final textStyle = Theme.of(context).textTheme.subtitle2?.copyWith();
     final currentLang = context.read<LocaleController>().locale;
 
     return Scaffold(
       appBar: DefaultAppBar(title: context.l10n.language),
       body: ListView.builder(
+        itemCount: LocalizationFactory.supportedLocales.length,
         itemBuilder: (_, index) {
-          final language = Language.supportedLanguages[index];
+          final language = LocalizationFactory.supportedLocales[index];
           final controller = context.read<LocaleController>();
           return ListTile(
             onTap: () {
-              final locale = Locale.fromSubtags(
-                languageCode: language.languageCode,
+              controller.changeLocale(
+                Locale.fromSubtags(languageCode: language.languageCode),
               );
-              controller.changeLocale(locale);
             },
-            title: Text(language.country, style: textStyle),
+            title: Text(
+              Locale.fromSubtags(
+                languageCode: language.languageCode,
+              ).cityLocalizedName(context),
+              style: textStyle,
+            ),
             minVerticalPadding: 17,
             trailing: currentLang.languageCode == language.languageCode
                 ? Assets.icons.success.svg(
@@ -39,7 +41,6 @@ class LanguageScreen extends StatelessWidget {
                 : const SizedBox.shrink(),
           );
         },
-        itemCount: Language.supportedLanguages.length,
       ),
     );
   }
