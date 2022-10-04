@@ -1,7 +1,7 @@
+import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
-import 'package:expense_tracker/features/authentication/presentation/pages/cubit/register_cubit.dart';
-import 'package:expense_tracker/features/authentication/presentation/pages/register_form.dart';
-import 'package:expense_tracker/features/authentication/presentation/pages/register_screen.dart';
+import 'package:expense_tracker/features/authentication/presentation/register_form/cubit/register_form_cubit.dart';
+import 'package:expense_tracker/features/authentication/presentation/register_form/pages/register_screen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,13 +15,13 @@ class MockRegisterWithEmailAndPwUseCase extends Mock
 
 class MockGoRouter extends Mock implements GoRouter {}
 
-class MockRegisterCubit extends Mock implements RegisterCubit {}
+class MockRegisterCubit extends Mock implements RegisterFormCubit {}
 
 class MockNormalText extends Mock implements NormalText {}
 
 GoRouter mockRouter({
   String? initialLocation,
-  required RegisterCubit registerCubit,
+  required RegisterFormCubit registerCubit,
 }) =>
     GoRouter(
       initialLocation: initialLocation ?? 'home',
@@ -41,7 +41,7 @@ GoRouter mockRouter({
     );
 
 void main() {
-  late RegisterCubit registerCubit;
+  late RegisterFormCubit registerCubit;
   const nameInputFieldKey = Key('name_input_field');
 
   setUp(() {
@@ -136,7 +136,7 @@ void main() {
   );
 }
 
-MaterialApp materialApp(RegisterCubit registerCubit) {
+MaterialApp materialApp(RegisterFormCubit registerCubit) {
   return MaterialApp.router(
     localizationsDelegates: LocalizationFactory.localizationsDelegates,
     routeInformationParser: mockRouter(

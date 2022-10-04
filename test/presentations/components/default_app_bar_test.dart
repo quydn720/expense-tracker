@@ -1,6 +1,6 @@
-import 'package:expense_tracker/app.dart';
-import 'package:expense_tracker/bloc/app_bloc.dart';
-import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
+import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
+import 'package:expense_tracker/features/app/presentation/app.dart';
+import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
 import 'package:expense_tracker/locale_controller.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:expense_tracker/routes/router.dart';
@@ -17,8 +17,8 @@ class MockThemeController extends Mock implements ThemeController {}
 
 class MockLocaleController extends Mock implements LocaleController {}
 
-class MockRegisterWithEmailAndPwUseCase extends Mock
-    implements RegisterWithEmailAndPwUseCase {}
+class MockLoginWithEmailAndPwUseCase extends Mock
+    implements LoginWithEmailAndPwUseCase {}
 
 void main() {
   late final ThemeController themeController;
@@ -26,9 +26,10 @@ void main() {
   late final AppBloc appBloc;
 
   setUpAll(() {
-    GetIt.instance.registerSingleton<RegisterWithEmailAndPwUseCase>(
-      MockRegisterWithEmailAndPwUseCase(),
+    GetIt.instance.registerSingleton<LoginWithEmailAndPwUseCase>(
+      MockLoginWithEmailAndPwUseCase(),
     );
+
     appBloc = MockAppBloc();
     when(() => appBloc.stream).thenAnswer((_) => const Stream.empty());
 
@@ -56,8 +57,10 @@ void main() {
         ),
       );
 
-      expect(find.text('Sign up'), findsOneWidget);
+      // User is on the login screen
+      expect(find.text('Login'), findsWidgets);
       expect(find.byType(DefaultAppBar), findsOneWidget);
+
       expect(
         tester.getSize(find.byType(DefaultAppBar)).height,
         equals(DefaultAppBar.appBarHeight),

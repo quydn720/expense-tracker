@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
-import 'package:expense_tracker/features/authentication/presentation/pages/cubit/register_cubit.dart';
-import 'package:expense_tracker/features/authentication/presentation/pages/register_form.dart';
+import 'package:expense_tracker/features/authentication/presentation/register_form/cubit/register_form_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
 import 'package:mocktail/mocktail.dart';
@@ -10,16 +10,16 @@ class MockRegisterWithEmailAndPwUseCase extends Mock
     implements RegisterWithEmailAndPwUseCase {}
 
 void main() {
-  late RegisterWithEmailAndPwUseCase registerWithEmailAndPwUseCase;
-  setUp(() {
+  late final RegisterWithEmailAndPwUseCase registerWithEmailAndPwUseCase;
+  setUpAll(() {
     registerWithEmailAndPwUseCase = MockRegisterWithEmailAndPwUseCase();
   });
   group(
     'register form',
     () {
-      blocTest<RegisterCubit, RegisterState>(
+      blocTest<RegisterFormCubit, RegisterState>(
         'on name changed',
-        build: () => RegisterCubit(
+        build: () => RegisterFormCubit(
           registerWithEmailAndPwUseCase: registerWithEmailAndPwUseCase,
         ),
         act: (bloc) => bloc.onNameChanged('Do Ngoc Quy'),
@@ -30,9 +30,9 @@ void main() {
           ),
         ],
       );
-      blocTest<RegisterCubit, RegisterState>(
+      blocTest<RegisterFormCubit, RegisterState>(
         'on email changed',
-        build: () => RegisterCubit(
+        build: () => RegisterFormCubit(
           registerWithEmailAndPwUseCase: registerWithEmailAndPwUseCase,
         ),
         act: (bloc) => bloc.onEmailChanged('quytests@extrack.com'),
@@ -43,9 +43,9 @@ void main() {
           ),
         ],
       );
-      blocTest<RegisterCubit, RegisterState>(
+      blocTest<RegisterFormCubit, RegisterState>(
         'on password changed',
-        build: () => RegisterCubit(
+        build: () => RegisterFormCubit(
           registerWithEmailAndPwUseCase: registerWithEmailAndPwUseCase,
         ),
         act: (bloc) => bloc.onPasswordChanged('supersecurepw'),
@@ -56,9 +56,9 @@ void main() {
           ),
         ],
       );
-      blocTest<RegisterCubit, RegisterState>(
+      blocTest<RegisterFormCubit, RegisterState>(
         'on toggled checkbox turn into true',
-        build: () => RegisterCubit(
+        build: () => RegisterFormCubit(
           registerWithEmailAndPwUseCase: registerWithEmailAndPwUseCase,
         ),
         act: (bloc) => bloc.onTermAgreementCheck(),
@@ -71,14 +71,14 @@ void main() {
       );
       test('default status is [RegisterState]', () {
         expect(
-          RegisterCubit(
+          RegisterFormCubit(
             registerWithEmailAndPwUseCase: registerWithEmailAndPwUseCase,
           ).state,
           const RegisterState(),
         );
       });
 
-      blocTest<RegisterCubit, RegisterState>(
+      blocTest<RegisterFormCubit, RegisterState>(
         'invokes registerWithEmailAndPwUseCase',
         setUp: () {
           when(
@@ -88,7 +88,7 @@ void main() {
             ),
           ).thenAnswer((_) async {});
         },
-        build: () => RegisterCubit(
+        build: () => RegisterFormCubit(
           registerWithEmailAndPwUseCase: registerWithEmailAndPwUseCase,
         ),
         act: (bloc) {
