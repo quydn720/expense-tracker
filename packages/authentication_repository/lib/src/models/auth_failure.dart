@@ -1,3 +1,7 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'auth_failure.freezed.dart';
+
 /// {@template sign_up_with_email_and_password_failure}
 /// Thrown if during the sign up process if a failure occurs.
 /// {@endtemplate}
@@ -45,39 +49,40 @@ class SignUpWithEmailAndPasswordFailure implements Exception {
 /// Thrown during the login process if a failure occurs.
 /// https://pub.dev/documentation/firebase_auth/latest/firebase_auth/FirebaseAuth/signInWithEmailAndPassword.html
 /// {@endtemplate}
-class LogInWithEmailAndPasswordFailure implements Exception {
+
+@freezed
+class LogInWithEmailAndPasswordFailure
+    with _$LogInWithEmailAndPasswordFailure
+    implements Exception {
   /// {@macro log_in_with_email_and_password_failure}
-  const LogInWithEmailAndPasswordFailure([
-    this.message = 'An unknown exception occurred.',
-  ]);
+  const factory LogInWithEmailAndPasswordFailure({String? message}) =
+      _LogInWithEmailAndPasswordFailure;
+  const factory LogInWithEmailAndPasswordFailure.invalidEmail() = InvalidEmail;
+  const factory LogInWithEmailAndPasswordFailure.userDisabled() = UserDisabled;
+  const factory LogInWithEmailAndPasswordFailure.userNotFound() = UserNotFound;
+  const factory LogInWithEmailAndPasswordFailure.wrongPassword() =
+      WrongPassword;
+  // this.message = 'An unknown exception occurred.',
 
   /// Create an authentication message
   /// from a firebase authentication exception code.
   factory LogInWithEmailAndPasswordFailure.fromCode(String code) {
     switch (code) {
       case 'invalid-email':
-        return const LogInWithEmailAndPasswordFailure(
-          'Email is not valid or badly formatted.',
-        );
+        return const LogInWithEmailAndPasswordFailure.invalidEmail();
       case 'user-disabled':
-        return const LogInWithEmailAndPasswordFailure(
-          'This user has been disabled. Please contact support for help.',
-        );
+        return const LogInWithEmailAndPasswordFailure.userDisabled();
       case 'user-not-found':
-        return const LogInWithEmailAndPasswordFailure(
-          'Email is not found, please create an account.',
-        );
+        return const LogInWithEmailAndPasswordFailure.userNotFound();
       case 'wrong-password':
-        return const LogInWithEmailAndPasswordFailure(
-          'Incorrect password, please try again.',
-        );
+        return const LogInWithEmailAndPasswordFailure.wrongPassword();
       default:
         return const LogInWithEmailAndPasswordFailure();
     }
   }
 
   /// The associated error message.
-  final String message;
+  // final String message;
 }
 
 /// {@template log_in_with_google_failure}
