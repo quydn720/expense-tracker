@@ -11,21 +11,21 @@ class AppLocalizationsVi extends AppLocalizations {
   String get login => 'Đăng nhập';
 
   @override
-  String get invalidEmail => 'Email không đúng định dạng.';
+  String get authError_invalidEmail => 'Email không đúng định dạng.';
 
   @override
-  String get userDisabled =>
+  String get authError_userDisabled =>
       'Người dùng này đã bị vô hiệu hóa. Vui lòng liên hệ chúng tôi để được hỗ trợ.';
 
   @override
-  String get userNotFound =>
+  String get authError_userNotFound =>
       'Không tìm thấy tài khoản nào với email này, hãy tạo tài khoản mới.';
 
   @override
-  String get wrongPassword => 'Sai mật khẩu. Mời bạn thử lại.';
+  String get authError_wrongPassword => 'Sai mật khẩu. Mời bạn thử lại.';
 
   @override
-  String get unknownException =>
+  String get authError_unknownException =>
       'Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ.';
 
   @override
@@ -41,16 +41,26 @@ class AppLocalizationsVi extends AppLocalizations {
   String get language => 'Ngôn ngữ';
 
   @override
+  String get languageError_notSuppported =>
+      'Ứng dụng chưa hỗ trợ ngôn ngữ này. Vui lòng liên hệ bộ phận hỗ trợ để được giúp đỡ.';
+
+  @override
+  String get language_vietnamese => 'Tiếng Việt';
+
+  @override
+  String get language_english => 'Tiếng Anh';
+
+  @override
   String get theme => 'Theme';
 
   @override
-  String get light => 'Light';
+  String get theme_light => 'Light';
 
   @override
-  String get dark => 'Dark';
+  String get theme_dark => 'Dark';
 
   @override
-  String get useDeviceTheme => 'Use device theme';
+  String get theme_system => 'Use device theme';
 
   @override
   String get currency => 'Đơn vị tiền tệ';

@@ -15,7 +15,6 @@ Future<void> main() async {
   await Firebase.initializeApp();
 
   await configureInjection(Environment.dev);
-  debugPrint('something');
 
   runApp(
     MultiProvider(

@@ -11,20 +11,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
-  String get invalidEmail => 'Email is not valid or badly formatted.';
+  String get authError_invalidEmail => 'Email is not valid or badly formatted.';
 
   @override
-  String get userDisabled =>
+  String get authError_userDisabled =>
       'This user has been disabled. Please contact support for help.';
 
   @override
-  String get userNotFound => 'Email is not found, please create an account.';
+  String get authError_userNotFound =>
+      'Email is not found, please create an account.';
 
   @override
-  String get wrongPassword => 'Incorrect password, please try again.';
+  String get authError_wrongPassword => 'Incorrect password, please try again.';
 
   @override
-  String get unknownException => 'An unknown exception occurred.';
+  String get authError_unknownException => 'An unknown exception occurred.';
 
   @override
   String get profile => 'Profile';
@@ -39,16 +40,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get language => 'Language';
 
   @override
+  String get languageError_notSuppported => 'Error';
+
+  @override
+  String get language_vietnamese => 'Vietnamese';
+
+  @override
+  String get language_english => 'English';
+
+  @override
   String get theme => 'Theme';
 
   @override
-  String get light => 'Light';
+  String get theme_light => 'Light';
 
   @override
-  String get dark => 'Dark';
+  String get theme_dark => 'Dark';
 
   @override
-  String get useDeviceTheme => 'Use device theme';
+  String get theme_system => 'Use device theme';
 
   @override
   String get currency => 'Currency';
