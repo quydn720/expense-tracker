@@ -1,4 +1,3 @@
-import 'package:expense_tracker/bloc/app_bloc.dart';
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/user_preferences.dart';
@@ -116,7 +115,7 @@ class BodyState extends State<Body> {
   }
 
   Future<void> completedOnboarding() async {
-    getIt<AppBloc>().add(const OnboardingCompleted());
+    // getIt<AppBloc>().add(const OnboardingCompleted());
     await getIt<UserPreferences>().completeOnboarding();
   }
 

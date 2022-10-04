@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../blocs/app_bloc/app_bloc.dart';
 import '../../../../blocs/wallet/wallet_bloc.dart';
 import '../../../../constants.dart';
-import 'avatar.dart';
 
 class TopNavigation extends StatelessWidget {
   const TopNavigation({
@@ -36,17 +34,17 @@ class TopNavigation extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
-                child: Padding(
-                  padding: const EdgeInsets.all(kDefaultPadding),
-                  child: Avatar(
-                    size: 16,
-                    photo: (context.read<AppBloc>().state as Authenticated)
-                        .user
-                        .photo,
-                  ),
-                ),
-              ),
+              // GestureDetector(
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(kDefaultPadding),
+              //     child: Avatar(
+              //       size: 16,
+              //       photo: (context.read<AppBloc>().state as Authenticated)
+              //           .user
+              //           .photo,
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 height: 56,
                 child: Center(

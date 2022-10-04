@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
-import '../../main/main_page.dart';
 
 class ExportDataPromptPage extends StatelessWidget {
   const ExportDataPromptPage({super.key});
@@ -33,9 +32,7 @@ class ExportDataPromptPage extends StatelessWidget {
               ),
               ElevatedButton(
                 child: const Text('Back to Home'),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, MainPage.routeName);
-                },
+                onPressed: () {},
               )
             ],
           ),
