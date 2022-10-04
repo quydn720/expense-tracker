@@ -11,7 +11,7 @@
     "home": "Home",
     "transactions": "Transactions",
     "language": "Language",
-    "languageError_notSuppported": "This app have not supported in the language you choose.",
+    "languageError_notSuppported": "Error",
     "language_vietnamese": "Vietnamese",
     "language_english": "English",
     "theme": "Theme",

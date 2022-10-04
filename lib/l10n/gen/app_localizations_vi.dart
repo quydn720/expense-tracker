@@ -41,6 +41,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get language => 'Ngôn ngữ';
 
   @override
+  String get languageError_notSuppported =>
+      'Ứng dụng chưa hỗ trợ ngôn ngữ này. Vui lòng liên hệ bộ phận hỗ trợ để được giúp đỡ.';
+
+  @override
   String get language_vietnamese => 'Tiếng Việt';
 
   @override

@@ -3,8 +3,9 @@ import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 
 class LocaleController extends ChangeNotifier {
-  LocaleController(this._localCache)
-      : _locale = _localCache.get<Locale?>(_key) ?? const Locale('en');
+  LocaleController(this._localCache) {
+    _locale = _getLocale();
+  }
 
   static const _key = 'locale-key';
 
@@ -16,6 +17,10 @@ class LocaleController extends ChangeNotifier {
     await _localCache.set<Locale>(_key, locale);
     _locale = locale;
     notifyListeners();
+  }
+
+  Locale _getLocale() {
+    return _localCache.get<Locale?>(_key) ?? const Locale('en');
   }
 }
 
@@ -30,7 +35,7 @@ extension LocaleCountryName on Locale {
       case 'en':
         return context.l10n.language_english;
       default:
-        return context.l10n.language;
+        return context.l10n.languageError_notSuppported;
     }
   }
 }

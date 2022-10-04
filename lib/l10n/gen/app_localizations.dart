@@ -162,6 +162,12 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get language;
 
+  /// No description provided for @languageError_notSuppported.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get languageError_notSuppported;
+
   /// No description provided for @language_vietnamese.
   ///
   /// In en, this message translates to:

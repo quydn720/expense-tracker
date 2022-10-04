@@ -40,6 +40,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get language => 'Language';
 
   @override
+  String get languageError_notSuppported => 'Error';
+
+  @override
   String get language_vietnamese => 'Vietnamese';
 
   @override
