@@ -4,11 +4,12 @@ import 'package:expense_tracker/features/settings/presentation/pages/language_sc
 import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/security_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
+import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../bloc/app_bloc.dart';
+import '../../../app/bloc/app_bloc.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -76,7 +77,11 @@ class _SettingTile extends StatelessWidget {
         children: [
           Text(value ?? '', style: valueTextStyle),
           const SizedBox(width: 4),
-          Image.asset('assets/icons/arrow-right-2.png', width: 24, height: 24),
+          Assets.icons.arrowRight2.svg(
+            width: 24,
+            height: 24,
+            color: Theme.of(context).primaryColor,
+          ),
         ],
       ),
       minVerticalPadding: 16,
