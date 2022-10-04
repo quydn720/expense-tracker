@@ -108,35 +108,35 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get login;
 
-  /// No description provided for @invalidEmail.
+  /// No description provided for @authError_invalidEmail.
   ///
   /// In en, this message translates to:
   /// **'Email is not valid or badly formatted.'**
-  String get invalidEmail;
+  String get authError_invalidEmail;
 
-  /// No description provided for @userDisabled.
+  /// No description provided for @authError_userDisabled.
   ///
   /// In en, this message translates to:
   /// **'This user has been disabled. Please contact support for help.'**
-  String get userDisabled;
+  String get authError_userDisabled;
 
-  /// No description provided for @userNotFound.
+  /// No description provided for @authError_userNotFound.
   ///
   /// In en, this message translates to:
   /// **'Email is not found, please create an account.'**
-  String get userNotFound;
+  String get authError_userNotFound;
 
-  /// No description provided for @wrongPassword.
+  /// No description provided for @authError_wrongPassword.
   ///
   /// In en, this message translates to:
   /// **'Incorrect password, please try again.'**
-  String get wrongPassword;
+  String get authError_wrongPassword;
 
-  /// No description provided for @unknownException.
+  /// No description provided for @authError_unknownException.
   ///
   /// In en, this message translates to:
   /// **'An unknown exception occurred.'**
-  String get unknownException;
+  String get authError_unknownException;
 
   /// No description provided for @profile.
   ///
@@ -162,29 +162,41 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get language;
 
+  /// No description provided for @language_vietnamese.
+  ///
+  /// In en, this message translates to:
+  /// **'Vietnamese'**
+  String get language_vietnamese;
+
+  /// No description provided for @language_english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get language_english;
+
   /// No description provided for @theme.
   ///
   /// In en, this message translates to:
   /// **'Theme'**
   String get theme;
 
-  /// No description provided for @light.
+  /// No description provided for @theme_light.
   ///
   /// In en, this message translates to:
   /// **'Light'**
-  String get light;
+  String get theme_light;
 
-  /// No description provided for @dark.
+  /// No description provided for @theme_dark.
   ///
   /// In en, this message translates to:
   /// **'Dark'**
-  String get dark;
+  String get theme_dark;
 
-  /// No description provided for @useDeviceTheme.
+  /// No description provided for @theme_system.
   ///
   /// In en, this message translates to:
   /// **'Use device theme'**
-  String get useDeviceTheme;
+  String get theme_system;
 
   /// No description provided for @currency.
   ///
