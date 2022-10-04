@@ -14,16 +14,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get invalidEmail => 'Email không đúng định dạng.';
 
   @override
-  String get userDisabled => 'Người dùng này đã bị vô hiệu hóa. Vui lòng liên hệ chúng tôi để được hỗ trợ.';
+  String get userDisabled =>
+      'Người dùng này đã bị vô hiệu hóa. Vui lòng liên hệ chúng tôi để được hỗ trợ.';
 
   @override
-  String get userNotFound => 'Không tìm thấy tài khoản nào với email này, hãy tạo tài khoản mới.';
+  String get userNotFound =>
+      'Không tìm thấy tài khoản nào với email này, hãy tạo tài khoản mới.';
 
   @override
   String get wrongPassword => 'Sai mật khẩu. Mời bạn thử lại.';
 
   @override
-  String get unknownException => 'Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ.';
+  String get unknownException =>
+      'Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ.';
 
   @override
   String get profile => 'Hồ sơ';
@@ -80,7 +83,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get budget => 'Ví của bạn';
 
   @override
-  String get budgetDescription => 'Get notification when you’re budget exceeding the limit';
+  String get budgetDescription =>
+      'Get notification when you’re budget exceeding the limit';
 
   @override
   String get tipsAndArticles => 'Tips and Articles';
