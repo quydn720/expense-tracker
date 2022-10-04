@@ -37,10 +37,7 @@ class SquaredIconCard extends StatelessWidget {
 }
 
 class CategoryIconCard extends StatelessWidget {
-  const CategoryIconCard({
-    super.key,
-    required this.category,
-  });
+  const CategoryIconCard({super.key, required this.category});
 
   final Category category;
   @override
@@ -49,9 +46,7 @@ class CategoryIconCard extends StatelessWidget {
       color: category.backgroundColor,
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          kDefaultRadius,
-        ),
+        borderRadius: BorderRadius.circular(kDefaultRadius),
       ),
       child: Image.asset(
         category.iconPath,

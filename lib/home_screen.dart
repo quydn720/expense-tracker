@@ -1,4 +1,6 @@
+import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:flutter/material.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -46,35 +48,10 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          const ListTile(
-            title: Text('Shopping'),
-            subtitle: Text('Buy some grocery'),
-            leading: Icon(Icons.abc),
-            trailing: Text(r'-120$'),
-          ),
-          const ListTile(
-            title: Text('Shopping'),
-            subtitle: Text('Buy some grocery'),
-            leading: Icon(Icons.abc),
-            trailing: Text(r'-120$'),
-          ),
-          const ListTile(
-            title: Text('Shopping'),
-            subtitle: Text('Buy some grocery'),
-            leading: Icon(Icons.abc),
-            trailing: Text(r'-120$'),
-          ),
-          const ListTile(
-            title: Text('Shopping'),
-            subtitle: Text('Buy some grocery'),
-            leading: Icon(Icons.abc),
-            trailing: Text(r'-120$'),
-          ),
-          const ListTile(
-            title: Text('Shopping 5'),
-            subtitle: Text('Buy some grocery'),
-            leading: Icon(Icons.abc),
-            trailing: Text(r'-120$'),
+          TransactionTile(
+            transaction: Transaction.empty(),
+            onPress: () {},
+            onLongPress: () {},
           ),
         ],
       ),

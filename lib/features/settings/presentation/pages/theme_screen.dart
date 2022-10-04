@@ -21,10 +21,7 @@ class ThemeScreen extends StatelessWidget {
           final mode = ThemeMode.values[index];
           final isSelected = mode == themeMode;
           return ListTile(
-            title: Text(
-              mode.name.capitalize(),
-              style: textStyle,
-            ),
+            title: Text(mode.name.capitalize(), style: textStyle),
             minVerticalPadding: 17,
             trailing: isSelected
                 ? Assets.icons.success.svg(

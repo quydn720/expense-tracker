@@ -7,8 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
 
-import 'app.dart';
 import 'di/injector.dart';
+import 'features/app/presentation/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

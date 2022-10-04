@@ -1,8 +1,6 @@
 import 'package:expense_tracker/common/cache/local_cache.dart';
 import 'package:flutter/material.dart';
 
-import 'di/injector.dart';
-
 class LocaleController extends ChangeNotifier {
   LocaleController(this._localCache)
       : _locale = _localCache.get<Locale?>(_key) ?? const Locale('en');
@@ -17,6 +15,5 @@ class LocaleController extends ChangeNotifier {
     await _localCache.set<Locale>(_key, locale);
     _locale = locale;
     notifyListeners();
-    logger.i('Locale change to: $locale');
   }
 }

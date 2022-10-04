@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:expense_tracker/features/authentication/presentation/pages/register_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
 import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
@@ -12,7 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
-import '../bloc/app_bloc.dart';
+import '../features/app/bloc/app_bloc.dart';
+import '../features/authentication/presentation/login_form/pages/login_screen.dart';
+import '../features/authentication/presentation/register_form/pages/register_screen.dart';
 import '../features/settings/presentation/pages/language_screen.dart';
 import '../features/settings/presentation/pages/notification_screen.dart';
 import '../features/settings/presentation/pages/security_screen.dart';
@@ -27,10 +28,6 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
       initialLocation: initialLocation,
       routes: <GoRoute>[
         GoRoute(path: '/', redirect: (_, __) => '/home'),
-        GoRoute(
-          path: '/splash',
-          builder: (_, __) => const OnboardingPage(),
-        ),
         GoRoute(
           path: '/splash',
           builder: (_, __) => const OnboardingPage(),
@@ -103,7 +100,7 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
         ),
         GoRoute(
           path: '/register',
-          builder: (_, __) => const RegisterProvider(),
+          builder: (context, state) => const RegisterProvider(),
         ),
         GoRoute(
           path: '/verify',
@@ -111,7 +108,11 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) =>
         ),
         GoRoute(
           path: '/login',
-          builder: (_, __) => const RegisterProvider(),
+          pageBuilder: (_, __) => FadeTransitionPage(
+            key: const ValueKey('new key'),
+            // TODO(Fitz): new key when ever login / logout
+            child: const LoginProvider(),
+          ),
         ),
         GoRoute(
           path: '/dev_view',

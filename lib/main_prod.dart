@@ -5,9 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
 
-import 'app.dart';
 import 'common/cache/local_cache.dart';
 import 'di/injector.dart';
+import 'features/app/presentation/app.dart';
 import 'locale_controller.dart';
 
 Future<void> main() async {

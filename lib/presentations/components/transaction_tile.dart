@@ -30,7 +30,6 @@ class TransactionTile extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
-        tileColor: const Color(0xffFBFBFB),
         leading: CategoryIconCard(
           category: Category.fromName(transaction.category),
         ),
@@ -43,7 +42,6 @@ class TransactionTile extends StatelessWidget {
                 child: Text(
                   transaction.category,
                   overflow: TextOverflow.ellipsis,
-                  style: body2,
                 ),
               ),
               FittedBox(
