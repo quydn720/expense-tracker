@@ -1,4 +1,6 @@
+import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
@@ -20,6 +22,10 @@ class TransactionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final moeny = NumberFormat.simpleCurrency(
+      locale: context.read<LocaleController>().locale.languageCode,
+    ).format(transaction.amount);
+
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
@@ -46,7 +52,8 @@ class TransactionTile extends StatelessWidget {
               ),
               FittedBox(
                 child: Text(
-                  '\$ ${transaction.amount}',
+                  // '\$ ${transaction.amount}',
+                  moeny,
                   // TODO(quy): move logic to bloc
                   // '${transaction.type == TransactionType.income ? '+' : '-'}\$ ${transaction.amount}',
                   style: body2.copyWith(

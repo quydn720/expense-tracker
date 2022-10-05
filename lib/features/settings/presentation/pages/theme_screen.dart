@@ -1,7 +1,7 @@
+import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
-import 'package:expense_tracker/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -5,8 +5,8 @@ import 'package:expense_tracker/features/settings/presentation/pages/notificatio
 import 'package:expense_tracker/features/settings/presentation/pages/security_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
+import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
-import 'package:expense_tracker/locale_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
