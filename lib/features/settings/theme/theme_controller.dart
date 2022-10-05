@@ -1,7 +1,7 @@
 import 'package:expense_tracker/common/cache/local_cache.dart';
 import 'package:flutter/material.dart';
 
-import 'di/injector.dart';
+import '../../../di/injector.dart';
 
 class ThemeController extends ChangeNotifier {
   ThemeController(this._localCache) {
