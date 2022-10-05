@@ -6,14 +6,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockRegisterWithEmailAndPwUseCase extends Mock
-    implements RegisterWithEmailAndPwUseCase {}
+import '../../../../../../test_helper/mocks.dart';
 
 void main() {
   late final RegisterWithEmailAndPwUseCase registerWithEmailAndPwUseCase;
+
   setUpAll(() {
     registerWithEmailAndPwUseCase = MockRegisterWithEmailAndPwUseCase();
   });
+
   group(
     'register form',
     () {

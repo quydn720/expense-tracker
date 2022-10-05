@@ -1,10 +1,9 @@
-import 'package:expense_tracker/common/cache/local_cache.dart';
-import 'package:expense_tracker/locale_controller.dart';
+import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockLocalCache extends Mock implements ILocalCache {}
+import '../../test_helper/mocks.dart';
 
 void main() {
   late MockLocalCache mockCache;

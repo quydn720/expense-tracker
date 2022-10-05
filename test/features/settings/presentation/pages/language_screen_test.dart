@@ -1,8 +1,8 @@
 import 'package:expense_tracker/common/cache/local_cache.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/language_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
+import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
-import 'package:expense_tracker/locale_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test/flutter_test.dart';

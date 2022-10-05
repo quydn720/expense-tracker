@@ -1,24 +1,17 @@
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/app.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
-import 'package:expense_tracker/locale_controller.dart';
+import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
+import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:expense_tracker/routes/router.dart';
-import 'package:expense_tracker/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:provider/provider.dart';
 
-class MockAppBloc extends Mock implements AppBloc {}
-
-class MockThemeController extends Mock implements ThemeController {}
-
-class MockLocaleController extends Mock implements LocaleController {}
-
-class MockLoginWithEmailAndPwUseCase extends Mock
-    implements LoginWithEmailAndPwUseCase {}
+import '../../../test_helper/mocks.dart';
 
 void main() {
   late final ThemeController themeController;
@@ -39,8 +32,8 @@ void main() {
     when(() => localeController.locale).thenReturn(const Locale('en'));
   });
 
-  group('a', () {
-    testWidgets('no display the back button when being the root',
+  group('App bar', () {
+    testWidgets('does NOT display the back button when being the root',
         (tester) async {
       when(() => appBloc.state).thenAnswer((_) => const Unauthenticated());
 
@@ -68,7 +61,7 @@ void main() {
       expect(find.byType(BackButton), findsNothing);
     });
 
-    testWidgets('display the back button when can pop', (tester) async {
+    testWidgets('displays the back button when can pop', (tester) async {
       when(() => appBloc.state).thenAnswer((_) => const Authenticated());
 
       await tester.pumpWidget(

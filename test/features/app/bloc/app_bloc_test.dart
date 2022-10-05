@@ -4,10 +4,7 @@ import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockAuthenticationRepository extends Mock
-    implements IAuthenticationRepository {}
-
-class MockUser extends Mock implements User {}
+import '../../../../test_helper/mocks.dart';
 
 void main() {
   group('UserChanged', () {
