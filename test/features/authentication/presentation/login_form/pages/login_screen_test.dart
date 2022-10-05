@@ -1,4 +1,3 @@
-import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
 import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
@@ -6,7 +5,6 @@ import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:provider/provider.dart';
