@@ -16,7 +16,10 @@ class LoginProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => LoginFormCubit(loginWithEmailAndPwUseCase: getIt()),
+      create: (_) => LoginFormCubit(
+        loginWithGoogleUseCase: getIt(),
+        loginWithEmailAndPwUseCase: getIt(),
+      ),
       child: const LoginScreen(),
     );
   }
@@ -35,14 +38,14 @@ class LoginScreen extends StatelessWidget {
       listener: (context, state) {
         state.authFailureOrSuccessOption.fold(
           () {},
-          (either) => either.fold(
+          (either) => either.leftMap(
             (failure) {
-              final content = _localizedString(context, failure);
+              final content = failure.toLocalizedString(context);
+              ScaffoldMessenger.of(context).removeCurrentSnackBar();
               return ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(content)),
               );
             },
-            (_) {},
           ),
         );
       },
@@ -80,23 +83,17 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  String _localizedString(
-    BuildContext context,
-    LogInWithEmailAndPasswordFailure failure,
-  ) {
-    switch (failure.runtimeType) {
-      case InvalidEmail:
-        return context.l10n.authError_invalidEmail;
-      case WrongPassword:
-        return context.l10n.authError_wrongPassword;
-      case UserDisabled:
-        return context.l10n.authError_userDisabled;
-      case UserNotFound:
-        return context.l10n.authError_userNotFound;
-      default:
-        return context.l10n.authError_unknownException;
-    }
+extension AuthErrorLocalizationX on LogInWithEmailAndPasswordFailure {
+  String toLocalizedString(BuildContext context) {
+    return map(
+      (_) => context.l10n.authError_unknownException,
+      invalidEmail: (_) => context.l10n.authError_invalidEmail,
+      userDisabled: (_) => context.l10n.authError_userDisabled,
+      userNotFound: (_) => context.l10n.authError_userNotFound,
+      wrongPassword: (_) => context.l10n.authError_wrongPassword,
+    );
   }
 }
 
@@ -132,7 +129,9 @@ class _SignInWithGoogleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: () {},
+      onPressed: () {
+        context.read<LoginFormCubit>().onSignInWithGoogleButtonClicked();
+      },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -154,7 +153,7 @@ class _LoginButton extends StatelessWidget {
     return ElevatedButton(
       key: const Key('login_button'),
       onPressed:
-          isValid ? context.read<LoginFormCubit>().onButtonClicked : null,
+          isValid ? context.read<LoginFormCubit>().onLoginButtonClicked : null,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [Text(context.l10n.login)],
