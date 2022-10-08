@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'package:authentication_repository/authentication_repository.dart';
+
+import 'models/models.dart';
 
 abstract class IAuthenticationRepository {
   bool get isWeb;
