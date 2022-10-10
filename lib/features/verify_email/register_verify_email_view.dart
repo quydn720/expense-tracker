@@ -1,5 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../di/injector.dart';
@@ -63,9 +65,10 @@ class VerificationEmailView extends StatelessWidget {
                   const SizedBox(height: 48),
                   ElevatedButton(
                     onPressed: () {
-                      (getIt<IAuthenticationRepository>()
-                              as MockAuthenticateRepo)
-                          .verifyEmail('123456');
+                      getIt<IAuthenticationRepository>().verifyEmail('123456');
+                      final state = context.read<AppBloc>().state
+                          as WaitForEmailVerification;
+                      context.read<AppBloc>().add(OnEmailVerified(state.user));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

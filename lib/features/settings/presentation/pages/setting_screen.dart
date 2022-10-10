@@ -1,4 +1,3 @@
-import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/language_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
@@ -53,7 +52,7 @@ class SettingScreen extends StatelessWidget {
           ),
           _SettingTile(
             title: context.l10n.help,
-            onTap: () => getIt<AppBloc>().add(const LogoutRequested()),
+            onTap: () => context.read<AppBloc>().add(const LogoutRequested()),
           ),
         ],
       ),

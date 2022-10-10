@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
+import 'package:expense_tracker/features/transaction/presentation/pages/transaction_screen.dart';
 import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
 import 'package:expense_tracker/home_screen.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:expense_tracker/presentations/pages/onboarding/onboarding_page.dart';
-import 'package:expense_tracker/transaction_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
@@ -177,7 +178,9 @@ class AppDevelopmentView extends StatelessWidget {
         child: TransactionTile(
           transaction: Transaction.empty(),
           onLongPress: () {},
-          onPress: () {},
+          onPress: () {
+            context.read<AppBloc>().add(const LogoutRequested());
+          },
         ),
       ),
     );
