@@ -1,7 +1,9 @@
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/app.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
+import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart';
 import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
+import 'package:expense_tracker/features/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:expense_tracker/routes/router.dart';
@@ -17,11 +19,16 @@ void main() {
   late final ThemeController themeController;
   late final LocaleController localeController;
   late final AppBloc appBloc;
+  final TransactionBloc mockTransactionBloc = MockTransactionBloc();
 
   setUpAll(() {
     GetIt.instance.registerSingleton<LoginWithEmailAndPwUseCase>(
       MockLoginWithEmailAndPwUseCase(),
     );
+    GetIt.instance.registerSingleton<LoginWithGoogleUseCase>(
+      MockLoginWithGoogleUseCase(),
+    );
+    GetIt.instance.registerFactory<TransactionBloc>(() => mockTransactionBloc);
 
     appBloc = MockAppBloc();
     when(() => appBloc.stream).thenAnswer((_) => const Stream.empty());
@@ -63,6 +70,10 @@ void main() {
 
     testWidgets('displays the back button when can pop', (tester) async {
       when(() => appBloc.state).thenAnswer((_) => const Authenticated());
+      when(() => mockTransactionBloc.stream)
+          .thenAnswer((_) => const Stream.empty());
+      when(() => mockTransactionBloc.state)
+          .thenAnswer((_) => TransactionsInitial());
 
       await tester.pumpWidget(
         MultiProvider(
@@ -84,3 +95,5 @@ void main() {
     });
   });
 }
+
+class MockTransactionBloc extends Mock implements TransactionBloc {}

@@ -1,3 +1,4 @@
+import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/cubit/register_form_cubit.dart';
@@ -21,6 +22,7 @@ void main() {
   late RegisterFormCubit registerCubit;
   late LocaleController localeController;
   late ThemeController themeController;
+  late AppBloc appBloc;
 
   const nameInputFieldKey = Key('name_input_field');
 
@@ -31,10 +33,12 @@ void main() {
           ChangeNotifierProvider.value(value: localeController),
           ChangeNotifierProvider.value(value: themeController),
           BlocProvider.value(value: registerCubit),
+          BlocProvider.value(value: appBloc),
         ],
         router: mockRouter(
           testingRoute: [
-            GoRoute(path: '/', builder: (_, __) => const RegisterScreen())
+            GoRoute(path: '/', builder: (_, __) => const RegisterScreen()),
+            GoRoute(path: '/login', builder: (_, __) => Container())
           ],
         ),
       ),
@@ -58,6 +62,10 @@ void main() {
 
     themeController = MockThemeController();
     when(() => themeController.themeMode).thenReturn(ThemeMode.dark);
+
+    appBloc = MockAppBloc();
+    when(() => appBloc.stream).thenAnswer((_) => const Stream.empty());
+    when(() => appBloc.state).thenReturn(const Unauthenticated());
   });
 
   testWidgets('renders RegisterScreen', (tester) async {

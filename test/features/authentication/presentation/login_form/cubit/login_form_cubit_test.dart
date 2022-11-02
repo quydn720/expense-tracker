@@ -8,21 +8,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockLoginWithEmailAndPwUseCase extends Mock
-    implements LoginWithEmailAndPwUseCase {}
+import '../../../../../../test_helper/mocks.dart';
 
 void main() {
   late LoginWithEmailAndPwUseCase loginWithEmailAndPwUseCase;
+  late LoginWithGoogleUseCase loginWithGoogleUseCase;
   const mockValidEmail = 'validEmail@something.com';
   const mockPassword = 's3cretPword';
 
   setUp(() {
     loginWithEmailAndPwUseCase = MockLoginWithEmailAndPwUseCase();
+    loginWithGoogleUseCase = MockLoginWithGoogleUseCase();
   });
 
   blocTest<LoginFormCubit, LoginFormState>(
     'on email changed, cubit emits email validated state',
     build: () => LoginFormCubit(
+      loginWithGoogleUseCase: loginWithGoogleUseCase,
       loginWithEmailAndPwUseCase: loginWithEmailAndPwUseCase,
     ),
     act: (cubit) {
@@ -38,6 +40,7 @@ void main() {
   blocTest<LoginFormCubit, LoginFormState>(
     'on password changed, cubit emits password validated state',
     build: () => LoginFormCubit(
+      loginWithGoogleUseCase: loginWithGoogleUseCase,
       loginWithEmailAndPwUseCase: loginWithEmailAndPwUseCase,
     ),
     act: (cubit) => cubit.onPasswordChanged(mockPassword),
@@ -51,6 +54,7 @@ void main() {
   blocTest<LoginFormCubit, LoginFormState>(
     'on toggled, cubit emits opposite state of obscured text',
     build: () => LoginFormCubit(
+      loginWithGoogleUseCase: loginWithGoogleUseCase,
       loginWithEmailAndPwUseCase: loginWithEmailAndPwUseCase,
     ),
     seed: () => const LoginFormState(isObscured: false),
@@ -72,9 +76,10 @@ void main() {
       password: PasswordInput.dirty('password'),
     ),
     build: () => LoginFormCubit(
+      loginWithGoogleUseCase: loginWithGoogleUseCase,
       loginWithEmailAndPwUseCase: loginWithEmailAndPwUseCase,
     ),
-    act: (cubit) async => cubit.onButtonClicked(),
+    act: (cubit) async => cubit.onLoginButtonClicked(),
     verify: (_) => verify(
       () => loginWithEmailAndPwUseCase(email: 'abc', password: 'password'),
     ).called(1),
@@ -112,9 +117,10 @@ void main() {
       password: PasswordInput.dirty('password'),
     ),
     build: () => LoginFormCubit(
+      loginWithGoogleUseCase: loginWithGoogleUseCase,
       loginWithEmailAndPwUseCase: loginWithEmailAndPwUseCase,
     ),
-    act: (cubit) async => cubit.onButtonClicked(),
+    act: (cubit) async => cubit.onLoginButtonClicked(),
     verify: (_) => verify(
       () => loginWithEmailAndPwUseCase(email: 'abc', password: 'password'),
     ).called(1),
