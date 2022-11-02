@@ -1,7 +1,10 @@
+import 'package:expense_tracker/features/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
 enum ScaffoldTab { home, transaction, budget, profile }
 
@@ -20,27 +23,14 @@ class AppScaffold extends StatelessWidget {
     return Scaffold(
       body: SafeArea(child: child),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => context.read<TransactionBloc>().add(
+              AddNewTransaction(Transaction.empty()),
+            ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        onTap: (idx) {
-          switch (ScaffoldTab.values[idx]) {
-            case ScaffoldTab.home:
-              context.go('/${ScaffoldTab.values[idx].name}');
-              break;
-            case ScaffoldTab.transaction:
-              context.go('/${ScaffoldTab.values[idx].name}');
-              break;
-            case ScaffoldTab.budget:
-              context.go('/${ScaffoldTab.values[idx].name}');
-              break;
-            case ScaffoldTab.profile:
-              context.go('/${ScaffoldTab.values[idx].name}');
-              break;
-          }
-        },
+        onTap: (value) => _onItemTapped(value, context),
         currentIndex: selectedTab.index,
         selectedFontSize: 12,
         iconSize: 32,
@@ -79,6 +69,24 @@ class AppScaffold extends StatelessWidget {
           ),
         ],
       ),
+      // ),
     );
+  }
+
+  void _onItemTapped(int index, BuildContext context) {
+    switch (ScaffoldTab.values[index]) {
+      case ScaffoldTab.home:
+        GoRouter.of(context).go('/${ScaffoldTab.values[index].name}');
+        break;
+      case ScaffoldTab.transaction:
+        GoRouter.of(context).go('/${ScaffoldTab.values[index].name}');
+        break;
+      case ScaffoldTab.budget:
+        GoRouter.of(context).go('/${ScaffoldTab.values[index].name}');
+        break;
+      case ScaffoldTab.profile:
+        GoRouter.of(context).go('/${ScaffoldTab.values[index].name}');
+        break;
+    }
   }
 }

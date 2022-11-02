@@ -115,7 +115,7 @@ class BodyState extends State<Body> {
   }
 
   Future<void> completedOnboarding() async {
-    // getIt<AppBloc>().add(const OnboardingCompleted());
+    // context.read<AppBloc>().add(const OnboardingCompleted());
     await getIt<UserPreferences>().completeOnboarding();
   }
 

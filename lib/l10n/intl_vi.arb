@@ -7,6 +7,20 @@
     "authError_userNotFound": "Không tìm thấy tài khoản nào với email này, hãy tạo tài khoản mới.",
     "authError_unknownException": "Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ.",
     "authError_wrongPassword": "Sai mật khẩu. Mời bạn thử lại.",
+    "forgot_password_title": "Đừng lo lắng.",
+    "forgot_password": "Quên mật khẩu",
+    "continue_str": "Tiếp tục",
+    "forgot_password_instruction": "Nhập email của bạn và chúng tôi sẽ gửi link yêu cầu cài đặt mật khẩu mới.",
+    "forgot_password_sent": "Kiểm tra email {email} và làm theo hướng dẫn để cài đặt mật khẩu mới.",
+    "@forgot_password_sent": {
+        "description": "Send user prompt with user's email.",
+        "placeholders": {
+            "email": {
+                "type": "String",
+                "example": "example@email.com"
+            }
+        }
+    },
     "profile": "Hồ sơ",
     "home": "Trang chủ",
     "transactions": "Giao dịch",

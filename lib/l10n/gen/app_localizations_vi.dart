@@ -14,19 +14,33 @@ class AppLocalizationsVi extends AppLocalizations {
   String get authError_invalidEmail => 'Email không đúng định dạng.';
 
   @override
-  String get authError_userDisabled =>
-      'Người dùng này đã bị vô hiệu hóa. Vui lòng liên hệ chúng tôi để được hỗ trợ.';
+  String get authError_userDisabled => 'Người dùng này đã bị vô hiệu hóa. Vui lòng liên hệ chúng tôi để được hỗ trợ.';
 
   @override
-  String get authError_userNotFound =>
-      'Không tìm thấy tài khoản nào với email này, hãy tạo tài khoản mới.';
+  String get authError_userNotFound => 'Không tìm thấy tài khoản nào với email này, hãy tạo tài khoản mới.';
 
   @override
   String get authError_wrongPassword => 'Sai mật khẩu. Mời bạn thử lại.';
 
   @override
-  String get authError_unknownException =>
-      'Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ.';
+  String get authError_unknownException => 'Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ.';
+
+  @override
+  String get forgot_password => 'Quên mật khẩu';
+
+  @override
+  String get continue_str => 'Tiếp tục';
+
+  @override
+  String get forgot_password_title => 'Đừng lo lắng.';
+
+  @override
+  String get forgot_password_instruction => 'Nhập email của bạn và chúng tôi sẽ gửi link yêu cầu cài đặt mật khẩu mới.';
+
+  @override
+  String forgot_password_sent(String email) {
+    return 'Kiểm tra email $email và làm theo hướng dẫn để cài đặt mật khẩu mới.';
+  }
 
   @override
   String get profile => 'Hồ sơ';
@@ -41,8 +55,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get language => 'Ngôn ngữ';
 
   @override
-  String get languageError_notSuppported =>
-      'Ứng dụng chưa hỗ trợ ngôn ngữ này. Vui lòng liên hệ bộ phận hỗ trợ để được giúp đỡ.';
+  String get languageError_notSuppported => 'Ứng dụng chưa hỗ trợ ngôn ngữ này. Vui lòng liên hệ bộ phận hỗ trợ để được giúp đỡ.';
 
   @override
   String get language_vietnamese => 'Tiếng Việt';
@@ -93,8 +106,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get budget => 'Ví của bạn';
 
   @override
-  String get budgetDescription =>
-      'Get notification when you’re budget exceeding the limit';
+  String get budgetDescription => 'Get notification when you’re budget exceeding the limit';
 
   @override
   String get tipsAndArticles => 'Tips and Articles';

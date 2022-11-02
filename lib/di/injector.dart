@@ -1,5 +1,5 @@
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' as firebase;
 import 'package:expense_tracker/routes/router.dart';
 import 'package:expense_tracker/user_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -39,14 +39,15 @@ abstract class FirebaseInjectableModule {
   @lazySingleton
   FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
   @lazySingleton
-  FirebaseFirestore get firestore => FirebaseFirestore.instance;
+  firebase.FirebaseFirestore get firestore =>
+      firebase.FirebaseFirestore.instance;
 }
 
 @module
 abstract class DevAppLocalPackageModule {
   @dev
   @Named('init_location')
-  String get devInitialLocation => '/dev_view';
+  String get devInitialLocation => '/';
   @prod
   @Named('init_location')
   String get initialLocation => '/';
@@ -57,16 +58,19 @@ abstract class DevAppLocalPackageModule {
 
   @dev
   @lazySingleton
-  IAuthenticationRepository getDev() => MockAuthenticateRepo();
+  IAuthenticationRepository getDev() => AuthenticationRepository();
 
   @prod
   @lazySingleton
   IAuthenticationRepository getProd() => AuthenticationRepository();
 
   @dev
-  TransactionRepository getTransactionRepoDev() => FakeTransactionRepo();
+  @lazySingleton
+  TransactionRepository getTransactionRepoDev() =>
+      FakeTransactionRepo([Transaction.empty()]);
 
   @prod
+  @lazySingleton
   TransactionRepository getTransactionRepoProd() {
     return FirebaseTransactionRepository(
       cachedTransactions: {},

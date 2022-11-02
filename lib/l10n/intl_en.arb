@@ -7,6 +7,20 @@
     "authError_userNotFound": "Email is not found, please create an account.",
     "authError_wrongPassword": "Incorrect password, please try again.",
     "authError_unknownException": "An unknown exception occurred.",
+    "forgot_password": "Forgot Password",
+    "continue_str": "Continue",
+    "forgot_password_title": "Don't worry.",
+    "forgot_password_instruction": "Enter your email and we’ll send you a link to reset your password.",
+    "forgot_password_sent": "Check your email {email} and follow the instructions to reset your password",
+    "@forgot_password_sent": {
+        "description": "Send user prompt with user's email.",
+        "placeholders": {
+            "email": {
+                "type": "String",
+                "example": "example@email.com"
+            }
+        }
+    },
     "profile": "Profile",
     "home": "Home",
     "transactions": "Transactions",

@@ -14,18 +14,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authError_invalidEmail => 'Email is not valid or badly formatted.';
 
   @override
-  String get authError_userDisabled =>
-      'This user has been disabled. Please contact support for help.';
+  String get authError_userDisabled => 'This user has been disabled. Please contact support for help.';
 
   @override
-  String get authError_userNotFound =>
-      'Email is not found, please create an account.';
+  String get authError_userNotFound => 'Email is not found, please create an account.';
 
   @override
   String get authError_wrongPassword => 'Incorrect password, please try again.';
 
   @override
   String get authError_unknownException => 'An unknown exception occurred.';
+
+  @override
+  String get forgot_password => 'Forgot Password';
+
+  @override
+  String get continue_str => 'Continue';
+
+  @override
+  String get forgot_password_title => 'Don\'t worry.';
+
+  @override
+  String get forgot_password_instruction => 'Enter your email and we’ll send you a link to reset your password.';
+
+  @override
+  String forgot_password_sent(String email) {
+    return 'Check your email $email and follow the instructions to reset your password';
+  }
 
   @override
   String get profile => 'Profile';
@@ -91,15 +106,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get budget => 'Budget';
 
   @override
-  String get budgetDescription =>
-      'Get notification when you’re budget exceeding the limit';
+  String get budgetDescription => 'Get notification when you’re budget exceeding the limit';
 
   @override
   String get tipsAndArticles => 'Tips and Articles';
 
   @override
-  String get tipsAndArticlesDescription =>
-      'Small & useful pieces of pratical financial advice';
+  String get tipsAndArticlesDescription => 'Small & useful pieces of pratical financial advice';
 
   @override
   String get about => 'About';

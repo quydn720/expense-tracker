@@ -1,6 +1,8 @@
-import 'package:expense_tracker/presentations/components/common_components.dart';
+import 'package:expense_tracker/routes/app_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'package:transaction_repository/transaction_repository.dart';
+import 'package:go_router/go_router.dart';
+
+import 'features/transaction_overview/presentation/pages/recent_transactions.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,22 +39,23 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Recent Transactions', style: textTheme.headline6),
-                Chip(
-                  label: Text(
-                    'See all',
-                    style: textTheme.bodyText2?.copyWith(
-                      color: Theme.of(context).primaryColor,
+                GestureDetector(
+                  onTap: () {
+                    context.go('/${ScaffoldTab.values[1].name}');
+                  },
+                  child: Chip(
+                    label: Text(
+                      'See all',
+                      style: textTheme.bodyText2?.copyWith(
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          TransactionTile(
-            transaction: Transaction.empty(),
-            onPress: () {},
-            onLongPress: () {},
-          ),
+          const RecentlyTransactions(),
         ],
       ),
     );
