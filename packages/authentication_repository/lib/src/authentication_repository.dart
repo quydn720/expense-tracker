@@ -13,6 +13,8 @@ abstract class IAuthenticationRepository {
   Future<void> logInWithGoogle();
   Future<void> logOut();
   Future<void> sendVerificationEmail();
+  Future<void> verifyEmail(String verificationCode);
   Future<void> signUp({required String email, required String password});
+  Future<void> forgotPassword(String email);
   Stream<User> get user;
 }

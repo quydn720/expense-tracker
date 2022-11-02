@@ -80,9 +80,6 @@ class LogInWithEmailAndPasswordFailure
         return const LogInWithEmailAndPasswordFailure();
     }
   }
-
-  /// The associated error message.
-  // final String message;
 }
 
 /// {@template log_in_with_google_failure}

@@ -51,6 +51,7 @@ class MockAuthenticateRepo implements IAuthenticationRepository {
   @override
   Stream<User> get user => _streamController.stream;
 
+  @override
   Future<void> verifyEmail(String code) async {
     if (code == '123456') {
       _streamController.add(const User(id: 'asd', verified: true));
@@ -62,5 +63,11 @@ class MockAuthenticateRepo implements IAuthenticationRepository {
   @override
   Future<void> sendVerificationEmail() async {
     await Future.value('This is verification code');
+  }
+
+  @override
+  Future<void> forgotPassword(String email) {
+    // TODO: implement forgotPassword
+    throw UnimplementedError();
   }
 }

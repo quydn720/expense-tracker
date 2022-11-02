@@ -4,7 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'authentication_repository.dart';
-import 'models/models.dart';
+import 'models/auth_failure.dart';
+import 'models/user.dart';
 
 /// {@template authentication_repository}
 /// Repository which manages user authentication.
@@ -114,16 +115,10 @@ class AuthenticationRepository implements IAuthenticationRepository {
     required String email,
     required String password,
   }) async {
-    try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    } on firebase_auth.FirebaseAuthException catch (e) {
-      throw LogInWithEmailAndPasswordFailure.fromCode(e.code);
-    } catch (_) {
-      throw const LogInWithEmailAndPasswordFailure();
-    }
+    await _firebaseAuth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
   }
 
   ///
@@ -155,12 +150,51 @@ class AuthenticationRepository implements IAuthenticationRepository {
   @override
   Future<void> sendVerificationEmail() async {
     final user = firebase_auth.FirebaseAuth.instance.currentUser;
-    await user?.sendEmailVerification();
+
+    final actionCodeSettings = firebase_auth.ActionCodeSettings(
+      url: 'https://expense-tracker-dev-d39f8.firebaseapp.com/',
+      iOSBundleId: 'com.quydn720.expenseTracker.dev',
+      androidPackageName: 'com.quydn720.expense_tracker.dev',
+    );
+
+    try {
+      await user?.sendEmailVerification(actionCodeSettings);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  Future<void> verifyEmail(String verificationCode) async {
+    debugPrint(
+      firebase_auth.FirebaseAuth.instance.currentUser?.emailVerified.toString(),
+    );
+    debugPrint('verify email');
+  }
+
+  @override
+  Future<void> forgotPassword(String email) async {
+    final actionCodeSettings = firebase_auth.ActionCodeSettings(
+      url: 'https://expense-tracker-dev-d39f8.firebaseapp.com/',
+      iOSBundleId: 'com.quydn720.expenseTracker.dev',
+      androidPackageName: 'com.quydn720.expense_tracker.dev',
+    );
+
+    await _firebaseAuth.sendPasswordResetEmail(
+      email: email,
+      actionCodeSettings: actionCodeSettings,
+    );
   }
 }
 
 extension on firebase_auth.User {
   User get toUser {
-    return User(id: uid, email: email, name: displayName, photo: photoURL);
+    return User(
+      id: uid,
+      email: email,
+      name: displayName,
+      photo: photoURL,
+      verified: emailVerified,
+    );
   }
 }
