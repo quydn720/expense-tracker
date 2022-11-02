@@ -8,15 +8,14 @@ TextTheme textTheme = TextTheme(
     letterSpacing: -1.5,
   ),
   headline2: GoogleFonts.inter(
-    fontSize: 58,
-    fontWeight: FontWeight.w300,
+    fontSize: 32,
+    fontWeight: FontWeight.w600,
     letterSpacing: -0.5,
   ),
   headline3: GoogleFonts.inter(fontSize: 47, fontWeight: FontWeight.w400),
   headline4: GoogleFonts.inter(
     fontSize: 36,
     fontWeight: FontWeight.w500,
-    color: const Color(0xff0D0E0F),
   ),
   headline5: GoogleFonts.inter(fontSize: 32, fontWeight: FontWeight.w700),
   headline6: GoogleFonts.inter(

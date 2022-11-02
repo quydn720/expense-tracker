@@ -137,7 +137,7 @@ class _MoveToLoginButton extends StatelessWidget {
           style: textTheme?.copyWith(color: theme.colorScheme.outline),
         ),
         TextButton(
-          onPressed: () => context.go('login'),
+          onPressed: () => context.go('/login'),
           child: Text(
             'Sign in',
             style: textTheme?.copyWith(color: theme.colorScheme.primary),
@@ -230,6 +230,7 @@ class _EmailInputField extends StatelessWidget {
             ? context.watch<RegisterFormCubit>().state.email.error
             : null,
       ),
+      autocorrect: false,
     );
   }
 }

@@ -21,6 +21,7 @@ class RegisterWithEmailAndPwUseCase {
 
     // 3. Wait for the verification code
     _verificationService.verify('code');
+    await _auth.sendVerificationEmail();
   }
 }
 

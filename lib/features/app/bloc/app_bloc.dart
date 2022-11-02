@@ -9,26 +9,32 @@ part 'app_event.dart';
 part 'app_state.dart';
 part 'app_bloc.freezed.dart';
 
-@singleton
+@injectable
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({
     required this.authenticationRepository,
     @Named('isOnboardingCompleted') this.showOnboarding = true,
   }) : super(
-          showOnboarding ? const Initial() : const Unauthenticated(),
+          showOnboarding ? const FirstTimeOpenApp() : const Unauthenticated(),
         ) {
-    on<LogoutRequested>((event, emit) => emit(const Unauthenticated()));
+    on<LogoutRequested>(_onLogOutRequested);
     on<OnUserChanged>(_onUserChanged);
-    on<OnEmailVerified>(
-      (event, emit) => emit(const WaitForEmailVerification()),
-    );
-    on<OnboardingCompleted>((event, emit) => emit(const Unauthenticated()));
+    on<OnEmailVerified>(_onEmailVerified);
 
-    authStateSubcription = authenticationRepository.user.listen(
-      (user) {
-        add(AppEvent.onUserChanged(user));
-      },
+    _authStateSubcription = authenticationRepository.user.listen(
+      (user) => add(AppEvent.onUserChanged(user)),
     );
+  }
+
+  Future<void> _onEmailVerified(
+    OnEmailVerified event,
+    Emitter<AppState> emit,
+  ) async {
+    _emitStateByUserVerifiedStatus(event.user, emit);
+  }
+
+  Future<void> _onLogOutRequested(event, emit) async {
+    await authenticationRepository.logOut();
   }
 
   Future<void> _onUserChanged(
@@ -37,23 +43,30 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   ) async {
     final user = event.user;
     if (user.isNotEmpty) {
-      if (user.verified) {
-        emit(const Authenticated());
-      } else {
-        emit(const WaitForEmailVerification());
-      }
+      _emitStateByUserVerifiedStatus(user, emit);
     } else {
       emit(const Unauthenticated());
     }
   }
 
+  void _emitStateByUserVerifiedStatus(
+    User user,
+    Emitter<AppState> emit,
+  ) {
+    if (user.verified) {
+      emit(const Authenticated());
+    } else {
+      emit(WaitForEmailVerification(user));
+    }
+  }
+
   final IAuthenticationRepository authenticationRepository;
   final bool showOnboarding;
-  late final StreamSubscription<User> authStateSubcription;
+  late final StreamSubscription<User> _authStateSubcription;
 
   @override
   Future<void> close() {
-    authStateSubcription.cancel();
+    _authStateSubcription.cancel();
     return super.close();
   }
 }

@@ -59,6 +59,8 @@ class LoginScreen extends StatelessWidget {
               _EmailInputField(),
               SizedBox(height: 24),
               _PasswordInputField(),
+              SizedBox(height: 8),
+              Align(alignment: Alignment.centerRight, child: _ForgotPassword()),
               SizedBox(height: 16),
               _LoginButton(),
               SizedBox(height: 12),
@@ -85,14 +87,31 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
+class _ForgotPassword extends StatelessWidget {
+  const _ForgotPassword();
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      child: const Text('Forgor password?'),
+      onPressed: () {
+        context.go(
+          '/login/forgot-password',
+          extra: context.read<LoginFormCubit>().state.email.value,
+        );
+      },
+    );
+  }
+}
+
 extension AuthErrorLocalizationX on LogInWithEmailAndPasswordFailure {
   String toLocalizedString(BuildContext context) {
     return map(
-      (_) => context.l10n.authError_unknownException,
       invalidEmail: (_) => context.l10n.authError_invalidEmail,
       userDisabled: (_) => context.l10n.authError_userDisabled,
       userNotFound: (_) => context.l10n.authError_userNotFound,
       wrongPassword: (_) => context.l10n.authError_wrongPassword,
+      (_) => context.l10n.authError_unknownException,
     );
   }
 }

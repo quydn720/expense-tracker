@@ -57,14 +57,14 @@ class LoginFormCubit extends Cubit<LoginFormState> {
 
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
 
-    await _loginWithEmailAndPwUseCase(
+    final failure = await _loginWithEmailAndPwUseCase(
       email: state.email.value,
       password: state.password.value,
-    ).then(
-      (failure) => failure.fold(
-        (l) => _emitFailure(failure),
-        (r) => _emitSuccess(),
-      ),
+    );
+
+    failure.fold(
+      (_) => _emitFailure(failure),
+      (_) => _emitSuccess(),
     );
   }
 
@@ -93,6 +93,12 @@ class LoginFormCubit extends Cubit<LoginFormState> {
   void toggle() {
     final obscured = !state.isObscured;
     emit(state.copyWith(isObscured: obscured));
+  }
+
+  @override
+  Future<void> close() {
+    print('login cubit close');
+    return super.close();
   }
 }
 

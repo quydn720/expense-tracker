@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../presentations/components/default_app_bar.dart';
+import '../../../../../../presentations/components/default_app_bar.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key, this.email});
@@ -37,7 +37,7 @@ class ForgotPasswordView extends StatelessWidget {
     return BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
       listener: (context, state) {
         if (state.status == Status.success) {
-          context.go('/success');
+          context.go('/success', extra: controller.state.email);
         }
       },
       child: Scaffold(
@@ -74,52 +74,6 @@ class ForgotPasswordView extends StatelessWidget {
               const Spacer(flex: 2),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class ForgotPasswordSendingEmailSuccess extends StatelessWidget {
-  const ForgotPasswordSendingEmailSuccess({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final textStyle = textTheme.headline2?.copyWith(
-      color: Theme.of(context).colorScheme.onBackground,
-    );
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Image.asset('assets/images/send_email.png'),
-            const SizedBox(height: 18),
-            Text(
-              'Your email is on the way',
-              style: textStyle,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'Check your email test@test.com and follow the instructions to reset your password',
-              style: textTheme.bodyText1,
-              textAlign: TextAlign.center,
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: ElevatedButton(
-                onPressed: () {
-                  context.go('/login');
-                },
-                child: const Text('Back to Login'),
-              ),
-            ),
-            const SizedBox(height: 16),
-          ],
         ),
       ),
     );
