@@ -16,6 +16,7 @@ dependencies:
   firebase_core: ^1.10.0
   flutter:
     sdk: flutter
+  rxdart: ^0.27.5
   uuid: ^3.0.5
 
 dev_dependencies:
