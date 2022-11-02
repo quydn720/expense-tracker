@@ -160,7 +160,7 @@ class AuthenticationRepository implements IAuthenticationRepository {
     try {
       await user?.sendEmailVerification(actionCodeSettings);
     } catch (e) {
-      print(e);
+      // print(e);
     }
   }
 

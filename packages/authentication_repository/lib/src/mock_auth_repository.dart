@@ -67,7 +67,6 @@ class MockAuthenticateRepo implements IAuthenticationRepository {
 
   @override
   Future<void> forgotPassword(String email) {
-    // TODO: implement forgotPassword
     throw UnimplementedError();
   }
 }

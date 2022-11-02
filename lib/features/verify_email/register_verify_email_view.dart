@@ -66,9 +66,7 @@ class VerificationEmailView extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       getIt<IAuthenticationRepository>().verifyEmail('123456');
-                      // final state = context.read<AppBloc>().state
-                      //     as WaitForEmailVerification;
-                      // context.read<AppBloc>().add(OnEmailVerified(state.user));
+
                       context.read<AppBloc>().add(const LogoutRequested());
                     },
                     child: Row(
@@ -87,3 +85,6 @@ class VerificationEmailView extends StatelessWidget {
     );
   }
 }
+// final state = context.read<AppBloc>().state
+//     as WaitForEmailVerification;
+// context.read<AppBloc>().add(OnEmailVerified(state.user));

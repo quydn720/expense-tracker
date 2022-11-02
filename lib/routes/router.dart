@@ -112,7 +112,7 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) {
       GoRoute(
         path: '/success',
         builder: (_, state) => ForgotPasswordEmailSentScreen(
-          email: state.extra as String,
+          email: (state.extra as String?)!,
         ),
       ),
       GoRoute(

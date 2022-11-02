@@ -36,7 +36,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
   @override
   Future<void> close() {
-    print('transaction bloc close');
+    // print('transaction bloc close');
     return super.close();
   }
 }

@@ -85,7 +85,6 @@ void main() {
 
     await tester.pumpWidget(TestApp(providers: providers, router: router));
     await tester.pumpAndSettle();
-    print(find.byType(SnackBar).evaluate());
     expect(find.text('An unknown exception occurred.'), findsOneWidget);
   });
   testWidgets('login screen have error message snack bar', (tester) async {

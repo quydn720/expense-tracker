@@ -97,7 +97,7 @@ class LoginFormCubit extends Cubit<LoginFormState> {
 
   @override
   Future<void> close() {
-    print('login cubit close');
+    // print('login cubit close');
     return super.close();
   }
 }
