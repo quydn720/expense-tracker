@@ -33,7 +33,10 @@ void main() {
 
     when(() => localeController.locale).thenReturn(const Locale('en'));
     when(() => themeController.themeMode).thenReturn(ThemeMode.dark);
-
+    final mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
+    when(() => mockFirebaseDynamicLinks.onLink).thenAnswer(
+      (_) => const Stream.empty(),
+    );
     await tester.pumpWidget(
       TestApp(
         providers: [
@@ -52,6 +55,7 @@ void main() {
             )
           ],
         ),
+        dynamicLinks: mockFirebaseDynamicLinks,
       ),
     );
 

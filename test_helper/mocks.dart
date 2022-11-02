@@ -4,11 +4,15 @@ import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
+import 'package:expense_tracker/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/cubit/register_form_cubit.dart';
 import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
+import 'package:expense_tracker/features/transaction_overview/domain/usecases/load_transactions.dart';
 import 'package:expense_tracker/l10n/locale_controller.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
 class MockLoginWithEmailAndPwUseCase extends Mock
     implements LoginWithEmailAndPwUseCase {}
@@ -35,3 +39,11 @@ class MockRegisterWithEmailAndPwUseCase extends Mock
 class MockRegisterCubit extends Mock implements RegisterFormCubit {}
 
 class MockNormalText extends Mock implements NormalText {}
+
+class MockFirebaseDynamicLinks extends Mock implements FirebaseDynamicLinks {}
+
+class MockAddTransaction extends Mock implements AddTransaction {}
+
+class MockTransactionRepository extends Mock implements TransactionRepository {}
+
+class MockForgotPasswordUseCase extends Mock implements ForgotPasswordUseCase {}

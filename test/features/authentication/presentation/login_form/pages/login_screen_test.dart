@@ -55,15 +55,29 @@ void main() {
     ];
   });
   testWidgets('login screen renders', (tester) async {
+    final mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
+    when(() => mockFirebaseDynamicLinks.onLink).thenAnswer(
+      (_) => const Stream.empty(),
+    );
     when(() => loginFormCubit.stream).thenAnswer((_) => const Stream.empty());
     when(() => loginFormCubit.state).thenReturn(const LoginFormState());
 
-    await tester.pumpWidget(TestApp(providers: providers, router: router));
+    await tester.pumpWidget(
+      TestApp(
+        providers: providers,
+        router: router,
+        dynamicLinks: mockFirebaseDynamicLinks,
+      ),
+    );
 
     expect(find.byType(LoginScreen), findsOneWidget);
   });
 
   testWidgets('login screen have error message snack bar', (tester) async {
+    final mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
+    when(() => mockFirebaseDynamicLinks.onLink).thenAnswer(
+      (_) => const Stream.empty(),
+    );
     when(() => loginFormCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
         const LoginFormState(status: FormzStatus.submissionInProgress),
@@ -83,11 +97,21 @@ void main() {
       ),
     );
 
-    await tester.pumpWidget(TestApp(providers: providers, router: router));
+    await tester.pumpWidget(
+      TestApp(
+        providers: providers,
+        router: router,
+        dynamicLinks: mockFirebaseDynamicLinks,
+      ),
+    );
     await tester.pumpAndSettle();
     expect(find.text('An unknown exception occurred.'), findsOneWidget);
   });
   testWidgets('login screen have error message snack bar', (tester) async {
+    final mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
+    when(() => mockFirebaseDynamicLinks.onLink).thenAnswer(
+      (_) => const Stream.empty(),
+    );
     when(() => loginFormCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
         const LoginFormState(status: FormzStatus.submissionInProgress),
@@ -107,7 +131,13 @@ void main() {
       ),
     );
 
-    await tester.pumpWidget(TestApp(providers: providers, router: router));
+    await tester.pumpWidget(
+      TestApp(
+        providers: providers,
+        router: router,
+        dynamicLinks: mockFirebaseDynamicLinks,
+      ),
+    );
     await tester.pumpAndSettle();
 
     expect(find.text('Email is not valid or badly formatted.'), findsOneWidget);

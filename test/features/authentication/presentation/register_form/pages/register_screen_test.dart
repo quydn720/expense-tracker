@@ -23,7 +23,10 @@ void main() {
   late LocaleController localeController;
   late ThemeController themeController;
   late AppBloc appBloc;
-
+  final mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
+  when(() => mockFirebaseDynamicLinks.onLink).thenAnswer(
+    (_) => const Stream.empty(),
+  );
   const nameInputFieldKey = Key('name_input_field');
 
   Future<void> _pumpTestWidget(WidgetTester tester) {
@@ -41,6 +44,7 @@ void main() {
             GoRoute(path: '/login', builder: (_, __) => Container())
           ],
         ),
+        dynamicLinks: mockFirebaseDynamicLinks,
       ),
     );
   }

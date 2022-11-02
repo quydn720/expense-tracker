@@ -8,14 +8,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class App extends StatefulWidget {
-  const App({
+  App({
     super.key,
     required this.router,
     required this.appName,
-  });
+    FirebaseDynamicLinks? dynamicLinks,
+  }) : dynamicLinks = dynamicLinks ?? FirebaseDynamicLinks.instance;
 
   final GoRouter router;
   final String appName;
+  final FirebaseDynamicLinks dynamicLinks;
 
   @override
   State<App> createState() => _AppState();
@@ -24,7 +26,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   void initState() {
-    FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) {
+    widget.dynamicLinks.onLink.listen((dynamicLinkData) {
       debugPrint('Dynamic Link: ${dynamicLinkData.link.path}');
 
       widget.router.go(dynamicLinkData.link.path);
