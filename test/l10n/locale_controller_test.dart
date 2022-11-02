@@ -19,7 +19,7 @@ void main() {
   test(
     'default language code should be en',
     () async {
-      expect(sut.locale.languageCode, 'en');
+      expect(sut.locale.languageCode, 'vi');
     },
   );
   test(
