@@ -3,6 +3,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
+import 'package:expense_tracker/features/authentication/domain/usecases/login_with_google_account.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
@@ -84,17 +85,15 @@ void main() {
       () => loginWithEmailAndPwUseCase(email: 'abc', password: 'password'),
     ).called(1),
     expect: () => [
-      LoginFormState(
-        email: const EmailInput.dirty('abc'),
-        password: const PasswordInput.dirty('password'),
+      const LoginFormState(
+        email: EmailInput.dirty('abc'),
+        password: PasswordInput.dirty('password'),
         status: FormzStatus.submissionInProgress,
-        authFailureOrSuccessOption: none(),
       ),
-      LoginFormState(
-        email: const EmailInput.dirty('abc'),
-        password: const PasswordInput.dirty('password'),
+      const LoginFormState(
+        email: EmailInput.dirty('abc'),
+        password: PasswordInput.dirty('password'),
         status: FormzStatus.submissionSuccess,
-        authFailureOrSuccessOption: none(),
       ),
     ],
   );
@@ -107,9 +106,7 @@ void main() {
           password: 'password',
         ),
       ).thenAnswer((_) async {
-        return const Left(
-          LogInWithEmailAndPasswordFailure(message: 'mock error message'),
-        );
+        return const Left(LoginWithEmailAndPasswordFailure());
       });
     },
     seed: () => const LoginFormState(
@@ -130,15 +127,11 @@ void main() {
         email: EmailInput.dirty('abc'),
         password: PasswordInput.dirty('password'),
       ),
-      LoginFormState(
+      const LoginFormState(
         status: FormzStatus.submissionFailure,
-        email: const EmailInput.dirty('abc'),
-        password: const PasswordInput.dirty('password'),
-        authFailureOrSuccessOption: optionOf(
-          const Left(
-            LogInWithEmailAndPasswordFailure(message: 'mock error message'),
-          ),
-        ),
+        email: EmailInput.dirty('abc'),
+        password: PasswordInput.dirty('password'),
+        loginFailure: LoginWithEmailAndPasswordFailure(),
       ),
     ],
   );

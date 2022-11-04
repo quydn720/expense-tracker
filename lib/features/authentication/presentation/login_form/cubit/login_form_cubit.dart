@@ -1,12 +1,11 @@
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:dartz/dartz.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 
 import '../../../domain/entities/form_value.dart';
+import '../../../domain/usecases/login_with_google_account.dart';
 
 part 'login_form_state.dart';
 part 'login_form_cubit.freezed.dart';
@@ -29,7 +28,7 @@ class LoginFormCubit extends Cubit<LoginFormState> {
         emit(
           state.copyWith(
             status: FormzStatus.submissionFailure,
-            // authFailureOrSuccessOption: optionOf(l)
+            loginFailure: l,
           ),
         );
       }),
@@ -37,34 +36,21 @@ class LoginFormCubit extends Cubit<LoginFormState> {
   }
 
   Future<void> onLoginButtonClicked() async {
-    void _emitSuccess() {
-      return emit(
-        state.copyWith(
-          authFailureOrSuccessOption: none(),
-          status: FormzStatus.submissionSuccess,
-        ),
-      );
-    }
-
-    void _emitFailure(Either<LogInWithEmailAndPasswordFailure, Unit> failure) {
-      return emit(
-        state.copyWith(
-          authFailureOrSuccessOption: optionOf(failure),
-          status: FormzStatus.submissionFailure,
-        ),
-      );
-    }
-
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
 
-    final failure = await _loginWithEmailAndPwUseCase(
+    final loginResult = await _loginWithEmailAndPwUseCase(
       email: state.email.value,
       password: state.password.value,
     );
 
-    failure.fold(
-      (_) => _emitFailure(failure),
-      (_) => _emitSuccess(),
+    loginResult.fold(
+      (failure) => emit(
+        state.copyWith(
+          status: FormzStatus.submissionFailure,
+          loginFailure: failure,
+        ),
+      ),
+      (_) => emit(state.copyWith(status: FormzStatus.submissionSuccess)),
     );
   }
 
@@ -99,18 +85,5 @@ class LoginFormCubit extends Cubit<LoginFormState> {
   Future<void> close() {
     // print('login cubit close');
     return super.close();
-  }
-}
-
-@injectable
-class LoginWithGoogleUseCase {
-  LoginWithGoogleUseCase({
-    required IAuthenticationRepository auth,
-  }) : _auth = auth;
-
-  final IAuthenticationRepository _auth;
-  Future<Either<LogInWithGoogleFailure, Unit>> call() async {
-    await _auth.logInWithGoogle();
-    return right(unit);
   }
 }

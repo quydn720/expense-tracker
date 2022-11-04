@@ -20,8 +20,7 @@ mixin _$LoginFormState {
   PasswordInput get password => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
   bool get isObscured => throw _privateConstructorUsedError;
-  Option<Either<LogInWithEmailAndPasswordFailure, Unit>>
-      get authFailureOrSuccessOption => throw _privateConstructorUsedError;
+  LoginFailure? get loginFailure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginFormStateCopyWith<LoginFormState> get copyWith =>
@@ -38,8 +37,9 @@ abstract class $LoginFormStateCopyWith<$Res> {
       PasswordInput password,
       FormzStatus status,
       bool isObscured,
-      Option<Either<LogInWithEmailAndPasswordFailure, Unit>>
-          authFailureOrSuccessOption});
+      LoginFailure? loginFailure});
+
+  $LoginFailureCopyWith<$Res>? get loginFailure;
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$LoginFormStateCopyWithImpl<$Res>
     Object? password = freezed,
     Object? status = freezed,
     Object? isObscured = freezed,
-    Object? authFailureOrSuccessOption = freezed,
+    Object? loginFailure = freezed,
   }) {
     return _then(_value.copyWith(
       email: email == freezed
@@ -76,11 +76,22 @@ class _$LoginFormStateCopyWithImpl<$Res>
           ? _value.isObscured
           : isObscured // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
-          ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<LogInWithEmailAndPasswordFailure, Unit>>,
+      loginFailure: loginFailure == freezed
+          ? _value.loginFailure
+          : loginFailure // ignore: cast_nullable_to_non_nullable
+              as LoginFailure?,
     ));
+  }
+
+  @override
+  $LoginFailureCopyWith<$Res>? get loginFailure {
+    if (_value.loginFailure == null) {
+      return null;
+    }
+
+    return $LoginFailureCopyWith<$Res>(_value.loginFailure!, (value) {
+      return _then(_value.copyWith(loginFailure: value));
+    });
   }
 }
 
@@ -96,8 +107,10 @@ abstract class _$$_LoginFormStateCopyWith<$Res>
       PasswordInput password,
       FormzStatus status,
       bool isObscured,
-      Option<Either<LogInWithEmailAndPasswordFailure, Unit>>
-          authFailureOrSuccessOption});
+      LoginFailure? loginFailure});
+
+  @override
+  $LoginFailureCopyWith<$Res>? get loginFailure;
 }
 
 /// @nodoc
@@ -117,7 +130,7 @@ class __$$_LoginFormStateCopyWithImpl<$Res>
     Object? password = freezed,
     Object? status = freezed,
     Object? isObscured = freezed,
-    Object? authFailureOrSuccessOption = freezed,
+    Object? loginFailure = freezed,
   }) {
     return _then(_$_LoginFormState(
       email: email == freezed
@@ -136,10 +149,10 @@ class __$$_LoginFormStateCopyWithImpl<$Res>
           ? _value.isObscured
           : isObscured // ignore: cast_nullable_to_non_nullable
               as bool,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
-          ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<LogInWithEmailAndPasswordFailure, Unit>>,
+      loginFailure: loginFailure == freezed
+          ? _value.loginFailure
+          : loginFailure // ignore: cast_nullable_to_non_nullable
+              as LoginFailure?,
     ));
   }
 }
@@ -152,7 +165,7 @@ class _$_LoginFormState implements _LoginFormState {
       this.password = const PasswordInput.pure(''),
       this.status = FormzStatus.pure,
       this.isObscured = true,
-      this.authFailureOrSuccessOption = const None()});
+      this.loginFailure});
 
   @override
   @JsonKey()
@@ -167,13 +180,11 @@ class _$_LoginFormState implements _LoginFormState {
   @JsonKey()
   final bool isObscured;
   @override
-  @JsonKey()
-  final Option<Either<LogInWithEmailAndPasswordFailure, Unit>>
-      authFailureOrSuccessOption;
+  final LoginFailure? loginFailure;
 
   @override
   String toString() {
-    return 'LoginFormState(email: $email, password: $password, status: $status, isObscured: $isObscured, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'LoginFormState(email: $email, password: $password, status: $status, isObscured: $isObscured, loginFailure: $loginFailure)';
   }
 
   @override
@@ -186,8 +197,8 @@ class _$_LoginFormState implements _LoginFormState {
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality()
                 .equals(other.isObscured, isObscured) &&
-            const DeepCollectionEquality().equals(
-                other.authFailureOrSuccessOption, authFailureOrSuccessOption));
+            const DeepCollectionEquality()
+                .equals(other.loginFailure, loginFailure));
   }
 
   @override
@@ -197,7 +208,7 @@ class _$_LoginFormState implements _LoginFormState {
       const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(isObscured),
-      const DeepCollectionEquality().hash(authFailureOrSuccessOption));
+      const DeepCollectionEquality().hash(loginFailure));
 
   @JsonKey(ignore: true)
   @override
@@ -211,8 +222,7 @@ abstract class _LoginFormState implements LoginFormState {
       final PasswordInput password,
       final FormzStatus status,
       final bool isObscured,
-      final Option<Either<LogInWithEmailAndPasswordFailure, Unit>>
-          authFailureOrSuccessOption}) = _$_LoginFormState;
+      final LoginFailure? loginFailure}) = _$_LoginFormState;
 
   @override
   EmailInput get email;
@@ -223,8 +233,7 @@ abstract class _LoginFormState implements LoginFormState {
   @override
   bool get isObscured;
   @override
-  Option<Either<LogInWithEmailAndPasswordFailure, Unit>>
-      get authFailureOrSuccessOption;
+  LoginFailure? get loginFailure;
   @override
   @JsonKey(ignore: true)
   _$$_LoginFormStateCopyWith<_$_LoginFormState> get copyWith =>

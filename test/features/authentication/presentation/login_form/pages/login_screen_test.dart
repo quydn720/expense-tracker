@@ -1,5 +1,4 @@
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:dartz/dartz.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
@@ -81,20 +80,14 @@ void main() {
     when(() => loginFormCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
         const LoginFormState(status: FormzStatus.submissionInProgress),
-        LoginFormState(
+        const LoginFormState(
           status: FormzStatus.submissionFailure,
-          authFailureOrSuccessOption: optionOf(
-            left(const LogInWithEmailAndPasswordFailure(message: 'f')),
-          ),
+          loginFailure: LoginWithEmailAndPasswordFailure(),
         ),
       ]),
     );
     when(() => loginFormCubit.state).thenReturn(
-      LoginFormState(
-        authFailureOrSuccessOption: optionOf(
-          left(const LogInWithEmailAndPasswordFailure.invalidEmail()),
-        ),
-      ),
+      const LoginFormState(loginFailure: LoginWithEmailAndPasswordFailure()),
     );
 
     await tester.pumpWidget(
@@ -115,18 +108,18 @@ void main() {
     when(() => loginFormCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
         const LoginFormState(status: FormzStatus.submissionInProgress),
-        LoginFormState(
+        const LoginFormState(
           status: FormzStatus.submissionFailure,
-          authFailureOrSuccessOption: optionOf(
-            left(const LogInWithEmailAndPasswordFailure.invalidEmail()),
+          loginFailure: LoginWithEmailAndPasswordFailure(
+            code: LoginWithEmailAndPasswordError.invalidEmail(),
           ),
         ),
       ]),
     );
     when(() => loginFormCubit.state).thenReturn(
-      LoginFormState(
-        authFailureOrSuccessOption: optionOf(
-          left(const LogInWithEmailAndPasswordFailure.invalidEmail()),
+      const LoginFormState(
+        loginFailure: LoginWithEmailAndPasswordFailure(
+          code: LoginWithEmailAndPasswordError.invalidEmail(),
         ),
       ),
     );

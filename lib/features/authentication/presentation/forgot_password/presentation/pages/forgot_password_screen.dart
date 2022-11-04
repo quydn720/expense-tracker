@@ -14,10 +14,7 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ForgotPasswordCubit>(
-      create: (_) => ForgotPasswordCubit(
-        getIt<ForgotPasswordUseCase>(),
-        initialEmail: email,
-      ),
+      create: (_) => ForgotPasswordCubit(getIt(), initialEmail: email),
       child: const ForgotPasswordView(),
     );
   }
@@ -53,6 +50,7 @@ class ForgotPasswordView extends StatelessWidget {
               const SizedBox(height: 16),
               TextFormField(
                 initialValue: controller.state.email,
+                keyboardType: TextInputType.emailAddress,
                 autocorrect: false,
                 onChanged: controller.onEmailChanged,
                 decoration: InputDecoration(

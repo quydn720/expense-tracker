@@ -4,8 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'authentication_repository.dart';
-import 'models/auth_failure.dart';
-import 'models/user.dart';
+import 'models/models.dart';
 
 /// {@template authentication_repository}
 /// Repository which manages user authentication.
@@ -73,13 +72,13 @@ class AuthenticationRepository implements IAuthenticationRepository {
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw SignUpWithEmailAndPasswordFailure.fromCode(e.code);
     } catch (_) {
-      throw const SignUpWithEmailAndPasswordFailure();
+      throw const SignUpWithEmailAndPasswordFailure.unknown();
     }
   }
 
   /// Starts the Sign In with Google Flow.
   ///
-  /// Throws a [LogInWithGoogleFailure] if an exception occurs.
+  /// Throws a [LoginWithGoogleFailure] if an exception occurs.
   @override
   Future<void> logInWithGoogle() async {
     try {
@@ -101,15 +100,17 @@ class AuthenticationRepository implements IAuthenticationRepository {
 
       await _firebaseAuth.signInWithCredential(credential);
     } on firebase_auth.FirebaseAuthException catch (e) {
-      throw LogInWithGoogleFailure.fromCode(e.code);
+      throw LoginWithGoogleFailure(
+        code: LoginWithGoogleError.fromCode(e.code),
+      );
     } catch (_) {
-      throw const LogInWithGoogleFailure();
+      throw const LoginWithGoogleFailure();
     }
   }
 
   /// Signs in with the provided [email] and [password].
   ///
-  /// Throws a [LogInWithEmailAndPasswordFailure] if an exception occurs.
+  /// Throws a [LoginWithEmailAndPasswordFailure] if an exception occurs.
   @override
   Future<void> logInWithEmailAndPassword({
     required String email,
@@ -121,9 +122,11 @@ class AuthenticationRepository implements IAuthenticationRepository {
         password: password,
       );
     } on firebase_auth.FirebaseAuthException catch (e) {
-      throw LogInWithEmailAndPasswordFailure.fromCode(e.code);
+      throw LoginWithEmailAndPasswordFailure(
+        code: LoginWithEmailAndPasswordError.fromCode(e.code),
+      );
     } catch (_) {
-      throw const LogInWithEmailAndPasswordFailure();
+      throw const LoginWithEmailAndPasswordFailure();
     }
   }
 
@@ -180,16 +183,22 @@ class AuthenticationRepository implements IAuthenticationRepository {
 
   @override
   Future<void> forgotPassword(String email) async {
-    final actionCodeSettings = firebase_auth.ActionCodeSettings(
-      url: 'https://expense-tracker-dev-d39f8.firebaseapp.com/',
-      iOSBundleId: 'com.quydn720.expenseTracker.dev',
-      androidPackageName: 'com.quydn720.expense_tracker.dev',
-    );
+    try {
+      final actionCodeSettings = firebase_auth.ActionCodeSettings(
+        url: 'https://expense-tracker-dev-d39f8.firebaseapp.com/',
+        iOSBundleId: 'com.quydn720.expenseTracker.dev',
+        androidPackageName: 'com.quydn720.expense_tracker.dev',
+      );
 
-    await _firebaseAuth.sendPasswordResetEmail(
-      email: email,
-      actionCodeSettings: actionCodeSettings,
-    );
+      await _firebaseAuth.sendPasswordResetEmail(
+        email: email,
+        actionCodeSettings: actionCodeSettings,
+      );
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      throw ForgotPasswordFailure.fromCode(e.code);
+    } catch (_) {
+      throw const ForgotPasswordFailure();
+    }
   }
 }
 

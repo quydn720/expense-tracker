@@ -1,8 +1,8 @@
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/app.dart';
+import 'package:expense_tracker/features/authentication/domain/usecases/forgot_password_use_case.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
-import 'package:expense_tracker/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
-import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart';
+import 'package:expense_tracker/features/authentication/domain/usecases/login_with_google_account.dart';
 import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
 import 'package:expense_tracker/features/transaction_overview/domain/usecases/load_transactions.dart';
 import 'package:expense_tracker/features/transaction_overview/presentation/bloc/transaction_bloc.dart';

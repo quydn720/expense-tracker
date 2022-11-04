@@ -617,9 +617,6 @@ PODS:
     - FirebaseAuth (~> 9.5.0)
   - Firebase/CoreOnly (9.5.0):
     - FirebaseCore (= 9.5.0)
-  - Firebase/Database (9.5.0):
-    - Firebase/CoreOnly
-    - FirebaseDatabase (~> 9.5.0)
   - Firebase/DynamicLinks (9.5.0):
     - Firebase/CoreOnly
     - FirebaseDynamicLinks (~> 9.5.0)
@@ -632,10 +629,6 @@ PODS:
     - Flutter
   - firebase_core (1.23.0):
     - Firebase/CoreOnly (= 9.5.0)
-    - Flutter
-  - firebase_database (9.1.7):
-    - Firebase/Database (= 9.5.0)
-    - firebase_core
     - Flutter
   - firebase_dynamic_links (4.3.10):
     - Firebase/DynamicLinks (= 9.5.0)
@@ -658,9 +651,6 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseCoreInternal (9.6.0):
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-  - FirebaseDatabase (9.5.0):
-    - FirebaseCore (~> 9.0)
-    - leveldb-library (~> 1.22)
   - FirebaseDynamicLinks (9.5.0):
     - FirebaseCore (~> 9.0)
   - FirebaseFirestore (9.5.0):
@@ -784,7 +774,6 @@ DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
-  - firebase_database (from `.symlinks/plugins/firebase_database/ios`)
   - firebase_dynamic_links (from `.symlinks/plugins/firebase_dynamic_links/ios`)
   - Flutter (from `Flutter`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
@@ -803,7 +792,6 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreInternal
-    - FirebaseDatabase
     - FirebaseDynamicLinks
     - FirebaseFirestore
     - GoogleDataTransport
@@ -825,8 +813,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
-  firebase_database:
-    :path: ".symlinks/plugins/firebase_database/ios"
   firebase_dynamic_links:
     :path: ".symlinks/plugins/firebase_dynamic_links/ios"
   Flutter:
@@ -850,13 +836,11 @@ SPEC CHECKSUMS:
   Firebase: 800f16f07af493d98d017446a315c27af0552f41
   firebase_auth: 29485cbf2b2c5f0710f7c5dc3fa490736d70a675
   firebase_core: c266297725f66cacd7eac30745cd1a629d3b048b
-  firebase_database: 645fdaa8ca6c21d44a681e54eb0cfdd206b6717a
   firebase_dynamic_links: d8b3fc899d1eea3391d17fce0646f4031836a90a
   FirebaseAuth: 741918f1fa62ed23246a509279f91d42d79a713f
   FirebaseCore: 25c0400b670fd1e2f2104349cd3b5dcce8d9418f
   FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
   FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
-  FirebaseDatabase: 0e2d3b1c935bb5ae704afc2f5c0adda365102312
   FirebaseDynamicLinks: e2805928aefebd742288161f99469ab84d4aa8c8
   FirebaseFirestore: e4136560a4bdd1de5f02bc79ccb8414325b08823
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854

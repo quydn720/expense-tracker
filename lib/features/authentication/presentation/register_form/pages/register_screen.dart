@@ -224,6 +224,7 @@ class _EmailInputField extends StatelessWidget {
     return TextFormField(
       key: const Key('email_input_field'),
       onChanged: (v) => context.read<RegisterFormCubit>().onEmailChanged(v),
+      keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         hintText: 'Email',
         errorText: context.watch<RegisterFormCubit>().state.email.invalid
@@ -246,6 +247,7 @@ class _PasswordInputField extends StatelessWidget {
           key: const Key('pw_input_field'),
           onChanged: (v) =>
               context.read<RegisterFormCubit>().onPasswordChanged(v),
+          autocorrect: false,
           decoration: InputDecoration(
             hintText: 'Password',
             errorText: state.password.invalid ? state.password.error : null,

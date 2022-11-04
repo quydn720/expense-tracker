@@ -1,4 +1,5 @@
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:expense_tracker/l10n/gen/app_localizations.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -36,17 +37,11 @@ class LoginScreen extends StatelessWidget {
             current.status == FormzStatus.submissionFailure;
       },
       listener: (context, state) {
-        state.authFailureOrSuccessOption.fold(
-          () {},
-          (either) => either.leftMap(
-            (failure) {
-              final content = failure.toLocalizedString(context);
-              ScaffoldMessenger.of(context).removeCurrentSnackBar();
-              return ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(content)),
-              );
-            },
-          ),
+        final content = state.loginFailure?.toLocalizedString(context.l10n);
+
+        ScaffoldMessenger.of(context).removeCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(content!)),
         );
       },
       child: Scaffold(
@@ -104,15 +99,19 @@ class _ForgotPassword extends StatelessWidget {
   }
 }
 
-extension AuthErrorLocalizationX on LogInWithEmailAndPasswordFailure {
-  String toLocalizedString(BuildContext context) {
+extension LoginFailureX on LoginFailure {
+  String toLocalizedString(AppLocalizations dict) {
     return map(
-      invalidEmail: (_) => context.l10n.authError_invalidEmail,
-      userDisabled: (_) => context.l10n.authError_userDisabled,
-      userNotFound: (_) => context.l10n.authError_userNotFound,
-      wrongPassword: (_) => context.l10n.authError_wrongPassword,
-      (_) => context.l10n.authError_unknownException,
-    );
+      withGoogle: (_) => '',
+      withEmailAndPassword: (failure) => failure.code.map(
+        invalidEmail: (_) => dict.authError_invalidEmail,
+        userDisabled: (_) => dict.authError_userDisabled,
+        userNotFound: (_) => dict.authError_userNotFound,
+        wrongPassword: (_) => dict.authError_wrongPassword,
+        unknown: (_) => dict.authError_unknownException,
+      ),
+      (_) => dict.authError_unknownException,
+    )!;
   }
 }
 
@@ -169,6 +168,7 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isValid = context.watch<LoginFormCubit>().state.status.isValidated;
+
     return ElevatedButton(
       key: const Key('login_button'),
       onPressed:
@@ -189,6 +189,8 @@ class _EmailInputField extends StatelessWidget {
     return TextFormField(
       key: const Key('email_input_field'),
       onChanged: (v) => context.read<LoginFormCubit>().onEmailChanged(v),
+      autocorrect: false,
+      keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         hintText: 'Email',
         errorText: context.watch<LoginFormCubit>().state.email.invalid
@@ -211,6 +213,7 @@ class _PasswordInputField extends StatelessWidget {
         return TextFormField(
           key: const Key('pw_input_field'),
           onChanged: formCubit.onPasswordChanged,
+          autocorrect: false,
           decoration: InputDecoration(
             hintText: 'Password',
             errorText: state.password.invalid ? state.password.error : null,

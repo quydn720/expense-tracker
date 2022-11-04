@@ -1,6 +1,5 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -11,7 +10,7 @@ class LoginWithEmailAndPwUseCase {
 
   final IAuthenticationRepository _auth;
 
-  Future<Either<LogInWithEmailAndPasswordFailure, Unit>> call({
+  Future<Either<LoginWithEmailAndPasswordFailure, Unit>> call({
     required String email,
     required String password,
   }) async {
@@ -21,10 +20,8 @@ class LoginWithEmailAndPwUseCase {
         password: password,
       );
       return right(unit);
-    } on FirebaseAuthException catch (e) {
-      return left(LogInWithEmailAndPasswordFailure.fromCode(e.code));
-    } catch (_) {
-      return left(const LogInWithEmailAndPasswordFailure());
+    } on LoginWithEmailAndPasswordFailure catch (e) {
+      return left(e);
     }
   }
 }
