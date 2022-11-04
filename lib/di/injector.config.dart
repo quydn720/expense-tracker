@@ -18,14 +18,14 @@ import 'package:transaction_repository/transaction_repository.dart' as _i12;
 
 import '../common/cache/local_cache.dart' as _i8;
 import '../features/app/bloc/app_bloc.dart' as _i16;
+import '../features/authentication/domain/usecases/forgot_password_use_case.dart'
+    as _i17;
 import '../features/authentication/domain/usecases/login_with_email_and_pw.dart'
     as _i9;
 import '../features/authentication/domain/usecases/login_with_google_account.dart'
     as _i10;
 import '../features/authentication/domain/usecases/register_with_email_and_pw.dart'
     as _i14;
-import '../features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart'
-    as _i17;
 import '../features/transaction_overview/domain/usecases/load_transactions.dart'
     as _i15;
 import '../user_preferences.dart' as _i13;
