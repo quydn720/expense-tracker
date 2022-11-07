@@ -15,8 +15,3 @@ class Loaded extends TransactionEvent {
   const Loaded(this.transactions);
   final List<Transaction> transactions;
 }
-
-class AddNewTransaction extends TransactionEvent {
-  const AddNewTransaction(this.transaction);
-  final Transaction transaction;
-}

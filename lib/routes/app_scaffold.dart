@@ -1,4 +1,3 @@
-import 'package:expense_tracker/features/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
-enum ScaffoldTab { home, transaction, budget, profile }
+import '../di/injector.dart';
+import '../features/transaction_overview/presentation/bloc/transaction_bloc.dart';
+
+enum ScaffoldTab { home, transactions, budget, profile }
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({
@@ -20,56 +22,59 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(child: child),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.read<TransactionBloc>().add(
-              AddNewTransaction(Transaction.empty()),
+    return BlocProvider<TransactionBloc>(
+      create: (_) => TransactionBloc(getIt<TransactionRepository>())
+        ..add(const TransactionsSubscriptionRequested()),
+      child: Scaffold(
+        body: SafeArea(child: child),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () => context.push('/transaction'),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          onTap: (value) => _onItemTapped(value, context),
+          currentIndex: selectedTab.index,
+          selectedFontSize: 12,
+          iconSize: 32,
+          items: [
+            BottomNavigationBarItem(
+              icon: Assets.icons.home.svg(
+                color: selectedTab.index == 0
+                    ? const Color(0xff7F3DFF)
+                    : Colors.grey,
+              ),
+              label: context.l10n.home,
             ),
+            BottomNavigationBarItem(
+              icon: Assets.icons.transaction.svg(
+                color: selectedTab.index == 1
+                    ? const Color(0xff7F3DFF)
+                    : Colors.grey,
+              ),
+              label: context.l10n.transactions,
+            ),
+            BottomNavigationBarItem(
+              icon: Assets.icons.pieChart.svg(
+                color: selectedTab.index == 2
+                    ? const Color(0xff7F3DFF)
+                    : Colors.grey,
+              ),
+              label: context.l10n.budget,
+            ),
+            BottomNavigationBarItem(
+              icon: Assets.icons.user.svg(
+                color: selectedTab.index == 3
+                    ? const Color(0xff7F3DFF)
+                    : Colors.grey,
+              ),
+              label: context.l10n.profile,
+            ),
+          ],
+        ),
+        // ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        onTap: (value) => _onItemTapped(value, context),
-        currentIndex: selectedTab.index,
-        selectedFontSize: 12,
-        iconSize: 32,
-        items: [
-          BottomNavigationBarItem(
-            icon: Assets.icons.home.svg(
-              color: selectedTab.index == 0
-                  ? const Color(0xff7F3DFF)
-                  : Colors.grey,
-            ),
-            label: context.l10n.home,
-          ),
-          BottomNavigationBarItem(
-            icon: Assets.icons.transaction.svg(
-              color: selectedTab.index == 1
-                  ? const Color(0xff7F3DFF)
-                  : Colors.grey,
-            ),
-            label: context.l10n.transactions,
-          ),
-          BottomNavigationBarItem(
-            icon: Assets.icons.pieChart.svg(
-              color: selectedTab.index == 2
-                  ? const Color(0xff7F3DFF)
-                  : Colors.grey,
-            ),
-            label: context.l10n.budget,
-          ),
-          BottomNavigationBarItem(
-            icon: Assets.icons.user.svg(
-              color: selectedTab.index == 3
-                  ? const Color(0xff7F3DFF)
-                  : Colors.grey,
-            ),
-            label: context.l10n.profile,
-          ),
-        ],
-      ),
-      // ),
     );
   }
 
@@ -78,7 +83,7 @@ class AppScaffold extends StatelessWidget {
       case ScaffoldTab.home:
         GoRouter.of(context).go('/${ScaffoldTab.values[index].name}');
         break;
-      case ScaffoldTab.transaction:
+      case ScaffoldTab.transactions:
         GoRouter.of(context).go('/${ScaffoldTab.values[index].name}');
         break;
       case ScaffoldTab.budget:

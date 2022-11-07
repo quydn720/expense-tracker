@@ -39,7 +39,10 @@ class $AssetsIconsGen {
   $AssetsIconsBanksGen get banks => const $AssetsIconsBanksGen();
 
   /// File path: assets/icons/camera.png
-  AssetGenImage get camera => const AssetGenImage('assets/icons/camera.png');
+  AssetGenImage get cameraPng => const AssetGenImage('assets/icons/camera.png');
+
+  /// File path: assets/icons/camera.svg
+  SvgGenImage get cameraSvg => const SvgGenImage('assets/icons/camera.svg');
 
   $AssetsIconsCategoriesGen get categories => const $AssetsIconsCategoriesGen();
 
@@ -70,12 +73,19 @@ class $AssetsIconsGen {
   /// File path: assets/icons/expense.png
   AssetGenImage get expense => const AssetGenImage('assets/icons/expense.png');
 
+  /// File path: assets/icons/file.svg
+  SvgGenImage get file => const SvgGenImage('assets/icons/file.svg');
+
   /// File path: assets/icons/flat-color-icons_google.png
   AssetGenImage get flatColorIconsGoogle =>
       const AssetGenImage('assets/icons/flat-color-icons_google.png');
 
   /// File path: assets/icons/gallery.png
-  AssetGenImage get gallery => const AssetGenImage('assets/icons/gallery.png');
+  AssetGenImage get galleryPng =>
+      const AssetGenImage('assets/icons/gallery.png');
+
+  /// File path: assets/icons/gallery.svg
+  SvgGenImage get gallerySvg => const SvgGenImage('assets/icons/gallery.svg');
 
   /// File path: assets/icons/google.svg
   SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
@@ -175,8 +185,12 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/planning.png');
 
   /// File path: assets/images/send_email.png
-  AssetGenImage get sendEmail =>
+  AssetGenImage get sendEmailPng =>
       const AssetGenImage('assets/images/send_email.png');
+
+  /// File path: assets/images/send_email.svg
+  SvgGenImage get sendEmailSvg =>
+      const SvgGenImage('assets/images/send_email.svg');
 
   /// File path: assets/images/shopping.svg
   SvgGenImage get shopping => const SvgGenImage('assets/images/shopping.svg');

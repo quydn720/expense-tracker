@@ -21,6 +21,16 @@
             }
         }
     },
+    "add_attactment": "Thêm tệp đính kèm",
+    "description": "Description",
+    "how_much": "Giá trị giao dịch",
+    "category": "Danh mục",
+    "expense": "Khoản chi",
+    "income": "Khoản thu",
+    "transfer": "Chuyển tiền",
+    "wallet": "Ví tiền",
+    "repeat_str": "Lặp lại",
+    "repeat_transaction": "Giao dịch có lặp lại",
     "profile": "Hồ sơ",
     "home": "Trang chủ",
     "transactions": "Giao dịch",

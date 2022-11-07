@@ -3,20 +3,19 @@ import 'dart:async';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_email_sent_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
+import 'package:expense_tracker/features/edit_transaction/presentation/pages/edit_transaction_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
-import 'package:expense_tracker/features/transaction_overview/domain/usecases/load_transactions.dart';
-import 'package:expense_tracker/features/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
 import 'package:expense_tracker/home_screen.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
+import 'package:expense_tracker/presentations/pages/detail/transaction_detail.dart';
 import 'package:expense_tracker/presentations/pages/onboarding/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
-import '../di/injector.dart';
 import '../features/app/bloc/app_bloc.dart';
 import '../features/authentication/presentation/register_form/pages/register_screen.dart';
 import '../features/settings/presentation/pages/language_screen.dart';
@@ -38,76 +37,90 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) {
         path: '/splash',
         builder: (_, __) => const OnboardingPage(),
       ),
-      ShellRoute(
-        builder: (BuildContext context, GoRouterState state, Widget child) {
-          return BlocProvider<TransactionBloc>(
-            create: (_) => TransactionBloc(
-              getIt<AddTransaction>(),
-              getIt<TransactionRepository>(),
-            )..add(const TransactionsSubscriptionRequested()),
-            child: AppScaffold(selectedTab: ScaffoldTab.home, child: child),
-          );
-        },
+      GoRoute(
+        path: '/home',
+        pageBuilder: (_, __) => FadeTransitionPage(
+          child: const AppScaffold(
+            selectedTab: ScaffoldTab.home,
+            child: HomeScreen(),
+          ),
+          key: _scaffoldKey,
+        ),
+      ),
+      GoRoute(
+        path: '/transactions',
+        pageBuilder: (_, __) => FadeTransitionPage(
+          child: const AppScaffold(
+            selectedTab: ScaffoldTab.home,
+            child: TransactionsScreen(),
+          ),
+          key: _scaffoldKey,
+        ),
         routes: [
           GoRoute(
-            path: '/home',
-            pageBuilder: (_, __) => FadeTransitionPage(
-              child: const HomeScreen(),
-              key: _scaffoldKey,
-            ),
-          ),
-          GoRoute(
-            path: '/transaction',
-            pageBuilder: (_, __) => FadeTransitionPage(
-              child: const TransactionsScreen(),
-              key: _scaffoldKey,
-            ),
-          ),
-          GoRoute(
-            path: '/budget',
-            pageBuilder: (_, __) => FadeTransitionPage(
-              child: const BudgetScreen(),
-              key: _scaffoldKey,
-            ),
-          ),
-          GoRoute(
-            path: '/profile',
-            redirect: (context, state) => '/setting',
-          ),
-          GoRoute(
-            path: '/setting',
-            pageBuilder: (_, __) => FadeTransitionPage(
-              key: _scaffoldKey,
-              child: const SettingScreen(),
-            ),
-            routes: [
-              GoRoute(
-                path: 'currency',
-                builder: (_, __) => const CurrencyScreen(),
-              ),
-              GoRoute(
-                path: 'language',
-                builder: (_, __) => const LanguageScreen(),
-              ),
-              GoRoute(
-                path: 'theme',
-                builder: (_, __) => const ThemeScreen(),
-              ),
-              GoRoute(
-                path: 'security',
-                builder: (_, __) => const SecurityScreen(),
-              ),
-              GoRoute(
-                path: 'notification',
-                builder: (_, __) => const NotificationScreen(),
-              ),
-            ],
-          ),
-          GoRoute(
-            path: '/dev_view',
-            builder: (_, __) => const AppDevelopmentView(),
+            path: ':transactionId',
+            builder: (_, state) {
+              // final id = state.params['transactionId']!;
+              return TransactionDetailPage(transaction: Transaction.empty());
+            },
           ),
         ],
+      ),
+      GoRoute(
+        path: '/budget',
+        pageBuilder: (_, __) => FadeTransitionPage(
+          child: const AppScaffold(
+            selectedTab: ScaffoldTab.home,
+            child: BudgetScreen(),
+          ),
+          key: _scaffoldKey,
+        ),
+      ),
+      GoRoute(
+        path: '/profile',
+        redirect: (context, state) => '/setting',
+      ),
+      GoRoute(
+        path: '/setting',
+        pageBuilder: (_, __) => FadeTransitionPage(
+          key: _scaffoldKey,
+          child: const AppScaffold(
+            selectedTab: ScaffoldTab.home,
+            child: SettingScreen(),
+          ),
+        ),
+        routes: [
+          GoRoute(
+            path: 'currency',
+            builder: (_, __) => const CurrencyScreen(),
+          ),
+          GoRoute(
+            path: 'language',
+            builder: (_, __) => const LanguageScreen(),
+          ),
+          GoRoute(
+            path: 'theme',
+            builder: (_, __) => const ThemeScreen(),
+          ),
+          GoRoute(
+            path: 'security',
+            builder: (_, __) => const SecurityScreen(),
+          ),
+          GoRoute(
+            path: 'notification',
+            builder: (_, __) => const NotificationScreen(),
+          ),
+        ],
+      ),
+      GoRoute(
+        path: '/dev_view',
+        builder: (_, __) => const AppDevelopmentView(),
+      ),
+      GoRoute(
+        path: '/transaction',
+        builder: (_, state) => EditTransactionScreen(
+          inititalTransaction: state.extra as Transaction?,
+        ),
       ),
       GoRoute(
         path: '/success',

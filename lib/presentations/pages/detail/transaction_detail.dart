@@ -1,12 +1,10 @@
+import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
 import '../../../blocs/transaction/transaction_bloc.dart';
-import '../../../blocs/wallet/wallet_bloc.dart';
 import '../../../constants.dart';
-import '../transaction/add_transaction/add_transaction.dart';
 
 class TransactionDetailPage extends StatelessWidget {
   const TransactionDetailPage({
@@ -18,170 +16,8 @@ class TransactionDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor:
-            _transaction.type == TransactionType.expense ? kRed100 : kGreen100,
-        title: const Text(
-          'Detail Transaction',
-          style: TextStyle(color: Colors.white),
-        ),
-        iconTheme: const IconThemeData(color: Colors.white),
-        actions: [
-          IconButton(
-            icon: Image.asset(
-              'assets/icons/trash.png',
-              color: Colors.white,
-            ),
-            onPressed: () {
-              showModalBottomSheet<void>(
-                context: context,
-                builder: (_) => BlocProvider.value(
-                  value: context.read<TransactionBloc>(),
-                  child:
-                      DeleteTransactionBottomSheet(transaction: _transaction),
-                ),
-              );
-            },
-          )
-        ],
-      ),
-      body: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: _transaction.type == TransactionType.expense
-                  ? kRed100
-                  : kGreen100,
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(kDefaultRadius),
-                bottomRight: Radius.circular(kDefaultRadius),
-              ),
-            ),
-            child: Column(
-              children: [
-                Text(
-                  '${_transaction.amount}',
-                  style: titleX.copyWith(color: Colors.white),
-                ),
-                Text(
-                  _transaction.description,
-                  style: body1.copyWith(color: Colors.white),
-                ),
-                Text(
-                  DateFormat(DateFormat.YEAR_MONTH_WEEKDAY_DAY)
-                      .format(_transaction.date),
-                  style: body3.copyWith(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kMediumPadding),
-              child: Material(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(kDefaultRadius),
-                  topRight: Radius.circular(kDefaultRadius),
-                ),
-                elevation: 10,
-                child: DecoratedBox(
-                  decoration: const BoxDecoration(
-                    color: kLight100,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(kDefaultRadius),
-                      topRight: Radius.circular(kDefaultRadius),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(kMediumPadding),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                const Text('Type'),
-                                Text(
-                                  _transaction.type == TransactionType.expense
-                                      ? 'Expense'
-                                      : 'Income',
-                                  style: body2,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                const Text('Category'),
-                                Text(
-                                  _transaction.category,
-                                  style: body2,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                const Text('Wallet'),
-                                Text(
-                                  context
-                                      .read<WalletBloc>()
-                                      .walletRepository
-                                      .currentWallets
-                                      .where(
-                                        (e) => e.id == _transaction.walletId,
-                                      )
-                                      .first
-                                      .name,
-                                  style: body2,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(indent: 20, endIndent: 20, thickness: 2),
-                      const Expanded(
-                        child: Center(
-                          child: Text('This is for additional info'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: ElevatedButton(
-                          child: const Text('Edit'),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (_) => MultiBlocProvider(
-                                  providers: [
-                                    BlocProvider.value(
-                                      value: context.read<WalletBloc>(),
-                                    ),
-                                    BlocProvider.value(
-                                      value: context.read<TransactionBloc>(),
-                                    ),
-                                  ],
-                                  child: EditTransactionPage(
-                                    transaction: _transaction,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
+      appBar: const DefaultAppBar(title: ''),
+      body: Center(child: Text(_transaction.amount.toString())),
     );
   }
 }

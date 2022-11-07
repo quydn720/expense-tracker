@@ -13,6 +13,7 @@ class Transaction {
     required this.walletId,
     required this.type,
     DateTime? date,
+    // List<String>? images,
   })  : id = id ?? const Uuid().v4(),
         date = date ?? DateTime.now(),
         description = description ?? '';

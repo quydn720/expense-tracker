@@ -21,6 +21,16 @@
             }
         }
     },
+    "add_attactment": "Add attachment",
+    "description": "Description",
+    "how_much": "How much?",
+    "category": "Category",
+    "expense": "Expense",
+    "income": "Income",
+    "transfer": "Transfer",
+    "wallet": "Wallet",
+    "repeat_str": "Repeat",
+    "repeat_transaction": "Repeat transaction",
     "profile": "Profile",
     "home": "Home",
     "transactions": "Transactions",
