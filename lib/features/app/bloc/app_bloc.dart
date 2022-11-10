@@ -17,9 +17,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }) : super(
           showOnboarding ? const FirstTimeOpenApp() : const Unauthenticated(),
         ) {
-    on<LogoutRequested>(_onLogOutRequested);
     on<OnUserChanged>(_onUserChanged);
     on<OnEmailVerified>(_onEmailVerified);
+    on<LogoutRequested>(_onLogOutRequested);
+    on<LogoutBottomSheetOpened>((event, emit) {
+      emit(const ShowLogoutBottomSheet());
+    });
+    on<LogoutBottomSheetCanceled>((event, emit) {
+      emit(const Authenticated());
+    });
 
     _authStateSubcription = authenticationRepository.user.listen(
       (user) => add(AppEvent.onUserChanged(user)),
@@ -33,7 +39,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     _emitStateByUserVerifiedStatus(event.user, emit);
   }
 
-  Future<void> _onLogOutRequested(event, emit) async {
+  Future<void> _onLogOutRequested(
+    LogoutRequested event,
+    Emitter<AppState> emit,
+  ) async {
     await authenticationRepository.logOut();
   }
 

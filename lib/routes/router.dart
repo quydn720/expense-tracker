@@ -5,12 +5,14 @@ import 'package:expense_tracker/features/authentication/presentation/forgot_pass
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
 import 'package:expense_tracker/features/edit_transaction/presentation/pages/edit_transaction_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/profile_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
 import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
 import 'package:expense_tracker/home_screen.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:expense_tracker/presentations/pages/detail/transaction_detail.dart';
 import 'package:expense_tracker/presentations/pages/onboarding/onboarding_page.dart';
+import 'package:expense_tracker/presentations/pages/profile/export/export_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -51,7 +53,7 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) {
         path: '/transactions',
         pageBuilder: (_, __) => FadeTransitionPage(
           child: const AppScaffold(
-            selectedTab: ScaffoldTab.home,
+            selectedTab: ScaffoldTab.transactions,
             child: TransactionsScreen(),
           ),
           key: _scaffoldKey,
@@ -70,7 +72,7 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) {
         path: '/budget',
         pageBuilder: (_, __) => FadeTransitionPage(
           child: const AppScaffold(
-            selectedTab: ScaffoldTab.home,
+            selectedTab: ScaffoldTab.budget,
             child: BudgetScreen(),
           ),
           key: _scaffoldKey,
@@ -78,17 +80,28 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) {
       ),
       GoRoute(
         path: '/profile',
-        redirect: (context, state) => '/setting',
+        pageBuilder: (_, __) => FadeTransitionPage(
+          child: const AppScaffold(
+            color: Color(0xffF6F6F6),
+            selectedTab: ScaffoldTab.profile,
+            child: ProfileScreen(),
+          ),
+          key: _scaffoldKey,
+        ),
+        routes: [
+          GoRoute(
+            path: 'account',
+            builder: (_, __) => const CurrencyScreen(),
+          ),
+          GoRoute(
+            path: 'export-data',
+            builder: (_, __) => const ExportScreen(),
+          ),
+        ],
       ),
       GoRoute(
         path: '/setting',
-        pageBuilder: (_, __) => FadeTransitionPage(
-          key: _scaffoldKey,
-          child: const AppScaffold(
-            selectedTab: ScaffoldTab.home,
-            child: SettingScreen(),
-          ),
-        ),
+        builder: (_, __) => const SettingScreen(),
         routes: [
           GoRoute(
             path: 'currency',

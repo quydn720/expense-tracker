@@ -1,8 +1,11 @@
 part of 'authentication_bloc.dart';
 
-abstract class AuthenticationEvent extends Equatable {
-  const AuthenticationEvent();
-
-  @override
-  List<Object> get props => [];
+@freezed
+class AuthenticationEvent {
+  const factory AuthenticationEvent() = _AuthenticationEvent;
+  const factory AuthenticationEvent.login({
+    required String email,
+    required String password,
+  }) = _AuthenticationEventLogin;
+  const factory AuthenticationEvent.logout() = _AuthenticationEventLogout;
 }

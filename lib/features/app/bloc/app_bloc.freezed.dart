@@ -21,6 +21,8 @@ mixin _$AppEvent {
     required TResult Function(User user) onUserChanged,
     required TResult Function(User user) onEmailVerified,
     required TResult Function() logoutRequested,
+    required TResult Function() logoutBottomSheetOpened,
+    required TResult Function() logoutBottomSheetCanceled,
     required TResult Function() onboardingCompleted,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +31,8 @@ mixin _$AppEvent {
     TResult Function(User user)? onUserChanged,
     TResult Function(User user)? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
     TResult Function()? onboardingCompleted,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +41,8 @@ mixin _$AppEvent {
     TResult Function(User user)? onUserChanged,
     TResult Function(User user)? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
     TResult Function()? onboardingCompleted,
     required TResult orElse(),
   }) =>
@@ -46,6 +52,10 @@ mixin _$AppEvent {
     required TResult Function(OnUserChanged value) onUserChanged,
     required TResult Function(OnEmailVerified value) onEmailVerified,
     required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(LogoutBottomSheetOpened value)
+        logoutBottomSheetOpened,
+    required TResult Function(LogoutBottomSheetCanceled value)
+        logoutBottomSheetCanceled,
     required TResult Function(OnboardingCompleted value) onboardingCompleted,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +64,9 @@ mixin _$AppEvent {
     TResult Function(OnUserChanged value)? onUserChanged,
     TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
     TResult Function(OnboardingCompleted value)? onboardingCompleted,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +75,9 @@ mixin _$AppEvent {
     TResult Function(OnUserChanged value)? onUserChanged,
     TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
     TResult Function(OnboardingCompleted value)? onboardingCompleted,
     required TResult orElse(),
   }) =>
@@ -150,6 +166,8 @@ class _$OnUserChanged implements OnUserChanged {
     required TResult Function(User user) onUserChanged,
     required TResult Function(User user) onEmailVerified,
     required TResult Function() logoutRequested,
+    required TResult Function() logoutBottomSheetOpened,
+    required TResult Function() logoutBottomSheetCanceled,
     required TResult Function() onboardingCompleted,
   }) {
     return onUserChanged(user);
@@ -161,6 +179,8 @@ class _$OnUserChanged implements OnUserChanged {
     TResult Function(User user)? onUserChanged,
     TResult Function(User user)? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
     TResult Function()? onboardingCompleted,
   }) {
     return onUserChanged?.call(user);
@@ -172,6 +192,8 @@ class _$OnUserChanged implements OnUserChanged {
     TResult Function(User user)? onUserChanged,
     TResult Function(User user)? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
     TResult Function()? onboardingCompleted,
     required TResult orElse(),
   }) {
@@ -187,6 +209,10 @@ class _$OnUserChanged implements OnUserChanged {
     required TResult Function(OnUserChanged value) onUserChanged,
     required TResult Function(OnEmailVerified value) onEmailVerified,
     required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(LogoutBottomSheetOpened value)
+        logoutBottomSheetOpened,
+    required TResult Function(LogoutBottomSheetCanceled value)
+        logoutBottomSheetCanceled,
     required TResult Function(OnboardingCompleted value) onboardingCompleted,
   }) {
     return onUserChanged(this);
@@ -198,6 +224,9 @@ class _$OnUserChanged implements OnUserChanged {
     TResult Function(OnUserChanged value)? onUserChanged,
     TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
     TResult Function(OnboardingCompleted value)? onboardingCompleted,
   }) {
     return onUserChanged?.call(this);
@@ -209,6 +238,9 @@ class _$OnUserChanged implements OnUserChanged {
     TResult Function(OnUserChanged value)? onUserChanged,
     TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
     TResult Function(OnboardingCompleted value)? onboardingCompleted,
     required TResult orElse(),
   }) {
@@ -295,6 +327,8 @@ class _$OnEmailVerified implements OnEmailVerified {
     required TResult Function(User user) onUserChanged,
     required TResult Function(User user) onEmailVerified,
     required TResult Function() logoutRequested,
+    required TResult Function() logoutBottomSheetOpened,
+    required TResult Function() logoutBottomSheetCanceled,
     required TResult Function() onboardingCompleted,
   }) {
     return onEmailVerified(user);
@@ -306,6 +340,8 @@ class _$OnEmailVerified implements OnEmailVerified {
     TResult Function(User user)? onUserChanged,
     TResult Function(User user)? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
     TResult Function()? onboardingCompleted,
   }) {
     return onEmailVerified?.call(user);
@@ -317,6 +353,8 @@ class _$OnEmailVerified implements OnEmailVerified {
     TResult Function(User user)? onUserChanged,
     TResult Function(User user)? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
     TResult Function()? onboardingCompleted,
     required TResult orElse(),
   }) {
@@ -332,6 +370,10 @@ class _$OnEmailVerified implements OnEmailVerified {
     required TResult Function(OnUserChanged value) onUserChanged,
     required TResult Function(OnEmailVerified value) onEmailVerified,
     required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(LogoutBottomSheetOpened value)
+        logoutBottomSheetOpened,
+    required TResult Function(LogoutBottomSheetCanceled value)
+        logoutBottomSheetCanceled,
     required TResult Function(OnboardingCompleted value) onboardingCompleted,
   }) {
     return onEmailVerified(this);
@@ -343,6 +385,9 @@ class _$OnEmailVerified implements OnEmailVerified {
     TResult Function(OnUserChanged value)? onUserChanged,
     TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
     TResult Function(OnboardingCompleted value)? onboardingCompleted,
   }) {
     return onEmailVerified?.call(this);
@@ -354,6 +399,9 @@ class _$OnEmailVerified implements OnEmailVerified {
     TResult Function(OnUserChanged value)? onUserChanged,
     TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
     TResult Function(OnboardingCompleted value)? onboardingCompleted,
     required TResult orElse(),
   }) {
@@ -416,6 +464,8 @@ class _$LogoutRequested implements LogoutRequested {
     required TResult Function(User user) onUserChanged,
     required TResult Function(User user) onEmailVerified,
     required TResult Function() logoutRequested,
+    required TResult Function() logoutBottomSheetOpened,
+    required TResult Function() logoutBottomSheetCanceled,
     required TResult Function() onboardingCompleted,
   }) {
     return logoutRequested();
@@ -427,6 +477,8 @@ class _$LogoutRequested implements LogoutRequested {
     TResult Function(User user)? onUserChanged,
     TResult Function(User user)? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
     TResult Function()? onboardingCompleted,
   }) {
     return logoutRequested?.call();
@@ -438,6 +490,8 @@ class _$LogoutRequested implements LogoutRequested {
     TResult Function(User user)? onUserChanged,
     TResult Function(User user)? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
     TResult Function()? onboardingCompleted,
     required TResult orElse(),
   }) {
@@ -453,6 +507,10 @@ class _$LogoutRequested implements LogoutRequested {
     required TResult Function(OnUserChanged value) onUserChanged,
     required TResult Function(OnEmailVerified value) onEmailVerified,
     required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(LogoutBottomSheetOpened value)
+        logoutBottomSheetOpened,
+    required TResult Function(LogoutBottomSheetCanceled value)
+        logoutBottomSheetCanceled,
     required TResult Function(OnboardingCompleted value) onboardingCompleted,
   }) {
     return logoutRequested(this);
@@ -464,6 +522,9 @@ class _$LogoutRequested implements LogoutRequested {
     TResult Function(OnUserChanged value)? onUserChanged,
     TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
     TResult Function(OnboardingCompleted value)? onboardingCompleted,
   }) {
     return logoutRequested?.call(this);
@@ -475,6 +536,9 @@ class _$LogoutRequested implements LogoutRequested {
     TResult Function(OnUserChanged value)? onUserChanged,
     TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
     TResult Function(OnboardingCompleted value)? onboardingCompleted,
     required TResult orElse(),
   }) {
@@ -487,6 +551,277 @@ class _$LogoutRequested implements LogoutRequested {
 
 abstract class LogoutRequested implements AppEvent {
   const factory LogoutRequested() = _$LogoutRequested;
+}
+
+/// @nodoc
+abstract class _$$LogoutBottomSheetOpenedCopyWith<$Res> {
+  factory _$$LogoutBottomSheetOpenedCopyWith(_$LogoutBottomSheetOpened value,
+          $Res Function(_$LogoutBottomSheetOpened) then) =
+      __$$LogoutBottomSheetOpenedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LogoutBottomSheetOpenedCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res>
+    implements _$$LogoutBottomSheetOpenedCopyWith<$Res> {
+  __$$LogoutBottomSheetOpenedCopyWithImpl(_$LogoutBottomSheetOpened _value,
+      $Res Function(_$LogoutBottomSheetOpened) _then)
+      : super(_value, (v) => _then(v as _$LogoutBottomSheetOpened));
+
+  @override
+  _$LogoutBottomSheetOpened get _value =>
+      super._value as _$LogoutBottomSheetOpened;
+}
+
+/// @nodoc
+
+class _$LogoutBottomSheetOpened implements LogoutBottomSheetOpened {
+  const _$LogoutBottomSheetOpened();
+
+  @override
+  String toString() {
+    return 'AppEvent.logoutBottomSheetOpened()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LogoutBottomSheetOpened);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user) onUserChanged,
+    required TResult Function(User user) onEmailVerified,
+    required TResult Function() logoutRequested,
+    required TResult Function() logoutBottomSheetOpened,
+    required TResult Function() logoutBottomSheetCanceled,
+    required TResult Function() onboardingCompleted,
+  }) {
+    return logoutBottomSheetOpened();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? onUserChanged,
+    TResult Function(User user)? onEmailVerified,
+    TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
+    TResult Function()? onboardingCompleted,
+  }) {
+    return logoutBottomSheetOpened?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user)? onUserChanged,
+    TResult Function(User user)? onEmailVerified,
+    TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
+    TResult Function()? onboardingCompleted,
+    required TResult orElse(),
+  }) {
+    if (logoutBottomSheetOpened != null) {
+      return logoutBottomSheetOpened();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnUserChanged value) onUserChanged,
+    required TResult Function(OnEmailVerified value) onEmailVerified,
+    required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(LogoutBottomSheetOpened value)
+        logoutBottomSheetOpened,
+    required TResult Function(LogoutBottomSheetCanceled value)
+        logoutBottomSheetCanceled,
+    required TResult Function(OnboardingCompleted value) onboardingCompleted,
+  }) {
+    return logoutBottomSheetOpened(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
+    TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
+  }) {
+    return logoutBottomSheetOpened?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
+    TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
+    required TResult orElse(),
+  }) {
+    if (logoutBottomSheetOpened != null) {
+      return logoutBottomSheetOpened(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LogoutBottomSheetOpened implements AppEvent {
+  const factory LogoutBottomSheetOpened() = _$LogoutBottomSheetOpened;
+}
+
+/// @nodoc
+abstract class _$$LogoutBottomSheetCanceledCopyWith<$Res> {
+  factory _$$LogoutBottomSheetCanceledCopyWith(
+          _$LogoutBottomSheetCanceled value,
+          $Res Function(_$LogoutBottomSheetCanceled) then) =
+      __$$LogoutBottomSheetCanceledCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LogoutBottomSheetCanceledCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res>
+    implements _$$LogoutBottomSheetCanceledCopyWith<$Res> {
+  __$$LogoutBottomSheetCanceledCopyWithImpl(_$LogoutBottomSheetCanceled _value,
+      $Res Function(_$LogoutBottomSheetCanceled) _then)
+      : super(_value, (v) => _then(v as _$LogoutBottomSheetCanceled));
+
+  @override
+  _$LogoutBottomSheetCanceled get _value =>
+      super._value as _$LogoutBottomSheetCanceled;
+}
+
+/// @nodoc
+
+class _$LogoutBottomSheetCanceled implements LogoutBottomSheetCanceled {
+  const _$LogoutBottomSheetCanceled();
+
+  @override
+  String toString() {
+    return 'AppEvent.logoutBottomSheetCanceled()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LogoutBottomSheetCanceled);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user) onUserChanged,
+    required TResult Function(User user) onEmailVerified,
+    required TResult Function() logoutRequested,
+    required TResult Function() logoutBottomSheetOpened,
+    required TResult Function() logoutBottomSheetCanceled,
+    required TResult Function() onboardingCompleted,
+  }) {
+    return logoutBottomSheetCanceled();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? onUserChanged,
+    TResult Function(User user)? onEmailVerified,
+    TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
+    TResult Function()? onboardingCompleted,
+  }) {
+    return logoutBottomSheetCanceled?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user)? onUserChanged,
+    TResult Function(User user)? onEmailVerified,
+    TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
+    TResult Function()? onboardingCompleted,
+    required TResult orElse(),
+  }) {
+    if (logoutBottomSheetCanceled != null) {
+      return logoutBottomSheetCanceled();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnUserChanged value) onUserChanged,
+    required TResult Function(OnEmailVerified value) onEmailVerified,
+    required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(LogoutBottomSheetOpened value)
+        logoutBottomSheetOpened,
+    required TResult Function(LogoutBottomSheetCanceled value)
+        logoutBottomSheetCanceled,
+    required TResult Function(OnboardingCompleted value) onboardingCompleted,
+  }) {
+    return logoutBottomSheetCanceled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
+    TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
+  }) {
+    return logoutBottomSheetCanceled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnUserChanged value)? onUserChanged,
+    TResult Function(OnEmailVerified value)? onEmailVerified,
+    TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
+    TResult Function(OnboardingCompleted value)? onboardingCompleted,
+    required TResult orElse(),
+  }) {
+    if (logoutBottomSheetCanceled != null) {
+      return logoutBottomSheetCanceled(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LogoutBottomSheetCanceled implements AppEvent {
+  const factory LogoutBottomSheetCanceled() = _$LogoutBottomSheetCanceled;
 }
 
 /// @nodoc
@@ -533,6 +868,8 @@ class _$OnboardingCompleted implements OnboardingCompleted {
     required TResult Function(User user) onUserChanged,
     required TResult Function(User user) onEmailVerified,
     required TResult Function() logoutRequested,
+    required TResult Function() logoutBottomSheetOpened,
+    required TResult Function() logoutBottomSheetCanceled,
     required TResult Function() onboardingCompleted,
   }) {
     return onboardingCompleted();
@@ -544,6 +881,8 @@ class _$OnboardingCompleted implements OnboardingCompleted {
     TResult Function(User user)? onUserChanged,
     TResult Function(User user)? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
     TResult Function()? onboardingCompleted,
   }) {
     return onboardingCompleted?.call();
@@ -555,6 +894,8 @@ class _$OnboardingCompleted implements OnboardingCompleted {
     TResult Function(User user)? onUserChanged,
     TResult Function(User user)? onEmailVerified,
     TResult Function()? logoutRequested,
+    TResult Function()? logoutBottomSheetOpened,
+    TResult Function()? logoutBottomSheetCanceled,
     TResult Function()? onboardingCompleted,
     required TResult orElse(),
   }) {
@@ -570,6 +911,10 @@ class _$OnboardingCompleted implements OnboardingCompleted {
     required TResult Function(OnUserChanged value) onUserChanged,
     required TResult Function(OnEmailVerified value) onEmailVerified,
     required TResult Function(LogoutRequested value) logoutRequested,
+    required TResult Function(LogoutBottomSheetOpened value)
+        logoutBottomSheetOpened,
+    required TResult Function(LogoutBottomSheetCanceled value)
+        logoutBottomSheetCanceled,
     required TResult Function(OnboardingCompleted value) onboardingCompleted,
   }) {
     return onboardingCompleted(this);
@@ -581,6 +926,9 @@ class _$OnboardingCompleted implements OnboardingCompleted {
     TResult Function(OnUserChanged value)? onUserChanged,
     TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
     TResult Function(OnboardingCompleted value)? onboardingCompleted,
   }) {
     return onboardingCompleted?.call(this);
@@ -592,6 +940,9 @@ class _$OnboardingCompleted implements OnboardingCompleted {
     TResult Function(OnUserChanged value)? onUserChanged,
     TResult Function(OnEmailVerified value)? onEmailVerified,
     TResult Function(LogoutRequested value)? logoutRequested,
+    TResult Function(LogoutBottomSheetOpened value)? logoutBottomSheetOpened,
+    TResult Function(LogoutBottomSheetCanceled value)?
+        logoutBottomSheetCanceled,
     TResult Function(OnboardingCompleted value)? onboardingCompleted,
     required TResult orElse(),
   }) {
@@ -614,6 +965,7 @@ mixin _$AppState {
     required TResult Function() authenticated,
     required TResult Function(User user) waitForEmailVerification,
     required TResult Function() unauthenticated,
+    required TResult Function() showLogoutBottomSheet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -622,6 +974,7 @@ mixin _$AppState {
     TResult Function()? authenticated,
     TResult Function(User user)? waitForEmailVerification,
     TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -630,6 +983,7 @@ mixin _$AppState {
     TResult Function()? authenticated,
     TResult Function(User user)? waitForEmailVerification,
     TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -640,6 +994,8 @@ mixin _$AppState {
     required TResult Function(WaitForEmailVerification value)
         waitForEmailVerification,
     required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(ShowLogoutBottomSheet value)
+        showLogoutBottomSheet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -648,6 +1004,7 @@ mixin _$AppState {
     TResult Function(Authenticated value)? authenticated,
     TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -656,6 +1013,7 @@ mixin _$AppState {
     TResult Function(Authenticated value)? authenticated,
     TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -721,6 +1079,7 @@ class _$FirstTimeOpenApp implements FirstTimeOpenApp {
     required TResult Function() authenticated,
     required TResult Function(User user) waitForEmailVerification,
     required TResult Function() unauthenticated,
+    required TResult Function() showLogoutBottomSheet,
   }) {
     return firstTimeOpenApp();
   }
@@ -732,6 +1091,7 @@ class _$FirstTimeOpenApp implements FirstTimeOpenApp {
     TResult Function()? authenticated,
     TResult Function(User user)? waitForEmailVerification,
     TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
   }) {
     return firstTimeOpenApp?.call();
   }
@@ -743,6 +1103,7 @@ class _$FirstTimeOpenApp implements FirstTimeOpenApp {
     TResult Function()? authenticated,
     TResult Function(User user)? waitForEmailVerification,
     TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
     required TResult orElse(),
   }) {
     if (firstTimeOpenApp != null) {
@@ -759,6 +1120,8 @@ class _$FirstTimeOpenApp implements FirstTimeOpenApp {
     required TResult Function(WaitForEmailVerification value)
         waitForEmailVerification,
     required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(ShowLogoutBottomSheet value)
+        showLogoutBottomSheet,
   }) {
     return firstTimeOpenApp(this);
   }
@@ -770,6 +1133,7 @@ class _$FirstTimeOpenApp implements FirstTimeOpenApp {
     TResult Function(Authenticated value)? authenticated,
     TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
   }) {
     return firstTimeOpenApp?.call(this);
   }
@@ -781,6 +1145,7 @@ class _$FirstTimeOpenApp implements FirstTimeOpenApp {
     TResult Function(Authenticated value)? authenticated,
     TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
     required TResult orElse(),
   }) {
     if (firstTimeOpenApp != null) {
@@ -838,6 +1203,7 @@ class _$Authenticated implements Authenticated {
     required TResult Function() authenticated,
     required TResult Function(User user) waitForEmailVerification,
     required TResult Function() unauthenticated,
+    required TResult Function() showLogoutBottomSheet,
   }) {
     return authenticated();
   }
@@ -849,6 +1215,7 @@ class _$Authenticated implements Authenticated {
     TResult Function()? authenticated,
     TResult Function(User user)? waitForEmailVerification,
     TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
   }) {
     return authenticated?.call();
   }
@@ -860,6 +1227,7 @@ class _$Authenticated implements Authenticated {
     TResult Function()? authenticated,
     TResult Function(User user)? waitForEmailVerification,
     TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -876,6 +1244,8 @@ class _$Authenticated implements Authenticated {
     required TResult Function(WaitForEmailVerification value)
         waitForEmailVerification,
     required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(ShowLogoutBottomSheet value)
+        showLogoutBottomSheet,
   }) {
     return authenticated(this);
   }
@@ -887,6 +1257,7 @@ class _$Authenticated implements Authenticated {
     TResult Function(Authenticated value)? authenticated,
     TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
   }) {
     return authenticated?.call(this);
   }
@@ -898,6 +1269,7 @@ class _$Authenticated implements Authenticated {
     TResult Function(Authenticated value)? authenticated,
     TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -983,6 +1355,7 @@ class _$WaitForEmailVerification implements WaitForEmailVerification {
     required TResult Function() authenticated,
     required TResult Function(User user) waitForEmailVerification,
     required TResult Function() unauthenticated,
+    required TResult Function() showLogoutBottomSheet,
   }) {
     return waitForEmailVerification(user);
   }
@@ -994,6 +1367,7 @@ class _$WaitForEmailVerification implements WaitForEmailVerification {
     TResult Function()? authenticated,
     TResult Function(User user)? waitForEmailVerification,
     TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
   }) {
     return waitForEmailVerification?.call(user);
   }
@@ -1005,6 +1379,7 @@ class _$WaitForEmailVerification implements WaitForEmailVerification {
     TResult Function()? authenticated,
     TResult Function(User user)? waitForEmailVerification,
     TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
     required TResult orElse(),
   }) {
     if (waitForEmailVerification != null) {
@@ -1021,6 +1396,8 @@ class _$WaitForEmailVerification implements WaitForEmailVerification {
     required TResult Function(WaitForEmailVerification value)
         waitForEmailVerification,
     required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(ShowLogoutBottomSheet value)
+        showLogoutBottomSheet,
   }) {
     return waitForEmailVerification(this);
   }
@@ -1032,6 +1409,7 @@ class _$WaitForEmailVerification implements WaitForEmailVerification {
     TResult Function(Authenticated value)? authenticated,
     TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
   }) {
     return waitForEmailVerification?.call(this);
   }
@@ -1043,6 +1421,7 @@ class _$WaitForEmailVerification implements WaitForEmailVerification {
     TResult Function(Authenticated value)? authenticated,
     TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
     required TResult orElse(),
   }) {
     if (waitForEmailVerification != null) {
@@ -1106,6 +1485,7 @@ class _$Unauthenticated implements Unauthenticated {
     required TResult Function() authenticated,
     required TResult Function(User user) waitForEmailVerification,
     required TResult Function() unauthenticated,
+    required TResult Function() showLogoutBottomSheet,
   }) {
     return unauthenticated();
   }
@@ -1117,6 +1497,7 @@ class _$Unauthenticated implements Unauthenticated {
     TResult Function()? authenticated,
     TResult Function(User user)? waitForEmailVerification,
     TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
   }) {
     return unauthenticated?.call();
   }
@@ -1128,6 +1509,7 @@ class _$Unauthenticated implements Unauthenticated {
     TResult Function()? authenticated,
     TResult Function(User user)? waitForEmailVerification,
     TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -1144,6 +1526,8 @@ class _$Unauthenticated implements Unauthenticated {
     required TResult Function(WaitForEmailVerification value)
         waitForEmailVerification,
     required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(ShowLogoutBottomSheet value)
+        showLogoutBottomSheet,
   }) {
     return unauthenticated(this);
   }
@@ -1155,6 +1539,7 @@ class _$Unauthenticated implements Unauthenticated {
     TResult Function(Authenticated value)? authenticated,
     TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
   }) {
     return unauthenticated?.call(this);
   }
@@ -1166,6 +1551,7 @@ class _$Unauthenticated implements Unauthenticated {
     TResult Function(Authenticated value)? authenticated,
     TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -1177,4 +1563,129 @@ class _$Unauthenticated implements Unauthenticated {
 
 abstract class Unauthenticated implements AppState {
   const factory Unauthenticated() = _$Unauthenticated;
+}
+
+/// @nodoc
+abstract class _$$ShowLogoutBottomSheetCopyWith<$Res> {
+  factory _$$ShowLogoutBottomSheetCopyWith(_$ShowLogoutBottomSheet value,
+          $Res Function(_$ShowLogoutBottomSheet) then) =
+      __$$ShowLogoutBottomSheetCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ShowLogoutBottomSheetCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res>
+    implements _$$ShowLogoutBottomSheetCopyWith<$Res> {
+  __$$ShowLogoutBottomSheetCopyWithImpl(_$ShowLogoutBottomSheet _value,
+      $Res Function(_$ShowLogoutBottomSheet) _then)
+      : super(_value, (v) => _then(v as _$ShowLogoutBottomSheet));
+
+  @override
+  _$ShowLogoutBottomSheet get _value => super._value as _$ShowLogoutBottomSheet;
+}
+
+/// @nodoc
+
+class _$ShowLogoutBottomSheet implements ShowLogoutBottomSheet {
+  const _$ShowLogoutBottomSheet();
+
+  @override
+  String toString() {
+    return 'AppState.showLogoutBottomSheet()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ShowLogoutBottomSheet);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() firstTimeOpenApp,
+    required TResult Function() authenticated,
+    required TResult Function(User user) waitForEmailVerification,
+    required TResult Function() unauthenticated,
+    required TResult Function() showLogoutBottomSheet,
+  }) {
+    return showLogoutBottomSheet();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? firstTimeOpenApp,
+    TResult Function()? authenticated,
+    TResult Function(User user)? waitForEmailVerification,
+    TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
+  }) {
+    return showLogoutBottomSheet?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? firstTimeOpenApp,
+    TResult Function()? authenticated,
+    TResult Function(User user)? waitForEmailVerification,
+    TResult Function()? unauthenticated,
+    TResult Function()? showLogoutBottomSheet,
+    required TResult orElse(),
+  }) {
+    if (showLogoutBottomSheet != null) {
+      return showLogoutBottomSheet();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FirstTimeOpenApp value) firstTimeOpenApp,
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(WaitForEmailVerification value)
+        waitForEmailVerification,
+    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(ShowLogoutBottomSheet value)
+        showLogoutBottomSheet,
+  }) {
+    return showLogoutBottomSheet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(FirstTimeOpenApp value)? firstTimeOpenApp,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
+  }) {
+    return showLogoutBottomSheet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FirstTimeOpenApp value)? firstTimeOpenApp,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(WaitForEmailVerification value)? waitForEmailVerification,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(ShowLogoutBottomSheet value)? showLogoutBottomSheet,
+    required TResult orElse(),
+  }) {
+    if (showLogoutBottomSheet != null) {
+      return showLogoutBottomSheet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ShowLogoutBottomSheet implements AppState {
+  const factory ShowLogoutBottomSheet() = _$ShowLogoutBottomSheet;
 }

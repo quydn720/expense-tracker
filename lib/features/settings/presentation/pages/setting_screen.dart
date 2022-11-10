@@ -6,11 +6,10 @@ import 'package:expense_tracker/features/settings/presentation/pages/theme_scree
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
+import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../app/bloc/app_bloc.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -20,39 +19,40 @@ class SettingScreen extends StatelessWidget {
     final currentLocale = context.read<LocaleController>().locale;
 
     return Scaffold(
+      appBar: const DefaultAppBar(title: 'Settings'),
       body: ListView(
         children: [
           _SettingTile(
             title: context.l10n.currency,
             value: 'USD',
-            onTap: () => context.go(CurrencyScreen.routeName),
+            onTap: () => context.push(CurrencyScreen.routeName),
           ),
           _SettingTile(
             title: context.l10n.language,
             value: currentLocale.cityLocalizedName(context),
-            onTap: () => context.go(LanguageScreen.routeName),
+            onTap: () => context.push(LanguageScreen.routeName),
           ),
           _SettingTile(
             title: context.l10n.theme,
             value: 'Dark',
-            onTap: () => context.go(ThemeScreen.routeName),
+            onTap: () => context.push(ThemeScreen.routeName),
           ),
           _SettingTile(
             title: context.l10n.security,
-            onTap: () => context.go(SecurityScreen.routeName),
+            onTap: () => context.push(SecurityScreen.routeName),
           ),
           _SettingTile(
             title: context.l10n.notification,
-            onTap: () => context.go(NotificationScreen.routeName),
+            onTap: () => context.push(NotificationScreen.routeName),
           ),
           const SizedBox(height: 32),
           _SettingTile(
             title: context.l10n.about,
-            onTap: () => context.go(CurrencyScreen.routeName),
+            onTap: () => context.push(CurrencyScreen.routeName),
           ),
           _SettingTile(
             title: context.l10n.help,
-            onTap: () => context.read<AppBloc>().add(const LogoutRequested()),
+            onTap: () {},
           ),
         ],
       ),

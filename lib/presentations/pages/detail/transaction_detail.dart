@@ -1,6 +1,7 @@
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
 import '../../../blocs/transaction/transaction_bloc.dart';
@@ -16,8 +17,28 @@ class TransactionDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(title: ''),
-      body: Center(child: Text(_transaction.amount.toString())),
+      appBar: const DefaultAppBar(title: 'Detail Transaction'),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(_transaction.amount.toString()),
+              Text(_transaction.description),
+              const Text('Attachment'),
+              const Spacer(),
+              ElevatedButton(
+                onPressed: () => context.push(
+                  '/transaction',
+                  extra: _transaction,
+                ),
+                child: const Text('Edit'),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

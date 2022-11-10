@@ -10,4 +10,5 @@ class AppState with _$AppState {
   const factory AppState.waitForEmailVerification(User user) =
       WaitForEmailVerification;
   const factory AppState.unauthenticated() = Unauthenticated;
+  const factory AppState.showLogoutBottomSheet() = ShowLogoutBottomSheet;
 }

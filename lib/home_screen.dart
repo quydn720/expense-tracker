@@ -13,13 +13,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final a =
-        (context.watch<TransactionBloc>().state as LoadTransactionsSuccess)
-            .transactions
-            .length
-            .toString();
+
     return Scaffold(
-      appBar: DefaultAppBar(title: a),
+      appBar: DefaultAppBar(
+        title:
+            (context.watch<TransactionBloc>().state is LoadTransactionsSuccess)
+                ? 'a'
+                : 'b',
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [

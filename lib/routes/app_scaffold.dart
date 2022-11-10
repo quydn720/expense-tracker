@@ -15,10 +15,12 @@ class AppScaffold extends StatelessWidget {
     super.key,
     required this.selectedTab,
     required this.child,
+    this.color,
   });
 
   final ScaffoldTab selectedTab;
   final Widget child;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class AppScaffold extends StatelessWidget {
       create: (_) => TransactionBloc(getIt<TransactionRepository>())
         ..add(const TransactionsSubscriptionRequested()),
       child: Scaffold(
+        backgroundColor: color,
         body: SafeArea(child: child),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
@@ -73,7 +76,6 @@ class AppScaffold extends StatelessWidget {
             ),
           ],
         ),
-        // ),
       ),
     );
   }

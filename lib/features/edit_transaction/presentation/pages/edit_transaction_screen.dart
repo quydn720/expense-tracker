@@ -49,11 +49,20 @@ class _EditTransactionState extends State<_EditTransaction> {
       appBar: DefaultAppBar(title: l10n.expense),
       body: BlocListener<EditTransactionBloc, EditTransactionState>(
         listenWhen: (previous, current) => previous.status != current.status,
-        listener: (context, state) async {
+        listener: (_, state) async {
           if (state.status == Status.success) {
-            Navigator.of(context).pop();
+            final navigator = Navigator.of(context);
+            await showDialog<void>(
+              context: _,
+              builder: (_) {
+                return const Center(
+                  child: Text('Transaction has been successfully added'),
+                );
+              },
+            );
+            navigator.pop();
           } else if (state.status == Status.selectImage) {
-            imgStr = await showModalBottomSheet<String>(
+            await showModalBottomSheet<String>(
               isScrollControlled: true,
               context: context,
               useRootNavigator: true,
@@ -108,14 +117,25 @@ class _EditTransactionState extends State<_EditTransaction> {
                               .add(EditTransactionDescriptionChanged(value));
                         },
                       ),
+                      const SizedBox(height: 8),
                       ElevatedButton(
                         onPressed: () => controller.add(
                           EditTransactionSelectAttachment(),
                         ),
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor: Colors.white,
+                          foregroundColor: const Color(0xff91919F),
+                          shape: const StadiumBorder(
+                            side: BorderSide(color: Color(0xffF1F1FA)),
+                          ),
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Assets.icons.attachment.image(),
+                            Assets.icons.attachmentSvg.svg(
+                              color: const Color(0xff91919F),
+                            ),
                             Text(l10n.add_attactment),
                           ],
                         ),

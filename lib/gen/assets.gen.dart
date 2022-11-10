@@ -33,8 +33,12 @@ class $AssetsIconsGen {
       const SvgGenImage('assets/icons/arrow-right-2.svg');
 
   /// File path: assets/icons/attachment.png
-  AssetGenImage get attachment =>
+  AssetGenImage get attachmentPng =>
       const AssetGenImage('assets/icons/attachment.png');
+
+  /// File path: assets/icons/attachment.svg
+  SvgGenImage get attachmentSvg =>
+      const SvgGenImage('assets/icons/attachment.svg');
 
   $AssetsIconsBanksGen get banks => const $AssetsIconsBanksGen();
 

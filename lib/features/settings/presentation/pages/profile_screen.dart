@@ -1,58 +1,145 @@
+import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../constants.dart';
-import '../../../../presentations/components/squared_icon_card.dart';
 import '../../../app/bloc/app_bloc.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
-  List<Map<String, String>> get data => const [
-        {'img': 'assets/icons/wallet-3.png', 'title': 'Account'},
-        {'img': 'assets/icons/settings.png', 'title': 'Settings'},
-        {'img': 'assets/icons/download.png', 'title': 'Export Data'},
-        {'img': 'assets/icons/logout.png', 'title': 'Logout'},
-      ];
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          child: ListView.separated(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () => showModalBottomSheet<String>(
-                  context: context,
-                  builder: (context) => const BottomSheetWidget(),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(kMediumPadding),
-                  child: Row(
-                    children: [
-                      SquaredIconCard(
-                        imagePath: data[index]['img']!,
-                        size: 60,
-                        imageColor: index != 3 ? kViolet100 : kRed100,
-                        color: index != 3 ? kViolet20 : kRed20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: kMediumPadding),
-                        child: Text(data[index]['title']!),
-                      ),
-                    ],
-                  ),
-                ),
-              );
+    final textTheme = Theme.of(context).textTheme;
+    const profileScreenBackgroundColor = Color(0xffF6F6F6);
+
+    return BlocListener<AppBloc, AppState>(
+      listener: (context, state) async {
+        if (state is ShowLogoutBottomSheet) {
+          await showModalBottomSheet<bool>(
+            context: context,
+            builder: (context) {
+              return const BottomSheetWidget();
             },
-            separatorBuilder: (_, __) => const Divider(thickness: 1),
+          );
+        }
+      },
+      child: Scaffold(
+        backgroundColor: profileScreenBackgroundColor,
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const CircleAvatar(radius: 40),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Username',
+                          style: textTheme.subtitle1?.copyWith(
+                            color: const Color(0xff91919F),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Thảo Hương',
+                          style: textTheme.headline3?.copyWith(
+                            color: const Color(0xff161719),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(icon: Assets.icons.edit.image(), onPressed: () {}),
+                ],
+              ),
+              const SizedBox(height: 40),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    _SettingTile(
+                      iconData: FontAwesomeIcons.wallet,
+                      onTap: () => context.go('/profile/account'),
+                      title: 'Account',
+                    ),
+                    const Divider(),
+                    _SettingTile(
+                      iconData: FontAwesomeIcons.gear,
+                      onTap: () => context.push('/setting'),
+                      title: 'Settings',
+                    ),
+                    const Divider(),
+                    _SettingTile(
+                      iconData: FontAwesomeIcons.arrowUpFromBracket,
+                      onTap: () => context.go('/profile/export-data'),
+                      title: 'Export Data',
+                    ),
+                    const Divider(),
+                    _SettingTile(
+                      iconData: FontAwesomeIcons.rightFromBracket,
+                      onTap: () {
+                        context.read<AppBloc>().add(
+                              const LogoutBottomSheetOpened(),
+                            );
+                      },
+                      title: 'Log out',
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SettingTile extends StatelessWidget {
+  const _SettingTile({
+    required this.iconData,
+    required this.onTap,
+    required this.title,
+  });
+
+  final IconData iconData;
+  final VoidCallback onTap;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final primary = Theme.of(context).colorScheme.primary;
+    final iconColor = primary.withOpacity(0.2);
+
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: iconColor,
+              ),
+              height: 56,
+              width: 56,
+              child: Icon(iconData, color: primary),
+            ),
+            const SizedBox(width: 10),
+            Text(title, style: textTheme.bodyText1)
+          ],
         ),
       ),
     );
@@ -102,7 +189,12 @@ class BottomSheetWidget extends StatelessWidget {
                       backgroundColor: const Color(0xffEEE5FF),
                       foregroundColor: Theme.of(context).primaryColor,
                     ),
-                    onPressed: () => Navigator.of(context).pop(),
+                    onPressed: () {
+                      context.read<AppBloc>().add(
+                            const LogoutBottomSheetCanceled(),
+                          );
+                      Navigator.of(context).pop();
+                    },
                     child: const Text('No'),
                   ),
                 ),
