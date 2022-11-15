@@ -216,7 +216,7 @@ class ProgressBar extends StatelessWidget {
 
 extension ListTransactionExtension on List<Transaction> {
   double totalOfCategory(String category) {
-    final list = where((e) => e.category == category);
+    final list = where((e) => e.category.name == category);
     final List<double> list2;
     if (list.isNotEmpty) {
       list2 = list.map((e) => e.amount).toList();

@@ -7,6 +7,7 @@ import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
 import '../bloc/edit_transaction_bloc.dart';
@@ -52,18 +53,17 @@ class _EditTransaction extends StatelessWidget {
       ),
       body: BlocListener<EditTransactionBloc, EditTransactionState>(
         listenWhen: (previous, current) => previous.status != current.status,
-        listener: (_, state) async {
+        listener: (context, state) async {
           if (state.status == Status.success) {
-            final navigator = Navigator.of(context);
+            context.pop();
             await showDialog<void>(
-              context: _,
+              context: context,
               builder: (_) {
                 return const Center(
                   child: Text('Transaction has been successfully added'),
                 );
               },
             );
-            navigator.pop();
           } else if (state.status == Status.selectImage) {
             final attachment = await showModalBottomSheet<String>(
               isScrollControlled: true,
@@ -85,25 +85,41 @@ class _EditTransaction extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(l10n.how_much),
-                  const SizedBox(height: 8),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: context.l10n.budgetDescription,
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      l10n.how_much,
+                      style: Theme.of(context).textTheme.button?.copyWith(
+                            color: const Color(0xffFCFCFC),
+                          ),
                     ),
-                    keyboardType: TextInputType.number,
-                    onChanged: (value) {
-                      controller.add(EditTransactionAmountChanged(value));
-                    },
-                  ),
-                ],
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        prefixIcon: Text(
+                          r'$',
+                          style:
+                              Theme.of(context).textTheme.headline1?.copyWith(
+                                    color: const Color(0xffFCFCFC),
+                                  ),
+                        ),
+                      ),
+                      style: Theme.of(context).textTheme.headline1?.copyWith(
+                            color: const Color(0xffFCFCFC),
+                          ),
+                      keyboardType: TextInputType.number,
+                      onChanged: (value) {
+                        controller.add(EditTransactionAmountChanged(value));
+                      },
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 8),
-              const Spacer(),
               Container(
                 alignment: Alignment.bottomCenter,
                 padding: const EdgeInsets.all(16),
@@ -244,7 +260,9 @@ class _EditTransaction extends StatelessWidget {
                       ],
                       const SizedBox(height: 24),
                       ElevatedButton(
-                        onPressed: () => controller.add(SubmitNewTransaction()),
+                        onPressed: () {
+                          controller.add(SubmitNewTransaction());
+                        },
                         child: Text(context.l10n.continue_str),
                       ),
                     ],
@@ -283,7 +301,18 @@ class _CategoryDropdown extends StatelessWidget {
           ),
           value: context.watch<EditTransactionBloc>().state.category,
           items: Category.categories
-              .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
+              .map(
+                (e) => DropdownMenuItem(
+                  value: e,
+                  // child: Text(e.name),
+                  child: Chip(
+                    padding: const EdgeInsets.fromLTRB(4, 4, 12, 4),
+                    labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                    avatar: CircleAvatar(backgroundColor: e.iconColor),
+                    label: Text(e.name),
+                  ),
+                ),
+              )
               .toList(),
           selectedItemBuilder: (context) => Category.categories
               .map(
