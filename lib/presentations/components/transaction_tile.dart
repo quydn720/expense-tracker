@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
-import '../../blocs/transaction/category_model.dart';
 import '../../constants.dart';
 import 'squared_icon_card.dart';
 
@@ -36,9 +35,7 @@ class TransactionTile extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
-        leading: CategoryIconCard(
-          category: Category.fromName(transaction.category),
-        ),
+        leading: CategoryIconCard(category: transaction.category),
         title: Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: Row(
@@ -46,7 +43,7 @@ class TransactionTile extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  transaction.category,
+                  transaction.category.name,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

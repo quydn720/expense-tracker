@@ -23,7 +23,7 @@ class EditTransactionBloc
             description: initialTransaction?.description ?? '',
           ),
         ) {
-    on<EditTransactionRepeatToggle>((event, emit) {
+    on<EditTransactionRepeatToggled>((event, emit) {
       emit(state.copyWith(isRepeated: !state.isRepeated));
     });
     on<SubmitNewTransaction>((event, emit) {
@@ -31,6 +31,7 @@ class EditTransactionBloc
       final transaction = (initialTransaction ?? Transaction.empty()).copyWith(
         amount: state.amount,
         description: state.description,
+        category: state.category,
       );
       _addTransaction.call(transaction);
       emit(state.copyWith(status: Status.success));
@@ -43,6 +44,9 @@ class EditTransactionBloc
         state.copyWith(amount: double.parse(event.amount)),
       ),
     );
+    on<EditTransactionCategoryChanged>((event, emit) {
+      emit(state.copyWith(category: event.category));
+    });
     on<EditTransactionSelectAttachment>((event, emit) {
       emit(state.copyWith(status: Status.selectImage));
     });

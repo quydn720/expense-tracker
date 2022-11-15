@@ -1,4 +1,3 @@
-import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
 import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
@@ -26,7 +25,7 @@ void main() {
   testWidgets('transaction tile renders', (tester) async {
     final Transaction transaction = MockTransaction();
     when(() => transaction.amount).thenReturn(10);
-    when(() => transaction.category).thenReturn('Food');
+    when(() => transaction.category).thenReturn(Category.empty());
     when(() => transaction.description).thenReturn('Mock description');
     when(() => transaction.date).thenReturn(DateTime.now());
     when(() => transaction.type).thenReturn(TransactionType.income);

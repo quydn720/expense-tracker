@@ -9,7 +9,7 @@ abstract class EditTransactionEvent extends Equatable {
 
 class SubmitNewTransaction extends EditTransactionEvent {}
 
-class EditTransactionRepeatToggle extends EditTransactionEvent {}
+class EditTransactionRepeatToggled extends EditTransactionEvent {}
 
 class EditTransactionDescriptionChanged extends EditTransactionEvent {
   const EditTransactionDescriptionChanged(this.description);
@@ -21,6 +21,12 @@ class EditTransactionAmountChanged extends EditTransactionEvent {
   const EditTransactionAmountChanged(this.amount);
 
   final String amount;
+}
+
+class EditTransactionCategoryChanged extends EditTransactionEvent {
+  const EditTransactionCategoryChanged(this.category);
+
+  final Category category;
 }
 
 class EditTransactionSelectAttachment extends EditTransactionEvent {}

@@ -2,6 +2,7 @@ import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/user_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
 import '../../../constants.dart';
 

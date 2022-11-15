@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
-import '../../blocs/transaction/category_model.dart';
 import '../../constants.dart';
 
 class SquaredIconCard extends StatelessWidget {
@@ -53,6 +53,7 @@ class CategoryIconCard extends StatelessWidget {
         height: 60,
         width: 60,
         color: category.iconColor,
+        // color: Colors.amber,
       ),
     );
   }

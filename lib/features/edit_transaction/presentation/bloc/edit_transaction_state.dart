@@ -8,7 +8,7 @@ class EditTransactionState with _$EditTransactionState {
     @Default(Status.initital) Status status,
     @Default(0) double amount,
     @Default('') String description,
-    @Default('defaultValue') String category,
+    Category? category,
     XFile? imgFile,
   }) = _EditTransactionState;
 }

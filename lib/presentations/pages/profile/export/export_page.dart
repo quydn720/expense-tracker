@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
 import '../../../../constants.dart';
 import '../../../components/bars.dart';
@@ -30,8 +31,7 @@ class _ExportScreenState extends State<ExportScreen> {
                 child: Column(
                   children: [
                     const DefaultBar(
-                      title: Text('What data do you want to export?',
-                          style: body1),
+                      title: Text('What data do you want to export?'),
                     ),
                     const DefaultBar(
                       title: Text('When date range?', style: body1),

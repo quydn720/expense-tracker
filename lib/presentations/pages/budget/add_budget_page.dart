@@ -2,9 +2,9 @@ import 'package:budget_repository/budget_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
 import '../../../blocs/budget/budget_bloc.dart';
-import '../../../blocs/transaction/category_model.dart';
 import '../../../constants.dart';
 
 class AddBudgetPage extends StatefulWidget {
@@ -65,7 +65,7 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                           style: titleX.copyWith(color: kLight80),
                         ),
                         errorStyle:
-                            const TextStyle(color: kRed40, fontSize: 14),
+                            const TextStyle(color: Colors.red, fontSize: 14),
                       ),
                       keyboardType: TextInputType.number,
                       style: titleX.copyWith(color: kLight80),

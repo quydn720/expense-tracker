@@ -23,7 +23,7 @@ class TransactionEntity extends Equatable {
       id: data['id'] as String,
       timestamp: data['timestamp'] as Timestamp,
       amount: data['amount'] as double,
-      category: data['category'] as String,
+      category: data['category'] as Category,
       type: TransactionType.values[data['type'] as int],
       walletId: data['walletId'] as String,
       description: data['description'] as String,
@@ -34,7 +34,7 @@ class TransactionEntity extends Equatable {
     return TransactionEntity(
       id: map['id'] as String,
       amount: map['amount'] as double,
-      category: map['category'] as String,
+      category: map['category'] as Category,
       walletId: map['walletId'] as String,
       description: map['description'] as String,
       type: TransactionType.values[map['type'] as int],
@@ -46,7 +46,7 @@ class TransactionEntity extends Equatable {
       TransactionEntity.fromMap(json.decode(source) as Map<String, dynamic>);
   final String id;
   final double amount;
-  final String category;
+  final Category category;
   final String? description;
   final TransactionType type;
   final Timestamp timestamp;

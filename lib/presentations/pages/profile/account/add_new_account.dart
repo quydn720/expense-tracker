@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 import 'package:wallet_repository/wallet_repository.dart';
 
 import '../../../../blocs/wallet/wallet_bloc.dart';

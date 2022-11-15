@@ -17,12 +17,16 @@ class ProfileScreen extends StatelessWidget {
     return BlocListener<AppBloc, AppState>(
       listener: (context, state) async {
         if (state is ShowLogoutBottomSheet) {
-          await showModalBottomSheet<bool>(
+          final read = context.read<AppBloc>();
+          final c = await showModalBottomSheet<bool>(
             context: context,
             builder: (context) {
               return const BottomSheetWidget();
             },
           );
+          if (c == null) {
+            read.add(const LogoutBottomSheetCanceled());
+          }
         }
       },
       child: Scaffold(
@@ -190,10 +194,10 @@ class BottomSheetWidget extends StatelessWidget {
                       foregroundColor: Theme.of(context).primaryColor,
                     ),
                     onPressed: () {
+                      Navigator.of(context).pop();
                       context.read<AppBloc>().add(
                             const LogoutBottomSheetCanceled(),
                           );
-                      Navigator.of(context).pop();
                     },
                     child: const Text('No'),
                   ),

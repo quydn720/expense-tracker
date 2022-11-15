@@ -5,13 +5,12 @@ import 'package:expense_tracker/features/authentication/presentation/forgot_pass
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
 import '../bloc/edit_transaction_bloc.dart';
+import 'bottomsheet.dart';
 
 class EditTransactionScreen extends StatelessWidget {
   const EditTransactionScreen({super.key, this.inititalTransaction});
@@ -28,25 +27,29 @@ class EditTransactionScreen extends StatelessWidget {
   }
 }
 
-class _EditTransaction extends StatefulWidget {
+class _EditTransaction extends StatelessWidget {
   const _EditTransaction();
 
   @override
-  State<_EditTransaction> createState() => _EditTransactionState();
-}
-
-class _EditTransactionState extends State<_EditTransaction> {
-  late String? imgStr;
-  @override
   Widget build(BuildContext context) {
     final controller = context.read<EditTransactionBloc>();
-    // final isNewTransaction = context.select(
-    //   (EditTransactionBloc value) => value.state.isNewTransaction,
-    // );
+    final isNewTransaction = context.select(
+      (EditTransactionBloc value) => value.state.isNewTransaction,
+    );
     final l10n = context.l10n;
 
+    final isTransactionRepeated = context.select<EditTransactionBloc, bool>(
+      (value) => value.state.isRepeated,
+    );
     return Scaffold(
-      appBar: DefaultAppBar(title: l10n.expense),
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.red,
+      appBar: DefaultAppBar(
+        elevation: 0,
+        title: l10n.expense,
+        color: isNewTransaction ? Colors.red : Colors.amberAccent,
+        textColor: Colors.white,
+      ),
       body: BlocListener<EditTransactionBloc, EditTransactionState>(
         listenWhen: (previous, current) => previous.status != current.status,
         listener: (_, state) async {
@@ -62,8 +65,9 @@ class _EditTransactionState extends State<_EditTransaction> {
             );
             navigator.pop();
           } else if (state.status == Status.selectImage) {
-            await showModalBottomSheet<String>(
+            final attachment = await showModalBottomSheet<String>(
               isScrollControlled: true,
+              backgroundColor: Colors.white,
               context: context,
               useRootNavigator: true,
               builder: (_) => BlocProvider.value(
@@ -71,6 +75,10 @@ class _EditTransactionState extends State<_EditTransaction> {
                 child: Wrap(children: const [MediaBottomSheet()]),
               ),
             );
+
+            if (attachment == null) {
+              controller.add(EditTransactionSelectAttachmentClose());
+            }
           }
         },
         child: SafeArea(
@@ -81,6 +89,7 @@ class _EditTransactionState extends State<_EditTransaction> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(l10n.how_much),
+                  const SizedBox(height: 8),
                   TextFormField(
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -93,54 +102,62 @@ class _EditTransactionState extends State<_EditTransaction> {
                   ),
                 ],
               ),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(32),
-                      topRight: Radius.circular(32),
-                    ),
+              const SizedBox(height: 8),
+              const Spacer(),
+              Container(
+                alignment: Alignment.bottomCenter,
+                padding: const EdgeInsets.all(16),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(32),
+                    topRight: Radius.circular(32),
                   ),
+                ),
+                child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      const SizedBox(height: 8),
+                      const _CategoryDropdown(),
+                      const SizedBox(height: 16),
                       TextFormField(
                         decoration: InputDecoration(
                           hintText: context.l10n.budgetDescription,
                         ),
-                        maxLines: 4,
                         onChanged: (value) {
                           controller
                               .add(EditTransactionDescriptionChanged(value));
                         },
                       ),
-                      const SizedBox(height: 8),
-                      ElevatedButton(
-                        onPressed: () => controller.add(
-                          EditTransactionSelectAttachment(),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          backgroundColor: Colors.white,
-                          foregroundColor: const Color(0xff91919F),
-                          shape: const StadiumBorder(
-                            side: BorderSide(color: Color(0xffF1F1FA)),
+                      const SizedBox(height: 16),
+                      const _WalletDropdown(),
+                      const SizedBox(height: 16),
+                      if (context.watch<EditTransactionBloc>().state.imgFile ==
+                          null) ...[
+                        ElevatedButton(
+                          onPressed: () => controller.add(
+                            EditTransactionSelectAttachment(),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: Colors.white,
+                            foregroundColor: const Color(0xff91919F),
+                            shape: const StadiumBorder(
+                              side: BorderSide(color: Color(0xffF1F1FA)),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Assets.icons.attachmentSvg.svg(
+                                color: const Color(0xff91919F),
+                              ),
+                              Text(l10n.add_attactment),
+                            ],
                           ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Assets.icons.attachmentSvg.svg(
-                              color: const Color(0xff91919F),
-                            ),
-                            Text(l10n.add_attactment),
-                          ],
-                        ),
-                      ),
-
+                      ],
                       if (context.watch<EditTransactionBloc>().state.imgFile !=
                           null) ...[
                         Row(
@@ -168,18 +185,64 @@ class _EditTransactionState extends State<_EditTransaction> {
                           ],
                         ),
                       ],
-                      SwitchListTile.adaptive(
-                        value: context.select<EditTransactionBloc, bool>(
-                          (value) => value.state.isRepeated,
+                      const SizedBox(height: 16),
+                      const _RepeatListTile(),
+                      const SizedBox(height: 8),
+                      if (isTransactionRepeated) ...[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Frequency',
+                                  style: Theme.of(context).textTheme.subtitle2,
+                                ),
+                                Text(
+                                  'Yearly - December 29',
+                                  style: Theme.of(context).textTheme.caption,
+                                )
+                              ],
+                            ),
+                            const SizedBox(width: 8),
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'End After',
+                                  style: Theme.of(context).textTheme.subtitle2,
+                                ),
+                                Text(
+                                  '29 December 2025',
+                                  style: Theme.of(context).textTheme.caption,
+                                )
+                              ],
+                            ),
+                            const SizedBox(width: 8),
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                textStyle:
+                                    Theme.of(context).textTheme.bodyText2,
+                                elevation: 0,
+                                backgroundColor: kViolet20,
+                                foregroundColor:
+                                    Theme.of(context).colorScheme.primary,
+                                padding: EdgeInsets.zero,
+                                shape: const StadiumBorder(
+                                  side: BorderSide(color: Color(0xffF1F1FA)),
+                                ),
+                              ),
+                              child: const Text('Edit'),
+                            )
+                            // const Chip(label: Text('Edit'))
+                          ],
                         ),
-                        onChanged: (_) =>
-                            controller.add(EditTransactionRepeatToggle()),
-                        title: Text(l10n.repeat_str),
-                        subtitle: Text(l10n.repeat_transaction),
-                        contentPadding: EdgeInsets.zero,
-                      ),
-                      // Image(image: image),
-                      const Spacer(),
+                      ],
+                      const SizedBox(height: 24),
                       ElevatedButton(
                         onPressed: () => controller.add(SubmitNewTransaction()),
                         child: Text(context.l10n.continue_str),
@@ -196,145 +259,88 @@ class _EditTransactionState extends State<_EditTransaction> {
   }
 }
 
-class MediaBottomSheet extends StatelessWidget {
-  const MediaBottomSheet({super.key});
+class _CategoryDropdown extends StatelessWidget {
+  const _CategoryDropdown();
+
+  @override
+  Widget build(BuildContext context) {
+    return InputDecorator(
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 8,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<Category>(
+          isExpanded: true,
+          hint: const Align(
+            alignment: Alignment.centerLeft,
+            child: Text('Category'),
+          ),
+          value: context.watch<EditTransactionBloc>().state.category,
+          items: Category.categories
+              .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
+              .toList(),
+          selectedItemBuilder: (context) => Category.categories
+              .map(
+                (e) => Chip(
+                  padding: const EdgeInsets.fromLTRB(4, 4, 12, 4),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                  avatar: CircleAvatar(backgroundColor: e.iconColor),
+                  label: Text(e.name),
+                ),
+              )
+              .toList(),
+          onChanged: (category) {
+            if (category != null) {
+              context.read<EditTransactionBloc>().add(
+                    EditTransactionCategoryChanged(category),
+                  );
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _WalletDropdown extends StatelessWidget {
+  const _WalletDropdown();
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButtonFormField<Category>(
+      items: Category.categories
+          .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
+          .toList(),
+      onChanged: (v) {},
+    );
+  }
+}
+
+class _RepeatListTile extends StatelessWidget {
+  const _RepeatListTile();
 
   @override
   Widget build(BuildContext context) {
     final controller = context.read<EditTransactionBloc>();
-    return Column(
-      children: [
-        const SizedBox(height: 56, child: Center(child: Divider(thickness: 2))),
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                child: InkWell(
-                  onTap: () async {
-                    final _picker = ImagePicker();
-                    final something =
-                        await _picker.pickImage(source: ImageSource.camera);
-                    if (something != null) {}
-                  },
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Theme.of(context).primaryColor.withOpacity(0.3),
-                    ),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 16),
-                          Assets.icons.cameraSvg.svg(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Camera',
-                            style:
-                                Theme.of(context).textTheme.bodyText1?.copyWith(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                          ),
-                          const SizedBox(height: 16),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: InkWell(
-                  onTap: () async {
-                    final _picker = ImagePicker();
-                    final something =
-                        await _picker.pickImage(source: ImageSource.gallery);
-                    if (something != null) {
-                      controller.add(EditTransactionImageChosen(something));
-                    }
-                  },
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Theme.of(context).primaryColor.withOpacity(0.3),
-                    ),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 16),
-                          Assets.icons.gallerySvg.svg(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Image',
-                            style:
-                                Theme.of(context).textTheme.bodyText1?.copyWith(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                          ),
-                          const SizedBox(height: 16),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: InkWell(
-                  onTap: () async {
-                    final result = await FilePicker.platform.pickFiles();
+    final l10n = context.l10n;
+    final body1 = Theme.of(context).textTheme.bodyText1;
 
-                    if (result != null) {
-                      // final file = File(result.files.single.path!);
-                    } else {
-                      // User canceled the picker
-                    }
-                  },
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Theme.of(context).primaryColor.withOpacity(0.3),
-                    ),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 16),
-                          Assets.icons.file.svg(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Document',
-                            style:
-                                Theme.of(context).textTheme.bodyText1?.copyWith(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                          ),
-                          const SizedBox(height: 16),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 48),
-      ],
+    final isRepeated = context.select<EditTransactionBloc, bool>(
+      (value) => value.state.isRepeated,
+    );
+
+    return SwitchListTile.adaptive(
+      value: isRepeated,
+      onChanged: (_) => controller.add(EditTransactionRepeatToggled()),
+      title: Text(l10n.repeat_str, style: body1),
+      subtitle: Text(l10n.repeat_transaction),
+      contentPadding: EdgeInsets.zero,
     );
   }
 }

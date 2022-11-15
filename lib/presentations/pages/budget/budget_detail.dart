@@ -2,9 +2,9 @@ import 'package:budget_repository/budget_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transaction_repository/transaction_repository.dart';
 
 import '../../../blocs/budget/budget_bloc.dart';
-import '../../../blocs/transaction/category_model.dart';
 import '../../../blocs/transaction/transaction_bloc.dart';
 import '../../../constants.dart';
 import '../../components/squared_icon_card.dart';

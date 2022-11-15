@@ -21,7 +21,7 @@ mixin _$EditTransactionState {
   Status get status => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  String get category => throw _privateConstructorUsedError;
+  Category? get category => throw _privateConstructorUsedError;
   XFile? get imgFile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -40,7 +40,7 @@ abstract class $EditTransactionStateCopyWith<$Res> {
       Status status,
       double amount,
       String description,
-      String category,
+      Category? category,
       XFile? imgFile});
 }
 
@@ -87,7 +87,7 @@ class _$EditTransactionStateCopyWithImpl<$Res>
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Category?,
       imgFile: imgFile == freezed
           ? _value.imgFile
           : imgFile // ignore: cast_nullable_to_non_nullable
@@ -109,7 +109,7 @@ abstract class _$$_EditTransactionStateCopyWith<$Res>
       Status status,
       double amount,
       String description,
-      String category,
+      Category? category,
       XFile? imgFile});
 }
 
@@ -158,7 +158,7 @@ class __$$_EditTransactionStateCopyWithImpl<$Res>
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Category?,
       imgFile: imgFile == freezed
           ? _value.imgFile
           : imgFile // ignore: cast_nullable_to_non_nullable
@@ -176,7 +176,7 @@ class _$_EditTransactionState implements _EditTransactionState {
       this.status = Status.initital,
       this.amount = 0,
       this.description = '',
-      this.category = 'defaultValue',
+      this.category,
       this.imgFile});
 
   @override
@@ -195,8 +195,7 @@ class _$_EditTransactionState implements _EditTransactionState {
   @JsonKey()
   final String description;
   @override
-  @JsonKey()
-  final String category;
+  final Category? category;
   @override
   final XFile? imgFile;
 
@@ -247,7 +246,7 @@ abstract class _EditTransactionState implements EditTransactionState {
       final Status status,
       final double amount,
       final String description,
-      final String category,
+      final Category? category,
       final XFile? imgFile}) = _$_EditTransactionState;
 
   @override
@@ -261,7 +260,7 @@ abstract class _EditTransactionState implements EditTransactionState {
   @override
   String get description;
   @override
-  String get category;
+  Category? get category;
   @override
   XFile? get imgFile;
   @override

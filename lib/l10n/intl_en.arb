@@ -30,7 +30,7 @@
     "transfer": "Transfer",
     "wallet": "Wallet",
     "repeat_str": "Repeat",
-    "repeat_transaction": "Repeat transaction",
+    "repeat_transaction": "Repeat transaction, set your own time",
     "profile": "Profile",
     "home": "Home",
     "transactions": "Transactions",
