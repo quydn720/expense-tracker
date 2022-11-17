@@ -14,8 +14,8 @@ class Transaction {
     required this.category,
     required this.walletId,
     required this.type,
+    this.imagesPath,
     DateTime? date,
-    // List<String>? images,
   })  : id = id ?? const Uuid().v4(),
         date = date ?? DateTime.now(),
         description = description ?? '';
@@ -48,6 +48,7 @@ class Transaction {
   final TransactionType type;
   final DateTime date;
   final String walletId;
+  final List<String>? imagesPath;
 
   TransactionEntity toEntity() {
     return TransactionEntity(
@@ -68,6 +69,7 @@ class Transaction {
     String? description,
     String? walletId,
     TransactionType? type,
+    List<String>? imagesPath,
   }) {
     return Transaction(
       id: id ?? this.id,
@@ -76,6 +78,7 @@ class Transaction {
       category: category ?? this.category,
       type: type ?? this.type,
       walletId: walletId ?? this.walletId,
+      imagesPath: imagesPath,
     );
   }
 

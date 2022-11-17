@@ -1,40 +1,57 @@
 part of 'edit_transaction_bloc.dart';
 
-abstract class EditTransactionEvent extends Equatable {
-  const EditTransactionEvent();
-
-  @override
-  List<Object> get props => [];
+@freezed
+class EditTransactionEvent with _$EditTransactionEvent {
+  const factory EditTransactionEvent.submitNewTransaction() =
+      SubmitNewTransaction;
+  const factory EditTransactionEvent.editTransactionDeleteTransaction() =
+      EditTransactionDeleteTransaction;
+  const factory EditTransactionEvent.editTransactionDescriptionChanged(
+    String description,
+  ) = EditTransactionDescriptionChanged;
+  const factory EditTransactionEvent.editTransactionAmountChanged(
+    String amount,
+  ) = EditTransactionAmountChanged;
+  const factory EditTransactionEvent.editTransactionRepeatToggled() =
+      EditTransactionRepeatToggled;
+  const factory EditTransactionEvent.editTransactionCategoryChanged(
+    Category category,
+  ) = EditTransactionCategoryChanged;
+  const factory EditTransactionEvent.editTransactionImageChosen(
+    XFile imgStr,
+  ) = EditTransactionImageChosen;
+  const factory EditTransactionEvent.editTransactionSelectAttachmentClose() =
+      EditTransactionSelectAttachmentClose;
+  const factory EditTransactionEvent.editTransactionSelectAttachment() =
+      EditTransactionSelectAttachment;
 }
 
-class SubmitNewTransaction extends EditTransactionEvent {}
+// class EditTransactionRepeatToggled extends EditTransactionEvent {}
 
-class EditTransactionRepeatToggled extends EditTransactionEvent {}
+// class EditTransactionDescriptionChanged extends EditTransactionEvent {
+//   const EditTransactionDescriptionChanged(this.description);
 
-class EditTransactionDescriptionChanged extends EditTransactionEvent {
-  const EditTransactionDescriptionChanged(this.description);
+//   final String description;
+// }
 
-  final String description;
-}
+// class EditTransactionAmountChanged extends EditTransactionEvent {
+//   const EditTransactionAmountChanged(this.amount);
 
-class EditTransactionAmountChanged extends EditTransactionEvent {
-  const EditTransactionAmountChanged(this.amount);
+//   final String amount;
+// }
 
-  final String amount;
-}
+// class EditTransactionCategoryChanged extends EditTransactionEvent {
+//   const EditTransactionCategoryChanged(this.category);
 
-class EditTransactionCategoryChanged extends EditTransactionEvent {
-  const EditTransactionCategoryChanged(this.category);
+//   final Category category;
+// }
 
-  final Category category;
-}
+// class EditTransactionSelectAttachment extends EditTransactionEvent {}
 
-class EditTransactionSelectAttachment extends EditTransactionEvent {}
+// class EditTransactionSelectAttachmentClose extends EditTransactionEvent {}
 
-class EditTransactionSelectAttachmentClose extends EditTransactionEvent {}
+// class EditTransactionImageChosen extends EditTransactionEvent {
+//   const EditTransactionImageChosen(this.imgStr);
 
-class EditTransactionImageChosen extends EditTransactionEvent {
-  const EditTransactionImageChosen(this.imgStr);
-
-  final XFile imgStr;
-}
+//   final XFile imgStr;
+// }

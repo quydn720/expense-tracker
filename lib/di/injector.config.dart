@@ -10,7 +10,7 @@ import 'package:authentication_repository/authentication_repository.dart'
 import 'package:cloud_firestore/cloud_firestore.dart' as _i5;
 import 'package:firebase_auth/firebase_auth.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
-import 'package:go_router/go_router.dart' as _i19;
+import 'package:go_router/go_router.dart' as _i20;
 import 'package:google_sign_in/google_sign_in.dart' as _i6;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i11;
@@ -19,7 +19,7 @@ import 'package:transaction_repository/transaction_repository.dart' as _i12;
 import '../common/cache/local_cache.dart' as _i8;
 import '../features/app/bloc/app_bloc.dart' as _i16;
 import '../features/authentication/domain/usecases/forgot_password_use_case.dart'
-    as _i18;
+    as _i19;
 import '../features/authentication/domain/usecases/login_with_email_and_pw.dart'
     as _i9;
 import '../features/authentication/domain/usecases/login_with_google_account.dart'
@@ -28,6 +28,8 @@ import '../features/authentication/domain/usecases/register_with_email_and_pw.da
     as _i14;
 import '../features/authentication/presentation/bloc/authentication_bloc.dart'
     as _i17;
+import '../features/edit_transaction/presentation/bloc/edit_transaction_bloc.dart'
+    as _i18;
 import '../features/transaction_overview/domain/usecases/load_transactions.dart'
     as _i15;
 import '../user_preferences.dart' as _i13;
@@ -117,9 +119,17 @@ Future<_i1.GetIt> $initGetIt(
         get<_i7.IAuthenticationRepository>(),
         get<_i9.LoginWithEmailAndPwUseCase>(),
       ));
-  gh.factory<_i18.ForgotPasswordUseCase>(() =>
-      _i18.ForgotPasswordUseCase(auth: get<_i7.IAuthenticationRepository>()));
-  gh.lazySingleton<_i19.GoRouter>(() => devAppLocalPackageModule
+  gh.factoryParam<_i18.EditTransactionBloc, _i12.Transaction?, dynamic>((
+    initialTransaction,
+    _,
+  ) =>
+      _i18.EditTransactionBloc(
+        get<_i15.AddTransaction>(),
+        initialTransaction: initialTransaction,
+      ));
+  gh.factory<_i19.ForgotPasswordUseCase>(() =>
+      _i19.ForgotPasswordUseCase(auth: get<_i7.IAuthenticationRepository>()));
+  gh.lazySingleton<_i20.GoRouter>(() => devAppLocalPackageModule
       .appRouterDev(get<String>(instanceName: 'init_location')));
   gh.factory<_i15.LoadAllTransactions>(
       () => _i15.LoadAllTransactions(get<_i12.TransactionRepository>()));

@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:expense_tracker/features/edit_transaction/presentation/bloc/edit_transaction_bloc.dart';
+import 'package:expense_tracker/features/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,18 +10,46 @@ import 'package:transaction_repository/transaction_repository.dart';
 
 import '../../../blocs/transaction/transaction_bloc.dart';
 import '../../../constants.dart';
+import '../../../di/injector.dart';
 
 class TransactionDetailPage extends StatelessWidget {
-  const TransactionDetailPage({
-    super.key,
+  const TransactionDetailPage({super.key, required Transaction transaction})
+      : _transaction = transaction;
+
+  final Transaction _transaction;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => getIt<EditTransactionBloc>(),
+      child: _TransactionDetail(
+        transaction: _transaction,
+      ),
+    );
+  }
+}
+
+class _TransactionDetail extends StatelessWidget {
+  const _TransactionDetail({
     required Transaction transaction,
   }) : _transaction = transaction;
-  static String routeName = 'detail_page';
   final Transaction _transaction;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(title: 'Detail Transaction'),
+      appBar: DefaultAppBar(
+        title: 'Detail Transaction',
+        trailings: [
+          IconButton(
+            onPressed: () {
+              context
+                  .read<EditTransactionBloc>()
+                  .add(const EditTransactionDeleteTransaction());
+            },
+            icon: const Icon(Icons.garage),
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SafeArea(
@@ -27,6 +59,8 @@ class TransactionDetailPage extends StatelessWidget {
               Text(_transaction.amount.toString()),
               Text(_transaction.description),
               const Text('Attachment'),
+              if (_transaction.imagesPath != null)
+                Image.file(File(_transaction.imagesPath![0])),
               const Spacer(),
               ElevatedButton(
                 onPressed: () => context.push(
@@ -77,8 +111,8 @@ class DeleteTransactionBottomSheet extends StatelessWidget {
                   child: const Text('Yes'),
                   onPressed: () {
                     context
-                        .read<TransactionBloc>()
-                        .add(DeleteTransactions(_transaction));
+                        .read<EditTransactionBloc>()
+                        .add(const EditTransactionDeleteTransaction());
                     Navigator.pop(context);
                     Navigator.pop(context);
                   },

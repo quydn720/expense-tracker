@@ -55,7 +55,7 @@ class _EditTransaction extends StatelessWidget {
         listenWhen: (previous, current) => previous.status != current.status,
         listener: (context, state) async {
           if (state.status == Status.success) {
-            context.pop();
+            context.go('/');
             await showDialog<void>(
               context: context,
               builder: (_) {
@@ -77,7 +77,7 @@ class _EditTransaction extends StatelessWidget {
             );
 
             if (attachment == null) {
-              controller.add(EditTransactionSelectAttachmentClose());
+              controller.add(const EditTransactionSelectAttachmentClose());
             }
           }
         },
@@ -111,7 +111,11 @@ class _EditTransaction extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline1?.copyWith(
                             color: const Color(0xffFCFCFC),
                           ),
-                      keyboardType: TextInputType.number,
+                      keyboardType: const TextInputType.numberWithOptions(
+                        // signed: true,
+                        decimal: true,
+                      ),
+                      textInputAction: TextInputAction.next,
                       onChanged: (value) {
                         controller.add(EditTransactionAmountChanged(value));
                       },
@@ -153,7 +157,7 @@ class _EditTransaction extends StatelessWidget {
                           null) ...[
                         ElevatedButton(
                           onPressed: () => controller.add(
-                            EditTransactionSelectAttachment(),
+                            const EditTransactionSelectAttachment(),
                           ),
                           style: ElevatedButton.styleFrom(
                             elevation: 0,
@@ -261,7 +265,7 @@ class _EditTransaction extends StatelessWidget {
                       const SizedBox(height: 24),
                       ElevatedButton(
                         onPressed: () {
-                          controller.add(SubmitNewTransaction());
+                          controller.add(const SubmitNewTransaction());
                         },
                         child: Text(context.l10n.continue_str),
                       ),
@@ -366,7 +370,7 @@ class _RepeatListTile extends StatelessWidget {
 
     return SwitchListTile.adaptive(
       value: isRepeated,
-      onChanged: (_) => controller.add(EditTransactionRepeatToggled()),
+      onChanged: (_) => controller.add(const EditTransactionRepeatToggled()),
       title: Text(l10n.repeat_str, style: body1),
       subtitle: Text(l10n.repeat_transaction),
       contentPadding: EdgeInsets.zero,

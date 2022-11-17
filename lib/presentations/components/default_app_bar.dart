@@ -9,6 +9,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.color,
     this.textColor,
     this.elevation,
+    this.trailings,
   });
 
   static const double appBarHeight = 56;
@@ -16,6 +17,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? color;
   final Color? textColor;
   final double? elevation;
+  final List<Widget>? trailings;
 
   @override
   Size get preferredSize => const Size.fromHeight(appBarHeight);
@@ -25,6 +27,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: color,
       elevation: elevation,
+      actions: trailings,
       title: Text(
         title,
         style: TextStyle(

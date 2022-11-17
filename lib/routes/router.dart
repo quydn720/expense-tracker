@@ -63,10 +63,16 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) {
             path: ':transactionId',
             builder: (_, state) {
               // final id = state.params['transactionId']!;
-              return TransactionDetailPage(transaction: Transaction.empty());
+              return TransactionDetailPage(
+                transaction: state.extra as Transaction,
+              );
             },
           ),
         ],
+      ),
+      GoRoute(
+        path: '/reports',
+        builder: (_, __) => const TransactionReports(),
       ),
       GoRoute(
         path: '/budget',
@@ -207,6 +213,24 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) {
       return null;
     },
   );
+}
+
+class TransactionReports extends StatelessWidget {
+  const TransactionReports({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PageView.builder(
+        itemCount: 4,
+        itemBuilder: (context, index) {
+          if (index == 3) return const Center(child: Text('go to full detail'));
+          if (index == 2) return const Center(child: Text('quote'));
+          return Center(child: Text(index.toString()));
+        },
+      ),
+    );
+  }
 }
 
 class BudgetScreen extends StatelessWidget {

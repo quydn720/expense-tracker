@@ -68,8 +68,8 @@ class TransactionEntity extends Equatable {
     return {
       'id': id,
       'amount': amount,
-      'category': category,
-      'description': description,
+      'category': 'category.toString()',
+      'description': 'description',
       'type': type.index,
       'walletId': walletId,
     };

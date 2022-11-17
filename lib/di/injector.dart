@@ -67,7 +67,8 @@ abstract class DevAppLocalPackageModule {
   @dev
   @lazySingleton
   TransactionRepository getTransactionRepoDev() =>
-      FakeTransactionRepo([Transaction.empty()]);
+      LocalTransactionRepository(AppDatabase());
+  // FakeTransactionRepo([Transaction.empty()]);
 
   @prod
   @lazySingleton

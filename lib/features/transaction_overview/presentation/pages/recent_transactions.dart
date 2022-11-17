@@ -27,8 +27,10 @@ class RecentlyTransactions extends StatelessWidget {
                 TransactionTile(
                   transaction: transaction,
                   onLongPress: () {},
-                  onPress: () =>
-                      context.push('/transactions/${transaction.id}'),
+                  onPress: () => context.push(
+                    '/transactions/${transaction.id}',
+                    extra: transaction,
+                  ),
                 )
             ],
           ),
