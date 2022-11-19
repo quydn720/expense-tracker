@@ -22,16 +22,18 @@ import '../features/authentication/domain/usecases/forgot_password_use_case.dart
     as _i19;
 import '../features/authentication/domain/usecases/login_with_email_and_pw.dart'
     as _i9;
-import '../features/authentication/domain/usecases/login_with_google_account.dart'
+import '../features/authentication/domain/usecases/login_with_google_account_use_case.dart'
     as _i10;
 import '../features/authentication/domain/usecases/register_with_email_and_pw.dart'
     as _i14;
 import '../features/authentication/presentation/bloc/authentication_bloc.dart'
     as _i17;
+import '../features/edit_transaction/domain/usecases/add_transaction_use_case.dart'
+    as _i15;
 import '../features/edit_transaction/presentation/bloc/edit_transaction_bloc.dart'
     as _i18;
 import '../features/transaction_overview/domain/usecases/load_transactions.dart'
-    as _i15;
+    as _i21;
 import '../user_preferences.dart' as _i13;
 import 'injector.dart' as _i3;
 
@@ -109,8 +111,8 @@ Future<_i1.GetIt> $initGetIt(
     () => sharedPreferencesModule.isOnboardingCompeted,
     instanceName: 'isOnboardingCompleted',
   );
-  gh.factory<_i15.AddTransaction>(
-      () => _i15.AddTransaction(get<_i12.TransactionRepository>()));
+  gh.factory<_i15.AddTransactionUseCase>(
+      () => _i15.AddTransactionUseCase(get<_i12.TransactionRepository>()));
   gh.factory<_i16.AppBloc>(() => _i16.AppBloc(
         authenticationRepository: get<_i7.IAuthenticationRepository>(),
         showOnboarding: get<bool>(instanceName: 'isOnboardingCompleted'),
@@ -124,15 +126,15 @@ Future<_i1.GetIt> $initGetIt(
     _,
   ) =>
       _i18.EditTransactionBloc(
-        get<_i15.AddTransaction>(),
+        get<_i15.AddTransactionUseCase>(),
         initialTransaction: initialTransaction,
       ));
   gh.factory<_i19.ForgotPasswordUseCase>(() =>
       _i19.ForgotPasswordUseCase(auth: get<_i7.IAuthenticationRepository>()));
   gh.lazySingleton<_i20.GoRouter>(() => devAppLocalPackageModule
       .appRouterDev(get<String>(instanceName: 'init_location')));
-  gh.factory<_i15.LoadAllTransactions>(
-      () => _i15.LoadAllTransactions(get<_i12.TransactionRepository>()));
+  gh.factory<_i21.LoadAllTransactions>(
+      () => _i21.LoadAllTransactions(get<_i12.TransactionRepository>()));
   gh.factory<_i14.RegisterWithEmailAndPwUseCase>(
       () => _i14.RegisterWithEmailAndPwUseCase(
             verificationService: get<_i14.VerificationService>(),

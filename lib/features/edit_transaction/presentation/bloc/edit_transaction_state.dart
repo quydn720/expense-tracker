@@ -4,7 +4,7 @@ part of 'edit_transaction_bloc.dart';
 class EditTransactionState with _$EditTransactionState {
   const factory EditTransactionState({
     @Default(false) bool isRepeated,
-    @Default(false) bool isNewTransaction,
+    @Default(true) bool isNewTransaction,
     @Default(Status.initital) Status status,
     @Default(0) double amount,
     @Default('') String description,

@@ -2,8 +2,8 @@ part of 'edit_transaction_bloc.dart';
 
 @freezed
 class EditTransactionEvent with _$EditTransactionEvent {
-  const factory EditTransactionEvent.submitNewTransaction() =
-      SubmitNewTransaction;
+  const factory EditTransactionEvent.editTransactionSubmitNewTransaction() =
+      EditTransactionSubmitNewTransaction;
   const factory EditTransactionEvent.editTransactionDeleteTransaction() =
       EditTransactionDeleteTransaction;
   const factory EditTransactionEvent.editTransactionDescriptionChanged(

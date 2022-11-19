@@ -5,7 +5,7 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/entities/form_value.dart';
-import '../../../domain/usecases/login_with_google_account.dart';
+import '../../../domain/usecases/login_with_google_account_use_case.dart';
 
 part 'login_form_state.dart';
 part 'login_form_cubit.freezed.dart';

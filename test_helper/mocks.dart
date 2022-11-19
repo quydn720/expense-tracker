@@ -4,11 +4,11 @@ import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/forgot_password_use_case.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
-import 'package:expense_tracker/features/authentication/domain/usecases/login_with_google_account.dart';
+import 'package:expense_tracker/features/authentication/domain/usecases/login_with_google_account_use_case.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/cubit/register_form_cubit.dart';
+import 'package:expense_tracker/features/edit_transaction/domain/usecases/add_transaction_use_case.dart';
 import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
-import 'package:expense_tracker/features/transaction_overview/domain/usecases/load_transactions.dart';
 import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:mocktail/mocktail.dart';
@@ -42,7 +42,7 @@ class MockNormalText extends Mock implements NormalText {}
 
 class MockFirebaseDynamicLinks extends Mock implements FirebaseDynamicLinks {}
 
-class MockAddTransaction extends Mock implements AddTransaction {}
+class MockAddTransaction extends Mock implements AddTransactionUseCase {}
 
 class MockTransactionRepository extends Mock implements TransactionRepository {}
 

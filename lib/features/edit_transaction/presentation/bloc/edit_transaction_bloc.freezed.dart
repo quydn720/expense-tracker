@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EditTransactionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() submitNewTransaction,
+    required TResult Function() editTransactionSubmitNewTransaction,
     required TResult Function() editTransactionDeleteTransaction,
     required TResult Function(String description)
         editTransactionDescriptionChanged,
@@ -32,7 +32,7 @@ mixin _$EditTransactionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -45,7 +45,7 @@ mixin _$EditTransactionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -59,7 +59,8 @@ mixin _$EditTransactionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SubmitNewTransaction value) submitNewTransaction,
+    required TResult Function(EditTransactionSubmitNewTransaction value)
+        editTransactionSubmitNewTransaction,
     required TResult Function(EditTransactionDeleteTransaction value)
         editTransactionDeleteTransaction,
     required TResult Function(EditTransactionDescriptionChanged value)
@@ -80,7 +81,8 @@ mixin _$EditTransactionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -101,7 +103,8 @@ mixin _$EditTransactionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -141,38 +144,43 @@ class _$EditTransactionEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$SubmitNewTransactionCopyWith<$Res> {
-  factory _$$SubmitNewTransactionCopyWith(_$SubmitNewTransaction value,
-          $Res Function(_$SubmitNewTransaction) then) =
-      __$$SubmitNewTransactionCopyWithImpl<$Res>;
+abstract class _$$EditTransactionSubmitNewTransactionCopyWith<$Res> {
+  factory _$$EditTransactionSubmitNewTransactionCopyWith(
+          _$EditTransactionSubmitNewTransaction value,
+          $Res Function(_$EditTransactionSubmitNewTransaction) then) =
+      __$$EditTransactionSubmitNewTransactionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SubmitNewTransactionCopyWithImpl<$Res>
+class __$$EditTransactionSubmitNewTransactionCopyWithImpl<$Res>
     extends _$EditTransactionEventCopyWithImpl<$Res>
-    implements _$$SubmitNewTransactionCopyWith<$Res> {
-  __$$SubmitNewTransactionCopyWithImpl(_$SubmitNewTransaction _value,
-      $Res Function(_$SubmitNewTransaction) _then)
-      : super(_value, (v) => _then(v as _$SubmitNewTransaction));
+    implements _$$EditTransactionSubmitNewTransactionCopyWith<$Res> {
+  __$$EditTransactionSubmitNewTransactionCopyWithImpl(
+      _$EditTransactionSubmitNewTransaction _value,
+      $Res Function(_$EditTransactionSubmitNewTransaction) _then)
+      : super(_value, (v) => _then(v as _$EditTransactionSubmitNewTransaction));
 
   @override
-  _$SubmitNewTransaction get _value => super._value as _$SubmitNewTransaction;
+  _$EditTransactionSubmitNewTransaction get _value =>
+      super._value as _$EditTransactionSubmitNewTransaction;
 }
 
 /// @nodoc
 
-class _$SubmitNewTransaction implements SubmitNewTransaction {
-  const _$SubmitNewTransaction();
+class _$EditTransactionSubmitNewTransaction
+    implements EditTransactionSubmitNewTransaction {
+  const _$EditTransactionSubmitNewTransaction();
 
   @override
   String toString() {
-    return 'EditTransactionEvent.submitNewTransaction()';
+    return 'EditTransactionEvent.editTransactionSubmitNewTransaction()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SubmitNewTransaction);
+        (other.runtimeType == runtimeType &&
+            other is _$EditTransactionSubmitNewTransaction);
   }
 
   @override
@@ -181,7 +189,7 @@ class _$SubmitNewTransaction implements SubmitNewTransaction {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() submitNewTransaction,
+    required TResult Function() editTransactionSubmitNewTransaction,
     required TResult Function() editTransactionDeleteTransaction,
     required TResult Function(String description)
         editTransactionDescriptionChanged,
@@ -192,13 +200,13 @@ class _$SubmitNewTransaction implements SubmitNewTransaction {
     required TResult Function() editTransactionSelectAttachmentClose,
     required TResult Function() editTransactionSelectAttachment,
   }) {
-    return submitNewTransaction();
+    return editTransactionSubmitNewTransaction();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -208,13 +216,13 @@ class _$SubmitNewTransaction implements SubmitNewTransaction {
     TResult Function()? editTransactionSelectAttachmentClose,
     TResult Function()? editTransactionSelectAttachment,
   }) {
-    return submitNewTransaction?.call();
+    return editTransactionSubmitNewTransaction?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -225,8 +233,8 @@ class _$SubmitNewTransaction implements SubmitNewTransaction {
     TResult Function()? editTransactionSelectAttachment,
     required TResult orElse(),
   }) {
-    if (submitNewTransaction != null) {
-      return submitNewTransaction();
+    if (editTransactionSubmitNewTransaction != null) {
+      return editTransactionSubmitNewTransaction();
     }
     return orElse();
   }
@@ -234,7 +242,8 @@ class _$SubmitNewTransaction implements SubmitNewTransaction {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SubmitNewTransaction value) submitNewTransaction,
+    required TResult Function(EditTransactionSubmitNewTransaction value)
+        editTransactionSubmitNewTransaction,
     required TResult Function(EditTransactionDeleteTransaction value)
         editTransactionDeleteTransaction,
     required TResult Function(EditTransactionDescriptionChanged value)
@@ -252,13 +261,14 @@ class _$SubmitNewTransaction implements SubmitNewTransaction {
     required TResult Function(EditTransactionSelectAttachment value)
         editTransactionSelectAttachment,
   }) {
-    return submitNewTransaction(this);
+    return editTransactionSubmitNewTransaction(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -276,13 +286,14 @@ class _$SubmitNewTransaction implements SubmitNewTransaction {
     TResult Function(EditTransactionSelectAttachment value)?
         editTransactionSelectAttachment,
   }) {
-    return submitNewTransaction?.call(this);
+    return editTransactionSubmitNewTransaction?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -301,15 +312,17 @@ class _$SubmitNewTransaction implements SubmitNewTransaction {
         editTransactionSelectAttachment,
     required TResult orElse(),
   }) {
-    if (submitNewTransaction != null) {
-      return submitNewTransaction(this);
+    if (editTransactionSubmitNewTransaction != null) {
+      return editTransactionSubmitNewTransaction(this);
     }
     return orElse();
   }
 }
 
-abstract class SubmitNewTransaction implements EditTransactionEvent {
-  const factory SubmitNewTransaction() = _$SubmitNewTransaction;
+abstract class EditTransactionSubmitNewTransaction
+    implements EditTransactionEvent {
+  const factory EditTransactionSubmitNewTransaction() =
+      _$EditTransactionSubmitNewTransaction;
 }
 
 /// @nodoc
@@ -358,7 +371,7 @@ class _$EditTransactionDeleteTransaction
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() submitNewTransaction,
+    required TResult Function() editTransactionSubmitNewTransaction,
     required TResult Function() editTransactionDeleteTransaction,
     required TResult Function(String description)
         editTransactionDescriptionChanged,
@@ -375,7 +388,7 @@ class _$EditTransactionDeleteTransaction
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -391,7 +404,7 @@ class _$EditTransactionDeleteTransaction
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -411,7 +424,8 @@ class _$EditTransactionDeleteTransaction
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SubmitNewTransaction value) submitNewTransaction,
+    required TResult Function(EditTransactionSubmitNewTransaction value)
+        editTransactionSubmitNewTransaction,
     required TResult Function(EditTransactionDeleteTransaction value)
         editTransactionDeleteTransaction,
     required TResult Function(EditTransactionDescriptionChanged value)
@@ -435,7 +449,8 @@ class _$EditTransactionDeleteTransaction
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -459,7 +474,8 @@ class _$EditTransactionDeleteTransaction
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -563,7 +579,7 @@ class _$EditTransactionDescriptionChanged
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() submitNewTransaction,
+    required TResult Function() editTransactionSubmitNewTransaction,
     required TResult Function() editTransactionDeleteTransaction,
     required TResult Function(String description)
         editTransactionDescriptionChanged,
@@ -580,7 +596,7 @@ class _$EditTransactionDescriptionChanged
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -596,7 +612,7 @@ class _$EditTransactionDescriptionChanged
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -616,7 +632,8 @@ class _$EditTransactionDescriptionChanged
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SubmitNewTransaction value) submitNewTransaction,
+    required TResult Function(EditTransactionSubmitNewTransaction value)
+        editTransactionSubmitNewTransaction,
     required TResult Function(EditTransactionDeleteTransaction value)
         editTransactionDeleteTransaction,
     required TResult Function(EditTransactionDescriptionChanged value)
@@ -640,7 +657,8 @@ class _$EditTransactionDescriptionChanged
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -664,7 +682,8 @@ class _$EditTransactionDescriptionChanged
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -771,7 +790,7 @@ class _$EditTransactionAmountChanged implements EditTransactionAmountChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() submitNewTransaction,
+    required TResult Function() editTransactionSubmitNewTransaction,
     required TResult Function() editTransactionDeleteTransaction,
     required TResult Function(String description)
         editTransactionDescriptionChanged,
@@ -788,7 +807,7 @@ class _$EditTransactionAmountChanged implements EditTransactionAmountChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -804,7 +823,7 @@ class _$EditTransactionAmountChanged implements EditTransactionAmountChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -824,7 +843,8 @@ class _$EditTransactionAmountChanged implements EditTransactionAmountChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SubmitNewTransaction value) submitNewTransaction,
+    required TResult Function(EditTransactionSubmitNewTransaction value)
+        editTransactionSubmitNewTransaction,
     required TResult Function(EditTransactionDeleteTransaction value)
         editTransactionDeleteTransaction,
     required TResult Function(EditTransactionDescriptionChanged value)
@@ -848,7 +868,8 @@ class _$EditTransactionAmountChanged implements EditTransactionAmountChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -872,7 +893,8 @@ class _$EditTransactionAmountChanged implements EditTransactionAmountChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -953,7 +975,7 @@ class _$EditTransactionRepeatToggled implements EditTransactionRepeatToggled {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() submitNewTransaction,
+    required TResult Function() editTransactionSubmitNewTransaction,
     required TResult Function() editTransactionDeleteTransaction,
     required TResult Function(String description)
         editTransactionDescriptionChanged,
@@ -970,7 +992,7 @@ class _$EditTransactionRepeatToggled implements EditTransactionRepeatToggled {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -986,7 +1008,7 @@ class _$EditTransactionRepeatToggled implements EditTransactionRepeatToggled {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -1006,7 +1028,8 @@ class _$EditTransactionRepeatToggled implements EditTransactionRepeatToggled {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SubmitNewTransaction value) submitNewTransaction,
+    required TResult Function(EditTransactionSubmitNewTransaction value)
+        editTransactionSubmitNewTransaction,
     required TResult Function(EditTransactionDeleteTransaction value)
         editTransactionDeleteTransaction,
     required TResult Function(EditTransactionDescriptionChanged value)
@@ -1030,7 +1053,8 @@ class _$EditTransactionRepeatToggled implements EditTransactionRepeatToggled {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -1054,7 +1078,8 @@ class _$EditTransactionRepeatToggled implements EditTransactionRepeatToggled {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -1154,7 +1179,7 @@ class _$EditTransactionCategoryChanged
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() submitNewTransaction,
+    required TResult Function() editTransactionSubmitNewTransaction,
     required TResult Function() editTransactionDeleteTransaction,
     required TResult Function(String description)
         editTransactionDescriptionChanged,
@@ -1171,7 +1196,7 @@ class _$EditTransactionCategoryChanged
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -1187,7 +1212,7 @@ class _$EditTransactionCategoryChanged
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -1207,7 +1232,8 @@ class _$EditTransactionCategoryChanged
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SubmitNewTransaction value) submitNewTransaction,
+    required TResult Function(EditTransactionSubmitNewTransaction value)
+        editTransactionSubmitNewTransaction,
     required TResult Function(EditTransactionDeleteTransaction value)
         editTransactionDeleteTransaction,
     required TResult Function(EditTransactionDescriptionChanged value)
@@ -1231,7 +1257,8 @@ class _$EditTransactionCategoryChanged
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -1255,7 +1282,8 @@ class _$EditTransactionCategoryChanged
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -1360,7 +1388,7 @@ class _$EditTransactionImageChosen implements EditTransactionImageChosen {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() submitNewTransaction,
+    required TResult Function() editTransactionSubmitNewTransaction,
     required TResult Function() editTransactionDeleteTransaction,
     required TResult Function(String description)
         editTransactionDescriptionChanged,
@@ -1377,7 +1405,7 @@ class _$EditTransactionImageChosen implements EditTransactionImageChosen {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -1393,7 +1421,7 @@ class _$EditTransactionImageChosen implements EditTransactionImageChosen {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -1413,7 +1441,8 @@ class _$EditTransactionImageChosen implements EditTransactionImageChosen {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SubmitNewTransaction value) submitNewTransaction,
+    required TResult Function(EditTransactionSubmitNewTransaction value)
+        editTransactionSubmitNewTransaction,
     required TResult Function(EditTransactionDeleteTransaction value)
         editTransactionDeleteTransaction,
     required TResult Function(EditTransactionDescriptionChanged value)
@@ -1437,7 +1466,8 @@ class _$EditTransactionImageChosen implements EditTransactionImageChosen {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -1461,7 +1491,8 @@ class _$EditTransactionImageChosen implements EditTransactionImageChosen {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -1544,7 +1575,7 @@ class _$EditTransactionSelectAttachmentClose
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() submitNewTransaction,
+    required TResult Function() editTransactionSubmitNewTransaction,
     required TResult Function() editTransactionDeleteTransaction,
     required TResult Function(String description)
         editTransactionDescriptionChanged,
@@ -1561,7 +1592,7 @@ class _$EditTransactionSelectAttachmentClose
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -1577,7 +1608,7 @@ class _$EditTransactionSelectAttachmentClose
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -1597,7 +1628,8 @@ class _$EditTransactionSelectAttachmentClose
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SubmitNewTransaction value) submitNewTransaction,
+    required TResult Function(EditTransactionSubmitNewTransaction value)
+        editTransactionSubmitNewTransaction,
     required TResult Function(EditTransactionDeleteTransaction value)
         editTransactionDeleteTransaction,
     required TResult Function(EditTransactionDescriptionChanged value)
@@ -1621,7 +1653,8 @@ class _$EditTransactionSelectAttachmentClose
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -1645,7 +1678,8 @@ class _$EditTransactionSelectAttachmentClose
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -1723,7 +1757,7 @@ class _$EditTransactionSelectAttachment
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() submitNewTransaction,
+    required TResult Function() editTransactionSubmitNewTransaction,
     required TResult Function() editTransactionDeleteTransaction,
     required TResult Function(String description)
         editTransactionDescriptionChanged,
@@ -1740,7 +1774,7 @@ class _$EditTransactionSelectAttachment
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -1756,7 +1790,7 @@ class _$EditTransactionSelectAttachment
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? submitNewTransaction,
+    TResult Function()? editTransactionSubmitNewTransaction,
     TResult Function()? editTransactionDeleteTransaction,
     TResult Function(String description)? editTransactionDescriptionChanged,
     TResult Function(String amount)? editTransactionAmountChanged,
@@ -1776,7 +1810,8 @@ class _$EditTransactionSelectAttachment
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SubmitNewTransaction value) submitNewTransaction,
+    required TResult Function(EditTransactionSubmitNewTransaction value)
+        editTransactionSubmitNewTransaction,
     required TResult Function(EditTransactionDeleteTransaction value)
         editTransactionDeleteTransaction,
     required TResult Function(EditTransactionDescriptionChanged value)
@@ -1800,7 +1835,8 @@ class _$EditTransactionSelectAttachment
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -1824,7 +1860,8 @@ class _$EditTransactionSelectAttachment
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SubmitNewTransaction value)? submitNewTransaction,
+    TResult Function(EditTransactionSubmitNewTransaction value)?
+        editTransactionSubmitNewTransaction,
     TResult Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
     TResult Function(EditTransactionDescriptionChanged value)?
@@ -2013,7 +2050,7 @@ class __$$_EditTransactionStateCopyWithImpl<$Res>
 class _$_EditTransactionState implements _EditTransactionState {
   const _$_EditTransactionState(
       {this.isRepeated = false,
-      this.isNewTransaction = false,
+      this.isNewTransaction = true,
       this.status = Status.initital,
       this.amount = 0,
       this.description = '',

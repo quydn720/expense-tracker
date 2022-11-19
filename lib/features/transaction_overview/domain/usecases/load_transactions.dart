@@ -12,13 +12,3 @@ class LoadAllTransactions {
   }
 }
 
-@injectable
-class AddTransaction {
-  AddTransaction(this._repository);
-
-  final TransactionRepository _repository;
-
-  Future<void> call(Transaction transaction) {
-    return _repository.addNewTransaction(transaction);
-  }
-}
