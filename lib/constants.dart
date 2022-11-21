@@ -18,36 +18,6 @@ const Color kLight60 = Color(0xffF7F9FA);
 const Color kLight80 = Color(0xffFBFBFB);
 const Color kLight100 = Color(0xffFFFFFF);
 
-// const Color kViolet20 = Color(0xffEEE5FF);
-// const Color kViolet40 = Color(0xffD3BDFF);
-// const Color kViolet60 = Color(0xffB18AFF);
-// const Color kViolet80 = Color(0xff8F57FF);
-// const Color kViolet100 = Color(0xff7F3DFF);
-
-// const Color kRed20 = Color(0xffFDD5D7);
-// const Color kRed40 = Color(0xffFDA2A9);
-// const Color kRed60 = Color(0xffFD6F7A);
-// const Color kRed80 = Color(0xffFD5662);
-// const Color kRed100 = Color(0xffFD3C4A);
-
-// const Color kGreen20 = Color(0xffCFFAEA);
-// const Color kGreen40 = Color(0xff93EACA);
-// const Color kGreen60 = Color(0xff65D1AA);
-// const Color kGreen80 = Color(0xff2AB784);
-// const Color kGreen100 = Color(0xff00A86B);
-
-// const Color kYellow20 = Color(0xffFCEED4);
-// const Color kYellow40 = Color(0xffFCDDA1);
-// const Color kYellow60 = Color(0xffFCCC6F);
-// const Color kYellow80 = Color(0xffFCBB3C);
-// const Color kYellow100 = Color(0xffFCAC12);
-
-// const Color kBlue20 = Color(0xffBDDCFF);
-// const Color kBlue40 = Color(0xff8AC0FF);
-// const Color kBlue60 = Color(0xff57A5FF);
-// const Color kBlue80 = Color(0xff248AFF);
-// const Color kBlue100 = Color(0xff0077FF);
-
 const int kAnimationDuration = 100;
 
 const double kDefaultRadius = 16;

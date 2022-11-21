@@ -3,6 +3,7 @@ import 'package:expense_tracker/features/authentication/domain/usecases/login_wi
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../domain/entities/form_value.dart';
 import '../../../domain/usecases/login_with_google_account_use_case.dart';
@@ -10,6 +11,7 @@ import '../../../domain/usecases/login_with_google_account_use_case.dart';
 part 'login_form_state.dart';
 part 'login_form_cubit.freezed.dart';
 
+@injectable
 class LoginFormCubit extends Cubit<LoginFormState> {
   LoginFormCubit({
     required LoginWithGoogleUseCase loginWithGoogleUseCase,
@@ -21,7 +23,7 @@ class LoginFormCubit extends Cubit<LoginFormState> {
   final LoginWithEmailAndPwUseCase _loginWithEmailAndPwUseCase;
   final LoginWithGoogleUseCase _loginWithGoogleUseCase;
 
-  Future<void> onSignInWithGoogleButtonClicked() async {
+  Future<void> loginWithGoogle() async {
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     await _loginWithGoogleUseCase().then(
       (value) => value.leftMap((l) {
@@ -79,11 +81,5 @@ class LoginFormCubit extends Cubit<LoginFormState> {
   void toggle() {
     final obscured = !state.isObscured;
     emit(state.copyWith(isObscured: obscured));
-  }
-
-  @override
-  Future<void> close() {
-    // print('login cubit close');
-    return super.close();
   }
 }

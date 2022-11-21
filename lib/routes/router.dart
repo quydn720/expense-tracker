@@ -149,18 +149,13 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) {
       ),
       GoRoute(
         path: '/login',
-        pageBuilder: (_, __) => FadeTransitionPage(
-          key: const ValueKey('new key'),
-          child: const LoginProvider(),
+        builder: (_, __) => const LoginProvider(),
+      ),
+      GoRoute(
+        path: '/forgot-password',
+        builder: (_, state) => ForgotPasswordScreen(
+          email: state.extra as String?,
         ),
-        routes: [
-          GoRoute(
-            path: 'forgot-password',
-            builder: (_, state) => ForgotPasswordScreen(
-              email: state.extra as String?,
-            ),
-          ),
-        ],
       ),
       GoRoute(
         path: '/register',
@@ -188,6 +183,12 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) {
 
       final emailVerified = appBloc.state is WaitForEmailVerification;
       final verifying = state.subloc == '/verify';
+
+      final forgotPassword = state.subloc == '/forgot-password';
+
+      if (forgotPassword) {
+        return null;
+      }
 
       if (emailVerified) {
         return null;

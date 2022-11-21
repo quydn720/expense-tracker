@@ -28,6 +28,8 @@ import '../features/authentication/domain/usecases/register_with_email_and_pw.da
     as _i14;
 import '../features/authentication/presentation/bloc/authentication_bloc.dart'
     as _i17;
+import '../features/authentication/presentation/login_form/cubit/login_form_cubit.dart'
+    as _i22;
 import '../features/edit_transaction/domain/usecases/add_transaction_use_case.dart'
     as _i15;
 import '../features/edit_transaction/presentation/bloc/edit_transaction_bloc.dart'
@@ -135,6 +137,10 @@ Future<_i1.GetIt> $initGetIt(
       .appRouterDev(get<String>(instanceName: 'init_location')));
   gh.factory<_i21.LoadAllTransactions>(
       () => _i21.LoadAllTransactions(get<_i12.TransactionRepository>()));
+  gh.factory<_i22.LoginFormCubit>(() => _i22.LoginFormCubit(
+        loginWithGoogleUseCase: get<_i10.LoginWithGoogleUseCase>(),
+        loginWithEmailAndPwUseCase: get<_i9.LoginWithEmailAndPwUseCase>(),
+      ));
   gh.factory<_i14.RegisterWithEmailAndPwUseCase>(
       () => _i14.RegisterWithEmailAndPwUseCase(
             verificationService: get<_i14.VerificationService>(),

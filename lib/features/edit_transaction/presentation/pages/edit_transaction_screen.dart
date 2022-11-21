@@ -157,7 +157,8 @@ class _EditTransaction extends StatelessWidget {
                               ),
                               onChanged: (value) {
                                 controller.add(
-                                    EditTransactionDescriptionChanged(value));
+                                  EditTransactionDescriptionChanged(value),
+                                );
                               },
                             ),
                             const SizedBox(height: 16),
@@ -279,7 +280,8 @@ class _EditTransaction extends StatelessWidget {
                                       padding: EdgeInsets.zero,
                                       shape: const StadiumBorder(
                                         side: BorderSide(
-                                            color: Color(0xffF1F1FA)),
+                                          color: Color(0xffF1F1FA),
+                                        ),
                                       ),
                                     ),
                                     child: const Text('Edit'),

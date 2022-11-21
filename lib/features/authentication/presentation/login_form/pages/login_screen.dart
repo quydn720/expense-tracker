@@ -14,14 +14,15 @@ import '../cubit/login_form_cubit.dart';
 class LoginProvider extends StatelessWidget {
   const LoginProvider({super.key});
   static const routeName = '/login';
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => LoginFormCubit(
-        loginWithGoogleUseCase: getIt(),
-        loginWithEmailAndPwUseCase: getIt(),
+    return Scaffold(
+      appBar: DefaultAppBar(title: context.l10n.login),
+      body: BlocProvider(
+        create: (_) => getIt<LoginFormCubit>(),
+        child: const LoginScreen(),
       ),
-      child: const LoginScreen(),
     );
   }
 }
@@ -44,38 +45,33 @@ class LoginScreen extends StatelessWidget {
           SnackBar(content: Text(content!)),
         );
       },
-      child: Scaffold(
-        appBar: DefaultAppBar(title: context.l10n.login),
-        body: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: const [
-              Spacer(),
-              _EmailInputField(),
-              SizedBox(height: 24),
-              _PasswordInputField(),
-              SizedBox(height: 8),
-              Align(alignment: Alignment.centerRight, child: _ForgotPassword()),
-              SizedBox(height: 16),
-              _LoginButton(),
-              SizedBox(height: 12),
-              Text(
-                'Or with',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xff91919F),
-                ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: const [
+            Spacer(),
+            _EmailInputField(),
+            SizedBox(height: 24),
+            _PasswordInputField(),
+            SizedBox(height: 8),
+            Align(alignment: Alignment.centerRight, child: _ForgotPassword()),
+            SizedBox(height: 16),
+            _LoginButton(),
+            SizedBox(height: 12),
+            Text(
+              'Or with',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: Color(0xff91919F),
               ),
-              SizedBox(height: 12),
-              _SignInWithGoogleButton(),
-              SizedBox(height: 16),
-              TextButton(onPressed: null, child: Text('Forgot Password')),
-              SizedBox(height: 16),
-              _MoveToRegisterButton(),
-              Spacer(flex: 2),
-            ],
-          ),
+            ),
+            SizedBox(height: 12),
+            _SignInWithGoogleButton(),
+            SizedBox(height: 16),
+            _MoveToRegisterButton(),
+            Spacer(flex: 2),
+          ],
         ),
       ),
     );
@@ -87,31 +83,15 @@ class _ForgotPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final emailValue = context.read<LoginFormCubit>().state.email.value;
+
     return TextButton(
-      child: const Text('Forgor password?'),
+      key: const Key('loginForm_forgotPassword_textButton'),
+      child: const Text('Forgot password?'),
       onPressed: () {
-        context.go(
-          '/login/forgot-password',
-          extra: context.read<LoginFormCubit>().state.email.value,
-        );
+        context.go('/forgot-password', extra: emailValue);
       },
     );
-  }
-}
-
-extension LoginFailureX on LoginFailure {
-  String toLocalizedString(AppLocalizations dict) {
-    return map(
-      withGoogle: (_) => '',
-      withEmailAndPassword: (failure) => failure.code.map(
-        invalidEmail: (_) => dict.authError_invalidEmail,
-        userDisabled: (_) => dict.authError_userDisabled,
-        userNotFound: (_) => dict.authError_userNotFound,
-        wrongPassword: (_) => dict.authError_wrongPassword,
-        unknown: (_) => dict.authError_unknownException,
-      ),
-      (_) => dict.authError_unknownException,
-    )!;
   }
 }
 
@@ -130,6 +110,7 @@ class _MoveToRegisterButton extends StatelessWidget {
           style: textTheme?.copyWith(color: theme.colorScheme.outline),
         ),
         TextButton(
+          key: const Key('loginForm_register_textButton'),
           onPressed: () => context.go('/register'),
           child: Text(
             context.l10n.signUp,
@@ -147,9 +128,8 @@ class _SignInWithGoogleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: () {
-        context.read<LoginFormCubit>().onSignInWithGoogleButtonClicked();
-      },
+      key: const Key('loginForm_loginWithGoogle_outlinedButton'),
+      onPressed: context.read<LoginFormCubit>().loginWithGoogle,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -170,7 +150,7 @@ class _LoginButton extends StatelessWidget {
     final isValid = context.watch<LoginFormCubit>().state.status.isValidated;
 
     return ElevatedButton(
-      key: const Key('login_button'),
+      key: const Key('loginForm_login_elevatedButton'),
       onPressed:
           isValid ? context.read<LoginFormCubit>().onLoginButtonClicked : null,
       child: Row(
@@ -187,8 +167,8 @@ class _EmailInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      key: const Key('email_input_field'),
-      onChanged: (v) => context.read<LoginFormCubit>().onEmailChanged(v),
+      key: const Key('loginForm_emailInput_textField'),
+      onChanged: context.read<LoginFormCubit>().onEmailChanged,
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
@@ -211,7 +191,7 @@ class _PasswordInputField extends StatelessWidget {
         final formCubit = context.read<LoginFormCubit>();
 
         return TextFormField(
-          key: const Key('pw_input_field'),
+          key: const Key('loginForm_passwordInput_textField'),
           onChanged: formCubit.onPasswordChanged,
           autocorrect: false,
           decoration: InputDecoration(
@@ -228,5 +208,21 @@ class _PasswordInputField extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+extension LoginFailureX on LoginFailure {
+  String toLocalizedString(AppLocalizations dict) {
+    return map(
+      withGoogle: (_) => '',
+      withEmailAndPassword: (failure) => failure.code.map(
+        invalidEmail: (_) => dict.authError_invalidEmail,
+        userDisabled: (_) => dict.authError_userDisabled,
+        userNotFound: (_) => dict.authError_userNotFound,
+        wrongPassword: (_) => dict.authError_wrongPassword,
+        unknown: (_) => dict.authError_unknownException,
+      ),
+      (_) => dict.authError_unknownException,
+    )!;
   }
 }
