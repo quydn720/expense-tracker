@@ -11,17 +11,17 @@ environment:
 dependencies:
   authentication_repository:
     path: ../authentication_repository
-  cloud_firestore: ^3.1.0
+  cloud_firestore: ^4.1.0 
   drift: ^2.2.0
   equatable: ^2.0.3
-  firebase_core: ^1.10.0
+  firebase_core: ^2.3.0
   flutter:
     sdk: flutter
   path: ^1.8.2
   path_provider: ^2.0.11
   rxdart: ^0.27.5
   sqlite3: ^1.7.0
-  sqlite3_flutter_libs: ^0.5.11+1
+  sqlite3_flutter_libs: ^0.5.0
   uuid: ^3.0.5
 
 dev_dependencies:
