@@ -32,15 +32,15 @@ mixin _$EditTransactionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? editTransactionSubmitNewTransaction,
-    TResult Function()? editTransactionDeleteTransaction,
-    TResult Function(String description)? editTransactionDescriptionChanged,
-    TResult Function(String amount)? editTransactionAmountChanged,
-    TResult Function()? editTransactionRepeatToggled,
-    TResult Function(Category category)? editTransactionCategoryChanged,
-    TResult Function(XFile imgStr)? editTransactionImageChosen,
-    TResult Function()? editTransactionSelectAttachmentClose,
-    TResult Function()? editTransactionSelectAttachment,
+    TResult? Function()? editTransactionSubmitNewTransaction,
+    TResult? Function()? editTransactionDeleteTransaction,
+    TResult? Function(String description)? editTransactionDescriptionChanged,
+    TResult? Function(String amount)? editTransactionAmountChanged,
+    TResult? Function()? editTransactionRepeatToggled,
+    TResult? Function(Category category)? editTransactionCategoryChanged,
+    TResult? Function(XFile imgStr)? editTransactionImageChosen,
+    TResult? Function()? editTransactionSelectAttachmentClose,
+    TResult? Function()? editTransactionSelectAttachment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,23 +81,23 @@ mixin _$EditTransactionEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditTransactionSubmitNewTransaction value)?
+    TResult? Function(EditTransactionSubmitNewTransaction value)?
         editTransactionSubmitNewTransaction,
-    TResult Function(EditTransactionDeleteTransaction value)?
+    TResult? Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
-    TResult Function(EditTransactionDescriptionChanged value)?
+    TResult? Function(EditTransactionDescriptionChanged value)?
         editTransactionDescriptionChanged,
-    TResult Function(EditTransactionAmountChanged value)?
+    TResult? Function(EditTransactionAmountChanged value)?
         editTransactionAmountChanged,
-    TResult Function(EditTransactionRepeatToggled value)?
+    TResult? Function(EditTransactionRepeatToggled value)?
         editTransactionRepeatToggled,
-    TResult Function(EditTransactionCategoryChanged value)?
+    TResult? Function(EditTransactionCategoryChanged value)?
         editTransactionCategoryChanged,
-    TResult Function(EditTransactionImageChosen value)?
+    TResult? Function(EditTransactionImageChosen value)?
         editTransactionImageChosen,
-    TResult Function(EditTransactionSelectAttachmentClose value)?
+    TResult? Function(EditTransactionSelectAttachmentClose value)?
         editTransactionSelectAttachmentClose,
-    TResult Function(EditTransactionSelectAttachment value)?
+    TResult? Function(EditTransactionSelectAttachment value)?
         editTransactionSelectAttachment,
   }) =>
       throw _privateConstructorUsedError;
@@ -130,17 +130,19 @@ mixin _$EditTransactionEvent {
 abstract class $EditTransactionEventCopyWith<$Res> {
   factory $EditTransactionEventCopyWith(EditTransactionEvent value,
           $Res Function(EditTransactionEvent) then) =
-      _$EditTransactionEventCopyWithImpl<$Res>;
+      _$EditTransactionEventCopyWithImpl<$Res, EditTransactionEvent>;
 }
 
 /// @nodoc
-class _$EditTransactionEventCopyWithImpl<$Res>
+class _$EditTransactionEventCopyWithImpl<$Res,
+        $Val extends EditTransactionEvent>
     implements $EditTransactionEventCopyWith<$Res> {
   _$EditTransactionEventCopyWithImpl(this._value, this._then);
 
-  final EditTransactionEvent _value;
   // ignore: unused_field
-  final $Res Function(EditTransactionEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -153,16 +155,13 @@ abstract class _$$EditTransactionSubmitNewTransactionCopyWith<$Res> {
 
 /// @nodoc
 class __$$EditTransactionSubmitNewTransactionCopyWithImpl<$Res>
-    extends _$EditTransactionEventCopyWithImpl<$Res>
+    extends _$EditTransactionEventCopyWithImpl<$Res,
+        _$EditTransactionSubmitNewTransaction>
     implements _$$EditTransactionSubmitNewTransactionCopyWith<$Res> {
   __$$EditTransactionSubmitNewTransactionCopyWithImpl(
       _$EditTransactionSubmitNewTransaction _value,
       $Res Function(_$EditTransactionSubmitNewTransaction) _then)
-      : super(_value, (v) => _then(v as _$EditTransactionSubmitNewTransaction));
-
-  @override
-  _$EditTransactionSubmitNewTransaction get _value =>
-      super._value as _$EditTransactionSubmitNewTransaction;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -206,15 +205,15 @@ class _$EditTransactionSubmitNewTransaction
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? editTransactionSubmitNewTransaction,
-    TResult Function()? editTransactionDeleteTransaction,
-    TResult Function(String description)? editTransactionDescriptionChanged,
-    TResult Function(String amount)? editTransactionAmountChanged,
-    TResult Function()? editTransactionRepeatToggled,
-    TResult Function(Category category)? editTransactionCategoryChanged,
-    TResult Function(XFile imgStr)? editTransactionImageChosen,
-    TResult Function()? editTransactionSelectAttachmentClose,
-    TResult Function()? editTransactionSelectAttachment,
+    TResult? Function()? editTransactionSubmitNewTransaction,
+    TResult? Function()? editTransactionDeleteTransaction,
+    TResult? Function(String description)? editTransactionDescriptionChanged,
+    TResult? Function(String amount)? editTransactionAmountChanged,
+    TResult? Function()? editTransactionRepeatToggled,
+    TResult? Function(Category category)? editTransactionCategoryChanged,
+    TResult? Function(XFile imgStr)? editTransactionImageChosen,
+    TResult? Function()? editTransactionSelectAttachmentClose,
+    TResult? Function()? editTransactionSelectAttachment,
   }) {
     return editTransactionSubmitNewTransaction?.call();
   }
@@ -267,23 +266,23 @@ class _$EditTransactionSubmitNewTransaction
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditTransactionSubmitNewTransaction value)?
+    TResult? Function(EditTransactionSubmitNewTransaction value)?
         editTransactionSubmitNewTransaction,
-    TResult Function(EditTransactionDeleteTransaction value)?
+    TResult? Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
-    TResult Function(EditTransactionDescriptionChanged value)?
+    TResult? Function(EditTransactionDescriptionChanged value)?
         editTransactionDescriptionChanged,
-    TResult Function(EditTransactionAmountChanged value)?
+    TResult? Function(EditTransactionAmountChanged value)?
         editTransactionAmountChanged,
-    TResult Function(EditTransactionRepeatToggled value)?
+    TResult? Function(EditTransactionRepeatToggled value)?
         editTransactionRepeatToggled,
-    TResult Function(EditTransactionCategoryChanged value)?
+    TResult? Function(EditTransactionCategoryChanged value)?
         editTransactionCategoryChanged,
-    TResult Function(EditTransactionImageChosen value)?
+    TResult? Function(EditTransactionImageChosen value)?
         editTransactionImageChosen,
-    TResult Function(EditTransactionSelectAttachmentClose value)?
+    TResult? Function(EditTransactionSelectAttachmentClose value)?
         editTransactionSelectAttachmentClose,
-    TResult Function(EditTransactionSelectAttachment value)?
+    TResult? Function(EditTransactionSelectAttachment value)?
         editTransactionSelectAttachment,
   }) {
     return editTransactionSubmitNewTransaction?.call(this);
@@ -335,16 +334,13 @@ abstract class _$$EditTransactionDeleteTransactionCopyWith<$Res> {
 
 /// @nodoc
 class __$$EditTransactionDeleteTransactionCopyWithImpl<$Res>
-    extends _$EditTransactionEventCopyWithImpl<$Res>
+    extends _$EditTransactionEventCopyWithImpl<$Res,
+        _$EditTransactionDeleteTransaction>
     implements _$$EditTransactionDeleteTransactionCopyWith<$Res> {
   __$$EditTransactionDeleteTransactionCopyWithImpl(
       _$EditTransactionDeleteTransaction _value,
       $Res Function(_$EditTransactionDeleteTransaction) _then)
-      : super(_value, (v) => _then(v as _$EditTransactionDeleteTransaction));
-
-  @override
-  _$EditTransactionDeleteTransaction get _value =>
-      super._value as _$EditTransactionDeleteTransaction;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -388,15 +384,15 @@ class _$EditTransactionDeleteTransaction
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? editTransactionSubmitNewTransaction,
-    TResult Function()? editTransactionDeleteTransaction,
-    TResult Function(String description)? editTransactionDescriptionChanged,
-    TResult Function(String amount)? editTransactionAmountChanged,
-    TResult Function()? editTransactionRepeatToggled,
-    TResult Function(Category category)? editTransactionCategoryChanged,
-    TResult Function(XFile imgStr)? editTransactionImageChosen,
-    TResult Function()? editTransactionSelectAttachmentClose,
-    TResult Function()? editTransactionSelectAttachment,
+    TResult? Function()? editTransactionSubmitNewTransaction,
+    TResult? Function()? editTransactionDeleteTransaction,
+    TResult? Function(String description)? editTransactionDescriptionChanged,
+    TResult? Function(String amount)? editTransactionAmountChanged,
+    TResult? Function()? editTransactionRepeatToggled,
+    TResult? Function(Category category)? editTransactionCategoryChanged,
+    TResult? Function(XFile imgStr)? editTransactionImageChosen,
+    TResult? Function()? editTransactionSelectAttachmentClose,
+    TResult? Function()? editTransactionSelectAttachment,
   }) {
     return editTransactionDeleteTransaction?.call();
   }
@@ -449,23 +445,23 @@ class _$EditTransactionDeleteTransaction
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditTransactionSubmitNewTransaction value)?
+    TResult? Function(EditTransactionSubmitNewTransaction value)?
         editTransactionSubmitNewTransaction,
-    TResult Function(EditTransactionDeleteTransaction value)?
+    TResult? Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
-    TResult Function(EditTransactionDescriptionChanged value)?
+    TResult? Function(EditTransactionDescriptionChanged value)?
         editTransactionDescriptionChanged,
-    TResult Function(EditTransactionAmountChanged value)?
+    TResult? Function(EditTransactionAmountChanged value)?
         editTransactionAmountChanged,
-    TResult Function(EditTransactionRepeatToggled value)?
+    TResult? Function(EditTransactionRepeatToggled value)?
         editTransactionRepeatToggled,
-    TResult Function(EditTransactionCategoryChanged value)?
+    TResult? Function(EditTransactionCategoryChanged value)?
         editTransactionCategoryChanged,
-    TResult Function(EditTransactionImageChosen value)?
+    TResult? Function(EditTransactionImageChosen value)?
         editTransactionImageChosen,
-    TResult Function(EditTransactionSelectAttachmentClose value)?
+    TResult? Function(EditTransactionSelectAttachmentClose value)?
         editTransactionSelectAttachmentClose,
-    TResult Function(EditTransactionSelectAttachment value)?
+    TResult? Function(EditTransactionSelectAttachment value)?
         editTransactionSelectAttachment,
   }) {
     return editTransactionDeleteTransaction?.call(this);
@@ -513,28 +509,27 @@ abstract class _$$EditTransactionDescriptionChangedCopyWith<$Res> {
           _$EditTransactionDescriptionChanged value,
           $Res Function(_$EditTransactionDescriptionChanged) then) =
       __$$EditTransactionDescriptionChangedCopyWithImpl<$Res>;
+  @useResult
   $Res call({String description});
 }
 
 /// @nodoc
 class __$$EditTransactionDescriptionChangedCopyWithImpl<$Res>
-    extends _$EditTransactionEventCopyWithImpl<$Res>
+    extends _$EditTransactionEventCopyWithImpl<$Res,
+        _$EditTransactionDescriptionChanged>
     implements _$$EditTransactionDescriptionChangedCopyWith<$Res> {
   __$$EditTransactionDescriptionChangedCopyWithImpl(
       _$EditTransactionDescriptionChanged _value,
       $Res Function(_$EditTransactionDescriptionChanged) _then)
-      : super(_value, (v) => _then(v as _$EditTransactionDescriptionChanged));
+      : super(_value, _then);
 
-  @override
-  _$EditTransactionDescriptionChanged get _value =>
-      super._value as _$EditTransactionDescriptionChanged;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? description = freezed,
+    Object? description = null,
   }) {
     return _then(_$EditTransactionDescriptionChanged(
-      description == freezed
+      null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
@@ -561,16 +556,16 @@ class _$EditTransactionDescriptionChanged
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditTransactionDescriptionChanged &&
-            const DeepCollectionEquality()
-                .equals(other.description, description));
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(description));
+  int get hashCode => Object.hash(runtimeType, description);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$EditTransactionDescriptionChangedCopyWith<
           _$EditTransactionDescriptionChanged>
       get copyWith => __$$EditTransactionDescriptionChangedCopyWithImpl<
@@ -596,15 +591,15 @@ class _$EditTransactionDescriptionChanged
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? editTransactionSubmitNewTransaction,
-    TResult Function()? editTransactionDeleteTransaction,
-    TResult Function(String description)? editTransactionDescriptionChanged,
-    TResult Function(String amount)? editTransactionAmountChanged,
-    TResult Function()? editTransactionRepeatToggled,
-    TResult Function(Category category)? editTransactionCategoryChanged,
-    TResult Function(XFile imgStr)? editTransactionImageChosen,
-    TResult Function()? editTransactionSelectAttachmentClose,
-    TResult Function()? editTransactionSelectAttachment,
+    TResult? Function()? editTransactionSubmitNewTransaction,
+    TResult? Function()? editTransactionDeleteTransaction,
+    TResult? Function(String description)? editTransactionDescriptionChanged,
+    TResult? Function(String amount)? editTransactionAmountChanged,
+    TResult? Function()? editTransactionRepeatToggled,
+    TResult? Function(Category category)? editTransactionCategoryChanged,
+    TResult? Function(XFile imgStr)? editTransactionImageChosen,
+    TResult? Function()? editTransactionSelectAttachmentClose,
+    TResult? Function()? editTransactionSelectAttachment,
   }) {
     return editTransactionDescriptionChanged?.call(description);
   }
@@ -657,23 +652,23 @@ class _$EditTransactionDescriptionChanged
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditTransactionSubmitNewTransaction value)?
+    TResult? Function(EditTransactionSubmitNewTransaction value)?
         editTransactionSubmitNewTransaction,
-    TResult Function(EditTransactionDeleteTransaction value)?
+    TResult? Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
-    TResult Function(EditTransactionDescriptionChanged value)?
+    TResult? Function(EditTransactionDescriptionChanged value)?
         editTransactionDescriptionChanged,
-    TResult Function(EditTransactionAmountChanged value)?
+    TResult? Function(EditTransactionAmountChanged value)?
         editTransactionAmountChanged,
-    TResult Function(EditTransactionRepeatToggled value)?
+    TResult? Function(EditTransactionRepeatToggled value)?
         editTransactionRepeatToggled,
-    TResult Function(EditTransactionCategoryChanged value)?
+    TResult? Function(EditTransactionCategoryChanged value)?
         editTransactionCategoryChanged,
-    TResult Function(EditTransactionImageChosen value)?
+    TResult? Function(EditTransactionImageChosen value)?
         editTransactionImageChosen,
-    TResult Function(EditTransactionSelectAttachmentClose value)?
+    TResult? Function(EditTransactionSelectAttachmentClose value)?
         editTransactionSelectAttachmentClose,
-    TResult Function(EditTransactionSelectAttachment value)?
+    TResult? Function(EditTransactionSelectAttachment value)?
         editTransactionSelectAttachment,
   }) {
     return editTransactionDescriptionChanged?.call(this);
@@ -727,28 +722,27 @@ abstract class _$$EditTransactionAmountChangedCopyWith<$Res> {
           _$EditTransactionAmountChanged value,
           $Res Function(_$EditTransactionAmountChanged) then) =
       __$$EditTransactionAmountChangedCopyWithImpl<$Res>;
+  @useResult
   $Res call({String amount});
 }
 
 /// @nodoc
 class __$$EditTransactionAmountChangedCopyWithImpl<$Res>
-    extends _$EditTransactionEventCopyWithImpl<$Res>
+    extends _$EditTransactionEventCopyWithImpl<$Res,
+        _$EditTransactionAmountChanged>
     implements _$$EditTransactionAmountChangedCopyWith<$Res> {
   __$$EditTransactionAmountChangedCopyWithImpl(
       _$EditTransactionAmountChanged _value,
       $Res Function(_$EditTransactionAmountChanged) _then)
-      : super(_value, (v) => _then(v as _$EditTransactionAmountChanged));
+      : super(_value, _then);
 
-  @override
-  _$EditTransactionAmountChanged get _value =>
-      super._value as _$EditTransactionAmountChanged;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? amount = freezed,
+    Object? amount = null,
   }) {
     return _then(_$EditTransactionAmountChanged(
-      amount == freezed
+      null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as String,
@@ -774,15 +768,15 @@ class _$EditTransactionAmountChanged implements EditTransactionAmountChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditTransactionAmountChanged &&
-            const DeepCollectionEquality().equals(other.amount, amount));
+            (identical(other.amount, amount) || other.amount == amount));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(amount));
+  int get hashCode => Object.hash(runtimeType, amount);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$EditTransactionAmountChangedCopyWith<_$EditTransactionAmountChanged>
       get copyWith => __$$EditTransactionAmountChangedCopyWithImpl<
           _$EditTransactionAmountChanged>(this, _$identity);
@@ -807,15 +801,15 @@ class _$EditTransactionAmountChanged implements EditTransactionAmountChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? editTransactionSubmitNewTransaction,
-    TResult Function()? editTransactionDeleteTransaction,
-    TResult Function(String description)? editTransactionDescriptionChanged,
-    TResult Function(String amount)? editTransactionAmountChanged,
-    TResult Function()? editTransactionRepeatToggled,
-    TResult Function(Category category)? editTransactionCategoryChanged,
-    TResult Function(XFile imgStr)? editTransactionImageChosen,
-    TResult Function()? editTransactionSelectAttachmentClose,
-    TResult Function()? editTransactionSelectAttachment,
+    TResult? Function()? editTransactionSubmitNewTransaction,
+    TResult? Function()? editTransactionDeleteTransaction,
+    TResult? Function(String description)? editTransactionDescriptionChanged,
+    TResult? Function(String amount)? editTransactionAmountChanged,
+    TResult? Function()? editTransactionRepeatToggled,
+    TResult? Function(Category category)? editTransactionCategoryChanged,
+    TResult? Function(XFile imgStr)? editTransactionImageChosen,
+    TResult? Function()? editTransactionSelectAttachmentClose,
+    TResult? Function()? editTransactionSelectAttachment,
   }) {
     return editTransactionAmountChanged?.call(amount);
   }
@@ -868,23 +862,23 @@ class _$EditTransactionAmountChanged implements EditTransactionAmountChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditTransactionSubmitNewTransaction value)?
+    TResult? Function(EditTransactionSubmitNewTransaction value)?
         editTransactionSubmitNewTransaction,
-    TResult Function(EditTransactionDeleteTransaction value)?
+    TResult? Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
-    TResult Function(EditTransactionDescriptionChanged value)?
+    TResult? Function(EditTransactionDescriptionChanged value)?
         editTransactionDescriptionChanged,
-    TResult Function(EditTransactionAmountChanged value)?
+    TResult? Function(EditTransactionAmountChanged value)?
         editTransactionAmountChanged,
-    TResult Function(EditTransactionRepeatToggled value)?
+    TResult? Function(EditTransactionRepeatToggled value)?
         editTransactionRepeatToggled,
-    TResult Function(EditTransactionCategoryChanged value)?
+    TResult? Function(EditTransactionCategoryChanged value)?
         editTransactionCategoryChanged,
-    TResult Function(EditTransactionImageChosen value)?
+    TResult? Function(EditTransactionImageChosen value)?
         editTransactionImageChosen,
-    TResult Function(EditTransactionSelectAttachmentClose value)?
+    TResult? Function(EditTransactionSelectAttachmentClose value)?
         editTransactionSelectAttachmentClose,
-    TResult Function(EditTransactionSelectAttachment value)?
+    TResult? Function(EditTransactionSelectAttachment value)?
         editTransactionSelectAttachment,
   }) {
     return editTransactionAmountChanged?.call(this);
@@ -940,16 +934,13 @@ abstract class _$$EditTransactionRepeatToggledCopyWith<$Res> {
 
 /// @nodoc
 class __$$EditTransactionRepeatToggledCopyWithImpl<$Res>
-    extends _$EditTransactionEventCopyWithImpl<$Res>
+    extends _$EditTransactionEventCopyWithImpl<$Res,
+        _$EditTransactionRepeatToggled>
     implements _$$EditTransactionRepeatToggledCopyWith<$Res> {
   __$$EditTransactionRepeatToggledCopyWithImpl(
       _$EditTransactionRepeatToggled _value,
       $Res Function(_$EditTransactionRepeatToggled) _then)
-      : super(_value, (v) => _then(v as _$EditTransactionRepeatToggled));
-
-  @override
-  _$EditTransactionRepeatToggled get _value =>
-      super._value as _$EditTransactionRepeatToggled;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -992,15 +983,15 @@ class _$EditTransactionRepeatToggled implements EditTransactionRepeatToggled {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? editTransactionSubmitNewTransaction,
-    TResult Function()? editTransactionDeleteTransaction,
-    TResult Function(String description)? editTransactionDescriptionChanged,
-    TResult Function(String amount)? editTransactionAmountChanged,
-    TResult Function()? editTransactionRepeatToggled,
-    TResult Function(Category category)? editTransactionCategoryChanged,
-    TResult Function(XFile imgStr)? editTransactionImageChosen,
-    TResult Function()? editTransactionSelectAttachmentClose,
-    TResult Function()? editTransactionSelectAttachment,
+    TResult? Function()? editTransactionSubmitNewTransaction,
+    TResult? Function()? editTransactionDeleteTransaction,
+    TResult? Function(String description)? editTransactionDescriptionChanged,
+    TResult? Function(String amount)? editTransactionAmountChanged,
+    TResult? Function()? editTransactionRepeatToggled,
+    TResult? Function(Category category)? editTransactionCategoryChanged,
+    TResult? Function(XFile imgStr)? editTransactionImageChosen,
+    TResult? Function()? editTransactionSelectAttachmentClose,
+    TResult? Function()? editTransactionSelectAttachment,
   }) {
     return editTransactionRepeatToggled?.call();
   }
@@ -1053,23 +1044,23 @@ class _$EditTransactionRepeatToggled implements EditTransactionRepeatToggled {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditTransactionSubmitNewTransaction value)?
+    TResult? Function(EditTransactionSubmitNewTransaction value)?
         editTransactionSubmitNewTransaction,
-    TResult Function(EditTransactionDeleteTransaction value)?
+    TResult? Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
-    TResult Function(EditTransactionDescriptionChanged value)?
+    TResult? Function(EditTransactionDescriptionChanged value)?
         editTransactionDescriptionChanged,
-    TResult Function(EditTransactionAmountChanged value)?
+    TResult? Function(EditTransactionAmountChanged value)?
         editTransactionAmountChanged,
-    TResult Function(EditTransactionRepeatToggled value)?
+    TResult? Function(EditTransactionRepeatToggled value)?
         editTransactionRepeatToggled,
-    TResult Function(EditTransactionCategoryChanged value)?
+    TResult? Function(EditTransactionCategoryChanged value)?
         editTransactionCategoryChanged,
-    TResult Function(EditTransactionImageChosen value)?
+    TResult? Function(EditTransactionImageChosen value)?
         editTransactionImageChosen,
-    TResult Function(EditTransactionSelectAttachmentClose value)?
+    TResult? Function(EditTransactionSelectAttachmentClose value)?
         editTransactionSelectAttachmentClose,
-    TResult Function(EditTransactionSelectAttachment value)?
+    TResult? Function(EditTransactionSelectAttachment value)?
         editTransactionSelectAttachment,
   }) {
     return editTransactionRepeatToggled?.call(this);
@@ -1115,28 +1106,27 @@ abstract class _$$EditTransactionCategoryChangedCopyWith<$Res> {
           _$EditTransactionCategoryChanged value,
           $Res Function(_$EditTransactionCategoryChanged) then) =
       __$$EditTransactionCategoryChangedCopyWithImpl<$Res>;
+  @useResult
   $Res call({Category category});
 }
 
 /// @nodoc
 class __$$EditTransactionCategoryChangedCopyWithImpl<$Res>
-    extends _$EditTransactionEventCopyWithImpl<$Res>
+    extends _$EditTransactionEventCopyWithImpl<$Res,
+        _$EditTransactionCategoryChanged>
     implements _$$EditTransactionCategoryChangedCopyWith<$Res> {
   __$$EditTransactionCategoryChangedCopyWithImpl(
       _$EditTransactionCategoryChanged _value,
       $Res Function(_$EditTransactionCategoryChanged) _then)
-      : super(_value, (v) => _then(v as _$EditTransactionCategoryChanged));
+      : super(_value, _then);
 
-  @override
-  _$EditTransactionCategoryChanged get _value =>
-      super._value as _$EditTransactionCategoryChanged;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? category = freezed,
+    Object? category = null,
   }) {
     return _then(_$EditTransactionCategoryChanged(
-      category == freezed
+      null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category,
@@ -1163,15 +1153,16 @@ class _$EditTransactionCategoryChanged
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditTransactionCategoryChanged &&
-            const DeepCollectionEquality().equals(other.category, category));
+            (identical(other.category, category) ||
+                other.category == category));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(category));
+  int get hashCode => Object.hash(runtimeType, category);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$EditTransactionCategoryChangedCopyWith<_$EditTransactionCategoryChanged>
       get copyWith => __$$EditTransactionCategoryChangedCopyWithImpl<
           _$EditTransactionCategoryChanged>(this, _$identity);
@@ -1196,15 +1187,15 @@ class _$EditTransactionCategoryChanged
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? editTransactionSubmitNewTransaction,
-    TResult Function()? editTransactionDeleteTransaction,
-    TResult Function(String description)? editTransactionDescriptionChanged,
-    TResult Function(String amount)? editTransactionAmountChanged,
-    TResult Function()? editTransactionRepeatToggled,
-    TResult Function(Category category)? editTransactionCategoryChanged,
-    TResult Function(XFile imgStr)? editTransactionImageChosen,
-    TResult Function()? editTransactionSelectAttachmentClose,
-    TResult Function()? editTransactionSelectAttachment,
+    TResult? Function()? editTransactionSubmitNewTransaction,
+    TResult? Function()? editTransactionDeleteTransaction,
+    TResult? Function(String description)? editTransactionDescriptionChanged,
+    TResult? Function(String amount)? editTransactionAmountChanged,
+    TResult? Function()? editTransactionRepeatToggled,
+    TResult? Function(Category category)? editTransactionCategoryChanged,
+    TResult? Function(XFile imgStr)? editTransactionImageChosen,
+    TResult? Function()? editTransactionSelectAttachmentClose,
+    TResult? Function()? editTransactionSelectAttachment,
   }) {
     return editTransactionCategoryChanged?.call(category);
   }
@@ -1257,23 +1248,23 @@ class _$EditTransactionCategoryChanged
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditTransactionSubmitNewTransaction value)?
+    TResult? Function(EditTransactionSubmitNewTransaction value)?
         editTransactionSubmitNewTransaction,
-    TResult Function(EditTransactionDeleteTransaction value)?
+    TResult? Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
-    TResult Function(EditTransactionDescriptionChanged value)?
+    TResult? Function(EditTransactionDescriptionChanged value)?
         editTransactionDescriptionChanged,
-    TResult Function(EditTransactionAmountChanged value)?
+    TResult? Function(EditTransactionAmountChanged value)?
         editTransactionAmountChanged,
-    TResult Function(EditTransactionRepeatToggled value)?
+    TResult? Function(EditTransactionRepeatToggled value)?
         editTransactionRepeatToggled,
-    TResult Function(EditTransactionCategoryChanged value)?
+    TResult? Function(EditTransactionCategoryChanged value)?
         editTransactionCategoryChanged,
-    TResult Function(EditTransactionImageChosen value)?
+    TResult? Function(EditTransactionImageChosen value)?
         editTransactionImageChosen,
-    TResult Function(EditTransactionSelectAttachmentClose value)?
+    TResult? Function(EditTransactionSelectAttachmentClose value)?
         editTransactionSelectAttachmentClose,
-    TResult Function(EditTransactionSelectAttachment value)?
+    TResult? Function(EditTransactionSelectAttachment value)?
         editTransactionSelectAttachment,
   }) {
     return editTransactionCategoryChanged?.call(this);
@@ -1325,28 +1316,27 @@ abstract class _$$EditTransactionImageChosenCopyWith<$Res> {
           _$EditTransactionImageChosen value,
           $Res Function(_$EditTransactionImageChosen) then) =
       __$$EditTransactionImageChosenCopyWithImpl<$Res>;
+  @useResult
   $Res call({XFile imgStr});
 }
 
 /// @nodoc
 class __$$EditTransactionImageChosenCopyWithImpl<$Res>
-    extends _$EditTransactionEventCopyWithImpl<$Res>
+    extends _$EditTransactionEventCopyWithImpl<$Res,
+        _$EditTransactionImageChosen>
     implements _$$EditTransactionImageChosenCopyWith<$Res> {
   __$$EditTransactionImageChosenCopyWithImpl(
       _$EditTransactionImageChosen _value,
       $Res Function(_$EditTransactionImageChosen) _then)
-      : super(_value, (v) => _then(v as _$EditTransactionImageChosen));
+      : super(_value, _then);
 
-  @override
-  _$EditTransactionImageChosen get _value =>
-      super._value as _$EditTransactionImageChosen;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? imgStr = freezed,
+    Object? imgStr = null,
   }) {
     return _then(_$EditTransactionImageChosen(
-      imgStr == freezed
+      null == imgStr
           ? _value.imgStr
           : imgStr // ignore: cast_nullable_to_non_nullable
               as XFile,
@@ -1372,15 +1362,15 @@ class _$EditTransactionImageChosen implements EditTransactionImageChosen {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditTransactionImageChosen &&
-            const DeepCollectionEquality().equals(other.imgStr, imgStr));
+            (identical(other.imgStr, imgStr) || other.imgStr == imgStr));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(imgStr));
+  int get hashCode => Object.hash(runtimeType, imgStr);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$EditTransactionImageChosenCopyWith<_$EditTransactionImageChosen>
       get copyWith => __$$EditTransactionImageChosenCopyWithImpl<
           _$EditTransactionImageChosen>(this, _$identity);
@@ -1405,15 +1395,15 @@ class _$EditTransactionImageChosen implements EditTransactionImageChosen {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? editTransactionSubmitNewTransaction,
-    TResult Function()? editTransactionDeleteTransaction,
-    TResult Function(String description)? editTransactionDescriptionChanged,
-    TResult Function(String amount)? editTransactionAmountChanged,
-    TResult Function()? editTransactionRepeatToggled,
-    TResult Function(Category category)? editTransactionCategoryChanged,
-    TResult Function(XFile imgStr)? editTransactionImageChosen,
-    TResult Function()? editTransactionSelectAttachmentClose,
-    TResult Function()? editTransactionSelectAttachment,
+    TResult? Function()? editTransactionSubmitNewTransaction,
+    TResult? Function()? editTransactionDeleteTransaction,
+    TResult? Function(String description)? editTransactionDescriptionChanged,
+    TResult? Function(String amount)? editTransactionAmountChanged,
+    TResult? Function()? editTransactionRepeatToggled,
+    TResult? Function(Category category)? editTransactionCategoryChanged,
+    TResult? Function(XFile imgStr)? editTransactionImageChosen,
+    TResult? Function()? editTransactionSelectAttachmentClose,
+    TResult? Function()? editTransactionSelectAttachment,
   }) {
     return editTransactionImageChosen?.call(imgStr);
   }
@@ -1466,23 +1456,23 @@ class _$EditTransactionImageChosen implements EditTransactionImageChosen {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditTransactionSubmitNewTransaction value)?
+    TResult? Function(EditTransactionSubmitNewTransaction value)?
         editTransactionSubmitNewTransaction,
-    TResult Function(EditTransactionDeleteTransaction value)?
+    TResult? Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
-    TResult Function(EditTransactionDescriptionChanged value)?
+    TResult? Function(EditTransactionDescriptionChanged value)?
         editTransactionDescriptionChanged,
-    TResult Function(EditTransactionAmountChanged value)?
+    TResult? Function(EditTransactionAmountChanged value)?
         editTransactionAmountChanged,
-    TResult Function(EditTransactionRepeatToggled value)?
+    TResult? Function(EditTransactionRepeatToggled value)?
         editTransactionRepeatToggled,
-    TResult Function(EditTransactionCategoryChanged value)?
+    TResult? Function(EditTransactionCategoryChanged value)?
         editTransactionCategoryChanged,
-    TResult Function(EditTransactionImageChosen value)?
+    TResult? Function(EditTransactionImageChosen value)?
         editTransactionImageChosen,
-    TResult Function(EditTransactionSelectAttachmentClose value)?
+    TResult? Function(EditTransactionSelectAttachmentClose value)?
         editTransactionSelectAttachmentClose,
-    TResult Function(EditTransactionSelectAttachment value)?
+    TResult? Function(EditTransactionSelectAttachment value)?
         editTransactionSelectAttachment,
   }) {
     return editTransactionImageChosen?.call(this);
@@ -1538,17 +1528,13 @@ abstract class _$$EditTransactionSelectAttachmentCloseCopyWith<$Res> {
 
 /// @nodoc
 class __$$EditTransactionSelectAttachmentCloseCopyWithImpl<$Res>
-    extends _$EditTransactionEventCopyWithImpl<$Res>
+    extends _$EditTransactionEventCopyWithImpl<$Res,
+        _$EditTransactionSelectAttachmentClose>
     implements _$$EditTransactionSelectAttachmentCloseCopyWith<$Res> {
   __$$EditTransactionSelectAttachmentCloseCopyWithImpl(
       _$EditTransactionSelectAttachmentClose _value,
       $Res Function(_$EditTransactionSelectAttachmentClose) _then)
-      : super(
-            _value, (v) => _then(v as _$EditTransactionSelectAttachmentClose));
-
-  @override
-  _$EditTransactionSelectAttachmentClose get _value =>
-      super._value as _$EditTransactionSelectAttachmentClose;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1592,15 +1578,15 @@ class _$EditTransactionSelectAttachmentClose
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? editTransactionSubmitNewTransaction,
-    TResult Function()? editTransactionDeleteTransaction,
-    TResult Function(String description)? editTransactionDescriptionChanged,
-    TResult Function(String amount)? editTransactionAmountChanged,
-    TResult Function()? editTransactionRepeatToggled,
-    TResult Function(Category category)? editTransactionCategoryChanged,
-    TResult Function(XFile imgStr)? editTransactionImageChosen,
-    TResult Function()? editTransactionSelectAttachmentClose,
-    TResult Function()? editTransactionSelectAttachment,
+    TResult? Function()? editTransactionSubmitNewTransaction,
+    TResult? Function()? editTransactionDeleteTransaction,
+    TResult? Function(String description)? editTransactionDescriptionChanged,
+    TResult? Function(String amount)? editTransactionAmountChanged,
+    TResult? Function()? editTransactionRepeatToggled,
+    TResult? Function(Category category)? editTransactionCategoryChanged,
+    TResult? Function(XFile imgStr)? editTransactionImageChosen,
+    TResult? Function()? editTransactionSelectAttachmentClose,
+    TResult? Function()? editTransactionSelectAttachment,
   }) {
     return editTransactionSelectAttachmentClose?.call();
   }
@@ -1653,23 +1639,23 @@ class _$EditTransactionSelectAttachmentClose
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditTransactionSubmitNewTransaction value)?
+    TResult? Function(EditTransactionSubmitNewTransaction value)?
         editTransactionSubmitNewTransaction,
-    TResult Function(EditTransactionDeleteTransaction value)?
+    TResult? Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
-    TResult Function(EditTransactionDescriptionChanged value)?
+    TResult? Function(EditTransactionDescriptionChanged value)?
         editTransactionDescriptionChanged,
-    TResult Function(EditTransactionAmountChanged value)?
+    TResult? Function(EditTransactionAmountChanged value)?
         editTransactionAmountChanged,
-    TResult Function(EditTransactionRepeatToggled value)?
+    TResult? Function(EditTransactionRepeatToggled value)?
         editTransactionRepeatToggled,
-    TResult Function(EditTransactionCategoryChanged value)?
+    TResult? Function(EditTransactionCategoryChanged value)?
         editTransactionCategoryChanged,
-    TResult Function(EditTransactionImageChosen value)?
+    TResult? Function(EditTransactionImageChosen value)?
         editTransactionImageChosen,
-    TResult Function(EditTransactionSelectAttachmentClose value)?
+    TResult? Function(EditTransactionSelectAttachmentClose value)?
         editTransactionSelectAttachmentClose,
-    TResult Function(EditTransactionSelectAttachment value)?
+    TResult? Function(EditTransactionSelectAttachment value)?
         editTransactionSelectAttachment,
   }) {
     return editTransactionSelectAttachmentClose?.call(this);
@@ -1721,16 +1707,13 @@ abstract class _$$EditTransactionSelectAttachmentCopyWith<$Res> {
 
 /// @nodoc
 class __$$EditTransactionSelectAttachmentCopyWithImpl<$Res>
-    extends _$EditTransactionEventCopyWithImpl<$Res>
+    extends _$EditTransactionEventCopyWithImpl<$Res,
+        _$EditTransactionSelectAttachment>
     implements _$$EditTransactionSelectAttachmentCopyWith<$Res> {
   __$$EditTransactionSelectAttachmentCopyWithImpl(
       _$EditTransactionSelectAttachment _value,
       $Res Function(_$EditTransactionSelectAttachment) _then)
-      : super(_value, (v) => _then(v as _$EditTransactionSelectAttachment));
-
-  @override
-  _$EditTransactionSelectAttachment get _value =>
-      super._value as _$EditTransactionSelectAttachment;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1774,15 +1757,15 @@ class _$EditTransactionSelectAttachment
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? editTransactionSubmitNewTransaction,
-    TResult Function()? editTransactionDeleteTransaction,
-    TResult Function(String description)? editTransactionDescriptionChanged,
-    TResult Function(String amount)? editTransactionAmountChanged,
-    TResult Function()? editTransactionRepeatToggled,
-    TResult Function(Category category)? editTransactionCategoryChanged,
-    TResult Function(XFile imgStr)? editTransactionImageChosen,
-    TResult Function()? editTransactionSelectAttachmentClose,
-    TResult Function()? editTransactionSelectAttachment,
+    TResult? Function()? editTransactionSubmitNewTransaction,
+    TResult? Function()? editTransactionDeleteTransaction,
+    TResult? Function(String description)? editTransactionDescriptionChanged,
+    TResult? Function(String amount)? editTransactionAmountChanged,
+    TResult? Function()? editTransactionRepeatToggled,
+    TResult? Function(Category category)? editTransactionCategoryChanged,
+    TResult? Function(XFile imgStr)? editTransactionImageChosen,
+    TResult? Function()? editTransactionSelectAttachmentClose,
+    TResult? Function()? editTransactionSelectAttachment,
   }) {
     return editTransactionSelectAttachment?.call();
   }
@@ -1835,23 +1818,23 @@ class _$EditTransactionSelectAttachment
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(EditTransactionSubmitNewTransaction value)?
+    TResult? Function(EditTransactionSubmitNewTransaction value)?
         editTransactionSubmitNewTransaction,
-    TResult Function(EditTransactionDeleteTransaction value)?
+    TResult? Function(EditTransactionDeleteTransaction value)?
         editTransactionDeleteTransaction,
-    TResult Function(EditTransactionDescriptionChanged value)?
+    TResult? Function(EditTransactionDescriptionChanged value)?
         editTransactionDescriptionChanged,
-    TResult Function(EditTransactionAmountChanged value)?
+    TResult? Function(EditTransactionAmountChanged value)?
         editTransactionAmountChanged,
-    TResult Function(EditTransactionRepeatToggled value)?
+    TResult? Function(EditTransactionRepeatToggled value)?
         editTransactionRepeatToggled,
-    TResult Function(EditTransactionCategoryChanged value)?
+    TResult? Function(EditTransactionCategoryChanged value)?
         editTransactionCategoryChanged,
-    TResult Function(EditTransactionImageChosen value)?
+    TResult? Function(EditTransactionImageChosen value)?
         editTransactionImageChosen,
-    TResult Function(EditTransactionSelectAttachmentClose value)?
+    TResult? Function(EditTransactionSelectAttachmentClose value)?
         editTransactionSelectAttachmentClose,
-    TResult Function(EditTransactionSelectAttachment value)?
+    TResult? Function(EditTransactionSelectAttachment value)?
         editTransactionSelectAttachment,
   }) {
     return editTransactionSelectAttachment?.call(this);
@@ -1911,7 +1894,8 @@ mixin _$EditTransactionState {
 abstract class $EditTransactionStateCopyWith<$Res> {
   factory $EditTransactionStateCopyWith(EditTransactionState value,
           $Res Function(EditTransactionState) then) =
-      _$EditTransactionStateCopyWithImpl<$Res>;
+      _$EditTransactionStateCopyWithImpl<$Res, EditTransactionState>;
+  @useResult
   $Res call(
       {bool isRepeated,
       bool isNewTransaction,
@@ -1923,54 +1907,57 @@ abstract class $EditTransactionStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EditTransactionStateCopyWithImpl<$Res>
+class _$EditTransactionStateCopyWithImpl<$Res,
+        $Val extends EditTransactionState>
     implements $EditTransactionStateCopyWith<$Res> {
   _$EditTransactionStateCopyWithImpl(this._value, this._then);
 
-  final EditTransactionState _value;
   // ignore: unused_field
-  final $Res Function(EditTransactionState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isRepeated = freezed,
-    Object? isNewTransaction = freezed,
-    Object? status = freezed,
-    Object? amount = freezed,
-    Object? description = freezed,
+    Object? isRepeated = null,
+    Object? isNewTransaction = null,
+    Object? status = null,
+    Object? amount = null,
+    Object? description = null,
     Object? category = freezed,
     Object? imgFile = freezed,
   }) {
     return _then(_value.copyWith(
-      isRepeated: isRepeated == freezed
+      isRepeated: null == isRepeated
           ? _value.isRepeated
           : isRepeated // ignore: cast_nullable_to_non_nullable
               as bool,
-      isNewTransaction: isNewTransaction == freezed
+      isNewTransaction: null == isNewTransaction
           ? _value.isNewTransaction
           : isNewTransaction // ignore: cast_nullable_to_non_nullable
               as bool,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      category: category == freezed
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category?,
-      imgFile: imgFile == freezed
+      imgFile: freezed == imgFile
           ? _value.imgFile
           : imgFile // ignore: cast_nullable_to_non_nullable
               as XFile?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -1981,6 +1968,7 @@ abstract class _$$_EditTransactionStateCopyWith<$Res>
           $Res Function(_$_EditTransactionState) then) =
       __$$_EditTransactionStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {bool isRepeated,
       bool isNewTransaction,
@@ -1993,51 +1981,49 @@ abstract class _$$_EditTransactionStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_EditTransactionStateCopyWithImpl<$Res>
-    extends _$EditTransactionStateCopyWithImpl<$Res>
+    extends _$EditTransactionStateCopyWithImpl<$Res, _$_EditTransactionState>
     implements _$$_EditTransactionStateCopyWith<$Res> {
   __$$_EditTransactionStateCopyWithImpl(_$_EditTransactionState _value,
       $Res Function(_$_EditTransactionState) _then)
-      : super(_value, (v) => _then(v as _$_EditTransactionState));
+      : super(_value, _then);
 
-  @override
-  _$_EditTransactionState get _value => super._value as _$_EditTransactionState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isRepeated = freezed,
-    Object? isNewTransaction = freezed,
-    Object? status = freezed,
-    Object? amount = freezed,
-    Object? description = freezed,
+    Object? isRepeated = null,
+    Object? isNewTransaction = null,
+    Object? status = null,
+    Object? amount = null,
+    Object? description = null,
     Object? category = freezed,
     Object? imgFile = freezed,
   }) {
     return _then(_$_EditTransactionState(
-      isRepeated: isRepeated == freezed
+      isRepeated: null == isRepeated
           ? _value.isRepeated
           : isRepeated // ignore: cast_nullable_to_non_nullable
               as bool,
-      isNewTransaction: isNewTransaction == freezed
+      isNewTransaction: null == isNewTransaction
           ? _value.isNewTransaction
           : isNewTransaction // ignore: cast_nullable_to_non_nullable
               as bool,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      category: category == freezed
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category?,
-      imgFile: imgFile == freezed
+      imgFile: freezed == imgFile
           ? _value.imgFile
           : imgFile // ignore: cast_nullable_to_non_nullable
               as XFile?,
@@ -2087,31 +2073,26 @@ class _$_EditTransactionState implements _EditTransactionState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EditTransactionState &&
-            const DeepCollectionEquality()
-                .equals(other.isRepeated, isRepeated) &&
-            const DeepCollectionEquality()
-                .equals(other.isNewTransaction, isNewTransaction) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.amount, amount) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.category, category) &&
-            const DeepCollectionEquality().equals(other.imgFile, imgFile));
+            (identical(other.isRepeated, isRepeated) ||
+                other.isRepeated == isRepeated) &&
+            (identical(other.isNewTransaction, isNewTransaction) ||
+                other.isNewTransaction == isNewTransaction) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.imgFile, imgFile) || other.imgFile == imgFile));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(isRepeated),
-      const DeepCollectionEquality().hash(isNewTransaction),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(amount),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(category),
-      const DeepCollectionEquality().hash(imgFile));
+  int get hashCode => Object.hash(runtimeType, isRepeated, isNewTransaction,
+      status, amount, description, category, imgFile);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_EditTransactionStateCopyWith<_$_EditTransactionState> get copyWith =>
       __$$_EditTransactionStateCopyWithImpl<_$_EditTransactionState>(
           this, _$identity);

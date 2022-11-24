@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_email_sent_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
@@ -9,7 +10,6 @@ import 'package:expense_tracker/features/settings/presentation/pages/profile_scr
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
 import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
 import 'package:expense_tracker/home_screen.dart';
-import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:expense_tracker/presentations/pages/detail/transaction_detail.dart';
 import 'package:expense_tracker/presentations/pages/onboarding/onboarding_page.dart';
 import 'package:expense_tracker/presentations/pages/profile/export/export_page.dart';
@@ -18,7 +18,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
-import '../features/app/bloc/app_bloc.dart';
 import '../features/authentication/presentation/register_form/pages/register_screen.dart';
 import '../features/settings/presentation/pages/language_screen.dart';
 import '../features/settings/presentation/pages/notification_screen.dart';
@@ -30,7 +29,7 @@ import 'fade_transistion_page.dart';
 
 const ValueKey<String> _scaffoldKey = ValueKey<String>('App scaffold');
 
-GoRouter router({String? initialLocation, required AppBloc appBloc}) {
+GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
   return GoRouter(
     initialLocation: initialLocation,
     routes: [
@@ -132,10 +131,6 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) {
         ],
       ),
       GoRoute(
-        path: '/dev_view',
-        builder: (_, __) => const AppDevelopmentView(),
-      ),
-      GoRoute(
         path: '/transaction',
         builder: (_, state) => EditTransactionScreen(
           inititalTransaction: state.extra as Transaction?,
@@ -167,50 +162,33 @@ GoRouter router({String? initialLocation, required AppBloc appBloc}) {
       ),
     ],
     debugLogDiagnostics: true,
-    refreshListenable: GoRouterRefreshStream(appBloc.stream),
+    refreshListenable: GoRouterRefreshStream(auth.stream),
     redirect: (context, state) {
-      final appBloc = context.read<AppBloc>();
-      final showOnboardingScreen = appBloc.state is FirstTimeOpenApp;
-      if (showOnboardingScreen) {
-        if (state.subloc == '/splash') return null;
-        return '/splash';
+      const loginLoc = '/login';
+      const registerLoc = '/register';
+      const forgotPasswordLoc = '/forgot-password';
+
+      // [1] Get the Authentication state
+      final authState = context.read<AuthenticationBloc>().state;
+      final isAuthenticated = authState is Authenticated;
+
+      final onLoginPage = state.subloc == loginLoc;
+      final onRegisterPage = state.subloc == registerLoc;
+      final onForgotPasswordPage = state.subloc == forgotPasswordLoc;
+
+      // If the user is [Unauthenticated]
+      if (isAuthenticated == false) {
+        if (onRegisterPage) return null;
+        if (onForgotPasswordPage) return null;
+
+        return '/login';
       }
 
-      final loggedIn = appBloc.state is Authenticated;
+      // If the user is [Authenticated] but still try to go '/login' or '/register' page
+      // redirect them to home page
+      if (onLoginPage || onRegisterPage) return '/';
 
-      final loggingIn = state.subloc == '/login';
-      final registering = state.subloc == '/register';
-
-      final emailVerified = appBloc.state is WaitForEmailVerification;
-      final verifying = state.subloc == '/verify';
-
-      final forgotPassword = state.subloc == '/forgot-password';
-
-      if (forgotPassword) {
-        return null;
-      }
-
-      if (emailVerified) {
-        return null;
-      }
-      if (!loggedIn) {
-        if (registering) {
-          return null;
-        } else if (loggingIn) {
-          return null;
-        } else if (state.subloc == '/login/forgot-password') {
-          return null;
-        } else if (state.subloc == '/success') {
-          return null;
-        } else {
-          return '/login';
-        }
-      }
-
-      if (loggingIn || registering || verifying) {
-        return '/';
-      }
-
+      // Don't need to redirect at all
       return null;
     },
   );
@@ -243,24 +221,24 @@ class BudgetScreen extends StatelessWidget {
   }
 }
 
-class AppDevelopmentView extends StatelessWidget {
-  const AppDevelopmentView({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: TransactionTile(
-          transaction: Transaction.empty(),
-          onLongPress: () {},
-          onPress: () {
-            context.read<AppBloc>().add(const LogoutRequested());
-          },
-        ),
-      ),
-    );
-  }
-}
+// class AppDevelopmentView extends StatelessWidget {
+//   const AppDevelopmentView({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.black,
+//       body: Center(
+//         child: TransactionTile(
+//           transaction: Transaction.empty(),
+//           onLongPress: () {},
+//           onPress: () {
+//             context.read<AppBloc>().add(const LogoutRequested());
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Stream<dynamic> stream) {

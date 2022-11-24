@@ -49,8 +49,6 @@ class TransactionView extends StatelessWidget {
           ),
           body: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            // child: Column(
-            //   crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ElevatedButton(
                 onPressed: () {

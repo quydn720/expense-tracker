@@ -1,6 +1,7 @@
+import 'dart:async';
+
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -11,22 +12,37 @@ part 'authentication_bloc.freezed.dart';
 @lazySingleton
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc(
-    this._repository,
-    this._loginWithEmailAndPwUseCase,
-  ) : super(const AuthenticationState()) {
-    on<_AuthenticationEventLogin>((event, emit) async {
-      emit(const AuthenticationState.loading());
-      final response = await _loginWithEmailAndPwUseCase(
-        email: event.email,
-        password: event.password,
-      );
+  AuthenticationBloc(this._authenticationRepository)
+      : super(const Unauthenticated()) {
+    on<LogoutRequested>(_onLogoutRequested);
+    on<UserChanged>(_onUserChanged);
 
-      response.map((r) => null);
-    });
-    on<_AuthenticationEventLogout>((event, emit) {});
+    _authStateSubcription = _authenticationRepository.user.listen(
+      (user) => add(AuthenticationEvent.userChanged(user)),
+    );
   }
 
-  final LoginWithEmailAndPwUseCase _loginWithEmailAndPwUseCase;
-  final IAuthenticationRepository _repository;
+  void _onLogoutRequested(
+    LogoutRequested event,
+    Emitter<AuthenticationState> emit,
+  ) {
+    unawaited(_authenticationRepository.logOut());
+  }
+
+  Future<void> _onUserChanged(
+    UserChanged event,
+    Emitter<AuthenticationState> emit,
+  ) async {
+    final user = event.user;
+    emit(user.isNotEmpty ? const Authenticated() : const Unauthenticated());
+  }
+
+  @override
+  Future<void> close() {
+    _authStateSubcription.cancel();
+    return super.close();
+  }
+
+  final IAuthenticationRepository _authenticationRepository;
+  late final StreamSubscription<User> _authStateSubcription;
 }

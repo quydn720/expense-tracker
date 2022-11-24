@@ -4,8 +4,7 @@ import 'app_text_theme.dart';
 
 final darkThemeData = ThemeData.dark().copyWith(
   textTheme: textTheme,
-  // primaryColor: const Color(0xff7F3DFF),
-  appBarTheme: const AppBarTheme(elevation: 1),
+  appBarTheme: const AppBarTheme(elevation: 0),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       shape: RoundedRectangleBorder(
@@ -46,7 +45,10 @@ final darkThemeData = ThemeData.dark().copyWith(
 );
 
 final themeData = ThemeData(
-  colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff7F3DFF)),
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: const Color(0xff7F3DFF),
+    surfaceVariant: const Color(0xffF6F6F6),
+  ),
   primaryColor: const Color(0xff7F3DFF),
   textTheme: textTheme,
   chipTheme: const ChipThemeData(
@@ -75,7 +77,6 @@ final themeData = ThemeData(
       minimumSize: Size.zero,
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       textStyle: textTheme.button,
-      // textStyle: const TextStyle(letterSpacing: 0),
       splashFactory: NoSplash.splashFactory,
     ),
   ),
@@ -85,7 +86,7 @@ final themeData = ThemeData(
     ),
   ),
   appBarTheme: const AppBarTheme(
-    elevation: 1,
+    elevation: 0,
     color: Colors.white,
     iconTheme: IconThemeData(color: Color(0xff212325)),
   ),

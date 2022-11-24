@@ -5,21 +5,19 @@ import 'package:drift/native.dart';
 import 'package:flutter/material.dart' show debugPrint;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+import 'package:transaction_repository/src/transaction_dao.dart';
 
 import 'models/models.dart';
 import 'transaction_repository.dart';
 
 part 'local_transaction_repository.g.dart';
 
-@DriftDatabase(tables: [TransactionEntries])
+@DriftDatabase(tables: [Transactions])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
   int get schemaVersion => 1;
-
-  Stream<List<TransactionEntry>> get transactions =>
-      select(transactionEntries).watch();
 }
 
 LazyDatabase _openConnection() {
@@ -33,8 +31,8 @@ LazyDatabase _openConnection() {
   });
 }
 
-@DataClassName('TransactionEntry')
-class TransactionEntries extends Table {
+@DataClassName('TransactionEntries')
+class Transactions extends Table {
   TextColumn get id => text()();
   RealColumn get amount => real()();
   TextColumn get category => text()();
@@ -44,22 +42,21 @@ class TransactionEntries extends Table {
 }
 
 class LocalTransactionRepository implements TransactionRepository {
-  LocalTransactionRepository(this.database);
+  LocalTransactionRepository(this._dao);
 
-  final AppDatabase database;
+  final TransactionsDao _dao;
 
   @override
   Future<void> addNewTransaction(Transaction transaction) async {
-    await database.into(database.transactionEntries).insert(
-          TransactionEntriesCompanion.insert(
-            id: transaction.id,
-            amount: transaction.amount,
-            category: transaction.category.name,
-            description: transaction.description,
-            type: transaction.type.index,
-            walletId: transaction.walletId,
-          ),
-        );
+    final t = TransactionEntries(
+      id: transaction.id,
+      amount: transaction.amount,
+      category: transaction.category.name,
+      description: transaction.description,
+      type: transaction.type.index,
+      walletId: transaction.walletId,
+    );
+    await _dao.insertTask(t);
     debugPrint('add sucessfully');
   }
 
@@ -84,24 +81,27 @@ class LocalTransactionRepository implements TransactionRepository {
   }
 
   @override
-  Stream<List<Transaction>> transactions() => database.transactions.map(
-        (event) {
-          return event
-              .map(
-                (e) {
-                  return Transaction(
-                    amount: e.amount,
-                    category: Category.empty(),
-                    walletId: e.walletId,
-                    type: TransactionType.expense,
-                  );
-                },
-              )
-              .toList()
-              .reversed
-              .toList();
-        },
-      );
+  Stream<List<Transaction>> transactions() {
+    throw UnimplementedError();
+  }
+  //  database.transactions.map(
+  //       (event) {
+  //         return event
+  //             .map(
+  //               (e) {
+  //                 return Transaction(
+  //                   amount: e.amount,
+  //                   category: Category.empty(),
+  //                   walletId: e.walletId,
+  //                   type: TransactionType.expense,
+  //                 );
+  //               },
+  //             )
+  //             .toList()
+  //             .reversed
+  //             .toList();
+  //       },
+  //     );
 
   @override
   Future<void> updateTransaction(Transaction transaction) {

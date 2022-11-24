@@ -1,10 +1,10 @@
-import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
 import '../../constants.dart';
+import '../../features/app/bloc/app_bloc.dart';
 import 'squared_icon_card.dart';
 
 class TransactionTile extends StatelessWidget {
@@ -22,7 +22,7 @@ class TransactionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final moeny = NumberFormat.simpleCurrency(
-      locale: context.read<LocaleController>().locale.languageCode,
+      locale: context.read<AppBloc>().state.locale?.languageCode,
     ).format(transaction.amount);
 
     return Card(

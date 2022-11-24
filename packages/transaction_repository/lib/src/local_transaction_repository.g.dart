@@ -7,15 +7,15 @@ part of 'local_transaction_repository.dart';
 // **************************************************************************
 
 // ignore_for_file: type=lint
-class TransactionEntry extends DataClass
-    implements Insertable<TransactionEntry> {
+class TransactionEntries extends DataClass
+    implements Insertable<TransactionEntries> {
   final String id;
   final double amount;
   final String category;
   final String description;
   final int type;
   final String walletId;
-  const TransactionEntry(
+  const TransactionEntries(
       {required this.id,
       required this.amount,
       required this.category,
@@ -34,8 +34,8 @@ class TransactionEntry extends DataClass
     return map;
   }
 
-  TransactionEntriesCompanion toCompanion(bool nullToAbsent) {
-    return TransactionEntriesCompanion(
+  TransactionsCompanion toCompanion(bool nullToAbsent) {
+    return TransactionsCompanion(
       id: Value(id),
       amount: Value(amount),
       category: Value(category),
@@ -45,10 +45,10 @@ class TransactionEntry extends DataClass
     );
   }
 
-  factory TransactionEntry.fromJson(Map<String, dynamic> json,
+  factory TransactionEntries.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return TransactionEntry(
+    return TransactionEntries(
       id: serializer.fromJson<String>(json['id']),
       amount: serializer.fromJson<double>(json['amount']),
       category: serializer.fromJson<String>(json['category']),
@@ -70,14 +70,14 @@ class TransactionEntry extends DataClass
     };
   }
 
-  TransactionEntry copyWith(
+  TransactionEntries copyWith(
           {String? id,
           double? amount,
           String? category,
           String? description,
           int? type,
           String? walletId}) =>
-      TransactionEntry(
+      TransactionEntries(
         id: id ?? this.id,
         amount: amount ?? this.amount,
         category: category ?? this.category,
@@ -87,7 +87,7 @@ class TransactionEntry extends DataClass
       );
   @override
   String toString() {
-    return (StringBuffer('TransactionEntry(')
+    return (StringBuffer('TransactionEntries(')
           ..write('id: $id, ')
           ..write('amount: $amount, ')
           ..write('category: $category, ')
@@ -104,7 +104,7 @@ class TransactionEntry extends DataClass
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is TransactionEntry &&
+      (other is TransactionEntries &&
           other.id == this.id &&
           other.amount == this.amount &&
           other.category == this.category &&
@@ -113,14 +113,14 @@ class TransactionEntry extends DataClass
           other.walletId == this.walletId);
 }
 
-class TransactionEntriesCompanion extends UpdateCompanion<TransactionEntry> {
+class TransactionsCompanion extends UpdateCompanion<TransactionEntries> {
   final Value<String> id;
   final Value<double> amount;
   final Value<String> category;
   final Value<String> description;
   final Value<int> type;
   final Value<String> walletId;
-  const TransactionEntriesCompanion({
+  const TransactionsCompanion({
     this.id = const Value.absent(),
     this.amount = const Value.absent(),
     this.category = const Value.absent(),
@@ -128,7 +128,7 @@ class TransactionEntriesCompanion extends UpdateCompanion<TransactionEntry> {
     this.type = const Value.absent(),
     this.walletId = const Value.absent(),
   });
-  TransactionEntriesCompanion.insert({
+  TransactionsCompanion.insert({
     required String id,
     required double amount,
     required String category,
@@ -141,7 +141,7 @@ class TransactionEntriesCompanion extends UpdateCompanion<TransactionEntry> {
         description = Value(description),
         type = Value(type),
         walletId = Value(walletId);
-  static Insertable<TransactionEntry> custom({
+  static Insertable<TransactionEntries> custom({
     Expression<String>? id,
     Expression<double>? amount,
     Expression<String>? category,
@@ -159,14 +159,14 @@ class TransactionEntriesCompanion extends UpdateCompanion<TransactionEntry> {
     });
   }
 
-  TransactionEntriesCompanion copyWith(
+  TransactionsCompanion copyWith(
       {Value<String>? id,
       Value<double>? amount,
       Value<String>? category,
       Value<String>? description,
       Value<int>? type,
       Value<String>? walletId}) {
-    return TransactionEntriesCompanion(
+    return TransactionsCompanion(
       id: id ?? this.id,
       amount: amount ?? this.amount,
       category: category ?? this.category,
@@ -202,7 +202,7 @@ class TransactionEntriesCompanion extends UpdateCompanion<TransactionEntry> {
 
   @override
   String toString() {
-    return (StringBuffer('TransactionEntriesCompanion(')
+    return (StringBuffer('TransactionsCompanion(')
           ..write('id: $id, ')
           ..write('amount: $amount, ')
           ..write('category: $category, ')
@@ -214,12 +214,12 @@ class TransactionEntriesCompanion extends UpdateCompanion<TransactionEntry> {
   }
 }
 
-class $TransactionEntriesTable extends TransactionEntries
-    with TableInfo<$TransactionEntriesTable, TransactionEntry> {
+class $TransactionsTable extends Transactions
+    with TableInfo<$TransactionsTable, TransactionEntries> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $TransactionEntriesTable(this.attachedDatabase, [this._alias]);
+  $TransactionsTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<String> id = GeneratedColumn<String>(
@@ -255,11 +255,11 @@ class $TransactionEntriesTable extends TransactionEntries
   List<GeneratedColumn> get $columns =>
       [id, amount, category, description, type, walletId];
   @override
-  String get aliasedName => _alias ?? 'transaction_entries';
+  String get aliasedName => _alias ?? 'transactions';
   @override
-  String get actualTableName => 'transaction_entries';
+  String get actualTableName => 'transactions';
   @override
-  VerificationContext validateIntegrity(Insertable<TransactionEntry> instance,
+  VerificationContext validateIntegrity(Insertable<TransactionEntries> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -306,9 +306,9 @@ class $TransactionEntriesTable extends TransactionEntries
   @override
   Set<GeneratedColumn> get $primaryKey => <GeneratedColumn>{};
   @override
-  TransactionEntry map(Map<String, dynamic> data, {String? tablePrefix}) {
+  TransactionEntries map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return TransactionEntry(
+    return TransactionEntries(
       id: attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       amount: attachedDatabase.options.types
@@ -325,18 +325,17 @@ class $TransactionEntriesTable extends TransactionEntries
   }
 
   @override
-  $TransactionEntriesTable createAlias(String alias) {
-    return $TransactionEntriesTable(attachedDatabase, alias);
+  $TransactionsTable createAlias(String alias) {
+    return $TransactionsTable(attachedDatabase, alias);
   }
 }
 
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
-  late final $TransactionEntriesTable transactionEntries =
-      $TransactionEntriesTable(this);
+  late final $TransactionsTable transactions = $TransactionsTable(this);
   @override
   Iterable<TableInfo<Table, dynamic>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [transactionEntries];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [transactions];
 }

@@ -1,10 +1,11 @@
+import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
+import 'package:expense_tracker/features/app/data/models/model.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/language_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/security_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
-import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,10 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentLocale = context.read<LocaleController>().locale;
+    final currentLocale = context.read<AppBloc>().state.locale;
 
     return Scaffold(
-      appBar: const DefaultAppBar(title: 'Settings'),
+      appBar: DefaultAppBar(title: context.l10n.settings),
       body: ListView(
         children: [
           _SettingTile(
@@ -29,12 +30,12 @@ class SettingScreen extends StatelessWidget {
           ),
           _SettingTile(
             title: context.l10n.language,
-            value: currentLocale.cityLocalizedName(context),
+            value: currentLocale?.cityLocalizedName(context),
             onTap: () => context.push(LanguageScreen.routeName),
           ),
           _SettingTile(
-            title: context.l10n.theme,
-            value: 'Dark',
+            title: context.l10n.appearance,
+            value: context.read<AppBloc>().state.themeMode.trans(context.l10n),
             onTap: () => context.push(ThemeScreen.routeName),
           ),
           _SettingTile(

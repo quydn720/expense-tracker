@@ -33,9 +33,9 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginFormCubit, LoginFormState>(
-      listenWhen: (previous, current) {
-        return (previous.status != current.status) &&
-            current.status == FormzStatus.submissionFailure;
+      listenWhen: (prev, curr) {
+        return (prev.loginFailure != curr.loginFailure) &&
+            curr.loginFailure != null;
       },
       listener: (context, state) {
         final content = state.loginFailure?.toLocalizedString(context.l10n);
@@ -89,7 +89,7 @@ class _ForgotPassword extends StatelessWidget {
       key: const Key('loginForm_forgotPassword_textButton'),
       child: const Text('Forgot password?'),
       onPressed: () {
-        context.go('/forgot-password', extra: emailValue);
+        context.push('/forgot-password', extra: emailValue);
       },
     );
   }
@@ -214,7 +214,18 @@ class _PasswordInputField extends StatelessWidget {
 extension LoginFailureX on LoginFailure {
   String toLocalizedString(AppLocalizations dict) {
     return map(
-      withGoogle: (_) => '',
+      withGoogle: (failure) => failure.code.map(
+        invalidCredential: (_) => dict.about,
+        accountExistsWithDifferentCredential: (_) => dict.about,
+        operationNotAllowed: (_) => dict.about,
+        userDisabled: (_) => dict.about,
+        userNotFound: (_) => dict.about,
+        wrongPassword: (_) => dict.about,
+        invalidVerificationCode: (_) => dict.about,
+        invalidVerificationId: (_) => dict.about,
+        userCancelled: (_) => dict.googleError_userCancelled,
+        unknown: (_) => dict.about,
+      ),
       withEmailAndPassword: (failure) => failure.code.map(
         invalidEmail: (_) => dict.authError_invalidEmail,
         userDisabled: (_) => dict.authError_userDisabled,

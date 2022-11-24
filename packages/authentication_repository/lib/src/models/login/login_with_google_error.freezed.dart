@@ -27,6 +27,7 @@ mixin _$LoginWithGoogleError {
     required TResult Function() wrongPassword,
     required TResult Function() invalidVerificationCode,
     required TResult Function() invalidVerificationId,
+    required TResult Function() userCancelled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +41,7 @@ mixin _$LoginWithGoogleError {
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +55,7 @@ mixin _$LoginWithGoogleError {
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -77,6 +80,8 @@ mixin _$LoginWithGoogleError {
         invalidVerificationCode,
     required TResult Function(LoginWithGoogleError_InvalidVerificationId value)
         invalidVerificationId,
+    required TResult Function(LoginWithGoogleError_UserCancelled value)
+        userCancelled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -96,6 +101,7 @@ mixin _$LoginWithGoogleError {
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -115,6 +121,7 @@ mixin _$LoginWithGoogleError {
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -187,6 +194,7 @@ class _$_LoginWithGoogleError implements _LoginWithGoogleError {
     required TResult Function() wrongPassword,
     required TResult Function() invalidVerificationCode,
     required TResult Function() invalidVerificationId,
+    required TResult Function() userCancelled,
   }) {
     return unknown();
   }
@@ -203,6 +211,7 @@ class _$_LoginWithGoogleError implements _LoginWithGoogleError {
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
   }) {
     return unknown?.call();
   }
@@ -219,6 +228,7 @@ class _$_LoginWithGoogleError implements _LoginWithGoogleError {
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -249,6 +259,8 @@ class _$_LoginWithGoogleError implements _LoginWithGoogleError {
         invalidVerificationCode,
     required TResult Function(LoginWithGoogleError_InvalidVerificationId value)
         invalidVerificationId,
+    required TResult Function(LoginWithGoogleError_UserCancelled value)
+        userCancelled,
   }) {
     return unknown(this);
   }
@@ -271,6 +283,7 @@ class _$_LoginWithGoogleError implements _LoginWithGoogleError {
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
   }) {
     return unknown?.call(this);
   }
@@ -293,6 +306,7 @@ class _$_LoginWithGoogleError implements _LoginWithGoogleError {
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -362,6 +376,7 @@ class _$LoginWithGoogleError_InvalidCredential
     required TResult Function() wrongPassword,
     required TResult Function() invalidVerificationCode,
     required TResult Function() invalidVerificationId,
+    required TResult Function() userCancelled,
   }) {
     return invalidCredential();
   }
@@ -378,6 +393,7 @@ class _$LoginWithGoogleError_InvalidCredential
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
   }) {
     return invalidCredential?.call();
   }
@@ -394,6 +410,7 @@ class _$LoginWithGoogleError_InvalidCredential
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
     required TResult orElse(),
   }) {
     if (invalidCredential != null) {
@@ -424,6 +441,8 @@ class _$LoginWithGoogleError_InvalidCredential
         invalidVerificationCode,
     required TResult Function(LoginWithGoogleError_InvalidVerificationId value)
         invalidVerificationId,
+    required TResult Function(LoginWithGoogleError_UserCancelled value)
+        userCancelled,
   }) {
     return invalidCredential(this);
   }
@@ -446,6 +465,7 @@ class _$LoginWithGoogleError_InvalidCredential
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
   }) {
     return invalidCredential?.call(this);
   }
@@ -468,6 +488,7 @@ class _$LoginWithGoogleError_InvalidCredential
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
     required TResult orElse(),
   }) {
     if (invalidCredential != null) {
@@ -550,6 +571,7 @@ class _$LoginWithGoogleError_AccountExistsWithDifferentCredential
     required TResult Function() wrongPassword,
     required TResult Function() invalidVerificationCode,
     required TResult Function() invalidVerificationId,
+    required TResult Function() userCancelled,
   }) {
     return accountExistsWithDifferentCredential();
   }
@@ -566,6 +588,7 @@ class _$LoginWithGoogleError_AccountExistsWithDifferentCredential
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
   }) {
     return accountExistsWithDifferentCredential?.call();
   }
@@ -582,6 +605,7 @@ class _$LoginWithGoogleError_AccountExistsWithDifferentCredential
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
     required TResult orElse(),
   }) {
     if (accountExistsWithDifferentCredential != null) {
@@ -612,6 +636,8 @@ class _$LoginWithGoogleError_AccountExistsWithDifferentCredential
         invalidVerificationCode,
     required TResult Function(LoginWithGoogleError_InvalidVerificationId value)
         invalidVerificationId,
+    required TResult Function(LoginWithGoogleError_UserCancelled value)
+        userCancelled,
   }) {
     return accountExistsWithDifferentCredential(this);
   }
@@ -634,6 +660,7 @@ class _$LoginWithGoogleError_AccountExistsWithDifferentCredential
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
   }) {
     return accountExistsWithDifferentCredential?.call(this);
   }
@@ -656,6 +683,7 @@ class _$LoginWithGoogleError_AccountExistsWithDifferentCredential
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
     required TResult orElse(),
   }) {
     if (accountExistsWithDifferentCredential != null) {
@@ -727,6 +755,7 @@ class _$LoginWithGoogleError_OperationNotAllowed
     required TResult Function() wrongPassword,
     required TResult Function() invalidVerificationCode,
     required TResult Function() invalidVerificationId,
+    required TResult Function() userCancelled,
   }) {
     return operationNotAllowed();
   }
@@ -743,6 +772,7 @@ class _$LoginWithGoogleError_OperationNotAllowed
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
   }) {
     return operationNotAllowed?.call();
   }
@@ -759,6 +789,7 @@ class _$LoginWithGoogleError_OperationNotAllowed
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
     required TResult orElse(),
   }) {
     if (operationNotAllowed != null) {
@@ -789,6 +820,8 @@ class _$LoginWithGoogleError_OperationNotAllowed
         invalidVerificationCode,
     required TResult Function(LoginWithGoogleError_InvalidVerificationId value)
         invalidVerificationId,
+    required TResult Function(LoginWithGoogleError_UserCancelled value)
+        userCancelled,
   }) {
     return operationNotAllowed(this);
   }
@@ -811,6 +844,7 @@ class _$LoginWithGoogleError_OperationNotAllowed
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
   }) {
     return operationNotAllowed?.call(this);
   }
@@ -833,6 +867,7 @@ class _$LoginWithGoogleError_OperationNotAllowed
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
     required TResult orElse(),
   }) {
     if (operationNotAllowed != null) {
@@ -903,6 +938,7 @@ class _$LoginWithGoogleError_UserDisabled
     required TResult Function() wrongPassword,
     required TResult Function() invalidVerificationCode,
     required TResult Function() invalidVerificationId,
+    required TResult Function() userCancelled,
   }) {
     return userDisabled();
   }
@@ -919,6 +955,7 @@ class _$LoginWithGoogleError_UserDisabled
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
   }) {
     return userDisabled?.call();
   }
@@ -935,6 +972,7 @@ class _$LoginWithGoogleError_UserDisabled
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
     required TResult orElse(),
   }) {
     if (userDisabled != null) {
@@ -965,6 +1003,8 @@ class _$LoginWithGoogleError_UserDisabled
         invalidVerificationCode,
     required TResult Function(LoginWithGoogleError_InvalidVerificationId value)
         invalidVerificationId,
+    required TResult Function(LoginWithGoogleError_UserCancelled value)
+        userCancelled,
   }) {
     return userDisabled(this);
   }
@@ -987,6 +1027,7 @@ class _$LoginWithGoogleError_UserDisabled
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
   }) {
     return userDisabled?.call(this);
   }
@@ -1009,6 +1050,7 @@ class _$LoginWithGoogleError_UserDisabled
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
     required TResult orElse(),
   }) {
     if (userDisabled != null) {
@@ -1079,6 +1121,7 @@ class _$LoginWithGoogleError_UserNotFound
     required TResult Function() wrongPassword,
     required TResult Function() invalidVerificationCode,
     required TResult Function() invalidVerificationId,
+    required TResult Function() userCancelled,
   }) {
     return userNotFound();
   }
@@ -1095,6 +1138,7 @@ class _$LoginWithGoogleError_UserNotFound
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
   }) {
     return userNotFound?.call();
   }
@@ -1111,6 +1155,7 @@ class _$LoginWithGoogleError_UserNotFound
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
     required TResult orElse(),
   }) {
     if (userNotFound != null) {
@@ -1141,6 +1186,8 @@ class _$LoginWithGoogleError_UserNotFound
         invalidVerificationCode,
     required TResult Function(LoginWithGoogleError_InvalidVerificationId value)
         invalidVerificationId,
+    required TResult Function(LoginWithGoogleError_UserCancelled value)
+        userCancelled,
   }) {
     return userNotFound(this);
   }
@@ -1163,6 +1210,7 @@ class _$LoginWithGoogleError_UserNotFound
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
   }) {
     return userNotFound?.call(this);
   }
@@ -1185,6 +1233,7 @@ class _$LoginWithGoogleError_UserNotFound
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
     required TResult orElse(),
   }) {
     if (userNotFound != null) {
@@ -1255,6 +1304,7 @@ class _$LoginWithGoogleError_WrongPassword
     required TResult Function() wrongPassword,
     required TResult Function() invalidVerificationCode,
     required TResult Function() invalidVerificationId,
+    required TResult Function() userCancelled,
   }) {
     return wrongPassword();
   }
@@ -1271,6 +1321,7 @@ class _$LoginWithGoogleError_WrongPassword
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
   }) {
     return wrongPassword?.call();
   }
@@ -1287,6 +1338,7 @@ class _$LoginWithGoogleError_WrongPassword
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
     required TResult orElse(),
   }) {
     if (wrongPassword != null) {
@@ -1317,6 +1369,8 @@ class _$LoginWithGoogleError_WrongPassword
         invalidVerificationCode,
     required TResult Function(LoginWithGoogleError_InvalidVerificationId value)
         invalidVerificationId,
+    required TResult Function(LoginWithGoogleError_UserCancelled value)
+        userCancelled,
   }) {
     return wrongPassword(this);
   }
@@ -1339,6 +1393,7 @@ class _$LoginWithGoogleError_WrongPassword
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
   }) {
     return wrongPassword?.call(this);
   }
@@ -1361,6 +1416,7 @@ class _$LoginWithGoogleError_WrongPassword
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
     required TResult orElse(),
   }) {
     if (wrongPassword != null) {
@@ -1432,6 +1488,7 @@ class _$LoginWithGoogleError_InvalidVerificationCode
     required TResult Function() wrongPassword,
     required TResult Function() invalidVerificationCode,
     required TResult Function() invalidVerificationId,
+    required TResult Function() userCancelled,
   }) {
     return invalidVerificationCode();
   }
@@ -1448,6 +1505,7 @@ class _$LoginWithGoogleError_InvalidVerificationCode
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
   }) {
     return invalidVerificationCode?.call();
   }
@@ -1464,6 +1522,7 @@ class _$LoginWithGoogleError_InvalidVerificationCode
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
     required TResult orElse(),
   }) {
     if (invalidVerificationCode != null) {
@@ -1494,6 +1553,8 @@ class _$LoginWithGoogleError_InvalidVerificationCode
         invalidVerificationCode,
     required TResult Function(LoginWithGoogleError_InvalidVerificationId value)
         invalidVerificationId,
+    required TResult Function(LoginWithGoogleError_UserCancelled value)
+        userCancelled,
   }) {
     return invalidVerificationCode(this);
   }
@@ -1516,6 +1577,7 @@ class _$LoginWithGoogleError_InvalidVerificationCode
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
   }) {
     return invalidVerificationCode?.call(this);
   }
@@ -1538,6 +1600,7 @@ class _$LoginWithGoogleError_InvalidVerificationCode
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
     required TResult orElse(),
   }) {
     if (invalidVerificationCode != null) {
@@ -1609,6 +1672,7 @@ class _$LoginWithGoogleError_InvalidVerificationId
     required TResult Function() wrongPassword,
     required TResult Function() invalidVerificationCode,
     required TResult Function() invalidVerificationId,
+    required TResult Function() userCancelled,
   }) {
     return invalidVerificationId();
   }
@@ -1625,6 +1689,7 @@ class _$LoginWithGoogleError_InvalidVerificationId
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
   }) {
     return invalidVerificationId?.call();
   }
@@ -1641,6 +1706,7 @@ class _$LoginWithGoogleError_InvalidVerificationId
     TResult Function()? wrongPassword,
     TResult Function()? invalidVerificationCode,
     TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
     required TResult orElse(),
   }) {
     if (invalidVerificationId != null) {
@@ -1671,6 +1737,8 @@ class _$LoginWithGoogleError_InvalidVerificationId
         invalidVerificationCode,
     required TResult Function(LoginWithGoogleError_InvalidVerificationId value)
         invalidVerificationId,
+    required TResult Function(LoginWithGoogleError_UserCancelled value)
+        userCancelled,
   }) {
     return invalidVerificationId(this);
   }
@@ -1693,6 +1761,7 @@ class _$LoginWithGoogleError_InvalidVerificationId
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
   }) {
     return invalidVerificationId?.call(this);
   }
@@ -1715,6 +1784,7 @@ class _$LoginWithGoogleError_InvalidVerificationId
         invalidVerificationCode,
     TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
         invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
     required TResult orElse(),
   }) {
     if (invalidVerificationId != null) {
@@ -1728,4 +1798,187 @@ abstract class LoginWithGoogleError_InvalidVerificationId
     implements LoginWithGoogleError {
   const factory LoginWithGoogleError_InvalidVerificationId() =
       _$LoginWithGoogleError_InvalidVerificationId;
+}
+
+/// @nodoc
+abstract class _$$LoginWithGoogleError_UserCancelledCopyWith<$Res> {
+  factory _$$LoginWithGoogleError_UserCancelledCopyWith(
+          _$LoginWithGoogleError_UserCancelled value,
+          $Res Function(_$LoginWithGoogleError_UserCancelled) then) =
+      __$$LoginWithGoogleError_UserCancelledCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoginWithGoogleError_UserCancelledCopyWithImpl<$Res>
+    extends _$LoginWithGoogleErrorCopyWithImpl<$Res>
+    implements _$$LoginWithGoogleError_UserCancelledCopyWith<$Res> {
+  __$$LoginWithGoogleError_UserCancelledCopyWithImpl(
+      _$LoginWithGoogleError_UserCancelled _value,
+      $Res Function(_$LoginWithGoogleError_UserCancelled) _then)
+      : super(_value, (v) => _then(v as _$LoginWithGoogleError_UserCancelled));
+
+  @override
+  _$LoginWithGoogleError_UserCancelled get _value =>
+      super._value as _$LoginWithGoogleError_UserCancelled;
+}
+
+/// @nodoc
+
+class _$LoginWithGoogleError_UserCancelled
+    implements LoginWithGoogleError_UserCancelled {
+  const _$LoginWithGoogleError_UserCancelled();
+
+  @override
+  String toString() {
+    return 'LoginWithGoogleError.userCancelled()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoginWithGoogleError_UserCancelled);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() invalidCredential,
+    required TResult Function() accountExistsWithDifferentCredential,
+    required TResult Function() operationNotAllowed,
+    required TResult Function() userDisabled,
+    required TResult Function() userNotFound,
+    required TResult Function() wrongPassword,
+    required TResult Function() invalidVerificationCode,
+    required TResult Function() invalidVerificationId,
+    required TResult Function() userCancelled,
+  }) {
+    return userCancelled();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? invalidCredential,
+    TResult Function()? accountExistsWithDifferentCredential,
+    TResult Function()? operationNotAllowed,
+    TResult Function()? userDisabled,
+    TResult Function()? userNotFound,
+    TResult Function()? wrongPassword,
+    TResult Function()? invalidVerificationCode,
+    TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
+  }) {
+    return userCancelled?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? invalidCredential,
+    TResult Function()? accountExistsWithDifferentCredential,
+    TResult Function()? operationNotAllowed,
+    TResult Function()? userDisabled,
+    TResult Function()? userNotFound,
+    TResult Function()? wrongPassword,
+    TResult Function()? invalidVerificationCode,
+    TResult Function()? invalidVerificationId,
+    TResult Function()? userCancelled,
+    required TResult orElse(),
+  }) {
+    if (userCancelled != null) {
+      return userCancelled();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoginWithGoogleError value) unknown,
+    required TResult Function(LoginWithGoogleError_InvalidCredential value)
+        invalidCredential,
+    required TResult Function(
+            LoginWithGoogleError_AccountExistsWithDifferentCredential value)
+        accountExistsWithDifferentCredential,
+    required TResult Function(LoginWithGoogleError_OperationNotAllowed value)
+        operationNotAllowed,
+    required TResult Function(LoginWithGoogleError_UserDisabled value)
+        userDisabled,
+    required TResult Function(LoginWithGoogleError_UserNotFound value)
+        userNotFound,
+    required TResult Function(LoginWithGoogleError_WrongPassword value)
+        wrongPassword,
+    required TResult Function(
+            LoginWithGoogleError_InvalidVerificationCode value)
+        invalidVerificationCode,
+    required TResult Function(LoginWithGoogleError_InvalidVerificationId value)
+        invalidVerificationId,
+    required TResult Function(LoginWithGoogleError_UserCancelled value)
+        userCancelled,
+  }) {
+    return userCancelled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoginWithGoogleError value)? unknown,
+    TResult Function(LoginWithGoogleError_InvalidCredential value)?
+        invalidCredential,
+    TResult Function(
+            LoginWithGoogleError_AccountExistsWithDifferentCredential value)?
+        accountExistsWithDifferentCredential,
+    TResult Function(LoginWithGoogleError_OperationNotAllowed value)?
+        operationNotAllowed,
+    TResult Function(LoginWithGoogleError_UserDisabled value)? userDisabled,
+    TResult Function(LoginWithGoogleError_UserNotFound value)? userNotFound,
+    TResult Function(LoginWithGoogleError_WrongPassword value)? wrongPassword,
+    TResult Function(LoginWithGoogleError_InvalidVerificationCode value)?
+        invalidVerificationCode,
+    TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
+        invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
+  }) {
+    return userCancelled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoginWithGoogleError value)? unknown,
+    TResult Function(LoginWithGoogleError_InvalidCredential value)?
+        invalidCredential,
+    TResult Function(
+            LoginWithGoogleError_AccountExistsWithDifferentCredential value)?
+        accountExistsWithDifferentCredential,
+    TResult Function(LoginWithGoogleError_OperationNotAllowed value)?
+        operationNotAllowed,
+    TResult Function(LoginWithGoogleError_UserDisabled value)? userDisabled,
+    TResult Function(LoginWithGoogleError_UserNotFound value)? userNotFound,
+    TResult Function(LoginWithGoogleError_WrongPassword value)? wrongPassword,
+    TResult Function(LoginWithGoogleError_InvalidVerificationCode value)?
+        invalidVerificationCode,
+    TResult Function(LoginWithGoogleError_InvalidVerificationId value)?
+        invalidVerificationId,
+    TResult Function(LoginWithGoogleError_UserCancelled value)? userCancelled,
+    required TResult orElse(),
+  }) {
+    if (userCancelled != null) {
+      return userCancelled(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoginWithGoogleError_UserCancelled
+    implements LoginWithGoogleError {
+  const factory LoginWithGoogleError_UserCancelled() =
+      _$LoginWithGoogleError_UserCancelled;
 }

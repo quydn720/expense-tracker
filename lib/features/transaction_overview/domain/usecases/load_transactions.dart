@@ -11,4 +11,3 @@ class LoadAllTransactions {
     return _repository.transactions().first;
   }
 }
-

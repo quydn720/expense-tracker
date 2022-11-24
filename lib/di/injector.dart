@@ -16,7 +16,10 @@ import 'injector.config.dart';
 final getIt = GetIt.instance;
 final logger = Logger(printer: PrettyPrinter(methodCount: 0));
 
-@injectableInit
+@InjectableInit(
+  initializerName: r'$initGetIt', // default
+  asExtension: false, // default
+)
 Future<void> configureInjection(String env) async {
   await $initGetIt(getIt, environment: env);
 }
@@ -54,7 +57,7 @@ abstract class DevAppLocalPackageModule {
 
   @lazySingleton
   GoRouter appRouterDev(@Named('init_location') String init) =>
-      router(initialLocation: init, appBloc: getIt());
+      router(initialLocation: init, auth: getIt());
 
   @dev
   @lazySingleton
@@ -67,8 +70,9 @@ abstract class DevAppLocalPackageModule {
   @dev
   @lazySingleton
   TransactionRepository getTransactionRepoDev() =>
-      LocalTransactionRepository(AppDatabase());
-  // FakeTransactionRepo([Transaction.empty()]);
+      //
+      FakeTransactionRepo([]);
+  // LocalTransactionRepository(AppDatabase());
 
   @prod
   @lazySingleton

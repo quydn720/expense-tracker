@@ -1,3 +1,4 @@
+import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,25 +13,25 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    const profileScreenBackgroundColor = Color(0xffF6F6F6);
 
     return BlocListener<AppBloc, AppState>(
       listener: (context, state) async {
-        if (state is ShowLogoutBottomSheet) {
-          final read = context.read<AppBloc>();
-          final c = await showModalBottomSheet<bool>(
-            context: context,
-            builder: (context) {
-              return const BottomSheetWidget();
-            },
-          );
-          if (c == null) {
-            read.add(const LogoutBottomSheetCanceled());
-          }
-        }
+        // TODO: display log out bottom sheet state
+        // if (state is ShowLogoutBottomSheet) {
+        //   final read = context.read<AppBloc>();
+        //   final c = await showModalBottomSheet<bool>(
+        //     context: context,
+        //     builder: (context) {
+        //       return const BottomSheetWidget();
+        //     },
+        //   );
+        //   if (c == null) {
+        //     read.add(const LogoutBottomSheetCanceled());
+        //   }
+        // }
       },
       child: Scaffold(
-        backgroundColor: profileScreenBackgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -92,9 +93,9 @@ class ProfileScreen extends StatelessWidget {
                     _SettingTile(
                       iconData: FontAwesomeIcons.rightFromBracket,
                       onTap: () {
-                        context.read<AppBloc>().add(
-                              const LogoutBottomSheetOpened(),
-                            );
+                        // context.read<AppBloc>().add(
+                        //     // const LogoutBottomSheetOpened(),
+                        //     );
                       },
                       title: 'Log out',
                     ),
@@ -195,9 +196,9 @@ class BottomSheetWidget extends StatelessWidget {
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
-                      context.read<AppBloc>().add(
-                            const LogoutBottomSheetCanceled(),
-                          );
+                      // context.read<AppBloc>().add(
+                      //       const LogoutBottomSheetCanceled(),
+                      //     );
                     },
                     child: const Text('No'),
                   ),
@@ -205,7 +206,7 @@ class BottomSheetWidget extends StatelessWidget {
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () => context.read<AppBloc>().add(
+                    onPressed: () => context.read<AuthenticationBloc>().add(
                           const LogoutRequested(),
                         ),
                     child: const Text('Yes'),

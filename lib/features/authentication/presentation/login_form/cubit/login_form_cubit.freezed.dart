@@ -31,7 +31,8 @@ mixin _$LoginFormState {
 abstract class $LoginFormStateCopyWith<$Res> {
   factory $LoginFormStateCopyWith(
           LoginFormState value, $Res Function(LoginFormState) then) =
-      _$LoginFormStateCopyWithImpl<$Res>;
+      _$LoginFormStateCopyWithImpl<$Res, LoginFormState>;
+  @useResult
   $Res call(
       {EmailInput email,
       PasswordInput password,
@@ -43,54 +44,57 @@ abstract class $LoginFormStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LoginFormStateCopyWithImpl<$Res>
+class _$LoginFormStateCopyWithImpl<$Res, $Val extends LoginFormState>
     implements $LoginFormStateCopyWith<$Res> {
   _$LoginFormStateCopyWithImpl(this._value, this._then);
 
-  final LoginFormState _value;
   // ignore: unused_field
-  final $Res Function(LoginFormState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? status = freezed,
-    Object? isObscured = freezed,
+    Object? email = null,
+    Object? password = null,
+    Object? status = null,
+    Object? isObscured = null,
     Object? loginFailure = freezed,
   }) {
     return _then(_value.copyWith(
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as EmailInput,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as PasswordInput,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      isObscured: isObscured == freezed
+      isObscured: null == isObscured
           ? _value.isObscured
           : isObscured // ignore: cast_nullable_to_non_nullable
               as bool,
-      loginFailure: loginFailure == freezed
+      loginFailure: freezed == loginFailure
           ? _value.loginFailure
           : loginFailure // ignore: cast_nullable_to_non_nullable
               as LoginFailure?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $LoginFailureCopyWith<$Res>? get loginFailure {
     if (_value.loginFailure == null) {
       return null;
     }
 
     return $LoginFailureCopyWith<$Res>(_value.loginFailure!, (value) {
-      return _then(_value.copyWith(loginFailure: value));
+      return _then(_value.copyWith(loginFailure: value) as $Val);
     });
   }
 }
@@ -102,6 +106,7 @@ abstract class _$$_LoginFormStateCopyWith<$Res>
           _$_LoginFormState value, $Res Function(_$_LoginFormState) then) =
       __$$_LoginFormStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {EmailInput email,
       PasswordInput password,
@@ -115,41 +120,39 @@ abstract class _$$_LoginFormStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_LoginFormStateCopyWithImpl<$Res>
-    extends _$LoginFormStateCopyWithImpl<$Res>
+    extends _$LoginFormStateCopyWithImpl<$Res, _$_LoginFormState>
     implements _$$_LoginFormStateCopyWith<$Res> {
   __$$_LoginFormStateCopyWithImpl(
       _$_LoginFormState _value, $Res Function(_$_LoginFormState) _then)
-      : super(_value, (v) => _then(v as _$_LoginFormState));
+      : super(_value, _then);
 
-  @override
-  _$_LoginFormState get _value => super._value as _$_LoginFormState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? status = freezed,
-    Object? isObscured = freezed,
+    Object? email = null,
+    Object? password = null,
+    Object? status = null,
+    Object? isObscured = null,
     Object? loginFailure = freezed,
   }) {
     return _then(_$_LoginFormState(
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as EmailInput,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as PasswordInput,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      isObscured: isObscured == freezed
+      isObscured: null == isObscured
           ? _value.isObscured
           : isObscured // ignore: cast_nullable_to_non_nullable
               as bool,
-      loginFailure: loginFailure == freezed
+      loginFailure: freezed == loginFailure
           ? _value.loginFailure
           : loginFailure // ignore: cast_nullable_to_non_nullable
               as LoginFailure?,
@@ -192,26 +195,23 @@ class _$_LoginFormState implements _LoginFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoginFormState &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality()
-                .equals(other.isObscured, isObscured) &&
-            const DeepCollectionEquality()
-                .equals(other.loginFailure, loginFailure));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.isObscured, isObscured) ||
+                other.isObscured == isObscured) &&
+            (identical(other.loginFailure, loginFailure) ||
+                other.loginFailure == loginFailure));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(isObscured),
-      const DeepCollectionEquality().hash(loginFailure));
+      runtimeType, email, password, status, isObscured, loginFailure);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LoginFormStateCopyWith<_$_LoginFormState> get copyWith =>
       __$$_LoginFormStateCopyWithImpl<_$_LoginFormState>(this, _$identity);
 }

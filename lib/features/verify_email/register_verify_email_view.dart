@@ -1,5 +1,5 @@
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
+import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
@@ -67,7 +67,9 @@ class VerificationEmailView extends StatelessWidget {
                     onPressed: () {
                       getIt<IAuthenticationRepository>().verifyEmail('123456');
 
-                      context.read<AppBloc>().add(const LogoutRequested());
+                      context
+                          .read<AuthenticationBloc>()
+                          .add(const LogoutRequested());
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

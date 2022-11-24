@@ -1,7 +1,7 @@
-import 'dart:async';
-
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:expense_tracker/di/injector.dart';
+import 'package:expense_tracker/features/app/data/app_settings.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -9,73 +9,26 @@ part 'app_event.dart';
 part 'app_state.dart';
 part 'app_bloc.freezed.dart';
 
-@injectable
+@singleton
 class AppBloc extends Bloc<AppEvent, AppState> {
-  AppBloc({
-    required this.authenticationRepository,
-    @Named('isOnboardingCompleted') this.showOnboarding = true,
-  }) : super(
-          showOnboarding ? const FirstTimeOpenApp() : const Unauthenticated(),
+  AppBloc({required this.appSettingService})
+      : super(
+          AppState(
+            themeMode: appSettingService.getThemeMode(),
+            locale: appSettingService.getLocale(),
+          ),
         ) {
-    on<OnUserChanged>(_onUserChanged);
-    on<OnEmailVerified>(_onEmailVerified);
-    on<LogoutRequested>(_onLogOutRequested);
-    on<LogoutBottomSheetOpened>((event, emit) {
-      emit(const ShowLogoutBottomSheet());
+    on<ChangeThemeMode>((event, emit) async {
+      emit(state.copyWith(themeMode: event.themeMode));
+      await appSettingService.setThemeMode(event.themeMode);
+      logger.i('ThemeMode change to: ${event.themeMode}');
     });
-    on<LogoutBottomSheetCanceled>((event, emit) {
-      emit(const Authenticated());
+    on<ChangeLanguage>((event, emit) async {
+      emit(state.copyWith(locale: event.locale));
+      await appSettingService.setLocale(event.locale);
+      logger.i('Language change to: ${event.locale}');
     });
-
-    _authStateSubcription = authenticationRepository.user.listen(
-      (user) => add(AppEvent.onUserChanged(user)),
-    );
   }
 
-  Future<void> _onEmailVerified(
-    OnEmailVerified event,
-    Emitter<AppState> emit,
-  ) async {
-    _emitStateByUserVerifiedStatus(event.user, emit);
-  }
-
-  Future<void> _onLogOutRequested(
-    LogoutRequested event,
-    Emitter<AppState> emit,
-  ) async {
-    await authenticationRepository.logOut();
-  }
-
-  Future<void> _onUserChanged(
-    OnUserChanged event,
-    Emitter<AppState> emit,
-  ) async {
-    final user = event.user;
-    if (user.isNotEmpty) {
-      _emitStateByUserVerifiedStatus(user, emit);
-    } else {
-      emit(const Unauthenticated());
-    }
-  }
-
-  void _emitStateByUserVerifiedStatus(
-    User user,
-    Emitter<AppState> emit,
-  ) {
-    if (user.verified) {
-      emit(const Authenticated());
-    } else {
-      emit(WaitForEmailVerification(user));
-    }
-  }
-
-  final IAuthenticationRepository authenticationRepository;
-  final bool showOnboarding;
-  late final StreamSubscription<User> _authStateSubcription;
-
-  @override
-  Future<void> close() {
-    _authStateSubcription.cancel();
-    return super.close();
-  }
+  final AppSettingService appSettingService;
 }

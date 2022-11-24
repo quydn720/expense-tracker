@@ -91,7 +91,10 @@ class AuthenticationRepository implements IAuthenticationRepository {
         credential = userCredential.credential!;
       } else {
         final googleUser = await _googleSignIn.signIn();
-        final googleAuth = await googleUser!.authentication;
+
+        if (googleUser == null) throw UserCancelException();
+
+        final googleAuth = await googleUser.authentication;
         credential = firebase_auth.GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
@@ -102,6 +105,10 @@ class AuthenticationRepository implements IAuthenticationRepository {
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw LoginWithGoogleFailure(
         code: LoginWithGoogleError.fromCode(e.code),
+      );
+    } on UserCancelException catch (_) {
+      throw const LoginWithGoogleFailure(
+        code: LoginWithGoogleError_UserCancelled(),
       );
     } catch (_) {
       throw const LoginWithGoogleFailure();
@@ -213,3 +220,6 @@ extension on firebase_auth.User {
     );
   }
 }
+
+/// Throw during sign in Google process was aborted.
+class UserCancelException implements Exception {}

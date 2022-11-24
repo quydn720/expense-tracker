@@ -7,12 +7,11 @@ import 'package:expense_tracker/features/authentication/domain/usecases/forgot_p
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_google_account_use_case.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
+import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/pages/register_screen.dart';
-import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
-import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,21 +20,20 @@ import 'package:formz/formz.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 import '../../../../../../test_helper/app_test.dart';
 import '../../../../../../test_helper/mock_router.dart';
 import '../../../../../../test_helper/mocks.dart';
+import '../../../../../presentations/components/default_app_bar_test.dart';
 
 class MockLoginFormCubit extends Mock implements LoginFormCubit {}
 
 void main() {
-  late LocaleController localeController;
-  late ThemeController themeController;
   late LoginFormCubit loginCubit;
   late GoRouter router;
   late AppBloc appBloc;
+  late AuthenticationBloc authenticationBloc;
   late List<SingleChildWidget> providers;
   late FirebaseDynamicLinks firebaseDynamicLinks;
 
@@ -85,22 +83,19 @@ void main() {
     );
 
     loginCubit = MockLoginFormCubit();
+    when(() => loginCubit.state).thenReturn(const LoginFormState());
 
-    localeController = MockLocaleController();
-    when(() => localeController.locale).thenReturn(const Locale('en'));
-
-    themeController = MockThemeController();
-    when(() => themeController.themeMode).thenReturn(ThemeMode.dark);
+    authenticationBloc = MockAuthenticationBloc();
+    when(() => authenticationBloc.stream).thenAnswer(
+      (_) => const Stream.empty(),
+    );
+    when(() => authenticationBloc.state).thenReturn(const Unauthenticated());
 
     appBloc = MockAppBloc();
     when(() => appBloc.stream).thenAnswer((_) => const Stream.empty());
-    when(() => appBloc.state).thenReturn(const Unauthenticated());
-
-    when(() => loginCubit.state).thenReturn(const LoginFormState());
+    when(() => appBloc.state).thenReturn(const AppState());
 
     providers = [
-      ChangeNotifierProvider.value(value: localeController),
-      ChangeNotifierProvider.value(value: themeController),
       BlocProvider.value(value: appBloc),
       BlocProvider.value(value: loginCubit),
     ];

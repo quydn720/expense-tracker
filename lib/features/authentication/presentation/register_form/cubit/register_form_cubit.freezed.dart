@@ -32,7 +32,8 @@ mixin _$RegisterState {
 abstract class $RegisterStateCopyWith<$Res> {
   factory $RegisterStateCopyWith(
           RegisterState value, $Res Function(RegisterState) then) =
-      _$RegisterStateCopyWithImpl<$Res>;
+      _$RegisterStateCopyWithImpl<$Res, RegisterState>;
+  @useResult
   $Res call(
       {NormalText name,
       EmailInput email,
@@ -43,49 +44,51 @@ abstract class $RegisterStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RegisterStateCopyWithImpl<$Res>
+class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
     implements $RegisterStateCopyWith<$Res> {
   _$RegisterStateCopyWithImpl(this._value, this._then);
 
-  final RegisterState _value;
   // ignore: unused_field
-  final $Res Function(RegisterState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? termsAgreement = freezed,
-    Object? isObscured = freezed,
-    Object? status = freezed,
+    Object? name = null,
+    Object? email = null,
+    Object? password = null,
+    Object? termsAgreement = null,
+    Object? isObscured = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as NormalText,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as EmailInput,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as PasswordInput,
-      termsAgreement: termsAgreement == freezed
+      termsAgreement: null == termsAgreement
           ? _value.termsAgreement
           : termsAgreement // ignore: cast_nullable_to_non_nullable
               as TermsAgreementCheck,
-      isObscured: isObscured == freezed
+      isObscured: null == isObscured
           ? _value.isObscured
           : isObscured // ignore: cast_nullable_to_non_nullable
               as bool,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-    ));
+    ) as $Val);
   }
 }
 
@@ -96,6 +99,7 @@ abstract class _$$_RegisterStateCopyWith<$Res>
           _$_RegisterState value, $Res Function(_$_RegisterState) then) =
       __$$_RegisterStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {NormalText name,
       EmailInput email,
@@ -107,46 +111,44 @@ abstract class _$$_RegisterStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_RegisterStateCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res>
+    extends _$RegisterStateCopyWithImpl<$Res, _$_RegisterState>
     implements _$$_RegisterStateCopyWith<$Res> {
   __$$_RegisterStateCopyWithImpl(
       _$_RegisterState _value, $Res Function(_$_RegisterState) _then)
-      : super(_value, (v) => _then(v as _$_RegisterState));
+      : super(_value, _then);
 
-  @override
-  _$_RegisterState get _value => super._value as _$_RegisterState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? termsAgreement = freezed,
-    Object? isObscured = freezed,
-    Object? status = freezed,
+    Object? name = null,
+    Object? email = null,
+    Object? password = null,
+    Object? termsAgreement = null,
+    Object? isObscured = null,
+    Object? status = null,
   }) {
     return _then(_$_RegisterState(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as NormalText,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as EmailInput,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as PasswordInput,
-      termsAgreement: termsAgreement == freezed
+      termsAgreement: null == termsAgreement
           ? _value.termsAgreement
           : termsAgreement // ignore: cast_nullable_to_non_nullable
               as TermsAgreementCheck,
-      isObscured: isObscured == freezed
+      isObscured: null == isObscured
           ? _value.isObscured
           : isObscured // ignore: cast_nullable_to_non_nullable
               as bool,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -194,28 +196,24 @@ class _$_RegisterState implements _RegisterState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RegisterState &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality()
-                .equals(other.termsAgreement, termsAgreement) &&
-            const DeepCollectionEquality()
-                .equals(other.isObscured, isObscured) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.termsAgreement, termsAgreement) ||
+                other.termsAgreement == termsAgreement) &&
+            (identical(other.isObscured, isObscured) ||
+                other.isObscured == isObscured) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(termsAgreement),
-      const DeepCollectionEquality().hash(isObscured),
-      const DeepCollectionEquality().hash(status));
+      runtimeType, name, email, password, termsAgreement, isObscured, status);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_RegisterStateCopyWith<_$_RegisterState> get copyWith =>
       __$$_RegisterStateCopyWithImpl<_$_RegisterState>(this, _$identity);
 }

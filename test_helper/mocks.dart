@@ -8,8 +8,6 @@ import 'package:expense_tracker/features/authentication/domain/usecases/login_wi
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/cubit/register_form_cubit.dart';
 import 'package:expense_tracker/features/edit_transaction/domain/usecases/add_transaction_use_case.dart';
-import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
-import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:transaction_repository/transaction_repository.dart';
@@ -22,9 +20,7 @@ class MockLoginWithGoogleUseCase extends Mock
 
 class MockAppBloc extends Mock implements AppBloc {}
 
-class MockThemeController extends Mock implements ThemeController {}
-
-class MockLocaleController extends Mock implements LocaleController {}
+class MockThemeController extends Mock implements AppBloc {}
 
 class MockLocalCache extends Mock implements ILocalCache {}
 

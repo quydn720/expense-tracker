@@ -29,6 +29,10 @@ class AppLocalizationsVi extends AppLocalizations {
       'Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ.';
 
   @override
+  String get googleError_userCancelled =>
+      'Hủy quá trình đăng nhập với tài khoản Google';
+
+  @override
   String get forgot_password => 'Quên mật khẩu';
 
   @override
@@ -99,16 +103,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get language_english => 'Tiếng Anh';
 
   @override
-  String get theme => 'Theme';
+  String get appearance => 'Giao diện';
 
   @override
-  String get theme_light => 'Light';
+  String get appearance_light => 'Sáng';
 
   @override
-  String get theme_dark => 'Dark';
+  String get appearance_dark => 'Tối';
 
   @override
-  String get theme_system => 'Use device theme';
+  String get appearance_system => 'Tự động';
 
   @override
   String get currency => 'Đơn vị tiền tệ';

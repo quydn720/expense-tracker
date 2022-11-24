@@ -1,13 +1,11 @@
-import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/app.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/forgot_password_use_case.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_google_account_use_case.dart';
+import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
 import 'package:expense_tracker/features/edit_transaction/domain/usecases/add_transaction_use_case.dart';
-import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
 import 'package:expense_tracker/features/transaction_overview/presentation/bloc/transaction_bloc.dart';
-import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:expense_tracker/routes/router.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +21,10 @@ import '../../../test_helper/app_test.dart';
 import '../../../test_helper/mock_router.dart';
 import '../../../test_helper/mocks.dart';
 
+class MockAuthenticationBloc extends Mock implements AuthenticationBloc {}
+
 void main() {
-  late final ThemeController themeController;
-  late final LocaleController localeController;
-  late final AppBloc appBloc;
+  late final AuthenticationBloc appBloc;
   late GoRouter goRouter;
 
   final TransactionBloc mockTransactionBloc = MockTransactionBloc();
@@ -48,13 +46,8 @@ void main() {
       MockTransactionRepository.new,
     );
 
-    appBloc = MockAppBloc();
+    appBloc = MockAuthenticationBloc();
     when(() => appBloc.stream).thenAnswer((_) => const Stream.empty());
-
-    themeController = MockThemeController();
-    when(() => themeController.themeMode).thenReturn(ThemeMode.dark);
-    localeController = MockLocaleController();
-    when(() => localeController.locale).thenReturn(const Locale('en'));
   });
 
   group(
@@ -77,12 +70,10 @@ void main() {
         await tester.pumpWidget(
           MultiProvider(
             providers: [
-              ChangeNotifierProvider.value(value: themeController),
-              ChangeNotifierProvider.value(value: localeController),
               BlocProvider.value(value: appBloc),
             ],
             child: App(
-              router: router(appBloc: appBloc),
+              router: router(auth: appBloc),
               appName: 'Testing App 1',
               dynamicLinks: mockFirebaseDynamicLinks,
             ),
@@ -117,16 +108,12 @@ void main() {
         await tester.pumpWidget(
           MultiProvider(
             providers: [
-              ChangeNotifierProvider.value(value: themeController),
-              ChangeNotifierProvider.value(value: localeController),
               BlocProvider.value(value: appBloc),
             ],
             child: TestApp(
               router: goRouter,
               dynamicLinks: mockFirebaseDynamicLinks,
               providers: [
-                ChangeNotifierProvider.value(value: localeController),
-                ChangeNotifierProvider.value(value: themeController),
                 BlocProvider.value(value: appBloc),
               ],
             ),

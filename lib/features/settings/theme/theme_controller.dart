@@ -1,8 +1,10 @@
 import 'package:expense_tracker/common/cache/local_cache.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../di/injector.dart';
 
+@singleton
 class ThemeController extends ChangeNotifier {
   ThemeController(this._localCache) {
     _themeMode =

@@ -28,6 +28,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authError_unknownException => 'An unknown exception occurred.';
 
   @override
+  String get googleError_userCancelled => 'You canceled the login process';
+
+  @override
   String get forgot_password => 'Forgot Password';
 
   @override
@@ -73,7 +76,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get repeat_str => 'Repeat';
 
   @override
-  String get repeat_transaction => 'Repeat transaction';
+  String get repeat_transaction => 'Repeat transaction, set your own time';
 
   @override
   String get profile => 'Profile';
@@ -97,16 +100,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get language_english => 'English';
 
   @override
-  String get theme => 'Theme';
+  String get appearance => 'Appearance';
 
   @override
-  String get theme_light => 'Light';
+  String get appearance_light => 'Light';
 
   @override
-  String get theme_dark => 'Dark';
+  String get appearance_dark => 'Dark';
 
   @override
-  String get theme_system => 'Use device theme';
+  String get appearance_system => 'Auto';
 
   @override
   String get currency => 'Currency';

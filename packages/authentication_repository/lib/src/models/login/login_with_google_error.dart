@@ -21,6 +21,8 @@ abstract class LoginWithGoogleError with _$LoginWithGoogleError {
       LoginWithGoogleError_InvalidVerificationCode;
   const factory LoginWithGoogleError.invalidVerificationId() =
       LoginWithGoogleError_InvalidVerificationId;
+  const factory LoginWithGoogleError.userCancelled() =
+      LoginWithGoogleError_UserCancelled;
 
   factory LoginWithGoogleError.fromCode(String code) {
     switch (code) {

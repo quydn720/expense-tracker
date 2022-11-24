@@ -1,10 +1,9 @@
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
+import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/cubit/register_form_cubit.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/pages/register_screen.dart';
-import 'package:expense_tracker/features/settings/theme/theme_controller.dart';
-import 'package:expense_tracker/l10n/locale_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,17 +11,17 @@ import 'package:formz/formz.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../../../test_helper/app_test.dart';
 import '../../../../../../test_helper/mock_router.dart';
 import '../../../../../../test_helper/mocks.dart';
+import '../../../../../presentations/components/default_app_bar_test.dart';
 
 void main() {
   late RegisterFormCubit registerCubit;
-  late LocaleController localeController;
-  late ThemeController themeController;
   late AppBloc appBloc;
+  late AuthenticationBloc authenticationBloc;
+
   final mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
   when(() => mockFirebaseDynamicLinks.onLink).thenAnswer(
     (_) => const Stream.empty(),
@@ -33,9 +32,8 @@ void main() {
     return tester.pumpWidget(
       TestApp(
         providers: [
-          ChangeNotifierProvider.value(value: localeController),
-          ChangeNotifierProvider.value(value: themeController),
           BlocProvider.value(value: registerCubit),
+          BlocProvider.value(value: authenticationBloc),
           BlocProvider.value(value: appBloc),
         ],
         router: mockRouter(
@@ -61,15 +59,15 @@ void main() {
     when(() => registerCubit.stream).thenAnswer((_) => const Stream.empty());
     when(() => registerCubit.state).thenAnswer((_) => const RegisterState());
 
-    localeController = MockLocaleController();
-    when(() => localeController.locale).thenReturn(const Locale('en'));
-
-    themeController = MockThemeController();
-    when(() => themeController.themeMode).thenReturn(ThemeMode.dark);
+    authenticationBloc = MockAuthenticationBloc();
+    when(() => authenticationBloc.stream).thenAnswer(
+      (_) => const Stream.empty(),
+    );
+    when(() => authenticationBloc.state).thenReturn(const Unauthenticated());
 
     appBloc = MockAppBloc();
     when(() => appBloc.stream).thenAnswer((_) => const Stream.empty());
-    when(() => appBloc.state).thenReturn(const Unauthenticated());
+    when(() => appBloc.state).thenReturn(const AppState());
   });
 
   testWidgets('renders RegisterScreen', (tester) async {

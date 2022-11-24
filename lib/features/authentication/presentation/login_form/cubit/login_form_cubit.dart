@@ -26,14 +26,18 @@ class LoginFormCubit extends Cubit<LoginFormState> {
   Future<void> loginWithGoogle() async {
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     await _loginWithGoogleUseCase().then(
-      (value) => value.leftMap((l) {
-        emit(
-          state.copyWith(
-            status: FormzStatus.submissionFailure,
-            loginFailure: l,
-          ),
-        );
-      }),
+      (value) => value.fold(
+        (l) {
+          emit(
+            state.copyWith(
+              status: FormzStatus.invalid,
+              loginFailure: l,
+            ),
+          );
+          // emit(state.copyWith(status: FormzStatus.invalid));
+        },
+        (r) => emit(state.copyWith(status: FormzStatus.submissionSuccess)),
+      ),
     );
   }
 
@@ -46,12 +50,14 @@ class LoginFormCubit extends Cubit<LoginFormState> {
     );
 
     loginResult.fold(
-      (failure) => emit(
-        state.copyWith(
-          status: FormzStatus.submissionFailure,
-          loginFailure: failure,
-        ),
-      ),
+      (failure) {
+        emit(
+          state.copyWith(
+            status: FormzStatus.submissionFailure,
+            loginFailure: failure,
+          ),
+        );
+      },
       (_) => emit(state.copyWith(status: FormzStatus.submissionSuccess)),
     );
   }

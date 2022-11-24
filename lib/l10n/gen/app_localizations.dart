@@ -138,6 +138,12 @@ abstract class AppLocalizations {
   /// **'An unknown exception occurred.'**
   String get authError_unknownException;
 
+  /// No description provided for @googleError_userCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'You canceled the login process'**
+  String get googleError_userCancelled;
+
   /// No description provided for @forgot_password.
   ///
   /// In en, this message translates to:
@@ -225,7 +231,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeat_transaction.
   ///
   /// In en, this message translates to:
-  /// **'Repeat transaction'**
+  /// **'Repeat transaction, set your own time'**
   String get repeat_transaction;
 
   /// No description provided for @profile.
@@ -270,29 +276,29 @@ abstract class AppLocalizations {
   /// **'English'**
   String get language_english;
 
-  /// No description provided for @theme.
+  /// No description provided for @appearance.
   ///
   /// In en, this message translates to:
-  /// **'Theme'**
-  String get theme;
+  /// **'Appearance'**
+  String get appearance;
 
-  /// No description provided for @theme_light.
+  /// No description provided for @appearance_light.
   ///
   /// In en, this message translates to:
   /// **'Light'**
-  String get theme_light;
+  String get appearance_light;
 
-  /// No description provided for @theme_dark.
+  /// No description provided for @appearance_dark.
   ///
   /// In en, this message translates to:
   /// **'Dark'**
-  String get theme_dark;
+  String get appearance_dark;
 
-  /// No description provided for @theme_system.
+  /// No description provided for @appearance_system.
   ///
   /// In en, this message translates to:
-  /// **'Use device theme'**
-  String get theme_system;
+  /// **'Auto'**
+  String get appearance_system;
 
   /// No description provided for @currency.
   ///

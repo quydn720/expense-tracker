@@ -8,6 +8,29 @@
 import 'package:authentication_repository/authentication_repository.dart'
     as _i7;
 import 'package:cloud_firestore/cloud_firestore.dart' as _i5;
+import 'package:expense_tracker/common/cache/local_cache.dart' as _i8;
+import 'package:expense_tracker/di/injector.dart' as _i3;
+import 'package:expense_tracker/features/app/bloc/app_bloc.dart' as _i23;
+import 'package:expense_tracker/features/app/data/app_settings.dart' as _i16;
+import 'package:expense_tracker/features/authentication/domain/usecases/forgot_password_use_case.dart'
+    as _i19;
+import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart'
+    as _i9;
+import 'package:expense_tracker/features/authentication/domain/usecases/login_with_google_account_use_case.dart'
+    as _i10;
+import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart'
+    as _i14;
+import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart'
+    as _i17;
+import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart'
+    as _i22;
+import 'package:expense_tracker/features/edit_transaction/domain/usecases/add_transaction_use_case.dart'
+    as _i15;
+import 'package:expense_tracker/features/edit_transaction/presentation/bloc/edit_transaction_bloc.dart'
+    as _i18;
+import 'package:expense_tracker/features/transaction_overview/domain/usecases/load_transactions.dart'
+    as _i21;
+import 'package:expense_tracker/user_preferences.dart' as _i13;
 import 'package:firebase_auth/firebase_auth.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:go_router/go_router.dart' as _i20;
@@ -16,41 +39,19 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i11;
 import 'package:transaction_repository/transaction_repository.dart' as _i12;
 
-import '../common/cache/local_cache.dart' as _i8;
-import '../features/app/bloc/app_bloc.dart' as _i16;
-import '../features/authentication/domain/usecases/forgot_password_use_case.dart'
-    as _i19;
-import '../features/authentication/domain/usecases/login_with_email_and_pw.dart'
-    as _i9;
-import '../features/authentication/domain/usecases/login_with_google_account_use_case.dart'
-    as _i10;
-import '../features/authentication/domain/usecases/register_with_email_and_pw.dart'
-    as _i14;
-import '../features/authentication/presentation/bloc/authentication_bloc.dart'
-    as _i17;
-import '../features/authentication/presentation/login_form/cubit/login_form_cubit.dart'
-    as _i22;
-import '../features/edit_transaction/domain/usecases/add_transaction_use_case.dart'
-    as _i15;
-import '../features/edit_transaction/presentation/bloc/edit_transaction_bloc.dart'
-    as _i18;
-import '../features/transaction_overview/domain/usecases/load_transactions.dart'
-    as _i21;
-import '../user_preferences.dart' as _i13;
-import 'injector.dart' as _i3;
-
 const String _dev = 'dev';
 const String _prod = 'prod';
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
-/// initializes the registration of provided dependencies inside of [GetIt]
+
+/// ignore_for_file: unnecessary_lambdas
+/// ignore_for_file: lines_longer_than_80_chars
+/// initializes the registration of main-scope dependencies inside of [GetIt]
 Future<_i1.GetIt> $initGetIt(
-  _i1.GetIt get, {
+  _i1.GetIt getIt, {
   String? environment,
   _i2.EnvironmentFilter? environmentFilter,
 }) async {
   final gh = _i2.GetItHelper(
-    get,
+    getIt,
     environment,
     environmentFilter,
   );
@@ -81,9 +82,9 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i8.ILocalCache>(() => _i8.InMemoryLocalCache());
   gh.factory<_i9.LoginWithEmailAndPwUseCase>(() =>
       _i9.LoginWithEmailAndPwUseCase(
-          auth: get<_i7.IAuthenticationRepository>()));
+          auth: gh<_i7.IAuthenticationRepository>()));
   gh.factory<_i10.LoginWithGoogleUseCase>(() =>
-      _i10.LoginWithGoogleUseCase(auth: get<_i7.IAuthenticationRepository>()));
+      _i10.LoginWithGoogleUseCase(auth: gh<_i7.IAuthenticationRepository>()));
   await gh.factoryAsync<_i11.SharedPreferences>(
     () => sharedPreferencesModule.prefs,
     preResolve: true,
@@ -107,46 +108,44 @@ Future<_i1.GetIt> $initGetIt(
     registerFor: {_prod},
   );
   gh.singleton<_i13.UserPreferences>(
-      _i13.UserPreferences(prefs: get<_i11.SharedPreferences>()));
+      _i13.UserPreferences(prefs: gh<_i11.SharedPreferences>()));
   gh.factory<_i14.VerificationService>(() => _i14.VerificationService());
   gh.factory<bool>(
     () => sharedPreferencesModule.isOnboardingCompeted,
     instanceName: 'isOnboardingCompleted',
   );
   gh.factory<_i15.AddTransactionUseCase>(
-      () => _i15.AddTransactionUseCase(get<_i12.TransactionRepository>()));
-  gh.factory<_i16.AppBloc>(() => _i16.AppBloc(
-        authenticationRepository: get<_i7.IAuthenticationRepository>(),
-        showOnboarding: get<bool>(instanceName: 'isOnboardingCompleted'),
-      ));
-  gh.lazySingleton<_i17.AuthenticationBloc>(() => _i17.AuthenticationBloc(
-        get<_i7.IAuthenticationRepository>(),
-        get<_i9.LoginWithEmailAndPwUseCase>(),
-      ));
+      () => _i15.AddTransactionUseCase(gh<_i12.TransactionRepository>()));
+  gh.factory<_i16.AppSettingService>(
+      () => _i16.AppSettingService(gh<_i11.SharedPreferences>()));
+  gh.lazySingleton<_i17.AuthenticationBloc>(
+      () => _i17.AuthenticationBloc(gh<_i7.IAuthenticationRepository>()));
   gh.factoryParam<_i18.EditTransactionBloc, _i12.Transaction?, dynamic>((
     initialTransaction,
     _,
   ) =>
       _i18.EditTransactionBloc(
-        get<_i15.AddTransactionUseCase>(),
+        gh<_i15.AddTransactionUseCase>(),
         initialTransaction: initialTransaction,
       ));
   gh.factory<_i19.ForgotPasswordUseCase>(() =>
-      _i19.ForgotPasswordUseCase(auth: get<_i7.IAuthenticationRepository>()));
+      _i19.ForgotPasswordUseCase(auth: gh<_i7.IAuthenticationRepository>()));
   gh.lazySingleton<_i20.GoRouter>(() => devAppLocalPackageModule
-      .appRouterDev(get<String>(instanceName: 'init_location')));
+      .appRouterDev(gh<String>(instanceName: 'init_location')));
   gh.factory<_i21.LoadAllTransactions>(
-      () => _i21.LoadAllTransactions(get<_i12.TransactionRepository>()));
+      () => _i21.LoadAllTransactions(gh<_i12.TransactionRepository>()));
   gh.factory<_i22.LoginFormCubit>(() => _i22.LoginFormCubit(
-        loginWithGoogleUseCase: get<_i10.LoginWithGoogleUseCase>(),
-        loginWithEmailAndPwUseCase: get<_i9.LoginWithEmailAndPwUseCase>(),
+        loginWithGoogleUseCase: gh<_i10.LoginWithGoogleUseCase>(),
+        loginWithEmailAndPwUseCase: gh<_i9.LoginWithEmailAndPwUseCase>(),
       ));
   gh.factory<_i14.RegisterWithEmailAndPwUseCase>(
       () => _i14.RegisterWithEmailAndPwUseCase(
-            verificationService: get<_i14.VerificationService>(),
-            auth: get<_i7.IAuthenticationRepository>(),
+            verificationService: gh<_i14.VerificationService>(),
+            auth: gh<_i7.IAuthenticationRepository>(),
           ));
-  return get;
+  gh.singleton<_i23.AppBloc>(
+      _i23.AppBloc(appSettingService: gh<_i16.AppSettingService>()));
+  return getIt;
 }
 
 class _$FirebaseInjectableModule extends _i3.FirebaseInjectableModule {}
