@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../app/bloc/app_bloc.dart';
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -14,96 +12,82 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return BlocListener<AppBloc, AppState>(
-      listener: (context, state) async {
-        // TODO: display log out bottom sheet state
-        // if (state is ShowLogoutBottomSheet) {
-        //   final read = context.read<AppBloc>();
-        //   final c = await showModalBottomSheet<bool>(
-        //     context: context,
-        //     builder: (context) {
-        //       return const BottomSheetWidget();
-        //     },
-        //   );
-        //   if (c == null) {
-        //     read.add(const LogoutBottomSheetCanceled());
-        //   }
-        // }
-      },
-      child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
-        body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  const CircleAvatar(radius: 40),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          'Username',
-                          style: textTheme.subtitle1?.copyWith(
-                            color: const Color(0xff91919F),
-                          ),
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const CircleAvatar(radius: 40),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        'Username',
+                        style: textTheme.subtitle1?.copyWith(
+                          color: const Color(0xff91919F),
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Thảo Hương',
-                          style: textTheme.headline3?.copyWith(
-                            color: const Color(0xff161719),
-                          ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Thảo Hương',
+                        style: textTheme.headline3?.copyWith(
+                          color: const Color(0xff161719),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  IconButton(icon: Assets.icons.edit.image(), onPressed: () {}),
+                ),
+                IconButton(icon: Assets.icons.edit.image(), onPressed: () {}),
+              ],
+            ),
+            const SizedBox(height: 40),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(24),
+              ),
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  _SettingTile(
+                    iconData: FontAwesomeIcons.wallet,
+                    onTap: () => context.go('/profile/account'),
+                    title: 'Account',
+                  ),
+                  const Divider(),
+                  _SettingTile(
+                    iconData: FontAwesomeIcons.gear,
+                    onTap: () => context.push('/setting'),
+                    title: 'Settings',
+                  ),
+                  const Divider(),
+                  _SettingTile(
+                    iconData: FontAwesomeIcons.arrowUpFromBracket,
+                    onTap: () => context.go('/profile/export-data'),
+                    title: 'Export Data',
+                  ),
+                  const Divider(),
+                  _SettingTile(
+                    iconData: FontAwesomeIcons.rightFromBracket,
+                    onTap: () async {
+                      await showModalBottomSheet<bool>(
+                        context: context,
+                        builder: (context) {
+                          return const BottomSheetWidget();
+                        },
+                      );
+                    },
+                    title: 'Log out',
+                  ),
                 ],
               ),
-              const SizedBox(height: 40),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  children: [
-                    _SettingTile(
-                      iconData: FontAwesomeIcons.wallet,
-                      onTap: () => context.go('/profile/account'),
-                      title: 'Account',
-                    ),
-                    const Divider(),
-                    _SettingTile(
-                      iconData: FontAwesomeIcons.gear,
-                      onTap: () => context.push('/setting'),
-                      title: 'Settings',
-                    ),
-                    const Divider(),
-                    _SettingTile(
-                      iconData: FontAwesomeIcons.arrowUpFromBracket,
-                      onTap: () => context.go('/profile/export-data'),
-                      title: 'Export Data',
-                    ),
-                    const Divider(),
-                    _SettingTile(
-                      iconData: FontAwesomeIcons.rightFromBracket,
-                      onTap: () {
-                        // context.read<AppBloc>().add(
-                        //     // const LogoutBottomSheetOpened(),
-                        //     );
-                      },
-                      title: 'Log out',
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -194,21 +178,18 @@ class BottomSheetWidget extends StatelessWidget {
                       backgroundColor: const Color(0xffEEE5FF),
                       foregroundColor: Theme.of(context).primaryColor,
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      // context.read<AppBloc>().add(
-                      //       const LogoutBottomSheetCanceled(),
-                      //     );
-                    },
+                    onPressed: Navigator.of(context).pop,
                     child: const Text('No'),
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () => context.read<AuthenticationBloc>().add(
-                          const LogoutRequested(),
-                        ),
+                    onPressed: () {
+                      context
+                          .read<AuthenticationBloc>()
+                          .add(const LogoutRequested());
+                    },
                     child: const Text('Yes'),
                   ),
                 ),

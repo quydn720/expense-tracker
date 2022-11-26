@@ -4,8 +4,11 @@ part 'category.freezed.dart';
 
 @freezed
 class Category with _$Category {
-  const factory Category({String? name, int? color, int? backgroundColor}) =
-      _Category;
+  const factory Category({
+    @Default('') String name,
+    int? color,
+    int? backgroundColor,
+  }) = _Category;
   static const categories = [
     Category(name: 'Shopping', color: 0xffFCAC12, backgroundColor: 0xffFCEED4),
     Category(

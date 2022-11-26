@@ -34,8 +34,9 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<LoginFormCubit, LoginFormState>(
       listenWhen: (prev, curr) {
-        return (prev.loginFailure != curr.loginFailure) &&
-            curr.loginFailure != null;
+        final fail = curr.status == FormzStatus.invalid ||
+            curr.status == FormzStatus.submissionFailure;
+        return (prev.status != curr.status) && fail;
       },
       listener: (context, state) {
         final content = state.loginFailure?.toLocalizedString(context.l10n);
@@ -148,6 +149,8 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isValid = context.watch<LoginFormCubit>().state.status.isValidated;
+    final isLoading =
+        context.watch<LoginFormCubit>().state.status.isSubmissionInProgress;
 
     return ElevatedButton(
       key: const Key('loginForm_login_elevatedButton'),
@@ -155,7 +158,7 @@ class _LoginButton extends StatelessWidget {
           isValid ? context.read<LoginFormCubit>().onLoginButtonClicked : null,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text(context.l10n.login)],
+        children: [Text(isLoading ? 'Loading' : context.l10n.login)],
       ),
     );
   }

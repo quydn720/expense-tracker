@@ -8,14 +8,14 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.0 <3.3.0"
+  sdk: '>=2.18.5 <3.0.0'
 
 dependencies:
-  another_flushbar: ^1.10.24
+  # another_flushbar: ^1.10.24
   authentication_repository:
     path: packages/authentication_repository
-  budget_repository:
-    path: packages/budget_repository
+  # budget_repository:
+  #   path: packages/budget_repository
   cloud_firestore: ^4.1.0 
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0
@@ -27,7 +27,6 @@ dependencies:
   firebase_core: ^2.3.0
   firebase_dynamic_links: ^5.0.6
   fl_chart: ^0.55.0
-  flow_builder: ^0.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
@@ -37,8 +36,8 @@ dependencies:
   flutter_native_splash: ^2.2.3+1
   flutter_svg: ^1.1.4
   font_awesome_flutter: ^10.1.0
-  form_inputs:
-    path: packages/form_inputs
+  # form_inputs:
+  #   path: packages/form_inputs
   formz: ^0.4.1
   freezed_annotation: ^2.0.3
   get_it: ^7.2.0
@@ -55,16 +54,17 @@ dependencies:
   provider: ^6.0.3
   rxdart: ^0.27.2
   shared_preferences: ^2.0.8
+  sqlite3_flutter_libs: ^0.5.12
   table_calendar: ^3.0.2
   transaction_repository:
     path: packages/transaction_repository
   uuid: ^3.0.5
-  wallet_repository:
-    path: packages/wallet_repository
+  # wallet_repository:
+  #   path: packages/wallet_repository
 
 dev_dependencies:
   bloc_test: ^9.0.3
-  build_runner: ^2.1.4
+  build_runner: ^2.2.1
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter

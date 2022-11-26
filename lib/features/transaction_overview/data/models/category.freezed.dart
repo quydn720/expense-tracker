@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Category {
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   int? get color => throw _privateConstructorUsedError;
   int? get backgroundColor => throw _privateConstructorUsedError;
 
@@ -30,7 +30,7 @@ abstract class $CategoryCopyWith<$Res> {
   factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
       _$CategoryCopyWithImpl<$Res, Category>;
   @useResult
-  $Res call({String? name, int? color, int? backgroundColor});
+  $Res call({String name, int? color, int? backgroundColor});
 }
 
 /// @nodoc
@@ -46,15 +46,15 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
+    Object? name = null,
     Object? color = freezed,
     Object? backgroundColor = freezed,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -74,7 +74,7 @@ abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
       __$$_CategoryCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? name, int? color, int? backgroundColor});
+  $Res call({String name, int? color, int? backgroundColor});
 }
 
 /// @nodoc
@@ -88,15 +88,15 @@ class __$$_CategoryCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
+    Object? name = null,
     Object? color = freezed,
     Object? backgroundColor = freezed,
   }) {
     return _then(_$_Category(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -112,10 +112,11 @@ class __$$_CategoryCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Category implements _Category {
-  const _$_Category({this.name, this.color, this.backgroundColor});
+  const _$_Category({this.name = '', this.color, this.backgroundColor});
 
   @override
-  final String? name;
+  @JsonKey()
+  final String name;
   @override
   final int? color;
   @override
@@ -149,12 +150,12 @@ class _$_Category implements _Category {
 
 abstract class _Category implements Category {
   const factory _Category(
-      {final String? name,
+      {final String name,
       final int? color,
       final int? backgroundColor}) = _$_Category;
 
   @override
-  String? get name;
+  String get name;
   @override
   int? get color;
   @override

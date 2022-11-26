@@ -29,12 +29,8 @@ class LoginFormCubit extends Cubit<LoginFormState> {
       (value) => value.fold(
         (l) {
           emit(
-            state.copyWith(
-              status: FormzStatus.invalid,
-              loginFailure: l,
-            ),
+            state.copyWith(status: FormzStatus.invalid, loginFailure: l),
           );
-          // emit(state.copyWith(status: FormzStatus.invalid));
         },
         (r) => emit(state.copyWith(status: FormzStatus.submissionSuccess)),
       ),

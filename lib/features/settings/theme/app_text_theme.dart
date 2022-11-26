@@ -30,7 +30,6 @@ TextTheme textTheme = TextTheme(
   subtitle2: GoogleFonts.inter(
     fontSize: 14,
     fontWeight: FontWeight.w500,
-    letterSpacing: 0.1,
   ),
   bodyText1: GoogleFonts.inter(
     fontSize: 16,

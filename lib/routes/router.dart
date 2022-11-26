@@ -19,6 +19,7 @@ import 'package:go_router/go_router.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
 import '../features/authentication/presentation/register_form/pages/register_screen.dart';
+import '../features/budget/budget.dart';
 import '../features/settings/presentation/pages/language_screen.dart';
 import '../features/settings/presentation/pages/notification_screen.dart';
 import '../features/settings/presentation/pages/security_screen.dart';
@@ -211,34 +212,6 @@ class TransactionReports extends StatelessWidget {
     );
   }
 }
-
-class BudgetScreen extends StatelessWidget {
-  const BudgetScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Budget'));
-  }
-}
-
-// class AppDevelopmentView extends StatelessWidget {
-//   const AppDevelopmentView({super.key});
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.black,
-//       body: Center(
-//         child: TransactionTile(
-//           transaction: Transaction.empty(),
-//           onLongPress: () {},
-//           onPress: () {
-//             context.read<AppBloc>().add(const LogoutRequested());
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Stream<dynamic> stream) {
