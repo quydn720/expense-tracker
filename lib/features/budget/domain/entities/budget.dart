@@ -1,4 +1,4 @@
-import 'package:expense_tracker/features/transaction_overview/data/models/category.dart';
+import 'package:expense_tracker/features/category/domain/entities/category.dart';
 
 class Budget {
   Budget(this.id, this.amount, this.whenToNotify, this.category);
@@ -6,5 +6,5 @@ class Budget {
   final String id;
   final double amount;
   final double whenToNotify;
-  final Category category;
+  final CategoryEntity category;
 }

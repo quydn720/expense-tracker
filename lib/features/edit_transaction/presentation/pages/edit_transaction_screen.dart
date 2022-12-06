@@ -7,6 +7,7 @@ import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
@@ -33,26 +34,24 @@ class _EditTransaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<EditTransactionBloc>();
     final isNewTransaction = context.select(
       (EditTransactionBloc value) => value.state.isNewTransaction,
     );
+    final controller = context.read<EditTransactionBloc>();
     final l10n = context.l10n;
-
-    final isTransactionRepeated = context.select<EditTransactionBloc, bool>(
-      (value) => value.state.isRepeated,
-    );
 
     final status =
         context.select((EditTransactionBloc bloc) => bloc.state.status);
+    final pageTitle =
+        isNewTransaction ? l10n.add_new_transaction : l10n.edit_transaction;
+    final primaryColor = Theme.of(context).primaryColor;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.red,
+      backgroundColor: primaryColor,
       appBar: DefaultAppBar(
-        elevation: 0,
-        title: l10n.expense,
-        color: isNewTransaction ? Colors.red : Colors.amberAccent,
+        title: pageTitle,
+        color: primaryColor,
         textColor: Colors.white,
       ),
       body: BlocListener<EditTransactionBloc, EditTransactionState>(
@@ -87,226 +86,190 @@ class _EditTransaction extends StatelessWidget {
         },
         child: (status == Status.loading)
             ? const Center(child: Text('loading'))
-            : SafeArea(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const Spacer(),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    child: _AmountField(),
+                  ),
+                  const SizedBox(height: 8),
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: const EdgeInsets.all(16),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(32),
+                        topRight: Radius.circular(32),
+                      ),
+                    ),
+                    child: SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(
-                            l10n.how_much,
-                            style: Theme.of(context).textTheme.button?.copyWith(
-                                  color: const Color(0xffFCFCFC),
-                                ),
-                          ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              prefixIcon: Text(
-                                r'$',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline1
-                                    ?.copyWith(
-                                      color: const Color(0xffFCFCFC),
-                                    ),
-                              ),
-                            ),
-                            style:
-                                Theme.of(context).textTheme.headline1?.copyWith(
-                                      color: const Color(0xffFCFCFC),
-                                    ),
-                            keyboardType: const TextInputType.numberWithOptions(
-                              // signed: true,
-                              decimal: true,
-                            ),
-                            textInputAction: TextInputAction.next,
-                            onChanged: (value) {
-                              controller
-                                  .add(EditTransactionAmountChanged(value));
-                            },
-                          ),
+                        children: const [
+                          SizedBox(height: 8),
+                          _CategoryDropdown(),
+                          SizedBox(height: 16),
+                          _DescriptionField(),
+                          SizedBox(height: 16),
+                          _WalletDropdown(),
+                          SizedBox(height: 16),
+                          _ImagePicker(),
+                          SizedBox(height: 16),
+                          _RepeatListTile(),
+                          SizedBox(height: 24),
+                          _SubmitButton(),
+                          SizedBox(height: 16),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    Container(
-                      alignment: Alignment.bottomCenter,
-                      padding: const EdgeInsets.all(16),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(32),
-                          topRight: Radius.circular(32),
-                        ),
-                      ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            const SizedBox(height: 8),
-                            const _CategoryDropdown(),
-                            const SizedBox(height: 16),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                hintText: context.l10n.budgetDescription,
-                              ),
-                              onChanged: (value) {
-                                controller.add(
-                                  EditTransactionDescriptionChanged(value),
-                                );
-                              },
-                            ),
-                            const SizedBox(height: 16),
-                            const _WalletDropdown(),
-                            const SizedBox(height: 16),
-                            if (context
-                                    .watch<EditTransactionBloc>()
-                                    .state
-                                    .imgFile ==
-                                null) ...[
-                              ElevatedButton(
-                                onPressed: () => controller.add(
-                                  const EditTransactionSelectAttachment(),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  elevation: 0,
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: const Color(0xff91919F),
-                                  shape: const StadiumBorder(
-                                    side: BorderSide(color: Color(0xffF1F1FA)),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Assets.icons.attachmentSvg.svg(
-                                      color: const Color(0xff91919F),
-                                    ),
-                                    Text(l10n.add_attactment),
-                                  ],
-                                ),
-                              ),
-                            ],
-                            if (context
-                                    .watch<EditTransactionBloc>()
-                                    .state
-                                    .imgFile !=
-                                null) ...[
-                              Row(
-                                children: [
-                                  Stack(
-                                    children: [
-                                      Image.file(
-                                        File(
-                                          context
-                                              .read<EditTransactionBloc>()
-                                              .state
-                                              .imgFile!
-                                              .path,
-                                        ),
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      const Positioned(
-                                        right: 0,
-                                        child: Icon(Icons.crop_square_sharp),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                            const SizedBox(height: 16),
-                            const _RepeatListTile(),
-                            const SizedBox(height: 8),
-                            if (isTransactionRepeated) ...[
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Frequency',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle2,
-                                      ),
-                                      Text(
-                                        'Yearly - December 29',
-                                        style:
-                                            Theme.of(context).textTheme.caption,
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'End After',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle2,
-                                      ),
-                                      Text(
-                                        '29 December 2025',
-                                        style:
-                                            Theme.of(context).textTheme.caption,
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(width: 8),
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      textStyle:
-                                          Theme.of(context).textTheme.bodyText2,
-                                      elevation: 0,
-                                      backgroundColor: kViolet20,
-                                      foregroundColor:
-                                          Theme.of(context).colorScheme.primary,
-                                      padding: EdgeInsets.zero,
-                                      shape: const StadiumBorder(
-                                        side: BorderSide(
-                                          color: Color(0xffF1F1FA),
-                                        ),
-                                      ),
-                                    ),
-                                    child: const Text('Edit'),
-                                  )
-                                  // const Chip(label: Text('Edit'))
-                                ],
-                              ),
-                            ],
-                            const SizedBox(height: 24),
-                            ElevatedButton(
-                              onPressed: () {
-                                controller.add(
-                                  const EditTransactionSubmitNewTransaction(),
-                                );
-                              },
-                              child: Text(context.l10n.continue_str),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
       ),
+    );
+  }
+}
+
+class _ImagePicker extends StatelessWidget {
+  const _ImagePicker();
+  @override
+  Widget build(BuildContext context) {
+    final controller = context.read<EditTransactionBloc>();
+    final l10n = context.l10n;
+    if (context.watch<EditTransactionBloc>().state.imgFile == null) {
+      return ElevatedButton(
+        onPressed: () => controller.add(
+          const EditTransactionSelectAttachment(),
+        ),
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          foregroundColor: const Color(0xff91919F),
+          shape: const StadiumBorder(
+            side: BorderSide(color: Color(0xffF1F1FA)),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Assets.icons.attachmentSvg.svg(
+              color: const Color(0xff91919F),
+            ),
+            Text(l10n.add_attactment),
+          ],
+        ),
+      );
+    } else {
+      return Row(
+        children: [
+          Stack(
+            children: [
+              Image.file(
+                File(
+                  context.read<EditTransactionBloc>().state.imgFile!.path,
+                ),
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+              const Positioned(
+                right: 0,
+                child: Icon(Icons.crop_square_sharp),
+              ),
+            ],
+          ),
+        ],
+      );
+    }
+  }
+}
+
+class _SubmitButton extends StatelessWidget {
+  const _SubmitButton();
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = context.read<EditTransactionBloc>();
+    final state = context.watch<EditTransactionBloc>().state;
+    return ElevatedButton(
+      onPressed: (state.formzStatus.isValidated)
+          ? () {
+              controller.add(const EditTransactionSubmitNewTransaction());
+            }
+          : null,
+      child: Text(context.l10n.continue_str),
+    );
+  }
+}
+
+class _DescriptionField extends StatelessWidget {
+  const _DescriptionField();
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = context.read<EditTransactionBloc>();
+    final state = context.watch<EditTransactionBloc>().state;
+    return TextFormField(
+      decoration: InputDecoration(hintText: context.l10n.budgetDescription),
+      initialValue: state.description,
+      onChanged: (value) {
+        controller.add(
+          EditTransactionDescriptionChanged(value),
+        );
+      },
+    );
+  }
+}
+
+class _AmountField extends StatelessWidget {
+  const _AmountField();
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final l10n = context.l10n;
+
+    final controller = context.read<EditTransactionBloc>();
+    final state = context.watch<EditTransactionBloc>().state;
+    final errorText = state.amount.invalid
+        ? state.amount.error.toLocalizedString(l10n)
+        : null;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          l10n.how_much,
+          style: textTheme.button?.copyWith(
+            color: const Color(0xffFCFCFC),
+          ),
+        ),
+        TextFormField(
+          initialValue: state.amount.value.toString(),
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            prefixIcon: Text(
+              r'$',
+              style: textTheme.headline1?.copyWith(
+                color: const Color(0xffFCFCFC),
+              ),
+            ),
+            errorText: errorText,
+            errorStyle: textTheme.bodyText2?.copyWith(color: Colors.white),
+          ),
+          style: textTheme.headline1?.copyWith(
+            color: const Color(0xffFCFCFC),
+          ),
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          textInputAction: TextInputAction.next,
+          onChanged: (value) {
+            controller.add(EditTransactionAmountChanged(value));
+          },
+        ),
+      ],
     );
   }
 }
@@ -316,6 +279,11 @@ class _CategoryDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<EditTransactionBloc>().state;
+    final errorText = state.category.invalid
+        ? state.category.error.toLocalizedString(context.l10n)
+        : null;
+
     return InputDecorator(
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(
@@ -325,6 +293,7 @@ class _CategoryDropdown extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),
         ),
+        errorText: errorText,
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<Category>(
@@ -333,12 +302,11 @@ class _CategoryDropdown extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Text('Category'),
           ),
-          value: context.watch<EditTransactionBloc>().state.category,
+          value: state.category.value,
           items: Category.categories
               .map(
                 (e) => DropdownMenuItem(
                   value: e,
-                  // child: Text(e.name),
                   child: Chip(
                     padding: const EdgeInsets.fromLTRB(4, 4, 12, 4),
                     labelPadding: const EdgeInsets.symmetric(horizontal: 8),
@@ -392,18 +360,81 @@ class _RepeatListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = context.read<EditTransactionBloc>();
     final l10n = context.l10n;
-    final body1 = Theme.of(context).textTheme.bodyText1;
+
+    final theme = Theme.of(context);
+    final bodyText1 = theme.textTheme.bodyText1;
+    final primaryColor = theme.primaryColor;
 
     final isRepeated = context.select<EditTransactionBloc, bool>(
       (value) => value.state.isRepeated,
     );
 
-    return SwitchListTile.adaptive(
-      value: isRepeated,
-      onChanged: (_) => controller.add(const EditTransactionRepeatToggled()),
-      title: Text(l10n.repeat_str, style: body1),
-      subtitle: Text(l10n.repeat_transaction),
-      contentPadding: EdgeInsets.zero,
+    return Column(
+      children: [
+        SwitchListTile.adaptive(
+          value: isRepeated,
+          onChanged: (_) =>
+              controller.add(const EditTransactionRepeatToggled()),
+          title: Text(l10n.repeat_str, style: bodyText1),
+          subtitle: Text(l10n.repeat_transaction),
+          contentPadding: EdgeInsets.zero,
+          activeColor: primaryColor,
+          inactiveTrackColor: primaryColor.withOpacity(0.2),
+        ),
+        if (isRepeated) ...[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Frequency',
+                    style: Theme.of(context).textTheme.subtitle2,
+                  ),
+                  Text(
+                    'Yearly - December 29',
+                    style: Theme.of(context).textTheme.caption,
+                  )
+                ],
+              ),
+              const SizedBox(width: 8),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'End After',
+                    style: Theme.of(context).textTheme.subtitle2,
+                  ),
+                  Text(
+                    '29 December 2025',
+                    style: Theme.of(context).textTheme.caption,
+                  )
+                ],
+              ),
+              const SizedBox(width: 8),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  textStyle: Theme.of(context).textTheme.bodyText2,
+                  elevation: 0,
+                  backgroundColor: kViolet20,
+                  foregroundColor: Theme.of(context).colorScheme.primary,
+                  padding: EdgeInsets.zero,
+                  shape: const StadiumBorder(
+                    side: BorderSide(
+                      color: Color(0xffF1F1FA),
+                    ),
+                  ),
+                ),
+                child: const Text('Edit'),
+              )
+            ],
+          ),
+        ],
+      ],
     );
   }
 }

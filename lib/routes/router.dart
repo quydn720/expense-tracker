@@ -4,6 +4,7 @@ import 'package:expense_tracker/features/authentication/presentation/bloc/authen
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_email_sent_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
+import 'package:expense_tracker/features/category/presentation/pages/category_view.dart';
 import 'package:expense_tracker/features/edit_transaction/presentation/pages/edit_transaction_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/profile_screen.dart';
@@ -136,6 +137,10 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
         builder: (_, state) => EditTransactionScreen(
           inititalTransaction: state.extra as Transaction?,
         ),
+      ),
+      GoRoute(
+        path: '/category',
+        builder: (_, state) => const SelectCategoryScreen(),
       ),
       GoRoute(
         path: '/success',

@@ -18,7 +18,7 @@ class RecentlyTransactions extends StatelessWidget {
         if (state is TransactionsLoading) {
           return const Center(child: CircularProgressIndicator());
         }
-        final transactionsSuccess = state as LoadTransactionsSuccess;
+        final transactionsSuccess = state as TransactionsLoaded;
         return SizedBox(
           height: 400,
           child: ListView(

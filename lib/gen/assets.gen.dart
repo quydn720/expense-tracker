@@ -178,6 +178,10 @@ class $AssetsImagesGen {
   SvgGenImage get investment =>
       const SvgGenImage('assets/images/investment.svg');
 
+  /// File path: assets/images/mock_user_avatar.png
+  AssetGenImage get mockUserAvatar =>
+      const AssetGenImage('assets/images/mock_user_avatar.png');
+
   /// File path: assets/images/money.png
   AssetGenImage get money => const AssetGenImage('assets/images/money.png');
 

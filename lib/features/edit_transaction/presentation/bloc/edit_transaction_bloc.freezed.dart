@@ -1877,13 +1877,14 @@ abstract class EditTransactionSelectAttachment implements EditTransactionEvent {
 
 /// @nodoc
 mixin _$EditTransactionState {
+  AmountText get amount => throw _privateConstructorUsedError;
+  CategoryField get category => throw _privateConstructorUsedError;
   bool get isRepeated => throw _privateConstructorUsedError;
   bool get isNewTransaction => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
-  double get amount => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  Category? get category => throw _privateConstructorUsedError;
   XFile? get imgFile => throw _privateConstructorUsedError;
+  FormzStatus get formzStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EditTransactionStateCopyWith<EditTransactionState> get copyWith =>
@@ -1897,13 +1898,14 @@ abstract class $EditTransactionStateCopyWith<$Res> {
       _$EditTransactionStateCopyWithImpl<$Res, EditTransactionState>;
   @useResult
   $Res call(
-      {bool isRepeated,
+      {AmountText amount,
+      CategoryField category,
+      bool isRepeated,
       bool isNewTransaction,
       Status status,
-      double amount,
       String description,
-      Category? category,
-      XFile? imgFile});
+      XFile? imgFile,
+      FormzStatus formzStatus});
 }
 
 /// @nodoc
@@ -1920,15 +1922,24 @@ class _$EditTransactionStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? amount = null,
+    Object? category = null,
     Object? isRepeated = null,
     Object? isNewTransaction = null,
     Object? status = null,
-    Object? amount = null,
     Object? description = null,
-    Object? category = freezed,
     Object? imgFile = freezed,
+    Object? formzStatus = null,
   }) {
     return _then(_value.copyWith(
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as AmountText,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryField,
       isRepeated: null == isRepeated
           ? _value.isRepeated
           : isRepeated // ignore: cast_nullable_to_non_nullable
@@ -1941,22 +1952,18 @@ class _$EditTransactionStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as double,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      category: freezed == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category?,
       imgFile: freezed == imgFile
           ? _value.imgFile
           : imgFile // ignore: cast_nullable_to_non_nullable
               as XFile?,
+      formzStatus: null == formzStatus
+          ? _value.formzStatus
+          : formzStatus // ignore: cast_nullable_to_non_nullable
+              as FormzStatus,
     ) as $Val);
   }
 }
@@ -1970,13 +1977,14 @@ abstract class _$$_EditTransactionStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isRepeated,
+      {AmountText amount,
+      CategoryField category,
+      bool isRepeated,
       bool isNewTransaction,
       Status status,
-      double amount,
       String description,
-      Category? category,
-      XFile? imgFile});
+      XFile? imgFile,
+      FormzStatus formzStatus});
 }
 
 /// @nodoc
@@ -1990,15 +1998,24 @@ class __$$_EditTransactionStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? amount = null,
+    Object? category = null,
     Object? isRepeated = null,
     Object? isNewTransaction = null,
     Object? status = null,
-    Object? amount = null,
     Object? description = null,
-    Object? category = freezed,
     Object? imgFile = freezed,
+    Object? formzStatus = null,
   }) {
     return _then(_$_EditTransactionState(
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as AmountText,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryField,
       isRepeated: null == isRepeated
           ? _value.isRepeated
           : isRepeated // ignore: cast_nullable_to_non_nullable
@@ -2011,22 +2028,18 @@ class __$$_EditTransactionStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as double,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      category: freezed == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category?,
       imgFile: freezed == imgFile
           ? _value.imgFile
           : imgFile // ignore: cast_nullable_to_non_nullable
               as XFile?,
+      formzStatus: null == formzStatus
+          ? _value.formzStatus
+          : formzStatus // ignore: cast_nullable_to_non_nullable
+              as FormzStatus,
     ));
   }
 }
@@ -2035,14 +2048,21 @@ class __$$_EditTransactionStateCopyWithImpl<$Res>
 
 class _$_EditTransactionState implements _EditTransactionState {
   const _$_EditTransactionState(
-      {this.isRepeated = false,
+      {this.amount = const AmountText.pure(),
+      this.category = const CategoryField.pure(),
+      this.isRepeated = false,
       this.isNewTransaction = true,
       this.status = Status.initital,
-      this.amount = 0,
       this.description = '',
-      this.category,
-      this.imgFile});
+      this.imgFile,
+      this.formzStatus = FormzStatus.pure});
 
+  @override
+  @JsonKey()
+  final AmountText amount;
+  @override
+  @JsonKey()
+  final CategoryField category;
   @override
   @JsonKey()
   final bool isRepeated;
@@ -2054,18 +2074,16 @@ class _$_EditTransactionState implements _EditTransactionState {
   final Status status;
   @override
   @JsonKey()
-  final double amount;
-  @override
-  @JsonKey()
   final String description;
   @override
-  final Category? category;
-  @override
   final XFile? imgFile;
+  @override
+  @JsonKey()
+  final FormzStatus formzStatus;
 
   @override
   String toString() {
-    return 'EditTransactionState(isRepeated: $isRepeated, isNewTransaction: $isNewTransaction, status: $status, amount: $amount, description: $description, category: $category, imgFile: $imgFile)';
+    return 'EditTransactionState(amount: $amount, category: $category, isRepeated: $isRepeated, isNewTransaction: $isNewTransaction, status: $status, description: $description, imgFile: $imgFile, formzStatus: $formzStatus)';
   }
 
   @override
@@ -2073,22 +2091,24 @@ class _$_EditTransactionState implements _EditTransactionState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EditTransactionState &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
             (identical(other.isRepeated, isRepeated) ||
                 other.isRepeated == isRepeated) &&
             (identical(other.isNewTransaction, isNewTransaction) ||
                 other.isNewTransaction == isNewTransaction) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.imgFile, imgFile) || other.imgFile == imgFile));
+            (identical(other.imgFile, imgFile) || other.imgFile == imgFile) &&
+            (identical(other.formzStatus, formzStatus) ||
+                other.formzStatus == formzStatus));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isRepeated, isNewTransaction,
-      status, amount, description, category, imgFile);
+  int get hashCode => Object.hash(runtimeType, amount, category, isRepeated,
+      isNewTransaction, status, description, imgFile, formzStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -2100,14 +2120,19 @@ class _$_EditTransactionState implements _EditTransactionState {
 
 abstract class _EditTransactionState implements EditTransactionState {
   const factory _EditTransactionState(
-      {final bool isRepeated,
+      {final AmountText amount,
+      final CategoryField category,
+      final bool isRepeated,
       final bool isNewTransaction,
       final Status status,
-      final double amount,
       final String description,
-      final Category? category,
-      final XFile? imgFile}) = _$_EditTransactionState;
+      final XFile? imgFile,
+      final FormzStatus formzStatus}) = _$_EditTransactionState;
 
+  @override
+  AmountText get amount;
+  @override
+  CategoryField get category;
   @override
   bool get isRepeated;
   @override
@@ -2115,13 +2140,11 @@ abstract class _EditTransactionState implements EditTransactionState {
   @override
   Status get status;
   @override
-  double get amount;
-  @override
   String get description;
   @override
-  Category? get category;
-  @override
   XFile? get imgFile;
+  @override
+  FormzStatus get formzStatus;
   @override
   @JsonKey(ignore: true)
   _$$_EditTransactionStateCopyWith<_$_EditTransactionState> get copyWith =>

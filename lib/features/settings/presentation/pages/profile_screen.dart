@@ -27,14 +27,14 @@ class ProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Username',
+                        '18521313@gm.uit.edu.vn',
                         style: textTheme.subtitle1?.copyWith(
                           color: const Color(0xff91919F),
                         ),
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Thảo Hương',
+                        'Ngọc Quý',
                         style: textTheme.headline3?.copyWith(
                           color: const Color(0xff161719),
                         ),

@@ -32,7 +32,8 @@ class AppScaffold extends StatelessWidget {
         body: SafeArea(child: child),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
-          onPressed: () => context.push('/transaction'),
+          onPressed: () => context.push('/category'),
+          // onPressed: () => context.push('/transaction'),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomNavigationBar(

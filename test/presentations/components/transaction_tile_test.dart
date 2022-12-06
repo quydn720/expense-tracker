@@ -1,8 +1,11 @@
+import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:provider/provider.dart';
 import 'package:transaction_repository/transaction_repository.dart';
 
 import '../../../test_helper/app_test.dart';
@@ -11,8 +14,16 @@ import '../../../test_helper/mocks.dart';
 
 class MockTransaction extends Mock implements Transaction {}
 
+class MockAppBloc extends Mock implements AppBloc {}
+
 void main() {
-  setUp(() {});
+  late AppBloc appBloc;
+
+  setUp(() {
+    appBloc = MockAppBloc();
+    when(() => appBloc.stream).thenAnswer((_) => const Stream.empty());
+    when(() => appBloc.state).thenReturn(const AppState());
+  });
   testWidgets('transaction tile renders', (tester) async {
     final Transaction transaction = MockTransaction();
     when(() => transaction.amount).thenReturn(10);
@@ -27,7 +38,9 @@ void main() {
     );
     await tester.pumpWidget(
       TestApp(
-        providers: const [],
+        providers: [
+          BlocProvider.value(value: appBloc),
+        ],
         router: mockRouter(
           testingRoute: [
             GoRoute(

@@ -14,12 +14,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authError_invalidEmail => 'Email is not valid or badly formatted.';
 
   @override
-  String get authError_userDisabled =>
-      'This user has been disabled. Please contact support for help.';
+  String get authError_userDisabled => 'This user has been disabled. Please contact support for help.';
 
   @override
-  String get authError_userNotFound =>
-      'Email is not found, please create an account.';
+  String get authError_userNotFound => 'Email is not found, please create an account.';
 
   @override
   String get authError_wrongPassword => 'Incorrect password, please try again.';
@@ -40,8 +38,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forgot_password_title => 'Don\'t worry.';
 
   @override
-  String get forgot_password_instruction =>
-      'Enter your email and we’ll send you a link to reset your password.';
+  String get forgot_password_instruction => 'Enter your email and we’ll send you a link to reset your password.';
 
   @override
   String forgot_password_sent(String email) {
@@ -59,6 +56,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get category => 'Category';
+
+  @override
+  String get add_new_transaction => 'Add new transaction';
+
+  @override
+  String get edit_transaction => 'Edit transaction';
 
   @override
   String get expense => 'Expense';
@@ -142,15 +145,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get budget => 'Budget';
 
   @override
-  String get budgetDescription =>
-      'Get notification when you’re budget exceeding the limit';
+  String get budgetDescription => 'Get notification when you’re budget exceeding the limit';
 
   @override
   String get tipsAndArticles => 'Tips and Articles';
 
   @override
-  String get tipsAndArticlesDescription =>
-      'Small & useful pieces of pratical financial advice';
+  String get tipsAndArticlesDescription => 'Small & useful pieces of pratical financial advice';
 
   @override
   String get about => 'About';

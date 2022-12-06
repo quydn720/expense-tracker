@@ -35,7 +35,7 @@ class TransactionView extends StatelessWidget {
         if (state is TransactionsLoading) {
           return const Center(child: CircularProgressIndicator());
         }
-        final transactionsSuccess = state as LoadTransactionsSuccess;
+        final transactionsSuccess = state as TransactionsLoaded;
         return Scaffold(
           appBar: DefaultAppBar(
             elevation: 0,

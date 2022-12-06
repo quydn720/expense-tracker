@@ -54,6 +54,7 @@ class _TransactionDetail extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Text(_transaction.category.name),
               Text(_transaction.amount.toString()),
               Text(_transaction.description),
               const Text('Attachment'),
@@ -76,12 +77,7 @@ class _TransactionDetail extends StatelessWidget {
 }
 
 class DeleteTransactionBottomSheet extends StatelessWidget {
-  const DeleteTransactionBottomSheet({
-    super.key,
-    required Transaction transaction,
-  }) : _transaction = transaction;
-
-  final Transaction _transaction;
+  const DeleteTransactionBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {

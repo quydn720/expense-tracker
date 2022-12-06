@@ -1,23 +1,21 @@
 part of 'transaction_bloc.dart';
 
-abstract class TransactionState extends Equatable {
-  const TransactionState();
-
-  @override
-  List<Object> get props => [];
+@freezed
+class TransactionState with _$TransactionState {
+  const factory TransactionState.initial() = TransactionsInitial;
+  const factory TransactionState.loading() = TransactionsLoading;
+  const factory TransactionState.failure() = TransactionsFailure;
+  const factory TransactionState.loaded({
+    required List<Transaction> transactions,
+  }) = TransactionsLoaded;
 }
 
-class TransactionsInitial extends TransactionState {}
-
-class TransactionsLoading extends TransactionState {}
-
-class LoadTransactionsFailure extends TransactionState {}
-
-class LoadTransactionsSuccess extends TransactionState {
-  const LoadTransactionsSuccess({required this.transactions});
-  final List<Transaction> transactions;
-  @override
-  List<Object> get props {
-    return [transactions, transactions.hashCode];
+extension TransactionsLoadedX on TransactionsLoaded {
+  double get total {
+    try {
+      return transactions.map((e) => e.amount).reduce((a, b) => a + b);
+    } catch (e) {
+      return 0;
+    }
   }
 }

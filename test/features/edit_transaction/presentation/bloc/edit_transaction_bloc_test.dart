@@ -27,7 +27,7 @@ void main() {
         },
         build: () => EditTransactionBloc(_addTransactionUseCase),
         act: (bloc) => bloc.add(const EditTransactionAmountChanged('5')),
-        expect: () => [const EditTransactionState(amount: 5)],
+        expect: () => [const EditTransactionState(amount: AmountText.dirty(5))],
       );
     },
   );
@@ -73,7 +73,7 @@ void main() {
     },
     build: () => EditTransactionBloc(_addTransactionUseCase),
     act: (bloc) => bloc.add(EditTransactionCategoryChanged(Category.empty())),
-    expect: () => [EditTransactionState(category: Category.empty())],
+    expect: () => [const EditTransactionState(category: CategoryField.pure())],
   );
   blocTest<EditTransactionBloc, EditTransactionState>(
     '''

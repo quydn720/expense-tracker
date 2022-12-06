@@ -97,7 +97,7 @@ void main() {
           (_) => const Stream.empty(),
         );
         when(() => mockTransactionBloc.state).thenAnswer(
-          (_) => TransactionsInitial(),
+          (_) => const TransactionsInitial(),
         );
 
         final mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();

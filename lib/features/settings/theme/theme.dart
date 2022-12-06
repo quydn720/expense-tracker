@@ -49,6 +49,9 @@ final themeData = ThemeData(
     seedColor: const Color(0xff7F3DFF),
     surfaceVariant: const Color(0xffF6F6F6),
   ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: Color(0xff7F3DFF),
+  ),
   primaryColor: const Color(0xff7F3DFF),
   textTheme: textTheme,
   chipTheme: const ChipThemeData(
@@ -71,15 +74,15 @@ final themeData = ThemeData(
       padding: const EdgeInsets.symmetric(vertical: 12),
     ),
   ),
-  textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(
-      padding: EdgeInsets.zero,
-      minimumSize: Size.zero,
-      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      textStyle: textTheme.button,
-      splashFactory: NoSplash.splashFactory,
-    ),
-  ),
+  // textButtonTheme: TextButtonThemeData(
+  //   style: TextButton.styleFrom(
+  //     padding: EdgeInsets.zero,
+  //     minimumSize: Size.zero,
+  //     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+  //     textStyle: textTheme.button,
+  //     splashFactory: NoSplash.splashFactory,
+  //   ),
+  // ),
   bottomSheetTheme: BottomSheetThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),

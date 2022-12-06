@@ -26,6 +26,8 @@
     "description": "Description",
     "how_much": "How much?",
     "category": "Category",
+    "add_new_transaction": "Add new transaction",
+    "edit_transaction": "Edit transaction",
     "expense": "Expense",
     "income": "Income",
     "transfer": "Transfer",

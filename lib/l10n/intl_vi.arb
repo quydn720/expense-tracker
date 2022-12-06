@@ -26,6 +26,8 @@
     "description": "Description",
     "how_much": "Giá trị giao dịch",
     "category": "Danh mục",
+    "add_new_transaction": "Thêm giao dịch mới",
+    "edit_transaction": "Chỉnh sửa giao dịch",
     "expense": "Khoản chi",
     "income": "Khoản thu",
     "transfer": "Chuyển tiền",

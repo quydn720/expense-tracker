@@ -1,6 +1,5 @@
-import 'package:expense_tracker/features/transaction_overview/data/models/category.dart';
+import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:flutter/material.dart';
-
 import '../../domain/entities/budget.dart';
 
 class BudgetScreen extends StatelessWidget {
@@ -14,12 +13,12 @@ class BudgetScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: ListView(
           children: [
-            BudgetTile(budget: Budget('id', 100, 20, Category.categories[1])),
+            BudgetTile(budget: Budget('id', 100, 20, categories[1])),
             BudgetTile(
-              budget: Budget('id', 200, 20, Category.categories[2]),
+              budget: Budget('id', 200, 20, categories[2]),
               isExceeded: true,
             ),
-            BudgetTile(budget: Budget('id', 500, 20, Category.categories[3])),
+            BudgetTile(budget: Budget('id', 500, 20, categories[3])),
             ElevatedButton(
               onPressed: () {},
               child: const Text('Create a budget'),
@@ -55,7 +54,7 @@ class BudgetTile extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(4, 4, 12, 4),
                   labelPadding: const EdgeInsets.symmetric(horizontal: 8),
                   avatar: CircleAvatar(
-                    backgroundColor: Color(budget.category.color!),
+                    backgroundColor: budget.category.color,
                   ),
                   label: Text(budget.category.name),
                 ),
@@ -71,9 +70,9 @@ class BudgetTile extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               child: LinearProgressIndicator(
                 value: 0.2,
-                backgroundColor: Color(budget.category.color!).withOpacity(0.2),
+                backgroundColor: budget.category.color.withOpacity(0.2),
                 minHeight: 12,
-                color: Color(budget.category.color!),
+                color: budget.category.color,
               ),
             ),
             const SizedBox(height: 8),

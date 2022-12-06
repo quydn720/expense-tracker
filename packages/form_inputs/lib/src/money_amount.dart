@@ -3,7 +3,7 @@ import 'package:formz/formz.dart';
 class MoneyAmount extends FormzInput<double, MoneyValidationAmountError> {
   const MoneyAmount.pure() : super.pure(0);
 
-  const MoneyAmount.dirty(double value) : super.dirty(value);
+  const MoneyAmount.dirty(super.value) : super.dirty();
 
   @override
   MoneyValidationAmountError? validator(double value) {

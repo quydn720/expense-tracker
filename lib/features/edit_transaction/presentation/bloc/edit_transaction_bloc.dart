@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
+import 'package:expense_tracker/l10n/gen/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
@@ -20,11 +22,14 @@ class EditTransactionBloc
     this._addTransaction, {
     @factoryParam this.initialTransaction,
   }) : super(
-          EditTransactionState(
-            isNewTransaction: initialTransaction == null,
-            amount: initialTransaction?.amount ?? 0,
-            description: initialTransaction?.description ?? '',
-          ),
+          (initialTransaction != null)
+              ? EditTransactionState(
+                  isNewTransaction: true,
+                  description: initialTransaction.description,
+                  category: CategoryField.pure(initialTransaction.category),
+                  amount: AmountText.pure(initialTransaction.amount),
+                )
+              : const EditTransactionState(),
         ) {
     on<EditTransactionRepeatToggled>(_onRepeatedButtonToggled);
     on<EditTransactionSubmitNewTransaction>(_onNewTransactionSubmitted);
@@ -72,16 +77,27 @@ class EditTransactionBloc
     EditTransactionCategoryChanged event,
     Emitter<EditTransactionState> emit,
   ) async {
-    emit(state.copyWith(category: event.category));
+    final category = CategoryField.dirty(event.category);
+    final formzStatus = Formz.validate([category, state.amount]);
+    emit(
+      state.copyWith(
+        category: category,
+        formzStatus: formzStatus,
+      ),
+    );
   }
 
   Future<void> _onAmountChanged(
     EditTransactionAmountChanged event,
     Emitter<EditTransactionState> emit,
-  ) async =>
-      emit(
-        state.copyWith(amount: double.parse(event.amount)),
-      );
+  ) async {
+    final amount = AmountText.dirty(double.parse(event.amount));
+    final formzStatus = Formz.validate([amount, state.category]);
+
+    emit(
+      state.copyWith(amount: amount, formzStatus: formzStatus),
+    );
+  }
 
   Future<void> _onDescriptionChanged(
     EditTransactionDescriptionChanged event,
@@ -103,9 +119,8 @@ class EditTransactionBloc
     }
 
     final transaction = (initialTransaction ?? Transaction.empty()).copyWith(
-      amount: state.amount,
+      amount: state.amount.value,
       description: state.description,
-      category: state.category,
       imagesPath: images,
     );
     await _addTransaction.call(transaction);
