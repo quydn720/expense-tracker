@@ -2,7 +2,6 @@ import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/user_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:transaction_repository/transaction_repository.dart';
 
 import '../../../constants.dart';
 
@@ -93,11 +92,7 @@ class BodyState extends State<Body> {
                   ),
                   const SizedBox(height: kMediumPadding),
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: kViolet20,
-                      foregroundColor: kViolet100,
-                      elevation: 0,
-                    ),
+                    style: ElevatedButton.styleFrom(elevation: 0),
                     onPressed: completedOnboarding,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -128,7 +123,6 @@ class BodyState extends State<Body> {
       height: index == selectedIndex ? 16.0 : 8.0,
       width: index == selectedIndex ? 16.0 : 8.0,
       decoration: BoxDecoration(
-        color: index == selectedIndex ? kViolet100 : kViolet20,
         borderRadius: BorderRadius.circular(kDefaultRadius),
       ),
       duration: const Duration(milliseconds: kAnimationDuration),

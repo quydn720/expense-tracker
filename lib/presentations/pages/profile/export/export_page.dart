@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transaction_repository/transaction_repository.dart';
 
 import '../../../../constants.dart';
-import '../../../components/bars.dart';
 
 import '../../../components/default_app_bar.dart';
 import 'export_result_page.dart';
@@ -30,18 +28,18 @@ class _ExportScreenState extends State<ExportScreen> {
               Expanded(
                 child: Column(
                   children: [
-                    const DefaultBar(
-                      title: Text('What data do you want to export?'),
-                    ),
-                    const DefaultBar(
-                      title: Text('When date range?', style: body1),
-                    ),
-                    const DefaultBar(
-                      title: Text(
-                        'What format do you want to export?',
-                        style: body1,
-                      ),
-                    ),
+                    // const DefaultBar(
+                    //   title: Text('What data do you want to export?'),
+                    // ),
+                    // const DefaultBar(
+                    //   title: Text('When date range?', style: body1),
+                    // ),
+                    // const DefaultBar(
+                    //   title: Text(
+                    //     'What format do you want to export?',
+                    //     style: body1,
+                    //   ),
+                    // ),
                     DropdownButtonFormField<int>(
                       value: _selected,
                       onChanged: (v) => setState(() => _selected = v!),
@@ -57,7 +55,6 @@ class _ExportScreenState extends State<ExportScreen> {
                         padding: const EdgeInsets.only(right: kDefaultPadding),
                         child: Image.asset(
                           'assets/icons/arrow-down-2.png',
-                          color: kViolet100,
                         ),
                       ),
                     ),

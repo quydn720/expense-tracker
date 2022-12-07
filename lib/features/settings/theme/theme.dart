@@ -74,15 +74,15 @@ final themeData = ThemeData(
       padding: const EdgeInsets.symmetric(vertical: 12),
     ),
   ),
-  // textButtonTheme: TextButtonThemeData(
-  //   style: TextButton.styleFrom(
-  //     padding: EdgeInsets.zero,
-  //     minimumSize: Size.zero,
-  //     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-  //     textStyle: textTheme.button,
-  //     splashFactory: NoSplash.splashFactory,
-  //   ),
-  // ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      padding: EdgeInsets.zero,
+      minimumSize: Size.zero,
+      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      textStyle: textTheme.button,
+      splashFactory: NoSplash.splashFactory,
+    ),
+  ),
   bottomSheetTheme: BottomSheetThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),

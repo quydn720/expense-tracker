@@ -1,12 +1,12 @@
+import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
+import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:transaction_repository/transaction_repository.dart';
 
 import '../di/injector.dart';
-import '../features/transaction_overview/presentation/bloc/transaction_bloc.dart';
 
 enum ScaffoldTab { home, transactions, budget, profile }
 
@@ -25,15 +25,14 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<TransactionBloc>(
-      create: (_) => TransactionBloc(getIt<TransactionRepository>())
+      create: (_) => getIt<TransactionBloc>()
         ..add(const TransactionsSubscriptionRequested()),
       child: Scaffold(
         backgroundColor: color,
         body: SafeArea(child: child),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
-          onPressed: () => context.push('/category'),
-          // onPressed: () => context.push('/transaction'),
+          onPressed: () => context.push('/transaction'),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomNavigationBar(

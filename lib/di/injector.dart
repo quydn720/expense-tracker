@@ -1,5 +1,11 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firebase;
+import 'package:drift/drift.dart';
+import 'package:expense_tracker/common/cache/drift_database.dart';
+import 'package:expense_tracker/features/transaction/data/repositories/fake_transaction_repository.dart';
+import 'package:expense_tracker/features/transaction/data/repositories/firebase_transaction_repository.dart';
+import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
+
 import 'package:expense_tracker/routes/router.dart';
 import 'package:expense_tracker/user_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,7 +15,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:transaction_repository/transaction_repository.dart';
 
 import 'injector.config.dart';
 
@@ -69,19 +74,20 @@ abstract class DevAppLocalPackageModule {
 
   @dev
   @lazySingleton
-  TransactionRepository getTransactionRepoDev() =>
-      //
-      FakeTransactionRepo([]);
-  // LocalTransactionRepository(AppDatabase());
+  ITransactionRepository getTransactionRepoDev() =>
+      FakeTransactionRepository([]);
 
   @prod
   @lazySingleton
-  TransactionRepository getTransactionRepoProd() {
-    return FirebaseTransactionRepository(
-      cachedTransactions: {},
-      authenticationRepository: getIt(),
-    );
+  ITransactionRepository getTransactionRepoProd() {
+    return FirebaseTransactionRepository();
   }
+}
+
+@module
+abstract class DriftDatabase {
+  @Injectable(as: QueryExecutor)
+  LazyDatabase get queryExecutor => openConnection();
 }
 
 abstract class AppConfigurations {

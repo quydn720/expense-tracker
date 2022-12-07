@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
+import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/category/data/models/category_model.dart';
-import 'drift_database.dart';
 
 part 'categories_dao.g.dart';
 

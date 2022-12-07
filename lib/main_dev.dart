@@ -1,5 +1,5 @@
+import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
-import 'package:expense_tracker/features/category/data/datasources/drift_database.dart';
 import 'package:expense_tracker/firebase_options_dev.dart'
     as firebase_option_dev;
 import 'package:firebase_core/firebase_core.dart';
@@ -29,7 +29,7 @@ Future<void> main() async {
         BlocProvider(create: (_) => getIt<AuthenticationBloc>(), lazy: false),
         Provider(
           lazy: false,
-          create: (_) => MyDatabase(openConnection()),
+          create: (_) => getIt<MyDatabase>(),
           dispose: (_, db) => db.close(),
         ),
       ],

@@ -5,19 +5,19 @@ import 'package:expense_tracker/features/authentication/presentation/forgot_pass
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
 import 'package:expense_tracker/features/category/presentation/pages/category_view.dart';
-import 'package:expense_tracker/features/edit_transaction/presentation/pages/edit_transaction_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/profile_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
+import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
+import 'package:expense_tracker/features/transaction/edit_transaction/presentation/pages/edit_transaction_screen.dart';
+import 'package:expense_tracker/features/transaction/transaction_overview/presentation/pages/transaction_screen.dart';
 import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
 import 'package:expense_tracker/home_screen.dart';
-import 'package:expense_tracker/presentations/pages/detail/transaction_detail.dart';
 import 'package:expense_tracker/presentations/pages/onboarding/onboarding_page.dart';
 import 'package:expense_tracker/presentations/pages/profile/export/export_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:transaction_repository/transaction_repository.dart';
 
 import '../features/authentication/presentation/register_form/pages/register_screen.dart';
 import '../features/budget/budget.dart';
@@ -25,7 +25,6 @@ import '../features/settings/presentation/pages/language_screen.dart';
 import '../features/settings/presentation/pages/notification_screen.dart';
 import '../features/settings/presentation/pages/security_screen.dart';
 import '../features/settings/presentation/pages/theme_screen.dart';
-import '../features/transaction_overview/presentation/pages/transaction_screen.dart';
 import 'app_scaffold.dart';
 import 'fade_transistion_page.dart';
 
@@ -59,17 +58,17 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
           ),
           key: _scaffoldKey,
         ),
-        routes: [
-          GoRoute(
-            path: ':transactionId',
-            builder: (_, state) {
-              // final id = state.params['transactionId']!;
-              return TransactionDetailPage(
-                transaction: state.extra as Transaction,
-              );
-            },
-          ),
-        ],
+        // routes: [
+        //   GoRoute(
+        //     path: ':transactionId',
+        //     builder: (_, state) {
+        //       // final id = state.params['transactionId']!;
+        //       return TransactionDetailPage(
+        //         transaction: state.extra! as Transaction,
+        //       );
+        //     },
+        //   ),
+        // ],
       ),
       GoRoute(
         path: '/reports',
@@ -135,7 +134,7 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
       GoRoute(
         path: '/transaction',
         builder: (_, state) => EditTransactionScreen(
-          inititalTransaction: state.extra as Transaction?,
+          inititalTransaction: state.extra as TransactionEntity?,
         ),
       ),
       GoRoute(
@@ -167,7 +166,6 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
         builder: (_, __) => const VerificationEmailView(),
       ),
     ],
-    debugLogDiagnostics: true,
     refreshListenable: GoRouterRefreshStream(auth.stream),
     redirect: (context, state) {
       const loginLoc = '/login';

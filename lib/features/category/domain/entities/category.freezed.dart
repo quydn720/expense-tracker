@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CategoryEntity {
   String get name => throw _privateConstructorUsedError;
+  IconData get icon => throw _privateConstructorUsedError;
   Color get color => throw _privateConstructorUsedError;
-  String get emoji => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CategoryEntityCopyWith<CategoryEntity> get copyWith =>
@@ -31,7 +31,7 @@ abstract class $CategoryEntityCopyWith<$Res> {
           CategoryEntity value, $Res Function(CategoryEntity) then) =
       _$CategoryEntityCopyWithImpl<$Res, CategoryEntity>;
   @useResult
-  $Res call({String name, Color color, String emoji});
+  $Res call({String name, IconData icon, Color color});
 }
 
 /// @nodoc
@@ -48,22 +48,22 @@ class _$CategoryEntityCopyWithImpl<$Res, $Val extends CategoryEntity>
   @override
   $Res call({
     Object? name = null,
+    Object? icon = null,
     Object? color = null,
-    Object? emoji = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as IconData,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as Color,
-      emoji: null == emoji
-          ? _value.emoji
-          : emoji // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -76,7 +76,7 @@ abstract class _$$_CategoryEntityCopyWith<$Res>
       __$$_CategoryEntityCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Color color, String emoji});
+  $Res call({String name, IconData icon, Color color});
 }
 
 /// @nodoc
@@ -91,22 +91,22 @@ class __$$_CategoryEntityCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? icon = null,
     Object? color = null,
-    Object? emoji = null,
   }) {
     return _then(_$_CategoryEntity(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as IconData,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as Color,
-      emoji: null == emoji
-          ? _value.emoji
-          : emoji // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -115,21 +115,19 @@ class __$$_CategoryEntityCopyWithImpl<$Res>
 
 class _$_CategoryEntity extends _CategoryEntity {
   const _$_CategoryEntity(
-      {this.name = '', this.color = Colors.transparent, required this.emoji})
+      {required this.name, required this.icon, required this.color})
       : super._();
 
   @override
-  @JsonKey()
   final String name;
   @override
-  @JsonKey()
-  final Color color;
+  final IconData icon;
   @override
-  final String emoji;
+  final Color color;
 
   @override
   String toString() {
-    return 'CategoryEntity(name: $name, color: $color, emoji: $emoji)';
+    return 'CategoryEntity(name: $name, icon: $icon, color: $color)';
   }
 
   @override
@@ -138,12 +136,12 @@ class _$_CategoryEntity extends _CategoryEntity {
         (other.runtimeType == runtimeType &&
             other is _$_CategoryEntity &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.emoji, emoji) || other.emoji == emoji));
+            (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.color, color) || other.color == color));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, color, emoji);
+  int get hashCode => Object.hash(runtimeType, name, icon, color);
 
   @JsonKey(ignore: true)
   @override
@@ -154,17 +152,17 @@ class _$_CategoryEntity extends _CategoryEntity {
 
 abstract class _CategoryEntity extends CategoryEntity {
   const factory _CategoryEntity(
-      {final String name,
-      final Color color,
-      required final String emoji}) = _$_CategoryEntity;
+      {required final String name,
+      required final IconData icon,
+      required final Color color}) = _$_CategoryEntity;
   const _CategoryEntity._() : super._();
 
   @override
   String get name;
   @override
-  Color get color;
+  IconData get icon;
   @override
-  String get emoji;
+  Color get color;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryEntityCopyWith<_$_CategoryEntity> get copyWith =>

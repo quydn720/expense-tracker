@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:expense_tracker/features/category/data/datasources/drift_database.dart';
 import 'package:expense_tracker/features/category/domain/repositories/category_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,31 +15,23 @@ class CategoryCubit extends Cubit<CategoryState> {
     load();
   }
   final ICategoryRepository _repo;
-  late StreamSubscription<List<Category>> _streamSubscription;
+  late StreamSubscription<List<CategoryEntity>> _streamSubscription;
 
   Future<void> load() async {
     final c = _repo.watchAllCategories();
 
     _streamSubscription = c.listen((event) {
-      emit(
-        state.copyWith(
-          categories: event
-              .map(
-                (e) => CategoryEntity(
-                  color: Color(e.color),
-                  name: e.name,
-                  emoji: '🍏',
-                ),
-              )
-              .toList(),
-        ),
-      );
+      emit(state.copyWith(categories: event));
     });
   }
 
   Future<void> addNewCategory() async {
     final result = await _repo.addNewCategory(
-      const CategoryEntity(emoji: '🍏'),
+      const CategoryEntity(
+        name: 'name',
+        color: Colors.transparent,
+        icon: Icons.abc,
+      ),
     );
     result.fold(
       (l) {

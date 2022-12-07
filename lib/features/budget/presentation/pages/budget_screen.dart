@@ -1,4 +1,3 @@
-import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:flutter/material.dart';
 import '../../domain/entities/budget.dart';
 
@@ -13,12 +12,12 @@ class BudgetScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: ListView(
           children: [
-            BudgetTile(budget: Budget('id', 100, 20, categories[1])),
-            BudgetTile(
-              budget: Budget('id', 200, 20, categories[2]),
-              isExceeded: true,
-            ),
-            BudgetTile(budget: Budget('id', 500, 20, categories[3])),
+            // BudgetTile(budget: Budget('id', 100, 20, categories[1])),
+            // BudgetTile(
+            //   budget: Budget('id', 200, 20, categories[2]),
+            //   isExceeded: true,
+            // ),
+            // BudgetTile(budget: Budget('id', 500, 20, categories[3])),
             ElevatedButton(
               onPressed: () {},
               child: const Text('Create a budget'),

@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CategoryState {
   List<CategoryEntity> get categories => throw _privateConstructorUsedError;
   String? get addCategoryErrorMessage => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  IconData? get icon => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CategoryStateCopyWith<CategoryState> get copyWith =>
@@ -30,7 +32,11 @@ abstract class $CategoryStateCopyWith<$Res> {
           CategoryState value, $Res Function(CategoryState) then) =
       _$CategoryStateCopyWithImpl<$Res, CategoryState>;
   @useResult
-  $Res call({List<CategoryEntity> categories, String? addCategoryErrorMessage});
+  $Res call(
+      {List<CategoryEntity> categories,
+      String? addCategoryErrorMessage,
+      String? name,
+      IconData? icon});
 }
 
 /// @nodoc
@@ -48,6 +54,8 @@ class _$CategoryStateCopyWithImpl<$Res, $Val extends CategoryState>
   $Res call({
     Object? categories = null,
     Object? addCategoryErrorMessage = freezed,
+    Object? name = freezed,
+    Object? icon = freezed,
   }) {
     return _then(_value.copyWith(
       categories: null == categories
@@ -58,6 +66,14 @@ class _$CategoryStateCopyWithImpl<$Res, $Val extends CategoryState>
           ? _value.addCategoryErrorMessage
           : addCategoryErrorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      icon: freezed == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as IconData?,
     ) as $Val);
   }
 }
@@ -70,7 +86,11 @@ abstract class _$$_CategoryStateCopyWith<$Res>
       __$$_CategoryStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CategoryEntity> categories, String? addCategoryErrorMessage});
+  $Res call(
+      {List<CategoryEntity> categories,
+      String? addCategoryErrorMessage,
+      String? name,
+      IconData? icon});
 }
 
 /// @nodoc
@@ -86,6 +106,8 @@ class __$$_CategoryStateCopyWithImpl<$Res>
   $Res call({
     Object? categories = null,
     Object? addCategoryErrorMessage = freezed,
+    Object? name = freezed,
+    Object? icon = freezed,
   }) {
     return _then(_$_CategoryState(
       categories: null == categories
@@ -96,6 +118,14 @@ class __$$_CategoryStateCopyWithImpl<$Res>
           ? _value.addCategoryErrorMessage
           : addCategoryErrorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      icon: freezed == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as IconData?,
     ));
   }
 }
@@ -105,7 +135,9 @@ class __$$_CategoryStateCopyWithImpl<$Res>
 class _$_CategoryState implements _CategoryState {
   const _$_CategoryState(
       {final List<CategoryEntity> categories = const [],
-      this.addCategoryErrorMessage})
+      this.addCategoryErrorMessage,
+      this.name,
+      this.icon})
       : _categories = categories;
 
   final List<CategoryEntity> _categories;
@@ -118,10 +150,14 @@ class _$_CategoryState implements _CategoryState {
 
   @override
   final String? addCategoryErrorMessage;
+  @override
+  final String? name;
+  @override
+  final IconData? icon;
 
   @override
   String toString() {
-    return 'CategoryState(categories: $categories, addCategoryErrorMessage: $addCategoryErrorMessage)';
+    return 'CategoryState(categories: $categories, addCategoryErrorMessage: $addCategoryErrorMessage, name: $name, icon: $icon)';
   }
 
   @override
@@ -133,14 +169,18 @@ class _$_CategoryState implements _CategoryState {
                 .equals(other._categories, _categories) &&
             (identical(
                     other.addCategoryErrorMessage, addCategoryErrorMessage) ||
-                other.addCategoryErrorMessage == addCategoryErrorMessage));
+                other.addCategoryErrorMessage == addCategoryErrorMessage) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.icon, icon) || other.icon == icon));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_categories),
-      addCategoryErrorMessage);
+      addCategoryErrorMessage,
+      name,
+      icon);
 
   @JsonKey(ignore: true)
   @override
@@ -152,12 +192,18 @@ class _$_CategoryState implements _CategoryState {
 abstract class _CategoryState implements CategoryState {
   const factory _CategoryState(
       {final List<CategoryEntity> categories,
-      final String? addCategoryErrorMessage}) = _$_CategoryState;
+      final String? addCategoryErrorMessage,
+      final String? name,
+      final IconData? icon}) = _$_CategoryState;
 
   @override
   List<CategoryEntity> get categories;
   @override
   String? get addCategoryErrorMessage;
+  @override
+  String? get name;
+  @override
+  IconData? get icon;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryStateCopyWith<_$_CategoryState> get copyWith =>

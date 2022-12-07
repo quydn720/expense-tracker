@@ -1,3 +1,4 @@
+import 'package:expense_tracker/features/transaction/transaction_overview/presentation/pages/recent_transactions.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/routes/app_scaffold.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -5,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-
-import 'features/transaction_overview/presentation/pages/recent_transactions.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

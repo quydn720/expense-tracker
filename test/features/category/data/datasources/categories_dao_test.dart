@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/category/data/datasources/categories_dao.dart';
-import 'package:expense_tracker/features/category/data/datasources/drift_database.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -25,7 +25,6 @@ void main() {
         const CategoriesCompanion(
           name: Value('Mock Category'),
           color: Value(123),
-          iconCodePoint: Value(321),
         ),
       );
       final category = await dao.getCategoryById('Mock Category');
@@ -38,7 +37,6 @@ void main() {
           const CategoriesCompanion(
             name: Value('Food'),
             color: Value(123),
-            iconCodePoint: Value(321),
           ),
         ),
         throwsException,

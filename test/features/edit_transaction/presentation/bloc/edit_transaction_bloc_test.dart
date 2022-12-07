@@ -2,12 +2,14 @@
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
-import 'package:expense_tracker/features/edit_transaction/domain/usecases/add_transaction_use_case.dart';
-import 'package:expense_tracker/features/edit_transaction/presentation/bloc/edit_transaction_bloc.dart';
+import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
+import 'package:expense_tracker/features/transaction/edit_transaction/presentation/bloc/edit_transaction_bloc.dart';
+import 'package:expense_tracker/features/transaction/edit_transaction/usecases/add_transaction_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:transaction_repository/transaction_repository.dart';
+
+import '../../domain/usecases/add_transaction_use_case_test.dart';
 
 class MockAddTransactionUseCase extends Mock implements AddTransactionUseCase {}
 
@@ -20,14 +22,20 @@ void main() {
       blocTest<EditTransactionBloc, EditTransactionState>(
         'emits [EditTransactionState] when EditTransactionAmountChanged is added.',
         setUp: () {
-          registerFallbackValue(Transaction.empty());
+          registerFallbackValue(MockTransaction());
           _addTransactionUseCase = MockAddTransactionUseCase();
-          when(() => _addTransactionUseCase(any(that: isA<Transaction>())))
+          when(() =>
+                  _addTransactionUseCase(any(that: isA<TransactionEntity>())))
               .thenAnswer((_) async {});
         },
         build: () => EditTransactionBloc(_addTransactionUseCase),
         act: (bloc) => bloc.add(const EditTransactionAmountChanged('5')),
-        expect: () => [const EditTransactionState(amount: AmountText.dirty(5))],
+        expect: () => [
+          EditTransactionState(
+            amount: const AmountText.dirty(5),
+            date: DateTime(2022),
+          )
+        ],
       );
     },
   );
@@ -35,14 +43,14 @@ void main() {
   blocTest<EditTransactionBloc, EditTransactionState>(
     'emits [EditTransactionState] when EditTransactionRepeatToggled is added.',
     setUp: () {
-      registerFallbackValue(Transaction.empty());
+      registerFallbackValue(MockTransaction());
       _addTransactionUseCase = MockAddTransactionUseCase();
-      when(() => _addTransactionUseCase(any(that: isA<Transaction>())))
+      when(() => _addTransactionUseCase(any(that: isA<TransactionEntity>())))
           .thenAnswer((_) async {});
     },
     build: () => EditTransactionBloc(_addTransactionUseCase),
     act: (bloc) => bloc.add(const EditTransactionRepeatToggled()),
-    seed: () => const EditTransactionState(isRepeated: true),
+    seed: () => EditTransactionState(isRepeated: true, date: DateTime(2022)),
     verify: (bloc) => expect(bloc.state.isRepeated, isFalse),
   );
   blocTest<EditTransactionBloc, EditTransactionState>(
@@ -50,9 +58,9 @@ void main() {
     emits [EditTransactionState]
     when EditTransactionDescriptionChanged is added.''',
     setUp: () {
-      registerFallbackValue(Transaction.empty());
+      registerFallbackValue(MockTransaction());
       _addTransactionUseCase = MockAddTransactionUseCase();
-      when(() => _addTransactionUseCase(any(that: isA<Transaction>())))
+      when(() => _addTransactionUseCase(any(that: isA<TransactionEntity>())))
           .thenAnswer((_) async {});
     },
     build: () => EditTransactionBloc(_addTransactionUseCase),
@@ -66,9 +74,9 @@ void main() {
     emits [EditTransactionState]
     when EditTransactionCategoryChanged is added.''',
     setUp: () {
-      registerFallbackValue(Transaction.empty());
+      registerFallbackValue(MockTransaction());
       _addTransactionUseCase = MockAddTransactionUseCase();
-      when(() => _addTransactionUseCase(any(that: isA<Transaction>())))
+      when(() => _addTransactionUseCase(any(that: isA<TransactionEntity>())))
           .thenAnswer((_) async {});
     },
     build: () => EditTransactionBloc(_addTransactionUseCase),
@@ -80,9 +88,9 @@ void main() {
     emits [EditTransactionState]
     when EditTransactionSelectAttachment is added.''',
     setUp: () {
-      registerFallbackValue(Transaction.empty());
+      registerFallbackValue(MockTransaction());
       _addTransactionUseCase = MockAddTransactionUseCase();
-      when(() => _addTransactionUseCase(any(that: isA<Transaction>())))
+      when(() => _addTransactionUseCase(any(that: isA<TransactionEntity>())))
           .thenAnswer((_) async {});
     },
     build: () => EditTransactionBloc(_addTransactionUseCase),
@@ -94,9 +102,9 @@ void main() {
     emits [EditTransactionState]
     when EditTransactionSelectAttachmentClose is added.''',
     setUp: () {
-      registerFallbackValue(Transaction.empty());
+      registerFallbackValue(MockTransaction());
       _addTransactionUseCase = MockAddTransactionUseCase();
-      when(() => _addTransactionUseCase(any(that: isA<Transaction>())))
+      when(() => _addTransactionUseCase(any(that: isA<TransactionEntity>())))
           .thenAnswer((_) async {});
     },
     build: () => EditTransactionBloc(_addTransactionUseCase),
@@ -111,9 +119,9 @@ void main() {
     emits [EditTransactionState]
     when EditTransactionImageChosen is added.''',
     setUp: () {
-      registerFallbackValue(Transaction.empty());
+      registerFallbackValue(MockTransaction());
       _addTransactionUseCase = MockAddTransactionUseCase();
-      when(() => _addTransactionUseCase(any(that: isA<Transaction>())))
+      when(() => _addTransactionUseCase(any(that: isA<TransactionEntity>())))
           .thenAnswer((_) async {});
 
       mockXFile = MockXFile();
@@ -128,9 +136,9 @@ void main() {
     emits [EditTransactionState]
     when EditTransactionSubmitNewTransaction is added.''',
     setUp: () {
-      registerFallbackValue(Transaction.empty());
+      registerFallbackValue(MockTransaction());
       _addTransactionUseCase = MockAddTransactionUseCase();
-      when(() => _addTransactionUseCase(any(that: isA<Transaction>())))
+      when(() => _addTransactionUseCase(any(that: isA<TransactionEntity>())))
           .thenAnswer((_) async {});
     },
     build: () => EditTransactionBloc(_addTransactionUseCase),
@@ -145,9 +153,9 @@ void main() {
     emits [EditTransactionState]
     when EditTransactionDeleteTransaction is added.''',
     setUp: () {
-      registerFallbackValue(Transaction.empty());
+      registerFallbackValue(MockTransaction());
       _addTransactionUseCase = MockAddTransactionUseCase();
-      when(() => _addTransactionUseCase(any(that: isA<Transaction>())))
+      when(() => _addTransactionUseCase(any(that: isA<TransactionEntity>())))
           .thenAnswer((_) async {});
     },
     build: () => EditTransactionBloc(_addTransactionUseCase),
@@ -158,7 +166,7 @@ void main() {
   test('emits [EditTransactionState]', () {
     final bloc = EditTransactionBloc(
       _addTransactionUseCase,
-      initialTransaction: Transaction.empty().copyWith(
+      initialTransaction: MockTransaction().copyWith(
         amount: 99,
         description: 'Mock Description',
       ),

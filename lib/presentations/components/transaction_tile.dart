@@ -1,11 +1,10 @@
+import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:transaction_repository/transaction_repository.dart';
 
-import '../../constants.dart';
 import '../../features/app/bloc/app_bloc.dart';
-import 'squared_icon_card.dart';
+import '../../features/category/presentation/widgets/category_circle_icon.dart';
 
 class TransactionTile extends StatelessWidget {
   const TransactionTile({
@@ -15,13 +14,13 @@ class TransactionTile extends StatelessWidget {
     required this.onLongPress,
   });
 
-  final Transaction transaction;
+  final TransactionEntity transaction;
   final VoidCallback onPress;
   final VoidCallback onLongPress;
 
   @override
   Widget build(BuildContext context) {
-    final moeny = NumberFormat.simpleCurrency(
+    final amount = NumberFormat.simpleCurrency(
       locale: context.read<AppBloc>().state.locale?.languageCode,
     ).format(transaction.amount);
 
@@ -35,7 +34,7 @@ class TransactionTile extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
-        leading: CategoryIconCard(category: transaction.category),
+        leading: CategoryCircleIcon(category: transaction.category),
         title: Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: Row(
@@ -48,17 +47,8 @@ class TransactionTile extends StatelessWidget {
                 ),
               ),
               FittedBox(
-                child: Text(
-                  // '\$ ${transaction.amount}',
-                  moeny,
-                  // TODO(quy): move logic to bloc
-                  // '${transaction.type == TransactionType.income ? '+' : '-'}\$ ${transaction.amount}',
-                  style: body2.copyWith(
-                    color: transaction.type == TransactionType.income
-                        ? kGreen100
-                        : kRed100,
-                  ),
-                ),
+                child: Text(amount),
+                // '${transaction.type == TransactionType.income ? '+' : '-'}\$ ${transaction.amount}',
               ),
             ],
           ),
@@ -68,7 +58,7 @@ class TransactionTile extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                transaction.description,
+                transaction.description ?? '',
                 softWrap: true,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -76,7 +66,8 @@ class TransactionTile extends StatelessWidget {
             SizedBox(
               width: 80,
               child: Text(
-                DateFormat(DateFormat.HOUR_MINUTE).format(transaction.date),
+                DateFormat(DateFormat.HOUR_MINUTE)
+                    .format(transaction.dateCreated),
                 maxLines: 1,
                 textAlign: TextAlign.end,
               ),
