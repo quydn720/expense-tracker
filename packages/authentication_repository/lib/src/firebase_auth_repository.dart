@@ -72,7 +72,7 @@ class AuthenticationRepository implements IAuthenticationRepository {
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw SignUpWithEmailAndPasswordFailure.fromCode(e.code);
     } catch (_) {
-      throw const SignUpWithEmailAndPasswordFailure.unknown();
+      throw const SignUpWithEmailAndPasswordFailure();
     }
   }
 

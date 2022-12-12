@@ -10,7 +10,7 @@ part 'register_with_email_and_pw_failure.freezed.dart';
 abstract class SignUpWithEmailAndPasswordFailure
     with _$SignUpWithEmailAndPasswordFailure
     implements MyCustomException {
-  const factory SignUpWithEmailAndPasswordFailure.unknown() =
+  const factory SignUpWithEmailAndPasswordFailure() =
       _SignUpWithEmailAndPasswordFailure;
   const factory SignUpWithEmailAndPasswordFailure.invalidEmail() = InvalidEmail;
   const factory SignUpWithEmailAndPasswordFailure.userDisabled() = UserDisabled;

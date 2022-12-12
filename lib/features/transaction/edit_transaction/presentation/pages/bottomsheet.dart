@@ -1,16 +1,17 @@
-import 'package:expense_tracker/features/transaction/edit_transaction/presentation/bloc/edit_transaction_bloc.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../cubit/edit_transaction_cubit.dart';
+
 class MediaBottomSheet extends StatelessWidget {
   const MediaBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<EditTransactionBloc>();
+    final controller = context.read<EditTransactionCubit>();
     return Column(
       children: [
         const SizedBox(height: 56, child: Center(child: Divider(thickness: 2))),
@@ -36,7 +37,7 @@ class MediaBottomSheet extends StatelessWidget {
                         await _picker.pickImage(source: ImageSource.camera);
                     if (something != null) {
                       navigator.pop();
-                      controller.add(EditTransactionImageChosen(something));
+                      controller.attachmentSelectionPressed();
                     }
                   },
                   child: DecoratedBox(
@@ -77,7 +78,7 @@ class MediaBottomSheet extends StatelessWidget {
 
                     if (something != null) {
                       navigator.pop();
-                      controller.add(EditTransactionImageChosen(something));
+                      controller.attachmentSelectionDone(something);
                     }
                   },
                   child: DecoratedBox(

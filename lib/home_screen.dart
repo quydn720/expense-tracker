@@ -7,6 +7,10 @@ import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
+const seeAllTransactionButtonKey = Key('homeScreen_seeAll_button');
+const searchIconButtonKey = Key('homeScreen_search_iconButton');
+const notificationIconButtonKey = Key('homeScreen_notification_iconButton');
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -27,10 +31,12 @@ class HomeScreen extends StatelessWidget {
                   CircleAvatar(child: Assets.images.mockUserAvatar.image()),
                   const Spacer(),
                   IconButton(
+                    key: searchIconButtonKey,
                     onPressed: () {},
                     icon: const Icon(FontAwesomeIcons.magnifyingGlass),
                   ),
                   IconButton(
+                    key: notificationIconButtonKey,
                     onPressed: () {},
                     icon: const Icon(FontAwesomeIcons.bell),
                   )
@@ -75,6 +81,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Text('Recent Transactions', style: textTheme.headline6),
                     GestureDetector(
+                      key: seeAllTransactionButtonKey,
                       onTap: () {
                         context.go('/${ScaffoldTab.values[1].name}');
                       },

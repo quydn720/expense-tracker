@@ -1,5 +1,3 @@
-import 'package:expense_tracker/features/category/domain/entities/category.dart';
-import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +26,6 @@ class RecentlyTransactions extends StatelessWidget {
               for (final transaction in transactionsSuccess.transactions)
                 TransactionTile(
                   transaction: transaction,
-                  onLongPress: () {},
                   onPress: () => context.push(
                     '/transactions/${transaction.id}',
                     extra: transaction,

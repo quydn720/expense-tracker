@@ -86,8 +86,8 @@ abstract class DevAppLocalPackageModule {
 
 @module
 abstract class DriftDatabase {
-  @Injectable(as: QueryExecutor)
-  LazyDatabase get queryExecutor => openConnection();
+  @singleton
+  MyDatabase get myDatabase => MyDatabase(openConnection());
 }
 
 abstract class AppConfigurations {

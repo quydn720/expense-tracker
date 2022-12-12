@@ -1,26 +1,28 @@
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
-import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/cubit/register_form_cubit.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/pages/register_screen.dart';
+import 'package:expense_tracker/features/settings/theme/theme.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../../../test_helper/app_test.dart';
-import '../../../../../../test_helper/mock_router.dart';
 import '../../../../../../test_helper/mocks.dart';
-import '../../../../../presentations/components/default_app_bar_test.dart';
+
+class MockAuthenticationBloc extends Mock implements AuthenticationBloc {}
 
 void main() {
   late RegisterFormCubit registerCubit;
   late AppBloc appBloc;
   late AuthenticationBloc authenticationBloc;
+
+  const moveToLoginButtonKey = Key('registerScreen_moveToLogin_textButton');
+  const mockLoginScreenKey = Key('loginScreen');
 
   final mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
   when(() => mockFirebaseDynamicLinks.onLink).thenAnswer(
@@ -30,28 +32,24 @@ void main() {
 
   Future<void> _pumpTestWidget(WidgetTester tester) {
     return tester.pumpWidget(
-      TestApp(
-        providers: [
-          BlocProvider.value(value: registerCubit),
-          BlocProvider.value(value: authenticationBloc),
-          BlocProvider.value(value: appBloc),
-        ],
-        router: mockRouter(
-          testingRoute: [
-            GoRoute(path: '/', builder: (_, __) => const RegisterScreen()),
-            GoRoute(path: '/login', builder: (_, __) => Container())
-          ],
+      BlocProvider.value(
+        value: registerCubit,
+        child: MaterialApp.router(
+          theme: themeData,
+          localizationsDelegates: LocalizationFactory.localizationsDelegates,
+          routerConfig: GoRouter(
+            routes: [
+              GoRoute(path: '/', builder: (_, __) => const RegisterScreen()),
+              GoRoute(
+                path: '/login',
+                builder: (_, __) => Container(key: mockLoginScreenKey),
+              )
+            ],
+          ),
         ),
-        dynamicLinks: mockFirebaseDynamicLinks,
       ),
     );
   }
-
-  setUpAll(() {
-    GetIt.instance.registerSingleton<RegisterWithEmailAndPwUseCase>(
-      MockRegisterWithEmailAndPwUseCase(),
-    );
-  });
 
   setUp(() {
     registerCubit = MockRegisterCubit();
@@ -74,6 +72,16 @@ void main() {
     await _pumpTestWidget(tester);
 
     expect(find.byType(RegisterScreen), findsOneWidget);
+  });
+  group('navigates', () {
+    testWidgets('to login screen when tap text button [sign in] ',
+        (tester) async {
+      await _pumpTestWidget(tester);
+      await tester.tap(find.byKey(moveToLoginButtonKey));
+
+      await tester.pumpAndSettle();
+      expect(find.byKey(mockLoginScreenKey), findsOneWidget);
+    });
   });
 
   testWidgets(

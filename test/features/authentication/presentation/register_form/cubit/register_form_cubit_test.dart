@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:dartz/dartz.dart';
 import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/cubit/register_form_cubit.dart';
@@ -9,7 +10,7 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../../../test_helper/mocks.dart';
 
 void main() {
-  late final RegisterWithEmailAndPwUseCase registerWithEmailAndPwUseCase;
+  late RegisterWithEmailAndPwUseCase registerWithEmailAndPwUseCase;
 
   setUpAll(() {
     registerWithEmailAndPwUseCase = MockRegisterWithEmailAndPwUseCase();
@@ -87,7 +88,7 @@ void main() {
               email: any(named: 'email'),
               password: any(named: 'password'),
             ),
-          ).thenAnswer((_) async {});
+          ).thenAnswer((_) async => right(unit));
         },
         build: () => RegisterFormCubit(
           registerWithEmailAndPwUseCase: registerWithEmailAndPwUseCase,

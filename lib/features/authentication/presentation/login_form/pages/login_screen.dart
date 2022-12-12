@@ -1,7 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/l10n/gen/app_localizations.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
-import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,12 +17,9 @@ class LoginProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: DefaultAppBar(title: context.l10n.login),
-      body: BlocProvider(
-        create: (_) => getIt<LoginFormCubit>(),
-        child: const LoginScreen(),
-      ),
+    return BlocProvider(
+      create: (_) => getIt<LoginFormCubit>(),
+      child: const LoginScreen(),
     );
   }
 }
@@ -32,55 +29,61 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginFormCubit, LoginFormState>(
-      listenWhen: (prev, curr) {
-        final fail = curr.status == FormzStatus.invalid ||
-            curr.status == FormzStatus.submissionFailure;
-        return (prev.status != curr.status) && fail;
-      },
-      listener: (context, state) {
-        final content = state.loginFailure?.toLocalizedString(context.l10n);
+    return Scaffold(
+      appBar: DefaultAppBar(title: context.l10n.login),
+      body: BlocListener<LoginFormCubit, LoginFormState>(
+        listenWhen: (prev, curr) {
+          final fail = curr.status == FormzStatus.invalid ||
+              curr.status == FormzStatus.submissionFailure;
+          return (prev.status != curr.status) && fail;
+        },
+        listener: (context, state) {
+          final content = state.loginFailure?.toLocalizedString(context.l10n);
 
-        ScaffoldMessenger.of(context).removeCurrentSnackBar();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(content!)),
-        );
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: const [
-            Spacer(),
-            _EmailInputField(),
-            SizedBox(height: 24),
-            _PasswordInputField(),
-            SizedBox(height: 8),
-            Align(alignment: Alignment.centerRight, child: _ForgotPassword()),
-            SizedBox(height: 16),
-            _LoginButton(),
-            SizedBox(height: 12),
-            Text(
-              'Or with',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Color(0xff91919F),
+          ScaffoldMessenger.of(context).removeCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(content!)),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: const [
+              Spacer(),
+              _EmailInputField(),
+              SizedBox(height: 24),
+              _PasswordInputField(),
+              SizedBox(height: 8),
+              Align(
+                alignment: Alignment.centerRight,
+                child: _ForgotPasswordButton(),
               ),
-            ),
-            SizedBox(height: 12),
-            _SignInWithGoogleButton(),
-            SizedBox(height: 16),
-            _MoveToRegisterButton(),
-            Spacer(flex: 2),
-          ],
+              SizedBox(height: 16),
+              _LoginButton(),
+              SizedBox(height: 12),
+              Text(
+                'Or with',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xff91919F),
+                ),
+              ),
+              SizedBox(height: 12),
+              _SignInWithGoogleButton(),
+              SizedBox(height: 16),
+              _MoveToRegisterButton(),
+              Spacer(flex: 2),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class _ForgotPassword extends StatelessWidget {
-  const _ForgotPassword();
+class _ForgotPasswordButton extends StatelessWidget {
+  const _ForgotPasswordButton();
 
   @override
   Widget build(BuildContext context) {
@@ -169,6 +172,7 @@ class _EmailInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final email2 = context.watch<LoginFormCubit>().state.email;
     return TextFormField(
       key: const Key('loginForm_emailInput_textField'),
       onChanged: context.read<LoginFormCubit>().onEmailChanged,
@@ -176,9 +180,7 @@ class _EmailInputField extends StatelessWidget {
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         hintText: 'Email',
-        errorText: context.watch<LoginFormCubit>().state.email.invalid
-            ? context.watch<LoginFormCubit>().state.email.error
-            : null,
+        errorText: email2.invalid ? email2.error : null,
       ),
     );
   }

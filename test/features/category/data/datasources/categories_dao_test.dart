@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/category/data/datasources/categories_dao.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -25,6 +26,7 @@ void main() {
         const CategoriesCompanion(
           name: Value('Mock Category'),
           color: Value(123),
+          icon: Value(Icons.abc),
         ),
       );
       final category = await dao.getCategoryById('Mock Category');
@@ -37,6 +39,7 @@ void main() {
           const CategoriesCompanion(
             name: Value('Food'),
             color: Value(123),
+            icon: Value(Icons.abc),
           ),
         ),
         throwsException,
@@ -44,15 +47,15 @@ void main() {
     });
   });
 
-  // test('stream emits a new user when the name updates', () async {
-  //   final id = await dao.createUser('first name');
-
-  //   final expectation = expectLater(
-  //     database.watchUserWithId(id).map((user) => user.name),
-  //     emitsInOrder(['first name', 'changed name']),
-  //   );
-
-  //   await database.updateName(id, 'changed name');
-  //   await expectation;
-  // });
+  group('get all categories', () {
+    test('get current category list', () async {
+      final categories = await dao.getAllCategories();
+      expect(categories.length, 3);
+    });
+  });
+  group('watch all categories', () {
+    test('get current category list stream', () async {
+      expect(dao.watchAllCategories(), isA<Stream<List<Category>>>());
+    });
+  });
 }

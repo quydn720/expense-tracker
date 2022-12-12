@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../di/injector.dart';
-import '../../../../../presentations/components/default_app_bar.dart';
+import '../../../../app/presentation/widgets/default_app_bar.dart';
 import '../cubit/login_form_cubit.dart';
 import 'login_screen.dart';
 

@@ -1,20 +1,20 @@
 import 'dart:io';
 
 import 'package:expense_tracker/di/injector.dart';
+import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/category/presentation/pages/category_view.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
+import 'package:expense_tracker/features/transaction/edit_transaction/presentation/cubit/edit_transaction_cubit.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
-import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
-import '../bloc/edit_transaction_bloc.dart';
 import 'bottomsheet.dart';
 
 class EditTransactionScreen extends StatelessWidget {
@@ -23,7 +23,7 @@ class EditTransactionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => EditTransactionBloc(
+      create: (context) => EditTransactionCubit(
         getIt(),
         initialTransaction: inititalTransaction,
       ),
@@ -38,13 +38,13 @@ class _EditTransaction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isNewTransaction = context.select(
-      (EditTransactionBloc value) => value.state.isNewTransaction,
+      (EditTransactionCubit value) => value.state.isNewTransaction,
     );
-    final controller = context.read<EditTransactionBloc>();
+    final controller = context.read<EditTransactionCubit>();
     final l10n = context.l10n;
 
     final status =
-        context.select((EditTransactionBloc bloc) => bloc.state.status);
+        context.select((EditTransactionCubit bloc) => bloc.state.status);
     final pageTitle =
         isNewTransaction ? l10n.add_new_transaction : l10n.edit_transaction;
     final primaryColor = Theme.of(context).primaryColor;
@@ -57,7 +57,7 @@ class _EditTransaction extends StatelessWidget {
         color: primaryColor,
         textColor: Colors.white,
       ),
-      body: BlocListener<EditTransactionBloc, EditTransactionState>(
+      body: BlocListener<EditTransactionCubit, EditTransactionState>(
         listenWhen: (previous, current) => previous.status != current.status,
         listener: (context, state) async {
           if (state.status == Status.success) {
@@ -77,13 +77,13 @@ class _EditTransaction extends StatelessWidget {
               context: context,
               useRootNavigator: true,
               builder: (_) => BlocProvider.value(
-                value: context.read<EditTransactionBloc>(),
+                value: context.read<EditTransactionCubit>(),
                 child: Wrap(children: const [MediaBottomSheet()]),
               ),
             );
 
             if (attachment == null) {
-              controller.add(const EditTransactionSelectAttachmentClose());
+              controller.attachmentSelectionClosed();
             }
           }
         },
@@ -142,13 +142,11 @@ class _ImagePicker extends StatelessWidget {
   const _ImagePicker();
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<EditTransactionBloc>();
+    final controller = context.read<EditTransactionCubit>();
     final l10n = context.l10n;
-    if (context.watch<EditTransactionBloc>().state.imgFile == null) {
+    if (context.watch<EditTransactionCubit>().state.imgFile == null) {
       return ElevatedButton(
-        onPressed: () => controller.add(
-          const EditTransactionSelectAttachment(),
-        ),
+        onPressed: controller.attachmentSelectionPressed,
         style: ElevatedButton.styleFrom(
           elevation: 0,
           backgroundColor: Colors.white,
@@ -174,7 +172,7 @@ class _ImagePicker extends StatelessWidget {
             children: [
               Image.file(
                 File(
-                  context.read<EditTransactionBloc>().state.imgFile!.path,
+                  context.read<EditTransactionCubit>().state.imgFile!.path,
                 ),
                 width: 100,
                 height: 100,
@@ -197,12 +195,10 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<EditTransactionBloc>().state;
+    final state = context.watch<EditTransactionCubit>().state;
 
     void _submit() {
-      context.read<EditTransactionBloc>().add(
-            const EditTransactionSubmitNewTransaction(),
-          );
+      context.read<EditTransactionCubit>().newTransactionSubmitted();
     }
 
     return ElevatedButton(
@@ -217,7 +213,7 @@ class _DescriptionField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<EditTransactionBloc>();
+    final controller = context.read<EditTransactionCubit>();
     final description = controller.state.description;
 
     return TextFormField(
@@ -235,9 +231,7 @@ class _DescriptionField extends StatelessWidget {
         fillColor: Colors.white,
       ),
       initialValue: description,
-      onChanged: (value) {
-        controller.add(EditTransactionDescriptionChanged(value));
-      },
+      onChanged: controller.descriptionChanged,
     );
   }
 }
@@ -250,8 +244,8 @@ class _AmountField extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final l10n = context.l10n;
 
-    final controller = context.read<EditTransactionBloc>();
-    final state = context.watch<EditTransactionBloc>().state;
+    final controller = context.read<EditTransactionCubit>();
+    final state = context.watch<EditTransactionCubit>().state;
     final errorText = state.amount.invalid
         ? state.amount.error.toLocalizedString(l10n)
         : null;
@@ -283,9 +277,7 @@ class _AmountField extends StatelessWidget {
           ),
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
           textInputAction: TextInputAction.next,
-          onChanged: (value) {
-            controller.add(EditTransactionAmountChanged(value));
-          },
+          onChanged: controller.amountChanged,
         ),
       ],
     );
@@ -297,14 +289,14 @@ class _CategoryField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.select<EditTransactionBloc, CategoryField>(
+    final state = context.select<EditTransactionCubit, CategoryField>(
       (value) => value.state.category,
     );
 
     void addEvent(CategoryEntity? category) {
-      final controller = context.read<EditTransactionBloc>();
+      final controller = context.read<EditTransactionCubit>();
 
-      return controller.add(EditTransactionCategoryChanged(category));
+      return controller.categoryChanged(category);
     }
 
     Future<void> _onTap() async {
@@ -314,7 +306,7 @@ class _CategoryField extends StatelessWidget {
         useRootNavigator: true,
         builder: (_) => const FractionallySizedBox(
           heightFactor: 0.9,
-          child: SelectCategoryScreen(),
+          child: SelectCategoryProvider(),
         ),
       );
       if (category != null) {
@@ -369,12 +361,12 @@ class _DateField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date = context.select<EditTransactionBloc, DateTime>(
+    final date = context.select<EditTransactionCubit, DateTime>(
       (value) => value.state.date,
     );
 
     Future<void> _onTap() async {
-      final controller = context.read<EditTransactionBloc>();
+      final controller = context.read<EditTransactionCubit>();
       final date = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
@@ -382,7 +374,7 @@ class _DateField extends StatelessWidget {
         lastDate: DateTime(2050),
       );
 
-      return controller.add(EditTransactionDateChanged(date));
+      return controller.dateChanged(date);
     }
 
     final theme = Theme.of(context);
@@ -422,7 +414,7 @@ class _WalletDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<EditTransactionBloc>();
+    final controller = context.read<EditTransactionCubit>();
 
     return TextFormField(
       decoration: InputDecoration(
@@ -438,9 +430,7 @@ class _WalletDropdown extends StatelessWidget {
         filled: true,
         fillColor: Colors.white,
       ),
-      onChanged: (value) {
-        controller.add(EditTransactionDescriptionChanged(value));
-      },
+      onChanged: controller.descriptionChanged,
     );
   }
 }
@@ -450,14 +440,14 @@ class _RepeatListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<EditTransactionBloc>();
+    final controller = context.read<EditTransactionCubit>();
     final l10n = context.l10n;
 
     final theme = Theme.of(context);
     final bodyText1 = theme.textTheme.bodyText1;
     final primaryColor = theme.primaryColor;
 
-    final isRepeated = context.select<EditTransactionBloc, bool>(
+    final isRepeated = context.select<EditTransactionCubit, bool>(
       (value) => value.state.isRepeated,
     );
 
@@ -465,8 +455,7 @@ class _RepeatListTile extends StatelessWidget {
       children: [
         SwitchListTile.adaptive(
           value: isRepeated,
-          onChanged: (_) =>
-              controller.add(const EditTransactionRepeatToggled()),
+          onChanged: (_) => controller.repeatedButtonToggled(),
           title: Text(l10n.repeat_str, style: bodyText1),
           subtitle: Text(l10n.repeat_transaction),
           contentPadding: EdgeInsets.zero,

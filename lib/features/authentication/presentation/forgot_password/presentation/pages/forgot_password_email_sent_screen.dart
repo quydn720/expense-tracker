@@ -34,9 +34,7 @@ class ForgotPasswordEmailSentScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ElevatedButton(
-                onPressed: () {
-                  context.go('/login');
-                },
+                onPressed: () => context.go('/login'),
                 child: const Text('Back to Login'),
               ),
             ),

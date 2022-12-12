@@ -1,4 +1,3 @@
-
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 
 abstract class ITransactionRepository {

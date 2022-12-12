@@ -1,11 +1,13 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
+import 'package:expense_tracker/l10n/gen/app_localizations.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../presentations/components/default_app_bar.dart';
+import '../../../../../app/presentation/widgets/default_app_bar.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key, this.email});
@@ -31,6 +33,7 @@ class ForgotPasswordView extends StatelessWidget {
     final controller = context.read<ForgotPasswordCubit>();
     final l10n = context.l10n;
 
+    final errorText = context.watch<ForgotPasswordCubit>().state.failure;
     return BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
       listener: (context, state) {
         if (state.status == Status.success) {
@@ -54,14 +57,7 @@ class ForgotPasswordView extends StatelessWidget {
                 autocorrect: false,
                 onChanged: controller.onEmailChanged,
                 decoration: InputDecoration(
-                  errorText:
-                      context.watch<ForgotPasswordCubit>().state.failure?.map(
-                            (_) => context.l10n.authError_unknownException,
-                            invalidEmail: (_) =>
-                                context.l10n.authError_invalidEmail,
-                            userNotFound: (_) =>
-                                context.l10n.authError_userNotFound,
-                          ),
+                  errorText: errorText?.toLocalizedString(l10n),
                 ),
               ),
               const SizedBox(height: 16),
@@ -74,6 +70,16 @@ class ForgotPasswordView extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+extension ForgotPasswordFailureStr on ForgotPasswordFailure {
+  String? toLocalizedString(AppLocalizations l10n) {
+    return map(
+      invalidEmail: (_) => l10n.authError_invalidEmail,
+      userNotFound: (_) => l10n.authError_userNotFound,
+      (_) => l10n.authError_unknownException,
     );
   }
 }

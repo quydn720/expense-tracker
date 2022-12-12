@@ -1,7 +1,7 @@
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../presentations/components/default_app_bar.dart';
+import '../../../app/presentation/widgets/default_app_bar.dart';
 
 class CurrencyScreen extends StatelessWidget {
   const CurrencyScreen({super.key});

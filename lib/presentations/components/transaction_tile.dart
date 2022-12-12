@@ -11,12 +11,10 @@ class TransactionTile extends StatelessWidget {
     super.key,
     required this.transaction,
     required this.onPress,
-    required this.onLongPress,
   });
 
   final TransactionEntity transaction;
   final VoidCallback onPress;
-  final VoidCallback onLongPress;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,6 @@ class TransactionTile extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       child: ListTile(
         onTap: onPress,
-        onLongPress: onLongPress,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),

@@ -6,7 +6,9 @@ import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/category/data/datasources/categories_dao.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/category/domain/repositories/category_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: ICategoryRepository)
 class LocalCategoryRepository implements ICategoryRepository {
   LocalCategoryRepository(this._dao);
 

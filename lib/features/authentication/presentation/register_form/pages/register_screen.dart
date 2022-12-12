@@ -1,12 +1,10 @@
 import 'package:expense_tracker/di/injector.dart';
-import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
+import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
-import 'package:expense_tracker/presentations/components/default_app_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,9 +17,7 @@ class RegisterProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => RegisterFormCubit(
-        registerWithEmailAndPwUseCase: getIt<RegisterWithEmailAndPwUseCase>(),
-      ),
+      create: (_) => getIt<RegisterFormCubit>(),
       child: const RegisterScreen(),
     );
   }
@@ -48,17 +44,6 @@ class RegisterScreen extends StatelessWidget {
             _TermAgreementField(),
             SizedBox(height: 24),
             _RegisterButton(),
-            SizedBox(height: 12),
-            Text(
-              'Or with',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Color(0xff91919F),
-              ),
-            ),
-            SizedBox(height: 12),
-            _SignInWithGoogleButton(),
             SizedBox(height: 16),
             _MoveToLoginButton(),
             Spacer(flex: 2),
@@ -137,6 +122,7 @@ class _MoveToLoginButton extends StatelessWidget {
           style: textTheme?.copyWith(color: theme.colorScheme.outline),
         ),
         TextButton(
+          key: const Key('registerScreen_moveToLogin_textButton'),
           onPressed: () => context.go('/login'),
           child: Text(
             'Sign in',
@@ -144,25 +130,6 @@ class _MoveToLoginButton extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _SignInWithGoogleButton extends StatelessWidget {
-  const _SignInWithGoogleButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: () {},
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgPicture.asset('assets/icons/google.svg'),
-          const SizedBox(width: 8),
-          const Text('Sign in with Google'),
-        ],
-      ),
     );
   }
 }

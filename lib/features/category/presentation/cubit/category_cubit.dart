@@ -4,20 +4,22 @@ import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/features/category/domain/repositories/category_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../domain/entities/category.dart';
 
 part 'category_state.dart';
 part 'category_cubit.freezed.dart';
 
+@injectable
 class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit(this._repo) : super(const CategoryState()) {
-    load();
+    _load();
   }
   final ICategoryRepository _repo;
   late StreamSubscription<List<CategoryEntity>> _streamSubscription;
 
-  Future<void> load() async {
+  Future<void> _load() async {
     final c = _repo.watchAllCategories();
 
     _streamSubscription = c.listen((event) {

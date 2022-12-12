@@ -8,7 +8,6 @@ import 'package:expense_tracker/features/transaction/data/datasources/transactio
 import 'package:expense_tracker/features/transaction/data/models/transaction_model.dart';
 import 'package:flutter/material.dart' hide Table;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:injectable/injectable.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
@@ -18,9 +17,8 @@ part 'drift_database.g.dart';
   tables: [Categories, Transactions],
   daos: [CategoriesDao, TransactionsDao],
 )
-@singleton
 class MyDatabase extends _$MyDatabase {
-  MyDatabase(QueryExecutor e) : super(e);
+  MyDatabase(super.e);
 
   @override
   int get schemaVersion => 1;

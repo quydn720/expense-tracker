@@ -9,7 +9,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../../../test_helper/mocks.dart';
+class MockLoginWithEmailAndPwUseCase extends Mock
+    implements LoginWithEmailAndPwUseCase {}
+
+class MockLoginWithGoogleUseCase extends Mock
+    implements LoginWithGoogleUseCase {}
 
 void main() {
   late LoginWithEmailAndPwUseCase loginWithEmailAndPwUseCase;
@@ -17,17 +21,54 @@ void main() {
   const mockValidEmail = 'validEmail@something.com';
   const mockPassword = 's3cretPword';
 
+  LoginFormCubit createCubit() {
+    return LoginFormCubit(
+      loginWithGoogleUseCase: loginWithGoogleUseCase,
+      loginWithEmailAndPwUseCase: loginWithEmailAndPwUseCase,
+    );
+  }
+
   setUp(() {
     loginWithEmailAndPwUseCase = MockLoginWithEmailAndPwUseCase();
     loginWithGoogleUseCase = MockLoginWithGoogleUseCase();
   });
 
+  group('login with google', () {
+    blocTest<LoginFormCubit, LoginFormState>(
+      'calls login with google use case',
+      setUp: () {
+        when(
+          () => loginWithGoogleUseCase(),
+        ).thenAnswer((_) async => const Right(unit));
+      },
+      build: createCubit,
+      act: (bloc) => bloc.loginWithGoogle(),
+      verify: (_) {
+        verify(() => loginWithGoogleUseCase()).called(1);
+      },
+    );
+    blocTest<LoginFormCubit, LoginFormState>(
+      'emits invalid & failure if catch an exception',
+      setUp: () {
+        when(
+          () => loginWithGoogleUseCase(),
+        ).thenAnswer((_) async => const Left(LoginWithGoogleFailure()));
+      },
+      build: createCubit,
+      act: (bloc) => bloc.loginWithGoogle(),
+      expect: () => [
+        const LoginFormState(status: FormzStatus.submissionInProgress),
+        const LoginFormState(
+          status: FormzStatus.invalid,
+          loginFailure: LoginWithGoogleFailure(),
+        )
+      ],
+    );
+  });
+
   blocTest<LoginFormCubit, LoginFormState>(
     'on email changed, cubit emits email validated state',
-    build: () => LoginFormCubit(
-      loginWithGoogleUseCase: loginWithGoogleUseCase,
-      loginWithEmailAndPwUseCase: loginWithEmailAndPwUseCase,
-    ),
+    build: createCubit,
     act: (cubit) {
       cubit.onEmailChanged(mockValidEmail);
     },
@@ -40,10 +81,7 @@ void main() {
   );
   blocTest<LoginFormCubit, LoginFormState>(
     'on password changed, cubit emits password validated state',
-    build: () => LoginFormCubit(
-      loginWithGoogleUseCase: loginWithGoogleUseCase,
-      loginWithEmailAndPwUseCase: loginWithEmailAndPwUseCase,
-    ),
+    build: createCubit,
     act: (cubit) => cubit.onPasswordChanged(mockPassword),
     expect: () => [
       const LoginFormState(
@@ -54,10 +92,7 @@ void main() {
   );
   blocTest<LoginFormCubit, LoginFormState>(
     'on toggled, cubit emits opposite state of obscured text',
-    build: () => LoginFormCubit(
-      loginWithGoogleUseCase: loginWithGoogleUseCase,
-      loginWithEmailAndPwUseCase: loginWithEmailAndPwUseCase,
-    ),
+    build: createCubit,
     seed: () => const LoginFormState(isObscured: false),
     act: (cubit) => cubit.toggle(),
     expect: () => [const LoginFormState(isObscured: true)],
@@ -76,10 +111,7 @@ void main() {
       email: EmailInput.dirty('abc'),
       password: PasswordInput.dirty('password'),
     ),
-    build: () => LoginFormCubit(
-      loginWithGoogleUseCase: loginWithGoogleUseCase,
-      loginWithEmailAndPwUseCase: loginWithEmailAndPwUseCase,
-    ),
+    build: createCubit,
     act: (cubit) async => cubit.onLoginButtonClicked(),
     verify: (_) => verify(
       () => loginWithEmailAndPwUseCase(email: 'abc', password: 'password'),
@@ -113,10 +145,7 @@ void main() {
       email: EmailInput.dirty('abc'),
       password: PasswordInput.dirty('password'),
     ),
-    build: () => LoginFormCubit(
-      loginWithGoogleUseCase: loginWithGoogleUseCase,
-      loginWithEmailAndPwUseCase: loginWithEmailAndPwUseCase,
-    ),
+    build: createCubit,
     act: (cubit) async => cubit.onLoginButtonClicked(),
     verify: (_) => verify(
       () => loginWithEmailAndPwUseCase(email: 'abc', password: 'password'),

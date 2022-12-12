@@ -1,10 +1,12 @@
 import 'package:drift/drift.dart';
 import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/category/data/models/category_model.dart';
+import 'package:injectable/injectable.dart';
 
 part 'categories_dao.g.dart';
 
 @DriftAccessor(tables: [Categories])
+@injectable
 class CategoriesDao extends DatabaseAccessor<MyDatabase>
     with _$CategoriesDaoMixin {
   CategoriesDao(super.db);

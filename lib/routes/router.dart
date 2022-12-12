@@ -101,7 +101,7 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
           ),
           GoRoute(
             path: 'export-data',
-            builder: (_, __) => const ExportScreen(),
+            builder: (_, __) => const ExportDataScreen(),
           ),
         ],
       ),
@@ -139,7 +139,7 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
       ),
       GoRoute(
         path: '/category',
-        builder: (_, state) => const SelectCategoryScreen(),
+        builder: (_, state) => const SelectCategoryProvider(),
       ),
       GoRoute(
         path: '/success',

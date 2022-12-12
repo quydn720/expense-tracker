@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SignUpWithEmailAndPasswordFailure {
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
     required TResult Function() invalidEmail,
     required TResult Function() userDisabled,
     required TResult Function() emailAlreadyInUse,
@@ -27,8 +27,8 @@ mixin _$SignUpWithEmailAndPasswordFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -37,8 +37,8 @@ mixin _$SignUpWithEmailAndPasswordFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -48,8 +48,8 @@ mixin _$SignUpWithEmailAndPasswordFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SignUpWithEmailAndPasswordFailure value) unknown,
+  TResult map<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value) $default, {
     required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(UserDisabled value) userDisabled,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -58,8 +58,8 @@ mixin _$SignUpWithEmailAndPasswordFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -68,8 +68,8 @@ mixin _$SignUpWithEmailAndPasswordFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -128,7 +128,7 @@ class _$_SignUpWithEmailAndPasswordFailure
 
   @override
   String toString() {
-    return 'SignUpWithEmailAndPasswordFailure.unknown()';
+    return 'SignUpWithEmailAndPasswordFailure()';
   }
 
   @override
@@ -143,34 +143,34 @@ class _$_SignUpWithEmailAndPasswordFailure
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
     required TResult Function() invalidEmail,
     required TResult Function() userDisabled,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() weakPassword,
     required TResult Function() operationNotAllowed,
   }) {
-    return unknown();
+    return $default();
   }
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? weakPassword,
     TResult Function()? operationNotAllowed,
   }) {
-    return unknown?.call();
+    return $default?.call();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -178,42 +178,42 @@ class _$_SignUpWithEmailAndPasswordFailure
     TResult Function()? operationNotAllowed,
     required TResult orElse(),
   }) {
-    if (unknown != null) {
-      return unknown();
+    if ($default != null) {
+      return $default();
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SignUpWithEmailAndPasswordFailure value) unknown,
+  TResult map<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value) $default, {
     required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(UserDisabled value) userDisabled,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(OperationNotAllowed value) operationNotAllowed,
   }) {
-    return unknown(this);
+    return $default(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(OperationNotAllowed value)? operationNotAllowed,
   }) {
-    return unknown?.call(this);
+    return $default?.call(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -221,8 +221,8 @@ class _$_SignUpWithEmailAndPasswordFailure
     TResult Function(OperationNotAllowed value)? operationNotAllowed,
     required TResult orElse(),
   }) {
-    if (unknown != null) {
-      return unknown(this);
+    if ($default != null) {
+      return $default(this);
     }
     return orElse();
   }
@@ -274,8 +274,8 @@ class _$InvalidEmail implements InvalidEmail {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
     required TResult Function() invalidEmail,
     required TResult Function() userDisabled,
     required TResult Function() emailAlreadyInUse,
@@ -287,8 +287,8 @@ class _$InvalidEmail implements InvalidEmail {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -300,8 +300,8 @@ class _$InvalidEmail implements InvalidEmail {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -317,8 +317,8 @@ class _$InvalidEmail implements InvalidEmail {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SignUpWithEmailAndPasswordFailure value) unknown,
+  TResult map<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value) $default, {
     required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(UserDisabled value) userDisabled,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -330,8 +330,8 @@ class _$InvalidEmail implements InvalidEmail {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -343,8 +343,8 @@ class _$InvalidEmail implements InvalidEmail {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -403,8 +403,8 @@ class _$UserDisabled implements UserDisabled {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
     required TResult Function() invalidEmail,
     required TResult Function() userDisabled,
     required TResult Function() emailAlreadyInUse,
@@ -416,8 +416,8 @@ class _$UserDisabled implements UserDisabled {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -429,8 +429,8 @@ class _$UserDisabled implements UserDisabled {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -446,8 +446,8 @@ class _$UserDisabled implements UserDisabled {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SignUpWithEmailAndPasswordFailure value) unknown,
+  TResult map<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value) $default, {
     required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(UserDisabled value) userDisabled,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -459,8 +459,8 @@ class _$UserDisabled implements UserDisabled {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -472,8 +472,8 @@ class _$UserDisabled implements UserDisabled {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -532,8 +532,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
     required TResult Function() invalidEmail,
     required TResult Function() userDisabled,
     required TResult Function() emailAlreadyInUse,
@@ -545,8 +545,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -558,8 +558,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -575,8 +575,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SignUpWithEmailAndPasswordFailure value) unknown,
+  TResult map<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value) $default, {
     required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(UserDisabled value) userDisabled,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -588,8 +588,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -601,8 +601,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -661,8 +661,8 @@ class _$WeakPassword implements WeakPassword {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
     required TResult Function() invalidEmail,
     required TResult Function() userDisabled,
     required TResult Function() emailAlreadyInUse,
@@ -674,8 +674,8 @@ class _$WeakPassword implements WeakPassword {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -687,8 +687,8 @@ class _$WeakPassword implements WeakPassword {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -704,8 +704,8 @@ class _$WeakPassword implements WeakPassword {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SignUpWithEmailAndPasswordFailure value) unknown,
+  TResult map<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value) $default, {
     required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(UserDisabled value) userDisabled,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -717,8 +717,8 @@ class _$WeakPassword implements WeakPassword {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -730,8 +730,8 @@ class _$WeakPassword implements WeakPassword {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -790,8 +790,8 @@ class _$OperationNotAllowed implements OperationNotAllowed {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
     required TResult Function() invalidEmail,
     required TResult Function() userDisabled,
     required TResult Function() emailAlreadyInUse,
@@ -803,8 +803,8 @@ class _$OperationNotAllowed implements OperationNotAllowed {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -816,8 +816,8 @@ class _$OperationNotAllowed implements OperationNotAllowed {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
     TResult Function()? invalidEmail,
     TResult Function()? userDisabled,
     TResult Function()? emailAlreadyInUse,
@@ -833,8 +833,8 @@ class _$OperationNotAllowed implements OperationNotAllowed {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SignUpWithEmailAndPasswordFailure value) unknown,
+  TResult map<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value) $default, {
     required TResult Function(InvalidEmail value) invalidEmail,
     required TResult Function(UserDisabled value) userDisabled,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -846,8 +846,8 @@ class _$OperationNotAllowed implements OperationNotAllowed {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
@@ -859,8 +859,8 @@ class _$OperationNotAllowed implements OperationNotAllowed {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SignUpWithEmailAndPasswordFailure value)? unknown,
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SignUpWithEmailAndPasswordFailure value)? $default, {
     TResult Function(InvalidEmail value)? invalidEmail,
     TResult Function(UserDisabled value)? userDisabled,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,

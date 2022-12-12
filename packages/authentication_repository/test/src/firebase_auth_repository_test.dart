@@ -42,16 +42,14 @@ void main() {
     id: _mockFirebaseUserUid,
     email: _mockFirebaseUserEmail,
   );
-
+  setUpAll(() {
+    registerFallbackValue(FakeAuthCredential());
+  });
   group('AuthenticationRepository', () {
     late CacheClient cache;
     late firebase_auth.FirebaseAuth firebaseAuth;
     late GoogleSignIn googleSignIn;
     late AuthenticationRepository authenticationRepository;
-
-    setUpAll(() {
-      registerFallbackValue(FakeAuthCredential());
-    });
 
     setUp(() {
       const options = FirebaseOptions(
@@ -145,16 +143,26 @@ void main() {
             .thenAnswer((_) async => googleSignInAuthentication);
         when(() => googleSignIn.signIn())
             .thenAnswer((_) async => googleSignInAccount);
-        when(() => firebaseAuth.signInWithCredential(any()))
-            .thenAnswer((_) => Future.value(MockUserCredential()));
-        when(() => firebaseAuth.signInWithPopup(any()))
-            .thenAnswer((_) => Future.value(MockUserCredential()));
+        when(
+          () => firebaseAuth.signInWithCredential(
+            any(that: isA<firebase_auth.AuthCredential>()),
+          ),
+        ).thenAnswer((_) => Future.value(MockUserCredential()));
+        when(
+          () => firebaseAuth.signInWithPopup(
+            any(that: isA<firebase_auth.AuthCredential>()),
+          ),
+        ).thenAnswer((_) => Future.value(MockUserCredential()));
       });
 
       test('calls signIn authentication, and signInWithCredential', () async {
         await authenticationRepository.logInWithGoogle();
         verify(() => googleSignIn.signIn()).called(1);
-        verify(() => firebaseAuth.signInWithCredential(any())).called(1);
+        verify(
+          () => firebaseAuth.signInWithCredential(
+            any(that: isA<firebase_auth.AuthCredential>()),
+          ),
+        ).called(1);
       });
 
       test(

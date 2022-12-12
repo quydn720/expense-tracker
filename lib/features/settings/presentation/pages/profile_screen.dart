@@ -5,46 +5,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
+const logoutButtonKey = Key('profileScreen_logout_button');
+const logoutBottomSheetKey = Key('profileScreen_logout_bottomSheet');
+const moveToAccountScreenButtonKey = Key('profileScreen_moveToAccount_button');
+const moveToSettingScreenButtonKey = Key('profileScreen_moveToSetting_button');
+const moveToExportDataScreenButtonKey =
+    Key('profileScreen_moveToExportData_button');
+    
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            Row(
-              children: [
-                const CircleAvatar(radius: 40),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        '18521313@gm.uit.edu.vn',
-                        style: textTheme.subtitle1?.copyWith(
-                          color: const Color(0xff91919F),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Ngọc Quý',
-                        style: textTheme.headline3?.copyWith(
-                          color: const Color(0xff161719),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                IconButton(icon: Assets.icons.edit.image(), onPressed: () {}),
-              ],
-            ),
+            const _UserTile(),
             const SizedBox(height: 40),
             Container(
               decoration: BoxDecoration(
@@ -54,31 +34,35 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: Column(
                 children: [
-                  _SettingTile(
+                  _ProfileTile(
+                    key: moveToAccountScreenButtonKey,
                     iconData: FontAwesomeIcons.wallet,
                     onTap: () => context.go('/profile/account'),
                     title: 'Account',
                   ),
                   const Divider(),
-                  _SettingTile(
+                  _ProfileTile(
+                    key: moveToSettingScreenButtonKey,
                     iconData: FontAwesomeIcons.gear,
                     onTap: () => context.push('/setting'),
                     title: 'Settings',
                   ),
                   const Divider(),
-                  _SettingTile(
+                  _ProfileTile(
+                    key: moveToExportDataScreenButtonKey,
                     iconData: FontAwesomeIcons.arrowUpFromBracket,
                     onTap: () => context.go('/profile/export-data'),
                     title: 'Export Data',
                   ),
                   const Divider(),
-                  _SettingTile(
+                  _ProfileTile(
+                    key: logoutButtonKey,
                     iconData: FontAwesomeIcons.rightFromBracket,
                     onTap: () async {
                       await showModalBottomSheet<bool>(
                         context: context,
-                        builder: (context) {
-                          return const BottomSheetWidget();
+                        builder: (_) {
+                          return const _LogoutBottomSheet();
                         },
                       );
                     },
@@ -94,11 +78,50 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-class _SettingTile extends StatelessWidget {
-  const _SettingTile({
+// TODO: display current user info
+class _UserTile extends StatelessWidget {
+  const _UserTile();
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Row(
+      children: [
+        const CircleAvatar(radius: 40),
+        const SizedBox(width: 20),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                '18521313@gm.uit.edu.vn',
+                style: textTheme.subtitle1?.copyWith(
+                  color: const Color(0xff91919F),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Ngọc Quý',
+                style: textTheme.headline3?.copyWith(
+                  color: const Color(0xff161719),
+                ),
+              ),
+            ],
+          ),
+        ),
+        IconButton(icon: Assets.icons.edit.image(), onPressed: () {}),
+      ],
+    );
+  }
+}
+
+class _ProfileTile extends StatelessWidget {
+  const _ProfileTile({
     required this.iconData,
     required this.onTap,
     required this.title,
+    super.key,
   });
 
   final IconData iconData;
@@ -135,14 +158,19 @@ class _SettingTile extends StatelessWidget {
   }
 }
 
-class BottomSheetWidget extends StatelessWidget {
-  const BottomSheetWidget({
-    super.key,
-  });
+class _LogoutBottomSheet extends StatelessWidget {
+  const _LogoutBottomSheet();
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    void logout() {
+      return context.read<AuthenticationBloc>().add(const LogoutRequested());
+    }
+
     return SafeArea(
+      key: logoutBottomSheetKey,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -152,9 +180,7 @@ class BottomSheetWidget extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Text(
                 'Logout?',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
+                style: textTheme.titleMedium
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
             ),
@@ -162,10 +188,7 @@ class BottomSheetWidget extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Text(
                 'Are you sure you want to logout?',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(color: Colors.grey),
+                style: textTheme.bodyLarge?.copyWith(color: Colors.grey),
               ),
             ),
             const SizedBox(height: 16),
@@ -185,11 +208,7 @@ class BottomSheetWidget extends StatelessWidget {
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {
-                      context
-                          .read<AuthenticationBloc>()
-                          .add(const LogoutRequested());
-                    },
+                    onPressed: logout,
                     child: const Text('Yes'),
                   ),
                 ),

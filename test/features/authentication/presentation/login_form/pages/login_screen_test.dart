@@ -1,18 +1,12 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:expense_tracker/di/injector.dart';
-import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
-import 'package:expense_tracker/features/authentication/domain/usecases/forgot_password_use_case.dart';
-import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart';
-import 'package:expense_tracker/features/authentication/domain/usecases/login_with_google_account_use_case.dart';
-import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
 import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
-import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
-import 'package:expense_tracker/features/authentication/presentation/register_form/pages/register_screen.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:expense_tracker/features/settings/theme/theme.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,25 +14,21 @@ import 'package:formz/formz.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:provider/single_child_widget.dart';
-
-import '../../../../../../test_helper/app_test.dart';
-import '../../../../../../test_helper/mock_router.dart';
-import '../../../../../../test_helper/mocks.dart';
-import '../../../../../presentations/components/default_app_bar_test.dart';
+import 'package:provider/provider.dart';
 
 class MockLoginFormCubit extends Mock implements LoginFormCubit {}
 
+class MockEmailInput extends Mock implements EmailInput {}
+
+class MockAuthenticationBloc extends Mock implements AuthenticationBloc {}
+
 void main() {
   late LoginFormCubit loginCubit;
-  late GoRouter router;
-  late AppBloc appBloc;
-  late AuthenticationBloc authenticationBloc;
-  late List<SingleChildWidget> providers;
-  late FirebaseDynamicLinks firebaseDynamicLinks;
 
   /// Cách đặt tên key: [ScreenName] + [FieldName] + [Type]
   /// Examples: loginForm_continue_raisedButton, loginForm_emailInput_textField
+  const mockForgotPasswordScreenKey = Key('forgotPasswordScreen');
+  const mockRegisterScreenKey = Key('registerScreen');
   const passwordInputKey = Key('loginForm_passwordInput_textField');
   const emailInputKey = Key('loginForm_emailInput_textField');
   const loginButtonKey = Key('loginForm_login_elevatedButton');
@@ -50,145 +40,108 @@ void main() {
   const testPassword = 'testPassword';
   const testEmail = 'testEmail@email.co';
 
-  setUpAll(() {
-    GetIt.instance.registerFactory<RegisterWithEmailAndPwUseCase>(
-      MockRegisterWithEmailAndPwUseCase.new,
-    );
-    GetIt.instance.registerFactory<LoginWithGoogleUseCase>(
-      MockLoginWithGoogleUseCase.new,
-    );
-    GetIt.instance.registerFactory<LoginWithEmailAndPwUseCase>(
-      MockLoginWithEmailAndPwUseCase.new,
-    );
-    GetIt.instance.registerFactory<ForgotPasswordUseCase>(
-      MockForgotPasswordUseCase.new,
-    );
-  });
-  setUp(() {
-    router = mockRouter(
-      testingRoute: [
-        GoRoute(
-          path: '/',
-          builder: (_, __) => const Scaffold(body: LoginScreen()),
+  Future<void> pumpWidget(WidgetTester tester) {
+    return tester.pumpWidget(
+      MultiProvider(
+        providers: [BlocProvider.value(value: loginCubit)],
+        child: MaterialApp.router(
+          theme: themeData,
+          localizationsDelegates: LocalizationFactory.localizationsDelegates,
+          routerConfig: GoRouter(
+            routes: [
+              GoRoute(
+                path: '/',
+                builder: (_, __) => const LoginScreen(),
+              ),
+              GoRoute(
+                path: '/forgot-password',
+                builder: (_, __) {
+                  return Scaffold(
+                    key: mockForgotPasswordScreenKey,
+                    appBar: AppBar(),
+                  );
+                },
+              ),
+              GoRoute(
+                path: '/register',
+                builder: (_, __) {
+                  return Scaffold(
+                    key: mockRegisterScreenKey,
+                    appBar: AppBar(),
+                  );
+                },
+              )
+            ],
+          ),
         ),
-        GoRoute(
-          path: '/forgot-password',
-          builder: (_, __) => const ForgotPasswordScreen(),
-        ),
-        GoRoute(
-          path: '/register',
-          builder: (_, __) => const RegisterProvider(),
-        ),
-      ],
+      ),
     );
+  }
 
+  setUp(() {
     loginCubit = MockLoginFormCubit();
     when(() => loginCubit.state).thenReturn(const LoginFormState());
-
-    authenticationBloc = MockAuthenticationBloc();
-    when(() => authenticationBloc.stream).thenAnswer(
-      (_) => const Stream.empty(),
-    );
-    when(() => authenticationBloc.state).thenReturn(const Unauthenticated());
-
-    appBloc = MockAppBloc();
-    when(() => appBloc.stream).thenAnswer((_) => const Stream.empty());
-    when(() => appBloc.state).thenReturn(const AppState());
-
-    providers = [
-      BlocProvider.value(value: appBloc),
-      BlocProvider.value(value: loginCubit),
-    ];
-  });
-  testWidgets('login screen renders', (tester) async {
-    final mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
-    when(() => mockFirebaseDynamicLinks.onLink).thenAnswer(
-      (_) => const Stream.empty(),
-    );
     when(() => loginCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(() => loginCubit.state).thenReturn(const LoginFormState());
-
-    await tester.pumpWidget(
-      TestApp(
-        providers: providers,
-        router: router,
-        dynamicLinks: mockFirebaseDynamicLinks,
-      ),
-    );
-
-    expect(find.byType(LoginScreen), findsOneWidget);
   });
 
-  testWidgets('login screen have error message snack bar', (tester) async {
-    final mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
-    when(() => mockFirebaseDynamicLinks.onLink).thenAnswer(
-      (_) => const Stream.empty(),
-    );
-    when(() => loginCubit.stream).thenAnswer(
-      (_) => Stream.fromIterable([
-        const LoginFormState(status: FormzStatus.submissionInProgress),
-        const LoginFormState(
-          status: FormzStatus.submissionFailure,
-          loginFailure: LoginWithEmailAndPasswordFailure(),
-        ),
-      ]),
-    );
-    when(() => loginCubit.state).thenReturn(
-      const LoginFormState(loginFailure: LoginWithEmailAndPasswordFailure()),
-    );
+  group('renders', () {
+    testWidgets('login screen renders', (tester) async {
+      await pumpWidget(tester);
 
-    await tester.pumpWidget(
-      TestApp(
-        providers: providers,
-        router: router,
-        dynamicLinks: mockFirebaseDynamicLinks,
-      ),
-    );
-    await tester.pumpAndSettle();
-    expect(find.text('An unknown exception occurred.'), findsOneWidget);
-  });
-  testWidgets('login screen have error message snack bar', (tester) async {
-    final mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
-    when(() => mockFirebaseDynamicLinks.onLink).thenAnswer(
-      (_) => const Stream.empty(),
-    );
-    when(() => loginCubit.stream).thenAnswer(
-      (_) => Stream.fromIterable([
-        const LoginFormState(status: FormzStatus.submissionInProgress),
+      expect(find.byType(LoginScreen), findsOneWidget);
+    });
+
+    testWidgets('login screen have error message snack bar', (tester) async {
+      when(() => loginCubit.stream).thenAnswer(
+        (_) => Stream.fromIterable([
+          const LoginFormState(status: FormzStatus.submissionInProgress),
+          const LoginFormState(
+            status: FormzStatus.submissionFailure,
+            loginFailure: LoginWithEmailAndPasswordFailure(),
+          ),
+        ]),
+      );
+      when(() => loginCubit.state).thenReturn(
+        const LoginFormState(loginFailure: LoginWithEmailAndPasswordFailure()),
+      );
+
+      await pumpWidget(tester);
+
+      await tester.pumpAndSettle();
+      expect(find.text('An unknown exception occurred.'), findsOneWidget);
+    });
+    testWidgets('login screen have error message snack bar', (tester) async {
+      when(() => loginCubit.stream).thenAnswer(
+        (_) => Stream.fromIterable([
+          const LoginFormState(status: FormzStatus.submissionInProgress),
+          const LoginFormState(
+            status: FormzStatus.submissionFailure,
+            loginFailure: LoginWithEmailAndPasswordFailure(
+              code: LoginWithEmailAndPasswordError.invalidEmail(),
+            ),
+          ),
+        ]),
+      );
+      when(() => loginCubit.state).thenReturn(
         const LoginFormState(
-          status: FormzStatus.submissionFailure,
           loginFailure: LoginWithEmailAndPasswordFailure(
             code: LoginWithEmailAndPasswordError.invalidEmail(),
           ),
         ),
-      ]),
-    );
-    when(() => loginCubit.state).thenReturn(
-      const LoginFormState(
-        loginFailure: LoginWithEmailAndPasswordFailure(
-          code: LoginWithEmailAndPasswordError.invalidEmail(),
-        ),
-      ),
-    );
+      );
 
-    await tester.pumpWidget(
-      TestApp(
-        providers: providers,
-        router: router,
-        dynamicLinks: mockFirebaseDynamicLinks,
-      ),
-    );
-    await tester.pumpAndSettle();
+      await pumpWidget(tester);
+      await tester.pumpAndSettle();
 
-    expect(find.text('Email is not valid or badly formatted.'), findsOneWidget);
+      expect(
+        find.text('Email is not valid or badly formatted.'),
+        findsOneWidget,
+      );
+    });
   });
 
   group('calls', () {
     setUp(() {
-      firebaseDynamicLinks = MockFirebaseDynamicLinks();
-      when(() => firebaseDynamicLinks.onLink).thenAnswer(
-        (_) => const Stream.empty(),
-      );
       when(() => loginCubit.stream).thenAnswer(
         (_) => Stream.fromIterable([
           const LoginFormState(status: FormzStatus.submissionInProgress),
@@ -206,13 +159,7 @@ void main() {
       (tester) async {
         when(() => loginCubit.state).thenReturn(const LoginFormState());
 
-        await tester.pumpWidget(
-          TestApp(
-            providers: providers,
-            router: router,
-            dynamicLinks: firebaseDynamicLinks,
-          ),
-        );
+        await pumpWidget(tester);
 
         await tester.enterText(find.byKey(passwordInputKey), testPassword);
         verify(() => loginCubit.onPasswordChanged(testPassword)).called(1);
@@ -226,13 +173,7 @@ void main() {
 
       when(loginCubit.onLoginButtonClicked).thenAnswer((_) async {});
 
-      await tester.pumpWidget(
-        TestApp(
-          providers: providers,
-          router: router,
-          dynamicLinks: firebaseDynamicLinks,
-        ),
-      );
+      await pumpWidget(tester);
 
       await tester.tap(find.byKey(loginButtonKey));
       verify(loginCubit.onLoginButtonClicked).called(1);
@@ -245,13 +186,7 @@ void main() {
 
       when(loginCubit.loginWithGoogle).thenAnswer((_) async {});
 
-      await tester.pumpWidget(
-        TestApp(
-          providers: providers,
-          router: router,
-          dynamicLinks: firebaseDynamicLinks,
-        ),
-      );
+      await pumpWidget(tester);
 
       await tester.tap(find.byKey(loginWithGoogleButtonKey));
       verify(loginCubit.loginWithGoogle).called(1);
@@ -261,13 +196,7 @@ void main() {
       (tester) async {
         when(() => loginCubit.state).thenReturn(const LoginFormState());
 
-        await tester.pumpWidget(
-          TestApp(
-            providers: providers,
-            router: router,
-            dynamicLinks: firebaseDynamicLinks,
-          ),
-        );
+        await pumpWidget(tester);
 
         await tester.enterText(find.byKey(emailInputKey), testEmail);
         verify(() => loginCubit.onEmailChanged(testEmail)).called(1);
@@ -276,10 +205,6 @@ void main() {
   });
   group('renders', () {
     setUp(() {
-      firebaseDynamicLinks = MockFirebaseDynamicLinks();
-      when(() => firebaseDynamicLinks.onLink).thenAnswer(
-        (_) => const Stream.empty(),
-      );
       when(() => loginCubit.stream).thenAnswer(
         (_) => Stream.fromIterable([
           const LoginFormState(status: FormzStatus.submissionInProgress),
@@ -304,13 +229,7 @@ void main() {
           ),
         ]),
       );
-      await tester.pumpWidget(
-        TestApp(
-          providers: providers,
-          router: router,
-          dynamicLinks: firebaseDynamicLinks,
-        ),
-      );
+      await pumpWidget(tester);
       await tester.pump();
       expect(find.text('An unknown exception occurred.'), findsOneWidget);
     });
@@ -329,13 +248,7 @@ void main() {
         ]),
       );
 
-      await tester.pumpWidget(
-        TestApp(
-          providers: providers,
-          router: router,
-          dynamicLinks: firebaseDynamicLinks,
-        ),
-      );
+      await pumpWidget(tester);
       await tester.pump();
 
       expect(
@@ -346,62 +259,37 @@ void main() {
   });
 
   group('navigates', () {
-    setUp(() {
-      firebaseDynamicLinks = MockFirebaseDynamicLinks();
-      when(() => firebaseDynamicLinks.onLink).thenAnswer(
-        (_) => const Stream.empty(),
-      );
-      when(() => loginCubit.stream).thenAnswer(
-        (_) => Stream.fromIterable([
-          const LoginFormState(status: FormzStatus.submissionInProgress),
-          const LoginFormState(
-            status: FormzStatus.submissionFailure,
-            loginFailure: LoginWithEmailAndPasswordFailure(
-              code: LoginWithEmailAndPasswordError.invalidEmail(),
-            ),
-          ),
-        ]),
-      );
-    });
-    testWidgets('to RegisterScreen when [register] is pressed', (tester) async {
-      when(() => loginCubit.state).thenReturn(const LoginFormState());
-
-      await tester.pumpWidget(
-        TestApp(
-          providers: providers,
-          router: router,
-          dynamicLinks: firebaseDynamicLinks,
-        ),
-      );
-
-      await tester.tap(find.byKey(registerButtonKey));
-      await tester.pumpAndSettle();
-      expect(find.byType(RegisterScreen), findsOneWidget);
-    });
-    testWidgets('to ForgotPasswordScreen when [forgot password] is pressed',
-        (tester) async {
-      when(() => loginCubit.state).thenReturn(const LoginFormState());
-
-      await tester.pumpWidget(
-        TestApp(
-          providers: providers,
-          router: router,
-          dynamicLinks: firebaseDynamicLinks,
-        ),
-      );
+    testWidgets('''
+(push) to forgot password screen when user press text button 
+and can navigates back to login screen
+    ''', (tester) async {
+      await pumpWidget(tester);
 
       await tester.tap(find.byKey(forgotPasswordButtonKey));
       await tester.pumpAndSettle();
-      expect(find.byType(ForgotPasswordScreen), findsOneWidget);
+
+      expect(find.byKey(mockForgotPasswordScreenKey), findsOneWidget);
+      expect(find.byType(AppBar), findsOneWidget);
+      expect(find.byType(BackButton), findsOneWidget);
+    });
+
+    testWidgets('''
+(go) to RegisterScreen when [register] is pressed
+and can NOT navigates back to login screen
+    ''', (tester) async {
+      await pumpWidget(tester);
+
+      await tester.tap(find.byKey(registerButtonKey));
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(mockRegisterScreenKey), findsOneWidget);
+      expect(find.byType(AppBar), findsOneWidget);
+      expect(find.byType(BackButton), findsNothing);
     });
   });
 
   group('LoginPage', () {
     setUp(() {
-      firebaseDynamicLinks = MockFirebaseDynamicLinks();
-      when(() => firebaseDynamicLinks.onLink).thenAnswer(
-        (_) => const Stream.empty(),
-      );
       when(() => loginCubit.stream).thenAnswer(
         (_) => Stream.fromIterable([
           const LoginFormState(status: FormzStatus.submissionInProgress),
@@ -423,21 +311,8 @@ void main() {
       );
     });
     testWidgets('renders a LoginForm', (tester) async {
-      router = mockRouter(
-        testingRoute: [
-          GoRoute(path: '/', builder: (_, __) => const LoginProvider()),
-        ],
-      );
-      await tester.pumpWidget(
-        TestApp(
-          providers: providers,
-          router: router,
-          dynamicLinks: firebaseDynamicLinks,
-        ),
-      );
+      await pumpWidget(tester);
       expect(find.byType(LoginScreen), findsOneWidget);
     });
   });
 }
-
-class MockEmailInput extends Mock implements EmailInput {}
