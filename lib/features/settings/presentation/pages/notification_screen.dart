@@ -1,3 +1,4 @@
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/presentation/widgets/default_app_bar.dart';
@@ -17,7 +18,7 @@ class NotificationScreen extends StatelessWidget {
         );
 
     return Scaffold(
-      appBar: const DefaultAppBar(title: 'Notification'),
+      appBar: DefaultAppBar(title: context.l10n.notification),
       body: Column(
         children: [
           SwitchListTile.adaptive(

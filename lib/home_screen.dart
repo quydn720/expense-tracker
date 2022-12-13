@@ -1,5 +1,6 @@
-import 'package:expense_tracker/features/transaction/transaction_overview/presentation/pages/recent_transactions.dart';
+import 'package:expense_tracker/features/transaction/transaction_overview/presentation/widgets/recent_transactions.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/routes/app_scaffold.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final color = Theme.of(context).colorScheme;
+    final l10n = context.l10n;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -44,20 +46,20 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                r'Account Balance: $400',
+                '${l10n.account_balance}: \$400',
                 style: textTheme.headline2?.copyWith(color: color.onBackground),
               ),
               Row(
                 children: [
                   Text(
-                    r'Income: $1000',
+                    '${l10n.income}: \$1000',
                     style: textTheme.headline6?.copyWith(
                       color: color.onSurfaceVariant,
                     ),
                   ),
                   const SizedBox(width: 40),
                   Text(
-                    r'Expense: $600',
+                    '${l10n.income}: \$600',
                     style: textTheme.headline6?.copyWith(
                       color: color.onSurfaceVariant,
                     ),
@@ -67,7 +69,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 16),
               SizedBox(
                 height: 48,
-                child: Text('Spend Frequency', style: textTheme.headline6),
+                child: Text(l10n.spend_frequency, style: textTheme.headline6),
               ),
               const SizedBox(height: 8),
               const SizedBox(height: 180, child: _LineChart()),
@@ -79,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Recent Transactions', style: textTheme.headline6),
+                    Text(l10n.recent_transactions, style: textTheme.headline6),
                     GestureDetector(
                       key: seeAllTransactionButtonKey,
                       onTap: () {
@@ -87,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                       },
                       child: Chip(
                         label: Text(
-                          'See all',
+                          l10n.see_all,
                           style: textTheme.bodyText2?.copyWith(
                             color: Theme.of(context).primaryColor,
                           ),
@@ -97,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const RecentlyTransactions(),
+              const RecentTransactions(),
             ],
           ),
         ),

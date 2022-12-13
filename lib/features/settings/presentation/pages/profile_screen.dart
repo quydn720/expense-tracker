@@ -1,5 +1,6 @@
 import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,13 +12,13 @@ const moveToAccountScreenButtonKey = Key('profileScreen_moveToAccount_button');
 const moveToSettingScreenButtonKey = Key('profileScreen_moveToSetting_button');
 const moveToExportDataScreenButtonKey =
     Key('profileScreen_moveToExportData_button');
-    
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
       body: Padding(
@@ -38,21 +39,21 @@ class ProfileScreen extends StatelessWidget {
                     key: moveToAccountScreenButtonKey,
                     iconData: FontAwesomeIcons.wallet,
                     onTap: () => context.go('/profile/account'),
-                    title: 'Account',
+                    title: l10n.account,
                   ),
                   const Divider(),
                   _ProfileTile(
                     key: moveToSettingScreenButtonKey,
                     iconData: FontAwesomeIcons.gear,
                     onTap: () => context.push('/setting'),
-                    title: 'Settings',
+                    title: l10n.settings,
                   ),
                   const Divider(),
                   _ProfileTile(
                     key: moveToExportDataScreenButtonKey,
                     iconData: FontAwesomeIcons.arrowUpFromBracket,
                     onTap: () => context.go('/profile/export-data'),
-                    title: 'Export Data',
+                    title: l10n.exportData,
                   ),
                   const Divider(),
                   _ProfileTile(
@@ -66,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                         },
                       );
                     },
-                    title: 'Log out',
+                    title: l10n.logout,
                   ),
                 ],
               ),
@@ -164,6 +165,7 @@ class _LogoutBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final l10n = context.l10n;
 
     void logout() {
       return context.read<AuthenticationBloc>().add(const LogoutRequested());
@@ -179,7 +181,7 @@ class _LogoutBottomSheet extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                'Logout?',
+                l10n.logout,
                 style: textTheme.titleMedium
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
@@ -187,7 +189,7 @@ class _LogoutBottomSheet extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                'Are you sure you want to logout?',
+                l10n.logout_confirmation,
                 style: textTheme.bodyLarge?.copyWith(color: Colors.grey),
               ),
             ),
@@ -202,14 +204,14 @@ class _LogoutBottomSheet extends StatelessWidget {
                       foregroundColor: Theme.of(context).primaryColor,
                     ),
                     onPressed: Navigator.of(context).pop,
-                    child: const Text('No'),
+                    child: Text(l10n.no_str),
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: logout,
-                    child: const Text('Yes'),
+                    child: Text(l10n.yes_str),
                   ),
                 ),
               ],

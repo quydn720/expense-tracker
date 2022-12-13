@@ -27,7 +27,7 @@ class FirebaseTransactionRepository implements ITransactionRepository {
   }
 
   @override
-  Stream<List<TransactionEntity>> watchTransactions() {
+  Stream<List<TransactionEntity>> watchTransactions({String? category}) {
     // TODO: implement watchTransactions
     throw UnimplementedError();
   }

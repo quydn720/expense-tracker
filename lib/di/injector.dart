@@ -1,8 +1,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firebase;
-import 'package:drift/drift.dart';
 import 'package:expense_tracker/common/cache/drift_database.dart';
-import 'package:expense_tracker/features/transaction/data/repositories/fake_transaction_repository.dart';
 import 'package:expense_tracker/features/transaction/data/repositories/firebase_transaction_repository.dart';
 import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
 
@@ -72,10 +70,10 @@ abstract class DevAppLocalPackageModule {
   @lazySingleton
   IAuthenticationRepository getProd() => AuthenticationRepository();
 
-  @dev
-  @lazySingleton
-  ITransactionRepository getTransactionRepoDev() =>
-      FakeTransactionRepository([]);
+  // @dev
+  // @lazySingleton
+  // ITransactionRepository getTransactionRepoDev() =>
+  //     FakeTransactionRepository([]);
 
   @prod
   @lazySingleton

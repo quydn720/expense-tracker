@@ -37,7 +37,7 @@ void main() {
   setUp(() {
     transactionBloc = MockTransactionBloc();
     when(() => transactionBloc.state).thenReturn(
-      const TransactionState.initial(),
+      const TransactionState.loading(),
     );
     when(() => transactionBloc.stream).thenAnswer((_) => const Stream.empty());
   });

@@ -216,34 +216,34 @@ class $CategoriesTable extends Categories
 
 class Transaction extends DataClass implements Insertable<Transaction> {
   final String id;
-  final String name;
+  final String categoryName;
   final String walletId;
   final String? description;
   final String image;
   final double amount;
-  final DateTime transactionCreatedAt;
+  final DateTime dateCreated;
   final bool isRepeated;
   const Transaction(
       {required this.id,
-      required this.name,
+      required this.categoryName,
       required this.walletId,
       this.description,
       required this.image,
       required this.amount,
-      required this.transactionCreatedAt,
+      required this.dateCreated,
       required this.isRepeated});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
-    map['name'] = Variable<String>(name);
+    map['category_name'] = Variable<String>(categoryName);
     map['wallet_id'] = Variable<String>(walletId);
     if (!nullToAbsent || description != null) {
       map['description'] = Variable<String>(description);
     }
     map['image'] = Variable<String>(image);
     map['amount'] = Variable<double>(amount);
-    map['transaction_created_at'] = Variable<DateTime>(transactionCreatedAt);
+    map['date_created'] = Variable<DateTime>(dateCreated);
     map['is_repeated'] = Variable<bool>(isRepeated);
     return map;
   }
@@ -251,14 +251,14 @@ class Transaction extends DataClass implements Insertable<Transaction> {
   TransactionsCompanion toCompanion(bool nullToAbsent) {
     return TransactionsCompanion(
       id: Value(id),
-      name: Value(name),
+      categoryName: Value(categoryName),
       walletId: Value(walletId),
       description: description == null && nullToAbsent
           ? const Value.absent()
           : Value(description),
       image: Value(image),
       amount: Value(amount),
-      transactionCreatedAt: Value(transactionCreatedAt),
+      dateCreated: Value(dateCreated),
       isRepeated: Value(isRepeated),
     );
   }
@@ -268,13 +268,12 @@ class Transaction extends DataClass implements Insertable<Transaction> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Transaction(
       id: serializer.fromJson<String>(json['id']),
-      name: serializer.fromJson<String>(json['name']),
+      categoryName: serializer.fromJson<String>(json['categoryName']),
       walletId: serializer.fromJson<String>(json['walletId']),
       description: serializer.fromJson<String?>(json['description']),
       image: serializer.fromJson<String>(json['image']),
       amount: serializer.fromJson<double>(json['amount']),
-      transactionCreatedAt:
-          serializer.fromJson<DateTime>(json['transactionCreatedAt']),
+      dateCreated: serializer.fromJson<DateTime>(json['dateCreated']),
       isRepeated: serializer.fromJson<bool>(json['isRepeated']),
     );
   }
@@ -283,142 +282,141 @@ class Transaction extends DataClass implements Insertable<Transaction> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
-      'name': serializer.toJson<String>(name),
+      'categoryName': serializer.toJson<String>(categoryName),
       'walletId': serializer.toJson<String>(walletId),
       'description': serializer.toJson<String?>(description),
       'image': serializer.toJson<String>(image),
       'amount': serializer.toJson<double>(amount),
-      'transactionCreatedAt': serializer.toJson<DateTime>(transactionCreatedAt),
+      'dateCreated': serializer.toJson<DateTime>(dateCreated),
       'isRepeated': serializer.toJson<bool>(isRepeated),
     };
   }
 
   Transaction copyWith(
           {String? id,
-          String? name,
+          String? categoryName,
           String? walletId,
           Value<String?> description = const Value.absent(),
           String? image,
           double? amount,
-          DateTime? transactionCreatedAt,
+          DateTime? dateCreated,
           bool? isRepeated}) =>
       Transaction(
         id: id ?? this.id,
-        name: name ?? this.name,
+        categoryName: categoryName ?? this.categoryName,
         walletId: walletId ?? this.walletId,
         description: description.present ? description.value : this.description,
         image: image ?? this.image,
         amount: amount ?? this.amount,
-        transactionCreatedAt: transactionCreatedAt ?? this.transactionCreatedAt,
+        dateCreated: dateCreated ?? this.dateCreated,
         isRepeated: isRepeated ?? this.isRepeated,
       );
   @override
   String toString() {
     return (StringBuffer('Transaction(')
           ..write('id: $id, ')
-          ..write('name: $name, ')
+          ..write('categoryName: $categoryName, ')
           ..write('walletId: $walletId, ')
           ..write('description: $description, ')
           ..write('image: $image, ')
           ..write('amount: $amount, ')
-          ..write('transactionCreatedAt: $transactionCreatedAt, ')
+          ..write('dateCreated: $dateCreated, ')
           ..write('isRepeated: $isRepeated')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, name, walletId, description, image,
-      amount, transactionCreatedAt, isRepeated);
+  int get hashCode => Object.hash(id, categoryName, walletId, description,
+      image, amount, dateCreated, isRepeated);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is Transaction &&
           other.id == this.id &&
-          other.name == this.name &&
+          other.categoryName == this.categoryName &&
           other.walletId == this.walletId &&
           other.description == this.description &&
           other.image == this.image &&
           other.amount == this.amount &&
-          other.transactionCreatedAt == this.transactionCreatedAt &&
+          other.dateCreated == this.dateCreated &&
           other.isRepeated == this.isRepeated);
 }
 
 class TransactionsCompanion extends UpdateCompanion<Transaction> {
   final Value<String> id;
-  final Value<String> name;
+  final Value<String> categoryName;
   final Value<String> walletId;
   final Value<String?> description;
   final Value<String> image;
   final Value<double> amount;
-  final Value<DateTime> transactionCreatedAt;
+  final Value<DateTime> dateCreated;
   final Value<bool> isRepeated;
   const TransactionsCompanion({
     this.id = const Value.absent(),
-    this.name = const Value.absent(),
+    this.categoryName = const Value.absent(),
     this.walletId = const Value.absent(),
     this.description = const Value.absent(),
     this.image = const Value.absent(),
     this.amount = const Value.absent(),
-    this.transactionCreatedAt = const Value.absent(),
+    this.dateCreated = const Value.absent(),
     this.isRepeated = const Value.absent(),
   });
   TransactionsCompanion.insert({
     required String id,
-    required String name,
+    required String categoryName,
     required String walletId,
     this.description = const Value.absent(),
     required String image,
     required double amount,
-    required DateTime transactionCreatedAt,
+    required DateTime dateCreated,
     required bool isRepeated,
   })  : id = Value(id),
-        name = Value(name),
+        categoryName = Value(categoryName),
         walletId = Value(walletId),
         image = Value(image),
         amount = Value(amount),
-        transactionCreatedAt = Value(transactionCreatedAt),
+        dateCreated = Value(dateCreated),
         isRepeated = Value(isRepeated);
   static Insertable<Transaction> custom({
     Expression<String>? id,
-    Expression<String>? name,
+    Expression<String>? categoryName,
     Expression<String>? walletId,
     Expression<String>? description,
     Expression<String>? image,
     Expression<double>? amount,
-    Expression<DateTime>? transactionCreatedAt,
+    Expression<DateTime>? dateCreated,
     Expression<bool>? isRepeated,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
-      if (name != null) 'name': name,
+      if (categoryName != null) 'category_name': categoryName,
       if (walletId != null) 'wallet_id': walletId,
       if (description != null) 'description': description,
       if (image != null) 'image': image,
       if (amount != null) 'amount': amount,
-      if (transactionCreatedAt != null)
-        'transaction_created_at': transactionCreatedAt,
+      if (dateCreated != null) 'date_created': dateCreated,
       if (isRepeated != null) 'is_repeated': isRepeated,
     });
   }
 
   TransactionsCompanion copyWith(
       {Value<String>? id,
-      Value<String>? name,
+      Value<String>? categoryName,
       Value<String>? walletId,
       Value<String?>? description,
       Value<String>? image,
       Value<double>? amount,
-      Value<DateTime>? transactionCreatedAt,
+      Value<DateTime>? dateCreated,
       Value<bool>? isRepeated}) {
     return TransactionsCompanion(
       id: id ?? this.id,
-      name: name ?? this.name,
+      categoryName: categoryName ?? this.categoryName,
       walletId: walletId ?? this.walletId,
       description: description ?? this.description,
       image: image ?? this.image,
       amount: amount ?? this.amount,
-      transactionCreatedAt: transactionCreatedAt ?? this.transactionCreatedAt,
+      dateCreated: dateCreated ?? this.dateCreated,
       isRepeated: isRepeated ?? this.isRepeated,
     );
   }
@@ -429,8 +427,8 @@ class TransactionsCompanion extends UpdateCompanion<Transaction> {
     if (id.present) {
       map['id'] = Variable<String>(id.value);
     }
-    if (name.present) {
-      map['name'] = Variable<String>(name.value);
+    if (categoryName.present) {
+      map['category_name'] = Variable<String>(categoryName.value);
     }
     if (walletId.present) {
       map['wallet_id'] = Variable<String>(walletId.value);
@@ -444,9 +442,8 @@ class TransactionsCompanion extends UpdateCompanion<Transaction> {
     if (amount.present) {
       map['amount'] = Variable<double>(amount.value);
     }
-    if (transactionCreatedAt.present) {
-      map['transaction_created_at'] =
-          Variable<DateTime>(transactionCreatedAt.value);
+    if (dateCreated.present) {
+      map['date_created'] = Variable<DateTime>(dateCreated.value);
     }
     if (isRepeated.present) {
       map['is_repeated'] = Variable<bool>(isRepeated.value);
@@ -458,12 +455,12 @@ class TransactionsCompanion extends UpdateCompanion<Transaction> {
   String toString() {
     return (StringBuffer('TransactionsCompanion(')
           ..write('id: $id, ')
-          ..write('name: $name, ')
+          ..write('categoryName: $categoryName, ')
           ..write('walletId: $walletId, ')
           ..write('description: $description, ')
           ..write('image: $image, ')
           ..write('amount: $amount, ')
-          ..write('transactionCreatedAt: $transactionCreatedAt, ')
+          ..write('dateCreated: $dateCreated, ')
           ..write('isRepeated: $isRepeated')
           ..write(')'))
         .toString();
@@ -481,11 +478,14 @@ class $TransactionsTable extends Transactions
   late final GeneratedColumn<String> id = GeneratedColumn<String>(
       'id', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _nameMeta = const VerificationMeta('name');
+  final VerificationMeta _categoryNameMeta =
+      const VerificationMeta('categoryName');
   @override
-  late final GeneratedColumn<String> name = GeneratedColumn<String>(
-      'name', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+  late final GeneratedColumn<String> categoryName = GeneratedColumn<String>(
+      'category_name', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: true,
+      defaultConstraints: 'REFERENCES categories (name)');
   final VerificationMeta _walletIdMeta = const VerificationMeta('walletId');
   @override
   late final GeneratedColumn<String> walletId = GeneratedColumn<String>(
@@ -507,12 +507,12 @@ class $TransactionsTable extends Transactions
   late final GeneratedColumn<double> amount = GeneratedColumn<double>(
       'amount', aliasedName, false,
       type: DriftSqlType.double, requiredDuringInsert: true);
-  final VerificationMeta _transactionCreatedAtMeta =
-      const VerificationMeta('transactionCreatedAt');
+  final VerificationMeta _dateCreatedMeta =
+      const VerificationMeta('dateCreated');
   @override
-  late final GeneratedColumn<DateTime> transactionCreatedAt =
-      GeneratedColumn<DateTime>('transaction_created_at', aliasedName, false,
-          type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  late final GeneratedColumn<DateTime> dateCreated = GeneratedColumn<DateTime>(
+      'date_created', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
   final VerificationMeta _isRepeatedMeta = const VerificationMeta('isRepeated');
   @override
   late final GeneratedColumn<bool> isRepeated = GeneratedColumn<bool>(
@@ -523,12 +523,12 @@ class $TransactionsTable extends Transactions
   @override
   List<GeneratedColumn> get $columns => [
         id,
-        name,
+        categoryName,
         walletId,
         description,
         image,
         amount,
-        transactionCreatedAt,
+        dateCreated,
         isRepeated
       ];
   @override
@@ -545,11 +545,13 @@ class $TransactionsTable extends Transactions
     } else if (isInserting) {
       context.missing(_idMeta);
     }
-    if (data.containsKey('name')) {
+    if (data.containsKey('category_name')) {
       context.handle(
-          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
+          _categoryNameMeta,
+          categoryName.isAcceptableOrUnknown(
+              data['category_name']!, _categoryNameMeta));
     } else if (isInserting) {
-      context.missing(_nameMeta);
+      context.missing(_categoryNameMeta);
     }
     if (data.containsKey('wallet_id')) {
       context.handle(_walletIdMeta,
@@ -575,13 +577,13 @@ class $TransactionsTable extends Transactions
     } else if (isInserting) {
       context.missing(_amountMeta);
     }
-    if (data.containsKey('transaction_created_at')) {
+    if (data.containsKey('date_created')) {
       context.handle(
-          _transactionCreatedAtMeta,
-          transactionCreatedAt.isAcceptableOrUnknown(
-              data['transaction_created_at']!, _transactionCreatedAtMeta));
+          _dateCreatedMeta,
+          dateCreated.isAcceptableOrUnknown(
+              data['date_created']!, _dateCreatedMeta));
     } else if (isInserting) {
-      context.missing(_transactionCreatedAtMeta);
+      context.missing(_dateCreatedMeta);
     }
     if (data.containsKey('is_repeated')) {
       context.handle(
@@ -595,15 +597,15 @@ class $TransactionsTable extends Transactions
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {name};
+  Set<GeneratedColumn> get $primaryKey => {id};
   @override
   Transaction map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Transaction(
       id: attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
-      name: attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
+      categoryName: attachedDatabase.options.types
+          .read(DriftSqlType.string, data['${effectivePrefix}category_name'])!,
       walletId: attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}wallet_id'])!,
       description: attachedDatabase.options.types
@@ -612,9 +614,8 @@ class $TransactionsTable extends Transactions
           .read(DriftSqlType.string, data['${effectivePrefix}image'])!,
       amount: attachedDatabase.options.types
           .read(DriftSqlType.double, data['${effectivePrefix}amount'])!,
-      transactionCreatedAt: attachedDatabase.options.types.read(
-          DriftSqlType.dateTime,
-          data['${effectivePrefix}transaction_created_at'])!,
+      dateCreated: attachedDatabase.options.types
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}date_created'])!,
       isRepeated: attachedDatabase.options.types
           .read(DriftSqlType.bool, data['${effectivePrefix}is_repeated'])!,
     );

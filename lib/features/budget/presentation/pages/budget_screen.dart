@@ -1,3 +1,4 @@
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import '../../domain/entities/budget.dart';
 
@@ -20,7 +21,7 @@ class BudgetScreen extends StatelessWidget {
             // BudgetTile(budget: Budget('id', 500, 20, categories[3])),
             ElevatedButton(
               onPressed: () {},
-              child: const Text('Create a budget'),
+              child: Text(context.l10n.create_budget),
             ),
           ],
         ),

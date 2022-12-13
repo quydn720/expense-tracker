@@ -22,8 +22,9 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     TransactionsSubscriptionRequested event,
     Emitter<TransactionState> emit,
   ) async {
+    await Future<void>.delayed(const Duration(seconds: 2));
     await emit.forEach<List<TransactionEntity>>(
-      _repository.watchTransactions(),
+      _repository.watchTransactions(category: 'Food'),
       onData: (trans) {
         return TransactionsLoaded(transactions: trans);
       },

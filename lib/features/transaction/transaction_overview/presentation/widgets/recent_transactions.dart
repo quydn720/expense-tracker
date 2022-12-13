@@ -5,16 +5,13 @@ import 'package:go_router/go_router.dart';
 
 import '../bloc/transaction_bloc.dart';
 
-class RecentlyTransactions extends StatelessWidget {
-  const RecentlyTransactions({super.key});
+class RecentTransactions extends StatelessWidget {
+  const RecentTransactions({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TransactionBloc, TransactionState>(
       builder: (context, state) {
-        if (state is TransactionsInitial) {
-          return const Text('Initital');
-        }
         if (state is TransactionsLoading) {
           return const Center(child: CircularProgressIndicator());
         }

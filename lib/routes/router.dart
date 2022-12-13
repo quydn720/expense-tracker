@@ -25,6 +25,7 @@ import '../features/settings/presentation/pages/language_screen.dart';
 import '../features/settings/presentation/pages/notification_screen.dart';
 import '../features/settings/presentation/pages/security_screen.dart';
 import '../features/settings/presentation/pages/theme_screen.dart';
+import '../presentations/pages/detail/transaction_detail.dart';
 import 'app_scaffold.dart';
 import 'fade_transistion_page.dart';
 
@@ -58,17 +59,17 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
           ),
           key: _scaffoldKey,
         ),
-        // routes: [
-        //   GoRoute(
-        //     path: ':transactionId',
-        //     builder: (_, state) {
-        //       // final id = state.params['transactionId']!;
-        //       return TransactionDetailPage(
-        //         transaction: state.extra! as Transaction,
-        //       );
-        //     },
-        //   ),
-        // ],
+        routes: [
+          GoRoute(
+            path: ':transactionId',
+            builder: (_, state) {
+              // final id = state.params['transactionId']!;
+              return TransactionDetailPage(
+                transaction: state.extra! as TransactionEntity,
+              );
+            },
+          ),
+        ],
       ),
       GoRoute(
         path: '/reports',

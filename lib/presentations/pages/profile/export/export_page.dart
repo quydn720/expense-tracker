@@ -1,3 +1,4 @@
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
@@ -18,7 +19,7 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(title: 'Export'),
+      appBar: DefaultAppBar(title: context.l10n.exportData),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(kMediumPadding),
@@ -61,16 +62,18 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
                   ],
                 ),
               ),
-              ElevatedButton(
-                child: const Text('Export'),
+              ElevatedButton.icon(
+                label: Text(context.l10n.exportData),
                 onPressed: () {
-                  // TODO(quy): Bloc add Send file to email
                   Navigator.pushReplacementNamed(
                     context,
                     ExportDataPromptPage.routeName,
                   );
                 },
-                // icon: Image.asset('assets/icons/download.png', color: kLight100),
+                icon: Image.asset(
+                  'assets/icons/download.png',
+                  color: kLight100,
+                ),
               ),
             ],
           ),

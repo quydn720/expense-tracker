@@ -11,15 +11,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
+  String get logout => 'Logout';
+
+  @override
+  String get logout_confirmation => 'Are you sure you want to logout?';
+
+  @override
+  String get yes_str => 'Yes';
+
+  @override
+  String get no_str => 'No';
+
+  @override
   String get authError_invalidEmail => 'Email is not valid or badly formatted.';
 
   @override
-  String get authError_userDisabled =>
-      'This user has been disabled. Please contact support for help.';
+  String get authError_userDisabled => 'This user has been disabled. Please contact support for help.';
 
   @override
-  String get authError_userNotFound =>
-      'Email is not found, please create an account.';
+  String get authError_userNotFound => 'Email is not found, please create an account.';
 
   @override
   String get authError_wrongPassword => 'Incorrect password, please try again.';
@@ -40,8 +50,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forgot_password_title => 'Don\'t worry.';
 
   @override
-  String get forgot_password_instruction =>
-      'Enter your email and we’ll send you a link to reset your password.';
+  String get forgot_password_instruction => 'Enter your email and we’ll send you a link to reset your password.';
 
   @override
   String forgot_password_sent(String email) {
@@ -49,10 +58,22 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get account_balance => 'Account Balance';
+
+  @override
+  String get recent_transactions => 'Recent Transactions';
+
+  @override
+  String get see_all => 'See all';
+
+  @override
+  String get spend_frequency => 'Spend Frequency';
+
+  @override
   String get add_attactment => 'Add attachment';
 
   @override
-  String get description => 'Description';
+  String get note => 'Note';
 
   @override
   String get how_much => 'How much?';
@@ -86,6 +107,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get account => 'Account';
 
   @override
   String get home => 'Home';
@@ -124,6 +148,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings => 'Settings';
 
   @override
+  String get exportData => 'Export Data';
+
+  @override
   String get security => 'Security';
 
   @override
@@ -148,15 +175,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get budget => 'Budget';
 
   @override
-  String get budgetDescription =>
-      'Get notification when you’re budget exceeding the limit';
+  String get create_budget => 'Create new budget';
+
+  @override
+  String get budgetDescription => 'Get notification when you’re budget exceeding the limit';
 
   @override
   String get tipsAndArticles => 'Tips and Articles';
 
   @override
-  String get tipsAndArticlesDescription =>
-      'Small & useful pieces of pratical financial advice';
+  String get tipsAndArticlesDescription => 'Small & useful pieces of pratical financial advice';
 
   @override
   String get about => 'About';

@@ -2,7 +2,7 @@ import 'package:expense_tracker/features/transaction/domain/entities/transaction
 
 abstract class ITransactionRepository {
   List<TransactionEntity> getAllTransaction();
-  Stream<List<TransactionEntity>> watchTransactions();
+  Stream<List<TransactionEntity>> watchTransactions({String? category});
   Future<void> addNewTransaction(TransactionEntity transaction);
   Future<void> deleteTransaction(TransactionEntity transaction);
   Future<void> updateTransaction(TransactionEntity transaction);

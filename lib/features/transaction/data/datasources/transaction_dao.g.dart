@@ -8,4 +8,5 @@ part of 'transaction_dao.dart';
 
 mixin _$TransactionsDaoMixin on DatabaseAccessor<MyDatabase> {
   $TransactionsTable get transactions => attachedDatabase.transactions;
+  $CategoriesTable get categories => attachedDatabase.categories;
 }

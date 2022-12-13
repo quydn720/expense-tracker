@@ -12,9 +12,11 @@ class MediaBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = context.read<EditTransactionCubit>();
+
     return Column(
       children: [
-        const SizedBox(height: 56, child: Center(child: Divider(thickness: 2))),
+        const SizedBox(height: 12),
+        const Divider(thickness: 2),
         Container(
           padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(

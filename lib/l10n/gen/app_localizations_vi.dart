@@ -11,26 +11,34 @@ class AppLocalizationsVi extends AppLocalizations {
   String get login => 'Đăng nhập';
 
   @override
+  String get logout => 'Đăng xuất';
+
+  @override
+  String get logout_confirmation => 'Bạn có muốn đăng xuất không?';
+
+  @override
+  String get yes_str => 'Có';
+
+  @override
+  String get no_str => 'Không';
+
+  @override
   String get authError_invalidEmail => 'Email không đúng định dạng.';
 
   @override
-  String get authError_userDisabled =>
-      'Người dùng này đã bị vô hiệu hóa. Vui lòng liên hệ chúng tôi để được hỗ trợ.';
+  String get authError_userDisabled => 'Người dùng này đã bị vô hiệu hóa. Vui lòng liên hệ chúng tôi để được hỗ trợ.';
 
   @override
-  String get authError_userNotFound =>
-      'Không tìm thấy tài khoản nào với email này, hãy tạo tài khoản mới.';
+  String get authError_userNotFound => 'Không tìm thấy tài khoản nào với email này, hãy tạo tài khoản mới.';
 
   @override
   String get authError_wrongPassword => 'Sai mật khẩu. Mời bạn thử lại.';
 
   @override
-  String get authError_unknownException =>
-      'Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ.';
+  String get authError_unknownException => 'Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ bộ phận hỗ trợ.';
 
   @override
-  String get googleError_userCancelled =>
-      'Hủy quá trình đăng nhập với tài khoản Google';
+  String get googleError_userCancelled => 'Hủy quá trình đăng nhập với tài khoản Google';
 
   @override
   String get forgot_password => 'Quên mật khẩu';
@@ -42,8 +50,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get forgot_password_title => 'Đừng lo lắng.';
 
   @override
-  String get forgot_password_instruction =>
-      'Nhập email của bạn và chúng tôi sẽ gửi link yêu cầu cài đặt mật khẩu mới.';
+  String get forgot_password_instruction => 'Nhập email của bạn và chúng tôi sẽ gửi link yêu cầu cài đặt mật khẩu mới.';
 
   @override
   String forgot_password_sent(String email) {
@@ -51,10 +58,22 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get account_balance => 'Số dư tài khoản';
+
+  @override
+  String get recent_transactions => 'Giao dịch gần đây';
+
+  @override
+  String get see_all => 'Xem tất cả';
+
+  @override
+  String get spend_frequency => 'Báo cáo chi tiêu';
+
+  @override
   String get add_attactment => 'Thêm tệp đính kèm';
 
   @override
-  String get description => 'Description';
+  String get note => 'Ghi chú';
 
   @override
   String get how_much => 'Giá trị giao dịch';
@@ -90,6 +109,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get profile => 'Hồ sơ';
 
   @override
+  String get account => 'Tài khoản thanh toán';
+
+  @override
   String get home => 'Trang chủ';
 
   @override
@@ -99,8 +121,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get language => 'Ngôn ngữ';
 
   @override
-  String get languageError_notSuppported =>
-      'Ứng dụng chưa hỗ trợ ngôn ngữ này. Vui lòng liên hệ bộ phận hỗ trợ để được giúp đỡ.';
+  String get languageError_notSuppported => 'Ứng dụng chưa hỗ trợ ngôn ngữ này. Vui lòng liên hệ bộ phận hỗ trợ để được giúp đỡ.';
 
   @override
   String get language_vietnamese => 'Tiếng Việt';
@@ -127,6 +148,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settings => 'Cài đặt';
 
   @override
+  String get exportData => 'Xuất dữ liệu';
+
+  @override
   String get security => 'Bảo mật';
 
   @override
@@ -151,8 +175,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get budget => 'Ví của bạn';
 
   @override
-  String get budgetDescription =>
-      'Get notification when you’re budget exceeding the limit';
+  String get create_budget => 'Tạo ví mới';
+
+  @override
+  String get budgetDescription => 'Get notification when you’re budget exceeding the limit';
 
   @override
   String get tipsAndArticles => 'Tips and Articles';

@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TransactionState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(List<TransactionEntity> transactions) loaded,
@@ -26,7 +25,6 @@ mixin _$TransactionState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? failure,
     TResult? Function(List<TransactionEntity> transactions)? loaded,
@@ -34,7 +32,6 @@ mixin _$TransactionState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<TransactionEntity> transactions)? loaded,
@@ -43,7 +40,6 @@ mixin _$TransactionState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TransactionsInitial value) initial,
     required TResult Function(TransactionsLoading value) loading,
     required TResult Function(TransactionsFailure value) failure,
     required TResult Function(TransactionsLoaded value) loaded,
@@ -51,7 +47,6 @@ mixin _$TransactionState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionsInitial value)? initial,
     TResult? Function(TransactionsLoading value)? loading,
     TResult? Function(TransactionsFailure value)? failure,
     TResult? Function(TransactionsLoaded value)? loaded,
@@ -59,7 +54,6 @@ mixin _$TransactionState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionsInitial value)? initial,
     TResult Function(TransactionsLoading value)? loading,
     TResult Function(TransactionsFailure value)? failure,
     TResult Function(TransactionsLoaded value)? loaded,
@@ -84,120 +78,6 @@ class _$TransactionStateCopyWithImpl<$Res, $Val extends TransactionState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$TransactionsInitialCopyWith<$Res> {
-  factory _$$TransactionsInitialCopyWith(_$TransactionsInitial value,
-          $Res Function(_$TransactionsInitial) then) =
-      __$$TransactionsInitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$TransactionsInitialCopyWithImpl<$Res>
-    extends _$TransactionStateCopyWithImpl<$Res, _$TransactionsInitial>
-    implements _$$TransactionsInitialCopyWith<$Res> {
-  __$$TransactionsInitialCopyWithImpl(
-      _$TransactionsInitial _value, $Res Function(_$TransactionsInitial) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$TransactionsInitial implements TransactionsInitial {
-  const _$TransactionsInitial();
-
-  @override
-  String toString() {
-    return 'TransactionState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TransactionsInitial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function(List<TransactionEntity> transactions) loaded,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? failure,
-    TResult? Function(List<TransactionEntity> transactions)? loaded,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(List<TransactionEntity> transactions)? loaded,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionsInitial value) initial,
-    required TResult Function(TransactionsLoading value) loading,
-    required TResult Function(TransactionsFailure value) failure,
-    required TResult Function(TransactionsLoaded value) loaded,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionsInitial value)? initial,
-    TResult? Function(TransactionsLoading value)? loading,
-    TResult? Function(TransactionsFailure value)? failure,
-    TResult? Function(TransactionsLoaded value)? loaded,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionsInitial value)? initial,
-    TResult Function(TransactionsLoading value)? loading,
-    TResult Function(TransactionsFailure value)? failure,
-    TResult Function(TransactionsLoaded value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TransactionsInitial implements TransactionState {
-  const factory TransactionsInitial() = _$TransactionsInitial;
 }
 
 /// @nodoc
@@ -238,7 +118,6 @@ class _$TransactionsLoading implements TransactionsLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(List<TransactionEntity> transactions) loaded,
@@ -249,7 +128,6 @@ class _$TransactionsLoading implements TransactionsLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? failure,
     TResult? Function(List<TransactionEntity> transactions)? loaded,
@@ -260,7 +138,6 @@ class _$TransactionsLoading implements TransactionsLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<TransactionEntity> transactions)? loaded,
@@ -275,7 +152,6 @@ class _$TransactionsLoading implements TransactionsLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TransactionsInitial value) initial,
     required TResult Function(TransactionsLoading value) loading,
     required TResult Function(TransactionsFailure value) failure,
     required TResult Function(TransactionsLoaded value) loaded,
@@ -286,7 +162,6 @@ class _$TransactionsLoading implements TransactionsLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionsInitial value)? initial,
     TResult? Function(TransactionsLoading value)? loading,
     TResult? Function(TransactionsFailure value)? failure,
     TResult? Function(TransactionsLoaded value)? loaded,
@@ -297,7 +172,6 @@ class _$TransactionsLoading implements TransactionsLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionsInitial value)? initial,
     TResult Function(TransactionsLoading value)? loading,
     TResult Function(TransactionsFailure value)? failure,
     TResult Function(TransactionsLoaded value)? loaded,
@@ -352,7 +226,6 @@ class _$TransactionsFailure implements TransactionsFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(List<TransactionEntity> transactions) loaded,
@@ -363,7 +236,6 @@ class _$TransactionsFailure implements TransactionsFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? failure,
     TResult? Function(List<TransactionEntity> transactions)? loaded,
@@ -374,7 +246,6 @@ class _$TransactionsFailure implements TransactionsFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<TransactionEntity> transactions)? loaded,
@@ -389,7 +260,6 @@ class _$TransactionsFailure implements TransactionsFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TransactionsInitial value) initial,
     required TResult Function(TransactionsLoading value) loading,
     required TResult Function(TransactionsFailure value) failure,
     required TResult Function(TransactionsLoaded value) loaded,
@@ -400,7 +270,6 @@ class _$TransactionsFailure implements TransactionsFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionsInitial value)? initial,
     TResult? Function(TransactionsLoading value)? loading,
     TResult? Function(TransactionsFailure value)? failure,
     TResult? Function(TransactionsLoaded value)? loaded,
@@ -411,7 +280,6 @@ class _$TransactionsFailure implements TransactionsFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionsInitial value)? initial,
     TResult Function(TransactionsLoading value)? loading,
     TResult Function(TransactionsFailure value)? failure,
     TResult Function(TransactionsLoaded value)? loaded,
@@ -501,7 +369,6 @@ class _$TransactionsLoaded implements TransactionsLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failure,
     required TResult Function(List<TransactionEntity> transactions) loaded,
@@ -512,7 +379,6 @@ class _$TransactionsLoaded implements TransactionsLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? failure,
     TResult? Function(List<TransactionEntity> transactions)? loaded,
@@ -523,7 +389,6 @@ class _$TransactionsLoaded implements TransactionsLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failure,
     TResult Function(List<TransactionEntity> transactions)? loaded,
@@ -538,7 +403,6 @@ class _$TransactionsLoaded implements TransactionsLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TransactionsInitial value) initial,
     required TResult Function(TransactionsLoading value) loading,
     required TResult Function(TransactionsFailure value) failure,
     required TResult Function(TransactionsLoaded value) loaded,
@@ -549,7 +413,6 @@ class _$TransactionsLoaded implements TransactionsLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionsInitial value)? initial,
     TResult? Function(TransactionsLoading value)? loading,
     TResult? Function(TransactionsFailure value)? failure,
     TResult? Function(TransactionsLoaded value)? loaded,
@@ -560,7 +423,6 @@ class _$TransactionsLoaded implements TransactionsLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionsInitial value)? initial,
     TResult Function(TransactionsLoading value)? loading,
     TResult Function(TransactionsFailure value)? failure,
     TResult Function(TransactionsLoaded value)? loaded,

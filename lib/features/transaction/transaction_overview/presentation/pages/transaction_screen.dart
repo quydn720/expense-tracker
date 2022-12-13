@@ -1,9 +1,10 @@
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
+import 'package:expense_tracker/presentations/components/common_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:transaction_repository/transaction_repository.dart';
 
 import '../bloc/transaction_bloc.dart';
 
@@ -25,19 +26,19 @@ class TransactionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return BlocBuilder<TransactionBloc, TransactionState>(
       builder: (context, state) {
-        if (state is TransactionsInitial) {
-          return const Text('Initital');
-        }
         if (state is TransactionsLoading) {
           return const Center(child: CircularProgressIndicator());
         }
+
         final transactionsSuccess = state as TransactionsLoaded;
         return Scaffold(
           appBar: DefaultAppBar(
             elevation: 0,
-            title: 'Transactions',
+            title: l10n.transactions,
             trailings: [
               IconButton(
                 onPressed: () {},
@@ -67,16 +68,16 @@ class TransactionView extends StatelessWidget {
                   ),
                 ),
               ),
-              // ListView.builder(
-              //   shrinkWrap: true,
-              //   physics: const NeverScrollableScrollPhysics(),
-              //   padding: const EdgeInsets.all(8),
-              //   itemBuilder: (context, index) => TransactionDateGroupView(
-              //     transactionDateGroup:
-              //         TransactionDateGroup.fromTransactionList(),
-              //   ),
-              //   itemCount: transactionsSuccess.transactions.length,
-              // ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(8),
+                itemBuilder: (_, index) => TransactionTile(
+                  transaction: transactionsSuccess.transactions[index],
+                  onPress: () {},
+                ),
+                itemCount: transactionsSuccess.transactions.length,
+              ),
             ],
             // ),
           ),

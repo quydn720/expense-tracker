@@ -1,4 +1,5 @@
 import 'package:expense_tracker/gen/assets.gen.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/presentation/widgets/default_app_bar.dart';
@@ -15,7 +16,7 @@ class CurrencyScreen extends StatelessWidget {
         );
 
     return Scaffold(
-      appBar: const DefaultAppBar(title: 'Currency'),
+      appBar: DefaultAppBar(title: context.l10n.currency),
       body: ListView.builder(
         itemBuilder: (_, index) => ListTile(
           title: Text(_currencies[index]['name']!, style: textStyle),

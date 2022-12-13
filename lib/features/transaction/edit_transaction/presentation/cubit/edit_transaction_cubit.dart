@@ -9,6 +9,7 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../usecases/add_transaction_use_case.dart';
 
@@ -19,7 +20,7 @@ part 'edit_transaction_state.dart';
 class EditTransactionCubit extends Cubit<EditTransactionState> {
   EditTransactionCubit(
     this._addTransaction, {
-    @factoryParam this.initialTransaction,
+    this.initialTransaction,
   }) : super(
           (initialTransaction != null)
               ? EditTransactionState(
@@ -75,7 +76,7 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
     emit(state.copyWith(description: description));
   }
 
-  Future<void> newTransactionSubmitted() async {
+  Future<void> submitTransaction() async {
     emit(state.copyWith(status: Status.loading));
     List<String>? images;
 
@@ -84,13 +85,14 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
     }
 
     final transaction = TransactionEntity(
-      id: 'id',
+      id: initialTransaction?.id ?? const Uuid().v4(),
       category: state.category.value!,
       dateCreated: state.date,
       amount: state.amount.value,
       walletId: 'walletId',
       description: state.description,
     );
+
     await _addTransaction.call(transaction);
     emit(state.copyWith(status: Status.success));
   }

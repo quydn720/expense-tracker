@@ -198,7 +198,7 @@ class _SubmitButton extends StatelessWidget {
     final state = context.watch<EditTransactionCubit>().state;
 
     void _submit() {
-      context.read<EditTransactionCubit>().newTransactionSubmitted();
+      context.read<EditTransactionCubit>().submitTransaction();
     }
 
     return ElevatedButton(
@@ -222,7 +222,7 @@ class _DescriptionField extends StatelessWidget {
           horizontal: 12,
           vertical: 24,
         ),
-        hintText: context.l10n.description,
+        hintText: context.l10n.note,
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(16),

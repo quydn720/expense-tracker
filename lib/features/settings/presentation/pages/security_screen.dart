@@ -1,4 +1,5 @@
 import 'package:expense_tracker/gen/assets.gen.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/presentation/widgets/default_app_bar.dart';
@@ -13,7 +14,7 @@ class SecurityScreen extends StatelessWidget {
           color: const Color(0xff0D0E0F),
         );
     return Scaffold(
-      appBar: const DefaultAppBar(title: 'Security'),
+      appBar: DefaultAppBar(title: context.l10n.security),
       body: ListView.builder(
         itemBuilder: (_, index) => ListTile(
           title: Text(

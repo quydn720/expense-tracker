@@ -60,8 +60,7 @@ import 'app_localizations_vi.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -69,8 +68,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,8 +80,7 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -107,6 +104,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login'**
   String get login;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @logout_confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logout_confirmation;
+
+  /// No description provided for @yes_str.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes_str;
+
+  /// No description provided for @no_str.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get no_str;
 
   /// No description provided for @authError_invalidEmail.
   ///
@@ -174,17 +195,41 @@ abstract class AppLocalizations {
   /// **'Check your email {email} and follow the instructions to reset your password'**
   String forgot_password_sent(String email);
 
+  /// No description provided for @account_balance.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Balance'**
+  String get account_balance;
+
+  /// No description provided for @recent_transactions.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Transactions'**
+  String get recent_transactions;
+
+  /// No description provided for @see_all.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get see_all;
+
+  /// No description provided for @spend_frequency.
+  ///
+  /// In en, this message translates to:
+  /// **'Spend Frequency'**
+  String get spend_frequency;
+
   /// No description provided for @add_attactment.
   ///
   /// In en, this message translates to:
   /// **'Add attachment'**
   String get add_attactment;
 
-  /// No description provided for @description.
+  /// No description provided for @note.
   ///
   /// In en, this message translates to:
-  /// **'Description'**
-  String get description;
+  /// **'Note'**
+  String get note;
 
   /// No description provided for @how_much.
   ///
@@ -251,6 +296,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
 
   /// No description provided for @home.
   ///
@@ -324,6 +375,12 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settings;
 
+  /// No description provided for @exportData.
+  ///
+  /// In en, this message translates to:
+  /// **'Export Data'**
+  String get exportData;
+
   /// No description provided for @security.
   ///
   /// In en, this message translates to:
@@ -372,6 +429,12 @@ abstract class AppLocalizations {
   /// **'Budget'**
   String get budget;
 
+  /// No description provided for @create_budget.
+  ///
+  /// In en, this message translates to:
+  /// **'Create new budget'**
+  String get create_budget;
+
   /// No description provided for @budgetDescription.
   ///
   /// In en, this message translates to:
@@ -403,8 +466,7 @@ abstract class AppLocalizations {
   String get help;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -413,25 +475,25 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'vi'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'vi'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en':
-      return AppLocalizationsEn();
-    case 'vi':
-      return AppLocalizationsVi();
+    case 'en': return AppLocalizationsEn();
+    case 'vi': return AppLocalizationsVi();
   }
 
   throw FlutterError(
-      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }
