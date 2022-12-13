@@ -40,7 +40,7 @@ class _TransactionDetail extends StatelessWidget {
         trailings: [
           IconButton(
             onPressed: () {
-              context.read<EditTransactionCubit>();
+              context.read<EditTransactionCubit>().deleted(_transaction);
             },
             icon: const Icon(Icons.garage),
           ),
@@ -102,7 +102,7 @@ class DeleteTransactionBottomSheet extends StatelessWidget {
                 ElevatedButton(
                   child: const Text('Yes'),
                   onPressed: () {
-                    context.read<EditTransactionCubit>().deleted();
+                    // context.read<EditTransactionCubit>().deleted();
 
                     Navigator.pop(context);
                     Navigator.pop(context);

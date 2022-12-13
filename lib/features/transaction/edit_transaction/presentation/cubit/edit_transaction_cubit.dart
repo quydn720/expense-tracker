@@ -19,8 +19,10 @@ part 'edit_transaction_state.dart';
 @injectable
 class EditTransactionCubit extends Cubit<EditTransactionState> {
   EditTransactionCubit(
-    this._addTransaction, {
-    this.initialTransaction,
+    this._addTransaction,
+    this._deleteTransactionUseCase,
+    {
+    @factoryParam this.initialTransaction,
   }) : super(
           (initialTransaction != null)
               ? EditTransactionState(
@@ -35,8 +37,10 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
 
   final TransactionEntity? initialTransaction;
   final AddTransactionUseCase _addTransaction;
+  final DeleteTransactionUseCase _deleteTransactionUseCase;
 
-  Future<void> deleted() async {
+  Future<void> deleted(TransactionEntity transaction) async {
+    await _deleteTransactionUseCase(transaction);
     debugPrint('delete done');
   }
 

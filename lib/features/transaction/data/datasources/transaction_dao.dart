@@ -13,7 +13,9 @@ class TransactionsDao extends DatabaseAccessor<MyDatabase>
     with _$TransactionsDaoMixin {
   TransactionsDao(super.db);
 
-  Future<void> createOrUpdateUser(TransactionsCompanion transaction) async {
+  Future<void> createOrUpdateTransaction(
+    TransactionsCompanion transaction,
+  ) async {
     await into(transactions).insertOnConflictUpdate(transaction);
   }
 
@@ -31,8 +33,6 @@ class TransactionsDao extends DatabaseAccessor<MyDatabase>
 
     if (categoryName != null) {
       query.where(categories.name.equals(categoryName));
-    } else {
-      query.where(categories.name.isNull());
     }
 
     return query.map((row) {
@@ -47,8 +47,10 @@ class TransactionsDao extends DatabaseAccessor<MyDatabase>
     return (select(transactions)..where((t) => t.id.equals(id))).getSingle();
   }
 
-  Future<void> deleteTransaction(String id) async {
-    await (delete(transactions)..where((t) => t.id.equals(id))).go();
+  /// Return 1 if delete successfully
+  Future<int> deleteTransaction(String id) async {
+    final query = delete(transactions)..where((t) => t.id.equals(id));
+    return query.go();
   }
 
   Future<List<Transaction>> getAllTransactions() => select(transactions).get();

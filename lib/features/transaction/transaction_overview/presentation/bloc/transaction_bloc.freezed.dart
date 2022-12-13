@@ -16,49 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TransactionState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function(List<TransactionEntity> transactions) loaded,
-  }) =>
+  List<TransactionEntity> get transactions =>
       throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? failure,
-    TResult? Function(List<TransactionEntity> transactions)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(List<TransactionEntity> transactions)? loaded,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionsLoading value) loading,
-    required TResult Function(TransactionsFailure value) failure,
-    required TResult Function(TransactionsLoaded value) loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionsLoading value)? loading,
-    TResult? Function(TransactionsFailure value)? failure,
-    TResult? Function(TransactionsLoaded value)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionsLoading value)? loading,
-    TResult Function(TransactionsFailure value)? failure,
-    TResult Function(TransactionsLoaded value)? loaded,
-    required TResult orElse(),
-  }) =>
+  TransactionStatus get status => throw _privateConstructorUsedError;
+  String? get category => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
+  String? get sortBy => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TransactionStateCopyWith<TransactionState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +33,13 @@ abstract class $TransactionStateCopyWith<$Res> {
   factory $TransactionStateCopyWith(
           TransactionState value, $Res Function(TransactionState) then) =
       _$TransactionStateCopyWithImpl<$Res, TransactionState>;
+  @useResult
+  $Res call(
+      {List<TransactionEntity> transactions,
+      TransactionStatus status,
+      String? category,
+      String? type,
+      String? sortBy});
 }
 
 /// @nodoc
@@ -78,370 +51,183 @@ class _$TransactionStateCopyWithImpl<$Res, $Val extends TransactionState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transactions = null,
+    Object? status = null,
+    Object? category = freezed,
+    Object? type = freezed,
+    Object? sortBy = freezed,
+  }) {
+    return _then(_value.copyWith(
+      transactions: null == transactions
+          ? _value.transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<TransactionEntity>,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as TransactionStatus,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sortBy: freezed == sortBy
+          ? _value.sortBy
+          : sortBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$TransactionsLoadingCopyWith<$Res> {
-  factory _$$TransactionsLoadingCopyWith(_$TransactionsLoading value,
-          $Res Function(_$TransactionsLoading) then) =
-      __$$TransactionsLoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$TransactionsLoadingCopyWithImpl<$Res>
-    extends _$TransactionStateCopyWithImpl<$Res, _$TransactionsLoading>
-    implements _$$TransactionsLoadingCopyWith<$Res> {
-  __$$TransactionsLoadingCopyWithImpl(
-      _$TransactionsLoading _value, $Res Function(_$TransactionsLoading) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$TransactionsLoading implements TransactionsLoading {
-  const _$TransactionsLoading();
-
+abstract class _$$_TransactionStateCopyWith<$Res>
+    implements $TransactionStateCopyWith<$Res> {
+  factory _$$_TransactionStateCopyWith(
+          _$_TransactionState value, $Res Function(_$_TransactionState) then) =
+      __$$_TransactionStateCopyWithImpl<$Res>;
   @override
-  String toString() {
-    return 'TransactionState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TransactionsLoading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function(List<TransactionEntity> transactions) loaded,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? failure,
-    TResult? Function(List<TransactionEntity> transactions)? loaded,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(List<TransactionEntity> transactions)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionsLoading value) loading,
-    required TResult Function(TransactionsFailure value) failure,
-    required TResult Function(TransactionsLoaded value) loaded,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionsLoading value)? loading,
-    TResult? Function(TransactionsFailure value)? failure,
-    TResult? Function(TransactionsLoaded value)? loaded,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionsLoading value)? loading,
-    TResult Function(TransactionsFailure value)? failure,
-    TResult Function(TransactionsLoaded value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TransactionsLoading implements TransactionState {
-  const factory TransactionsLoading() = _$TransactionsLoading;
-}
-
-/// @nodoc
-abstract class _$$TransactionsFailureCopyWith<$Res> {
-  factory _$$TransactionsFailureCopyWith(_$TransactionsFailure value,
-          $Res Function(_$TransactionsFailure) then) =
-      __$$TransactionsFailureCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$TransactionsFailureCopyWithImpl<$Res>
-    extends _$TransactionStateCopyWithImpl<$Res, _$TransactionsFailure>
-    implements _$$TransactionsFailureCopyWith<$Res> {
-  __$$TransactionsFailureCopyWithImpl(
-      _$TransactionsFailure _value, $Res Function(_$TransactionsFailure) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$TransactionsFailure implements TransactionsFailure {
-  const _$TransactionsFailure();
-
-  @override
-  String toString() {
-    return 'TransactionState.failure()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TransactionsFailure);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function(List<TransactionEntity> transactions) loaded,
-  }) {
-    return failure();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? failure,
-    TResult? Function(List<TransactionEntity> transactions)? loaded,
-  }) {
-    return failure?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(List<TransactionEntity> transactions)? loaded,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionsLoading value) loading,
-    required TResult Function(TransactionsFailure value) failure,
-    required TResult Function(TransactionsLoaded value) loaded,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionsLoading value)? loading,
-    TResult? Function(TransactionsFailure value)? failure,
-    TResult? Function(TransactionsLoaded value)? loaded,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionsLoading value)? loading,
-    TResult Function(TransactionsFailure value)? failure,
-    TResult Function(TransactionsLoaded value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TransactionsFailure implements TransactionState {
-  const factory TransactionsFailure() = _$TransactionsFailure;
-}
-
-/// @nodoc
-abstract class _$$TransactionsLoadedCopyWith<$Res> {
-  factory _$$TransactionsLoadedCopyWith(_$TransactionsLoaded value,
-          $Res Function(_$TransactionsLoaded) then) =
-      __$$TransactionsLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<TransactionEntity> transactions});
+  $Res call(
+      {List<TransactionEntity> transactions,
+      TransactionStatus status,
+      String? category,
+      String? type,
+      String? sortBy});
 }
 
 /// @nodoc
-class __$$TransactionsLoadedCopyWithImpl<$Res>
-    extends _$TransactionStateCopyWithImpl<$Res, _$TransactionsLoaded>
-    implements _$$TransactionsLoadedCopyWith<$Res> {
-  __$$TransactionsLoadedCopyWithImpl(
-      _$TransactionsLoaded _value, $Res Function(_$TransactionsLoaded) _then)
+class __$$_TransactionStateCopyWithImpl<$Res>
+    extends _$TransactionStateCopyWithImpl<$Res, _$_TransactionState>
+    implements _$$_TransactionStateCopyWith<$Res> {
+  __$$_TransactionStateCopyWithImpl(
+      _$_TransactionState _value, $Res Function(_$_TransactionState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? transactions = null,
+    Object? status = null,
+    Object? category = freezed,
+    Object? type = freezed,
+    Object? sortBy = freezed,
   }) {
-    return _then(_$TransactionsLoaded(
+    return _then(_$_TransactionState(
       transactions: null == transactions
           ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionEntity>,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as TransactionStatus,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sortBy: freezed == sortBy
+          ? _value.sortBy
+          : sortBy // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$TransactionsLoaded implements TransactionsLoaded {
-  const _$TransactionsLoaded(
-      {required final List<TransactionEntity> transactions})
+class _$_TransactionState implements _TransactionState {
+  const _$_TransactionState(
+      {final List<TransactionEntity> transactions = const <TransactionEntity>[],
+      this.status = TransactionStatus.initial,
+      this.category,
+      this.type,
+      this.sortBy})
       : _transactions = transactions;
 
   final List<TransactionEntity> _transactions;
   @override
+  @JsonKey()
   List<TransactionEntity> get transactions {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_transactions);
   }
 
   @override
+  @JsonKey()
+  final TransactionStatus status;
+  @override
+  final String? category;
+  @override
+  final String? type;
+  @override
+  final String? sortBy;
+
+  @override
   String toString() {
-    return 'TransactionState.loaded(transactions: $transactions)';
+    return 'TransactionState(transactions: $transactions, status: $status, category: $category, type: $type, sortBy: $sortBy)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TransactionsLoaded &&
+            other is _$_TransactionState &&
             const DeepCollectionEquality()
-                .equals(other._transactions, _transactions));
+                .equals(other._transactions, _transactions) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.sortBy, sortBy) || other.sortBy == sortBy));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_transactions));
+      runtimeType,
+      const DeepCollectionEquality().hash(_transactions),
+      status,
+      category,
+      type,
+      sortBy);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TransactionsLoadedCopyWith<_$TransactionsLoaded> get copyWith =>
-      __$$TransactionsLoadedCopyWithImpl<_$TransactionsLoaded>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() failure,
-    required TResult Function(List<TransactionEntity> transactions) loaded,
-  }) {
-    return loaded(transactions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? failure,
-    TResult? Function(List<TransactionEntity> transactions)? loaded,
-  }) {
-    return loaded?.call(transactions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? failure,
-    TResult Function(List<TransactionEntity> transactions)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(transactions);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionsLoading value) loading,
-    required TResult Function(TransactionsFailure value) failure,
-    required TResult Function(TransactionsLoaded value) loaded,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionsLoading value)? loading,
-    TResult? Function(TransactionsFailure value)? failure,
-    TResult? Function(TransactionsLoaded value)? loaded,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionsLoading value)? loading,
-    TResult Function(TransactionsFailure value)? failure,
-    TResult Function(TransactionsLoaded value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+  _$$_TransactionStateCopyWith<_$_TransactionState> get copyWith =>
+      __$$_TransactionStateCopyWithImpl<_$_TransactionState>(this, _$identity);
 }
 
-abstract class TransactionsLoaded implements TransactionState {
-  const factory TransactionsLoaded(
-          {required final List<TransactionEntity> transactions}) =
-      _$TransactionsLoaded;
+abstract class _TransactionState implements TransactionState {
+  const factory _TransactionState(
+      {final List<TransactionEntity> transactions,
+      final TransactionStatus status,
+      final String? category,
+      final String? type,
+      final String? sortBy}) = _$_TransactionState;
 
+  @override
   List<TransactionEntity> get transactions;
+  @override
+  TransactionStatus get status;
+  @override
+  String? get category;
+  @override
+  String? get type;
+  @override
+  String? get sortBy;
+  @override
   @JsonKey(ignore: true)
-  _$$TransactionsLoadedCopyWith<_$TransactionsLoaded> get copyWith =>
+  _$$_TransactionStateCopyWith<_$_TransactionState> get copyWith =>
       throw _privateConstructorUsedError;
 }

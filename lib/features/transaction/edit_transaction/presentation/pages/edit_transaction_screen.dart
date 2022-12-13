@@ -4,7 +4,7 @@ import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
-import 'package:expense_tracker/features/category/presentation/pages/category_view.dart';
+import 'package:expense_tracker/features/category/presentation/pages/select_category_view.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/cubit/edit_transaction_cubit.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
@@ -24,6 +24,7 @@ class EditTransactionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => EditTransactionCubit(
+        getIt(),
         getIt(),
         initialTransaction: inititalTransaction,
       ),

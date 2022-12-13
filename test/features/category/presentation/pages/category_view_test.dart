@@ -1,5 +1,5 @@
 import 'package:expense_tracker/features/category/presentation/cubit/category_cubit.dart';
-import 'package:expense_tracker/features/category/presentation/pages/category_view.dart';
+import 'package:expense_tracker/features/category/presentation/pages/select_category_view.dart';
 import 'package:expense_tracker/features/category/presentation/widgets/category_bottom_sheet.dart';
 import 'package:expense_tracker/features/settings/theme/theme.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
@@ -26,7 +26,7 @@ void main() {
             routes: [
               GoRoute(
                 path: '/',
-                builder: (_, __) => const SelectCategoryScreen(),
+                builder: (_, __) => const SelectCategoryView(),
               ),
             ],
           ),

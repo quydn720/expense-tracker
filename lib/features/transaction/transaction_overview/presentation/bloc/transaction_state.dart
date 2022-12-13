@@ -2,19 +2,13 @@ part of 'transaction_bloc.dart';
 
 @freezed
 class TransactionState with _$TransactionState {
-  const factory TransactionState.loading() = TransactionsLoading;
-  const factory TransactionState.failure() = TransactionsFailure;
-  const factory TransactionState.loaded({
-    required List<TransactionEntity> transactions,
-  }) = TransactionsLoaded;
+  const factory TransactionState({
+    @Default(<TransactionEntity>[]) List<TransactionEntity> transactions,
+    @Default(TransactionStatus.initial) TransactionStatus status,
+    String? category,
+    String? type,
+    String? sortBy,
+  }) = _TransactionState;
 }
 
-extension TransactionsLoadedX on TransactionsLoaded {
-  double get total {
-    try {
-      return transactions.map((e) => e.amount).reduce((a, b) => a + b);
-    } catch (e) {
-      return 0;
-    }
-  }
-}
+enum TransactionStatus { loading, loaded, initial }

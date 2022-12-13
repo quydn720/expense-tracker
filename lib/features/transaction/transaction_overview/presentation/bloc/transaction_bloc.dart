@@ -14,7 +14,7 @@ part 'transaction_bloc.freezed.dart';
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   TransactionBloc(
     this._repository,
-  ) : super(const TransactionsLoading()) {
+  ) : super(const TransactionState()) {
     on<TransactionsSubscriptionRequested>(_onTransactionsSubscriptionRequested);
   }
 
@@ -22,11 +22,15 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     TransactionsSubscriptionRequested event,
     Emitter<TransactionState> emit,
   ) async {
-    await Future<void>.delayed(const Duration(seconds: 2));
+    emit(state.copyWith(status: TransactionStatus.loading));
+
     await emit.forEach<List<TransactionEntity>>(
-      _repository.watchTransactions(category: 'Food'),
-      onData: (trans) {
-        return TransactionsLoaded(transactions: trans);
+      _repository.watchTransactions(),
+      onData: (transactions) {
+        return state.copyWith(
+          transactions: transactions,
+          status: TransactionStatus.loaded,
+        );
       },
     );
   }

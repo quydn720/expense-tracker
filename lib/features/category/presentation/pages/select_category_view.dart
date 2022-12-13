@@ -15,20 +15,20 @@ class SelectCategoryProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<CategoryCubit>(),
-      child: const SelectCategoryScreen(),
+      child: const SelectCategoryView(),
     );
   }
 }
 
-class SelectCategoryScreen extends StatelessWidget {
-  const SelectCategoryScreen({super.key});
+class SelectCategoryView extends StatelessWidget {
+  const SelectCategoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final categories = context.watch<CategoryCubit>().state.categories;
 
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         floatingActionButton: FloatingActionButton.extended(
           shape: RoundedRectangleBorder(
@@ -66,8 +66,7 @@ class SelectCategoryScreen extends StatelessWidget {
               splashFactory: NoSplash.splashFactory,
               tabs: [
                 Chip(label: Text('Income')),
-                Chip(label: Text('Income')),
-                Chip(label: Text('Income'))
+                Chip(label: Text('Expense')),
               ],
             ),
             const SizedBox(height: 16),
@@ -95,7 +94,6 @@ class SelectCategoryScreen extends StatelessWidget {
                         )
                         .toList(),
                   ),
-                  const Icon(Icons.directions_car),
                   const Icon(Icons.directions_bike),
                 ],
               ),

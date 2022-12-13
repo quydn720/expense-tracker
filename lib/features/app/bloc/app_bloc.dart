@@ -24,6 +24,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<ChangeLanguage>(_onChangeLanguage);
   }
 
+  final AppSettingService _appSettingService;
+
   Future<void> _onChangeLanguage(
     ChangeLanguage event,
     Emitter<AppState> emit,
@@ -41,6 +43,4 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     await _appSettingService.setThemeMode(event.themeMode);
     logger.i('ThemeMode change to: ${event.themeMode}');
   }
-
-  final AppSettingService _appSettingService;
 }

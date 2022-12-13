@@ -70,11 +70,6 @@ abstract class DevAppLocalPackageModule {
   @lazySingleton
   IAuthenticationRepository getProd() => AuthenticationRepository();
 
-  // @dev
-  // @lazySingleton
-  // ITransactionRepository getTransactionRepoDev() =>
-  //     FakeTransactionRepository([]);
-
   @prod
   @lazySingleton
   ITransactionRepository getTransactionRepoProd() {

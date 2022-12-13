@@ -1,5 +1,6 @@
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/home_screen.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,6 +19,7 @@ void main() {
       BlocProvider.value(
         value: transactionBloc,
         child: MaterialApp.router(
+          localizationsDelegates: LocalizationFactory.localizationsDelegates,
           routerConfig: GoRouter(
             routes: [
               GoRoute(path: '/', builder: (_, __) => const HomeScreen()),
@@ -36,9 +38,7 @@ void main() {
 
   setUp(() {
     transactionBloc = MockTransactionBloc();
-    when(() => transactionBloc.state).thenReturn(
-      const TransactionState.loading(),
-    );
+    when(() => transactionBloc.state).thenReturn(const TransactionState());
     when(() => transactionBloc.stream).thenAnswer((_) => const Stream.empty());
   });
 

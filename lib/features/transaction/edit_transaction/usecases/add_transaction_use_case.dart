@@ -13,3 +13,14 @@ class AddTransactionUseCase {
     return _repository.addNewTransaction(transaction);
   }
 }
+
+@injectable
+class DeleteTransactionUseCase {
+  DeleteTransactionUseCase(this._repository);
+
+  final ITransactionRepository _repository;
+
+  Future<void> call(TransactionEntity transaction) async {
+    return _repository.deleteTransaction(transaction);
+  }
+}

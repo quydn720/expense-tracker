@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@injectable
+@Injectable(order: -1)
 class AppSettingService {
   AppSettingService(this.prefs);
 

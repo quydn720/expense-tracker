@@ -4,7 +4,7 @@ import 'package:expense_tracker/features/authentication/presentation/bloc/authen
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_email_sent_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
-import 'package:expense_tracker/features/category/presentation/pages/category_view.dart';
+import 'package:expense_tracker/features/category/presentation/pages/select_category_view.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/profile_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
@@ -14,7 +14,6 @@ import 'package:expense_tracker/features/transaction/transaction_overview/presen
 import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
 import 'package:expense_tracker/home_screen.dart';
 import 'package:expense_tracker/presentations/pages/onboarding/onboarding_page.dart';
-import 'package:expense_tracker/presentations/pages/profile/export/export_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -25,7 +24,8 @@ import '../features/settings/presentation/pages/language_screen.dart';
 import '../features/settings/presentation/pages/notification_screen.dart';
 import '../features/settings/presentation/pages/security_screen.dart';
 import '../features/settings/presentation/pages/theme_screen.dart';
-import '../presentations/pages/detail/transaction_detail.dart';
+import '../features/transaction/detail_transaction/transaction_detail.dart';
+import '../presentations/pages/profile/export/export_page.dart';
 import 'app_scaffold.dart';
 import 'fade_transistion_page.dart';
 

@@ -18,16 +18,16 @@ class FakeTransactionRepository implements ITransactionRepository {
 
   @override
   Future<void> addNewTransaction(TransactionEntity transaction) async {
-    await _dao.createOrUpdateUser(
-      TransactionsCompanion(
-        id: Value(transaction.id),
+    await _dao.createOrUpdateTransaction(
+      TransactionsCompanion.insert(
+        id: transaction.id,
         description: Value(transaction.description),
-        walletId: Value(transaction.walletId),
-        categoryName: Value(transaction.category.name),
-        image: Value(transaction.file?.path ?? ''),
-        amount: Value(transaction.amount),
-        dateCreated: Value(transaction.dateCreated),
-        isRepeated: Value(transaction.isRepeated),
+        walletId: transaction.walletId,
+        categoryName: transaction.category.name,
+        image: transaction.file?.path ?? '',
+        amount: transaction.amount,
+        dateCreated: transaction.dateCreated,
+        isRepeated: transaction.isRepeated,
       ),
     );
   }
