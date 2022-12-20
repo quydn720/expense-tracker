@@ -8,6 +8,8 @@ class AppState with _$AppState {
   }) = _AppState;
 
   const AppState._();
+
+  // TODO(quy): decimal digits default is 2
   NumberFormat get numberFormatter =>
       NumberFormat.simpleCurrency(locale: locale?.languageCode);
 }

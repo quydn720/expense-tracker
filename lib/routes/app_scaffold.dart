@@ -22,7 +22,6 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(GoRouter.of(context).location);
     return BlocProvider<TransactionBloc>(
       create: (_) => getIt<TransactionBloc>()
         ..add(const TransactionsSubscriptionRequested()),

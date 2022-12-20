@@ -84,13 +84,6 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
   Future<void> submitTransaction() async {
     emit(state.copyWith(formzStatus: FormzStatus.submissionInProgress));
 
-    List<String>? images;
-
-    if (state.imgFile?.path != null) {
-      images = <String>[state.imgFile!.path];
-    }
-    print(state.imgFile);
-
     final transaction = TransactionEntity(
       id: initialTransaction?.id ?? const Uuid().v4(),
       category: state.category.value!,

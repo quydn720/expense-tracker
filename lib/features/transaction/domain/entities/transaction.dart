@@ -21,6 +21,4 @@ class TransactionEntity with _$TransactionEntity {
   const TransactionEntity._();
 
   String get dateCreatedStr => DateFormat.yMMMMEEEEd().format(dateCreated);
-  String amountStr(String currency) =>
-      DateFormat.yMMMMEEEEd().format(dateCreated);
 }

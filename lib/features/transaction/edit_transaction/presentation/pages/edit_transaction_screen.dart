@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:badges/badges.dart';
@@ -33,37 +32,6 @@ class EditTransactionScreen extends StatelessWidget {
   }
 }
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const DefaultAppBar(title: 'asdfasd'),
-      body: ListView(
-        shrinkWrap: true,
-        children: const [
-          _AmountField(),
-          SizedBox(height: 8),
-          _CategoryField(),
-          SizedBox(height: 16),
-          _DescriptionField(),
-          SizedBox(height: 16),
-          _WalletDropdown(),
-          SizedBox(height: 16),
-          _DateField(),
-          SizedBox(height: 16),
-          _ImagePicker(),
-          SizedBox(height: 16),
-          _RepeatListTile(),
-          SizedBox(height: 24),
-          _SubmitButton(),
-        ],
-      ),
-    );
-  }
-}
-
 class _EditTransaction extends StatelessWidget {
   const _EditTransaction();
 
@@ -89,129 +57,123 @@ class _EditTransaction extends StatelessWidget {
         color: primaryColor,
         textColor: Colors.white,
       ),
-      body: BlocListener<EditTransactionCubit, EditTransactionState>(
-        listenWhen: (p, c) {
-          final mediaBottomSheetStateChanged =
-              p.showMediaBottomSheet != c.showMediaBottomSheet;
-          final formStatusChanged = p.formzStatus != c.formzStatus;
+      body: SafeArea(
+        bottom: false,
+        child: BlocListener<EditTransactionCubit, EditTransactionState>(
+          listenWhen: (p, c) {
+            final mediaBottomSheetStateChanged =
+                p.showMediaBottomSheet != c.showMediaBottomSheet;
+            final formStatusChanged = p.formzStatus != c.formzStatus;
 
-          return formStatusChanged || mediaBottomSheetStateChanged;
-        },
-        listener: (_, state) async {
-          if (state.formzStatus == FormzStatus.submissionSuccess) {
-            final router = GoRouter.of(context);
-            await showDialog<void>(
-              context: _,
-              builder: (_) {
-                return AlertDialog(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  titleTextStyle: Theme.of(context).textTheme.subtitle2,
-                  title: Column(
-                    children: [
-                      Assets.icons.success.svg(
-                        height: 48,
-                        width: 48,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'Transaction has been successfully added',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
-            router.go('/');
-          }
-          if (state.showMediaBottomSheet) {
-            final attachment = await showModalBottomSheet<String>(
-              isScrollControlled: true,
-              backgroundColor: Colors.white,
-              context: context,
-              useRootNavigator: true,
-              builder: (_) => BlocProvider.value(
-                value: controller,
-                child: Wrap(children: const [MediaBottomSheet()]),
-              ),
-            );
-
-            if (attachment == null) {
-              controller.closeMediaBottomSheet();
-            }
-          }
-        },
-        child: (status == FormzStatus.submissionInProgress)
-            ? const Center(child: Text('loading'))
-            : SingleChildScrollView(
-                // physics: const NeverScrollableScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // const Spacer(),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: _AmountField(),
+            return formStatusChanged || mediaBottomSheetStateChanged;
+          },
+          listener: (_, state) async {
+            if (state.formzStatus == FormzStatus.submissionSuccess) {
+              final router = GoRouter.of(context);
+              await showDialog<void>(
+                context: _,
+                builder: (_) {
+                  return AlertDialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
                     ),
-                    const SizedBox(height: 8),
-                    Container(
-                      alignment: Alignment.bottomCenter,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(32),
-                          topRight: Radius.circular(32),
+                    titleTextStyle: Theme.of(context).textTheme.subtitle2,
+                    title: Column(
+                      children: [
+                        Assets.icons.success.svg(
+                          height: 48,
+                          width: 48,
+                          color: Theme.of(context).primaryColor,
                         ),
-                      ),
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: const [
-                          SizedBox(height: 8),
-                          _CategoryField(),
-                          SizedBox(height: 16),
-                          _DescriptionField(),
-                          SizedBox(height: 16),
-                          _WalletDropdown(),
-                          SizedBox(height: 16),
-                          _DateField(),
-                          SizedBox(height: 16),
-                          _ImagePicker(),
-                          SizedBox(height: 16),
-                          _RepeatListTile(),
-                          SizedBox(height: 24),
-                          _SubmitButton(),
-                        ],
-                      ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Transaction has been successfully added',
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
-                  ],
+                  );
+                },
+              );
+              router.go('/');
+            }
+            if (state.showMediaBottomSheet) {
+              final attachment = await showModalBottomSheet<String>(
+                isScrollControlled: true,
+                backgroundColor: Colors.white,
+                context: context,
+                useRootNavigator: true,
+                builder: (_) => BlocProvider.value(
+                  value: controller,
+                  child: Wrap(children: const [MediaBottomSheet()]),
                 ),
-              ),
+              );
+
+              if (attachment == null) {
+                controller.closeMediaBottomSheet();
+              }
+            }
+          },
+          child: (status == FormzStatus.submissionInProgress)
+              ? const Center(child: Text('loading'))
+              : const MyWidget(),
+        ),
       ),
     );
   }
 }
 
-class NewWidget extends StatelessWidget {
-  const NewWidget({super.key});
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final base64 =
-        context.watch<EditTransactionCubit>().state.imgFile?.readAsBytes();
-
-    return FutureBuilder(
-      future: base64,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          final str = base64Encode(snapshot.data!);
-          return Image.memory(base64Decode(str));
-        }
-        return const SizedBox();
-      },
+    return Column(
+      children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          child: _AmountField(),
+        ),
+        const SizedBox(height: 8),
+        Flexible(
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(32),
+                topRight: Radius.circular(32),
+              ),
+            ),
+            child: ListView(
+              children: const [
+                _CategoryField(),
+                SizedBox(height: 16),
+                _DescriptionField(),
+                SizedBox(height: 16),
+                _WalletDropdown(),
+                SizedBox(height: 16),
+                _DateField(),
+                SizedBox(height: 16),
+                _ImagePicker(),
+                SizedBox(height: 16),
+                _RepeatListTile(),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          color: Colors.grey[200],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: const [
+              _SubmitButton(),
+              SizedBox(height: 48),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

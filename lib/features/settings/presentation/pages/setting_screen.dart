@@ -39,10 +39,7 @@ class SettingScreen extends StatelessWidget {
             key: const Key('settingScreen_themeModeTile_button'),
             title: context.l10n.appearance,
             value: context.read<AppBloc>().state.themeMode.trans(context.l10n),
-            onTap: () {
-              print('tap');
-              context.push(ThemeScreen.routeName);
-            },
+            onTap: () => context.push(ThemeScreen.routeName),
           ),
           _SettingTile(
             key: const Key('settingScreen_securityTile_button'),

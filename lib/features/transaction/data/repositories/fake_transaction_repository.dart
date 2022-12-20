@@ -22,7 +22,7 @@ class FakeTransactionRepository implements ITransactionRepository {
 
   @override
   Future<List<TransactionEntity>> getAllTransaction() async {
-    final result = await _dao.getAllTransactions();
+    // final result = await _dao.getAllTransactions();
     return [];
   }
 
