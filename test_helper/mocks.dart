@@ -1,5 +1,4 @@
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:expense_tracker/common/cache/local_cache.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/forgot_password_use_case.dart';
@@ -21,8 +20,6 @@ class MockLoginWithGoogleUseCase extends Mock
 class MockAppBloc extends Mock implements AppBloc {}
 
 class MockThemeController extends Mock implements AppBloc {}
-
-class MockLocalCache extends Mock implements ILocalCache {}
 
 class MockAuthenticationRepository extends Mock
     implements IAuthenticationRepository {}

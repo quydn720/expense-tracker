@@ -38,6 +38,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? IconButton(
               onPressed: () => context.pop(),
               icon: Assets.icons.arrowLeft.svg(
+                height: 32,
                 color: textColor ?? Theme.of(context).colorScheme.onSurface,
               ),
             )

@@ -58,6 +58,12 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get delete_transaction => 'Xóa giao dịch này?';
+
+  @override
+  String get delete_transaction_confirmation => 'Bạn chắc chắn muốn xóa giao dịch này?';
+
+  @override
   String get account_balance => 'Số dư tài khoản';
 
   @override
@@ -70,13 +76,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get spend_frequency => 'Báo cáo chi tiêu';
 
   @override
-  String get add_attactment => 'Thêm tệp đính kèm';
+  String get add_attachment => 'Thêm tệp đính kèm';
 
   @override
   String get note => 'Ghi chú';
 
   @override
   String get how_much => 'Giá trị giao dịch';
+
+  @override
+  String get amount_field_validation_invalidAmount => 'Giá trị giao dịch không thể chứa các kí tự đặc biệt';
+
+  @override
+  String get amount_field_validation_emptyOrNegativeAmount => 'Giá trị giao dịch không thể nhỏ hơn hoặc bằng 0';
 
   @override
   String get category => 'Danh mục';
@@ -188,6 +200,18 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get about => 'Về chúng tôi';
+
+  @override
+  String get detail_transaction => 'Chi tiết giao dịch';
+
+  @override
+  String get description => 'Ghi chú';
+
+  @override
+  String get attachment => 'Tệp đính kèm';
+
+  @override
+  String get edit => 'Sửa giao dịch';
 
   @override
   String get help => 'Bạn cần giúp đỡ?';

@@ -1,17 +1,16 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import 'package:expense_tracker/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
+import 'package:expense_tracker/features/transaction/edit_transaction/usecases/add_transaction_use_case.dart';
+import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
 import 'package:expense_tracker/l10n/gen/app_localizations.dart';
-import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
-
-import '../../usecases/add_transaction_use_case.dart';
 
 part 'edit_transaction_cubit.freezed.dart';
 part 'edit_transaction_state.dart';
@@ -20,17 +19,18 @@ part 'edit_transaction_state.dart';
 class EditTransactionCubit extends Cubit<EditTransactionState> {
   EditTransactionCubit(
     this._addTransaction,
-    this._deleteTransactionUseCase,
-    {
+    this._deleteTransactionUseCase, {
     @factoryParam this.initialTransaction,
   }) : super(
           (initialTransaction != null)
               ? EditTransactionState(
-                  isNewTransaction: true,
+                  formzStatus: FormzStatus.valid,
+                  isNewTransaction: false,
                   date: initialTransaction.dateCreated,
                   description: initialTransaction.description ?? '',
                   category: CategoryField.pure(initialTransaction.category),
-                  amount: AmountText.pure(initialTransaction.amount),
+                  amount: AmountText.pure(initialTransaction.amount.toString()),
+                  imgFile: initialTransaction.file,
                 )
               : EditTransactionState(date: DateTime.now()),
         );
@@ -41,19 +41,18 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
 
   Future<void> deleted(TransactionEntity transaction) async {
     await _deleteTransactionUseCase(transaction);
-    debugPrint('delete done');
   }
 
   void attachmentSelectionDone(XFile? imgStr) {
-    emit(state.copyWith(imgFile: imgStr));
+    emit(state.copyWith(imgFile: imgStr, showMediaBottomSheet: false));
   }
 
-  void attachmentSelectionClosed() {
-    emit(state.copyWith(status: Status.initital));
+  void closeMediaBottomSheet() {
+    emit(state.copyWith(showMediaBottomSheet: false));
   }
 
-  void attachmentSelectionPressed() {
-    emit(state.copyWith(status: Status.selectImage));
+  void openMediaBottomSheet() {
+    emit(state.copyWith(showMediaBottomSheet: true));
   }
 
   void categoryChanged(CategoryEntity? categoryInput) {
@@ -67,8 +66,10 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
     );
   }
 
-  void amountChanged(String amountStr) {
-    final amount = AmountText.dirty(double.parse(amountStr));
+  void amountChanged({required String amountStr, String? currencySymbol}) {
+    final formattedString = amountStr.split(currencySymbol ?? '').join();
+
+    final amount = AmountText.dirty(formattedString);
     final formzStatus = Formz.validate([amount, state.category]);
 
     emit(
@@ -81,24 +82,27 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
   }
 
   Future<void> submitTransaction() async {
-    emit(state.copyWith(status: Status.loading));
+    emit(state.copyWith(formzStatus: FormzStatus.submissionInProgress));
+
     List<String>? images;
 
     if (state.imgFile?.path != null) {
       images = <String>[state.imgFile!.path];
     }
+    print(state.imgFile);
 
     final transaction = TransactionEntity(
       id: initialTransaction?.id ?? const Uuid().v4(),
       category: state.category.value!,
       dateCreated: state.date,
-      amount: state.amount.value,
+      amount: double.parse(state.amount.value),
       walletId: 'walletId',
       description: state.description,
+      file: state.imgFile,
     );
 
     await _addTransaction.call(transaction);
-    emit(state.copyWith(status: Status.success));
+    emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
   }
 
   /// When user pressed the 'Repeat' switch button

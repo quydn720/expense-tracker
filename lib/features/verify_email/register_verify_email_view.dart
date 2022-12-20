@@ -1,10 +1,9 @@
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
-
-import '../../di/injector.dart';
 
 class VerificationEmailView extends StatelessWidget {
   const VerificationEmailView({super.key});

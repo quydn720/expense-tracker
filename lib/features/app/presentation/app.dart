@@ -1,11 +1,10 @@
+import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/settings/theme/theme.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../bloc/app_bloc.dart';
 
 class App extends StatefulWidget {
   App({

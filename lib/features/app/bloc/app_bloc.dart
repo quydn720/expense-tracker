@@ -5,6 +5,7 @@ import 'package:expense_tracker/features/app/data/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
 
 part 'app_event.dart';
 part 'app_state.dart';

@@ -1,5 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart';
 import 'package:expense_tracker/l10n/gen/app_localizations.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../../di/injector.dart';
-import '../cubit/login_form_cubit.dart';
 
 class LoginProvider extends StatelessWidget {
   const LoginProvider({super.key});

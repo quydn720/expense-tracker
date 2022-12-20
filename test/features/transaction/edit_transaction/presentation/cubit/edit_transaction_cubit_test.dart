@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:expense_tracker/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/cubit/edit_transaction_cubit.dart';
 import 'package:expense_tracker/features/transaction/edit_transaction/usecases/add_transaction_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,18 +24,18 @@ void main() {
     blocTest<EditTransactionCubit, EditTransactionState>(
       'emits Status.selectImage when attactment selection pressed',
       build: () => EditTransactionCubit(_addTransaction, _deleteTransaction),
-      act: (bloc) => bloc.attachmentSelectionPressed(),
+      act: (bloc) => bloc.openMediaBottomSheet(),
       seed: () => state,
-      expect: () => [state.copyWith(status: Status.selectImage)],
+      expect: () => [state.copyWith(showMediaBottomSheet: true)],
     );
     blocTest<EditTransactionCubit, EditTransactionState>(
       'emits amount when amount field changed',
       build: () => EditTransactionCubit(_addTransaction, _deleteTransaction),
-      act: (bloc) => bloc.amountChanged('5.0'),
+      act: (bloc) => bloc.amountChanged(amountStr: '5.0'),
       seed: () => state,
       expect: () => [
         state.copyWith(
-          amount: const AmountText.dirty(5),
+          amount: const AmountText.dirty('5.0'),
           formzStatus: FormzStatus.invalid,
         )
       ],

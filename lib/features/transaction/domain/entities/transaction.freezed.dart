@@ -197,7 +197,7 @@ class __$$_TransactionEntityCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TransactionEntity implements _TransactionEntity {
+class _$_TransactionEntity extends _TransactionEntity {
   const _$_TransactionEntity(
       {required this.id,
       required this.category,
@@ -206,7 +206,8 @@ class _$_TransactionEntity implements _TransactionEntity {
       required this.walletId,
       this.description,
       this.file,
-      this.isRepeated = false});
+      this.isRepeated = false})
+      : super._();
 
   @override
   final String id;
@@ -263,7 +264,7 @@ class _$_TransactionEntity implements _TransactionEntity {
           this, _$identity);
 }
 
-abstract class _TransactionEntity implements TransactionEntity {
+abstract class _TransactionEntity extends TransactionEntity {
   const factory _TransactionEntity(
       {required final String id,
       required final CategoryEntity category,
@@ -273,6 +274,7 @@ abstract class _TransactionEntity implements TransactionEntity {
       final String? description,
       final XFile? file,
       final bool isRepeated}) = _$_TransactionEntity;
+  const _TransactionEntity._() : super._();
 
   @override
   String get id;

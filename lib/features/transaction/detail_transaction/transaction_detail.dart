@@ -1,15 +1,24 @@
+import 'dart:io';
+
+import 'package:expense_tracker/di/injector.dart';
+import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/common/common_bottom_sheet.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/cubit/edit_transaction_cubit.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../constants.dart';
-import '../../../di/injector.dart';
+const editTransactionButtonKey =
+    Key('transactionDetailScreen_edit_elevatedButton');
+const deleteTransactionButtonKey =
+    Key('transactionDetailScreen_delete_iconButton');
 
-class TransactionDetailPage extends StatelessWidget {
-  const TransactionDetailPage({
+class TransactionDetailProvider extends StatelessWidget {
+  const TransactionDetailProvider({
     super.key,
     required TransactionEntity transaction,
   }) : _transaction = transaction;
@@ -20,51 +29,104 @@ class TransactionDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<EditTransactionCubit>(),
-      child: _TransactionDetail(
-        transaction: _transaction,
-      ),
+      child: TransactionDetailScreen(transaction: _transaction),
     );
   }
 }
 
-class _TransactionDetail extends StatelessWidget {
-  const _TransactionDetail({
+class TransactionDetailScreen extends StatelessWidget {
+  const TransactionDetailScreen({
+    super.key,
     required TransactionEntity transaction,
   }) : _transaction = transaction;
   final TransactionEntity _transaction;
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final heading = Theme.of(context).textTheme.bodyText1?.copyWith(
+          color: const Color(0xff91919F),
+        );
+
+    final numberFormatter = context.read<AppBloc>().state.numberFormatter;
+
     return Scaffold(
       appBar: DefaultAppBar(
-        title: 'Detail Transaction',
+        title: l10n.detail_transaction,
         trailings: [
           IconButton(
-            onPressed: () {
-              context.read<EditTransactionCubit>().deleted(_transaction);
+            key: deleteTransactionButtonKey,
+            icon: const FaIcon(FontAwesomeIcons.trash),
+            onPressed: () async {
+              final controller = context.read<EditTransactionCubit>();
+              await showModalBottomSheet<String>(
+                context: context,
+                builder: (_) => BlocProvider.value(
+                  value: controller,
+                  child: CommonBottomSheet(
+                    confirmCallback: () {
+                      controller.deleted(_transaction);
+                      context.go('/');
+                    },
+                    title: l10n.delete_transaction,
+                    subtitle: l10n.delete_transaction_confirmation,
+                  ),
+                ),
+              );
             },
-            icon: const Icon(Icons.garage),
           ),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Text(_transaction.category.name),
-              Text(_transaction.amount.toString()),
-              // Text(_transaction.description),
-              const Text('Attachment'),
-              // if (_transaction.imagesPath != null)
-              //   Image.file(File(_transaction.imagesPath![0])),
-              const Spacer(),
-              ElevatedButton(
-                onPressed: () => context.push(
-                  '/transaction',
-                  extra: _transaction,
+              Center(
+                child: Text(
+                  numberFormatter.format(_transaction.amount),
+                  style: Theme.of(context).textTheme.headline1?.copyWith(
+                        color: Theme.of(context).colorScheme.onBackground,
+                      ),
                 ),
-                child: const Text('Edit'),
+              ),
+              const SizedBox(height: 8),
+              Center(
+                child: Text(
+                  _transaction.category.name,
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Center(child: Text(_transaction.dateCreatedStr)),
+              const Divider(thickness: 2),
+              Flexible(
+                child: ListView(
+                  children: [
+                    Text(l10n.description, style: heading),
+                    if (_transaction.description.haveValue) ...[
+                      Text(_transaction.description!, softWrap: true),
+                    ],
+                    const SizedBox(height: 16),
+                    Text(l10n.attachment, style: heading),
+                    if (_transaction.file != null) ...[
+                      const SizedBox(height: 16),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: Image.file(File(_transaction.file!.path)),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                key: editTransactionButtonKey,
+                onPressed: () {
+                  context.push('/transaction', extra: _transaction);
+                },
+                child: Text(l10n.edit),
               ),
             ],
           ),
@@ -74,45 +136,7 @@ class _TransactionDetail extends StatelessWidget {
   }
 }
 
-class DeleteTransactionBottomSheet extends StatelessWidget {
-  const DeleteTransactionBottomSheet({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: kMediumPadding),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Remove this transaction?', style: title3),
-            const Text(
-              'Are you sure do you wanna remove this transaction?',
-              style: body1,
-              textAlign: TextAlign.center,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  child: const Text('No'),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                ElevatedButton(
-                  child: const Text('Yes'),
-                  onPressed: () {
-                    // context.read<EditTransactionCubit>().deleted();
-
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
+extension StringX on String? {
+  bool get isNullOrEmpty => this?.isEmpty ?? true;
+  bool get haveValue => !isNullOrEmpty;
 }

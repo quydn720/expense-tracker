@@ -1,6 +1,12 @@
+import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/budget/domain/entities/budget.dart';
+import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
-import '../../domain/entities/budget.dart';
+import 'package:go_router/go_router.dart';
+
+const createNewBudgetButtonKey =
+    Key('budgetScreen_createNewButton_elevatedButton');
 
 class BudgetScreen extends StatelessWidget {
   const BudgetScreen({super.key});
@@ -13,14 +19,21 @@ class BudgetScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: ListView(
           children: [
-            // BudgetTile(budget: Budget('id', 100, 20, categories[1])),
-            // BudgetTile(
-            //   budget: Budget('id', 200, 20, categories[2]),
-            //   isExceeded: true,
-            // ),
-            // BudgetTile(budget: Budget('id', 500, 20, categories[3])),
+            const BudgetTile(
+              budget: Budget(
+                id: 'id',
+                amount: 100,
+                whenToNotify: 20,
+                category: CategoryEntity(
+                  name: 'name',
+                  icon: Icons.abc,
+                  color: Colors.green,
+                ),
+              ),
+            ),
             ElevatedButton(
-              onPressed: () {},
+              key: createNewBudgetButtonKey,
+              onPressed: () => context.push('/create-budget'),
               child: Text(context.l10n.create_budget),
             ),
           ],
@@ -95,6 +108,17 @@ class BudgetTile extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class CreateNewBudgetScreen extends StatelessWidget {
+  const CreateNewBudgetScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      appBar: DefaultAppBar(title: 'title'),
     );
   }
 }

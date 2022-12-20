@@ -9,4 +9,4 @@ class ForgotPasswordState with _$ForgotPasswordState {
   }) = _ForgotPasswordState;
 }
 
-enum Status { initital, loading, success, failure, selectImage }
+enum Status { initital, loading, success, failure }

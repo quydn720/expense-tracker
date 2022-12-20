@@ -1,4 +1,3 @@
-import 'package:expense_tracker/common/cache/local_cache.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/language_screen.dart';
 import 'package:expense_tracker/features/settings/theme/theme.dart';
@@ -9,8 +8,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
-
-class MockLocalCache extends Mock implements ILocalCache {}
 
 class MockAppBloc extends Mock implements AppBloc {}
 

@@ -1,8 +1,7 @@
+import 'package:authentication_repository/src/models/login/login_with_email_and_pw_error.dart';
+import 'package:authentication_repository/src/models/login/login_with_google_error.dart';
+import 'package:authentication_repository/src/models/my_custom_exception.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../my_custom_exception.dart';
-import 'login_with_email_and_pw_error.dart';
-import 'login_with_google_error.dart';
 
 part 'login_failure.freezed.dart';
 

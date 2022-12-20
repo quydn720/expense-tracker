@@ -58,6 +58,12 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get delete_transaction => 'Remove this transaction?';
+
+  @override
+  String get delete_transaction_confirmation => 'Are you sure do you wanna remove this transaction?';
+
+  @override
   String get account_balance => 'Account Balance';
 
   @override
@@ -70,13 +76,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get spend_frequency => 'Spend Frequency';
 
   @override
-  String get add_attactment => 'Add attachment';
+  String get add_attachment => 'Add attachment';
 
   @override
   String get note => 'Note';
 
   @override
   String get how_much => 'How much?';
+
+  @override
+  String get amount_field_validation_invalidAmount => 'Has invalid characters, please fix it.';
+
+  @override
+  String get amount_field_validation_emptyOrNegativeAmount => 'The amount\'s value could not be negative or zero.';
 
   @override
   String get category => 'Category';
@@ -188,6 +200,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get about => 'About';
+
+  @override
+  String get detail_transaction => 'Transaction Detail';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get attachment => 'Attachment';
+
+  @override
+  String get edit => 'Edit';
 
   @override
   String get help => 'Help';

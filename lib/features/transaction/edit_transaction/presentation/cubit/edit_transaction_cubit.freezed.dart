@@ -18,13 +18,14 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EditTransactionState {
   AmountText get amount => throw _privateConstructorUsedError;
   CategoryField get category => throw _privateConstructorUsedError;
-  bool get isRepeated => throw _privateConstructorUsedError;
-  bool get isNewTransaction => throw _privateConstructorUsedError;
-  Status get status => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  WalletField get wallet => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
+  bool get showMediaBottomSheet => throw _privateConstructorUsedError;
   XFile? get imgFile => throw _privateConstructorUsedError;
   FormzStatus get formzStatus => throw _privateConstructorUsedError;
+  bool get isRepeated => throw _privateConstructorUsedError;
+  bool get isNewTransaction => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EditTransactionStateCopyWith<EditTransactionState> get copyWith =>
@@ -40,13 +41,14 @@ abstract class $EditTransactionStateCopyWith<$Res> {
   $Res call(
       {AmountText amount,
       CategoryField category,
-      bool isRepeated,
-      bool isNewTransaction,
-      Status status,
       String description,
+      WalletField wallet,
       DateTime date,
+      bool showMediaBottomSheet,
       XFile? imgFile,
-      FormzStatus formzStatus});
+      FormzStatus formzStatus,
+      bool isRepeated,
+      bool isNewTransaction});
 }
 
 /// @nodoc
@@ -65,13 +67,14 @@ class _$EditTransactionStateCopyWithImpl<$Res,
   $Res call({
     Object? amount = null,
     Object? category = null,
-    Object? isRepeated = null,
-    Object? isNewTransaction = null,
-    Object? status = null,
     Object? description = null,
+    Object? wallet = null,
     Object? date = null,
+    Object? showMediaBottomSheet = null,
     Object? imgFile = freezed,
     Object? formzStatus = null,
+    Object? isRepeated = null,
+    Object? isNewTransaction = null,
   }) {
     return _then(_value.copyWith(
       amount: null == amount
@@ -82,26 +85,22 @@ class _$EditTransactionStateCopyWithImpl<$Res,
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryField,
-      isRepeated: null == isRepeated
-          ? _value.isRepeated
-          : isRepeated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isNewTransaction: null == isNewTransaction
-          ? _value.isNewTransaction
-          : isNewTransaction // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as Status,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      wallet: null == wallet
+          ? _value.wallet
+          : wallet // ignore: cast_nullable_to_non_nullable
+              as WalletField,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      showMediaBottomSheet: null == showMediaBottomSheet
+          ? _value.showMediaBottomSheet
+          : showMediaBottomSheet // ignore: cast_nullable_to_non_nullable
+              as bool,
       imgFile: freezed == imgFile
           ? _value.imgFile
           : imgFile // ignore: cast_nullable_to_non_nullable
@@ -110,6 +109,14 @@ class _$EditTransactionStateCopyWithImpl<$Res,
           ? _value.formzStatus
           : formzStatus // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      isRepeated: null == isRepeated
+          ? _value.isRepeated
+          : isRepeated // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNewTransaction: null == isNewTransaction
+          ? _value.isNewTransaction
+          : isNewTransaction // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -125,13 +132,14 @@ abstract class _$$_EditTransactionStateCopyWith<$Res>
   $Res call(
       {AmountText amount,
       CategoryField category,
-      bool isRepeated,
-      bool isNewTransaction,
-      Status status,
       String description,
+      WalletField wallet,
       DateTime date,
+      bool showMediaBottomSheet,
       XFile? imgFile,
-      FormzStatus formzStatus});
+      FormzStatus formzStatus,
+      bool isRepeated,
+      bool isNewTransaction});
 }
 
 /// @nodoc
@@ -147,13 +155,14 @@ class __$$_EditTransactionStateCopyWithImpl<$Res>
   $Res call({
     Object? amount = null,
     Object? category = null,
-    Object? isRepeated = null,
-    Object? isNewTransaction = null,
-    Object? status = null,
     Object? description = null,
+    Object? wallet = null,
     Object? date = null,
+    Object? showMediaBottomSheet = null,
     Object? imgFile = freezed,
     Object? formzStatus = null,
+    Object? isRepeated = null,
+    Object? isNewTransaction = null,
   }) {
     return _then(_$_EditTransactionState(
       amount: null == amount
@@ -164,26 +173,22 @@ class __$$_EditTransactionStateCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryField,
-      isRepeated: null == isRepeated
-          ? _value.isRepeated
-          : isRepeated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isNewTransaction: null == isNewTransaction
-          ? _value.isNewTransaction
-          : isNewTransaction // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as Status,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      wallet: null == wallet
+          ? _value.wallet
+          : wallet // ignore: cast_nullable_to_non_nullable
+              as WalletField,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      showMediaBottomSheet: null == showMediaBottomSheet
+          ? _value.showMediaBottomSheet
+          : showMediaBottomSheet // ignore: cast_nullable_to_non_nullable
+              as bool,
       imgFile: freezed == imgFile
           ? _value.imgFile
           : imgFile // ignore: cast_nullable_to_non_nullable
@@ -192,23 +197,33 @@ class __$$_EditTransactionStateCopyWithImpl<$Res>
           ? _value.formzStatus
           : formzStatus // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      isRepeated: null == isRepeated
+          ? _value.isRepeated
+          : isRepeated // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNewTransaction: null == isNewTransaction
+          ? _value.isNewTransaction
+          : isNewTransaction // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_EditTransactionState implements _EditTransactionState {
+class _$_EditTransactionState extends _EditTransactionState {
   const _$_EditTransactionState(
       {this.amount = const AmountText.pure(),
       this.category = const CategoryField.pure(),
-      this.isRepeated = false,
-      this.isNewTransaction = true,
-      this.status = Status.initital,
       this.description = '',
+      this.wallet = const WalletField.pure(),
       required this.date,
+      this.showMediaBottomSheet = false,
       this.imgFile,
-      this.formzStatus = FormzStatus.pure});
+      this.formzStatus = FormzStatus.pure,
+      this.isRepeated = false,
+      this.isNewTransaction = true})
+      : super._();
 
   @override
   @JsonKey()
@@ -218,27 +233,30 @@ class _$_EditTransactionState implements _EditTransactionState {
   final CategoryField category;
   @override
   @JsonKey()
-  final bool isRepeated;
-  @override
-  @JsonKey()
-  final bool isNewTransaction;
-  @override
-  @JsonKey()
-  final Status status;
-  @override
-  @JsonKey()
   final String description;
   @override
+  @JsonKey()
+  final WalletField wallet;
+  @override
   final DateTime date;
+  @override
+  @JsonKey()
+  final bool showMediaBottomSheet;
   @override
   final XFile? imgFile;
   @override
   @JsonKey()
   final FormzStatus formzStatus;
+  @override
+  @JsonKey()
+  final bool isRepeated;
+  @override
+  @JsonKey()
+  final bool isNewTransaction;
 
   @override
   String toString() {
-    return 'EditTransactionState(amount: $amount, category: $category, isRepeated: $isRepeated, isNewTransaction: $isNewTransaction, status: $status, description: $description, date: $date, imgFile: $imgFile, formzStatus: $formzStatus)';
+    return 'EditTransactionState(amount: $amount, category: $category, description: $description, wallet: $wallet, date: $date, showMediaBottomSheet: $showMediaBottomSheet, imgFile: $imgFile, formzStatus: $formzStatus, isRepeated: $isRepeated, isNewTransaction: $isNewTransaction)';
   }
 
   @override
@@ -249,22 +267,34 @@ class _$_EditTransactionState implements _EditTransactionState {
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.category, category) ||
                 other.category == category) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.wallet, wallet) || other.wallet == wallet) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.showMediaBottomSheet, showMediaBottomSheet) ||
+                other.showMediaBottomSheet == showMediaBottomSheet) &&
+            (identical(other.imgFile, imgFile) || other.imgFile == imgFile) &&
+            (identical(other.formzStatus, formzStatus) ||
+                other.formzStatus == formzStatus) &&
             (identical(other.isRepeated, isRepeated) ||
                 other.isRepeated == isRepeated) &&
             (identical(other.isNewTransaction, isNewTransaction) ||
-                other.isNewTransaction == isNewTransaction) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.date, date) || other.date == date) &&
-            (identical(other.imgFile, imgFile) || other.imgFile == imgFile) &&
-            (identical(other.formzStatus, formzStatus) ||
-                other.formzStatus == formzStatus));
+                other.isNewTransaction == isNewTransaction));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, amount, category, isRepeated,
-      isNewTransaction, status, description, date, imgFile, formzStatus);
+  int get hashCode => Object.hash(
+      runtimeType,
+      amount,
+      category,
+      description,
+      wallet,
+      date,
+      showMediaBottomSheet,
+      imgFile,
+      formzStatus,
+      isRepeated,
+      isNewTransaction);
 
   @JsonKey(ignore: true)
   @override
@@ -274,36 +304,40 @@ class _$_EditTransactionState implements _EditTransactionState {
           this, _$identity);
 }
 
-abstract class _EditTransactionState implements EditTransactionState {
+abstract class _EditTransactionState extends EditTransactionState {
   const factory _EditTransactionState(
       {final AmountText amount,
       final CategoryField category,
-      final bool isRepeated,
-      final bool isNewTransaction,
-      final Status status,
       final String description,
+      final WalletField wallet,
       required final DateTime date,
+      final bool showMediaBottomSheet,
       final XFile? imgFile,
-      final FormzStatus formzStatus}) = _$_EditTransactionState;
+      final FormzStatus formzStatus,
+      final bool isRepeated,
+      final bool isNewTransaction}) = _$_EditTransactionState;
+  const _EditTransactionState._() : super._();
 
   @override
   AmountText get amount;
   @override
   CategoryField get category;
   @override
-  bool get isRepeated;
-  @override
-  bool get isNewTransaction;
-  @override
-  Status get status;
-  @override
   String get description;
   @override
+  WalletField get wallet;
+  @override
   DateTime get date;
+  @override
+  bool get showMediaBottomSheet;
   @override
   XFile? get imgFile;
   @override
   FormzStatus get formzStatus;
+  @override
+  bool get isRepeated;
+  @override
+  bool get isNewTransaction;
   @override
   @JsonKey(ignore: true)
   _$$_EditTransactionStateCopyWith<_$_EditTransactionState> get copyWith =>

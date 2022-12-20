@@ -6,4 +6,8 @@ class AppState with _$AppState {
     @Default(ThemeMode.system) ThemeMode themeMode,
     Locale? locale,
   }) = _AppState;
+
+  const AppState._();
+  NumberFormat get numberFormatter =>
+      NumberFormat.simpleCurrency(locale: locale?.languageCode);
 }

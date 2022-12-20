@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 TextTheme textTheme = TextTheme(
   headline1: GoogleFonts.inter(
-    fontSize: 64,
+    fontSize: 48,
     fontWeight: FontWeight.w600,
     letterSpacing: -1.5,
   ),
@@ -36,7 +36,7 @@ TextTheme textTheme = TextTheme(
     fontWeight: FontWeight.w500,
   ),
   bodyText2: GoogleFonts.inter(
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: FontWeight.w400,
   ),
   button: GoogleFonts.inter(

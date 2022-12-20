@@ -1,6 +1,8 @@
+import 'package:expense_tracker/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../constants.dart';
+const backToHomeButtonKey =
+    Key('exportSuccessScreen_backToHome_elevatedButton');
 
 class ExportDataPromptPage extends StatelessWidget {
   const ExportDataPromptPage({super.key});
@@ -31,6 +33,7 @@ class ExportDataPromptPage extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
+                key: backToHomeButtonKey,
                 child: const Text('Back to Home'),
                 onPressed: () {},
               )

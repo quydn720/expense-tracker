@@ -1,4 +1,5 @@
 import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
+import 'package:expense_tracker/features/common/common_bottom_sheet.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                   _ProfileTile(
                     key: moveToAccountScreenButtonKey,
                     iconData: FontAwesomeIcons.wallet,
-                    onTap: () => context.go('/profile/account'),
+                    onTap: () => context.push('/profile/account'),
                     title: l10n.account,
                   ),
                   const Divider(),
@@ -52,7 +53,9 @@ class ProfileScreen extends StatelessWidget {
                   _ProfileTile(
                     key: moveToExportDataScreenButtonKey,
                     iconData: FontAwesomeIcons.arrowUpFromBracket,
-                    onTap: () => context.go('/profile/export-data'),
+                    onTap: () {
+                      context.push('/profile/export-data');
+                    },
                     title: l10n.exportData,
                   ),
                   const Divider(),
@@ -63,7 +66,16 @@ class ProfileScreen extends StatelessWidget {
                       await showModalBottomSheet<bool>(
                         context: context,
                         builder: (_) {
-                          return const _LogoutBottomSheet();
+                          return CommonBottomSheet(
+                            key: logoutBottomSheetKey,
+                            confirmCallback: () {
+                              context
+                                  .read<AuthenticationBloc>()
+                                  .add(const LogoutRequested());
+                            },
+                            subtitle: l10n.logout_confirmation,
+                            title: l10n.logout,
+                          );
                         },
                       );
                     },
@@ -79,7 +91,7 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-// TODO: display current user info
+// TODO(quy): display current user info
 class _UserTile extends StatelessWidget {
   const _UserTile();
 
@@ -152,70 +164,6 @@ class _ProfileTile extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             Text(title, style: textTheme.bodyText1)
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _LogoutBottomSheet extends StatelessWidget {
-  const _LogoutBottomSheet();
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final l10n = context.l10n;
-
-    void logout() {
-      return context.read<AuthenticationBloc>().add(const LogoutRequested());
-    }
-
-    return SafeArea(
-      key: logoutBottomSheetKey,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                l10n.logout,
-                style: textTheme.titleMedium
-                    ?.copyWith(fontWeight: FontWeight.w600),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                l10n.logout_confirmation,
-                style: textTheme.bodyLarge?.copyWith(color: Colors.grey),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffEEE5FF),
-                      foregroundColor: Theme.of(context).primaryColor,
-                    ),
-                    onPressed: Navigator.of(context).pop,
-                    child: Text(l10n.no_str),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: logout,
-                    child: Text(l10n.yes_str),
-                  ),
-                ),
-              ],
-            )
           ],
         ),
       ),

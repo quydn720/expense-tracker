@@ -1,9 +1,8 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
+import 'package:wallet_repository/src/entities/entities.dart';
+import 'package:wallet_repository/src/models/models.dart';
 import 'package:wallet_repository/src/wallet_repository.dart';
-
-import 'entities/entities.dart';
-import 'models/models.dart';
 
 const key = 'wallet_cached_key';
 

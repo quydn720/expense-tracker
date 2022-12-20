@@ -1,9 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firebase;
 import 'package:expense_tracker/common/cache/drift_database.dart';
-import 'package:expense_tracker/features/transaction/data/repositories/firebase_transaction_repository.dart';
-import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
-
+import 'package:expense_tracker/di/injector.config.dart';
 import 'package:expense_tracker/routes/router.dart';
 import 'package:expense_tracker/user_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,8 +11,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'injector.config.dart';
 
 final getIt = GetIt.instance;
 final logger = Logger(printer: PrettyPrinter(methodCount: 0));
@@ -70,11 +66,11 @@ abstract class DevAppLocalPackageModule {
   @lazySingleton
   IAuthenticationRepository getProd() => AuthenticationRepository();
 
-  @prod
-  @lazySingleton
-  ITransactionRepository getTransactionRepoProd() {
-    return FirebaseTransactionRepository();
-  }
+  // @prod
+  // @lazySingleton
+  // ITransactionRepository getTransactionRepoProd() {
+  //   return FirebaseTransactionRepository();
+  // }
 }
 
 @module

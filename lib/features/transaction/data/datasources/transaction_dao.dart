@@ -1,9 +1,8 @@
 import 'package:drift/drift.dart';
 import 'package:expense_tracker/common/cache/drift_database.dart';
+import 'package:expense_tracker/features/category/data/models/category_model.dart';
 import 'package:expense_tracker/features/transaction/data/models/transaction_model.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../category/data/models/category_model.dart';
 
 part 'transaction_dao.g.dart';
 
@@ -57,4 +56,9 @@ class TransactionsDao extends DatabaseAccessor<MyDatabase>
 
   Stream<List<Transaction>> watchAllTransactions() =>
       select(transactions).watch();
+
+  Future<void> updateTransaction({
+    required String transactionId,
+    required TransactionsCompanion transaction,
+  }) async {}
 }

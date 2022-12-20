@@ -1,10 +1,9 @@
+import 'package:authentication_repository/src/authentication_repository.dart';
+import 'package:authentication_repository/src/models/models.dart';
 import 'package:cache/cache.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-import 'authentication_repository.dart';
-import 'models/models.dart';
 
 /// {@template authentication_repository}
 /// Repository which manages user authentication.

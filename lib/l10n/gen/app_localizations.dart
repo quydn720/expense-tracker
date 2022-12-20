@@ -195,6 +195,18 @@ abstract class AppLocalizations {
   /// **'Check your email {email} and follow the instructions to reset your password'**
   String forgot_password_sent(String email);
 
+  /// No description provided for @delete_transaction.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove this transaction?'**
+  String get delete_transaction;
+
+  /// No description provided for @delete_transaction_confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure do you wanna remove this transaction?'**
+  String get delete_transaction_confirmation;
+
   /// No description provided for @account_balance.
   ///
   /// In en, this message translates to:
@@ -219,11 +231,11 @@ abstract class AppLocalizations {
   /// **'Spend Frequency'**
   String get spend_frequency;
 
-  /// No description provided for @add_attactment.
+  /// No description provided for @add_attachment.
   ///
   /// In en, this message translates to:
   /// **'Add attachment'**
-  String get add_attactment;
+  String get add_attachment;
 
   /// No description provided for @note.
   ///
@@ -236,6 +248,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'How much?'**
   String get how_much;
+
+  /// No description provided for @amount_field_validation_invalidAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Has invalid characters, please fix it.'**
+  String get amount_field_validation_invalidAmount;
+
+  /// No description provided for @amount_field_validation_emptyOrNegativeAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'The amount\'s value could not be negative or zero.'**
+  String get amount_field_validation_emptyOrNegativeAmount;
 
   /// No description provided for @category.
   ///
@@ -458,6 +482,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'About'**
   String get about;
+
+  /// No description provided for @detail_transaction.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction Detail'**
+  String get detail_transaction;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @attachment.
+  ///
+  /// In en, this message translates to:
+  /// **'Attachment'**
+  String get attachment;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
 
   /// No description provided for @help.
   ///

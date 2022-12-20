@@ -219,7 +219,7 @@ class Transaction extends DataClass implements Insertable<Transaction> {
   final String categoryName;
   final String walletId;
   final String? description;
-  final String image;
+  final String? image;
   final double amount;
   final DateTime dateCreated;
   final bool isRepeated;
@@ -228,7 +228,7 @@ class Transaction extends DataClass implements Insertable<Transaction> {
       required this.categoryName,
       required this.walletId,
       this.description,
-      required this.image,
+      this.image,
       required this.amount,
       required this.dateCreated,
       required this.isRepeated});
@@ -241,7 +241,9 @@ class Transaction extends DataClass implements Insertable<Transaction> {
     if (!nullToAbsent || description != null) {
       map['description'] = Variable<String>(description);
     }
-    map['image'] = Variable<String>(image);
+    if (!nullToAbsent || image != null) {
+      map['image'] = Variable<String>(image);
+    }
     map['amount'] = Variable<double>(amount);
     map['date_created'] = Variable<DateTime>(dateCreated);
     map['is_repeated'] = Variable<bool>(isRepeated);
@@ -256,7 +258,8 @@ class Transaction extends DataClass implements Insertable<Transaction> {
       description: description == null && nullToAbsent
           ? const Value.absent()
           : Value(description),
-      image: Value(image),
+      image:
+          image == null && nullToAbsent ? const Value.absent() : Value(image),
       amount: Value(amount),
       dateCreated: Value(dateCreated),
       isRepeated: Value(isRepeated),
@@ -271,7 +274,7 @@ class Transaction extends DataClass implements Insertable<Transaction> {
       categoryName: serializer.fromJson<String>(json['categoryName']),
       walletId: serializer.fromJson<String>(json['walletId']),
       description: serializer.fromJson<String?>(json['description']),
-      image: serializer.fromJson<String>(json['image']),
+      image: serializer.fromJson<String?>(json['image']),
       amount: serializer.fromJson<double>(json['amount']),
       dateCreated: serializer.fromJson<DateTime>(json['dateCreated']),
       isRepeated: serializer.fromJson<bool>(json['isRepeated']),
@@ -285,7 +288,7 @@ class Transaction extends DataClass implements Insertable<Transaction> {
       'categoryName': serializer.toJson<String>(categoryName),
       'walletId': serializer.toJson<String>(walletId),
       'description': serializer.toJson<String?>(description),
-      'image': serializer.toJson<String>(image),
+      'image': serializer.toJson<String?>(image),
       'amount': serializer.toJson<double>(amount),
       'dateCreated': serializer.toJson<DateTime>(dateCreated),
       'isRepeated': serializer.toJson<bool>(isRepeated),
@@ -297,7 +300,7 @@ class Transaction extends DataClass implements Insertable<Transaction> {
           String? categoryName,
           String? walletId,
           Value<String?> description = const Value.absent(),
-          String? image,
+          Value<String?> image = const Value.absent(),
           double? amount,
           DateTime? dateCreated,
           bool? isRepeated}) =>
@@ -306,7 +309,7 @@ class Transaction extends DataClass implements Insertable<Transaction> {
         categoryName: categoryName ?? this.categoryName,
         walletId: walletId ?? this.walletId,
         description: description.present ? description.value : this.description,
-        image: image ?? this.image,
+        image: image.present ? image.value : this.image,
         amount: amount ?? this.amount,
         dateCreated: dateCreated ?? this.dateCreated,
         isRepeated: isRepeated ?? this.isRepeated,
@@ -348,7 +351,7 @@ class TransactionsCompanion extends UpdateCompanion<Transaction> {
   final Value<String> categoryName;
   final Value<String> walletId;
   final Value<String?> description;
-  final Value<String> image;
+  final Value<String?> image;
   final Value<double> amount;
   final Value<DateTime> dateCreated;
   final Value<bool> isRepeated;
@@ -367,14 +370,13 @@ class TransactionsCompanion extends UpdateCompanion<Transaction> {
     required String categoryName,
     required String walletId,
     this.description = const Value.absent(),
-    required String image,
+    this.image = const Value.absent(),
     required double amount,
     required DateTime dateCreated,
     required bool isRepeated,
   })  : id = Value(id),
         categoryName = Value(categoryName),
         walletId = Value(walletId),
-        image = Value(image),
         amount = Value(amount),
         dateCreated = Value(dateCreated),
         isRepeated = Value(isRepeated);
@@ -405,7 +407,7 @@ class TransactionsCompanion extends UpdateCompanion<Transaction> {
       Value<String>? categoryName,
       Value<String>? walletId,
       Value<String?>? description,
-      Value<String>? image,
+      Value<String?>? image,
       Value<double>? amount,
       Value<DateTime>? dateCreated,
       Value<bool>? isRepeated}) {
@@ -500,8 +502,8 @@ class $TransactionsTable extends Transactions
   final VerificationMeta _imageMeta = const VerificationMeta('image');
   @override
   late final GeneratedColumn<String> image = GeneratedColumn<String>(
-      'image', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+      'image', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   final VerificationMeta _amountMeta = const VerificationMeta('amount');
   @override
   late final GeneratedColumn<double> amount = GeneratedColumn<double>(
@@ -568,8 +570,6 @@ class $TransactionsTable extends Transactions
     if (data.containsKey('image')) {
       context.handle(
           _imageMeta, image.isAcceptableOrUnknown(data['image']!, _imageMeta));
-    } else if (isInserting) {
-      context.missing(_imageMeta);
     }
     if (data.containsKey('amount')) {
       context.handle(_amountMeta,
@@ -611,7 +611,7 @@ class $TransactionsTable extends Transactions
       description: attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}description']),
       image: attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}image'])!,
+          .read(DriftSqlType.string, data['${effectivePrefix}image']),
       amount: attachedDatabase.options.types
           .read(DriftSqlType.double, data['${effectivePrefix}amount'])!,
       dateCreated: attachedDatabase.options.types

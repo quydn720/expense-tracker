@@ -1,5 +1,7 @@
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
+import 'package:expense_tracker/features/authentication/presentation/register_form/cubit/register_form_cubit.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/gestures.dart';
@@ -7,9 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../domain/entities/form_value.dart';
-import '../cubit/register_form_cubit.dart';
 
 class RegisterProvider extends StatelessWidget {
   const RegisterProvider({super.key});

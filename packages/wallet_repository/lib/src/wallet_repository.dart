@@ -1,4 +1,4 @@
-import 'models/models.dart';
+import 'package:wallet_repository/src/models/models.dart';
 
 abstract class WalletRepository {
   List<Wallet> get currentWallets;

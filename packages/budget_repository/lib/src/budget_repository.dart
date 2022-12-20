@@ -1,4 +1,4 @@
-import 'models/models.dart';
+import 'package:budget_repository/src/models/models.dart';
 
 abstract class BudgetRepository {
   List<Budget> get currentBudget;

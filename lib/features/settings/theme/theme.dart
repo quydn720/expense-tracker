@@ -1,6 +1,5 @@
+import 'package:expense_tracker/features/settings/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
-
-import 'app_text_theme.dart';
 
 final darkThemeData = ThemeData.dark().copyWith(
   textTheme: textTheme,
@@ -10,6 +9,7 @@ final darkThemeData = ThemeData.dark().copyWith(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
+      elevation: 0,
       padding: const EdgeInsets.symmetric(vertical: 16),
     ),
   ),

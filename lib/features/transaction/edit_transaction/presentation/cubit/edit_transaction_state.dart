@@ -5,25 +5,46 @@ class EditTransactionState with _$EditTransactionState {
   const factory EditTransactionState({
     @Default(AmountText.pure()) AmountText amount,
     @Default(CategoryField.pure()) CategoryField category,
-    @Default(false) bool isRepeated,
-    @Default(true) bool isNewTransaction,
-    @Default(Status.initital) Status status,
     @Default('') String description,
+    @Default(WalletField.pure()) WalletField wallet,
     required DateTime date,
+    @Default(false) bool showMediaBottomSheet,
     XFile? imgFile,
     @Default(FormzStatus.pure) FormzStatus formzStatus,
+    @Default(false) bool isRepeated,
+    @Default(true) bool isNewTransaction,
   }) = _EditTransactionState;
+
+  const EditTransactionState._();
+
+  double get amountDouble {
+    return double.tryParse(amount.value) ?? 0;
+  }
 }
 
-class AmountText extends FormzInput<double, AmountTextError> {
-  const AmountText.pure([super.value = 0]) : super.pure();
-  const AmountText.dirty([super.value = 0]) : super.dirty();
+enum AmountTextError { empty, negative, invalid }
+
+class AmountText extends FormzInput<String, AmountTextError> {
+  const AmountText.pure([super.value = '']) : super.pure();
+  const AmountText.dirty([super.value = '']) : super.dirty();
   @override
-  AmountTextError? validator(double value) {
-    if (value == 0) return AmountTextError.empty;
+  AmountTextError? validator(String value) {
+    final haveInvalidCharacters = !RegExp(r'^[0-9+.]*$').hasMatch(value);
+    final haveTooManyDots = value.split('.').length > 2;
+
+    if (haveInvalidCharacters || haveTooManyDots) {
+      return AmountTextError.invalid;
+    }
+
+    final amount = double.tryParse(value) ?? 0;
+
+    if (amount == 0) return AmountTextError.empty;
+    if (amount < 0) return AmountTextError.negative;
     return null;
   }
 }
+
+enum CategoryTextError { empty, negative }
 
 class CategoryField extends FormzInput<CategoryEntity?, CategoryTextError> {
   const CategoryField.pure([super.value]) : super.pure();
@@ -35,17 +56,31 @@ class CategoryField extends FormzInput<CategoryEntity?, CategoryTextError> {
   }
 }
 
-enum AmountTextError { empty, negative }
+enum WalletTextError { empty, negative }
 
-extension AmountTextErrorIntl on AmountTextError? {
-  String? toLocalizedString(AppLocalizations l10n) {
-    if (this == AmountTextError.empty) return l10n.authError_invalidEmail;
-    if (this == AmountTextError.negative) return l10n.authError_userNotFound;
+class WalletField extends FormzInput<Wallet?, WalletTextError> {
+  const WalletField.pure([super.value]) : super.pure();
+  const WalletField.dirty([super.value]) : super.dirty();
+  @override
+  WalletTextError? validator(Wallet? value) {
+    if (value == null) return WalletTextError.empty;
     return null;
   }
 }
 
-enum CategoryTextError { empty, negative }
+extension AmountTextErrorIntl on AmountTextError? {
+  String? toLocalizedString(AppLocalizations l10n) {
+    switch (this) {
+      case AmountTextError.invalid:
+        return l10n.amount_field_validation_invalidAmount;
+      case AmountTextError.empty:
+      case AmountTextError.negative:
+        return l10n.amount_field_validation_emptyOrNegativeAmount;
+      case null:
+        return null;
+    }
+  }
+}
 
 extension CategoryTextErrorIntl on CategoryTextError? {
   String? toLocalizedString(AppLocalizations l10n) {

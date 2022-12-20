@@ -1,7 +1,6 @@
+import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../domain/entities/transaction.dart';
 
 @injectable
 class AddTransactionUseCase {

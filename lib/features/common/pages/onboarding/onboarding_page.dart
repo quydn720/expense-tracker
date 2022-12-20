@@ -1,6 +1,5 @@
+import 'package:expense_tracker/features/common/pages/onboarding/body.dart';
 import 'package:flutter/material.dart';
-
-import 'body.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});

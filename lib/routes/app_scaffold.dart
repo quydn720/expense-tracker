@@ -1,11 +1,10 @@
+import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../di/injector.dart';
 
 enum ScaffoldTab { home, transactions, budget, profile }
 
@@ -23,6 +22,7 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(GoRouter.of(context).location);
     return BlocProvider<TransactionBloc>(
       create: (_) => getIt<TransactionBloc>()
         ..add(const TransactionsSubscriptionRequested()),

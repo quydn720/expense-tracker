@@ -26,13 +26,17 @@
             }
         }
     },
+    "delete_transaction": "Xóa giao dịch này?",
+    "delete_transaction_confirmation": "Bạn chắc chắn muốn xóa giao dịch này?",
     "account_balance": "Số dư tài khoản",
     "recent_transactions": "Giao dịch gần đây",
     "see_all": "Xem tất cả",
     "spend_frequency": "Báo cáo chi tiêu",
-    "add_attactment": "Thêm tệp đính kèm",
+    "add_attachment": "Thêm tệp đính kèm",
     "note": "Ghi chú",
     "how_much": "Giá trị giao dịch",
+    "amount_field_validation_invalidAmount": "Giá trị giao dịch không thể chứa các kí tự đặc biệt",
+    "amount_field_validation_emptyOrNegativeAmount": "Giá trị giao dịch không thể nhỏ hơn hoặc bằng 0",
     "category": "Danh mục",
     "add_new_transaction": "Thêm giao dịch mới",
     "edit_transaction": "Chỉnh sửa giao dịch",
@@ -69,6 +73,10 @@
     "budgetDescription": "Get notification when you’re budget exceeding the limit",
     "tipsAndArticles": "Tips and Articles",
     "tipsAndArticlesDescription": "Dich sang tieng Viet",
+    "detail_transaction": "Chi tiết giao dịch",
+    "description": "Ghi chú",
+    "attachment": "Tệp đính kèm",
+    "edit": "Sửa giao dịch",
     "about": "Về chúng tôi",
     "help": "Bạn cần giúp đỡ?"
 }

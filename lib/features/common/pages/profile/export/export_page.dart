@@ -1,10 +1,10 @@
+import 'package:expense_tracker/constants.dart';
+import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/common/pages/profile/export/export_result_page.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../constants.dart';
-
-import '../../../../features/app/presentation/widgets/default_app_bar.dart';
-import 'export_result_page.dart';
+const exportDataButtonKey = Key('exportScreen_exportData_elevatedButton');
 
 class ExportDataScreen extends StatefulWidget {
   const ExportDataScreen({super.key});
@@ -63,8 +63,10 @@ class _ExportDataScreenState extends State<ExportDataScreen> {
                 ),
               ),
               ElevatedButton.icon(
+                key: exportDataButtonKey,
                 label: Text(context.l10n.exportData),
                 onPressed: () {
+                  // TODO(fitz): add into router
                   Navigator.pushReplacementNamed(
                     context,
                     ExportDataPromptPage.routeName,

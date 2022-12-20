@@ -426,8 +426,9 @@ class __$$_AppStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AppState implements _AppState {
-  const _$_AppState({this.themeMode = ThemeMode.system, this.locale});
+class _$_AppState extends _AppState {
+  const _$_AppState({this.themeMode = ThemeMode.system, this.locale})
+      : super._();
 
   @override
   @JsonKey()
@@ -460,9 +461,10 @@ class _$_AppState implements _AppState {
       __$$_AppStateCopyWithImpl<_$_AppState>(this, _$identity);
 }
 
-abstract class _AppState implements AppState {
+abstract class _AppState extends AppState {
   const factory _AppState({final ThemeMode themeMode, final Locale? locale}) =
       _$_AppState;
+  const _AppState._() : super._();
 
   @override
   ThemeMode get themeMode;

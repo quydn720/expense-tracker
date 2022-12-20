@@ -1,9 +1,8 @@
+import 'package:expense_tracker/constants.dart';
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/user_preferences.dart';
 import 'package:flutter/material.dart';
-
-import '../../../constants.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});

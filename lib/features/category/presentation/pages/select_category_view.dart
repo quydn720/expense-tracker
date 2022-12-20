@@ -1,12 +1,13 @@
+import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/category/presentation/cubit/category_cubit.dart';
+import 'package:expense_tracker/features/category/presentation/widgets/category_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../di/injector.dart';
-import '../cubit/category_cubit.dart';
-import '../widgets/category_bottom_sheet.dart';
+const searchIconButtonKey = Key('selectCategoryScreen_search_iconButton');
 
 class SelectCategoryProvider extends StatelessWidget {
   const SelectCategoryProvider({super.key});
@@ -52,6 +53,7 @@ class SelectCategoryView extends StatelessWidget {
           title: 'Select Category',
           trailings: [
             IconButton(
+              key: searchIconButtonKey,
               onPressed: () {},
               icon: const Icon(FontAwesomeIcons.magnifyingGlass),
             )
@@ -81,6 +83,7 @@ class SelectCategoryView extends StatelessWidget {
                           (e) => Column(
                             children: [
                               GestureDetector(
+                                key: ObjectKey(e),
                                 onTap: () => GoRouter.of(context).pop(e),
                                 child: CircleAvatar(
                                   radius: 28,

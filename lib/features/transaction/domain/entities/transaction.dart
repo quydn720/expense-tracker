@@ -1,6 +1,7 @@
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 part 'transaction.freezed.dart';
 
@@ -16,4 +17,10 @@ class TransactionEntity with _$TransactionEntity {
     XFile? file,
     @Default(false) bool isRepeated,
   }) = _TransactionEntity;
+
+  const TransactionEntity._();
+
+  String get dateCreatedStr => DateFormat.yMMMMEEEEd().format(dateCreated);
+  String amountStr(String currency) =>
+      DateFormat.yMMMMEEEEd().format(dateCreated);
 }

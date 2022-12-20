@@ -1,10 +1,9 @@
+import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
+import 'package:expense_tracker/features/category/presentation/widgets/category_circle_icon.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
-import '../../../app/bloc/app_bloc.dart';
-import '../../../category/presentation/widgets/category_circle_icon.dart';
 
 class TransactionTile extends StatelessWidget {
   const TransactionTile({

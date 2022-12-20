@@ -1,15 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/category/domain/repositories/category_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/entities/category.dart';
-
-part 'category_state.dart';
 part 'category_cubit.freezed.dart';
+part 'category_state.dart';
 
 @injectable
 class CategoryCubit extends Cubit<CategoryState> {

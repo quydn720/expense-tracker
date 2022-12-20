@@ -1,5 +1,8 @@
 import 'package:expense_tracker/common/cache/drift_database.dart';
+import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
+import 'package:expense_tracker/features/app/presentation/app.dart';
+import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:expense_tracker/firebase_options_dev.dart'
     as firebase_option_dev;
 import 'package:firebase_core/firebase_core.dart';
@@ -8,10 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
-
-import 'di/injector.dart';
-import 'features/app/presentation/app.dart';
-import 'features/authentication/presentation/bloc/authentication_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

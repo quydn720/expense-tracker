@@ -1,39 +1,30 @@
 import 'package:drift/drift.dart';
 import 'package:expense_tracker/common/cache/drift_database.dart';
-import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/transaction/data/datasources/transaction_dao.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 @dev
 @Injectable(as: ITransactionRepository)
 class FakeTransactionRepository implements ITransactionRepository {
-  FakeTransactionRepository(this._dao) {
+  FakeTransactionRepository(this._dao, this._mapper) {
     _init();
   }
 
   final TransactionsDao _dao;
+  final Mapper _mapper;
 
   @override
   Future<void> addNewTransaction(TransactionEntity transaction) async {
-    await _dao.createOrUpdateTransaction(
-      TransactionsCompanion.insert(
-        id: transaction.id,
-        description: Value(transaction.description),
-        walletId: transaction.walletId,
-        categoryName: transaction.category.name,
-        image: transaction.file?.path ?? '',
-        amount: transaction.amount,
-        dateCreated: transaction.dateCreated,
-        isRepeated: transaction.isRepeated,
-      ),
-    );
+    await _dao.createOrUpdateTransaction(_mapper.fromEntity(transaction));
   }
 
   @override
-  List<TransactionEntity> getAllTransaction() => [];
+  Future<List<TransactionEntity>> getAllTransaction() async {
+    final result = await _dao.getAllTransactions();
+    return [];
+  }
 
   @override
   Stream<List<TransactionEntity>> watchTransactions({String? category}) {
@@ -50,28 +41,28 @@ class FakeTransactionRepository implements ITransactionRepository {
   }
 
   @override
-  Future<void> updateTransaction(TransactionEntity transaction) {
-    throw UnimplementedError();
+  Future<void> updateTransaction(TransactionEntity transaction) async {
+    await _dao.updateTransaction(
+      transactionId: transaction.id,
+      transaction: _mapper.fromEntity(transaction),
+    );
   }
 
-  Future<void> _init() async {
-    await Future<void>.delayed(const Duration(seconds: 3));
-    final _cachedTransactions = await _dao.getAllTransactions();
-    final c = _cachedTransactions
-        .map(
-          (e) => TransactionEntity(
-            id: e.id,
-            dateCreated: e.dateCreated,
-            amount: e.amount,
-            description: e.description,
-            walletId: e.walletId,
-            category: const CategoryEntity(
-              color: Colors.black,
-              icon: Icons.abc,
-              name: 'abc',
-            ),
-          ),
-        )
-        .toList();
+  Future<void> _init() async {}
+}
+
+@injectable
+class Mapper {
+  TransactionsCompanion fromEntity(TransactionEntity transaction) {
+    return TransactionsCompanion.insert(
+      id: transaction.id,
+      description: Value(transaction.description),
+      walletId: transaction.walletId,
+      categoryName: transaction.category.name,
+      image: Value(transaction.file?.path),
+      amount: transaction.amount,
+      dateCreated: transaction.dateCreated,
+      isRepeated: transaction.isRepeated,
+    );
   }
 }

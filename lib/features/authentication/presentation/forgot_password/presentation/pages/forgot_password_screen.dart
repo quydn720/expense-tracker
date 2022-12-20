@@ -1,13 +1,12 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:expense_tracker/di/injector.dart';
+import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:expense_tracker/l10n/gen/app_localizations.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../../app/presentation/widgets/default_app_bar.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key, this.email});

@@ -1,10 +1,14 @@
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Budget {
-  Budget(this.id, this.amount, this.whenToNotify, this.category);
+part 'budget.freezed.dart';
 
-  final String id;
-  final double amount;
-  final double whenToNotify;
-  final CategoryEntity category;
+@freezed
+class Budget with _$Budget {
+  const factory Budget({
+    required String id,
+    required double amount,
+    required double whenToNotify,
+    required CategoryEntity category,
+  }) = _Budget;
 }

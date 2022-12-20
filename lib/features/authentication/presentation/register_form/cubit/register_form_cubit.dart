@@ -1,13 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:expense_tracker/features/authentication/domain/entities/form_value.dart';
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../domain/entities/form_value.dart';
-
-part 'register_form_state.dart';
 part 'register_form_cubit.freezed.dart';
+part 'register_form_state.dart';
 
 @injectable
 class RegisterFormCubit extends Cubit<RegisterState> {

@@ -26,13 +26,17 @@
             }
         }
     },
+    "delete_transaction": "Remove this transaction?",
+    "delete_transaction_confirmation": "Are you sure do you wanna remove this transaction?",
     "account_balance": "Account Balance",
     "recent_transactions": "Recent Transactions",
     "see_all": "See all",
     "spend_frequency": "Spend Frequency",
-    "add_attactment": "Add attachment",
+    "add_attachment": "Add attachment",
     "note": "Note",
     "how_much": "How much?",
+    "amount_field_validation_invalidAmount": "Has invalid characters, please fix it.",
+    "amount_field_validation_emptyOrNegativeAmount": "The amount's value could not be negative or zero.",
     "category": "Category",
     "add_new_transaction": "Add new transaction",
     "edit_transaction": "Edit transaction",
@@ -70,5 +74,9 @@
     "tipsAndArticles": "Tips and Articles",
     "tipsAndArticlesDescription": "Small & useful pieces of pratical financial advice",
     "about": "About",
+    "detail_transaction": "Transaction Detail",
+    "description": "Description",
+    "attachment": "Attachment",
+    "edit": "Edit",
     "help": "Help"
 }

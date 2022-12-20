@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(width: 40),
                   Text(
-                    '${l10n.income}: \$600',
+                    '${l10n.expense}: \$600',
                     style: textTheme.headline6?.copyWith(
                       color: color.onSurfaceVariant,
                     ),

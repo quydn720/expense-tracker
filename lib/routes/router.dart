@@ -4,35 +4,35 @@ import 'package:expense_tracker/features/authentication/presentation/bloc/authen
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_email_sent_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/forgot_password/presentation/pages/forgot_password_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
+import 'package:expense_tracker/features/authentication/presentation/register_form/pages/register_screen.dart';
+import 'package:expense_tracker/features/budget/budget.dart';
 import 'package:expense_tracker/features/category/presentation/pages/select_category_view.dart';
+import 'package:expense_tracker/features/common/pages/onboarding/onboarding_page.dart';
+import 'package:expense_tracker/features/common/pages/profile/export/export_page.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/language_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/profile_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/security_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/setting_screen.dart';
+import 'package:expense_tracker/features/settings/presentation/pages/theme_screen.dart';
+import 'package:expense_tracker/features/transaction/detail_transaction/transaction_detail.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/pages/edit_transaction_screen.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/pages/transaction_screen.dart';
 import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
 import 'package:expense_tracker/home_screen.dart';
-import 'package:expense_tracker/presentations/pages/onboarding/onboarding_page.dart';
+import 'package:expense_tracker/routes/app_scaffold.dart';
+import 'package:expense_tracker/routes/fade_transistion_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../features/authentication/presentation/register_form/pages/register_screen.dart';
-import '../features/budget/budget.dart';
-import '../features/settings/presentation/pages/language_screen.dart';
-import '../features/settings/presentation/pages/notification_screen.dart';
-import '../features/settings/presentation/pages/security_screen.dart';
-import '../features/settings/presentation/pages/theme_screen.dart';
-import '../features/transaction/detail_transaction/transaction_detail.dart';
-import '../presentations/pages/profile/export/export_page.dart';
-import 'app_scaffold.dart';
-import 'fade_transistion_page.dart';
 
 const ValueKey<String> _scaffoldKey = ValueKey<String>('App scaffold');
 
 GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
   return GoRouter(
+    debugLogDiagnostics: true,
     initialLocation: initialLocation,
     routes: [
       GoRoute(path: '/', redirect: (_, __) => '/home'),
@@ -64,7 +64,7 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
             path: ':transactionId',
             builder: (_, state) {
               // final id = state.params['transactionId']!;
-              return TransactionDetailPage(
+              return TransactionDetailProvider(
                 transaction: state.extra! as TransactionEntity,
               );
             },
@@ -84,6 +84,10 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
           ),
           key: _scaffoldKey,
         ),
+      ),
+      GoRoute(
+        path: '/create-budget',
+        builder: (_, __) => const CreateNewBudgetScreen(),
       ),
       GoRoute(
         path: '/profile',

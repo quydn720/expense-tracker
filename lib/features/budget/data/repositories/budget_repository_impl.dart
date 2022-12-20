@@ -1,5 +1,5 @@
-import '../../data/repositories/budget_repository.dart';
-import '../entities/budget.dart';
+import 'package:expense_tracker/features/budget/domain/entities/budget.dart';
+import 'package:expense_tracker/features/budget/domain/repositories/budget_repository.dart';
 
 class LocalBudgetRepository implements IBudgetRepository {
   LocalBudgetRepository(this.budgets);
@@ -18,7 +18,7 @@ class LocalBudgetRepository implements IBudgetRepository {
   }
 
   @override
-  Future<void> updateBudget(Budget budget) {
+  Future<void> updateBudget(String budgetId, Budget budget) {
     throw UnimplementedError();
   }
 

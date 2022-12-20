@@ -1,9 +1,8 @@
 import 'dart:async';
 
+import 'package:authentication_repository/src/authentication_repository.dart';
+import 'package:authentication_repository/src/models/models.dart';
 import 'package:flutter/foundation.dart';
-
-import 'authentication_repository.dart';
-import 'models/models.dart';
 
 class MockAuthenticateRepo implements IAuthenticationRepository {
   final StreamController<User> _streamController = StreamController.broadcast();
@@ -45,7 +44,6 @@ class MockAuthenticateRepo implements IAuthenticationRepository {
     await sendVerificationEmail();
 
     _streamController.add(const User(id: 'asd'));
-    // TODO(fitz): implements
   }
 
   @override
