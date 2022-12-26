@@ -3,13 +3,15 @@ import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/category/data/models/category_model.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
+import 'package:expense_tracker/features/wallet/data/models/wallet_model.dart';
+import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
 import 'package:flutter/material.dart' hide Column, Table;
 import 'package:image_picker/image_picker.dart';
 
 class Transactions extends Table {
   TextColumn get id => text()();
   TextColumn get categoryName => text().references(Categories, #name)();
-  TextColumn get walletId => text()();
+  TextColumn get walletId => text().references(Wallets, #id)();
   TextColumn get description => text().nullable()();
   TextColumn get image => text().nullable()();
   RealColumn get amount => real()();
@@ -23,11 +25,13 @@ class Transactions extends Table {
 class TransactionWithCategory {
   const TransactionWithCategory({
     required this.transaction,
+    required this.wallet,
     required this.category,
   });
 
   final Transaction transaction;
   final Category category;
+  final WalletEntry wallet;
 
   TransactionEntity toEntity() {
     XFile? file;
@@ -42,13 +46,36 @@ class TransactionWithCategory {
         name: category.name,
         icon: category.icon,
         color: Color(category.color),
+        categoryType: category.type,
       ),
       dateCreated: transaction.dateCreated,
       walletId: transaction.walletId,
       description: transaction.description,
+      wallet: Wallet(
+        id: wallet.id,
+        balance: wallet.balance,
+        name: wallet.name,
+        iconPath: '',
+      ),
     );
   }
 }
+
+class WalletWithTransactions {
+  const WalletWithTransactions({
+    required this.transaction,
+    required this.category,
+  });
+
+  final Transaction transaction;
+  final Category category;
+
+  SomeModel toEntity() {
+    return SomeModel();
+  }
+}
+
+class SomeModel {}
 
 // class ImageConverter extends TypeConverter<XFile, String> {
 //   const ImageConverter();

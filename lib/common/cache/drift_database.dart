@@ -2,10 +2,15 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:expense_tracker/features/budget/data/models/budget_model.dart';
 import 'package:expense_tracker/features/category/data/datasources/categories_dao.dart';
 import 'package:expense_tracker/features/category/data/models/category_model.dart';
+import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/transaction/data/datasources/transaction_dao.dart';
 import 'package:expense_tracker/features/transaction/data/models/transaction_model.dart';
+import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
+import 'package:expense_tracker/features/wallet/data/models/wallet_model.dart';
+import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
 import 'package:flutter/material.dart' hide Table;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path/path.dart' as p;
@@ -14,7 +19,7 @@ import 'package:path_provider/path_provider.dart';
 part 'drift_database.g.dart';
 
 @DriftDatabase(
-  tables: [Categories, Transactions],
+  tables: [Categories, Transactions, Budgets, Wallets],
   daos: [CategoriesDao, TransactionsDao],
 )
 class MyDatabase extends _$MyDatabase {
@@ -35,24 +40,122 @@ class MyDatabase extends _$MyDatabase {
 
   Future<void> createInitialRecords() {
     return batch(
-      (batch) => batch.insertAll(categories, [
-        CategoriesCompanion(
-          name: const Value('Grocery'),
-          color: Value(const Color(0xffFCAC12).value),
-          icon: const Value(FontAwesomeIcons.calculator),
-        ),
-        CategoriesCompanion(
-          name: const Value('Subcription'),
-          color: Value(const Color(0xff7F3DFF).value),
-          icon: const Value(Icons.abc),
-        ),
-        CategoriesCompanion(
-          name: const Value('Food'),
-          color: Value(const Color(0xffFD3C4A).value),
-          icon: const Value(Icons.note),
-        ),
-      ]),
+      (batch) {
+        batch
+          ..insertAll(wallets, [
+            WalletsCompanion.insert(
+              id: 'wallet 1',
+              name: 'Bank 1',
+              walletType: 'Bank',
+              balance: 100,
+            ),
+            WalletsCompanion.insert(
+              id: 'wallet 2',
+              name: 'Bank 2',
+              walletType: 'Bank',
+              balance: 200,
+            ),
+            WalletsCompanion.insert(
+              id: 'wallet 3',
+              name: 'Wallet 1',
+              walletType: 'Wallet',
+              balance: 150,
+            ),
+          ])
+          ..insertAll(categories, [
+            CategoriesCompanion.insert(
+              name: 'Grocery',
+              color: const Color(0xffFCAC12).value,
+              icon: FontAwesomeIcons.calculator,
+              type: CategoryType.expense,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Subcription',
+              color: const Color(0xff7F3DFF).value,
+              icon: Icons.abc,
+              type: CategoryType.expense,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Food',
+              color: const Color(0xffFD3C4A).value,
+              icon: Icons.note,
+              type: CategoryType.expense,
+            ),
+          ]);
+      },
     );
+  }
+
+  Stream<List<Object>> watchTransactionsWithCategory({
+    String? categoryName,
+  }) {
+    final query = select(transactions).join(
+      [
+        leftOuterJoin(
+          categories,
+          categories.name.equalsExp(transactions.categoryName),
+        ),
+        leftOuterJoin(
+          wallets,
+          wallets.id.equalsExp(transactions.walletId),
+        ),
+      ],
+    );
+
+    if (categoryName != null) {
+      query.where(categories.name.equals(categoryName));
+    }
+
+    return query.map((row) {
+      return TransactionWithCategory(
+        wallet: row.readTable(wallets),
+        transaction: row.readTable(transactions),
+        category: row.readTable(categories),
+      );
+    }).watch();
+  }
+
+  Future<List<Wallet>> getAllWallets() async {
+    final walletEntries = await select(wallets).get();
+    return walletEntries
+        .map(
+          (w) => Wallet(
+            id: w.id,
+            balance: w.balance,
+            name: w.name,
+            iconPath: '',
+          ),
+        )
+        .toList();
+  }
+
+  Future<List<TransactionEntity>> getAllTransactionWithWalletId(
+    String walletId,
+  ) async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    final transaction = await (select(transactions)
+          ..where(
+            (u) => u.walletId.equals(walletId),
+          ))
+        .get();
+
+    return transaction
+        .map(
+          (e) => TransactionEntity(
+            id: e.id,
+            amount: e.amount,
+            category: const CategoryEntity(
+              name: 'Category',
+              icon: Icons.ac_unit,
+              color: Colors.yellow,
+              categoryType: CategoryType.income,
+            ),
+            dateCreated: e.dateCreated,
+            description: e.description,
+            walletId: walletId,
+          ),
+        )
+        .toList();
   }
 }
 

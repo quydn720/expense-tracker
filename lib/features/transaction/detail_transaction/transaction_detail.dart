@@ -4,6 +4,7 @@ import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/common/common_bottom_sheet.dart';
+import 'package:expense_tracker/features/settings/theme/app_text_theme.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/cubit/edit_transaction_cubit.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
@@ -50,6 +51,7 @@ class TransactionDetailScreen extends StatelessWidget {
 
     final numberFormatter = context.read<AppBloc>().state.numberFormatter;
 
+    final s16w600 = textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w600);
     return Scaffold(
       appBar: DefaultAppBar(
         title: l10n.detail_transaction,
@@ -63,7 +65,7 @@ class TransactionDetailScreen extends StatelessWidget {
                 context: context,
                 builder: (_) => BlocProvider.value(
                   value: controller,
-                  child: CommonBottomSheet(
+                  child: YesNoBottomSheet(
                     confirmCallback: () {
                       controller.deleted(_transaction);
                       context.go('/');
@@ -99,7 +101,47 @@ class TransactionDetailScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Center(child: Text(_transaction.dateCreatedStr)),
+              Center(
+                child: Text(
+                  _transaction.dateCreatedStr,
+                  style: textTheme.subtitle2,
+                ),
+              ),
+              const Divider(thickness: 2),
+              const SizedBox(height: 4),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Type', style: textTheme.subtitle2),
+                      const SizedBox(height: 4),
+                      Text(
+                        _transaction.category.categoryType.name,
+                        style: s16w600,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Category', style: textTheme.subtitle2),
+                      const SizedBox(height: 4),
+                      Text(_transaction.category.name, style: s16w600),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Wallet', style: textTheme.subtitle2),
+                      const SizedBox(height: 4),
+                      Text(_transaction.wallet?.name ?? '', style: s16w600),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4),
               const Divider(thickness: 2),
               Flexible(
                 child: ListView(

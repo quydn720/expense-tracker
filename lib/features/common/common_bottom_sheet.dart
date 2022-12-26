@@ -1,8 +1,8 @@
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 
-class CommonBottomSheet extends StatelessWidget {
-  const CommonBottomSheet({
+class YesNoBottomSheet extends StatelessWidget {
+  const YesNoBottomSheet({
     super.key,
     required this.title,
     required this.subtitle,

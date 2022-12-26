@@ -479,8 +479,10 @@ class _WalletDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = context.read<EditTransactionCubit>();
+    final wallet = controller.state.wallet.value?.name ?? '';
 
     return TextFormField(
+      initialValue: wallet,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 12,
@@ -494,7 +496,7 @@ class _WalletDropdown extends StatelessWidget {
         filled: true,
         fillColor: Colors.white,
       ),
-      onChanged: controller.descriptionChanged,
+      onChanged: controller.walletChanged,
     );
   }
 }

@@ -35,7 +35,12 @@ class LocalCategoryRepository implements ICategoryRepository {
   Future<List<CategoryEntity>> getAllCategories() async {
     final categories = await _dao.getAllCategories();
     return categories.map((e) {
-      return CategoryEntity(icon: e.icon, name: e.name, color: Color(e.color));
+      return CategoryEntity(
+        icon: e.icon,
+        name: e.name,
+        color: Color(e.color),
+        categoryType: e.type,
+      );
     }).toList();
   }
 
@@ -48,6 +53,7 @@ class LocalCategoryRepository implements ICategoryRepository {
             name: e.name,
             icon: e.icon,
             color: Color(e.color),
+            categoryType: e.type,
           );
         }).toList();
       },

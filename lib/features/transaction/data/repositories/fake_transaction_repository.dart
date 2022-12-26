@@ -27,7 +27,10 @@ class FakeTransactionRepository implements ITransactionRepository {
   }
 
   @override
-  Stream<List<TransactionEntity>> watchTransactions({String? category}) {
+  Stream<List<TransactionEntity>> watchTransactions({
+    String? category,
+    SortBy sortBy = SortBy.dateCreated,
+  }) {
     return _dao
         .watchTransactionsWithCategory(categoryName: category)
         .map((transactions) {

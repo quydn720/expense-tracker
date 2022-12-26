@@ -24,16 +24,13 @@ void main() {
   });
 
   test('watch budget success', () async {
-    final mockBudget = MockBudget();
-
-    final result = await getAllBudgets(mockBudget);
+    final result = await getAllBudgets();
     expect(result, isA<Right<Exception, Stream<List<Budget>>>>());
   });
   test('watch budget failed', () async {
     when(() => _repository.watchAllBudget()).thenThrow(Exception());
-    final mockBudget = MockBudget();
 
-    final result = await getAllBudgets(mockBudget);
+    final result = await getAllBudgets();
     expect(result, isA<Left<Exception, Stream<List<Budget>>>>());
   });
 }

@@ -19,6 +19,7 @@ mixin _$CategoryEntity {
   String get name => throw _privateConstructorUsedError;
   IconData get icon => throw _privateConstructorUsedError;
   Color get color => throw _privateConstructorUsedError;
+  CategoryType get categoryType => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CategoryEntityCopyWith<CategoryEntity> get copyWith =>
@@ -31,7 +32,8 @@ abstract class $CategoryEntityCopyWith<$Res> {
           CategoryEntity value, $Res Function(CategoryEntity) then) =
       _$CategoryEntityCopyWithImpl<$Res, CategoryEntity>;
   @useResult
-  $Res call({String name, IconData icon, Color color});
+  $Res call(
+      {String name, IconData icon, Color color, CategoryType categoryType});
 }
 
 /// @nodoc
@@ -50,6 +52,7 @@ class _$CategoryEntityCopyWithImpl<$Res, $Val extends CategoryEntity>
     Object? name = null,
     Object? icon = null,
     Object? color = null,
+    Object? categoryType = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -64,6 +67,10 @@ class _$CategoryEntityCopyWithImpl<$Res, $Val extends CategoryEntity>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as Color,
+      categoryType: null == categoryType
+          ? _value.categoryType
+          : categoryType // ignore: cast_nullable_to_non_nullable
+              as CategoryType,
     ) as $Val);
   }
 }
@@ -76,7 +83,8 @@ abstract class _$$_CategoryEntityCopyWith<$Res>
       __$$_CategoryEntityCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, IconData icon, Color color});
+  $Res call(
+      {String name, IconData icon, Color color, CategoryType categoryType});
 }
 
 /// @nodoc
@@ -93,6 +101,7 @@ class __$$_CategoryEntityCopyWithImpl<$Res>
     Object? name = null,
     Object? icon = null,
     Object? color = null,
+    Object? categoryType = null,
   }) {
     return _then(_$_CategoryEntity(
       name: null == name
@@ -107,6 +116,10 @@ class __$$_CategoryEntityCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as Color,
+      categoryType: null == categoryType
+          ? _value.categoryType
+          : categoryType // ignore: cast_nullable_to_non_nullable
+              as CategoryType,
     ));
   }
 }
@@ -115,7 +128,10 @@ class __$$_CategoryEntityCopyWithImpl<$Res>
 
 class _$_CategoryEntity extends _CategoryEntity {
   const _$_CategoryEntity(
-      {required this.name, required this.icon, required this.color})
+      {required this.name,
+      required this.icon,
+      required this.color,
+      required this.categoryType})
       : super._();
 
   @override
@@ -124,10 +140,12 @@ class _$_CategoryEntity extends _CategoryEntity {
   final IconData icon;
   @override
   final Color color;
+  @override
+  final CategoryType categoryType;
 
   @override
   String toString() {
-    return 'CategoryEntity(name: $name, icon: $icon, color: $color)';
+    return 'CategoryEntity(name: $name, icon: $icon, color: $color, categoryType: $categoryType)';
   }
 
   @override
@@ -137,11 +155,13 @@ class _$_CategoryEntity extends _CategoryEntity {
             other is _$_CategoryEntity &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.icon, icon) || other.icon == icon) &&
-            (identical(other.color, color) || other.color == color));
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.categoryType, categoryType) ||
+                other.categoryType == categoryType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, icon, color);
+  int get hashCode => Object.hash(runtimeType, name, icon, color, categoryType);
 
   @JsonKey(ignore: true)
   @override
@@ -154,7 +174,8 @@ abstract class _CategoryEntity extends CategoryEntity {
   const factory _CategoryEntity(
       {required final String name,
       required final IconData icon,
-      required final Color color}) = _$_CategoryEntity;
+      required final Color color,
+      required final CategoryType categoryType}) = _$_CategoryEntity;
   const _CategoryEntity._() : super._();
 
   @override
@@ -163,6 +184,8 @@ abstract class _CategoryEntity extends CategoryEntity {
   IconData get icon;
   @override
   Color get color;
+  @override
+  CategoryType get categoryType;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryEntityCopyWith<_$_CategoryEntity> get copyWith =>

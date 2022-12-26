@@ -1,3 +1,6 @@
+import 'package:drift_db_viewer/drift_db_viewer.dart';
+import 'package:expense_tracker/common/cache/drift_database.dart';
+import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:expense_tracker/features/common/common_bottom_sheet.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
@@ -20,6 +23,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
       body: Padding(
@@ -66,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                       await showModalBottomSheet<bool>(
                         context: context,
                         builder: (_) {
-                          return CommonBottomSheet(
+                          return YesNoBottomSheet(
                             key: logoutBottomSheetKey,
                             confirmCallback: () {
                               context
@@ -81,6 +85,19 @@ class ProfileScreen extends StatelessWidget {
                     },
                     title: l10n.logout,
                   ),
+                  if (getIt<AppConfigurations>().appName.contains('Dev')) ...[
+                    TextButton(
+                      onPressed: () {
+                        final db = getIt<MyDatabase>();
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (context) => DriftDbViewer(db),
+                          ),
+                        );
+                      },
+                      child: const Text('view database'),
+                    ),
+                  ],
                 ],
               ),
             ),

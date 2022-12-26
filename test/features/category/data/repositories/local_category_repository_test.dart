@@ -20,6 +20,7 @@ void main() {
     name: 'mock category',
     icon: Icons.abc,
     color: Colors.black,
+    categoryType: CategoryType.income,
   );
 
   final isUnit = isA<Right<Exception, Unit>>();
@@ -78,6 +79,7 @@ void main() {
         name: 'mock category',
         color: Colors.amber.value,
         icon: Icons.abc,
+        type: CategoryType.income,
       );
       when(dao.getAllCategories).thenAnswer((_) async {
         return [category];
@@ -94,6 +96,7 @@ void main() {
           name: 'mock category',
           color: Colors.amber.value,
           icon: Icons.abc,
+          type: CategoryType.income,
         )
       ];
       when(dao.watchAllCategories).thenAnswer(
@@ -110,6 +113,7 @@ void main() {
             name: categories.first.name,
             icon: categories.first.icon,
             color: Color(categories.first.color),
+          categoryType: CategoryType.income,
           )
         ]),
       );

@@ -20,21 +20,21 @@ mixin _$BudgetState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
-    required TResult Function(List<Budget> budget) loaded,
+    required TResult Function(List<Budget> budgets) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
-    TResult? Function(List<Budget> budget)? loaded,
+    TResult? Function(List<Budget> budgets)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
-    TResult Function(List<Budget> budget)? loaded,
+    TResult Function(List<Budget> budgets)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +120,7 @@ class _$BudgetEmpty implements BudgetEmpty {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
-    required TResult Function(List<Budget> budget) loaded,
+    required TResult Function(List<Budget> budgets) loaded,
   }) {
     return empty();
   }
@@ -130,7 +130,7 @@ class _$BudgetEmpty implements BudgetEmpty {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
-    TResult? Function(List<Budget> budget)? loaded,
+    TResult? Function(List<Budget> budgets)? loaded,
   }) {
     return empty?.call();
   }
@@ -140,7 +140,7 @@ class _$BudgetEmpty implements BudgetEmpty {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
-    TResult Function(List<Budget> budget)? loaded,
+    TResult Function(List<Budget> budgets)? loaded,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -226,7 +226,7 @@ class _$Loading implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
-    required TResult Function(List<Budget> budget) loaded,
+    required TResult Function(List<Budget> budgets) loaded,
   }) {
     return loading();
   }
@@ -236,7 +236,7 @@ class _$Loading implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
-    TResult? Function(List<Budget> budget)? loaded,
+    TResult? Function(List<Budget> budgets)? loaded,
   }) {
     return loading?.call();
   }
@@ -246,7 +246,7 @@ class _$Loading implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
-    TResult Function(List<Budget> budget)? loaded,
+    TResult Function(List<Budget> budgets)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -299,7 +299,7 @@ abstract class _$$LoadedCopyWith<$Res> {
   factory _$$LoadedCopyWith(_$Loaded value, $Res Function(_$Loaded) then) =
       __$$LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Budget> budget});
+  $Res call({List<Budget> budgets});
 }
 
 /// @nodoc
@@ -312,12 +312,12 @@ class __$$LoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? budget = null,
+    Object? budgets = null,
   }) {
     return _then(_$Loaded(
-      null == budget
-          ? _value._budget
-          : budget // ignore: cast_nullable_to_non_nullable
+      null == budgets
+          ? _value._budgets
+          : budgets // ignore: cast_nullable_to_non_nullable
               as List<Budget>,
     ));
   }
@@ -326,18 +326,18 @@ class __$$LoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Loaded implements Loaded {
-  const _$Loaded(final List<Budget> budget) : _budget = budget;
+  const _$Loaded(final List<Budget> budgets) : _budgets = budgets;
 
-  final List<Budget> _budget;
+  final List<Budget> _budgets;
   @override
-  List<Budget> get budget {
+  List<Budget> get budgets {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_budget);
+    return EqualUnmodifiableListView(_budgets);
   }
 
   @override
   String toString() {
-    return 'BudgetState.loaded(budget: $budget)';
+    return 'BudgetState.loaded(budgets: $budgets)';
   }
 
   @override
@@ -345,12 +345,12 @@ class _$Loaded implements Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Loaded &&
-            const DeepCollectionEquality().equals(other._budget, _budget));
+            const DeepCollectionEquality().equals(other._budgets, _budgets));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_budget));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_budgets));
 
   @JsonKey(ignore: true)
   @override
@@ -363,9 +363,9 @@ class _$Loaded implements Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
-    required TResult Function(List<Budget> budget) loaded,
+    required TResult Function(List<Budget> budgets) loaded,
   }) {
-    return loaded(budget);
+    return loaded(budgets);
   }
 
   @override
@@ -373,9 +373,9 @@ class _$Loaded implements Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
-    TResult? Function(List<Budget> budget)? loaded,
+    TResult? Function(List<Budget> budgets)? loaded,
   }) {
-    return loaded?.call(budget);
+    return loaded?.call(budgets);
   }
 
   @override
@@ -383,11 +383,11 @@ class _$Loaded implements Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
-    TResult Function(List<Budget> budget)? loaded,
+    TResult Function(List<Budget> budgets)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(budget);
+      return loaded(budgets);
     }
     return orElse();
   }
@@ -428,9 +428,9 @@ class _$Loaded implements Loaded {
 }
 
 abstract class Loaded implements BudgetState {
-  const factory Loaded(final List<Budget> budget) = _$Loaded;
+  const factory Loaded(final List<Budget> budgets) = _$Loaded;
 
-  List<Budget> get budget;
+  List<Budget> get budgets;
   @JsonKey(ignore: true)
   _$$LoadedCopyWith<_$Loaded> get copyWith =>
       throw _privateConstructorUsedError;

@@ -31,6 +31,7 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
                   category: CategoryField.pure(initialTransaction.category),
                   amount: AmountText.pure(initialTransaction.amount.toString()),
                   imgFile: initialTransaction.file,
+                  wallet: WalletField.pure(initialTransaction.wallet),
                 )
               : EditTransactionState(date: DateTime.now()),
         );
@@ -89,7 +90,7 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
       category: state.category.value!,
       dateCreated: state.date,
       amount: double.parse(state.amount.value),
-      walletId: 'walletId',
+      walletId: state.wallet.value!.id,
       description: state.description,
       file: state.imgFile,
     );
@@ -107,5 +108,20 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
 
   Future<void> dateChanged(DateTime? date) async {
     emit(state.copyWith(date: date!));
+  }
+
+  void walletChanged(String value) {
+    final test = Wallet(
+      id: value,
+      balance: 100,
+      name: 'name',
+      iconPath: 'iconPath',
+    );
+    final wallet = WalletField.dirty(test);
+    final formzStatus = Formz.validate([state.amount, state.wallet, wallet]);
+
+    emit(
+      state.copyWith(wallet: wallet, formzStatus: formzStatus),
+    );
   }
 }

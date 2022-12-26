@@ -93,47 +93,89 @@ abstract class AppLocalizations {
     Locale('vi')
   ];
 
-  /// No description provided for @signUp.
+  /// No description provided for @about.
   ///
   /// In en, this message translates to:
-  /// **'Sign Up'**
-  String get signUp;
+  /// **'About'**
+  String get about;
 
-  /// No description provided for @login.
+  /// No description provided for @account.
   ///
   /// In en, this message translates to:
-  /// **'Login'**
-  String get login;
+  /// **'Account'**
+  String get account;
 
-  /// No description provided for @logout.
+  /// No description provided for @account_balance.
   ///
   /// In en, this message translates to:
-  /// **'Logout'**
-  String get logout;
+  /// **'Account Balance'**
+  String get account_balance;
 
-  /// No description provided for @logout_confirmation.
+  /// No description provided for @add_attachment.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to logout?'**
-  String get logout_confirmation;
+  /// **'Add attachment'**
+  String get add_attachment;
 
-  /// No description provided for @yes_str.
+  /// No description provided for @add_new_transaction.
   ///
   /// In en, this message translates to:
-  /// **'Yes'**
-  String get yes_str;
+  /// **'Add new transaction'**
+  String get add_new_transaction;
 
-  /// No description provided for @no_str.
+  /// No description provided for @amount_field_validation_emptyOrNegativeAmount.
   ///
   /// In en, this message translates to:
-  /// **'No'**
-  String get no_str;
+  /// **'The amount\'s value could not be negative or zero.'**
+  String get amount_field_validation_emptyOrNegativeAmount;
+
+  /// No description provided for @amount_field_validation_invalidAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Has invalid characters, please fix it.'**
+  String get amount_field_validation_invalidAmount;
+
+  /// No description provided for @appearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get appearance;
+
+  /// No description provided for @appearance_dark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get appearance_dark;
+
+  /// No description provided for @appearance_light.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get appearance_light;
+
+  /// No description provided for @appearance_system.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto'**
+  String get appearance_system;
+
+  /// No description provided for @attachment.
+  ///
+  /// In en, this message translates to:
+  /// **'Attachment'**
+  String get attachment;
 
   /// No description provided for @authError_invalidEmail.
   ///
   /// In en, this message translates to:
   /// **'Email is not valid or badly formatted.'**
   String get authError_invalidEmail;
+
+  /// No description provided for @authError_unknownException.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown exception occurred.'**
+  String get authError_unknownException;
 
   /// No description provided for @authError_userDisabled.
   ///
@@ -153,23 +195,23 @@ abstract class AppLocalizations {
   /// **'Incorrect password, please try again.'**
   String get authError_wrongPassword;
 
-  /// No description provided for @authError_unknownException.
+  /// No description provided for @budget.
   ///
   /// In en, this message translates to:
-  /// **'An unknown exception occurred.'**
-  String get authError_unknownException;
+  /// **'Budget'**
+  String get budget;
 
-  /// No description provided for @googleError_userCancelled.
+  /// No description provided for @budgetDescription.
   ///
   /// In en, this message translates to:
-  /// **'You canceled the login process'**
-  String get googleError_userCancelled;
+  /// **'Get notification when you’re budget exceeding the limit'**
+  String get budgetDescription;
 
-  /// No description provided for @forgot_password.
+  /// No description provided for @category.
   ///
   /// In en, this message translates to:
-  /// **'Forgot Password'**
-  String get forgot_password;
+  /// **'Category'**
+  String get category;
 
   /// No description provided for @continue_str.
   ///
@@ -177,23 +219,17 @@ abstract class AppLocalizations {
   /// **'Continue'**
   String get continue_str;
 
-  /// No description provided for @forgot_password_title.
+  /// No description provided for @create_budget.
   ///
   /// In en, this message translates to:
-  /// **'Don\'t worry.'**
-  String get forgot_password_title;
+  /// **'Create new budget'**
+  String get create_budget;
 
-  /// No description provided for @forgot_password_instruction.
+  /// No description provided for @currency.
   ///
   /// In en, this message translates to:
-  /// **'Enter your email and we’ll send you a link to reset your password.'**
-  String get forgot_password_instruction;
-
-  /// Send user prompt with user's email.
-  ///
-  /// In en, this message translates to:
-  /// **'Check your email {email} and follow the instructions to reset your password'**
-  String forgot_password_sent(String email);
+  /// **'Currency'**
+  String get currency;
 
   /// No description provided for @delete_transaction.
   ///
@@ -207,71 +243,23 @@ abstract class AppLocalizations {
   /// **'Are you sure do you wanna remove this transaction?'**
   String get delete_transaction_confirmation;
 
-  /// No description provided for @account_balance.
+  /// No description provided for @description.
   ///
   /// In en, this message translates to:
-  /// **'Account Balance'**
-  String get account_balance;
+  /// **'Description'**
+  String get description;
 
-  /// No description provided for @recent_transactions.
+  /// No description provided for @detail_transaction.
   ///
   /// In en, this message translates to:
-  /// **'Recent Transactions'**
-  String get recent_transactions;
+  /// **'Transaction Detail'**
+  String get detail_transaction;
 
-  /// No description provided for @see_all.
+  /// No description provided for @edit.
   ///
   /// In en, this message translates to:
-  /// **'See all'**
-  String get see_all;
-
-  /// No description provided for @spend_frequency.
-  ///
-  /// In en, this message translates to:
-  /// **'Spend Frequency'**
-  String get spend_frequency;
-
-  /// No description provided for @add_attachment.
-  ///
-  /// In en, this message translates to:
-  /// **'Add attachment'**
-  String get add_attachment;
-
-  /// No description provided for @note.
-  ///
-  /// In en, this message translates to:
-  /// **'Note'**
-  String get note;
-
-  /// No description provided for @how_much.
-  ///
-  /// In en, this message translates to:
-  /// **'How much?'**
-  String get how_much;
-
-  /// No description provided for @amount_field_validation_invalidAmount.
-  ///
-  /// In en, this message translates to:
-  /// **'Has invalid characters, please fix it.'**
-  String get amount_field_validation_invalidAmount;
-
-  /// No description provided for @amount_field_validation_emptyOrNegativeAmount.
-  ///
-  /// In en, this message translates to:
-  /// **'The amount\'s value could not be negative or zero.'**
-  String get amount_field_validation_emptyOrNegativeAmount;
-
-  /// No description provided for @category.
-  ///
-  /// In en, this message translates to:
-  /// **'Category'**
-  String get category;
-
-  /// No description provided for @add_new_transaction.
-  ///
-  /// In en, this message translates to:
-  /// **'Add new transaction'**
-  String get add_new_transaction;
+  /// **'Edit'**
+  String get edit;
 
   /// No description provided for @edit_transaction.
   ///
@@ -285,47 +273,71 @@ abstract class AppLocalizations {
   /// **'Expense'**
   String get expense;
 
-  /// No description provided for @income.
+  /// No description provided for @expenseAlert.
   ///
   /// In en, this message translates to:
-  /// **'Income'**
-  String get income;
+  /// **'Expense Alert'**
+  String get expenseAlert;
 
-  /// No description provided for @transfer.
+  /// No description provided for @expenseAlertDescription.
   ///
   /// In en, this message translates to:
-  /// **'Transfer'**
-  String get transfer;
+  /// **'Get notification about you’re expense'**
+  String get expenseAlertDescription;
 
-  /// No description provided for @wallet.
+  /// No description provided for @exportData.
   ///
   /// In en, this message translates to:
-  /// **'Wallet'**
-  String get wallet;
+  /// **'Export Data'**
+  String get exportData;
 
-  /// No description provided for @repeat_str.
+  /// No description provided for @faceId.
   ///
   /// In en, this message translates to:
-  /// **'Repeat'**
-  String get repeat_str;
+  /// **'Face ID'**
+  String get faceId;
 
-  /// No description provided for @repeat_transaction.
+  /// No description provided for @fingerprint.
   ///
   /// In en, this message translates to:
-  /// **'Repeat transaction, set your own time'**
-  String get repeat_transaction;
+  /// **'Fingerprint'**
+  String get fingerprint;
 
-  /// No description provided for @profile.
+  /// No description provided for @forgot_password.
   ///
   /// In en, this message translates to:
-  /// **'Profile'**
-  String get profile;
+  /// **'Forgot Password'**
+  String get forgot_password;
 
-  /// No description provided for @account.
+  /// No description provided for @forgot_password_instruction.
   ///
   /// In en, this message translates to:
-  /// **'Account'**
-  String get account;
+  /// **'Enter your email and we’ll send you a link to reset your password.'**
+  String get forgot_password_instruction;
+
+  /// Send user prompt with user's email.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email {email} and follow the instructions to reset your password'**
+  String forgot_password_sent(String email);
+
+  /// No description provided for @forgot_password_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t worry.'**
+  String get forgot_password_title;
+
+  /// No description provided for @googleError_userCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'You canceled the login process'**
+  String get googleError_userCancelled;
+
+  /// No description provided for @help.
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get help;
 
   /// No description provided for @home.
   ///
@@ -333,11 +345,17 @@ abstract class AppLocalizations {
   /// **'Home'**
   String get home;
 
-  /// No description provided for @transactions.
+  /// No description provided for @how_much.
   ///
   /// In en, this message translates to:
-  /// **'Transactions'**
-  String get transactions;
+  /// **'How much?'**
+  String get how_much;
+
+  /// No description provided for @income.
+  ///
+  /// In en, this message translates to:
+  /// **'Income'**
+  String get income;
 
   /// No description provided for @language.
   ///
@@ -351,83 +369,47 @@ abstract class AppLocalizations {
   /// **'Error'**
   String get languageError_notSuppported;
 
-  /// No description provided for @language_vietnamese.
-  ///
-  /// In en, this message translates to:
-  /// **'Vietnamese'**
-  String get language_vietnamese;
-
   /// No description provided for @language_english.
   ///
   /// In en, this message translates to:
   /// **'English'**
   String get language_english;
 
-  /// No description provided for @appearance.
+  /// No description provided for @language_vietnamese.
   ///
   /// In en, this message translates to:
-  /// **'Appearance'**
-  String get appearance;
+  /// **'Vietnamese'**
+  String get language_vietnamese;
 
-  /// No description provided for @appearance_light.
+  /// No description provided for @login.
   ///
   /// In en, this message translates to:
-  /// **'Light'**
-  String get appearance_light;
+  /// **'Login'**
+  String get login;
 
-  /// No description provided for @appearance_dark.
+  /// No description provided for @logout.
   ///
   /// In en, this message translates to:
-  /// **'Dark'**
-  String get appearance_dark;
+  /// **'Logout'**
+  String get logout;
 
-  /// No description provided for @appearance_system.
+  /// No description provided for @logout_confirmation.
   ///
   /// In en, this message translates to:
-  /// **'Auto'**
-  String get appearance_system;
+  /// **'Are you sure you want to logout?'**
+  String get logout_confirmation;
 
-  /// No description provided for @currency.
+  /// No description provided for @no_str.
   ///
   /// In en, this message translates to:
-  /// **'Currency'**
-  String get currency;
+  /// **'No'**
+  String get no_str;
 
-  /// No description provided for @settings.
+  /// No description provided for @note.
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
-  String get settings;
-
-  /// No description provided for @exportData.
-  ///
-  /// In en, this message translates to:
-  /// **'Export Data'**
-  String get exportData;
-
-  /// No description provided for @security.
-  ///
-  /// In en, this message translates to:
-  /// **'Security'**
-  String get security;
-
-  /// No description provided for @pin.
-  ///
-  /// In en, this message translates to:
-  /// **'PIN'**
-  String get pin;
-
-  /// No description provided for @fingerprint.
-  ///
-  /// In en, this message translates to:
-  /// **'Fingerprint'**
-  String get fingerprint;
-
-  /// No description provided for @faceId.
-  ///
-  /// In en, this message translates to:
-  /// **'Face ID'**
-  String get faceId;
+  /// **'Note'**
+  String get note;
 
   /// No description provided for @notification.
   ///
@@ -435,35 +417,77 @@ abstract class AppLocalizations {
   /// **'Notification'**
   String get notification;
 
-  /// No description provided for @expenseAlert.
+  /// No description provided for @pin.
   ///
   /// In en, this message translates to:
-  /// **'Expense Alert'**
-  String get expenseAlert;
+  /// **'PIN'**
+  String get pin;
 
-  /// No description provided for @expenseAlertDescription.
+  /// No description provided for @profile.
   ///
   /// In en, this message translates to:
-  /// **'Get notification about you’re expense'**
-  String get expenseAlertDescription;
+  /// **'Profile'**
+  String get profile;
 
-  /// No description provided for @budget.
+  /// No description provided for @receive_alert_subtitle.
   ///
   /// In en, this message translates to:
-  /// **'Budget'**
-  String get budget;
+  /// **'Receive alert when it reaches some point.'**
+  String get receive_alert_subtitle;
 
-  /// No description provided for @create_budget.
+  /// No description provided for @receive_alert_title.
   ///
   /// In en, this message translates to:
-  /// **'Create new budget'**
-  String get create_budget;
+  /// **'Receive Alert'**
+  String get receive_alert_title;
 
-  /// No description provided for @budgetDescription.
+  /// No description provided for @recent_transactions.
   ///
   /// In en, this message translates to:
-  /// **'Get notification when you’re budget exceeding the limit'**
-  String get budgetDescription;
+  /// **'Recent Transactions'**
+  String get recent_transactions;
+
+  /// No description provided for @repeat_str.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat'**
+  String get repeat_str;
+
+  /// No description provided for @repeat_transaction.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat transaction, set your own time'**
+  String get repeat_transaction;
+
+  /// No description provided for @security.
+  ///
+  /// In en, this message translates to:
+  /// **'Security'**
+  String get security;
+
+  /// No description provided for @see_all.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get see_all;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @signUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get signUp;
+
+  /// No description provided for @spend_frequency.
+  ///
+  /// In en, this message translates to:
+  /// **'Spend Frequency'**
+  String get spend_frequency;
 
   /// No description provided for @tipsAndArticles.
   ///
@@ -477,41 +501,29 @@ abstract class AppLocalizations {
   /// **'Small & useful pieces of pratical financial advice'**
   String get tipsAndArticlesDescription;
 
-  /// No description provided for @about.
+  /// No description provided for @transactions.
   ///
   /// In en, this message translates to:
-  /// **'About'**
-  String get about;
+  /// **'Transactions'**
+  String get transactions;
 
-  /// No description provided for @detail_transaction.
+  /// No description provided for @transfer.
   ///
   /// In en, this message translates to:
-  /// **'Transaction Detail'**
-  String get detail_transaction;
+  /// **'Transfer'**
+  String get transfer;
 
-  /// No description provided for @description.
+  /// No description provided for @wallet.
   ///
   /// In en, this message translates to:
-  /// **'Description'**
-  String get description;
+  /// **'Wallet'**
+  String get wallet;
 
-  /// No description provided for @attachment.
+  /// No description provided for @yes_str.
   ///
   /// In en, this message translates to:
-  /// **'Attachment'**
-  String get attachment;
-
-  /// No description provided for @edit.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit'**
-  String get edit;
-
-  /// No description provided for @help.
-  ///
-  /// In en, this message translates to:
-  /// **'Help'**
-  String get help;
+  /// **'Yes'**
+  String get yes_str;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

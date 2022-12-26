@@ -1,10 +1,16 @@
 part of 'wallet_cubit.dart';
 
-abstract class WalletState extends Equatable {
-  const WalletState();
+@freezed
+class WalletState with _$WalletState {
+  const factory WalletState({
+    @Default([]) List<Wallet> wallets,
+    @Default(WalletStatus.initial) WalletStatus status,
+  }) = _WalletState;
+  const WalletState._();
 
-  @override
-  List<Object> get props => [];
+  double get totalAmount {
+    return wallets.fold(0, (p, c) => p + c.balance);
+  }
 }
 
-class WalletInitial extends WalletState {}
+enum WalletStatus { initial, loading, error, loaded }

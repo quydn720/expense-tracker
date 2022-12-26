@@ -5,25 +5,46 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get signUp => 'Sign Up';
+  String get about => 'About';
 
   @override
-  String get login => 'Login';
+  String get account => 'Account';
 
   @override
-  String get logout => 'Logout';
+  String get account_balance => 'Account Balance';
 
   @override
-  String get logout_confirmation => 'Are you sure you want to logout?';
+  String get add_attachment => 'Add attachment';
 
   @override
-  String get yes_str => 'Yes';
+  String get add_new_transaction => 'Add new transaction';
 
   @override
-  String get no_str => 'No';
+  String get amount_field_validation_emptyOrNegativeAmount => 'The amount\'s value could not be negative or zero.';
+
+  @override
+  String get amount_field_validation_invalidAmount => 'Has invalid characters, please fix it.';
+
+  @override
+  String get appearance => 'Appearance';
+
+  @override
+  String get appearance_dark => 'Dark';
+
+  @override
+  String get appearance_light => 'Light';
+
+  @override
+  String get appearance_system => 'Auto';
+
+  @override
+  String get attachment => 'Attachment';
 
   @override
   String get authError_invalidEmail => 'Email is not valid or badly formatted.';
+
+  @override
+  String get authError_unknownException => 'An unknown exception occurred.';
 
   @override
   String get authError_userDisabled => 'This user has been disabled. Please contact support for help.';
@@ -35,19 +56,61 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authError_wrongPassword => 'Incorrect password, please try again.';
 
   @override
-  String get authError_unknownException => 'An unknown exception occurred.';
+  String get budget => 'Budget';
 
   @override
-  String get googleError_userCancelled => 'You canceled the login process';
+  String get budgetDescription => 'Get notification when you’re budget exceeding the limit';
 
   @override
-  String get forgot_password => 'Forgot Password';
+  String get category => 'Category';
 
   @override
   String get continue_str => 'Continue';
 
   @override
-  String get forgot_password_title => 'Don\'t worry.';
+  String get create_budget => 'Create new budget';
+
+  @override
+  String get currency => 'Currency';
+
+  @override
+  String get delete_transaction => 'Remove this transaction?';
+
+  @override
+  String get delete_transaction_confirmation => 'Are you sure do you wanna remove this transaction?';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get detail_transaction => 'Transaction Detail';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get edit_transaction => 'Edit transaction';
+
+  @override
+  String get expense => 'Expense';
+
+  @override
+  String get expenseAlert => 'Expense Alert';
+
+  @override
+  String get expenseAlertDescription => 'Get notification about you’re expense';
+
+  @override
+  String get exportData => 'Export Data';
+
+  @override
+  String get faceId => 'Face ID';
+
+  @override
+  String get fingerprint => 'Fingerprint';
+
+  @override
+  String get forgot_password => 'Forgot Password';
 
   @override
   String get forgot_password_instruction => 'Enter your email and we’ll send you a link to reset your password.';
@@ -58,76 +121,22 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get delete_transaction => 'Remove this transaction?';
+  String get forgot_password_title => 'Don\'t worry.';
 
   @override
-  String get delete_transaction_confirmation => 'Are you sure do you wanna remove this transaction?';
+  String get googleError_userCancelled => 'You canceled the login process';
 
   @override
-  String get account_balance => 'Account Balance';
-
-  @override
-  String get recent_transactions => 'Recent Transactions';
-
-  @override
-  String get see_all => 'See all';
-
-  @override
-  String get spend_frequency => 'Spend Frequency';
-
-  @override
-  String get add_attachment => 'Add attachment';
-
-  @override
-  String get note => 'Note';
-
-  @override
-  String get how_much => 'How much?';
-
-  @override
-  String get amount_field_validation_invalidAmount => 'Has invalid characters, please fix it.';
-
-  @override
-  String get amount_field_validation_emptyOrNegativeAmount => 'The amount\'s value could not be negative or zero.';
-
-  @override
-  String get category => 'Category';
-
-  @override
-  String get add_new_transaction => 'Add new transaction';
-
-  @override
-  String get edit_transaction => 'Edit transaction';
-
-  @override
-  String get expense => 'Expense';
-
-  @override
-  String get income => 'Income';
-
-  @override
-  String get transfer => 'Transfer';
-
-  @override
-  String get wallet => 'Wallet';
-
-  @override
-  String get repeat_str => 'Repeat';
-
-  @override
-  String get repeat_transaction => 'Repeat transaction, set your own time';
-
-  @override
-  String get profile => 'Profile';
-
-  @override
-  String get account => 'Account';
+  String get help => 'Help';
 
   @override
   String get home => 'Home';
 
   @override
-  String get transactions => 'Transactions';
+  String get how_much => 'How much?';
+
+  @override
+  String get income => 'Income';
 
   @override
   String get language => 'Language';
@@ -136,61 +145,64 @@ class AppLocalizationsEn extends AppLocalizations {
   String get languageError_notSuppported => 'Error';
 
   @override
-  String get language_vietnamese => 'Vietnamese';
-
-  @override
   String get language_english => 'English';
 
   @override
-  String get appearance => 'Appearance';
+  String get language_vietnamese => 'Vietnamese';
 
   @override
-  String get appearance_light => 'Light';
+  String get login => 'Login';
 
   @override
-  String get appearance_dark => 'Dark';
+  String get logout => 'Logout';
 
   @override
-  String get appearance_system => 'Auto';
+  String get logout_confirmation => 'Are you sure you want to logout?';
 
   @override
-  String get currency => 'Currency';
+  String get no_str => 'No';
 
   @override
-  String get settings => 'Settings';
-
-  @override
-  String get exportData => 'Export Data';
-
-  @override
-  String get security => 'Security';
-
-  @override
-  String get pin => 'PIN';
-
-  @override
-  String get fingerprint => 'Fingerprint';
-
-  @override
-  String get faceId => 'Face ID';
+  String get note => 'Note';
 
   @override
   String get notification => 'Notification';
 
   @override
-  String get expenseAlert => 'Expense Alert';
+  String get pin => 'PIN';
 
   @override
-  String get expenseAlertDescription => 'Get notification about you’re expense';
+  String get profile => 'Profile';
 
   @override
-  String get budget => 'Budget';
+  String get receive_alert_subtitle => 'Receive alert when it reaches some point.';
 
   @override
-  String get create_budget => 'Create new budget';
+  String get receive_alert_title => 'Receive Alert';
 
   @override
-  String get budgetDescription => 'Get notification when you’re budget exceeding the limit';
+  String get recent_transactions => 'Recent Transactions';
+
+  @override
+  String get repeat_str => 'Repeat';
+
+  @override
+  String get repeat_transaction => 'Repeat transaction, set your own time';
+
+  @override
+  String get security => 'Security';
+
+  @override
+  String get see_all => 'See all';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get signUp => 'Sign Up';
+
+  @override
+  String get spend_frequency => 'Spend Frequency';
 
   @override
   String get tipsAndArticles => 'Tips and Articles';
@@ -199,20 +211,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tipsAndArticlesDescription => 'Small & useful pieces of pratical financial advice';
 
   @override
-  String get about => 'About';
+  String get transactions => 'Transactions';
 
   @override
-  String get detail_transaction => 'Transaction Detail';
+  String get transfer => 'Transfer';
 
   @override
-  String get description => 'Description';
+  String get wallet => 'Wallet';
 
   @override
-  String get attachment => 'Attachment';
-
-  @override
-  String get edit => 'Edit';
-
-  @override
-  String get help => 'Help';
+  String get yes_str => 'Yes';
 }

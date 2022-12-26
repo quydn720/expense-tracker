@@ -1,9 +1,12 @@
+import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/widgets/recent_transactions.dart';
+import 'package:expense_tracker/features/wallet/presentation/cubit/wallet_cubit.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/routes/app_scaffold.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +23,9 @@ class HomeScreen extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final color = Theme.of(context).colorScheme;
     final l10n = context.l10n;
+
+    final formatter = context.read<AppBloc>().state.numberFormatter;
+    final totalAmount = context.read<WalletCubit>().state.totalAmount;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -46,7 +52,7 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                '${l10n.account_balance}: \$400',
+                '${l10n.account_balance}: ${formatter.format(totalAmount)}',
                 style: textTheme.headline2?.copyWith(color: color.onBackground),
               ),
               Row(

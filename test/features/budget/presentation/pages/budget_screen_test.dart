@@ -1,4 +1,6 @@
 import 'package:expense_tracker/features/budget/budget.dart';
+import 'package:expense_tracker/features/budget/presentation/pages/create_new_budget_screen.dart';
+import 'package:expense_tracker/features/budget/presentation/widgets/budget_tile.dart';
 import 'package:expense_tracker/features/settings/theme/theme.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,8 @@ void main() {
         theme: themeData,
         routerConfig: GoRouter(
           routes: [
-            GoRoute(path: '/', builder: (_, __) => const BudgetScreen()),
+            GoRoute(
+                path: '/', builder: (_, __) => const BudgetScreenProvider()),
             GoRoute(
               path: '/create-budget',
               builder: (_, __) => const CreateNewBudgetScreen(),
@@ -27,7 +30,7 @@ void main() {
   group('renders', () {
     testWidgets('budget screen', (tester) async {
       await pumpWidget(tester);
-      expect(find.byType(BudgetScreen), findsOneWidget);
+      expect(find.byType(BudgetScreenProvider), findsOneWidget);
       expect(find.byType(BudgetTile), findsWidgets);
     });
   });

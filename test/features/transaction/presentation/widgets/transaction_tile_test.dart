@@ -20,6 +20,7 @@ void main() {
     name: 'category',
     icon: Icons.abc,
     color: Colors.black,
+    categoryType: CategoryType.income,
   );
 
   setUp(() {

@@ -6,6 +6,7 @@ import 'package:expense_tracker/features/authentication/presentation/forgot_pass
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/pages/register_screen.dart';
 import 'package:expense_tracker/features/budget/budget.dart';
+import 'package:expense_tracker/features/budget/presentation/pages/create_new_budget_screen.dart';
 import 'package:expense_tracker/features/category/presentation/pages/select_category_view.dart';
 import 'package:expense_tracker/features/common/pages/onboarding/onboarding_page.dart';
 import 'package:expense_tracker/features/common/pages/profile/export/export_page.dart';
@@ -21,6 +22,7 @@ import 'package:expense_tracker/features/transaction/domain/entities/transaction
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/pages/edit_transaction_screen.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/pages/transaction_screen.dart';
 import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
+import 'package:expense_tracker/features/wallet/presentation/pages/wallet_screen.dart';
 import 'package:expense_tracker/home_screen.dart';
 import 'package:expense_tracker/routes/app_scaffold.dart';
 import 'package:expense_tracker/routes/fade_transistion_page.dart';
@@ -80,7 +82,7 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
         pageBuilder: (_, __) => FadeTransitionPage(
           child: const AppScaffold(
             selectedTab: ScaffoldTab.budget,
-            child: BudgetScreen(),
+            child: BudgetScreenProvider(),
           ),
           key: _scaffoldKey,
         ),
@@ -102,7 +104,7 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
         routes: [
           GoRoute(
             path: 'account',
-            builder: (_, __) => const CurrencyScreen(),
+            builder: (_, __) => const WalletScreenProvider(),
           ),
           GoRoute(
             path: 'export-data',

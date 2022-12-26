@@ -45,6 +45,7 @@ final darkThemeData = ThemeData.dark().copyWith(
 );
 
 final themeData = ThemeData(
+  // useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color(0xff7F3DFF),
     surfaceVariant: const Color(0xffF6F6F6),
@@ -55,6 +56,7 @@ final themeData = ThemeData(
   primaryColor: const Color(0xff7F3DFF),
   textTheme: textTheme,
   chipTheme: const ChipThemeData(
+    showCheckmark: false,
     backgroundColor: Color(0xffEEE5FF),
     labelPadding: EdgeInsets.symmetric(horizontal: 16),
   ),

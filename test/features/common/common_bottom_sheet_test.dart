@@ -13,7 +13,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: LocalizationFactory.localizationsDelegates,
-        home: CommonBottomSheet(
+        home: YesNoBottomSheet(
           title: 'title',
           subtitle: 'subtitle',
           confirmCallback: callback,

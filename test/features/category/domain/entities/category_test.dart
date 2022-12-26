@@ -11,6 +11,7 @@ void main() {
           name: 'mock category',
           icon: Icons.abc,
           color: Colors.yellow,
+          categoryType: CategoryType.income,
         ).backgroundColor,
         Colors.yellow.withOpacity(0.2),
       );

@@ -2,11 +2,14 @@ import 'package:drift/drift.dart';
 import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/category/data/models/category_model.dart';
 import 'package:expense_tracker/features/transaction/data/models/transaction_model.dart';
+import 'package:expense_tracker/features/wallet/data/models/wallet_model.dart';
 import 'package:injectable/injectable.dart';
 
 part 'transaction_dao.g.dart';
 
-@DriftAccessor(tables: [Transactions, Categories])
+enum SortBy { amount, dateCreated }
+
+@DriftAccessor(tables: [Transactions, Categories, Wallets])
 @injectable
 class TransactionsDao extends DatabaseAccessor<MyDatabase>
     with _$TransactionsDaoMixin {
@@ -20,22 +23,41 @@ class TransactionsDao extends DatabaseAccessor<MyDatabase>
 
   Stream<List<TransactionWithCategory>> watchTransactionsWithCategory({
     String? categoryName,
+    SortBy sortBy = SortBy.dateCreated,
+    OrderingMode mode = OrderingMode.desc,
   }) {
-    final query = select(transactions).join(
+    final query = select(transactions)
+      ..orderBy([
+        (tran) {
+          switch (sortBy) {
+            case SortBy.dateCreated:
+              return OrderingTerm(expression: tran.dateCreated, mode: mode);
+            case SortBy.amount:
+              return OrderingTerm(expression: tran.amount, mode: mode);
+          }
+        }
+      ]);
+
+    final joinedCategory = query.join(
       [
         leftOuterJoin(
           categories,
           categories.name.equalsExp(transactions.categoryName),
-        )
+        ),
+        leftOuterJoin(
+          wallets,
+          wallets.id.equalsExp(transactions.walletId),
+        ),
       ],
     );
 
     if (categoryName != null) {
-      query.where(categories.name.equals(categoryName));
+      joinedCategory.where(categories.name.equals(categoryName));
     }
 
-    return query.map((row) {
+    return joinedCategory.map((row) {
       return TransactionWithCategory(
+        wallet: row.readTable(wallets),
         transaction: row.readTable(transactions),
         category: row.readTable(categories),
       );

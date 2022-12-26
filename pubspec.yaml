@@ -16,6 +16,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0
   drift: ^2.1.0
+  drift_db_viewer: ^2.0.0
   file_picker: ^5.2.2
   firebase_auth: ^4.1.4
   firebase_core: ^2.3.0

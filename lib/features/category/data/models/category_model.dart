@@ -1,6 +1,7 @@
 import 'dart:convert' as json;
 
 import 'package:drift/drift.dart';
+import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:flutter/material.dart' hide Table, Column;
 
 /// Model to save to sqflite database
@@ -12,9 +13,24 @@ class Categories extends Table {
   TextColumn get name => text()();
   IntColumn get color => integer()();
   TextColumn get icon => text().map(const IconDataConverter())();
+  IntColumn get type => integer().map(const CategoryTypeConverter())();
 
   @override
   Set<Column<Object>>? get primaryKey => {name};
+}
+
+class CategoryTypeConverter extends TypeConverter<CategoryType, int> {
+  const CategoryTypeConverter();
+
+  @override
+  CategoryType fromSql(int fromDb) {
+    return CategoryType.values[fromDb];
+  }
+
+  @override
+  int toSql(CategoryType value) {
+    return value.index;
+  }
 }
 
 class IconDataConverter extends TypeConverter<IconData, String> {

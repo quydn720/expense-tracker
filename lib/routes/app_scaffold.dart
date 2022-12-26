@@ -1,5 +1,6 @@
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
+import 'package:expense_tracker/features/wallet/presentation/cubit/wallet_cubit.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +23,16 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<TransactionBloc>(
-      create: (_) => getIt<TransactionBloc>()
-        ..add(const TransactionsSubscriptionRequested()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<TransactionBloc>(
+          create: (_) => getIt<TransactionBloc>()
+            ..add(const TransactionsSubscriptionRequested()),
+        ),
+        BlocProvider(
+          create: (_) => getIt<WalletCubit>(),
+        ),
+      ],
       child: Scaffold(
         backgroundColor: color,
         body: SafeArea(child: child),

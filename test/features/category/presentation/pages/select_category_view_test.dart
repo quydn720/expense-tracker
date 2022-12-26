@@ -52,6 +52,7 @@ void main() {
             name: 'mock category',
             icon: Icons.abc,
             color: Colors.green,
+          categoryType: CategoryType.income,
           ),
         ],
       ),

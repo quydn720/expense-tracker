@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/category/data/datasources/categories_dao.dart';
+import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/transaction/data/datasources/transaction_dao.dart';
 import 'package:expense_tracker/features/transaction/data/models/transaction_model.dart';
 import 'package:flutter/material.dart';
@@ -77,6 +78,7 @@ void main() {
         name: mockCategoryName,
         color: Colors.black26.value,
         icon: Icons.abc,
+        type: CategoryType.income,
       );
       await categoriesDao.addNewCategory(mockCategory);
 

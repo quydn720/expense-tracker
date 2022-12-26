@@ -12,20 +12,19 @@ TextTheme textTheme = TextTheme(
     fontWeight: FontWeight.w600,
     letterSpacing: -0.5,
   ),
-  headline3: GoogleFonts.inter(fontSize: 24, fontWeight: FontWeight.w600),
+  headline3: GoogleFonts.inter(fontSize: 40, fontWeight: FontWeight.w600),
   headline4: GoogleFonts.inter(
     fontSize: 36,
     fontWeight: FontWeight.w500,
   ),
-  headline5: GoogleFonts.inter(fontSize: 32, fontWeight: FontWeight.w700),
+  headline5: GoogleFonts.inter(fontSize: 24, fontWeight: FontWeight.w700),
   headline6: GoogleFonts.inter(
     fontSize: 18,
     fontWeight: FontWeight.w600,
   ),
   subtitle1: GoogleFonts.inter(
-    fontSize: 16,
+    fontSize: 13,
     fontWeight: FontWeight.w400,
-    letterSpacing: 0.15,
   ),
   subtitle2: GoogleFonts.inter(
     fontSize: 14,

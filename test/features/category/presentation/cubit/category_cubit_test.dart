@@ -27,6 +27,7 @@ void main() {
             name: 'name',
             color: Colors.transparent,
             icon: Icons.abc,
+          categoryType: CategoryType.income,
           ),
         ),
       ).thenAnswer(

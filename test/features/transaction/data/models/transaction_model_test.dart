@@ -9,6 +9,12 @@ void main() {
   test('map to entity', () {
     expect(
       TransactionWithCategory(
+        wallet: const WalletEntry(
+          id: 'id',
+          name: 'name',
+          walletType: 'walletType',
+          balance: 1,
+        ),
         transaction: Transaction(
           id: 'mock id',
           categoryName: 'mock categoryName',
@@ -20,6 +26,7 @@ void main() {
         category: Category(
           name: 'mock categoryName',
           color: Colors.black.value,
+          type: CategoryType.income,
           icon: Icons.abc,
         ),
       ).toEntity(),
@@ -30,6 +37,7 @@ void main() {
           name: 'mock categoryName',
           color: Colors.black,
           icon: Icons.abc,
+          categoryType: CategoryType.income,
         ),
         dateCreated: DateTime(2003),
         amount: 45,

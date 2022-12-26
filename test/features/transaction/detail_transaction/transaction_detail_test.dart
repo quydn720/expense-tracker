@@ -75,6 +75,7 @@ void main() {
     when(() => transactionEntity.dateCreated).thenReturn(DateTime(2003));
     when(() => transactionEntity.amount).thenReturn(5);
     when(() => categoryEntity.name).thenReturn('mock category name');
+    when(() => categoryEntity.categoryType).thenReturn(CategoryType.income);
 
     registerFallbackValue(MockTransactionEntity());
 
@@ -104,7 +105,7 @@ void main() {
         await tester.tap(find.byKey(deleteTransactionButtonKey));
         await tester.pumpAndSettle();
 
-        expect(find.byType(CommonBottomSheet), findsOneWidget);
+        expect(find.byType(YesNoBottomSheet), findsOneWidget);
         expect(find.text('Remove this transaction?'), findsOneWidget);
       });
     });

@@ -21,6 +21,7 @@ mixin _$TransactionEntity {
   DateTime get dateCreated => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   String get walletId => throw _privateConstructorUsedError;
+  Wallet? get wallet => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   XFile? get file => throw _privateConstructorUsedError;
   bool get isRepeated => throw _privateConstructorUsedError;
@@ -42,11 +43,13 @@ abstract class $TransactionEntityCopyWith<$Res> {
       DateTime dateCreated,
       double amount,
       String walletId,
+      Wallet? wallet,
       String? description,
       XFile? file,
       bool isRepeated});
 
   $CategoryEntityCopyWith<$Res> get category;
+  $WalletCopyWith<$Res>? get wallet;
 }
 
 /// @nodoc
@@ -67,6 +70,7 @@ class _$TransactionEntityCopyWithImpl<$Res, $Val extends TransactionEntity>
     Object? dateCreated = null,
     Object? amount = null,
     Object? walletId = null,
+    Object? wallet = freezed,
     Object? description = freezed,
     Object? file = freezed,
     Object? isRepeated = null,
@@ -92,6 +96,10 @@ class _$TransactionEntityCopyWithImpl<$Res, $Val extends TransactionEntity>
           ? _value.walletId
           : walletId // ignore: cast_nullable_to_non_nullable
               as String,
+      wallet: freezed == wallet
+          ? _value.wallet
+          : wallet // ignore: cast_nullable_to_non_nullable
+              as Wallet?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -114,6 +122,18 @@ class _$TransactionEntityCopyWithImpl<$Res, $Val extends TransactionEntity>
       return _then(_value.copyWith(category: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WalletCopyWith<$Res>? get wallet {
+    if (_value.wallet == null) {
+      return null;
+    }
+
+    return $WalletCopyWith<$Res>(_value.wallet!, (value) {
+      return _then(_value.copyWith(wallet: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -130,12 +150,15 @@ abstract class _$$_TransactionEntityCopyWith<$Res>
       DateTime dateCreated,
       double amount,
       String walletId,
+      Wallet? wallet,
       String? description,
       XFile? file,
       bool isRepeated});
 
   @override
   $CategoryEntityCopyWith<$Res> get category;
+  @override
+  $WalletCopyWith<$Res>? get wallet;
 }
 
 /// @nodoc
@@ -154,6 +177,7 @@ class __$$_TransactionEntityCopyWithImpl<$Res>
     Object? dateCreated = null,
     Object? amount = null,
     Object? walletId = null,
+    Object? wallet = freezed,
     Object? description = freezed,
     Object? file = freezed,
     Object? isRepeated = null,
@@ -179,6 +203,10 @@ class __$$_TransactionEntityCopyWithImpl<$Res>
           ? _value.walletId
           : walletId // ignore: cast_nullable_to_non_nullable
               as String,
+      wallet: freezed == wallet
+          ? _value.wallet
+          : wallet // ignore: cast_nullable_to_non_nullable
+              as Wallet?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -204,6 +232,7 @@ class _$_TransactionEntity extends _TransactionEntity {
       required this.dateCreated,
       required this.amount,
       required this.walletId,
+      this.wallet,
       this.description,
       this.file,
       this.isRepeated = false})
@@ -220,6 +249,8 @@ class _$_TransactionEntity extends _TransactionEntity {
   @override
   final String walletId;
   @override
+  final Wallet? wallet;
+  @override
   final String? description;
   @override
   final XFile? file;
@@ -229,7 +260,7 @@ class _$_TransactionEntity extends _TransactionEntity {
 
   @override
   String toString() {
-    return 'TransactionEntity(id: $id, category: $category, dateCreated: $dateCreated, amount: $amount, walletId: $walletId, description: $description, file: $file, isRepeated: $isRepeated)';
+    return 'TransactionEntity(id: $id, category: $category, dateCreated: $dateCreated, amount: $amount, walletId: $walletId, wallet: $wallet, description: $description, file: $file, isRepeated: $isRepeated)';
   }
 
   @override
@@ -245,6 +276,7 @@ class _$_TransactionEntity extends _TransactionEntity {
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.walletId, walletId) ||
                 other.walletId == walletId) &&
+            (identical(other.wallet, wallet) || other.wallet == wallet) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.file, file) || other.file == file) &&
@@ -254,7 +286,7 @@ class _$_TransactionEntity extends _TransactionEntity {
 
   @override
   int get hashCode => Object.hash(runtimeType, id, category, dateCreated,
-      amount, walletId, description, file, isRepeated);
+      amount, walletId, wallet, description, file, isRepeated);
 
   @JsonKey(ignore: true)
   @override
@@ -271,6 +303,7 @@ abstract class _TransactionEntity extends TransactionEntity {
       required final DateTime dateCreated,
       required final double amount,
       required final String walletId,
+      final Wallet? wallet,
       final String? description,
       final XFile? file,
       final bool isRepeated}) = _$_TransactionEntity;
@@ -286,6 +319,8 @@ abstract class _TransactionEntity extends TransactionEntity {
   double get amount;
   @override
   String get walletId;
+  @override
+  Wallet? get wallet;
   @override
   String? get description;
   @override
