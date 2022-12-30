@@ -147,6 +147,12 @@ class MyDatabase extends _$MyDatabase {
         .toList();
   }
 
+  // TODO(quy): stream this value
+  Future<double> getAccountBalance() async {
+    final walletEntries = await select(wallets).get();
+    return walletEntries.fold<double>(0, (p, w) => p + w.balance);
+  }
+
   Future<List<TransactionEntity>> getAllTransactionWithWalletId(
     String walletId,
   ) async {

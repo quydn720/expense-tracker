@@ -41,11 +41,12 @@ import 'package:expense_tracker/features/budget/presentation/cubit/budget_cubit.
 import 'package:expense_tracker/features/category/data/datasources/categories_dao.dart'
     as _i23;
 import 'package:expense_tracker/features/category/data/repositories/local_category_repository.dart'
-    as _i40;
+    as _i41;
 import 'package:expense_tracker/features/category/domain/repositories/category_repository.dart'
     as _i37;
 import 'package:expense_tracker/features/category/presentation/cubit/category_cubit.dart'
     as _i36;
+import 'package:expense_tracker/features/home/bloc/home_bloc.dart' as _i40;
 import 'package:expense_tracker/features/transaction/data/datasources/transaction_dao.dart'
     as _i16;
 import 'package:expense_tracker/features/transaction/data/repositories/transaction_repository_impl.dart'
@@ -106,12 +107,12 @@ Future<_i1.GetIt> $initGetIt(
   gh.lazySingleton<_i6.GoogleSignIn>(
       () => firebaseInjectableModule.googleSignIn);
   gh.lazySingleton<_i7.IAuthenticationRepository>(
-    () => devAppLocalPackageModule.getDev(),
-    registerFor: {_dev},
-  );
-  gh.lazySingleton<_i7.IAuthenticationRepository>(
     () => devAppLocalPackageModule.getProd(),
     registerFor: {_prod},
+  );
+  gh.lazySingleton<_i7.IAuthenticationRepository>(
+    () => devAppLocalPackageModule.getDev(),
+    registerFor: {_dev},
   );
   gh.lazySingleton<_i8.IBudgetRepository>(() => _i9.LocalBudgetRepository());
   gh.lazySingleton<_i10.FirebaseAuth>(
@@ -145,7 +146,8 @@ Future<_i1.GetIt> $initGetIt(
       () => _i17.UpdateBudget(gh<_i8.IBudgetRepository>()));
   gh.singleton<_i18.UserPreferences>(
       _i18.UserPreferences(prefs: gh<_i4.SharedPreferences>()));
-  gh.factory<_i19.UserService>(() => _i19.UserService());
+  gh.factory<_i19.UserService>(
+      () => _i19.UserService(gh<_i7.IAuthenticationRepository>()));
   gh.factory<_i20.WatchAllBudget>(
       () => _i20.WatchAllBudget(gh<_i8.IBudgetRepository>()));
   gh.factory<bool>(
@@ -188,10 +190,7 @@ Future<_i1.GetIt> $initGetIt(
       registerWithEmailAndPwUseCase: gh<_i14.RegisterWithEmailAndPwUseCase>()));
   gh.factory<_i32.TransactionBloc>(
       () => _i32.TransactionBloc(gh<_i28.ITransactionRepository>()));
-  gh.factory<_i19.UserBloc>(() => _i19.UserBloc(
-        gh<_i7.IAuthenticationRepository>(),
-        gh<_i19.UserService>(),
-      ));
+  gh.factory<_i19.UserBloc>(() => _i19.UserBloc(gh<_i19.UserService>()));
   gh.factory<_i33.AddTransactionUseCase>(
       () => _i33.AddTransactionUseCase(gh<_i28.ITransactionRepository>()));
   gh.singleton<_i34.AppBloc>(
@@ -216,8 +215,13 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i27.GetTransactionOfWallet>(
       () => _i27.GetTransactionOfWallet(gh<_i28.ITransactionRepository>()));
+  gh.factory<_i40.HomeBloc>(() => _i40.HomeBloc(
+        transactionRepository: gh<_i28.ITransactionRepository>(),
+        db: gh<_i13.MyDatabase>(),
+        userService: gh<_i19.UserService>(),
+      ));
   gh.factory<_i37.ICategoryRepository>(
-      () => _i40.LocalCategoryRepository(gh<_i23.CategoriesDao>()));
+      () => _i41.LocalCategoryRepository(gh<_i23.CategoriesDao>()));
   return getIt;
 }
 

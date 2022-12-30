@@ -10,7 +10,7 @@ import 'package:expense_tracker/features/budget/presentation/pages/create_new_bu
 import 'package:expense_tracker/features/category/presentation/pages/select_category_view.dart';
 import 'package:expense_tracker/features/common/pages/onboarding/onboarding_page.dart';
 import 'package:expense_tracker/features/common/pages/profile/export/export_page.dart';
-import 'package:expense_tracker/features/home/presentation/home_screen.dart';
+import 'package:expense_tracker/features/home/presentation/home_page.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/language_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
@@ -64,7 +64,7 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
           GoRoute(
             path: '/home',
             pageBuilder: (_, __) => FadeTransitionPage(
-              child: const HomeScreen(),
+              child: const HomePage(),
               key: _scaffoldKey,
             ),
           ),

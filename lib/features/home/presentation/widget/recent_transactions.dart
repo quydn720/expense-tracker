@@ -1,6 +1,9 @@
+import 'package:expense_tracker/features/home/bloc/home_bloc.dart';
+import 'package:expense_tracker/features/transaction/presentation/widgets/transaction_tile.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:expense_tracker/routes/app_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 const seeAllTransactionButtonKey = Key('homeScreen_seeAll_button');
@@ -12,6 +15,7 @@ class RecentTransactions extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final l10n = context.l10n;
+
     return Column(
       children: [
         SizedBox(
@@ -37,28 +41,22 @@ class RecentTransactions extends StatelessWidget {
             ],
           ),
         ),
-        // BlocBuilder<TransactionBloc, TransactionState>(
-        //   builder: (context, state) {
-        //     if (state.status != TransactionStatus.loaded) {
-        //       return const Center(child: CircularProgressIndicator());
-        //     }
-        //     return SizedBox(
-        //       height: 400,
-        //       child: ListView(
-        //         children: [
-        //           for (final transaction in state.transactions)
-        //             TransactionTile(
-        //               transaction: transaction,
-        //               onPress: () => context.push(
-        //                 '/transactions/${transaction.id}',
-        //                 extra: transaction,
-        //               ),
-        //             )
-        //         ],
-        //       ),
-        //     );
-        //   },
-        // ),
+        BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            if (state.status != HomeStatus.success) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            final itemCount =
+                (state.transactions.length > 5) ? 5 : state.transactions.length;
+            return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (_, index) =>
+                  TransactionTile(transaction: state.transactions[index]),
+              itemCount: itemCount,
+            );
+          },
+        ),
       ],
     );
   }

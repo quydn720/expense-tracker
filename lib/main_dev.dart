@@ -1,5 +1,9 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/di/injector.dart';
+import 'package:expense_tracker/features/app/app_observer.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/app.dart';
 import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
@@ -19,23 +23,29 @@ Future<void> main() async {
   );
 
   await configureInjection(Environment.dev);
+  FlutterError.onError = (details) {
+    log(details.exceptionAsString(), stackTrace: details.stack);
+  };
   // Bloc.observer = AppBlocObserver();
 
-  runApp(
-    MultiProvider(
-      providers: [
-        BlocProvider(create: (_) => getIt<AppBloc>(), lazy: false),
-        BlocProvider(create: (_) => getIt<AuthenticationBloc>(), lazy: false),
-        Provider(
-          lazy: false,
-          create: (_) => getIt<MyDatabase>(),
-          dispose: (_, db) => db.close(),
+  runZonedGuarded(
+    () => runApp(
+      MultiProvider(
+        providers: [
+          BlocProvider(create: (_) => getIt<AppBloc>(), lazy: false),
+          BlocProvider(create: (_) => getIt<AuthenticationBloc>(), lazy: false),
+          Provider(
+            lazy: false,
+            create: (_) => getIt<MyDatabase>(),
+            dispose: (_, db) => db.close(),
+          ),
+        ],
+        child: App(
+          router: getIt<GoRouter>(),
+          appName: getIt<AppConfigurations>().appName,
         ),
-      ],
-      child: App(
-        router: getIt<GoRouter>(),
-        appName: getIt<AppConfigurations>().appName,
       ),
     ),
+    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
