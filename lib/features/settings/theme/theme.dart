@@ -45,7 +45,7 @@ final darkThemeData = ThemeData.dark().copyWith(
 );
 
 final themeData = ThemeData(
-  // useMaterial3: true,
+  useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color(0xff7F3DFF),
     surfaceVariant: const Color(0xffF6F6F6),

@@ -10,6 +10,7 @@ import 'package:expense_tracker/features/budget/presentation/pages/create_new_bu
 import 'package:expense_tracker/features/category/presentation/pages/select_category_view.dart';
 import 'package:expense_tracker/features/common/pages/onboarding/onboarding_page.dart';
 import 'package:expense_tracker/features/common/pages/profile/export/export_page.dart';
+import 'package:expense_tracker/features/home/presentation/home_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/language_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
@@ -23,7 +24,6 @@ import 'package:expense_tracker/features/transaction/edit_transaction/presentati
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/pages/transaction_screen.dart';
 import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
 import 'package:expense_tracker/features/wallet/presentation/pages/wallet_screen.dart';
-import 'package:expense_tracker/home_screen.dart';
 import 'package:expense_tracker/routes/app_scaffold.dart';
 import 'package:expense_tracker/routes/fade_transistion_page.dart';
 import 'package:flutter/material.dart';
@@ -32,44 +32,79 @@ import 'package:go_router/go_router.dart';
 
 const ValueKey<String> _scaffoldKey = ValueKey<String>('App scaffold');
 
+final GlobalKey<NavigatorState> _rootNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'root');
+final GlobalKey<NavigatorState> _shellNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'shell');
+
 GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
   return GoRouter(
+    navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: true,
     initialLocation: initialLocation,
     routes: [
-      GoRoute(path: '/', redirect: (_, __) => '/home'),
-      GoRoute(
-        path: '/splash',
-        builder: (_, __) => const OnboardingPage(),
-      ),
-      GoRoute(
-        path: '/home',
-        pageBuilder: (_, __) => FadeTransitionPage(
-          child: const AppScaffold(
-            selectedTab: ScaffoldTab.home,
-            child: HomeScreen(),
-          ),
-          key: _scaffoldKey,
-        ),
-      ),
-      GoRoute(
-        path: '/transactions',
-        pageBuilder: (_, __) => FadeTransitionPage(
-          child: const AppScaffold(
-            selectedTab: ScaffoldTab.transactions,
-            child: TransactionsScreen(),
-          ),
-          key: _scaffoldKey,
-        ),
+      ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) {
+          return AppScaffold(child: child);
+        },
         routes: [
+          GoRoute(path: '/', redirect: (_, __) => '/home'),
           GoRoute(
-            path: ':transactionId',
-            builder: (_, state) {
-              // final id = state.params['transactionId']!;
-              return TransactionDetailProvider(
-                transaction: state.extra! as TransactionEntity,
-              );
-            },
+            path: '/budget',
+            pageBuilder: (_, __) => FadeTransitionPage(
+              child: const BudgetScreenProvider(),
+              key: _scaffoldKey,
+            ),
+          ),
+          GoRoute(
+            path: '/splash',
+            builder: (_, __) => const OnboardingPage(),
+          ),
+          GoRoute(
+            path: '/home',
+            pageBuilder: (_, __) => FadeTransitionPage(
+              child: const HomeScreen(),
+              key: _scaffoldKey,
+            ),
+          ),
+          GoRoute(
+            path: '/transactions',
+            pageBuilder: (_, __) => FadeTransitionPage(
+              child: const TransactionsScreen(),
+              key: _scaffoldKey,
+            ),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
+                path: ':transactionId',
+                builder: (_, state) {
+                  // final id = state.params['transactionId']!;
+                  return TransactionDetailProvider(
+                    transaction: state.extra! as TransactionEntity,
+                  );
+                },
+              ),
+            ],
+          ),
+          GoRoute(
+            path: '/profile',
+            pageBuilder: (_, __) => FadeTransitionPage(
+              child: const ProfileScreen(),
+              key: _scaffoldKey,
+            ),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
+                path: 'account',
+                builder: (_, __) => const WalletScreenProvider(),
+              ),
+              GoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
+                path: 'export-data',
+                builder: (_, __) => const ExportDataScreen(),
+              ),
+            ],
           ),
         ],
       ),
@@ -78,41 +113,12 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
         builder: (_, __) => const TransactionReports(),
       ),
       GoRoute(
-        path: '/budget',
-        pageBuilder: (_, __) => FadeTransitionPage(
-          child: const AppScaffold(
-            selectedTab: ScaffoldTab.budget,
-            child: BudgetScreenProvider(),
-          ),
-          key: _scaffoldKey,
-        ),
-      ),
-      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
         path: '/create-budget',
         builder: (_, __) => const CreateNewBudgetScreenProvider(),
       ),
       GoRoute(
-        path: '/profile',
-        pageBuilder: (_, __) => FadeTransitionPage(
-          child: const AppScaffold(
-            color: Color(0xffF6F6F6),
-            selectedTab: ScaffoldTab.profile,
-            child: ProfileScreen(),
-          ),
-          key: _scaffoldKey,
-        ),
-        routes: [
-          GoRoute(
-            path: 'account',
-            builder: (_, __) => const WalletScreenProvider(),
-          ),
-          GoRoute(
-            path: 'export-data',
-            builder: (_, __) => const ExportDataScreen(),
-          ),
-        ],
-      ),
-      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
         path: '/setting',
         builder: (_, __) => const SettingScreen(),
         routes: [
@@ -139,6 +145,7 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
         ],
       ),
       GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
         path: '/transaction',
         builder: (_, state) => EditTransactionScreen(
           inititalTransaction: state.extra as TransactionEntity?,
@@ -155,20 +162,24 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
         ),
       ),
       GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
         path: '/login',
         builder: (_, __) => const LoginProvider(),
       ),
       GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
         path: '/forgot-password',
         builder: (_, state) => ForgotPasswordScreen(
           email: state.extra as String?,
         ),
       ),
       GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
         path: '/register',
         builder: (_, __) => const RegisterProvider(),
       ),
       GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
         path: '/verify',
         builder: (_, __) => const VerificationEmailView(),
       ),
