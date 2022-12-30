@@ -15,7 +15,7 @@ class CategoryEntity with _$CategoryEntity {
 
   const CategoryEntity._();
 
-  Color get backgroundColor => color.withOpacity(0.2);
+  Color get backgroundColor => backgroundColor.withOpacity(0.2);
 
   Iterable<TransactionEntity> filteredTransactions(
     Iterable<TransactionEntity> transactions,

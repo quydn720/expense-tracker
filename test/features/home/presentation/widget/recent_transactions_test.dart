@@ -1,9 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:expense_tracker/features/home/bloc/home_bloc.dart';
 import 'package:expense_tracker/features/home/presentation/widget/recent_transactions.dart';
-import 'package:expense_tracker/features/home/presentation/widget/user_circle_avatar.dart';
-import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
-import 'package:expense_tracker/features/transaction/transaction_overview/presentation/pages/transaction_screen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

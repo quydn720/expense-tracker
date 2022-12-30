@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/di/injector.dart';
-import 'package:expense_tracker/features/app/app_observer.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/app.dart';
 import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
