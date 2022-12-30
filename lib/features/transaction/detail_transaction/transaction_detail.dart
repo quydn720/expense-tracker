@@ -1,12 +1,11 @@
 import 'dart:io';
 
-import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/common/common_bottom_sheet.dart';
 import 'package:expense_tracker/features/settings/theme/app_text_theme.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
-import 'package:expense_tracker/features/transaction/edit_transaction/presentation/cubit/edit_transaction_cubit.dart';
+import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,10 +27,7 @@ class TransactionDetailProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<EditTransactionCubit>(),
-      child: TransactionDetailScreen(transaction: _transaction),
-    );
+    return TransactionDetailScreen(transaction: _transaction);
   }
 }
 
@@ -60,15 +56,17 @@ class TransactionDetailScreen extends StatelessWidget {
             key: deleteTransactionButtonKey,
             icon: const FaIcon(FontAwesomeIcons.trash),
             onPressed: () async {
-              final controller = context.read<EditTransactionCubit>();
+              final controller = context.read<TransactionBloc>();
               await showModalBottomSheet<String>(
                 context: context,
                 builder: (_) => BlocProvider.value(
                   value: controller,
                   child: YesNoBottomSheet(
                     confirmCallback: () {
-                      controller.deleted(_transaction);
-                      context.go('/');
+                      context.go('/transactions');
+                      controller.add(
+                        TransactionOverviewTransactionDeleted(_transaction),
+                      );
                     },
                     title: l10n.delete_transaction,
                     subtitle: l10n.delete_transaction_confirmation,

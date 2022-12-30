@@ -79,7 +79,6 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
                 parentNavigatorKey: _rootNavigatorKey,
                 path: ':transactionId',
                 builder: (_, state) {
-                  // final id = state.params['transactionId']!;
                   return TransactionDetailProvider(
                     transaction: state.extra! as TransactionEntity,
                   );

@@ -19,7 +19,7 @@ class DeleteTransactionUseCase {
 
   final ITransactionRepository _repository;
 
-  Future<void> call(TransactionEntity transaction) async {
-    return _repository.deleteTransaction(transaction);
+  Future<void> call(String transactionId) async {
+    return _repository.deleteTransaction(transactionId);
   }
 }

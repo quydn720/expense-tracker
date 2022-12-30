@@ -42,8 +42,8 @@ class TransactionRepositoryImpl implements ITransactionRepository {
   }
 
   @override
-  Future<void> deleteTransaction(TransactionEntity transaction) async {
-    await _dao.deleteTransaction(transaction.id);
+  Future<void> deleteTransaction(String transactionId) async {
+    await _dao.deleteTransaction(transactionId);
   }
 
   @override

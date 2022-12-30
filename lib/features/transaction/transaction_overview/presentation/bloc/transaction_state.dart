@@ -8,6 +8,7 @@ class TransactionState with _$TransactionState {
     String? category,
     @Default(TransactionsViewFilter.all) TransactionsViewFilter filter,
     String? sortBy,
+    TransactionEntity? lastDeletedTransaction,
   }) = _TransactionState;
 
   const TransactionState._();

@@ -43,7 +43,7 @@ void main() {
       when(() => transaction.id).thenReturn('mock id');
       when(() => dao.deleteTransaction(any())).thenAnswer((_) async => 1);
 
-      await repo.deleteTransaction(transaction);
+      await repo.deleteTransaction('mock id');
 
       verify(() => dao.deleteTransaction(transaction.id)).called(1);
     });

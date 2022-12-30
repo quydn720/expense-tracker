@@ -80,7 +80,7 @@ void main() {
     registerFallbackValue(MockTransactionEntity());
 
     editTransactionCubit = MockEditTransactionCubit();
-    when(() => editTransactionCubit.deleted(any())).thenAnswer((_) async {});
+
     when(() => editTransactionCubit.state).thenReturn(
       EditTransactionState(date: DateTime(2003)),
     );

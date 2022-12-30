@@ -18,8 +18,7 @@ part 'edit_transaction_state.dart';
 @injectable
 class EditTransactionCubit extends Cubit<EditTransactionState> {
   EditTransactionCubit(
-    this._addTransaction,
-    this._deleteTransactionUseCase, {
+    this._addTransaction, {
     @factoryParam this.initialTransaction,
   }) : super(
           (initialTransaction != null)
@@ -38,11 +37,6 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
 
   final TransactionEntity? initialTransaction;
   final AddTransactionUseCase _addTransaction;
-  final DeleteTransactionUseCase _deleteTransactionUseCase;
-
-  Future<void> deleted(TransactionEntity transaction) async {
-    await _deleteTransactionUseCase(transaction);
-  }
 
   void attachmentSelectionDone(XFile? imgStr) {
     emit(state.copyWith(imgFile: imgStr, showMediaBottomSheet: false));

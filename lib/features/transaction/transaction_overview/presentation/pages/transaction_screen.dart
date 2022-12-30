@@ -29,7 +29,28 @@ class TransactionView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return BlocBuilder<TransactionBloc, TransactionState>(
+    return BlocConsumer<TransactionBloc, TransactionState>(
+      listenWhen: (previous, current) =>
+          previous.lastDeletedTransaction != current.lastDeletedTransaction &&
+          current.lastDeletedTransaction != null,
+      listener: (_, state) {
+        final deletedTodo = state.lastDeletedTransaction!;
+        final messenger = ScaffoldMessenger.of(context);
+        messenger
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text('l10n.todosOverviewTodoDeletedSnackbarText('),
+              action: SnackBarAction(
+                label: 'undo',
+                onPressed: () {
+                  messenger.hideCurrentSnackBar();
+                  context.read<TransactionBloc>();
+                },
+              ),
+            ),
+          );
+      },
       builder: (context, state) {
         if (state.status != TransactionStatus.loaded) {
           return const Center(child: CircularProgressIndicator());
@@ -82,7 +103,21 @@ class TransactionView extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 itemBuilder: (_, index) => TransactionTile(
                   transaction: state.filteredTransactions.elementAt(index),
-                  onPress: () => context.push(
+                  onPress: () =>
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute<void>(
+                      //     fullscreenDialog: true,
+                      //     builder: (_) => BlocProvider.value(
+                      //       value: context.read<TransactionBloc>(),
+                      //       child: TransactionDetailScreen(
+                      //         transaction: state.transactions[index],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+
+                      context.push(
                     '/transactions/${state.transactions[index].id}',
                     extra: state.transactions[index],
                   ),

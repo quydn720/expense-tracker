@@ -23,14 +23,14 @@ void main() {
 
     blocTest<EditTransactionCubit, EditTransactionState>(
       'emits Status.selectImage when attactment selection pressed',
-      build: () => EditTransactionCubit(_addTransaction, _deleteTransaction),
+      build: () => EditTransactionCubit(_addTransaction),
       act: (bloc) => bloc.openMediaBottomSheet(),
       seed: () => state,
       expect: () => [state.copyWith(showMediaBottomSheet: true)],
     );
     blocTest<EditTransactionCubit, EditTransactionState>(
       'emits amount when amount field changed',
-      build: () => EditTransactionCubit(_addTransaction, _deleteTransaction),
+      build: () => EditTransactionCubit(_addTransaction),
       act: (bloc) => bloc.amountChanged(amountStr: '5.0'),
       seed: () => state,
       expect: () => [
@@ -42,14 +42,14 @@ void main() {
     );
     blocTest<EditTransactionCubit, EditTransactionState>(
       'emits description when description field changed',
-      build: () => EditTransactionCubit(_addTransaction, _deleteTransaction),
+      build: () => EditTransactionCubit(_addTransaction),
       act: (bloc) => bloc.descriptionChanged('some notes'),
       seed: () => state,
       expect: () => [state.copyWith(description: 'some notes')],
     );
     blocTest<EditTransactionCubit, EditTransactionState>(
       'emits reversed state when the repeat button toggled',
-      build: () => EditTransactionCubit(_addTransaction, _deleteTransaction),
+      build: () => EditTransactionCubit(_addTransaction),
       act: (bloc) => bloc.repeatedButtonToggled(),
       seed: () => state,
       expect: () => [state.copyWith(isRepeated: true)],

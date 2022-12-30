@@ -95,7 +95,7 @@ class _EditTransaction extends StatelessWidget {
                   );
                 },
               );
-              router.go('/');
+              router.pop();
             }
             if (state.showMediaBottomSheet) {
               final attachment = await showModalBottomSheet<String>(
