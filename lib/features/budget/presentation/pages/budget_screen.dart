@@ -65,7 +65,7 @@ class BudgetScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 key: createNewBudgetButtonKey,
-                onPressed: () => context.push('/budget/create'),
+                onPressed: () => context.push('/create-budget'),
                 child: Text(context.l10n.create_budget),
               ),
               const SizedBox(height: 32),
