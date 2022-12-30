@@ -1,26 +1,33 @@
-import 'package:expense_tracker/charts/transactions_line_chart.dart';
 import 'package:expense_tracker/charts/weekly_chart.dart';
-import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/extensions/date_extensions.dart';
 import 'package:expense_tracker/extensions/number_extensions.dart';
 import 'package:expense_tracker/extensions/transaction_extensions.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
-import 'package:expense_tracker/features/transaction/data/datasources/transaction_dao.dart';
+import 'package:expense_tracker/features/home/cubit/home_cubit.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/widgets/recent_transactions.dart';
 import 'package:expense_tracker/features/user/presentation/bloc/user_bloc.dart';
 import 'package:expense_tracker/features/wallet/presentation/cubit/wallet_cubit.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
-import 'package:expense_tracker/routes/app_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 
-const seeAllTransactionButtonKey = Key('homeScreen_seeAll_button');
 const searchIconButtonKey = Key('homeScreen_search_iconButton');
 const notificationIconButtonKey = Key('homeScreen_notification_iconButton');
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => HomeCubit(),
+      child: const HomeScreen(),
+    );
+  }
+}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -85,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SpendFrequency(),
+              // const SpendFrequency(),
               // StreamBuilder(
               //   stream: getIt<TransactionsDao>().a(),
               //   builder: (_, c) {
@@ -96,30 +103,8 @@ class HomeScreen extends StatelessWidget {
               //  SizedBox(height: 8, child: ,),
               // const SizedBox(height: 34, child: _Chips()),
               // const SizedBox(height: 8),
-              const SizedBox(height: 180, child: TransactionsLineChart()),
-              SizedBox(
-                height: 54,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(l10n.recent_transactions, style: textTheme.headline6),
-                    GestureDetector(
-                      key: seeAllTransactionButtonKey,
-                      onTap: () {
-                        context.go('/${ScaffoldTab.values[1].name}');
-                      },
-                      child: Chip(
-                        label: Text(
-                          l10n.see_all,
-                          style: textTheme.bodyText2?.copyWith(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // const SizedBox(height: 180, child: TransactionsLineChart()),
+
               const RecentTransactions(),
             ],
           ),
