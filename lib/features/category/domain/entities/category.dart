@@ -1,3 +1,4 @@
+import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,6 +16,12 @@ class CategoryEntity with _$CategoryEntity {
   const CategoryEntity._();
 
   Color get backgroundColor => color.withOpacity(0.2);
+
+  Iterable<TransactionEntity> filteredTransactions(
+    Iterable<TransactionEntity> transactions,
+  ) {
+    return transactions.where((element) => element.category == this);
+  }
 }
 
 enum CategoryType { expense, income }

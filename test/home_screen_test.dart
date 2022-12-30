@@ -1,5 +1,6 @@
+import 'package:expense_tracker/features/home/presentation/home_page.dart';
+import 'package:expense_tracker/features/home/presentation/widget/recent_transactions.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
-import 'package:expense_tracker/home_screen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,7 @@ void main() {
           localizationsDelegates: LocalizationFactory.localizationsDelegates,
           routerConfig: GoRouter(
             routes: [
-              GoRoute(path: '/', builder: (_, __) => const HomeScreen()),
+              GoRoute(path: '/', builder: (_, __) => const HomeView()),
               GoRoute(
                 path: '/transactions',
                 builder: (_, __) => const Scaffold(
@@ -45,7 +46,7 @@ void main() {
   testWidgets('home screen ...', (tester) async {
     await pumpWidget(tester);
 
-    expect(find.byType(HomeScreen), findsOneWidget);
+    expect(find.byType(HomeView), findsOneWidget);
   });
 
   group('navigates', () {

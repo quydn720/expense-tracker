@@ -9,16 +9,15 @@ part 'user_bloc.freezed.dart';
 
 @injectable
 class UserBloc extends Cubit<UserState> {
-  UserBloc(this.repository, this._userService) : super(const UserInitial()) {
+  UserBloc(this._userService) : super(const UserInitial()) {
     _init();
   }
-  final IAuthenticationRepository repository;
 
   final UserService _userService;
 
   Future<void> _init() async {
     await Future<void>.delayed(const Duration(seconds: 1));
-    emit(UserLoaded(user: repository.currentUser));
+    emit(UserLoaded(user: _userService.currentUser));
   }
 
   void updateDisplayName(String displayName) {
@@ -36,7 +35,12 @@ class UserBloc extends Cubit<UserState> {
 
 @injectable
 class UserService {
+  UserService(this.repository);
+
   late firebase_auth.FirebaseAuth auth;
+  final IAuthenticationRepository repository;
+
+  User get currentUser => repository.currentUser;
 
   void updateDisplayName(String displayName) {
     auth.currentUser?.updateDisplayName(displayName);

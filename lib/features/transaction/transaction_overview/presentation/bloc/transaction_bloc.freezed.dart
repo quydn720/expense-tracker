@@ -20,7 +20,7 @@ mixin _$TransactionState {
       throw _privateConstructorUsedError;
   TransactionStatus get status => throw _privateConstructorUsedError;
   String? get category => throw _privateConstructorUsedError;
-  String? get type => throw _privateConstructorUsedError;
+  TransactionsViewFilter get filter => throw _privateConstructorUsedError;
   String? get sortBy => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -38,7 +38,7 @@ abstract class $TransactionStateCopyWith<$Res> {
       {List<TransactionEntity> transactions,
       TransactionStatus status,
       String? category,
-      String? type,
+      TransactionsViewFilter filter,
       String? sortBy});
 }
 
@@ -58,7 +58,7 @@ class _$TransactionStateCopyWithImpl<$Res, $Val extends TransactionState>
     Object? transactions = null,
     Object? status = null,
     Object? category = freezed,
-    Object? type = freezed,
+    Object? filter = null,
     Object? sortBy = freezed,
   }) {
     return _then(_value.copyWith(
@@ -74,10 +74,10 @@ class _$TransactionStateCopyWithImpl<$Res, $Val extends TransactionState>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as TransactionsViewFilter,
       sortBy: freezed == sortBy
           ? _value.sortBy
           : sortBy // ignore: cast_nullable_to_non_nullable
@@ -98,7 +98,7 @@ abstract class _$$_TransactionStateCopyWith<$Res>
       {List<TransactionEntity> transactions,
       TransactionStatus status,
       String? category,
-      String? type,
+      TransactionsViewFilter filter,
       String? sortBy});
 }
 
@@ -116,7 +116,7 @@ class __$$_TransactionStateCopyWithImpl<$Res>
     Object? transactions = null,
     Object? status = null,
     Object? category = freezed,
-    Object? type = freezed,
+    Object? filter = null,
     Object? sortBy = freezed,
   }) {
     return _then(_$_TransactionState(
@@ -132,10 +132,10 @@ class __$$_TransactionStateCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as TransactionsViewFilter,
       sortBy: freezed == sortBy
           ? _value.sortBy
           : sortBy // ignore: cast_nullable_to_non_nullable
@@ -146,14 +146,15 @@ class __$$_TransactionStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TransactionState implements _TransactionState {
+class _$_TransactionState extends _TransactionState {
   const _$_TransactionState(
       {final List<TransactionEntity> transactions = const <TransactionEntity>[],
       this.status = TransactionStatus.initial,
       this.category,
-      this.type,
+      this.filter = TransactionsViewFilter.all,
       this.sortBy})
-      : _transactions = transactions;
+      : _transactions = transactions,
+        super._();
 
   final List<TransactionEntity> _transactions;
   @override
@@ -169,13 +170,14 @@ class _$_TransactionState implements _TransactionState {
   @override
   final String? category;
   @override
-  final String? type;
+  @JsonKey()
+  final TransactionsViewFilter filter;
   @override
   final String? sortBy;
 
   @override
   String toString() {
-    return 'TransactionState(transactions: $transactions, status: $status, category: $category, type: $type, sortBy: $sortBy)';
+    return 'TransactionState(transactions: $transactions, status: $status, category: $category, filter: $filter, sortBy: $sortBy)';
   }
 
   @override
@@ -188,7 +190,7 @@ class _$_TransactionState implements _TransactionState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            (identical(other.type, type) || other.type == type) &&
+            (identical(other.filter, filter) || other.filter == filter) &&
             (identical(other.sortBy, sortBy) || other.sortBy == sortBy));
   }
 
@@ -198,7 +200,7 @@ class _$_TransactionState implements _TransactionState {
       const DeepCollectionEquality().hash(_transactions),
       status,
       category,
-      type,
+      filter,
       sortBy);
 
   @JsonKey(ignore: true)
@@ -208,13 +210,14 @@ class _$_TransactionState implements _TransactionState {
       __$$_TransactionStateCopyWithImpl<_$_TransactionState>(this, _$identity);
 }
 
-abstract class _TransactionState implements TransactionState {
+abstract class _TransactionState extends TransactionState {
   const factory _TransactionState(
       {final List<TransactionEntity> transactions,
       final TransactionStatus status,
       final String? category,
-      final String? type,
+      final TransactionsViewFilter filter,
       final String? sortBy}) = _$_TransactionState;
+  const _TransactionState._() : super._();
 
   @override
   List<TransactionEntity> get transactions;
@@ -223,7 +226,7 @@ abstract class _TransactionState implements TransactionState {
   @override
   String? get category;
   @override
-  String? get type;
+  TransactionsViewFilter get filter;
   @override
   String? get sortBy;
   @override
