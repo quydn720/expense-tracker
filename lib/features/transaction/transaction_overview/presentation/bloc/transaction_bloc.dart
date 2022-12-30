@@ -18,6 +18,8 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     on<TransactionsSubscriptionRequested>(_onTransactionsSubscriptionRequested);
   }
 
+  final ITransactionRepository _repository;
+
   Future<void> _onTransactionsSubscriptionRequested(
     TransactionsSubscriptionRequested event,
     Emitter<TransactionState> emit,
@@ -34,6 +36,4 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
       },
     );
   }
-
-  final ITransactionRepository _repository;
 }

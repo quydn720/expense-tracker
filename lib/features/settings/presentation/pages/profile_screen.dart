@@ -3,6 +3,7 @@ import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:expense_tracker/features/common/common_bottom_sheet.dart';
+import 'package:expense_tracker/features/user/presentation/bloc/user_bloc.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
@@ -115,34 +116,41 @@ class _UserTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-
-    return Row(
-      children: [
-        const CircleAvatar(radius: 40),
-        const SizedBox(width: 20),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                '18521313@gm.uit.edu.vn',
-                style: textTheme.subtitle1?.copyWith(
-                  color: const Color(0xff91919F),
+    return context.watch<UserBloc>().state.map(
+          initial: (v) => Container(),
+          loaded: (v) {
+            return Row(
+              children: [
+                CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(v.user.photo!),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Ngọc Quý',
-                style: textTheme.headline3?.copyWith(
-                  color: const Color(0xff161719),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        v.user.name!,
+                        style: textTheme.headline2?.copyWith(
+                          color: const Color(0xff161719),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        v.user.email!,
+                        style: textTheme.subtitle1?.copyWith(
+                          color: const Color(0xff91919F),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ),
-        IconButton(icon: Assets.icons.edit.image(), onPressed: () {}),
-      ],
-    );
+                IconButton(icon: Assets.icons.edit.image(), onPressed: () {}),
+              ],
+            );
+          },
+        );
   }
 }
 

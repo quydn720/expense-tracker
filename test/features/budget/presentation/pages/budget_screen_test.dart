@@ -19,7 +19,7 @@ void main() {
                 path: '/', builder: (_, __) => const BudgetScreenProvider()),
             GoRoute(
               path: '/create-budget',
-              builder: (_, __) => const CreateNewBudgetScreen(),
+              builder: (_, __) => const CreateNewBudgetScreenProvider(),
             )
           ],
         ),
@@ -41,7 +41,7 @@ void main() {
       await tester.tap(find.byKey(createNewBudgetButtonKey));
       await tester.pumpAndSettle();
 
-      expect(find.byType(CreateNewBudgetScreen), findsOneWidget);
+      expect(find.byType(CreateNewBudgetScreenProvider), findsOneWidget);
     });
   });
 }

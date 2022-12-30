@@ -10,4 +10,7 @@ abstract class ITransactionRepository {
   Future<void> addNewTransaction(TransactionEntity transaction);
   Future<void> deleteTransaction(TransactionEntity transaction);
   Future<void> updateTransaction(TransactionEntity transaction);
+  Future<List<TransactionEntity>> getAllTransactionWithWalletId(
+    String walletId,
+  );
 }

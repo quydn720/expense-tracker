@@ -3,7 +3,7 @@ import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/transaction/data/datasources/transaction_dao.dart';
 import 'package:expense_tracker/features/transaction/data/models/transaction_model.dart';
-import 'package:expense_tracker/features/transaction/data/repositories/fake_transaction_repository.dart';
+import 'package:expense_tracker/features/transaction/data/repositories/transaction_repository_impl.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -22,7 +22,7 @@ class MockTransactionsCompanion extends Mock implements TransactionsCompanion {}
 class MockCategoryEntity extends Mock implements CategoryEntity {}
 
 void main() {
-  late FakeTransactionRepository repo;
+  late TransactionRepositoryImpl repo;
   late TransactionsDao dao;
   late TransactionEntity transaction;
   late TransactionWithCategory transactionWithCategory;
@@ -32,7 +32,7 @@ void main() {
     dao = MockTransactionsDao();
     mapper = MockMapper();
     transaction = MockTransactionEntity();
-    repo = FakeTransactionRepository(dao, mapper);
+    repo = TransactionRepositoryImpl(dao, mapper);
     transactionWithCategory = MockTransactionWithCategory();
 
     registerFallbackValue(MockTransactionEntity());

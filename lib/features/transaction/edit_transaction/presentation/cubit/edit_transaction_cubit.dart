@@ -59,12 +59,8 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
   void categoryChanged(CategoryEntity? categoryInput) {
     final category = CategoryField.dirty(categoryInput);
     final formzStatus = Formz.validate([category, state.amount]);
-    emit(
-      state.copyWith(
-        category: category,
-        formzStatus: formzStatus,
-      ),
-    );
+
+    emit(state.copyWith(category: category, formzStatus: formzStatus));
   }
 
   void amountChanged({required String amountStr, String? currencySymbol}) {
@@ -90,7 +86,8 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
       category: state.category.value!,
       dateCreated: state.date,
       amount: double.parse(state.amount.value),
-      walletId: state.wallet.value!.id,
+      // walletId: state.wallet.value!.id,
+      walletId: 'wallet 2',
       description: state.description,
       file: state.imgFile,
     );

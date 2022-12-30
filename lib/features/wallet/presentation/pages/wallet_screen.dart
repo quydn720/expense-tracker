@@ -96,8 +96,11 @@ class WalletScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute<void>(
-                      builder: (_) => WalletDetail(
-                        wallet: state.wallets[index],
+                      builder: (_) => BlocProvider.value(
+                        value: context.read<WalletCubit>(),
+                        child: WalletDetail(
+                          wallet: state.wallets[index],
+                        ),
                       ),
                     ),
                   ),
@@ -183,9 +186,7 @@ class WalletDetail extends StatelessWidget {
                   return ListView(
                     shrinkWrap: true,
                     children: snapshot.data!
-                        .map(
-                          (e) => TransactionTile(transaction: e),
-                        )
+                        .map((e) => TransactionTile(transaction: e))
                         .toList(),
                   );
                 },

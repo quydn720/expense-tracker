@@ -9,7 +9,7 @@ class AddTransactionUseCase {
   final ITransactionRepository _repository;
 
   Future<void> call(TransactionEntity transaction) async {
-    return _repository.addNewTransaction(transaction);
+    await _repository.addNewTransaction(transaction);
   }
 }
 

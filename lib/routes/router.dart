@@ -89,7 +89,7 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
       ),
       GoRoute(
         path: '/create-budget',
-        builder: (_, __) => const CreateNewBudgetScreen(),
+        builder: (_, __) => const CreateNewBudgetScreenProvider(),
       ),
       GoRoute(
         path: '/profile',

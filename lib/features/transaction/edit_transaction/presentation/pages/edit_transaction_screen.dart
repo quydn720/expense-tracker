@@ -149,9 +149,9 @@ class MyWidget extends StatelessWidget {
               children: const [
                 _CategoryField(),
                 SizedBox(height: 16),
-                _DescriptionField(),
-                SizedBox(height: 16),
                 _WalletDropdown(),
+                SizedBox(height: 16),
+                _DescriptionField(),
                 SizedBox(height: 16),
                 _DateField(),
                 SizedBox(height: 16),
@@ -370,11 +370,8 @@ class _CategoryField extends StatelessWidget {
           child: SelectCategoryProvider(),
         ),
       );
-      if (category != null) {
-        addEvent(category);
-      } else {
-        addEvent(category);
-      }
+
+      addEvent(category);
     }
 
     final category = state.value;
@@ -480,23 +477,38 @@ class _WalletDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = context.read<EditTransactionCubit>();
     final wallet = controller.state.wallet.value?.name ?? '';
+    final theme = Theme.of(context);
 
-    return TextFormField(
-      initialValue: wallet,
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 24,
-        ),
-        hintText: context.l10n.wallet,
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        filled: true,
-        fillColor: Colors.white,
+    return InputDecorator(
+      decoration: const InputDecoration(
+        // errorText: errorText,
+        contentPadding: EdgeInsets.zero,
+        border: InputBorder.none,
       ),
-      onChanged: controller.walletChanged,
+      child: Card(
+        elevation: 0,
+        margin: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: ListTile(
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 8,
+            horizontal: 12,
+          ),
+          minLeadingWidth: 10,
+          title: Text(
+            'Wallet',
+            // category?.name ?? context.l10n.category,
+            style: theme.textTheme.bodyText1,
+          ),
+          leading: const CircleAvatar(
+            radius: 24,
+            // backgroundColor: category?.backgroundColor ??
+            //     theme.primaryColor.withOpacity(0.2),
+            // child: Icon(icon, color: category?.color ?? Colors.grey),
+          ),
+          onTap: () {},
+        ),
+      ),
     );
   }
 }

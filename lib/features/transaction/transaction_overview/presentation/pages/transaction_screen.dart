@@ -150,7 +150,10 @@ class TransactionView extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 itemBuilder: (_, index) => TransactionTile(
                   transaction: state.transactions[index],
-                  onPress: () {},
+                  onPress: () => context.push(
+                    '/transactions/${state.transactions[index].id}',
+                    extra: state.transactions[index],
+                  ),
                 ),
                 itemCount: state.transactions.length,
               ),

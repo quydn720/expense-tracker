@@ -15,7 +15,7 @@ class BudgetScreenProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<BudgetCubit>()..loadBudgets(),
+      create: (_) => getIt<BudgetCubit>()..loadBudgets(),
       child: const BudgetScreen(),
     );
   }
@@ -32,7 +32,7 @@ class BudgetScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: BlocBuilder<BudgetCubit, BudgetState>(
-            builder: (context, state) {
+            builder: (_, state) {
               return state.map(
                 empty: (_) => Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +49,7 @@ class BudgetScreen extends StatelessWidget {
                       Expanded(
                         child: ListView.builder(
                           itemCount: state.budgets.length,
-                          itemBuilder: (context, index) => BudgetTile(
+                          itemBuilder: (_, index) => BudgetTile(
                             budget: state.budgets[index],
                           ),
                         ),

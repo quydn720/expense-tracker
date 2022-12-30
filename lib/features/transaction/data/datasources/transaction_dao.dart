@@ -16,9 +16,13 @@ class TransactionsDao extends DatabaseAccessor<MyDatabase>
   TransactionsDao(super.db);
 
   Future<void> createOrUpdateTransaction(
-    TransactionsCompanion transaction,
+    TransactionsCompanion transactionEntry,
   ) async {
-    await into(transactions).insertOnConflictUpdate(transaction);
+    return transaction(
+      () async {
+        await into(transactions).insertOnConflictUpdate(transactionEntry);
+      },
+    );
   }
 
   Stream<List<TransactionWithCategory>> watchTransactionsWithCategory({
@@ -64,6 +68,13 @@ class TransactionsDao extends DatabaseAccessor<MyDatabase>
     }).watch();
   }
 
+  // Stream<int?> a() {
+  //   final amountOfTodos = transactions.id.count();
+
+  //   final query = select(categories).addColumns([amountOfTodos]);
+  //   return query.map((p0) => p0.read(amountOfTodos)).watchSingle();
+  // }
+
   Future<Transaction> getTransactionById(String id) {
     return (select(transactions)..where((t) => t.id.equals(id))).getSingle();
   }
@@ -83,4 +94,30 @@ class TransactionsDao extends DatabaseAccessor<MyDatabase>
     required String transactionId,
     required TransactionsCompanion transaction,
   }) async {}
+
+  Future<List<TransactionWithCategory>> getAllTransactionWithWalletId(
+    String walletId,
+  ) async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    final transaction = (select(transactions)
+      ..where(
+        (u) => u.walletId.equals(walletId),
+      ));
+
+    final c = transaction.join([
+      leftOuterJoin(
+        categories,
+        categories.name.equalsExp(transactions.categoryName),
+      ),
+      leftOuterJoin(wallets, wallets.id.equalsExp(transactions.walletId)),
+    ]);
+
+    return c.map((row) {
+      return TransactionWithCategory(
+        transaction: row.readTable(transactions),
+        wallet: row.readTable(wallets),
+        category: row.readTable(categories),
+      );
+    }).get();
+  }
 }

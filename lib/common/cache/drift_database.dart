@@ -81,6 +81,24 @@ class MyDatabase extends _$MyDatabase {
               icon: Icons.note,
               type: CategoryType.expense,
             ),
+            CategoriesCompanion.insert(
+              name: 'Salary',
+              color: const Color(0xffFCAC12).value,
+              icon: FontAwesomeIcons.calculator,
+              type: CategoryType.income,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Sell',
+              color: const Color(0xff7F3DFF).value,
+              icon: Icons.abc,
+              type: CategoryType.income,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Gifted',
+              color: const Color(0xffFD3C4A).value,
+              icon: Icons.note,
+              type: CategoryType.income,
+            ),
           ]);
       },
     );
@@ -133,29 +151,40 @@ class MyDatabase extends _$MyDatabase {
     String walletId,
   ) async {
     await Future<void>.delayed(const Duration(seconds: 1));
-    final transaction = await (select(transactions)
-          ..where(
-            (u) => u.walletId.equals(walletId),
-          ))
-        .get();
+    final transaction = (select(transactions)
+      ..where(
+        (u) => u.walletId.equals(walletId),
+      ));
 
-    return transaction
-        .map(
-          (e) => TransactionEntity(
-            id: e.id,
-            amount: e.amount,
-            category: const CategoryEntity(
-              name: 'Category',
-              icon: Icons.ac_unit,
-              color: Colors.yellow,
-              categoryType: CategoryType.income,
-            ),
-            dateCreated: e.dateCreated,
-            description: e.description,
-            walletId: walletId,
-          ),
-        )
-        .toList();
+    final c = transaction.join([
+      leftOuterJoin(
+        categories,
+        categories.name.equalsExp(transactions.categoryName),
+      ),
+    ]);
+
+    return c.map(
+      (row) {
+        final a1 = row.readTable(transactions);
+        // final a2 = row.readTable(wallets);
+        final a3 = row.readTable(categories);
+        final category = CategoryEntity(
+          name: a3.name,
+          icon: a3.icon,
+          color: Color(a3.color),
+          categoryType: a3.type,
+        );
+
+        return TransactionEntity(
+          id: a1.id,
+          category: category,
+          dateCreated: a1.dateCreated,
+          amount: a1.amount,
+          walletId: walletId,
+          description: a1.description,
+        );
+      },
+    ).get();
   }
 }
 

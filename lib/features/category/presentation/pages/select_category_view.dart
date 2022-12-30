@@ -1,5 +1,6 @@
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/category/presentation/cubit/category_cubit.dart';
 import 'package:expense_tracker/features/category/presentation/widgets/category_bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -79,6 +80,9 @@ class SelectCategoryView extends StatelessWidget {
                     spacing: 10,
                     runSpacing: 10,
                     children: categories
+                        .where(
+                          (e) => e.categoryType == CategoryType.income,
+                        )
                         .map(
                           (e) => Column(
                             children: [
@@ -97,7 +101,31 @@ class SelectCategoryView extends StatelessWidget {
                         )
                         .toList(),
                   ),
-                  const Icon(Icons.directions_bike),
+                  Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: categories
+                        .where(
+                          (e) => e.categoryType == CategoryType.expense,
+                        )
+                        .map(
+                          (e) => Column(
+                            children: [
+                              GestureDetector(
+                                key: ObjectKey(e),
+                                onTap: () => GoRouter.of(context).pop(e),
+                                child: CircleAvatar(
+                                  radius: 28,
+                                  backgroundColor: e.backgroundColor,
+                                  child: FaIcon(e.icon, color: e.color),
+                                ),
+                              ),
+                              Text(e.name),
+                            ],
+                          ),
+                        )
+                        .toList(),
+                  ),
                 ],
               ),
             ),

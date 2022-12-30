@@ -1,6 +1,23 @@
+import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/budget/domain/entities/budget.dart';
+import 'package:expense_tracker/features/budget/presentation/cubit/budget_cubit.dart';
+import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class CreateNewBudgetScreenProvider extends StatelessWidget {
+  const CreateNewBudgetScreenProvider({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => getIt<BudgetCubit>(),
+      child: const CreateNewBudgetScreen(),
+    );
+  }
+}
 
 class CreateNewBudgetScreen extends StatelessWidget {
   const CreateNewBudgetScreen({super.key});
@@ -71,7 +88,20 @@ class CreateNewBudgetScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<BudgetCubit>().createNewBudget(
+                          const Budget(
+                            id: 'id',
+                            amount: 1,
+                            category: CategoryEntity(
+                              name: 'name',
+                              icon: Icons.abc_rounded,
+                              color: Colors.blue,
+                              categoryType: CategoryType.expense,
+                            ),
+                          ),
+                        );
+                  },
                   child: Text(l10n.continue_str),
                 )
               ],
