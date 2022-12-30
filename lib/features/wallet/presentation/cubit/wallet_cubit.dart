@@ -45,7 +45,7 @@ class WalletCubit extends Cubit<WalletState> {
 
   @override
   Future<void> close() {
-    print('close');
+    print('close wallet cubit');
     return super.close();
   }
 }

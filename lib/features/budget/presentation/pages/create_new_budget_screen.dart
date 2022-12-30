@@ -13,7 +13,9 @@ class CreateNewBudgetScreenProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<BudgetCubit>(),
+      create: (_) {
+        return getIt<BudgetCubit>();
+      },
       child: const CreateNewBudgetScreen(),
     );
   }

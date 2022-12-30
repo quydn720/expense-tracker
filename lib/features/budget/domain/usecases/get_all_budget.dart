@@ -28,7 +28,7 @@ class GetAllBudgets {
 
   Future<Either<Exception, List<Budget>>> call() async {
     try {
-      final result = _repository.getAllBudget();
+      final result = await _repository.getAllBudget();
       return right(result);
     } on Exception catch (e) {
       return left(e);

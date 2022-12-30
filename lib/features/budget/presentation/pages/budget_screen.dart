@@ -31,40 +31,45 @@ class BudgetScreen extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: BlocBuilder<BudgetCubit, BudgetState>(
-            builder: (_, state) {
-              return state.map(
-                empty: (_) => Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text('You don’t have a budget.'),
-                    Text('Let’s make one so you in control.'),
-                  ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: BlocBuilder<BudgetCubit, BudgetState>(
+                  builder: (_, state) {
+                    return state.map(
+                      empty: (_) => Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text('You don’t have a budget.'),
+                          Text('Let’s make one so you in control.'),
+                        ],
+                      ),
+                      loading: (_) =>
+                          const CircularProgressIndicator.adaptive(),
+                      loaded: (state) {
+                        return Column(
+                          children: [
+                            ListView.builder(
+                              itemCount: state.budgets.length,
+                              itemBuilder: (_, index) => BudgetTile(
+                                budget: state.budgets[index],
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                 ),
-                loading: (_) => const CircularProgressIndicator.adaptive(),
-                loaded: (state) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: state.budgets.length,
-                          itemBuilder: (_, index) => BudgetTile(
-                            budget: state.budgets[index],
-                          ),
-                        ),
-                      ),
-                      ElevatedButton(
-                        key: createNewBudgetButtonKey,
-                        onPressed: () => context.push('/create-budget'),
-                        child: Text(context.l10n.create_budget),
-                      ),
-                      const SizedBox(height: 32),
-                    ],
-                  );
-                },
-              );
-            },
+              ),
+              ElevatedButton(
+                key: createNewBudgetButtonKey,
+                onPressed: () => context.push('/budget/create'),
+                child: Text(context.l10n.create_budget),
+              ),
+              const SizedBox(height: 32),
+            ],
           ),
         ),
       ),
