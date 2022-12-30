@@ -33,4 +33,10 @@ class BudgetCubit extends Cubit<BudgetState> {
           : emit(BudgetState.loaded(r)),
     );
   }
+
+  @override
+  Future<void> close() {
+    print('close budget cubit');
+    return super.close();
+  }
 }

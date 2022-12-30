@@ -86,10 +86,12 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
           ),
           key: _scaffoldKey,
         ),
-      ),
-      GoRoute(
-        path: '/create-budget',
-        builder: (_, __) => const CreateNewBudgetScreenProvider(),
+        routes: [
+          GoRoute(
+            path: 'create',
+            builder: (_, __) => const CreateNewBudgetScreenProvider(),
+          ),
+        ],
       ),
       GoRoute(
         path: '/profile',
