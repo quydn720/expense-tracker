@@ -1,4 +1,4 @@
-import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/transaction/presentation/widgets/transaction_tile.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
@@ -14,8 +14,9 @@ class TransactionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<TransactionBloc>.value(
-      value: context.read<TransactionBloc>(),
+    return BlocProvider<TransactionBloc>(
+      create: (_) => getIt<TransactionBloc>()
+        ..add(const TransactionsSubscriptionRequested()),
       child: const TransactionView(),
     );
   }
@@ -27,12 +28,6 @@ class TransactionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-    final title = textTheme.bodyText2?.copyWith(
-      fontWeight: FontWeight.w600,
-      letterSpacing: 0.3,
-    );
 
     return BlocBuilder<TransactionBloc, TransactionState>(
       builder: (context, state) {
@@ -41,81 +36,18 @@ class TransactionView extends StatelessWidget {
         }
 
         return Scaffold(
-          appBar: DefaultAppBar(
-            elevation: 0,
-            title: l10n.transactions,
-            trailings: [
+          appBar: AppBar(
+            title: Text(l10n.transactions),
+            actions: [
               IconButton(
                 onPressed: () {
                   showModalBottomSheet<void>(
+                    useRootNavigator: true,
                     context: context,
-                    builder: (_) {
-                      return Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text('Filter Transaction', style: title),
-                            const SizedBox(height: 16),
-                            Text('Filter By', style: title),
-                            const SizedBox(height: 16),
-                            Wrap(
-                              spacing: 8,
-                              children: const [
-                                ChoiceChip(
-                                  label: Text('Income'),
-                                  selected: false,
-                                ),
-                                ChoiceChip(
-                                  label: Text('Income'),
-                                  selected: true,
-                                ),
-                                ChoiceChip(
-                                  label: Text('Income'),
-                                  selected: true,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 16),
-                            Text('Sort By', style: title),
-                            Wrap(
-                              spacing: 8,
-                              children: const [
-                                Chip(label: Text('Income')),
-                                Chip(label: Text('Income')),
-                                Chip(label: Text('Income')),
-                              ],
-                            ),
-                            const SizedBox(height: 16),
-                            Text('Category', style: title),
-                            ListTile(
-                              title: Text(
-                                'Choose Category',
-                                style: textTheme.bodyText1,
-                              ),
-                              trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    '0 Selected',
-                                    style: textTheme.subtitle2,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Assets.icons.arrowRight2.svg(
-                                    width: 24,
-                                    height: 24,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ],
-                              ),
-                              contentPadding: EdgeInsets.zero,
-                              minVerticalPadding: 16,
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                    builder: (_) => BlocProvider.value(
+                      value: context.read<TransactionBloc>(),
+                      child: const FilterBottomSheet(),
+                    ),
                   );
                 },
                 icon: const FaIcon(FontAwesomeIcons.filterCircleDollar),
@@ -149,19 +81,149 @@ class TransactionView extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.all(8),
                 itemBuilder: (_, index) => TransactionTile(
-                  transaction: state.transactions[index],
+                  transaction: state.filteredTransactions.elementAt(index),
                   onPress: () => context.push(
                     '/transactions/${state.transactions[index].id}',
                     extra: state.transactions[index],
                   ),
                 ),
-                itemCount: state.transactions.length,
+                itemCount: state.filteredTransactions.length,
               ),
             ],
-            // ),
           ),
         );
       },
+    );
+  }
+}
+
+class FilterBottomSheet extends StatefulWidget {
+  const FilterBottomSheet({
+    super.key,
+  });
+
+  @override
+  State<FilterBottomSheet> createState() => _FilterBottomSheetState();
+}
+
+class _FilterBottomSheetState extends State<FilterBottomSheet> {
+  int? index;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final title = textTheme.bodyText2?.copyWith(
+      fontWeight: FontWeight.w600,
+      letterSpacing: 0.3,
+    );
+
+    final controller = context.read<TransactionBloc>();
+
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Filter Transaction', style: title),
+              const Chip(label: Text('Reset'))
+            ],
+          ),
+          const SizedBox(height: 16),
+          Text('Filter By', style: title),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            children: [
+              ChoiceChip(
+                side: const BorderSide(color: Colors.transparent),
+                label: const Text('Income'),
+                selected: index == 1,
+                onSelected: (value) {
+                  setState(() {
+                    index = value ? 1 : null;
+                  });
+                  if (value) {
+                    controller.add(
+                      const TransactionsViewFilterChanged(
+                        TransactionsViewFilter.income,
+                      ),
+                    );
+                  } else {
+                    controller.add(
+                      const TransactionsViewFilterChanged(
+                        TransactionsViewFilter.all,
+                      ),
+                    );
+                  }
+                },
+              ),
+              ChoiceChip(
+                side: const BorderSide(color: Colors.transparent),
+                label: const Text('Expense'),
+                selected: index == 2,
+                onSelected: (value) {
+                  setState(() {
+                    index = value ? 2 : null;
+                  });
+                  if (value) {
+                    controller.add(
+                      const TransactionsViewFilterChanged(
+                        TransactionsViewFilter.expense,
+                      ),
+                    );
+                  } else {
+                    controller.add(
+                      const TransactionsViewFilterChanged(
+                        TransactionsViewFilter.all,
+                      ),
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Text('Sort By', style: title),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            children: const [
+              ChoiceChip(label: Text('Income'), selected: false),
+              ChoiceChip(label: Text('Income'), selected: false),
+              ChoiceChip(label: Text('Income'), selected: false),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Text('Category', style: title),
+          ListTile(
+            title: Text(
+              'Choose Category',
+              style: textTheme.bodyText1,
+            ),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  '0 Selected',
+                  style: textTheme.subtitle2,
+                ),
+                const SizedBox(width: 4),
+                Assets.icons.arrowRight2.svg(
+                  width: 24,
+                  height: 24,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ],
+            ),
+            contentPadding: EdgeInsets.zero,
+            minVerticalPadding: 16,
+            onTap: () {},
+          ),
+        ],
+      ),
     );
   }
 }

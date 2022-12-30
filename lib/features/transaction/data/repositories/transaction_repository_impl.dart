@@ -56,6 +56,7 @@ class TransactionRepositoryImpl implements ITransactionRepository {
 
   Future<void> _init() async {}
 
+  @override
   Future<List<TransactionEntity>> getAllTransactionWithWalletId(
     String walletId,
   ) async {

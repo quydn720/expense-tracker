@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,6 +17,9 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     this._repository,
   ) : super(const TransactionState()) {
     on<TransactionsSubscriptionRequested>(_onTransactionsSubscriptionRequested);
+    on<TransactionsViewFilterChanged>((event, emit) {
+      emit(state.copyWith(filter: event.filter));
+    });
   }
 
   final ITransactionRepository _repository;
