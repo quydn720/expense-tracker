@@ -1,6 +1,6 @@
 import 'package:expense_tracker/features/common/pages/profile/export/export_result_page.dart';
+import 'package:expense_tracker/features/home/presentation/home_screen.dart';
 import 'package:expense_tracker/features/settings/theme/theme.dart';
-import 'package:expense_tracker/home_screen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
