@@ -42,12 +42,6 @@ class WalletCubit extends Cubit<WalletState> {
       emit(state.copyWith(status: WalletStatus.error));
     }
   }
-
-  @override
-  Future<void> close() {
-    print('close wallet cubit');
-    return super.close();
-  }
 }
 
 @injectable

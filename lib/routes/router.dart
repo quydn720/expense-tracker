@@ -122,22 +122,27 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
         builder: (_, __) => const SettingScreen(),
         routes: [
           GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
             path: 'currency',
             builder: (_, __) => const CurrencyScreen(),
           ),
           GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
             path: 'language',
             builder: (_, __) => const LanguageScreen(),
           ),
           GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
             path: 'theme',
             builder: (_, __) => const ThemeScreen(),
           ),
           GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
             path: 'security',
             builder: (_, __) => const SecurityScreen(),
           ),
           GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
             path: 'notification',
             builder: (_, __) => const NotificationScreen(),
           ),
