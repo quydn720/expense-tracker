@@ -49,7 +49,7 @@ class SettingScreen extends StatelessWidget {
           _SettingTile(
             key: const Key('settingScreen_notificationTile_button'),
             title: context.l10n.notification,
-            onTap: () => context.push(NotificationScreen.routeName),
+            onTap: () => context.push(NotificationSettingScreen.routeName),
           ),
           const SizedBox(height: 32),
           _SettingTile(

@@ -10,7 +10,7 @@ class ExpenseTrackerTheme {
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
       primaryColor: primaryColor,
-      textTheme: textTheme,
+      textTheme: ExpenseTrackerTextTheme.textTheme,
       chipTheme: const ChipThemeData(
         backgroundColor: Color(0xffEEE5FF),
         labelPadding: EdgeInsets.symmetric(horizontal: 16),
@@ -32,7 +32,6 @@ class ExpenseTrackerTheme {
           padding: EdgeInsets.zero,
           minimumSize: Size.zero,
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          textStyle: textTheme.button,
           splashFactory: NoSplash.splashFactory,
         ),
       ),
@@ -59,7 +58,7 @@ class ExpenseTrackerTheme {
     return ThemeData(
       useMaterial3: true,
       appBarTheme: const AppBarTheme(elevation: 0),
-      textTheme: textTheme,
+      textTheme: ExpenseTrackerTextTheme.textTheme,
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.dark,
         primaryColorDark: primaryColor,

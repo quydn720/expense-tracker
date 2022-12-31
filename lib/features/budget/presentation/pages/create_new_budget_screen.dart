@@ -3,6 +3,7 @@ import 'package:expense_tracker/features/app/presentation/widgets/default_app_ba
 import 'package:expense_tracker/features/budget/domain/entities/budget.dart';
 import 'package:expense_tracker/features/budget/presentation/cubit/budget_cubit.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
+import 'package:expense_tracker/features/settings/theme/theme.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,9 +43,9 @@ class CreateNewBudgetScreen extends StatelessWidget {
           const _BudgetAmountField(),
           Container(
             padding: const EdgeInsets.all(16),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: Theme.of(context).canvasColor,
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(32),
                 topRight: Radius.circular(32),
               ),
@@ -60,9 +61,7 @@ class CreateNewBudgetScreen extends StatelessWidget {
                   child: Card(
                     elevation: 0,
                     margin: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
+                    shape: RoundedRectangleBorder(borderRadius: borderRadius),
                     child: ListTile(
                       contentPadding: EdgeInsets.zero,
                       minLeadingWidth: 10,

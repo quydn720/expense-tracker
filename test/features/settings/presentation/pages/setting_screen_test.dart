@@ -44,8 +44,8 @@ void main() {
                 builder: (_, __) => const ThemeScreen(),
               ),
               GoRoute(
-                path: NotificationScreen.routeName,
-                builder: (_, __) => const NotificationScreen(),
+                path: NotificationSettingScreen.routeName,
+                builder: (_, __) => const NotificationSettingScreen(),
               ),
               GoRoute(
                 path: SecurityScreen.routeName,
@@ -111,7 +111,7 @@ void main() {
       await tester.tap(find.byKey(notificationKey));
       await tester.pumpAndSettle();
 
-      expect(find.byType(NotificationScreen), findsOneWidget);
+      expect(find.byType(NotificationSettingScreen), findsOneWidget);
     });
     testWidgets('to security screen', (tester) async {
       await pumpWidget(tester);

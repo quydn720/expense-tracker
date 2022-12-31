@@ -11,6 +11,7 @@ import 'package:expense_tracker/features/category/presentation/pages/select_cate
 import 'package:expense_tracker/features/common/pages/onboarding/onboarding_page.dart';
 import 'package:expense_tracker/features/common/pages/profile/export/export_page.dart';
 import 'package:expense_tracker/features/home/presentation/home_page.dart';
+import 'package:expense_tracker/features/notification/presentation/pages/notification_page.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/language_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
@@ -144,9 +145,14 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
           GoRoute(
             parentNavigatorKey: _rootNavigatorKey,
             path: 'notification',
-            builder: (_, __) => const NotificationScreen(),
+            builder: (_, __) => const NotificationSettingScreen(),
           ),
         ],
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/notifications',
+        builder: (_, state) => const NotificationPage(),
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,

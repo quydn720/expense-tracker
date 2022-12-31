@@ -8,6 +8,7 @@ import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 const searchIconButtonKey = Key('homeScreen_search_iconButton');
 const notificationIconButtonKey = Key('homeScreen_notification_iconButton');
@@ -46,22 +47,7 @@ class HomeView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Row(
-                children: [
-                  const UserCircleAvatar(),
-                  const Spacer(),
-                  IconButton(
-                    key: searchIconButtonKey,
-                    onPressed: () {},
-                    icon: const Icon(FontAwesomeIcons.magnifyingGlass),
-                  ),
-                  IconButton(
-                    key: notificationIconButtonKey,
-                    onPressed: () {},
-                    icon: const Icon(FontAwesomeIcons.bell),
-                  )
-                ],
-              ),
+              const _HomeAppBar(),
               const SizedBox(height: 16),
               Text(
                 '${l10n.account_balance}: ${formatter.format(state.accountBalance)}',
@@ -90,6 +76,30 @@ class HomeView extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _HomeAppBar extends StatelessWidget {
+  const _HomeAppBar();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const UserCircleAvatar(),
+        const Spacer(),
+        IconButton(
+          key: searchIconButtonKey,
+          onPressed: () {},
+          icon: const Icon(FontAwesomeIcons.magnifyingGlass),
+        ),
+        IconButton(
+          key: notificationIconButtonKey,
+          onPressed: () => context.push('/notifications'),
+          icon: const Icon(FontAwesomeIcons.bell),
+        )
+      ],
     );
   }
 }

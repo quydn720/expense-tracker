@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/common/common_bottom_sheet.dart';
-import 'package:expense_tracker/features/settings/theme/app_text_theme.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
@@ -46,6 +45,7 @@ class TransactionDetailScreen extends StatelessWidget {
         );
 
     final numberFormatter = context.read<AppBloc>().state.numberFormatter;
+    final textTheme = Theme.of(context).textTheme;
 
     final s16w600 = textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w600);
     return Scaffold(
