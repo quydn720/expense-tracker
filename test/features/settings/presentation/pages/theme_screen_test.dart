@@ -23,7 +23,7 @@ void main() {
               GoRoute(path: '/', builder: (_, __) => const ThemeScreen())
             ],
           ),
-          theme: themeData,
+          theme: ExpenseTrackerTheme.light,
           localizationsDelegates: LocalizationFactory.localizationsDelegates,
         ),
       ),

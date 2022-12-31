@@ -53,7 +53,7 @@ void main() {
               ),
             ],
           ),
-          theme: themeData,
+          theme: ExpenseTrackerTheme.light,
           localizationsDelegates: LocalizationFactory.localizationsDelegates,
         ),
       ),

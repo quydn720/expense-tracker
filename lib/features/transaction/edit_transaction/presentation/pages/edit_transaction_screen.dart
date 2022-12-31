@@ -139,7 +139,7 @@ class MyWidget extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: Theme.of(context).canvasColor,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(32),
                 topRight: Radius.circular(32),
@@ -164,7 +164,7 @@ class MyWidget extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          color: Colors.grey[200],
+          color: Theme.of(context).canvasColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: const [
@@ -191,14 +191,6 @@ class _ImagePicker extends StatelessWidget {
     if (imageFile == null) {
       return ElevatedButton(
         onPressed: controller.openMediaBottomSheet,
-        style: ElevatedButton.styleFrom(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          foregroundColor: const Color(0xff91919F),
-          shape: const StadiumBorder(
-            side: BorderSide(color: Color(0xffF1F1FA)),
-          ),
-        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -279,7 +271,6 @@ class _DescriptionField extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         filled: true,
-        fillColor: Colors.white,
       ),
       initialValue: description,
       onChanged: controller.descriptionChanged,
@@ -578,16 +569,8 @@ class _RepeatListTile extends StatelessWidget {
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   textStyle: theme.textTheme.bodyText2,
-                  elevation: 0,
-                  backgroundColor: primaryColor.withOpacity(0.2),
-                  foregroundColor: primaryColor,
                   splashFactory: NoSplash.splashFactory,
                   padding: EdgeInsets.zero,
-                  shape: const StadiumBorder(
-                    side: BorderSide(
-                      color: Color(0xffF1F1FA),
-                    ),
-                  ),
                 ),
                 child: const Text('Edit'),
               )

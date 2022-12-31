@@ -145,7 +145,7 @@ class WalletDetail extends StatelessWidget {
                   children: [
                     DecoratedBox(
                       decoration: BoxDecoration(
-                        color: const Color(0xffF1F1FA),
+                        color: Theme.of(context).backgroundColor,
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: const Padding(

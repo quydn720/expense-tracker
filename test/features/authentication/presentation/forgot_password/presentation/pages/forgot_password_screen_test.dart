@@ -118,7 +118,7 @@ Future<void> _pumpWidget(
     MultiProvider(
       providers: [BlocProvider.value(value: forgotPasswordCubit)],
       child: MaterialApp.router(
-        theme: themeData,
+        theme: ExpenseTrackerTheme.light,
         localizationsDelegates: LocalizationFactory.localizationsDelegates,
         routerConfig: GoRouter(
           routes: [

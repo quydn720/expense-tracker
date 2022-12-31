@@ -26,7 +26,6 @@ class ProfileScreen extends StatelessWidget {
     final l10n = context.l10n;
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -35,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 40),
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.circular(24),
               ),
               padding: const EdgeInsets.all(8),
@@ -116,6 +115,7 @@ class _UserTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
     return context.watch<UserBloc>().state.map(
           initial: (v) => Container(),
           loaded: (v) {
@@ -130,19 +130,9 @@ class _UserTile extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        v.user.name!,
-                        style: textTheme.headline2?.copyWith(
-                          color: const Color(0xff161719),
-                        ),
-                      ),
+                      Text(v.user.name!, style: textTheme.headline2),
                       const SizedBox(height: 8),
-                      Text(
-                        v.user.email!,
-                        style: textTheme.subtitle1?.copyWith(
-                          color: const Color(0xff91919F),
-                        ),
-                      ),
+                      Text(v.user.email!, style: textTheme.subtitle1),
                     ],
                   ),
                 ),

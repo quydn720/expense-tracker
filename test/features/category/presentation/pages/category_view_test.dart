@@ -20,7 +20,7 @@ void main() {
       MultiProvider(
         providers: [BlocProvider.value(value: categoryCubit)],
         child: MaterialApp.router(
-          theme: themeData,
+          theme: ExpenseTrackerTheme.light,
           localizationsDelegates: LocalizationFactory.localizationsDelegates,
           routerConfig: GoRouter(
             routes: [
