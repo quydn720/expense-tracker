@@ -35,7 +35,7 @@ void main() {
         value: appBloc,
         child: MaterialApp.router(
           localizationsDelegates: LocalizationFactory.localizationsDelegates,
-          theme: themeData,
+          theme: ExpenseTrackerTheme.light,
           routerConfig: GoRouter(
             initialLocation: '/detail',
             routes: [

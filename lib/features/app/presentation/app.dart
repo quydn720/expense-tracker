@@ -39,8 +39,8 @@ class _AppState extends State<App> {
       themeMode: context.watch<AppBloc>().state.themeMode,
       localizationsDelegates: LocalizationFactory.localizationsDelegates,
       supportedLocales: LocalizationFactory.supportedLocales,
-      theme: themeData,
-      darkTheme: darkThemeData,
+      theme: ExpenseTrackerTheme.light,
+      darkTheme: ExpenseTrackerTheme.dark,
     );
   }
 

@@ -95,6 +95,7 @@ class CreateNewBudgetScreen extends StatelessWidget {
                           const Budget(
                             id: 'id',
                             amount: 1,
+                            whenToNotify: 1,
                             category: CategoryEntity(
                               name: 'name',
                               icon: Icons.abc_rounded,

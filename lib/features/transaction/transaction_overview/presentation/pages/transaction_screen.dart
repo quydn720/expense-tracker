@@ -40,7 +40,7 @@ class TransactionView extends StatelessWidget {
           ..hideCurrentSnackBar()
           ..showSnackBar(
             SnackBar(
-              content: Text('l10n.todosOverviewTodoDeletedSnackbarText('),
+              content: const Text('l10n.todosOverviewTodoDeletedSnackbarText('),
               action: SnackBarAction(
                 label: 'undo',
                 onPressed: () {

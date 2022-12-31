@@ -18,13 +18,6 @@ class MediaBottomSheet extends StatelessWidget {
         const Divider(thickness: 2),
         Container(
           padding: const EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
-            ),
-          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.min,
@@ -44,22 +37,19 @@ class MediaBottomSheet extends StatelessWidget {
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Theme.of(context).primaryColor.withOpacity(0.3),
+                      color: Theme.of(context).backgroundColor,
                     ),
                     child: Center(
                       child: Column(
                         children: [
                           const SizedBox(height: 16),
                           Assets.icons.cameraSvg.svg(
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).canvasColor,
                           ),
                           const SizedBox(height: 8),
                           Text(
                             'Camera',
-                            style:
-                                Theme.of(context).textTheme.bodyText1?.copyWith(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
+                            style: Theme.of(context).textTheme.bodyText1,
                           ),
                           const SizedBox(height: 16),
                         ],
@@ -84,23 +74,20 @@ class MediaBottomSheet extends StatelessWidget {
                   },
                   child: DecoratedBox(
                     decoration: BoxDecoration(
+                      color: Theme.of(context).backgroundColor,
                       borderRadius: BorderRadius.circular(16),
-                      color: Theme.of(context).primaryColor.withOpacity(0.3),
                     ),
                     child: Center(
                       child: Column(
                         children: [
                           const SizedBox(height: 16),
                           Assets.icons.gallerySvg.svg(
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).canvasColor,
                           ),
                           const SizedBox(height: 8),
                           Text(
                             'Image',
-                            style:
-                                Theme.of(context).textTheme.bodyText1?.copyWith(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
+                            style: Theme.of(context).textTheme.bodyText1,
                           ),
                           const SizedBox(height: 16),
                         ],
@@ -124,22 +111,19 @@ class MediaBottomSheet extends StatelessWidget {
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Theme.of(context).primaryColor.withOpacity(0.3),
+                      color: Theme.of(context).backgroundColor,
                     ),
                     child: Center(
                       child: Column(
                         children: [
                           const SizedBox(height: 16),
                           Assets.icons.file.svg(
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).canvasColor,
                           ),
                           const SizedBox(height: 8),
                           Text(
                             'Document',
-                            style:
-                                Theme.of(context).textTheme.bodyText1?.copyWith(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
+                            style: Theme.of(context).textTheme.bodyText1,
                           ),
                           const SizedBox(height: 16),
                         ],

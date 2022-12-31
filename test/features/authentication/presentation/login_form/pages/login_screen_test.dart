@@ -45,7 +45,7 @@ void main() {
       MultiProvider(
         providers: [BlocProvider.value(value: loginCubit)],
         child: MaterialApp.router(
-          theme: themeData,
+          theme: ExpenseTrackerTheme.light,
           localizationsDelegates: LocalizationFactory.localizationsDelegates,
           routerConfig: GoRouter(
             routes: [

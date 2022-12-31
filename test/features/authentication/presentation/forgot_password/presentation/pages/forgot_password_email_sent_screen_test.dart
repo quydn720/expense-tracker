@@ -36,7 +36,7 @@ Future<void> _pumpWidget(WidgetTester tester, LoginFormCubit loginFormCubit) {
     BlocProvider.value(
       value: loginFormCubit,
       child: MaterialApp.router(
-        theme: themeData,
+        theme: ExpenseTrackerTheme.light,
         routerConfig: GoRouter(
           routes: [
             GoRoute(

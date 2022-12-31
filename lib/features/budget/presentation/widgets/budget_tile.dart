@@ -12,7 +12,6 @@ class BudgetTile extends StatelessWidget {
 
     return Card(
       elevation: 1,
-      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

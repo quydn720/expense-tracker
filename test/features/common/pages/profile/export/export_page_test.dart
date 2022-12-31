@@ -11,7 +11,7 @@ void main() {
     return tester.pumpWidget(
       MaterialApp.router(
         localizationsDelegates: LocalizationFactory.localizationsDelegates,
-        theme: themeData,
+        theme: ExpenseTrackerTheme.light,
         routerConfig: GoRouter(
           routes: [
             GoRoute(path: '/', builder: (_, __) => const ExportDataScreen()),

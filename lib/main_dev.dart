@@ -6,6 +6,7 @@ import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/app.dart';
 import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart';
+import 'package:expense_tracker/features/notification/domain/repositories/notification_repository.dart';
 import 'package:expense_tracker/firebase_options_dev.dart'
     as firebase_option_dev;
 import 'package:firebase_core/firebase_core.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,25 +28,33 @@ Future<void> main() async {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
   // Bloc.observer = AppBlocObserver();
+  tz.initializeTimeZones();
 
-  runZonedGuarded(
-    () => runApp(
-      MultiProvider(
-        providers: [
-          BlocProvider(create: (_) => getIt<AppBloc>(), lazy: false),
-          BlocProvider(create: (_) => getIt<AuthenticationBloc>(), lazy: false),
-          Provider(
-            lazy: false,
-            create: (_) => getIt<MyDatabase>(),
-            dispose: (_, db) => db.close(),
+  await runZonedGuarded(
+    () async {
+      await getIt<LocalNotificationsDataSource>().initializeNotification();
+
+      runApp(
+        MultiProvider(
+          providers: [
+            BlocProvider(create: (_) => getIt<AppBloc>(), lazy: false),
+            BlocProvider(
+              create: (_) => getIt<AuthenticationBloc>(),
+              lazy: false,
+            ),
+            Provider(
+              lazy: false,
+              create: (_) => getIt<MyDatabase>(),
+              dispose: (_, db) => db.close(),
+            ),
+          ],
+          child: App(
+            router: getIt<GoRouter>(),
+            appName: getIt<AppConfigurations>().appName,
           ),
-        ],
-        child: App(
-          router: getIt<GoRouter>(),
-          appName: getIt<AppConfigurations>().appName,
         ),
-      ),
-    ),
+      );
+    },
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
