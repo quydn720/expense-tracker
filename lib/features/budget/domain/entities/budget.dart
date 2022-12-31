@@ -9,12 +9,12 @@ class Budget with _$Budget {
     required String id,
     required double amount,
     @Default(0) double spentAmount,
-    double? whenToNotify,
+    @Default(0) double whenToNotify,
     required CategoryEntity category,
   }) = _Budget;
 
   const Budget._();
 
-  bool get receiveNotification => whenToNotify != null;
+  bool get receiveNotification => whenToNotify == 0.0;
   bool get isExceed => spentAmount > amount;
 }

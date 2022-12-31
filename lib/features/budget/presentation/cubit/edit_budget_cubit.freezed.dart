@@ -16,37 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EditBudgetState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  AmountText get amountText => throw _privateConstructorUsedError;
+  EditBudgetStatus get status => throw _privateConstructorUsedError;
+  FormzStatus get formzStatus => throw _privateConstructorUsedError;
+  bool get receiveAlert => throw _privateConstructorUsedError;
+  double get whenToNotify => throw _privateConstructorUsedError;
+  CategoryEntity? get category => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $EditBudgetStateCopyWith<EditBudgetState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -55,6 +33,16 @@ abstract class $EditBudgetStateCopyWith<$Res> {
   factory $EditBudgetStateCopyWith(
           EditBudgetState value, $Res Function(EditBudgetState) then) =
       _$EditBudgetStateCopyWithImpl<$Res, EditBudgetState>;
+  @useResult
+  $Res call(
+      {AmountText amountText,
+      EditBudgetStatus status,
+      FormzStatus formzStatus,
+      bool receiveAlert,
+      double whenToNotify,
+      CategoryEntity? category});
+
+  $CategoryEntityCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -66,99 +54,212 @@ class _$EditBudgetStateCopyWithImpl<$Res, $Val extends EditBudgetState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? amountText = null,
+    Object? status = null,
+    Object? formzStatus = null,
+    Object? receiveAlert = null,
+    Object? whenToNotify = null,
+    Object? category = freezed,
+  }) {
+    return _then(_value.copyWith(
+      amountText: null == amountText
+          ? _value.amountText
+          : amountText // ignore: cast_nullable_to_non_nullable
+              as AmountText,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as EditBudgetStatus,
+      formzStatus: null == formzStatus
+          ? _value.formzStatus
+          : formzStatus // ignore: cast_nullable_to_non_nullable
+              as FormzStatus,
+      receiveAlert: null == receiveAlert
+          ? _value.receiveAlert
+          : receiveAlert // ignore: cast_nullable_to_non_nullable
+              as bool,
+      whenToNotify: null == whenToNotify
+          ? _value.whenToNotify
+          : whenToNotify // ignore: cast_nullable_to_non_nullable
+              as double,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryEntity?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryEntityCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CategoryEntityCopyWith<$Res>(_value.category!, (value) {
+      return _then(_value.copyWith(category: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$_EditBudgetInitialCopyWith<$Res>
+    implements $EditBudgetStateCopyWith<$Res> {
+  factory _$$_EditBudgetInitialCopyWith(_$_EditBudgetInitial value,
+          $Res Function(_$_EditBudgetInitial) then) =
+      __$$_EditBudgetInitialCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {AmountText amountText,
+      EditBudgetStatus status,
+      FormzStatus formzStatus,
+      bool receiveAlert,
+      double whenToNotify,
+      CategoryEntity? category});
+
+  @override
+  $CategoryEntityCopyWith<$Res>? get category;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$EditBudgetStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$_EditBudgetInitialCopyWithImpl<$Res>
+    extends _$EditBudgetStateCopyWithImpl<$Res, _$_EditBudgetInitial>
+    implements _$$_EditBudgetInitialCopyWith<$Res> {
+  __$$_EditBudgetInitialCopyWithImpl(
+      _$_EditBudgetInitial _value, $Res Function(_$_EditBudgetInitial) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? amountText = null,
+    Object? status = null,
+    Object? formzStatus = null,
+    Object? receiveAlert = null,
+    Object? whenToNotify = null,
+    Object? category = freezed,
+  }) {
+    return _then(_$_EditBudgetInitial(
+      amountText: null == amountText
+          ? _value.amountText
+          : amountText // ignore: cast_nullable_to_non_nullable
+              as AmountText,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as EditBudgetStatus,
+      formzStatus: null == formzStatus
+          ? _value.formzStatus
+          : formzStatus // ignore: cast_nullable_to_non_nullable
+              as FormzStatus,
+      receiveAlert: null == receiveAlert
+          ? _value.receiveAlert
+          : receiveAlert // ignore: cast_nullable_to_non_nullable
+              as bool,
+      whenToNotify: null == whenToNotify
+          ? _value.whenToNotify
+          : whenToNotify // ignore: cast_nullable_to_non_nullable
+              as double,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryEntity?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_EditBudgetInitial implements _EditBudgetInitial {
+  const _$_EditBudgetInitial(
+      {this.amountText = const AmountText.pure(),
+      this.status = EditBudgetStatus.initial,
+      this.formzStatus = FormzStatus.pure,
+      this.receiveAlert = false,
+      this.whenToNotify = 0.75,
+      this.category});
+
+  @override
+  @JsonKey()
+  final AmountText amountText;
+  @override
+  @JsonKey()
+  final EditBudgetStatus status;
+  @override
+  @JsonKey()
+  final FormzStatus formzStatus;
+  @override
+  @JsonKey()
+  final bool receiveAlert;
+  @override
+  @JsonKey()
+  final double whenToNotify;
+  @override
+  final CategoryEntity? category;
 
   @override
   String toString() {
-    return 'EditBudgetState.initial()';
+    return 'EditBudgetState(amountText: $amountText, status: $status, formzStatus: $formzStatus, receiveAlert: $receiveAlert, whenToNotify: $whenToNotify, category: $category)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType &&
+            other is _$_EditBudgetInitial &&
+            (identical(other.amountText, amountText) ||
+                other.amountText == amountText) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.formzStatus, formzStatus) ||
+                other.formzStatus == formzStatus) &&
+            (identical(other.receiveAlert, receiveAlert) ||
+                other.receiveAlert == receiveAlert) &&
+            (identical(other.whenToNotify, whenToNotify) ||
+                other.whenToNotify == whenToNotify) &&
+            (identical(other.category, category) ||
+                other.category == category));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, amountText, status, formzStatus,
+      receiveAlert, whenToNotify, category);
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  @pragma('vm:prefer-inline')
+  _$$_EditBudgetInitialCopyWith<_$_EditBudgetInitial> get copyWith =>
+      __$$_EditBudgetInitialCopyWithImpl<_$_EditBudgetInitial>(
+          this, _$identity);
 }
 
-abstract class _Initial implements EditBudgetState {
-  const factory _Initial() = _$_Initial;
+abstract class _EditBudgetInitial implements EditBudgetState {
+  const factory _EditBudgetInitial(
+      {final AmountText amountText,
+      final EditBudgetStatus status,
+      final FormzStatus formzStatus,
+      final bool receiveAlert,
+      final double whenToNotify,
+      final CategoryEntity? category}) = _$_EditBudgetInitial;
+
+  @override
+  AmountText get amountText;
+  @override
+  EditBudgetStatus get status;
+  @override
+  FormzStatus get formzStatus;
+  @override
+  bool get receiveAlert;
+  @override
+  double get whenToNotify;
+  @override
+  CategoryEntity? get category;
+  @override
+  @JsonKey(ignore: true)
+  _$$_EditBudgetInitialCopyWith<_$_EditBudgetInitial> get copyWith =>
+      throw _privateConstructorUsedError;
 }

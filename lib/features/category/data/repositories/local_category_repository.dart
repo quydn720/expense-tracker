@@ -59,4 +59,23 @@ class LocalCategoryRepository implements ICategoryRepository {
       },
     );
   }
+
+  @override
+  Future<Either<Failure, CategoryEntity>> getCategoryById({
+    required String id,
+  }) async {
+    try {
+      final category = await _dao.getCategoryById(id);
+      return right(
+        CategoryEntity(
+          name: category.name,
+          icon: category.icon,
+          color: Color(category.color),
+          categoryType: category.type,
+        ),
+      );
+    } catch (e) {
+      return left(Failure());
+    }
+  }
 }

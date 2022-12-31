@@ -18,7 +18,7 @@ class ExpenseTrackerTextTheme {
           fontSize: 36,
           fontWeight: FontWeight.w500,
         ),
-        headline5: GoogleFonts.inter(fontSize: 24, fontWeight: FontWeight.w700),
+        headline5: GoogleFonts.inter(fontSize: 24, fontWeight: FontWeight.w600),
         headline6: GoogleFonts.inter(
           fontSize: 18,
           fontWeight: FontWeight.w600,

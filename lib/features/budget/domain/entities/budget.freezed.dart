@@ -19,7 +19,7 @@ mixin _$Budget {
   String get id => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   double get spentAmount => throw _privateConstructorUsedError;
-  double? get whenToNotify => throw _privateConstructorUsedError;
+  double get whenToNotify => throw _privateConstructorUsedError;
   CategoryEntity get category => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $BudgetCopyWith<$Res> {
       {String id,
       double amount,
       double spentAmount,
-      double? whenToNotify,
+      double whenToNotify,
       CategoryEntity category});
 
   $CategoryEntityCopyWith<$Res> get category;
@@ -57,7 +57,7 @@ class _$BudgetCopyWithImpl<$Res, $Val extends Budget>
     Object? id = null,
     Object? amount = null,
     Object? spentAmount = null,
-    Object? whenToNotify = freezed,
+    Object? whenToNotify = null,
     Object? category = null,
   }) {
     return _then(_value.copyWith(
@@ -73,10 +73,10 @@ class _$BudgetCopyWithImpl<$Res, $Val extends Budget>
           ? _value.spentAmount
           : spentAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      whenToNotify: freezed == whenToNotify
+      whenToNotify: null == whenToNotify
           ? _value.whenToNotify
           : whenToNotify // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -103,7 +103,7 @@ abstract class _$$_BudgetCopyWith<$Res> implements $BudgetCopyWith<$Res> {
       {String id,
       double amount,
       double spentAmount,
-      double? whenToNotify,
+      double whenToNotify,
       CategoryEntity category});
 
   @override
@@ -123,7 +123,7 @@ class __$$_BudgetCopyWithImpl<$Res>
     Object? id = null,
     Object? amount = null,
     Object? spentAmount = null,
-    Object? whenToNotify = freezed,
+    Object? whenToNotify = null,
     Object? category = null,
   }) {
     return _then(_$_Budget(
@@ -139,10 +139,10 @@ class __$$_BudgetCopyWithImpl<$Res>
           ? _value.spentAmount
           : spentAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      whenToNotify: freezed == whenToNotify
+      whenToNotify: null == whenToNotify
           ? _value.whenToNotify
           : whenToNotify // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -158,7 +158,7 @@ class _$_Budget extends _Budget {
       {required this.id,
       required this.amount,
       this.spentAmount = 0,
-      this.whenToNotify,
+      this.whenToNotify = 0,
       required this.category})
       : super._();
 
@@ -170,7 +170,8 @@ class _$_Budget extends _Budget {
   @JsonKey()
   final double spentAmount;
   @override
-  final double? whenToNotify;
+  @JsonKey()
+  final double whenToNotify;
   @override
   final CategoryEntity category;
 
@@ -210,7 +211,7 @@ abstract class _Budget extends Budget {
       {required final String id,
       required final double amount,
       final double spentAmount,
-      final double? whenToNotify,
+      final double whenToNotify,
       required final CategoryEntity category}) = _$_Budget;
   const _Budget._() : super._();
 
@@ -221,7 +222,7 @@ abstract class _Budget extends Budget {
   @override
   double get spentAmount;
   @override
-  double? get whenToNotify;
+  double get whenToNotify;
   @override
   CategoryEntity get category;
   @override

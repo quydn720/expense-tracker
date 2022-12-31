@@ -6,26 +6,26 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:authentication_repository/authentication_repository.dart'
-    as _i9;
-import 'package:cloud_firestore/cloud_firestore.dart' as _i7;
-import 'package:expense_tracker/common/cache/drift_database.dart' as _i6;
-import 'package:expense_tracker/di/injector.dart' as _i16;
-import 'package:expense_tracker/features/app/bloc/app_bloc.dart' as _i38;
+    as _i7;
+import 'package:cloud_firestore/cloud_firestore.dart' as _i5;
+import 'package:expense_tracker/common/cache/drift_database.dart' as _i13;
+import 'package:expense_tracker/di/injector.dart' as _i15;
+import 'package:expense_tracker/features/app/bloc/app_bloc.dart' as _i37;
 import 'package:expense_tracker/features/app/data/app_settings.dart' as _i3;
 import 'package:expense_tracker/features/authentication/domain/usecases/forgot_password_use_case.dart'
     as _i22;
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_email_and_pw.dart'
-    as _i12;
+    as _i10;
 import 'package:expense_tracker/features/authentication/domain/usecases/login_with_google_account_use_case.dart'
-    as _i13;
+    as _i11;
 import 'package:expense_tracker/features/authentication/domain/usecases/register_with_email_and_pw.dart'
-    as _i15;
+    as _i14;
 import 'package:expense_tracker/features/authentication/presentation/bloc/authentication_bloc.dart'
     as _i20;
 import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart'
-    as _i45;
+    as _i32;
 import 'package:expense_tracker/features/authentication/presentation/register_form/cubit/register_form_cubit.dart'
-    as _i35;
+    as _i33;
 import 'package:expense_tracker/features/budget/data/datasources/in_memory_budget_datasource.dart'
     as _i25;
 import 'package:expense_tracker/features/budget/data/datasources/local_budget_datasource.dart'
@@ -33,17 +33,13 @@ import 'package:expense_tracker/features/budget/data/datasources/local_budget_da
 import 'package:expense_tracker/features/budget/data/repositories/budget_repository_impl.dart'
     as _i27;
 import 'package:expense_tracker/features/budget/domain/entities/budget.dart'
-    as _i10;
+    as _i8;
 import 'package:expense_tracker/features/budget/domain/repositories/budget_repository.dart'
     as _i26;
-import 'package:expense_tracker/features/budget/domain/usecases/create_budget.dart'
-    as _i33;
 import 'package:expense_tracker/features/budget/domain/usecases/get_all_budget.dart'
-    as _i34;
+    as _i35;
 import 'package:expense_tracker/features/budget/domain/usecases/update_budget.dart'
-    as _i36;
-import 'package:expense_tracker/features/budget/presentation/cubit/budget_cubit.dart'
-    as _i32;
+    as _i34;
 import 'package:expense_tracker/features/category/data/datasources/categories_dao.dart'
     as _i21;
 import 'package:expense_tracker/features/category/data/repositories/local_category_repository.dart'
@@ -51,35 +47,35 @@ import 'package:expense_tracker/features/category/data/repositories/local_catego
 import 'package:expense_tracker/features/category/domain/repositories/category_repository.dart'
     as _i28;
 import 'package:expense_tracker/features/category/presentation/cubit/category_cubit.dart'
-    as _i39;
-import 'package:expense_tracker/features/home/bloc/home_bloc.dart' as _i43;
+    as _i38;
+import 'package:expense_tracker/features/home/bloc/home_bloc.dart' as _i41;
 import 'package:expense_tracker/features/notification/domain/repositories/notification_repository.dart'
-    as _i11;
+    as _i9;
 import 'package:expense_tracker/features/transaction/data/datasources/transaction_dao.dart'
-    as _i5;
+    as _i16;
 import 'package:expense_tracker/features/transaction/data/repositories/transaction_repository_impl.dart'
-    as _i14;
+    as _i12;
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart'
-    as _i41;
+    as _i40;
 import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart'
     as _i30;
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/cubit/edit_transaction_cubit.dart'
-    as _i40;
+    as _i39;
 import 'package:expense_tracker/features/transaction/edit_transaction/usecases/add_transaction_use_case.dart'
-    as _i37;
+    as _i36;
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart'
-    as _i44;
+    as _i42;
 import 'package:expense_tracker/features/transaction/transaction_overview/usecases/load_transactions.dart'
-    as _i31;
+    as _i43;
 import 'package:expense_tracker/features/user/presentation/bloc/user_bloc.dart'
     as _i18;
 import 'package:expense_tracker/features/wallet/presentation/cubit/wallet_cubit.dart'
-    as _i42;
+    as _i31;
 import 'package:expense_tracker/user_preferences.dart' as _i17;
 import 'package:firebase_auth/firebase_auth.dart' as _i19;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:go_router/go_router.dart' as _i23;
-import 'package:google_sign_in/google_sign_in.dart' as _i8;
+import 'package:google_sign_in/google_sign_in.dart' as _i6;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i4;
 
@@ -99,40 +95,43 @@ Future<_i1.GetIt> $initGetIt(
     environment,
     environmentFilter,
   );
-  final firebaseInjectableModule = _$FirebaseInjectableModule();
   final devAppLocalPackageModule = _$DevAppLocalPackageModule();
+  final firebaseInjectableModule = _$FirebaseInjectableModule();
   final a = _$A();
   final driftDatabase = _$DriftDatabase();
   final sharedPreferencesModule = _$SharedPreferencesModule();
   gh.factory<_i3.AppSettingService>(
       () => _i3.AppSettingService(gh<_i4.SharedPreferences>()));
-  gh.factory<_i5.TransactionsDao>(
-      () => _i5.TransactionsDao(gh<_i6.MyDatabase>()));
-  gh.lazySingleton<_i7.FirebaseFirestore>(
+  gh.factory<String>(
+    () => devAppLocalPackageModule.devInitialLocation,
+    instanceName: 'init_location',
+    registerFor: {_dev},
+  );
+  gh.lazySingleton<_i5.FirebaseFirestore>(
       () => firebaseInjectableModule.firestore);
-  gh.lazySingleton<_i8.GoogleSignIn>(
+  gh.lazySingleton<_i6.GoogleSignIn>(
       () => firebaseInjectableModule.googleSignIn);
-  gh.lazySingleton<_i9.IAuthenticationRepository>(
+  gh.lazySingleton<_i7.IAuthenticationRepository>(
     () => devAppLocalPackageModule.getProd(),
     registerFor: {_prod},
   );
-  gh.lazySingleton<_i9.IAuthenticationRepository>(
+  gh.lazySingleton<_i7.IAuthenticationRepository>(
     () => devAppLocalPackageModule.getDev(),
     registerFor: {_dev},
   );
-  gh.factory<List<_i10.Budget>>(() => a.budgets);
-  gh.singleton<_i11.LocalNotificationsDataSource>(
-      _i11.LocalNotificationsDataSourceImpl());
-  gh.factory<_i12.LoginWithEmailAndPwUseCase>(() =>
-      _i12.LoginWithEmailAndPwUseCase(
-          auth: gh<_i9.IAuthenticationRepository>()));
-  gh.factory<_i13.LoginWithGoogleUseCase>(() =>
-      _i13.LoginWithGoogleUseCase(auth: gh<_i9.IAuthenticationRepository>()));
-  gh.factory<_i14.Mapper>(() => _i14.Mapper());
-  gh.singleton<_i6.MyDatabase>(driftDatabase.myDatabase);
-  gh.factory<_i15.RegisterWithEmailAndPwUseCase>(() =>
-      _i15.RegisterWithEmailAndPwUseCase(
-          auth: gh<_i9.IAuthenticationRepository>()));
+  gh.factory<List<_i8.Budget>>(() => a.budgets);
+  gh.singleton<_i9.LocalNotificationsDataSource>(
+      _i9.LocalNotificationsDataSourceImpl());
+  gh.factory<_i10.LoginWithEmailAndPwUseCase>(() =>
+      _i10.LoginWithEmailAndPwUseCase(
+          auth: gh<_i7.IAuthenticationRepository>()));
+  gh.factory<_i11.LoginWithGoogleUseCase>(() =>
+      _i11.LoginWithGoogleUseCase(auth: gh<_i7.IAuthenticationRepository>()));
+  gh.factory<_i12.Mapper>(() => _i12.Mapper());
+  gh.singleton<_i13.MyDatabase>(driftDatabase.myDatabase);
+  gh.factory<_i14.RegisterWithEmailAndPwUseCase>(() =>
+      _i14.RegisterWithEmailAndPwUseCase(
+          auth: gh<_i7.IAuthenticationRepository>()));
   await gh.factoryAsync<_i4.SharedPreferences>(
     () => sharedPreferencesModule.prefs,
     preResolve: true,
@@ -142,22 +141,19 @@ Future<_i1.GetIt> $initGetIt(
     instanceName: 'init_location',
     registerFor: {_prod},
   );
-  gh.factory<String>(
-    () => devAppLocalPackageModule.devInitialLocation,
-    instanceName: 'init_location',
-    registerFor: {_dev},
-  );
-  gh.singleton<_i16.AppConfigurations>(
-    _i16.DevAppConfigurations(),
+  gh.singleton<_i15.AppConfigurations>(
+    _i15.DevAppConfigurations(),
     registerFor: {
       _dev,
       _prod,
     },
   );
+  gh.factory<_i16.TransactionsDao>(
+      () => _i16.TransactionsDao(gh<_i13.MyDatabase>()));
   gh.singleton<_i17.UserPreferences>(
       _i17.UserPreferences(prefs: gh<_i4.SharedPreferences>()));
   gh.factory<_i18.UserService>(
-      () => _i18.UserService(gh<_i9.IAuthenticationRepository>()));
+      () => _i18.UserService(gh<_i7.IAuthenticationRepository>()));
   gh.factory<bool>(
     () => sharedPreferencesModule.isOnboardingCompeted,
     instanceName: 'isOnboardingCompleted',
@@ -165,89 +161,81 @@ Future<_i1.GetIt> $initGetIt(
   gh.lazySingleton<_i19.FirebaseAuth>(
       () => firebaseInjectableModule.firebaseAuth);
   gh.lazySingleton<_i20.AuthenticationBloc>(
-      () => _i20.AuthenticationBloc(gh<_i9.IAuthenticationRepository>()));
+      () => _i20.AuthenticationBloc(gh<_i7.IAuthenticationRepository>()));
   gh.factory<_i21.CategoriesDao>(
-      () => _i21.CategoriesDao(gh<_i6.MyDatabase>()));
+      () => _i21.CategoriesDao(gh<_i13.MyDatabase>()));
   gh.factory<_i22.ForgotPasswordUseCase>(() =>
-      _i22.ForgotPasswordUseCase(auth: gh<_i9.IAuthenticationRepository>()));
+      _i22.ForgotPasswordUseCase(auth: gh<_i7.IAuthenticationRepository>()));
   gh.lazySingleton<_i23.GoRouter>(() => devAppLocalPackageModule
       .appRouterDev(gh<String>(instanceName: 'init_location')));
-  gh.factory<_i24.IBudgetDataSource>(
-      () => _i25.InMemoryBudgetDataSource(budgets: gh<List<_i10.Budget>>()));
-  gh.lazySingleton<_i26.IBudgetRepository>(
-      () => _i27.LocalBudgetRepository(gh<_i24.IBudgetDataSource>()));
+  gh.singleton<_i24.IBudgetDataSource>(
+      _i25.InMemoryBudgetDataSource(budgets: gh<List<_i8.Budget>>()));
+  gh.factory<_i26.IBudgetRepository>(() =>
+      _i27.LocalBudgetRepository(dataSource: gh<_i24.IBudgetDataSource>()));
   gh.factory<_i28.ICategoryRepository>(
       () => _i29.LocalCategoryRepository(gh<_i21.CategoriesDao>()));
   gh.factory<_i30.ITransactionRepository>(
-    () => _i14.TransactionRepositoryImpl(
-      gh<_i5.TransactionsDao>(),
-      gh<_i14.Mapper>(),
+    () => _i12.TransactionRepositoryImpl(
+      gh<_i16.TransactionsDao>(),
+      gh<_i12.Mapper>(),
     ),
     registerFor: {_dev},
   );
-  gh.factory<_i31.LoadAllTransactions>(
-      () => _i31.LoadAllTransactions(gh<_i30.ITransactionRepository>()));
-  gh.factory<_i32.BudgetCubit>(() => _i32.BudgetCubit(
-        gh<_i33.CreateBudget>(),
-        gh<_i34.WatchAllBudget>(),
-        gh<_i34.GetAllBudgets>(),
-        gh<_i11.LocalNotificationsDataSource>(),
+  gh.factory<_i31.WalletCubit>(() => _i31.WalletCubit(
+        db: gh<_i13.MyDatabase>(),
+        getTransactionsUseCase: gh<_i31.GetTransactionOfWallet>(),
       ));
-  gh.factory<_i35.RegisterFormCubit>(() => _i35.RegisterFormCubit(
-      registerWithEmailAndPwUseCase: gh<_i15.RegisterWithEmailAndPwUseCase>()));
-  gh.factory<_i36.UpdateBudget>(
-      () => _i36.UpdateBudget(gh<_i26.IBudgetRepository>()));
+  gh.factory<_i32.LoginFormCubit>(() => _i32.LoginFormCubit(
+        loginWithGoogleUseCase: gh<_i11.LoginWithGoogleUseCase>(),
+        loginWithEmailAndPwUseCase: gh<_i10.LoginWithEmailAndPwUseCase>(),
+      ));
+  gh.factory<_i33.RegisterFormCubit>(() => _i33.RegisterFormCubit(
+      registerWithEmailAndPwUseCase: gh<_i14.RegisterWithEmailAndPwUseCase>()));
+  gh.factory<_i34.UpdateBudget>(
+      () => _i34.UpdateBudget(gh<_i26.IBudgetRepository>()));
   gh.factory<_i18.UserBloc>(() => _i18.UserBloc(gh<_i18.UserService>()));
-  gh.factory<_i34.WatchAllBudget>(
-      () => _i34.WatchAllBudget(gh<_i26.IBudgetRepository>()));
-  gh.factory<_i37.AddTransactionUseCase>(
-      () => _i37.AddTransactionUseCase(gh<_i30.ITransactionRepository>()));
-  gh.singleton<_i38.AppBloc>(
-      _i38.AppBloc(appSettingService: gh<_i3.AppSettingService>()));
-  gh.factory<_i39.CategoryCubit>(
-      () => _i39.CategoryCubit(gh<_i28.ICategoryRepository>()));
-  gh.factory<_i33.CreateBudget>(
-      () => _i33.CreateBudget(gh<_i26.IBudgetRepository>()));
-  gh.factory<_i37.DeleteTransactionUseCase>(
-      () => _i37.DeleteTransactionUseCase(gh<_i30.ITransactionRepository>()));
-  gh.factoryParam<_i40.EditTransactionCubit, _i41.TransactionEntity?, dynamic>((
+  gh.factory<_i35.WatchAllBudget>(
+      () => _i35.WatchAllBudget(gh<_i26.IBudgetRepository>()));
+  gh.factory<_i36.AddTransactionUseCase>(
+      () => _i36.AddTransactionUseCase(gh<_i30.ITransactionRepository>()));
+  gh.singleton<_i37.AppBloc>(
+      _i37.AppBloc(appSettingService: gh<_i3.AppSettingService>()));
+  gh.factory<_i38.CategoryCubit>(
+      () => _i38.CategoryCubit(gh<_i28.ICategoryRepository>()));
+  gh.factory<_i36.DeleteTransactionUseCase>(
+      () => _i36.DeleteTransactionUseCase(gh<_i30.ITransactionRepository>()));
+  gh.factoryParam<_i39.EditTransactionCubit, _i40.TransactionEntity?, dynamic>((
     initialTransaction,
     _,
   ) =>
-      _i40.EditTransactionCubit(
-        gh<_i37.AddTransactionUseCase>(),
+      _i39.EditTransactionCubit(
+        gh<_i36.AddTransactionUseCase>(),
         initialTransaction: initialTransaction,
       ));
-  gh.factory<_i34.GetAllBudgets>(
-      () => _i34.GetAllBudgets(gh<_i26.IBudgetRepository>()));
-  gh.factory<_i42.GetTransactionOfWallet>(
-      () => _i42.GetTransactionOfWallet(gh<_i30.ITransactionRepository>()));
-  gh.factory<_i43.HomeBloc>(() => _i43.HomeBloc(
+  gh.factory<_i35.GetAllBudgets>(
+      () => _i35.GetAllBudgets(gh<_i26.IBudgetRepository>()));
+  gh.factory<_i31.GetTransactionOfWallet>(
+      () => _i31.GetTransactionOfWallet(gh<_i30.ITransactionRepository>()));
+  gh.factory<_i41.HomeBloc>(() => _i41.HomeBloc(
         transactionRepository: gh<_i30.ITransactionRepository>(),
-        db: gh<_i6.MyDatabase>(),
+        db: gh<_i13.MyDatabase>(),
         userService: gh<_i18.UserService>(),
       ));
-  gh.factory<_i44.TransactionBloc>(() => _i44.TransactionBloc(
+  gh.factory<_i42.TransactionBloc>(() => _i42.TransactionBloc(
         gh<_i30.ITransactionRepository>(),
-        gh<_i37.DeleteTransactionUseCase>(),
+        gh<_i36.DeleteTransactionUseCase>(),
       ));
-  gh.factory<_i42.WalletCubit>(() => _i42.WalletCubit(
-        db: gh<_i6.MyDatabase>(),
-        getTransactionsUseCase: gh<_i42.GetTransactionOfWallet>(),
-      ));
-  gh.factory<_i45.LoginFormCubit>(() => _i45.LoginFormCubit(
-        loginWithGoogleUseCase: gh<_i13.LoginWithGoogleUseCase>(),
-        loginWithEmailAndPwUseCase: gh<_i12.LoginWithEmailAndPwUseCase>(),
-      ));
+  gh.factory<_i43.LoadAllTransactions>(
+      () => _i43.LoadAllTransactions(gh<_i30.ITransactionRepository>()));
   return getIt;
 }
 
-class _$SharedPreferencesModule extends _i16.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i15.SharedPreferencesModule {}
 
-class _$FirebaseInjectableModule extends _i16.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i15.FirebaseInjectableModule {}
 
-class _$DevAppLocalPackageModule extends _i16.DevAppLocalPackageModule {}
+class _$DevAppLocalPackageModule extends _i15.DevAppLocalPackageModule {}
 
-class _$DriftDatabase extends _i16.DriftDatabase {}
+class _$DriftDatabase extends _i15.DriftDatabase {}
 
 class _$A extends _i25.A {}

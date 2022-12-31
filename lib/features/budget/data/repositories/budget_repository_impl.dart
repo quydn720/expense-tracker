@@ -1,12 +1,15 @@
-import 'package:authentication_repository/authentication_repository.dart';
+import 'dart:async';
+
 import 'package:expense_tracker/features/budget/data/datasources/local_budget_datasource.dart';
 import 'package:expense_tracker/features/budget/domain/entities/budget.dart';
 import 'package:expense_tracker/features/budget/domain/repositories/budget_repository.dart';
 import 'package:injectable/injectable.dart';
 
-@LazySingleton(as: IBudgetRepository)
+@Injectable(as: IBudgetRepository)
 class LocalBudgetRepository implements IBudgetRepository {
-  LocalBudgetRepository(this._dataSource);
+  LocalBudgetRepository({
+    required IBudgetDataSource dataSource,
+  }) : _dataSource = dataSource;
 
   final IBudgetDataSource _dataSource;
 
@@ -15,11 +18,13 @@ class LocalBudgetRepository implements IBudgetRepository {
     await _dataSource.addBudget(budget);
   }
 
+  Stream<List<Budget>> getBudgets() => _dataSource.getBudgets();
+
   @override
   Future<void> deleteBudget(String budgetId) async {
     try {
       await _dataSource.deleteBudget(budgetId);
-    } on LoginFailure {
+    } on Exception {
       return; // left<e>
     }
   }
@@ -39,7 +44,5 @@ class LocalBudgetRepository implements IBudgetRepository {
   }
 
   @override
-  Stream<List<Budget>> watchAllBudget() {
-    return const Stream.empty(); // TODO(quy): create budgets stream
-  }
+  Stream<List<Budget>> watchAllBudget() => _dataSource.getBudgets();
 }

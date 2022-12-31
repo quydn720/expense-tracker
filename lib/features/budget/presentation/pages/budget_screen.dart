@@ -1,4 +1,6 @@
 import 'package:expense_tracker/di/injector.dart';
+import 'package:expense_tracker/features/budget/domain/repositories/budget_repository.dart';
+import 'package:expense_tracker/features/budget/domain/usecases/get_all_budget.dart';
 import 'package:expense_tracker/features/budget/presentation/cubit/budget_cubit.dart';
 import 'package:expense_tracker/features/budget/presentation/widgets/budget_tile.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
@@ -14,9 +16,23 @@ class BudgetScreenProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<BudgetCubit>()..loadBudgets(),
-      child: const BudgetScreen(),
+    return RepositoryProvider(
+      create: (_) => getIt<IBudgetRepository>(),
+      child: Builder(
+        builder: (context) {
+          final budgetRepo = context.read<IBudgetRepository>();
+
+          return BlocProvider(
+            create: (_) => BudgetCubit(
+              WatchAllBudget(budgetRepo),
+              GetAllBudgets(budgetRepo),
+              getIt(),
+              budgetRepo,
+            )..requestedSubscription(),
+            child: const BudgetScreen(),
+          );
+        },
+      ),
     );
   }
 }
@@ -47,24 +63,27 @@ class BudgetScreen extends StatelessWidget {
                       loading: (_) =>
                           const CircularProgressIndicator.adaptive(),
                       loaded: (state) {
-                        return Column(
-                          children: [
-                            ListView.builder(
-                              itemCount: state.budgets.length,
-                              itemBuilder: (_, index) => BudgetTile(
-                                budget: state.budgets[index],
-                              ),
-                            ),
-                          ],
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: state.budgets.length,
+                          itemBuilder: (_, index) => BudgetTile(
+                            budget: state.budgets[index],
+                            
+                          ),
                         );
                       },
+                      error: (_) => const Center(child: Text('Error')),
                     );
                   },
                 ),
               ),
+              const SizedBox(height: 16),
               ElevatedButton(
                 key: createNewBudgetButtonKey,
-                onPressed: () => context.push('/create-budget'),
+                onPressed: () => context.push(
+                  '/create-budget',
+                  extra: context.read<IBudgetRepository>(),
+                ),
                 child: Text(context.l10n.create_budget),
               ),
               const SizedBox(height: 32),

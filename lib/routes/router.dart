@@ -6,6 +6,7 @@ import 'package:expense_tracker/features/authentication/presentation/forgot_pass
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
 import 'package:expense_tracker/features/authentication/presentation/register_form/pages/register_screen.dart';
 import 'package:expense_tracker/features/budget/budget.dart';
+import 'package:expense_tracker/features/budget/domain/repositories/budget_repository.dart';
 import 'package:expense_tracker/features/budget/presentation/pages/create_new_budget_screen.dart';
 import 'package:expense_tracker/features/category/presentation/pages/select_category_view.dart';
 import 'package:expense_tracker/features/common/pages/onboarding/onboarding_page.dart';
@@ -115,7 +116,13 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,
         path: '/create-budget',
-        builder: (_, __) => const CreateNewBudgetScreenProvider(),
+        builder: (_, state) {
+          final repo = state.extra! as IBudgetRepository;
+          return RepositoryProvider.value(
+            value: repo,
+            child: const CreateNewBudgetScreenProvider(),
+          );
+        },
       ),
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,

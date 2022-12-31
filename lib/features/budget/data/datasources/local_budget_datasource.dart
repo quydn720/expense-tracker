@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:expense_tracker/features/budget/domain/entities/budget.dart';
 
 class LocalBudgetDataSource implements IBudgetDataSource {
@@ -24,6 +26,18 @@ class LocalBudgetDataSource implements IBudgetDataSource {
     // TODO(quy): implement getAllBugets
     throw UnimplementedError();
   }
+
+  @override
+  Stream<List<Budget>> getBudgets() {
+    // TODO: implement getBudgets
+    throw UnimplementedError();
+  }
+
+  @override
+  FutureOr dispose() {
+    // TODO: implement dispose
+    throw UnimplementedError();
+  }
 }
 
 abstract class IBudgetDataSource {
@@ -31,4 +45,5 @@ abstract class IBudgetDataSource {
   Future<List<Budget>> getAllBugets();
   Future<void> updateBudget(String budgetId, Budget updateBudget);
   Future<void> deleteBudget(String budgetId);
+  Stream<List<Budget>> getBudgets();
 }

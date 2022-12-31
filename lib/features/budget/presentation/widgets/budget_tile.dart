@@ -2,13 +2,14 @@ import 'package:expense_tracker/features/budget/domain/entities/budget.dart';
 import 'package:flutter/material.dart';
 
 class BudgetTile extends StatelessWidget {
-  const BudgetTile({super.key, required this.budget, this.isExceeded = false});
+  const BudgetTile({super.key, required this.budget});
+
   final Budget budget;
-  final bool isExceeded;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Card(
       elevation: 1,
@@ -26,15 +27,12 @@ class BudgetTile extends StatelessWidget {
                   avatar: CircleAvatar(
                     backgroundColor: budget.category.color,
                   ),
-                  label: Text(budget.category.name),
+                  label: Text(budget.category.name, style: textTheme.bodyText2),
                 ),
-                if (isExceeded) const Icon(Icons.error, color: Colors.red)
+                if (budget.isExceed) const Icon(Icons.error, color: Colors.red)
               ],
             ),
-            Text(
-              r'Remaining $0',
-              style: textTheme.headline3?.copyWith(color: Colors.black),
-            ),
+            Text(r'Remaining $0', style: textTheme.headline5),
             const SizedBox(height: 8),
             ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -47,19 +45,16 @@ class BudgetTile extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              '\$1200 of \$${budget.amount}',
+              '\$${budget.spentAmount} of \$${budget.amount}',
               style: textTheme.bodyText1?.copyWith(
                 color: const Color(0xff91919F),
               ),
             ),
             const SizedBox(height: 8),
-            if (isExceeded) ...[
+            if (budget.isExceed) ...[
               Text(
                 'You’ve exceed the limit!',
-                style: textTheme.subtitle2?.copyWith(
-                  color: Colors.red,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: textTheme.subtitle2?.copyWith(color: colorScheme.error),
               ),
             ]
           ],

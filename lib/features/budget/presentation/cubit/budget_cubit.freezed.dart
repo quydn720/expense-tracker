@@ -20,6 +20,7 @@ mixin _$BudgetState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
+    required TResult Function() error,
     required TResult Function(List<Budget> budgets) loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +28,7 @@ mixin _$BudgetState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
+    TResult? Function()? error,
     TResult? Function(List<Budget> budgets)? loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +36,7 @@ mixin _$BudgetState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
+    TResult Function()? error,
     TResult Function(List<Budget> budgets)? loaded,
     required TResult orElse(),
   }) =>
@@ -42,6 +45,7 @@ mixin _$BudgetState {
   TResult map<TResult extends Object?>({
     required TResult Function(BudgetEmpty value) empty,
     required TResult Function(Loading value) loading,
+    required TResult Function(BudgetError value) error,
     required TResult Function(Loaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +53,7 @@ mixin _$BudgetState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BudgetEmpty value)? empty,
     TResult? Function(Loading value)? loading,
+    TResult? Function(BudgetError value)? error,
     TResult? Function(Loaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +61,7 @@ mixin _$BudgetState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BudgetEmpty value)? empty,
     TResult Function(Loading value)? loading,
+    TResult Function(BudgetError value)? error,
     TResult Function(Loaded value)? loaded,
     required TResult orElse(),
   }) =>
@@ -120,6 +126,7 @@ class _$BudgetEmpty implements BudgetEmpty {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
+    required TResult Function() error,
     required TResult Function(List<Budget> budgets) loaded,
   }) {
     return empty();
@@ -130,6 +137,7 @@ class _$BudgetEmpty implements BudgetEmpty {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
+    TResult? Function()? error,
     TResult? Function(List<Budget> budgets)? loaded,
   }) {
     return empty?.call();
@@ -140,6 +148,7 @@ class _$BudgetEmpty implements BudgetEmpty {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
+    TResult Function()? error,
     TResult Function(List<Budget> budgets)? loaded,
     required TResult orElse(),
   }) {
@@ -154,6 +163,7 @@ class _$BudgetEmpty implements BudgetEmpty {
   TResult map<TResult extends Object?>({
     required TResult Function(BudgetEmpty value) empty,
     required TResult Function(Loading value) loading,
+    required TResult Function(BudgetError value) error,
     required TResult Function(Loaded value) loaded,
   }) {
     return empty(this);
@@ -164,6 +174,7 @@ class _$BudgetEmpty implements BudgetEmpty {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BudgetEmpty value)? empty,
     TResult? Function(Loading value)? loading,
+    TResult? Function(BudgetError value)? error,
     TResult? Function(Loaded value)? loaded,
   }) {
     return empty?.call(this);
@@ -174,6 +185,7 @@ class _$BudgetEmpty implements BudgetEmpty {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BudgetEmpty value)? empty,
     TResult Function(Loading value)? loading,
+    TResult Function(BudgetError value)? error,
     TResult Function(Loaded value)? loaded,
     required TResult orElse(),
   }) {
@@ -226,6 +238,7 @@ class _$Loading implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
+    required TResult Function() error,
     required TResult Function(List<Budget> budgets) loaded,
   }) {
     return loading();
@@ -236,6 +249,7 @@ class _$Loading implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
+    TResult? Function()? error,
     TResult? Function(List<Budget> budgets)? loaded,
   }) {
     return loading?.call();
@@ -246,6 +260,7 @@ class _$Loading implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
+    TResult Function()? error,
     TResult Function(List<Budget> budgets)? loaded,
     required TResult orElse(),
   }) {
@@ -260,6 +275,7 @@ class _$Loading implements Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(BudgetEmpty value) empty,
     required TResult Function(Loading value) loading,
+    required TResult Function(BudgetError value) error,
     required TResult Function(Loaded value) loaded,
   }) {
     return loading(this);
@@ -270,6 +286,7 @@ class _$Loading implements Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BudgetEmpty value)? empty,
     TResult? Function(Loading value)? loading,
+    TResult? Function(BudgetError value)? error,
     TResult? Function(Loaded value)? loaded,
   }) {
     return loading?.call(this);
@@ -280,6 +297,7 @@ class _$Loading implements Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BudgetEmpty value)? empty,
     TResult Function(Loading value)? loading,
+    TResult Function(BudgetError value)? error,
     TResult Function(Loaded value)? loaded,
     required TResult orElse(),
   }) {
@@ -292,6 +310,120 @@ class _$Loading implements Loading {
 
 abstract class Loading implements BudgetState {
   const factory Loading() = _$Loading;
+}
+
+/// @nodoc
+abstract class _$$BudgetErrorCopyWith<$Res> {
+  factory _$$BudgetErrorCopyWith(
+          _$BudgetError value, $Res Function(_$BudgetError) then) =
+      __$$BudgetErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$BudgetErrorCopyWithImpl<$Res>
+    extends _$BudgetStateCopyWithImpl<$Res, _$BudgetError>
+    implements _$$BudgetErrorCopyWith<$Res> {
+  __$$BudgetErrorCopyWithImpl(
+      _$BudgetError _value, $Res Function(_$BudgetError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$BudgetError implements BudgetError {
+  const _$BudgetError();
+
+  @override
+  String toString() {
+    return 'BudgetState.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$BudgetError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function() error,
+    required TResult Function(List<Budget> budgets) loaded,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function(List<Budget> budgets)? loaded,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(List<Budget> budgets)? loaded,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BudgetEmpty value) empty,
+    required TResult Function(Loading value) loading,
+    required TResult Function(BudgetError value) error,
+    required TResult Function(Loaded value) loaded,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(BudgetEmpty value)? empty,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(BudgetError value)? error,
+    TResult? Function(Loaded value)? loaded,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BudgetEmpty value)? empty,
+    TResult Function(Loading value)? loading,
+    TResult Function(BudgetError value)? error,
+    TResult Function(Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BudgetError implements BudgetState {
+  const factory BudgetError() = _$BudgetError;
 }
 
 /// @nodoc
@@ -363,6 +495,7 @@ class _$Loaded implements Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
+    required TResult Function() error,
     required TResult Function(List<Budget> budgets) loaded,
   }) {
     return loaded(budgets);
@@ -373,6 +506,7 @@ class _$Loaded implements Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
+    TResult? Function()? error,
     TResult? Function(List<Budget> budgets)? loaded,
   }) {
     return loaded?.call(budgets);
@@ -383,6 +517,7 @@ class _$Loaded implements Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
+    TResult Function()? error,
     TResult Function(List<Budget> budgets)? loaded,
     required TResult orElse(),
   }) {
@@ -397,6 +532,7 @@ class _$Loaded implements Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(BudgetEmpty value) empty,
     required TResult Function(Loading value) loading,
+    required TResult Function(BudgetError value) error,
     required TResult Function(Loaded value) loaded,
   }) {
     return loaded(this);
@@ -407,6 +543,7 @@ class _$Loaded implements Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BudgetEmpty value)? empty,
     TResult? Function(Loading value)? loading,
+    TResult? Function(BudgetError value)? error,
     TResult? Function(Loaded value)? loaded,
   }) {
     return loaded?.call(this);
@@ -417,6 +554,7 @@ class _$Loaded implements Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BudgetEmpty value)? empty,
     TResult Function(Loading value)? loading,
+    TResult Function(BudgetError value)? error,
     TResult Function(Loaded value)? loaded,
     required TResult orElse(),
   }) {
