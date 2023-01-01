@@ -4,7 +4,9 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class AddTransactionUseCase {
-  AddTransactionUseCase(this._repository);
+  AddTransactionUseCase({
+    required ITransactionRepository repository,
+  }) : _repository = repository;
 
   final ITransactionRepository _repository;
 

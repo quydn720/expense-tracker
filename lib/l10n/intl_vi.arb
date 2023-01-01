@@ -80,5 +80,25 @@
     "wallet": "Ví tiền",
     "yes_str": "Có",
     "receive_alert_title": "Nhận thông báo",
-    "receive_alert_subtitle": "Nhận thông báo khi tổng số giao dịch vượt qua hạn mức"
+    "receive_alert_subtitle": "Nhận thông báo khi tổng số giao dịch vượt qua hạn mức",
+    "undo": "Hoàn tác",
+    "transactionsOverviewTransactionDeletedSnackbarText": "Giao dịch \"{transactionTitle}\" đã bị xóa.",
+    "@transactionsOverviewTransactionDeletedSnackbarText": {
+        "placeholders": {
+            "transactionTitle": {
+                "description": "The title of the transaction that was deleted"
+            }
+        }
+    },
+    "seeYourFinancialReport": "Xem báo cáo giao dịch của bạn",
+    "filter_by": "Lọc theo loại giao dịch",
+    "filter_transactions": "Lọc và sắp xếp giao dịch",
+    "frequency": "Chu kỳ",
+    "end_after": "Kết thúc sau",
+    "sort_by": "Sắp xếp theo",
+    "image": "Hình ảnh",
+    "camera": "Camera",
+    "document": "Tệp tài liệu",
+    "reset": "Đặt lại",
+    "type": "Loại"
 }

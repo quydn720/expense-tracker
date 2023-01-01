@@ -524,6 +524,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Yes'**
   String get yes_str;
+
+  /// No description provided for @undo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get undo;
+
+  /// No description provided for @transactionsOverviewTransactionDeletedSnackbarText.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction \"{transactionTitle}\" deleted.'**
+  String transactionsOverviewTransactionDeletedSnackbarText(Object transactionTitle);
+
+  /// No description provided for @seeYourFinancialReport.
+  ///
+  /// In en, this message translates to:
+  /// **'See your financial report'**
+  String get seeYourFinancialReport;
+
+  /// No description provided for @filter_by.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter By'**
+  String get filter_by;
+
+  /// No description provided for @filter_transactions.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter Transactions'**
+  String get filter_transactions;
+
+  /// No description provided for @sort_by.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort By'**
+  String get sort_by;
+
+  /// No description provided for @image.
+  ///
+  /// In en, this message translates to:
+  /// **'Image'**
+  String get image;
+
+  /// No description provided for @document.
+  ///
+  /// In en, this message translates to:
+  /// **'Document'**
+  String get document;
+
+  /// No description provided for @camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get camera;
+
+  /// No description provided for @frequency.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency'**
+  String get frequency;
+
+  /// No description provided for @end_after.
+  ///
+  /// In en, this message translates to:
+  /// **'End After'**
+  String get end_after;
+
+  /// No description provided for @reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get reset;
+
+  /// No description provided for @type.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get type;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

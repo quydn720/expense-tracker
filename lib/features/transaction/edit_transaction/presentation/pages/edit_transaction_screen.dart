@@ -583,7 +583,7 @@ class _RepeatListTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Frequency',
+                    l10n.frequency,
                     style: theme.textTheme.subtitle2,
                   ),
                   Text(
@@ -598,7 +598,7 @@ class _RepeatListTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'End After',
+                    l10n.end_after,
                     style: theme.textTheme.subtitle2,
                   ),
                   Text(

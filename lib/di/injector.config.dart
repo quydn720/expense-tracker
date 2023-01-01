@@ -200,8 +200,8 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i18.UserBloc>(() => _i18.UserBloc(gh<_i18.UserService>()));
   gh.factory<_i36.WatchAllBudget>(
       () => _i36.WatchAllBudget(gh<_i35.IBudgetRepository>()));
-  gh.factory<_i37.AddTransactionUseCase>(
-      () => _i37.AddTransactionUseCase(gh<_i30.ITransactionRepository>()));
+  gh.factory<_i37.AddTransactionUseCase>(() => _i37.AddTransactionUseCase(
+      repository: gh<_i30.ITransactionRepository>()));
   gh.singleton<_i38.AppBloc>(
       _i38.AppBloc(appSettingService: gh<_i3.AppSettingService>()));
   gh.factory<_i39.CategoryCubit>(

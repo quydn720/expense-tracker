@@ -221,4 +221,45 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get yes_str => 'Yes';
+
+  @override
+  String get undo => 'Undo';
+
+  @override
+  String transactionsOverviewTransactionDeletedSnackbarText(Object transactionTitle) {
+    return 'Transaction \"$transactionTitle\" deleted.';
+  }
+
+  @override
+  String get seeYourFinancialReport => 'See your financial report';
+
+  @override
+  String get filter_by => 'Filter By';
+
+  @override
+  String get filter_transactions => 'Filter Transactions';
+
+  @override
+  String get sort_by => 'Sort By';
+
+  @override
+  String get image => 'Image';
+
+  @override
+  String get document => 'Document';
+
+  @override
+  String get camera => 'Camera';
+
+  @override
+  String get frequency => 'Frequency';
+
+  @override
+  String get end_after => 'End After';
+
+  @override
+  String get reset => 'Reset';
+
+  @override
+  String get type => 'Type';
 }

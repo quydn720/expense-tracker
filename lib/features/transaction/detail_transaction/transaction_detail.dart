@@ -4,8 +4,6 @@ import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/common/common_bottom_sheet.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
-import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
-import 'package:expense_tracker/features/transaction/edit_transaction/usecases/add_transaction_use_case.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
@@ -28,21 +26,9 @@ class TransactionDetailProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repo = context.read<ITransactionRepository>();
-    return BlocProvider(
-      create: (context) => TransactionOverviewBloc(
-        deleteTransactionUseCase: DeleteTransactionUseCase(repository: repo),
-        repository: repo,
-      ),
-      child: BlocListener<TransactionOverviewBloc, TransactionState>(
-        listenWhen: (previous, current) =>
-            current.lastDeletedTransaction != previous.lastDeletedTransaction ||
-            current.lastDeletedTransaction != null,
-        listener: (_, state) {
-          context.pop();
-        },
-        child: TransactionDetailScreen(transaction: _transaction),
-      ),
+    return BlocProvider.value(
+      value: context.read<TransactionOverviewBloc>(),
+      child: TransactionDetailScreen(transaction: _transaction),
     );
   }
 }
@@ -66,6 +52,7 @@ class TransactionDetailScreen extends StatelessWidget {
     final controller = context.read<TransactionOverviewBloc>();
 
     final s16w600 = textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w600);
+
     return Scaffold(
       appBar: DefaultAppBar(
         title: l10n.detail_transaction,
@@ -80,7 +67,6 @@ class TransactionDetailScreen extends StatelessWidget {
                   value: controller,
                   child: YesNoBottomSheet(
                     confirmCallback: () {
-                      context.pop();
                       controller.add(
                         TransactionOverviewTransactionDeleted(_transaction),
                       );
@@ -130,7 +116,7 @@ class TransactionDetailScreen extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Type', style: textTheme.subtitle2),
+                      Text(l10n.type, style: textTheme.subtitle2),
                       const SizedBox(height: 4),
                       Text(
                         _transaction.category.categoryType.name,
@@ -141,7 +127,7 @@ class TransactionDetailScreen extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Category', style: textTheme.subtitle2),
+                      Text(l10n.category, style: textTheme.subtitle2),
                       const SizedBox(height: 4),
                       Text(_transaction.category.name, style: s16w600),
                     ],
@@ -149,7 +135,7 @@ class TransactionDetailScreen extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Wallet', style: textTheme.subtitle2),
+                      Text(l10n.wallet, style: textTheme.subtitle2),
                       const SizedBox(height: 4),
                       Text(_transaction.wallet?.name ?? '', style: s16w600),
                     ],

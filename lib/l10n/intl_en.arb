@@ -80,5 +80,25 @@
     "transactions": "Transactions",
     "transfer": "Transfer",
     "wallet": "Wallet",
-    "yes_str": "Yes"
+    "yes_str": "Yes",
+    "undo": "Undo",
+    "transactionsOverviewTransactionDeletedSnackbarText": "Transaction \"{transactionTitle}\" deleted.",
+    "@transactionsOverviewTransactionDeletedSnackbarText": {
+        "placeholders": {
+            "transactionTitle": {
+                "description": "The title of the todo that was deleted"
+            }
+        }
+    },
+    "seeYourFinancialReport": "See your financial report",
+    "filter_by": "Filter By",
+    "filter_transactions": "Filter Transactions",
+    "sort_by": "Sort By",
+    "image": "Image",
+    "document": "Document",
+    "camera": "Camera",
+    "frequency": "Frequency",
+    "end_after": "End After",
+    "reset": "Reset",
+    "type": "Type"
 }

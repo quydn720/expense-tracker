@@ -24,6 +24,7 @@ mixin _$TransactionEvent {
         transactionsViewFilterChanged,
     required TResult Function(TransactionEntity transaction)
         transactionOverviewTransactionDeleted,
+    required TResult Function() transactionOverviewUndoDeletionRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$TransactionEvent {
         transactionsViewFilterChanged,
     TResult? Function(TransactionEntity transaction)?
         transactionOverviewTransactionDeleted,
+    TResult? Function()? transactionOverviewUndoDeletionRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,7 @@ mixin _$TransactionEvent {
         transactionsViewFilterChanged,
     TResult Function(TransactionEntity transaction)?
         transactionOverviewTransactionDeleted,
+    TResult Function()? transactionOverviewUndoDeletionRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +59,8 @@ mixin _$TransactionEvent {
         transactionsViewFilterChanged,
     required TResult Function(TransactionOverviewTransactionDeleted value)
         transactionOverviewTransactionDeleted,
+    required TResult Function(TransactionOverviewUndoDeletionRequested value)
+        transactionOverviewUndoDeletionRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,6 +72,8 @@ mixin _$TransactionEvent {
         transactionsViewFilterChanged,
     TResult? Function(TransactionOverviewTransactionDeleted value)?
         transactionOverviewTransactionDeleted,
+    TResult? Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +85,8 @@ mixin _$TransactionEvent {
         transactionsViewFilterChanged,
     TResult Function(TransactionOverviewTransactionDeleted value)?
         transactionOverviewTransactionDeleted,
+    TResult Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -176,6 +185,7 @@ class _$Loaded implements Loaded {
         transactionsViewFilterChanged,
     required TResult Function(TransactionEntity transaction)
         transactionOverviewTransactionDeleted,
+    required TResult Function() transactionOverviewUndoDeletionRequested,
   }) {
     return loaded(transactions);
   }
@@ -189,6 +199,7 @@ class _$Loaded implements Loaded {
         transactionsViewFilterChanged,
     TResult? Function(TransactionEntity transaction)?
         transactionOverviewTransactionDeleted,
+    TResult? Function()? transactionOverviewUndoDeletionRequested,
   }) {
     return loaded?.call(transactions);
   }
@@ -202,6 +213,7 @@ class _$Loaded implements Loaded {
         transactionsViewFilterChanged,
     TResult Function(TransactionEntity transaction)?
         transactionOverviewTransactionDeleted,
+    TResult Function()? transactionOverviewUndoDeletionRequested,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -220,6 +232,8 @@ class _$Loaded implements Loaded {
         transactionsViewFilterChanged,
     required TResult Function(TransactionOverviewTransactionDeleted value)
         transactionOverviewTransactionDeleted,
+    required TResult Function(TransactionOverviewUndoDeletionRequested value)
+        transactionOverviewUndoDeletionRequested,
   }) {
     return loaded(this);
   }
@@ -234,6 +248,8 @@ class _$Loaded implements Loaded {
         transactionsViewFilterChanged,
     TResult? Function(TransactionOverviewTransactionDeleted value)?
         transactionOverviewTransactionDeleted,
+    TResult? Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
   }) {
     return loaded?.call(this);
   }
@@ -248,6 +264,8 @@ class _$Loaded implements Loaded {
         transactionsViewFilterChanged,
     TResult Function(TransactionOverviewTransactionDeleted value)?
         transactionOverviewTransactionDeleted,
+    TResult Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -315,6 +333,7 @@ class _$TransactionsSubscriptionRequested
         transactionsViewFilterChanged,
     required TResult Function(TransactionEntity transaction)
         transactionOverviewTransactionDeleted,
+    required TResult Function() transactionOverviewUndoDeletionRequested,
   }) {
     return transactionsSubscriptionRequested();
   }
@@ -328,6 +347,7 @@ class _$TransactionsSubscriptionRequested
         transactionsViewFilterChanged,
     TResult? Function(TransactionEntity transaction)?
         transactionOverviewTransactionDeleted,
+    TResult? Function()? transactionOverviewUndoDeletionRequested,
   }) {
     return transactionsSubscriptionRequested?.call();
   }
@@ -341,6 +361,7 @@ class _$TransactionsSubscriptionRequested
         transactionsViewFilterChanged,
     TResult Function(TransactionEntity transaction)?
         transactionOverviewTransactionDeleted,
+    TResult Function()? transactionOverviewUndoDeletionRequested,
     required TResult orElse(),
   }) {
     if (transactionsSubscriptionRequested != null) {
@@ -359,6 +380,8 @@ class _$TransactionsSubscriptionRequested
         transactionsViewFilterChanged,
     required TResult Function(TransactionOverviewTransactionDeleted value)
         transactionOverviewTransactionDeleted,
+    required TResult Function(TransactionOverviewUndoDeletionRequested value)
+        transactionOverviewUndoDeletionRequested,
   }) {
     return transactionsSubscriptionRequested(this);
   }
@@ -373,6 +396,8 @@ class _$TransactionsSubscriptionRequested
         transactionsViewFilterChanged,
     TResult? Function(TransactionOverviewTransactionDeleted value)?
         transactionOverviewTransactionDeleted,
+    TResult? Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
   }) {
     return transactionsSubscriptionRequested?.call(this);
   }
@@ -387,6 +412,8 @@ class _$TransactionsSubscriptionRequested
         transactionsViewFilterChanged,
     TResult Function(TransactionOverviewTransactionDeleted value)?
         transactionOverviewTransactionDeleted,
+    TResult Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
     required TResult orElse(),
   }) {
     if (transactionsSubscriptionRequested != null) {
@@ -475,6 +502,7 @@ class _$TransactionsViewFilterChanged implements TransactionsViewFilterChanged {
         transactionsViewFilterChanged,
     required TResult Function(TransactionEntity transaction)
         transactionOverviewTransactionDeleted,
+    required TResult Function() transactionOverviewUndoDeletionRequested,
   }) {
     return transactionsViewFilterChanged(filter);
   }
@@ -488,6 +516,7 @@ class _$TransactionsViewFilterChanged implements TransactionsViewFilterChanged {
         transactionsViewFilterChanged,
     TResult? Function(TransactionEntity transaction)?
         transactionOverviewTransactionDeleted,
+    TResult? Function()? transactionOverviewUndoDeletionRequested,
   }) {
     return transactionsViewFilterChanged?.call(filter);
   }
@@ -501,6 +530,7 @@ class _$TransactionsViewFilterChanged implements TransactionsViewFilterChanged {
         transactionsViewFilterChanged,
     TResult Function(TransactionEntity transaction)?
         transactionOverviewTransactionDeleted,
+    TResult Function()? transactionOverviewUndoDeletionRequested,
     required TResult orElse(),
   }) {
     if (transactionsViewFilterChanged != null) {
@@ -519,6 +549,8 @@ class _$TransactionsViewFilterChanged implements TransactionsViewFilterChanged {
         transactionsViewFilterChanged,
     required TResult Function(TransactionOverviewTransactionDeleted value)
         transactionOverviewTransactionDeleted,
+    required TResult Function(TransactionOverviewUndoDeletionRequested value)
+        transactionOverviewUndoDeletionRequested,
   }) {
     return transactionsViewFilterChanged(this);
   }
@@ -533,6 +565,8 @@ class _$TransactionsViewFilterChanged implements TransactionsViewFilterChanged {
         transactionsViewFilterChanged,
     TResult? Function(TransactionOverviewTransactionDeleted value)?
         transactionOverviewTransactionDeleted,
+    TResult? Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
   }) {
     return transactionsViewFilterChanged?.call(this);
   }
@@ -547,6 +581,8 @@ class _$TransactionsViewFilterChanged implements TransactionsViewFilterChanged {
         transactionsViewFilterChanged,
     TResult Function(TransactionOverviewTransactionDeleted value)?
         transactionOverviewTransactionDeleted,
+    TResult Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
     required TResult orElse(),
   }) {
     if (transactionsViewFilterChanged != null) {
@@ -653,6 +689,7 @@ class _$TransactionOverviewTransactionDeleted
         transactionsViewFilterChanged,
     required TResult Function(TransactionEntity transaction)
         transactionOverviewTransactionDeleted,
+    required TResult Function() transactionOverviewUndoDeletionRequested,
   }) {
     return transactionOverviewTransactionDeleted(transaction);
   }
@@ -666,6 +703,7 @@ class _$TransactionOverviewTransactionDeleted
         transactionsViewFilterChanged,
     TResult? Function(TransactionEntity transaction)?
         transactionOverviewTransactionDeleted,
+    TResult? Function()? transactionOverviewUndoDeletionRequested,
   }) {
     return transactionOverviewTransactionDeleted?.call(transaction);
   }
@@ -679,6 +717,7 @@ class _$TransactionOverviewTransactionDeleted
         transactionsViewFilterChanged,
     TResult Function(TransactionEntity transaction)?
         transactionOverviewTransactionDeleted,
+    TResult Function()? transactionOverviewUndoDeletionRequested,
     required TResult orElse(),
   }) {
     if (transactionOverviewTransactionDeleted != null) {
@@ -697,6 +736,8 @@ class _$TransactionOverviewTransactionDeleted
         transactionsViewFilterChanged,
     required TResult Function(TransactionOverviewTransactionDeleted value)
         transactionOverviewTransactionDeleted,
+    required TResult Function(TransactionOverviewUndoDeletionRequested value)
+        transactionOverviewUndoDeletionRequested,
   }) {
     return transactionOverviewTransactionDeleted(this);
   }
@@ -711,6 +752,8 @@ class _$TransactionOverviewTransactionDeleted
         transactionsViewFilterChanged,
     TResult? Function(TransactionOverviewTransactionDeleted value)?
         transactionOverviewTransactionDeleted,
+    TResult? Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
   }) {
     return transactionOverviewTransactionDeleted?.call(this);
   }
@@ -725,6 +768,8 @@ class _$TransactionOverviewTransactionDeleted
         transactionsViewFilterChanged,
     TResult Function(TransactionOverviewTransactionDeleted value)?
         transactionOverviewTransactionDeleted,
+    TResult Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
     required TResult orElse(),
   }) {
     if (transactionOverviewTransactionDeleted != null) {
@@ -745,6 +790,151 @@ abstract class TransactionOverviewTransactionDeleted
   _$$TransactionOverviewTransactionDeletedCopyWith<
           _$TransactionOverviewTransactionDeleted>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TransactionOverviewUndoDeletionRequestedCopyWith<$Res> {
+  factory _$$TransactionOverviewUndoDeletionRequestedCopyWith(
+          _$TransactionOverviewUndoDeletionRequested value,
+          $Res Function(_$TransactionOverviewUndoDeletionRequested) then) =
+      __$$TransactionOverviewUndoDeletionRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$TransactionOverviewUndoDeletionRequestedCopyWithImpl<$Res>
+    extends _$TransactionEventCopyWithImpl<$Res,
+        _$TransactionOverviewUndoDeletionRequested>
+    implements _$$TransactionOverviewUndoDeletionRequestedCopyWith<$Res> {
+  __$$TransactionOverviewUndoDeletionRequestedCopyWithImpl(
+      _$TransactionOverviewUndoDeletionRequested _value,
+      $Res Function(_$TransactionOverviewUndoDeletionRequested) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$TransactionOverviewUndoDeletionRequested
+    implements TransactionOverviewUndoDeletionRequested {
+  const _$TransactionOverviewUndoDeletionRequested();
+
+  @override
+  String toString() {
+    return 'TransactionEvent.transactionOverviewUndoDeletionRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TransactionOverviewUndoDeletionRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<TransactionEntity> transactions) loaded,
+    required TResult Function() transactionsSubscriptionRequested,
+    required TResult Function(TransactionsViewFilter filter)
+        transactionsViewFilterChanged,
+    required TResult Function(TransactionEntity transaction)
+        transactionOverviewTransactionDeleted,
+    required TResult Function() transactionOverviewUndoDeletionRequested,
+  }) {
+    return transactionOverviewUndoDeletionRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<TransactionEntity> transactions)? loaded,
+    TResult? Function()? transactionsSubscriptionRequested,
+    TResult? Function(TransactionsViewFilter filter)?
+        transactionsViewFilterChanged,
+    TResult? Function(TransactionEntity transaction)?
+        transactionOverviewTransactionDeleted,
+    TResult? Function()? transactionOverviewUndoDeletionRequested,
+  }) {
+    return transactionOverviewUndoDeletionRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<TransactionEntity> transactions)? loaded,
+    TResult Function()? transactionsSubscriptionRequested,
+    TResult Function(TransactionsViewFilter filter)?
+        transactionsViewFilterChanged,
+    TResult Function(TransactionEntity transaction)?
+        transactionOverviewTransactionDeleted,
+    TResult Function()? transactionOverviewUndoDeletionRequested,
+    required TResult orElse(),
+  }) {
+    if (transactionOverviewUndoDeletionRequested != null) {
+      return transactionOverviewUndoDeletionRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Loaded value) loaded,
+    required TResult Function(TransactionsSubscriptionRequested value)
+        transactionsSubscriptionRequested,
+    required TResult Function(TransactionsViewFilterChanged value)
+        transactionsViewFilterChanged,
+    required TResult Function(TransactionOverviewTransactionDeleted value)
+        transactionOverviewTransactionDeleted,
+    required TResult Function(TransactionOverviewUndoDeletionRequested value)
+        transactionOverviewUndoDeletionRequested,
+  }) {
+    return transactionOverviewUndoDeletionRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Loaded value)? loaded,
+    TResult? Function(TransactionsSubscriptionRequested value)?
+        transactionsSubscriptionRequested,
+    TResult? Function(TransactionsViewFilterChanged value)?
+        transactionsViewFilterChanged,
+    TResult? Function(TransactionOverviewTransactionDeleted value)?
+        transactionOverviewTransactionDeleted,
+    TResult? Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
+  }) {
+    return transactionOverviewUndoDeletionRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Loaded value)? loaded,
+    TResult Function(TransactionsSubscriptionRequested value)?
+        transactionsSubscriptionRequested,
+    TResult Function(TransactionsViewFilterChanged value)?
+        transactionsViewFilterChanged,
+    TResult Function(TransactionOverviewTransactionDeleted value)?
+        transactionOverviewTransactionDeleted,
+    TResult Function(TransactionOverviewUndoDeletionRequested value)?
+        transactionOverviewUndoDeletionRequested,
+    required TResult orElse(),
+  }) {
+    if (transactionOverviewUndoDeletionRequested != null) {
+      return transactionOverviewUndoDeletionRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TransactionOverviewUndoDeletionRequested
+    implements TransactionEvent {
+  const factory TransactionOverviewUndoDeletionRequested() =
+      _$TransactionOverviewUndoDeletionRequested;
 }
 
 /// @nodoc

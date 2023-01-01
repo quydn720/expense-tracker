@@ -1,5 +1,6 @@
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/cubit/edit_transaction_cubit.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +12,7 @@ class MediaBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = context.read<EditTransactionCubit>();
+    final l10n = context.l10n;
 
     return Column(
       children: [
@@ -48,7 +50,7 @@ class MediaBottomSheet extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Camera',
+                            l10n.camera,
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                           const SizedBox(height: 16),
@@ -86,7 +88,7 @@ class MediaBottomSheet extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Image',
+                            l10n.image,
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                           const SizedBox(height: 16),
@@ -122,7 +124,7 @@ class MediaBottomSheet extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Document',
+                            l10n.document,
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                           const SizedBox(height: 16),

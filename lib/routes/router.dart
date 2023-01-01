@@ -24,6 +24,7 @@ import 'package:expense_tracker/features/settings/presentation/pages/theme_scree
 import 'package:expense_tracker/features/transaction/detail_transaction/transaction_detail.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/pages/edit_transaction_screen.dart';
+import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/pages/transaction_screen.dart';
 import 'package:expense_tracker/features/verify_email/register_verify_email_view.dart';
 import 'package:expense_tracker/features/wallet/presentation/pages/wallet_screen.dart';
@@ -82,8 +83,14 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
                 parentNavigatorKey: _rootNavigatorKey,
                 path: ':transactionId',
                 builder: (_, state) {
-                  return TransactionDetailProvider(
-                    transaction: state.extra! as TransactionEntity,
+                  final extra = state.extra! as Map<String, dynamic>;
+
+                  final bloc = extra['bloc'] as TransactionOverviewBloc;
+                  final transaction = extra['trans'] as TransactionEntity;
+
+                  return BlocProvider.value(
+                    value: bloc,
+                    child: TransactionDetailProvider(transaction: transaction),
                   );
                 },
               ),

@@ -21,7 +21,7 @@ void main() {
       () => _repository.addNewTransaction(any(that: isA<TransactionEntity>())),
     ).thenAnswer((_) async {});
 
-    sut = AddTransactionUseCase(_repository);
+    sut = AddTransactionUseCase(repository: _repository);
   });
 
   test(

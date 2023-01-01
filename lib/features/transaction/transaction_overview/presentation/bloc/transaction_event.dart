@@ -12,4 +12,6 @@ class TransactionEvent with _$TransactionEvent {
   const factory TransactionEvent.transactionOverviewTransactionDeleted(
     TransactionEntity transaction,
   ) = TransactionOverviewTransactionDeleted;
+  const factory TransactionEvent.transactionOverviewUndoDeletionRequested() =
+      TransactionOverviewUndoDeletionRequested;
 }

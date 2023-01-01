@@ -221,4 +221,45 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get yes_str => 'Có';
+
+  @override
+  String get undo => 'Hoàn tác';
+
+  @override
+  String transactionsOverviewTransactionDeletedSnackbarText(Object transactionTitle) {
+    return 'Giao dịch \"$transactionTitle\" đã bị xóa.';
+  }
+
+  @override
+  String get seeYourFinancialReport => 'Xem báo cáo giao dịch của bạn';
+
+  @override
+  String get filter_by => 'Lọc theo loại giao dịch';
+
+  @override
+  String get filter_transactions => 'Lọc và sắp xếp giao dịch';
+
+  @override
+  String get sort_by => 'Sắp xếp theo';
+
+  @override
+  String get image => 'Hình ảnh';
+
+  @override
+  String get document => 'Tệp tài liệu';
+
+  @override
+  String get camera => 'Camera';
+
+  @override
+  String get frequency => 'Chu kỳ';
+
+  @override
+  String get end_after => 'Kết thúc sau';
+
+  @override
+  String get reset => 'Đặt lại';
+
+  @override
+  String get type => 'Loại';
 }

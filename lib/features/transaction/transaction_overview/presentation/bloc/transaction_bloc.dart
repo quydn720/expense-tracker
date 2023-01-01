@@ -13,17 +13,21 @@ part 'transaction_bloc.freezed.dart';
 class TransactionOverviewBloc extends Bloc<TransactionEvent, TransactionState> {
   TransactionOverviewBloc({
     required ITransactionRepository repository,
+    required AddTransactionUseCase addTransactionUseCase,
     required DeleteTransactionUseCase deleteTransactionUseCase,
   })  : _repository = repository,
+        _addTransactionUseCase = addTransactionUseCase,
         _deleteTransactionUseCase = deleteTransactionUseCase,
         super(const TransactionState()) {
     on<TransactionsSubscriptionRequested>(_onTransactionsSubscriptionRequested);
     on<TransactionsViewFilterChanged>(_onTransactionViewFilterChanged);
     on<TransactionOverviewTransactionDeleted>(_onTransactionDeleted);
+    on<TransactionOverviewUndoDeletionRequested>(_onUndoDeletionRequested);
   }
 
   final ITransactionRepository _repository;
   final DeleteTransactionUseCase _deleteTransactionUseCase;
+  final AddTransactionUseCase _addTransactionUseCase;
 
   Future<void> _onTransactionViewFilterChanged(
     TransactionsViewFilterChanged event,
@@ -55,5 +59,15 @@ class TransactionOverviewBloc extends Bloc<TransactionEvent, TransactionState> {
   ) async {
     emit(state.copyWith(lastDeletedTransaction: event.transaction));
     await _deleteTransactionUseCase(event.transaction.id);
+  }
+
+  Future<void> _onUndoDeletionRequested(
+    TransactionOverviewUndoDeletionRequested event,
+    Emitter<TransactionState> emit,
+  ) async {
+    final transaction = state.lastDeletedTransaction!;
+
+    emit(state.copyWith(lastDeletedTransaction: null));
+    await _addTransactionUseCase(transaction);
   }
 }
