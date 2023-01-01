@@ -5,6 +5,7 @@ import 'package:expense_tracker/features/transaction/data/datasources/transactio
 import 'package:expense_tracker/features/transaction/data/models/transaction_model.dart';
 import 'package:expense_tracker/features/transaction/data/repositories/transaction_repository_impl.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
+import 'package:expense_tracker/features/wallet/data/datasources/wallet_dao.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -21,18 +22,22 @@ class MockTransactionsCompanion extends Mock implements TransactionsCompanion {}
 
 class MockCategoryEntity extends Mock implements CategoryEntity {}
 
+class MockWalletsDao extends Mock implements WalletsDao {}
+
 void main() {
   late TransactionRepositoryImpl repo;
   late TransactionsDao dao;
   late TransactionEntity transaction;
   late TransactionWithCategory transactionWithCategory;
   late Mapper mapper;
+  late WalletsDao walletDao;
 
   setUp(() {
     dao = MockTransactionsDao();
     mapper = MockMapper();
     transaction = MockTransactionEntity();
-    repo = TransactionRepositoryImpl(dao, mapper);
+    walletDao = MockWalletsDao();
+    repo = TransactionRepositoryImpl(dao, mapper, walletDao);
     transactionWithCategory = MockTransactionWithCategory();
 
     registerFallbackValue(MockTransactionEntity());

@@ -48,7 +48,7 @@ class TransactionsLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<TransactionBloc>().state;
+    final state = context.watch<TransactionOverviewBloc>().state;
     final transactions = state.transactions.groupWeekly();
 
     return LineChart(

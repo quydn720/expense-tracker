@@ -18,6 +18,7 @@ class SpendFrequency extends StatelessWidget {
     final _filterResult = transactions.filterByPeriod(Period.week, 0);
     final _transactions = _filterResult[0] as List<TransactionEntity>;
     final _spentInPeriod = _transactions.sum()[0];
+    // final _incomeInPeriod = _transactions.sum()[1];
 
     final start = _filterResult[1] as DateTime;
     final end = _filterResult[2] as DateTime;
@@ -77,7 +78,7 @@ class SpendFrequency extends StatelessWidget {
         ),
         SizedBox(
           height: 200,
-          child: WeeklyChart(transactions: transactions.groupWeekly()),
+          child: WeeklyChart(transactions: _transactions.groupWeekly()),
         ),
       ],
     );

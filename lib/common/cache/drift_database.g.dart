@@ -1180,6 +1180,7 @@ abstract class _$MyDatabase extends GeneratedDatabase {
   late final TransactionsDao transactionsDao =
       TransactionsDao(this as MyDatabase);
   late final BudgetsDao budgetsDao = BudgetsDao(this as MyDatabase);
+  late final WalletsDao walletsDao = WalletsDao(this as MyDatabase);
   @override
   Iterable<TableInfo<Table, dynamic>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();

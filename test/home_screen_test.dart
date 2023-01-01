@@ -8,10 +8,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockTransactionBloc extends Mock implements TransactionBloc {}
+class MockTransactionBloc extends Mock implements TransactionOverviewBloc {}
 
 void main() {
-  late TransactionBloc transactionBloc;
+  late TransactionOverviewBloc transactionBloc;
 
   const mockTransactionsScreenKey = Key('mockTransactionsScreenKey');
 

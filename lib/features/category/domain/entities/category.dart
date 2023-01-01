@@ -18,6 +18,8 @@ class CategoryEntity with _$CategoryEntity {
   Color get backgroundColor => color.withOpacity(0.2);
 
   bool get isEmpty => name.isEmpty;
+  bool get isExpense => categoryType == CategoryType.expense;
+  bool get isIncome => categoryType == CategoryType.income;
 
   Iterable<TransactionEntity> filteredTransactions(
     Iterable<TransactionEntity> transactions,

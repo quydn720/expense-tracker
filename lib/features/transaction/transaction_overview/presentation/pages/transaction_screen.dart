@@ -1,4 +1,6 @@
 import 'package:expense_tracker/di/injector.dart';
+import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
+import 'package:expense_tracker/features/transaction/edit_transaction/usecases/add_transaction_use_case.dart';
 import 'package:expense_tracker/features/transaction/presentation/widgets/transaction_tile.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
@@ -14,9 +16,12 @@ class TransactionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<TransactionBloc>(
-      create: (_) => getIt<TransactionBloc>()
-        ..add(const TransactionsSubscriptionRequested()),
+    final repo = context.read<ITransactionRepository>();
+    return BlocProvider<TransactionOverviewBloc>(
+      create: (_) => TransactionOverviewBloc(
+        deleteTransactionUseCase: DeleteTransactionUseCase(repository: repo),
+        repository: repo,
+      )..add(const TransactionsSubscriptionRequested()),
       child: const TransactionView(),
     );
   }
@@ -29,7 +34,7 @@ class TransactionView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return BlocConsumer<TransactionBloc, TransactionState>(
+    return BlocConsumer<TransactionOverviewBloc, TransactionState>(
       listenWhen: (previous, current) =>
           previous.lastDeletedTransaction != current.lastDeletedTransaction &&
           current.lastDeletedTransaction != null,
@@ -45,7 +50,7 @@ class TransactionView extends StatelessWidget {
                 label: 'undo',
                 onPressed: () {
                   messenger.hideCurrentSnackBar();
-                  context.read<TransactionBloc>();
+                  context.read<TransactionOverviewBloc>();
                 },
               ),
             ),
@@ -66,7 +71,7 @@ class TransactionView extends StatelessWidget {
                     useRootNavigator: true,
                     context: context,
                     builder: (_) => BlocProvider.value(
-                      value: context.read<TransactionBloc>(),
+                      value: context.read<TransactionOverviewBloc>(),
                       child: const FilterBottomSheet(),
                     ),
                   );
@@ -103,21 +108,7 @@ class TransactionView extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 itemBuilder: (_, index) => TransactionTile(
                   transaction: state.filteredTransactions.elementAt(index),
-                  onPress: () =>
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute<void>(
-                      //     fullscreenDialog: true,
-                      //     builder: (_) => BlocProvider.value(
-                      //       value: context.read<TransactionBloc>(),
-                      //       child: TransactionDetailScreen(
-                      //         transaction: state.transactions[index],
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-
-                      context.push(
+                  onPress: () => context.push(
                     '/transactions/${state.transactions[index].id}',
                     extra: state.transactions[index],
                   ),
@@ -152,7 +143,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
       letterSpacing: 0.3,
     );
 
-    final controller = context.read<TransactionBloc>();
+    final controller = context.read<TransactionOverviewBloc>();
 
     return Padding(
       padding: const EdgeInsets.all(16),

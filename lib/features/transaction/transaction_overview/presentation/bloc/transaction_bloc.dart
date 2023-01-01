@@ -5,22 +5,25 @@ import 'package:expense_tracker/features/transaction/domain/entities/transaction
 import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
 import 'package:expense_tracker/features/transaction/edit_transaction/usecases/add_transaction_use_case.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 
 part 'transaction_event.dart';
 part 'transaction_state.dart';
 part 'transaction_bloc.freezed.dart';
 
-@injectable
-class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
-  TransactionBloc(
-    this._repository,
-    this._deleteTransactionUseCase,
-  ) : super(const TransactionState()) {
+class TransactionOverviewBloc extends Bloc<TransactionEvent, TransactionState> {
+  TransactionOverviewBloc({
+    required ITransactionRepository repository,
+    required DeleteTransactionUseCase deleteTransactionUseCase,
+  })  : _repository = repository,
+        _deleteTransactionUseCase = deleteTransactionUseCase,
+        super(const TransactionState()) {
     on<TransactionsSubscriptionRequested>(_onTransactionsSubscriptionRequested);
     on<TransactionsViewFilterChanged>(_onTransactionViewFilterChanged);
     on<TransactionOverviewTransactionDeleted>(_onTransactionDeleted);
   }
+
+  final ITransactionRepository _repository;
+  final DeleteTransactionUseCase _deleteTransactionUseCase;
 
   Future<void> _onTransactionViewFilterChanged(
     TransactionsViewFilterChanged event,
@@ -28,9 +31,6 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   ) async {
     emit(state.copyWith(filter: event.filter));
   }
-
-  final ITransactionRepository _repository;
-  final DeleteTransactionUseCase _deleteTransactionUseCase;
 
   Future<void> _onTransactionsSubscriptionRequested(
     TransactionsSubscriptionRequested event,

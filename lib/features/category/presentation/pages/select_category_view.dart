@@ -38,11 +38,17 @@ class SelectCategoryView extends StatelessWidget {
           ),
           onPressed: () async {
             await showModalBottomSheet<void>(
+              isScrollControlled: true,
+              isDismissible: false,
+              enableDrag: false,
               context: context,
               builder: (_) {
-                return BlocProvider.value(
-                  value: context.read<CategoryCubit>(),
-                  child: const AddCategoryBottomSheet(),
+                return FractionallySizedBox(
+                  heightFactor: 0.9,
+                  child: BlocProvider.value(
+                    value: context.read<CategoryCubit>(),
+                    child: const SelectCategoryProvider(),
+                  ),
                 );
               },
             );
@@ -50,81 +56,26 @@ class SelectCategoryView extends StatelessWidget {
           label: const Text('Add category'),
           icon: const Icon(FontAwesomeIcons.plus),
         ),
-        appBar: DefaultAppBar(
-          title: 'Select Category',
-          trailings: [
-            IconButton(
-              key: searchIconButtonKey,
-              onPressed: () {},
-              icon: const Icon(FontAwesomeIcons.magnifyingGlass),
-            )
-          ],
-        ),
+        appBar: const DefaultAppBar(title: 'Select Category'),
         body: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             const TabBar(
-              unselectedLabelColor: Colors.grey,
-              indicatorColor: Colors.transparent,
-              splashFactory: NoSplash.splashFactory,
+              labelColor: Colors.black,
               tabs: [
-                Chip(label: Text('Income')),
-                Chip(label: Text('Expense')),
+                Tab(text: 'Expense'),
+                Tab(text: 'Income'),
               ],
             ),
             const SizedBox(height: 16),
             Expanded(
               child: TabBarView(
                 children: [
-                  Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: categories
-                        .where(
-                          (e) => e.categoryType == CategoryType.income,
-                        )
-                        .map(
-                          (e) => Column(
-                            children: [
-                              GestureDetector(
-                                key: ObjectKey(e),
-                                onTap: () => GoRouter.of(context).pop(e),
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  backgroundColor: e.backgroundColor,
-                                  child: FaIcon(e.icon, color: e.color),
-                                ),
-                              ),
-                              Text(e.name),
-                            ],
-                          ),
-                        )
-                        .toList(),
+                  _CategoryList(
+                    categories: categories.where((c) => c.isExpense),
                   ),
-                  Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: categories
-                        .where(
-                          (e) => e.categoryType == CategoryType.expense,
-                        )
-                        .map(
-                          (e) => Column(
-                            children: [
-                              GestureDetector(
-                                key: ObjectKey(e),
-                                onTap: () => GoRouter.of(context).pop(e),
-                                child: CircleAvatar(
-                                  radius: 28,
-                                  backgroundColor: e.backgroundColor,
-                                  child: FaIcon(e.icon, color: e.color),
-                                ),
-                              ),
-                              Text(e.name),
-                            ],
-                          ),
-                        )
-                        .toList(),
+                  _CategoryList(
+                    categories: categories.where((c) => c.isIncome),
                   ),
                 ],
               ),
@@ -132,6 +83,34 @@ class SelectCategoryView extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _CategoryList extends StatelessWidget {
+  const _CategoryList({
+    required this.categories,
+  });
+
+  final Iterable<CategoryEntity> categories;
+  // final VoidCallback onCategoryTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: categories
+          .map(
+            (c) => ListTile(
+              onTap: () => GoRouter.of(context).pop(c),
+              leading: CircleAvatar(
+                radius: 28,
+                backgroundColor: c.backgroundColor,
+                child: FaIcon(c.icon, color: c.color),
+              ),
+              title: Text(c.name),
+            ),
+          )
+          .toList(),
     );
   }
 }

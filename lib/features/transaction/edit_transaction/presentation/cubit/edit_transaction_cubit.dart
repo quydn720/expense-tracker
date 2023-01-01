@@ -52,7 +52,7 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
 
   void categoryChanged(CategoryEntity? categoryInput) {
     final category = CategoryField.dirty(categoryInput);
-    final formzStatus = Formz.validate([category, state.amount]);
+    final formzStatus = Formz.validate([category, state.amount, state.wallet]);
 
     emit(state.copyWith(category: category, formzStatus: formzStatus));
   }
@@ -61,7 +61,7 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
     final formattedString = amountStr.split(currencySymbol ?? '').join();
 
     final amount = AmountText.dirty(formattedString);
-    final formzStatus = Formz.validate([amount, state.category]);
+    final formzStatus = Formz.validate([amount, state.category, state.wallet]);
 
     emit(
       state.copyWith(amount: amount, formzStatus: formzStatus),
@@ -101,18 +101,10 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
     emit(state.copyWith(date: date!));
   }
 
-  void walletChanged(String value) {
-    final test = Wallet(
-      id: value,
-      balance: 100,
-      name: 'name',
-      iconPath: 'iconPath',
-    );
-    final wallet = WalletField.dirty(test);
-    final formzStatus = Formz.validate([state.amount, state.wallet, wallet]);
+  void walletChanged(Wallet? walletInput) {
+    final wallet = WalletField.dirty(walletInput);
+    final formzStatus = Formz.validate([state.amount, state.category, wallet]);
 
-    emit(
-      state.copyWith(wallet: wallet, formzStatus: formzStatus),
-    );
+    emit(state.copyWith(wallet: wallet, formzStatus: formzStatus));
   }
 }

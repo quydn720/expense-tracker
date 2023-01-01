@@ -10,6 +10,7 @@ import 'package:expense_tracker/features/category/domain/entities/category.dart'
 import 'package:expense_tracker/features/transaction/data/datasources/transaction_dao.dart';
 import 'package:expense_tracker/features/transaction/data/models/transaction_model.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
+import 'package:expense_tracker/features/wallet/data/datasources/wallet_dao.dart';
 import 'package:expense_tracker/features/wallet/data/models/wallet_model.dart';
 import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
 import 'package:flutter/material.dart' hide Table;
@@ -21,7 +22,7 @@ part 'drift_database.g.dart';
 
 @DriftDatabase(
   tables: [Categories, Transactions, Budgets, Wallets],
-  daos: [CategoriesDao, TransactionsDao, BudgetsDao],
+  daos: [CategoriesDao, TransactionsDao, BudgetsDao, WalletsDao],
 )
 class MyDatabase extends _$MyDatabase {
   MyDatabase(super.e);
@@ -149,10 +150,6 @@ class MyDatabase extends _$MyDatabase {
   }
 
   // TODO(quy): stream this value
-  Future<double> getAccountBalance() async {
-    final walletEntries = await select(wallets).get();
-    return walletEntries.fold<double>(0, (p, w) => p + w.balance);
-  }
 
   Future<List<TransactionEntity>> getAllTransactionWithWalletId(
     String walletId,

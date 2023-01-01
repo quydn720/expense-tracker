@@ -18,6 +18,12 @@ class TransactionsDao extends DatabaseAccessor<MyDatabase>
   Future<void> createOrUpdateTransaction(
     TransactionsCompanion transactionEntry,
   ) async {
+    // await (update(wallets)
+    //       ..where((b) => b.id.equals(transactionEntry.walletId.value)))
+    //     .write(
+    //   const WalletsCompanion(balance: Value(2)),
+    // );
+
     return transaction(
       () async {
         await into(transactions).insertOnConflictUpdate(transactionEntry);

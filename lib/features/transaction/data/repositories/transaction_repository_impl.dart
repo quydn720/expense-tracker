@@ -5,27 +5,37 @@ import 'package:expense_tracker/features/transaction/data/datasources/transactio
 import 'package:expense_tracker/features/transaction/data/models/transaction_model.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
+import 'package:expense_tracker/features/wallet/data/datasources/wallet_dao.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 @dev
 @Injectable(as: ITransactionRepository)
 class TransactionRepositoryImpl implements ITransactionRepository {
-  TransactionRepositoryImpl(this._dao, this._mapper) {
+  TransactionRepositoryImpl(this._dao, this._mapper, this._walletDao) {
     _init();
   }
 
   final TransactionsDao _dao;
+  final WalletsDao _walletDao;
   final Mapper _mapper;
 
   @override
   Future<void> addNewTransaction(TransactionEntity transaction) async {
     await _dao.createOrUpdateTransaction(_mapper.fromEntity(transaction));
+
+    final w = await _walletDao.getEntryById(transaction.walletId);
+
+    await _walletDao.updateWallet(
+      budgetId: transaction.walletId,
+      target: WalletsCompanion(
+        balance: Value(w.balance - transaction.amount),
+      ),
+    );
   }
 
   @override
   Future<List<TransactionEntity>> getAllTransaction() async {
-    // final result = await _dao.getAllTransactions();
     return [];
   }
 
@@ -43,6 +53,15 @@ class TransactionRepositoryImpl implements ITransactionRepository {
 
   @override
   Future<void> deleteTransaction(String transactionId) async {
+    final t = await _dao.getTransactionById(transactionId);
+    final w = await _walletDao.getEntryById(t.walletId);
+
+    await _walletDao.updateWallet(
+      budgetId: t.walletId,
+      target: WalletsCompanion(
+        balance: Value(w.balance + t.amount),
+      ),
+    );
     await _dao.deleteTransaction(transactionId);
   }
 
@@ -54,7 +73,9 @@ class TransactionRepositoryImpl implements ITransactionRepository {
     );
   }
 
-  Future<void> _init() async {}
+  Future<void> _init() async {
+    print('crate tran repo');
+  }
 
   @override
   Future<List<TransactionEntity>> getAllTransactionWithWalletId(

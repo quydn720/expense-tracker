@@ -13,9 +13,9 @@ class AddTransactionUseCase {
   }
 }
 
-@injectable
 class DeleteTransactionUseCase {
-  DeleteTransactionUseCase(this._repository);
+  DeleteTransactionUseCase({required ITransactionRepository repository})
+      : _repository = repository;
 
   final ITransactionRepository _repository;
 

@@ -25,6 +25,7 @@ extension ExpensesExtension on List<TransactionEntity> {
         startDate =
             now.subtract(Duration(days: diffSinceMonday + 7 * periodIndex));
         endDate = startDate.add(const Duration(days: 6));
+
         break;
       case Period.month:
         startDate = DateTime(now.year, now.month - periodIndex);
@@ -61,14 +62,6 @@ extension ExpensesExtension on List<TransactionEntity> {
 
     return [expense, income];
   }
-
-  // double sum() {
-  //   var sum = 0.0;
-  //   forEach((element) {
-  //     sum += element.amount;
-  //   });
-  //   return sum;
-  // }
 
   Map<String, List<TransactionEntity>> groupWeekly() {
     final grouped = <String, List<TransactionEntity>>{

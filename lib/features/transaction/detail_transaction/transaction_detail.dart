@@ -4,6 +4,8 @@ import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/common/common_bottom_sheet.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
+import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
+import 'package:expense_tracker/features/transaction/edit_transaction/usecases/add_transaction_use_case.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,22 @@ class TransactionDetailProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TransactionDetailScreen(transaction: _transaction);
+    final repo = context.read<ITransactionRepository>();
+    return BlocProvider(
+      create: (context) => TransactionOverviewBloc(
+        deleteTransactionUseCase: DeleteTransactionUseCase(repository: repo),
+        repository: repo,
+      ),
+      child: BlocListener<TransactionOverviewBloc, TransactionState>(
+        listenWhen: (previous, current) =>
+            current.lastDeletedTransaction != previous.lastDeletedTransaction ||
+            current.lastDeletedTransaction != null,
+        listener: (_, state) {
+          context.pop();
+        },
+        child: TransactionDetailScreen(transaction: _transaction),
+      ),
+    );
   }
 }
 
@@ -46,6 +63,7 @@ class TransactionDetailScreen extends StatelessWidget {
 
     final numberFormatter = context.read<AppBloc>().state.numberFormatter;
     final textTheme = Theme.of(context).textTheme;
+    final controller = context.read<TransactionOverviewBloc>();
 
     final s16w600 = textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w600);
     return Scaffold(
@@ -56,14 +74,13 @@ class TransactionDetailScreen extends StatelessWidget {
             key: deleteTransactionButtonKey,
             icon: const FaIcon(FontAwesomeIcons.trash),
             onPressed: () async {
-              final controller = context.read<TransactionBloc>();
               await showModalBottomSheet<String>(
                 context: context,
                 builder: (_) => BlocProvider.value(
                   value: controller,
                   child: YesNoBottomSheet(
                     confirmCallback: () {
-                      context.go('/transactions');
+                      context.pop();
                       controller.add(
                         TransactionOverviewTransactionDeleted(_transaction),
                       );

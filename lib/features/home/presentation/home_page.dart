@@ -4,6 +4,9 @@ import 'package:expense_tracker/features/home/bloc/home_bloc.dart';
 import 'package:expense_tracker/features/home/presentation/widget/recent_transactions.dart';
 import 'package:expense_tracker/features/home/presentation/widget/spend_frequency.dart';
 import 'package:expense_tracker/features/home/presentation/widget/user_circle_avatar.dart';
+import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
+import 'package:expense_tracker/features/user/presentation/bloc/user_bloc.dart';
+import 'package:expense_tracker/features/wallet/data/datasources/wallet_dao.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +22,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<HomeBloc>()..add(const HomeSubscriptionRequested()),
+      create: (_) => HomeBloc(
+        transactionRepository: context.read<ITransactionRepository>(),
+        db: getIt<WalletsDao>(),
+        userService: getIt<UserService>(),
+      )..add(const HomeSubscriptionRequested()),
       child: const HomeView(),
     );
   }
@@ -52,23 +59,6 @@ class HomeView extends StatelessWidget {
               Text(
                 '${l10n.account_balance}: ${formatter.format(state.accountBalance)}',
                 style: textTheme.headline2?.copyWith(color: color.onBackground),
-              ),
-              Row(
-                children: [
-                  Text(
-                    '${l10n.income}: \$1000',
-                    style: textTheme.headline6?.copyWith(
-                      color: color.onSurfaceVariant,
-                    ),
-                  ),
-                  const SizedBox(width: 40),
-                  Text(
-                    '${l10n.expense}: \$600',
-                    style: textTheme.headline6?.copyWith(
-                      color: color.onSurfaceVariant,
-                    ),
-                  ),
-                ],
               ),
               const SpendFrequency(),
               const RecentTransactions(),

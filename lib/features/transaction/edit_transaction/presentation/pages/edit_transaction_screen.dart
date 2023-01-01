@@ -9,6 +9,9 @@ import 'package:expense_tracker/features/category/presentation/pages/select_cate
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/cubit/edit_transaction_cubit.dart';
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/pages/bottomsheet.dart';
+import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
+import 'package:expense_tracker/features/wallet/presentation/cubit/wallet_cubit.dart';
+import 'package:expense_tracker/features/wallet/presentation/pages/wallet_screen.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
@@ -467,8 +470,24 @@ class _WalletDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = context.read<EditTransactionCubit>();
-    final wallet = controller.state.wallet.value?.name ?? '';
+    final wallet =
+        context.watch<EditTransactionCubit>().state.wallet.value?.name ??
+            context.l10n.wallet;
     final theme = Theme.of(context);
+
+    Future<void> _onTap() async {
+      final wallet = await showModalBottomSheet<Wallet?>(
+        context: context,
+        isScrollControlled: true,
+        useRootNavigator: true,
+        builder: (_) => const FractionallySizedBox(
+          heightFactor: 0.9,
+          child: SelectWalletProvider(),
+        ),
+      );
+
+      controller.walletChanged(wallet);
+    }
 
     return InputDecorator(
       decoration: const InputDecoration(
@@ -486,20 +505,44 @@ class _WalletDropdown extends StatelessWidget {
             horizontal: 12,
           ),
           minLeadingWidth: 10,
-          title: Text(
-            'Wallet',
-            // category?.name ?? context.l10n.category,
-            style: theme.textTheme.bodyText1,
-          ),
-          leading: const CircleAvatar(
-            radius: 24,
-            // backgroundColor: category?.backgroundColor ??
-            //     theme.primaryColor.withOpacity(0.2),
-            // child: Icon(icon, color: category?.color ?? Colors.grey),
-          ),
-          onTap: () {},
+          title: Text(wallet, style: theme.textTheme.bodyText1),
+          leading: const CircleAvatar(radius: 24),
+          onTap: _onTap,
         ),
       ),
+    );
+  }
+}
+
+class SelectWalletProvider extends StatelessWidget {
+  const SelectWalletProvider({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => getIt<WalletCubit>(),
+      child: const SelectWalletScreen(),
+    );
+  }
+}
+
+class SelectWalletScreen extends StatelessWidget {
+  const SelectWalletScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final categories = context.watch<WalletCubit>().state.wallets;
+
+    return ListView(
+      children: categories
+          .map(
+            (w) => ListTile(
+              onTap: () => GoRouter.of(context).pop(w),
+              leading: const CircleAvatar(radius: 28),
+              title: Text(w.name),
+            ),
+          )
+          .toList(),
     );
   }
 }

@@ -1,5 +1,8 @@
+import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
+import 'package:expense_tracker/features/budget/domain/repositories/budget_repository.dart';
 import 'package:expense_tracker/features/settings/theme/theme.dart';
+import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
@@ -31,16 +34,26 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: widget.router,
-      debugShowCheckedModeBanner: false,
-      title: widget.appName,
-      locale: context.watch<AppBloc>().state.locale,
-      themeMode: context.watch<AppBloc>().state.themeMode,
-      localizationsDelegates: LocalizationFactory.localizationsDelegates,
-      supportedLocales: LocalizationFactory.supportedLocales,
-      theme: ExpenseTrackerTheme.light,
-      darkTheme: ExpenseTrackerTheme.dark,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (_) => getIt<IBudgetRepository>(),
+        ),
+        RepositoryProvider(
+          create: (_) => getIt<ITransactionRepository>(),
+        ),
+      ],
+      child: MaterialApp.router(
+        routerConfig: widget.router,
+        debugShowCheckedModeBanner: false,
+        title: widget.appName,
+        locale: context.watch<AppBloc>().state.locale,
+        themeMode: context.watch<AppBloc>().state.themeMode,
+        localizationsDelegates: LocalizationFactory.localizationsDelegates,
+        supportedLocales: LocalizationFactory.supportedLocales,
+        theme: ExpenseTrackerTheme.light,
+        darkTheme: ExpenseTrackerTheme.dark,
+      ),
     );
   }
 

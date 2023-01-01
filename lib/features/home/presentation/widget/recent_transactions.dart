@@ -51,8 +51,13 @@ class RecentTransactions extends StatelessWidget {
             return ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemBuilder: (_, index) =>
-                  TransactionTile(transaction: state.transactions[index]),
+              itemBuilder: (_, index) => TransactionTile(
+                transaction: state.transactions[index],
+                onPress: () => context.push(
+                  '/transactions/${state.transactions[index].id}',
+                  extra: state.transactions[index],
+                ),
+              ),
               itemCount: itemCount,
             );
           },
