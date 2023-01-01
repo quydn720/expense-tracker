@@ -17,7 +17,9 @@ void main() {
     registerFallbackValue(MockBudget());
 
     _repository = MockIBudgetRepository();
-    when(() => _repository.addNewBudget(any())).thenAnswer((_) async {});
+    when(() => _repository.addNewBudget(any())).thenAnswer((_) async {
+      return right(unit);
+    });
     createBudget = CreateBudget(_repository);
   });
 

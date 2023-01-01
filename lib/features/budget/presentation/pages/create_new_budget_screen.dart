@@ -1,8 +1,10 @@
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/budget/domain/entities/budget.dart';
 import 'package:expense_tracker/features/budget/domain/repositories/budget_repository.dart';
 import 'package:expense_tracker/features/budget/domain/usecases/create_budget.dart';
+import 'package:expense_tracker/features/budget/domain/usecases/update_budget.dart';
 import 'package:expense_tracker/features/budget/presentation/cubit/edit_budget_cubit.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/category/presentation/pages/select_category_view.dart';
@@ -10,9 +12,12 @@ import 'package:expense_tracker/features/settings/theme/theme.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateNewBudgetScreenProvider extends StatelessWidget {
-  const CreateNewBudgetScreenProvider({super.key});
+  const CreateNewBudgetScreenProvider({super.key, this.budget});
+
+  final Budget? budget;
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +25,20 @@ class CreateNewBudgetScreenProvider extends StatelessWidget {
 
     return BlocProvider(
       create: (_) => EditBudgetCubit(
+        update: UpdateBudget(budgetRepository),
         create: CreateBudget(budgetRepository),
         getCategoryById: GetCategoryById(getIt()),
+        initialBudget: budget,
       ),
-      child: const CreateNewBudgetScreen(),
+      child: BlocListener<EditBudgetCubit, EditBudgetState>(
+        listenWhen: (previous, current) =>
+            previous.status != current.status &&
+            current.status == EditBudgetStatus.success,
+        listener: (context, _) {
+          context.pop();
+        },
+        child: const CreateNewBudgetScreen(),
+      ),
     );
   }
 }
@@ -36,6 +51,8 @@ class CreateNewBudgetScreen extends StatelessWidget {
     final l10n = context.l10n;
     final primaryColor = Theme.of(context).primaryColor;
     final controller = context.read<EditBudgetCubit>();
+
+    final category = controller.state.category;
 
     return Scaffold(
       backgroundColor: primaryColor,
@@ -72,8 +89,12 @@ class CreateNewBudgetScreen extends StatelessWidget {
                     child: ListTile(
                       contentPadding: EdgeInsets.zero,
                       minLeadingWidth: 10,
-                      title: const Text('Category'),
-                      leading: const CircleAvatar(radius: 24),
+                      title: Text(controller.state.category?.name ?? ''),
+                      leading: CircleAvatar(
+                        radius: 24,
+                        backgroundColor: category?.backgroundColor,
+                        child: Icon(category?.icon, color: category?.color),
+                      ),
                       onTap: () async {
                         final category =
                             await showModalBottomSheet<CategoryEntity?>(
@@ -176,7 +197,7 @@ class _BudgetAmountField extends StatelessWidget {
             ),
           ),
           TextFormField(
-            initialValue: '0',
+            initialValue: numberFormat.format(controller.state.amountDouble),
             decoration: InputDecoration(
               border: InputBorder.none,
               errorStyle: textTheme.bodyText2?.copyWith(

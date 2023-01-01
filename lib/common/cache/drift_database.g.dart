@@ -917,22 +917,22 @@ class $TransactionsTable extends Transactions
   }
 }
 
-class Budget extends DataClass implements Insertable<Budget> {
+class BudgetEntry extends DataClass implements Insertable<BudgetEntry> {
   final String id;
   final double amount;
-  final double color;
+  final double whenToNotify;
   final String categoryName;
-  const Budget(
+  const BudgetEntry(
       {required this.id,
       required this.amount,
-      required this.color,
+      required this.whenToNotify,
       required this.categoryName});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
     map['amount'] = Variable<double>(amount);
-    map['color'] = Variable<double>(color);
+    map['when_to_notify'] = Variable<double>(whenToNotify);
     map['category_name'] = Variable<String>(categoryName);
     return map;
   }
@@ -941,18 +941,18 @@ class Budget extends DataClass implements Insertable<Budget> {
     return BudgetsCompanion(
       id: Value(id),
       amount: Value(amount),
-      color: Value(color),
+      whenToNotify: Value(whenToNotify),
       categoryName: Value(categoryName),
     );
   }
 
-  factory Budget.fromJson(Map<String, dynamic> json,
+  factory BudgetEntry.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Budget(
+    return BudgetEntry(
       id: serializer.fromJson<String>(json['id']),
       amount: serializer.fromJson<double>(json['amount']),
-      color: serializer.fromJson<double>(json['color']),
+      whenToNotify: serializer.fromJson<double>(json['whenToNotify']),
       categoryName: serializer.fromJson<String>(json['categoryName']),
     );
   }
@@ -962,72 +962,75 @@ class Budget extends DataClass implements Insertable<Budget> {
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
       'amount': serializer.toJson<double>(amount),
-      'color': serializer.toJson<double>(color),
+      'whenToNotify': serializer.toJson<double>(whenToNotify),
       'categoryName': serializer.toJson<String>(categoryName),
     };
   }
 
-  Budget copyWith(
-          {String? id, double? amount, double? color, String? categoryName}) =>
-      Budget(
+  BudgetEntry copyWith(
+          {String? id,
+          double? amount,
+          double? whenToNotify,
+          String? categoryName}) =>
+      BudgetEntry(
         id: id ?? this.id,
         amount: amount ?? this.amount,
-        color: color ?? this.color,
+        whenToNotify: whenToNotify ?? this.whenToNotify,
         categoryName: categoryName ?? this.categoryName,
       );
   @override
   String toString() {
-    return (StringBuffer('Budget(')
+    return (StringBuffer('BudgetEntry(')
           ..write('id: $id, ')
           ..write('amount: $amount, ')
-          ..write('color: $color, ')
+          ..write('whenToNotify: $whenToNotify, ')
           ..write('categoryName: $categoryName')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, amount, color, categoryName);
+  int get hashCode => Object.hash(id, amount, whenToNotify, categoryName);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Budget &&
+      (other is BudgetEntry &&
           other.id == this.id &&
           other.amount == this.amount &&
-          other.color == this.color &&
+          other.whenToNotify == this.whenToNotify &&
           other.categoryName == this.categoryName);
 }
 
-class BudgetsCompanion extends UpdateCompanion<Budget> {
+class BudgetsCompanion extends UpdateCompanion<BudgetEntry> {
   final Value<String> id;
   final Value<double> amount;
-  final Value<double> color;
+  final Value<double> whenToNotify;
   final Value<String> categoryName;
   const BudgetsCompanion({
     this.id = const Value.absent(),
     this.amount = const Value.absent(),
-    this.color = const Value.absent(),
+    this.whenToNotify = const Value.absent(),
     this.categoryName = const Value.absent(),
   });
   BudgetsCompanion.insert({
     required String id,
     required double amount,
-    required double color,
+    required double whenToNotify,
     required String categoryName,
   })  : id = Value(id),
         amount = Value(amount),
-        color = Value(color),
+        whenToNotify = Value(whenToNotify),
         categoryName = Value(categoryName);
-  static Insertable<Budget> custom({
+  static Insertable<BudgetEntry> custom({
     Expression<String>? id,
     Expression<double>? amount,
-    Expression<double>? color,
+    Expression<double>? whenToNotify,
     Expression<String>? categoryName,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (amount != null) 'amount': amount,
-      if (color != null) 'color': color,
+      if (whenToNotify != null) 'when_to_notify': whenToNotify,
       if (categoryName != null) 'category_name': categoryName,
     });
   }
@@ -1035,12 +1038,12 @@ class BudgetsCompanion extends UpdateCompanion<Budget> {
   BudgetsCompanion copyWith(
       {Value<String>? id,
       Value<double>? amount,
-      Value<double>? color,
+      Value<double>? whenToNotify,
       Value<String>? categoryName}) {
     return BudgetsCompanion(
       id: id ?? this.id,
       amount: amount ?? this.amount,
-      color: color ?? this.color,
+      whenToNotify: whenToNotify ?? this.whenToNotify,
       categoryName: categoryName ?? this.categoryName,
     );
   }
@@ -1054,8 +1057,8 @@ class BudgetsCompanion extends UpdateCompanion<Budget> {
     if (amount.present) {
       map['amount'] = Variable<double>(amount.value);
     }
-    if (color.present) {
-      map['color'] = Variable<double>(color.value);
+    if (whenToNotify.present) {
+      map['when_to_notify'] = Variable<double>(whenToNotify.value);
     }
     if (categoryName.present) {
       map['category_name'] = Variable<String>(categoryName.value);
@@ -1068,14 +1071,14 @@ class BudgetsCompanion extends UpdateCompanion<Budget> {
     return (StringBuffer('BudgetsCompanion(')
           ..write('id: $id, ')
           ..write('amount: $amount, ')
-          ..write('color: $color, ')
+          ..write('whenToNotify: $whenToNotify, ')
           ..write('categoryName: $categoryName')
           ..write(')'))
         .toString();
   }
 }
 
-class $BudgetsTable extends Budgets with TableInfo<$BudgetsTable, Budget> {
+class $BudgetsTable extends Budgets with TableInfo<$BudgetsTable, BudgetEntry> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -1090,10 +1093,11 @@ class $BudgetsTable extends Budgets with TableInfo<$BudgetsTable, Budget> {
   late final GeneratedColumn<double> amount = GeneratedColumn<double>(
       'amount', aliasedName, false,
       type: DriftSqlType.double, requiredDuringInsert: true);
-  final VerificationMeta _colorMeta = const VerificationMeta('color');
+  final VerificationMeta _whenToNotifyMeta =
+      const VerificationMeta('whenToNotify');
   @override
-  late final GeneratedColumn<double> color = GeneratedColumn<double>(
-      'color', aliasedName, false,
+  late final GeneratedColumn<double> whenToNotify = GeneratedColumn<double>(
+      'when_to_notify', aliasedName, false,
       type: DriftSqlType.double, requiredDuringInsert: true);
   final VerificationMeta _categoryNameMeta =
       const VerificationMeta('categoryName');
@@ -1102,13 +1106,14 @@ class $BudgetsTable extends Budgets with TableInfo<$BudgetsTable, Budget> {
       'category_name', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
   @override
-  List<GeneratedColumn> get $columns => [id, amount, color, categoryName];
+  List<GeneratedColumn> get $columns =>
+      [id, amount, whenToNotify, categoryName];
   @override
   String get aliasedName => _alias ?? 'budgets';
   @override
   String get actualTableName => 'budgets';
   @override
-  VerificationContext validateIntegrity(Insertable<Budget> instance,
+  VerificationContext validateIntegrity(Insertable<BudgetEntry> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -1123,11 +1128,13 @@ class $BudgetsTable extends Budgets with TableInfo<$BudgetsTable, Budget> {
     } else if (isInserting) {
       context.missing(_amountMeta);
     }
-    if (data.containsKey('color')) {
+    if (data.containsKey('when_to_notify')) {
       context.handle(
-          _colorMeta, color.isAcceptableOrUnknown(data['color']!, _colorMeta));
+          _whenToNotifyMeta,
+          whenToNotify.isAcceptableOrUnknown(
+              data['when_to_notify']!, _whenToNotifyMeta));
     } else if (isInserting) {
-      context.missing(_colorMeta);
+      context.missing(_whenToNotifyMeta);
     }
     if (data.containsKey('category_name')) {
       context.handle(
@@ -1143,15 +1150,15 @@ class $BudgetsTable extends Budgets with TableInfo<$BudgetsTable, Budget> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Budget map(Map<String, dynamic> data, {String? tablePrefix}) {
+  BudgetEntry map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Budget(
+    return BudgetEntry(
       id: attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       amount: attachedDatabase.options.types
           .read(DriftSqlType.double, data['${effectivePrefix}amount'])!,
-      color: attachedDatabase.options.types
-          .read(DriftSqlType.double, data['${effectivePrefix}color'])!,
+      whenToNotify: attachedDatabase.options.types
+          .read(DriftSqlType.double, data['${effectivePrefix}when_to_notify'])!,
       categoryName: attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}category_name'])!,
     );
@@ -1172,6 +1179,7 @@ abstract class _$MyDatabase extends GeneratedDatabase {
   late final CategoriesDao categoriesDao = CategoriesDao(this as MyDatabase);
   late final TransactionsDao transactionsDao =
       TransactionsDao(this as MyDatabase);
+  late final BudgetsDao budgetsDao = BudgetsDao(this as MyDatabase);
   @override
   Iterable<TableInfo<Table, dynamic>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();

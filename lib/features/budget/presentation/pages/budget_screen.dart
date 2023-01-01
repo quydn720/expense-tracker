@@ -66,13 +66,21 @@ class BudgetScreen extends StatelessWidget {
                         return ListView.builder(
                           shrinkWrap: true,
                           itemCount: state.budgets.length,
-                          itemBuilder: (_, index) => BudgetTile(
+                          itemBuilder: (context, index) => BudgetTile(
                             budget: state.budgets[index],
-                            
+                            onTap: () {
+                              context.push(
+                                '/create-budget',
+                                extra: {
+                                  'repo': context.read<IBudgetRepository>(),
+                                  'initBudget': state.budgets[index],
+                                },
+                              );
+                            },
                           ),
                         );
                       },
-                      error: (_) => const Center(child: Text('Error')),
+                      error: (e) => Center(child: Text('Error $e')),
                     );
                   },
                 ),
@@ -82,7 +90,7 @@ class BudgetScreen extends StatelessWidget {
                 key: createNewBudgetButtonKey,
                 onPressed: () => context.push(
                   '/create-budget',
-                  extra: context.read<IBudgetRepository>(),
+                  extra: {'repo': context.read<IBudgetRepository>()},
                 ),
                 child: Text(context.l10n.create_budget),
               ),

@@ -10,12 +10,14 @@ class CategoryEntity with _$CategoryEntity {
     required String name,
     required IconData icon,
     required Color color,
-    required CategoryType categoryType,
+    @Default(CategoryType.expense) CategoryType categoryType,
   }) = _CategoryEntity;
 
   const CategoryEntity._();
 
   Color get backgroundColor => color.withOpacity(0.2);
+
+  bool get isEmpty => name.isEmpty;
 
   Iterable<TransactionEntity> filteredTransactions(
     Iterable<TransactionEntity> transactions,

@@ -8,10 +8,10 @@ void main() {
 
   group('Budget Entity', () {
     setUp(() {
-      budget = const Budget(
+      budget = Budget(
         id: 'id',
         amount: 100,
-        category: CategoryEntity(
+        category: const CategoryEntity(
           name: 'category',
           icon: Icons.abc,
           color: Colors.black,
@@ -25,10 +25,10 @@ void main() {
     });
 
     test('receive notification value', () async {
-      budget = const Budget(
+      budget = Budget(
         id: 'id',
         amount: 100,
-        category: CategoryEntity(
+        category: const CategoryEntity(
           name: 'category',
           icon: Icons.abc,
           color: Colors.black,
@@ -39,11 +39,11 @@ void main() {
       expect(budget.receiveNotification, true);
     });
     test('isExceed value', () async {
-      budget = const Budget(
+      budget = Budget(
         id: 'id',
         amount: 100,
         spentAmount: 150,
-        category: CategoryEntity(
+        category: const CategoryEntity(
           name: 'category',
           icon: Icons.abc,
           color: Colors.black,

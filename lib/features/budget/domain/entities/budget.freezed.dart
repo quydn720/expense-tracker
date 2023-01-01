@@ -154,17 +154,19 @@ class __$$_BudgetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Budget extends _Budget {
-  const _$_Budget(
-      {required this.id,
-      required this.amount,
+  _$_Budget(
+      {this.id = '',
+      this.amount = 0,
       this.spentAmount = 0,
       this.whenToNotify = 0,
-      required this.category})
+      this.category = _emptyCategory})
       : super._();
 
   @override
+  @JsonKey()
   final String id;
   @override
+  @JsonKey()
   final double amount;
   @override
   @JsonKey()
@@ -173,6 +175,7 @@ class _$_Budget extends _Budget {
   @JsonKey()
   final double whenToNotify;
   @override
+  @JsonKey()
   final CategoryEntity category;
 
   @override
@@ -207,13 +210,13 @@ class _$_Budget extends _Budget {
 }
 
 abstract class _Budget extends Budget {
-  const factory _Budget(
-      {required final String id,
-      required final double amount,
+  factory _Budget(
+      {final String id,
+      final double amount,
       final double spentAmount,
       final double whenToNotify,
-      required final CategoryEntity category}) = _$_Budget;
-  const _Budget._() : super._();
+      final CategoryEntity category}) = _$_Budget;
+  _Budget._() : super._();
 
   @override
   String get id;

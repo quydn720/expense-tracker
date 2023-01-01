@@ -13,18 +13,18 @@ abstract class A {
   List<Budget> get budgets => [];
 }
 
-@Singleton(as: IBudgetDataSource)
+// @Singleton(as: IBudgetDataSource)
 class InMemoryBudgetDataSource implements IBudgetDataSource {
   InMemoryBudgetDataSource({this.budgets = const []});
 
   final List<Budget> budgets;
 
-  final _budgetStreamController = BehaviorSubject<List<Budget>>.seeded(const [
+  final _budgetStreamController = BehaviorSubject<List<Budget>>.seeded([
     Budget(
       id: 'id',
       amount: 1,
       spentAmount: 2,
-      category: CategoryEntity(
+      category: const CategoryEntity(
         name: 'name',
         icon: Icons.abc,
         color: Colors.black,

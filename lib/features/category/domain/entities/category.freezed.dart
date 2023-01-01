@@ -131,7 +131,7 @@ class _$_CategoryEntity extends _CategoryEntity {
       {required this.name,
       required this.icon,
       required this.color,
-      required this.categoryType})
+      this.categoryType = CategoryType.expense})
       : super._();
 
   @override
@@ -141,6 +141,7 @@ class _$_CategoryEntity extends _CategoryEntity {
   @override
   final Color color;
   @override
+  @JsonKey()
   final CategoryType categoryType;
 
   @override
@@ -175,7 +176,7 @@ abstract class _CategoryEntity extends CategoryEntity {
       {required final String name,
       required final IconData icon,
       required final Color color,
-      required final CategoryType categoryType}) = _$_CategoryEntity;
+      final CategoryType categoryType}) = _$_CategoryEntity;
   const _CategoryEntity._() : super._();
 
   @override

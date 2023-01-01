@@ -17,7 +17,9 @@ void main() {
     registerFallbackValue(MockBudget());
 
     _repository = MockIBudgetRepository();
-    when(() => _repository.deleteBudget(any())).thenAnswer((_) async {});
+    when(() => _repository.deleteBudget(any())).thenAnswer((_) async {
+      return right(unit);
+    });
     deleteBudget = DeleteBudget(_repository);
   });
 

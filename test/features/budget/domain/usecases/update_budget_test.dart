@@ -17,7 +17,10 @@ void main() {
     registerFallbackValue(MockBudget());
 
     _repository = MockIBudgetRepository();
-    when(() => _repository.updateBudget(any(), any())).thenAnswer((_) async {});
+    when(() => _repository.updateBudget(budgetId: any(), budget: any()))
+        .thenAnswer((_) async {
+      return right(unit);
+    });
     updateBudget = UpdateBudget(_repository);
   });
 
@@ -28,9 +31,8 @@ void main() {
     expect(result, isA<Right<Exception, Unit>>());
   });
   test('update budget failed', () async {
-    when(() => _repository.updateBudget(any(), any())).thenThrow(
-      Exception(),
-    );
+    when(() => _repository.updateBudget(budgetId: any(), budget: any()))
+        .thenThrow(Exception());
     final mockBudget = MockBudget();
 
     final result = await updateBudget('mockId', mockBudget);

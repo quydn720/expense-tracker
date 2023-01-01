@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:expense_tracker/features/budget/data/datasources/budget_dao.dart';
 import 'package:expense_tracker/features/budget/data/models/budget_model.dart';
 import 'package:expense_tracker/features/category/data/datasources/categories_dao.dart';
 import 'package:expense_tracker/features/category/data/models/category_model.dart';
@@ -20,7 +21,7 @@ part 'drift_database.g.dart';
 
 @DriftDatabase(
   tables: [Categories, Transactions, Budgets, Wallets],
-  daos: [CategoriesDao, TransactionsDao],
+  daos: [CategoriesDao, TransactionsDao, BudgetsDao],
 )
 class MyDatabase extends _$MyDatabase {
   MyDatabase(super.e);

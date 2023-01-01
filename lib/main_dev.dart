@@ -24,37 +24,57 @@ Future<void> main() async {
   );
 
   await configureInjection(Environment.dev);
-  FlutterError.onError = (details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
-  };
+  // FlutterError.onError = (details) {
+  //   log(details.exceptionAsString(), stackTrace: details.stack);
+  // };
   // Bloc.observer = AppBlocObserver();
   tz.initializeTimeZones();
 
-  await runZonedGuarded(
-    () async {
-      await getIt<LocalNotificationsDataSource>().initializeNotification();
-
-      runApp(
-        MultiProvider(
-          providers: [
-            BlocProvider(create: (_) => getIt<AppBloc>(), lazy: false),
-            BlocProvider(
-              create: (_) => getIt<AuthenticationBloc>(),
-              lazy: false,
-            ),
-            Provider(
-              lazy: false,
-              create: (_) => getIt<MyDatabase>(),
-              dispose: (_, db) => db.close(),
-            ),
-          ],
-          child: App(
-            router: getIt<GoRouter>(),
-            appName: getIt<AppConfigurations>().appName,
-          ),
+  runApp(
+    MultiProvider(
+      providers: [
+        BlocProvider(create: (_) => getIt<AppBloc>(), lazy: false),
+        BlocProvider(
+          create: (_) => getIt<AuthenticationBloc>(),
+          lazy: false,
         ),
-      );
-    },
-    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
+        Provider(
+          lazy: false,
+          create: (_) => getIt<MyDatabase>(),
+          dispose: (_, db) => db.close(),
+        ),
+      ],
+      child: App(
+        router: getIt<GoRouter>(),
+        appName: getIt<AppConfigurations>().appName,
+      ),
+    ),
   );
+  // await runZonedGuarded(
+  //   () async {
+  //     await getIt<LocalNotificationsDataSource>().initializeNotification();
+
+  //     runApp(
+  //       MultiProvider(
+  //         providers: [
+  //           BlocProvider(create: (_) => getIt<AppBloc>(), lazy: false),
+  //           BlocProvider(
+  //             create: (_) => getIt<AuthenticationBloc>(),
+  //             lazy: false,
+  //           ),
+  //           Provider(
+  //             lazy: false,
+  //             create: (_) => getIt<MyDatabase>(),
+  //             dispose: (_, db) => db.close(),
+  //           ),
+  //         ],
+  //         child: App(
+  //           router: getIt<GoRouter>(),
+  //           appName: getIt<AppConfigurations>().appName,
+  //         ),
+  //       ),
+  //     );
+  //   },
+  //   (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
+  // );
 }

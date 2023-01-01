@@ -11,7 +11,7 @@ class UpdateBudget {
 
   Future<Either<Exception, Unit>> call(String budgetId, Budget budget) async {
     try {
-      await _repository.updateBudget(budgetId, budget);
+      await _repository.updateBudget(budgetId: budgetId, budget: budget);
       return right(unit);
     } on Exception catch (e) {
       return left(e);
