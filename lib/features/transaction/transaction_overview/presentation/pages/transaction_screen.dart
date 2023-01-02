@@ -76,7 +76,7 @@ class TransactionView extends StatelessWidget {
                 ),
               ),
               action: SnackBarAction(
-                label: 'undo',
+                label: l10n.undo,
                 onPressed: () {
                   messenger.hideCurrentSnackBar();
                   context
@@ -92,7 +92,8 @@ class TransactionView extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         final filteredTransactions = state.filteredTransactions;
-        var displayedTransactions = _computeTransactions(filteredTransactions);
+        final displayedTransactions =
+            _computeTransactions(filteredTransactions);
 
         return Scaffold(
           appBar: AppBar(
@@ -117,9 +118,7 @@ class TransactionView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             children: [
               ElevatedButton(
-                onPressed: () {
-                  context.go('/reports');
-                },
+                onPressed: () => context.push('/reports'),
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
                   backgroundColor: const Color(0xffEEE5FF),
@@ -152,6 +151,7 @@ class TransactionView extends StatelessWidget {
                       ListView.builder(
                         itemCount: dayTransactions.length,
                         shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           return TransactionTile(
                             transaction: dayTransactions.elementAt(index),
@@ -299,7 +299,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ],
           ),
           const SizedBox(height: 16),
-          Text('Category', style: title),
+          Text(l10n.category, style: title),
           ListTile(
             title: Text(
               'Choose Category',

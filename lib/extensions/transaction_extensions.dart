@@ -9,7 +9,7 @@ enum Period {
   year,
 }
 
-extension ExpensesExtension on List<TransactionEntity> {
+extension ExpensesExtension on Iterable<TransactionEntity> {
   List<dynamic> filterByPeriod(Period period, int periodIndex) {
     final transactions = <TransactionEntity>[];
     DateTime startDate;
@@ -76,6 +76,18 @@ extension ExpensesExtension on List<TransactionEntity> {
 
     forEach((element) {
       grouped[element.dayInWeek]!.add(element);
+    });
+
+    return grouped;
+  }
+
+  Map<int, List<TransactionEntity>> groupMonthly(DateTime startDate) {
+    final numOfDays = DateTime(startDate.year, startDate.month + 1, 0).day;
+    final grouped =
+        List.generate(numOfDays, (index) => <TransactionEntity>[]).asMap();
+
+    forEach((element) {
+      grouped[element.dayInMonth - 1]!.add(element);
     });
 
     return grouped;

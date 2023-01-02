@@ -32,7 +32,7 @@ class CategoryCubit extends Cubit<CategoryState> {
         name: 'name',
         color: Colors.transparent,
         icon: Icons.abc,
-              categoryType: CategoryType.income,
+        categoryType: CategoryType.income,
       ),
     );
     result.fold(

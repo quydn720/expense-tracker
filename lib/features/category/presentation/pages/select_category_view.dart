@@ -2,7 +2,7 @@ import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/category/presentation/cubit/category_cubit.dart';
-import 'package:expense_tracker/features/category/presentation/widgets/category_bottom_sheet.dart';
+import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,19 +11,22 @@ import 'package:go_router/go_router.dart';
 const searchIconButtonKey = Key('selectCategoryScreen_search_iconButton');
 
 class SelectCategoryProvider extends StatelessWidget {
-  const SelectCategoryProvider({super.key});
+  const SelectCategoryProvider({super.key, this.title});
+
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<CategoryCubit>(),
-      child: const SelectCategoryView(),
+      child: SelectCategoryView(title: title),
     );
   }
 }
 
 class SelectCategoryView extends StatelessWidget {
-  const SelectCategoryView({super.key});
+  const SelectCategoryView({super.key, this.title});
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +59,15 @@ class SelectCategoryView extends StatelessWidget {
           label: const Text('Add category'),
           icon: const Icon(FontAwesomeIcons.plus),
         ),
-        appBar: const DefaultAppBar(title: 'Select Category'),
+        appBar: DefaultAppBar(title: title ?? 'Select Category'),
         body: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const TabBar(
-              labelColor: Colors.black,
+            TabBar(
+              labelColor: Theme.of(context).colorScheme.onBackground,
               tabs: [
-                Tab(text: 'Expense'),
-                Tab(text: 'Income'),
+                Tab(text: context.l10n.expense),
+                Tab(text: context.l10n.income),
               ],
             ),
             const SizedBox(height: 16),
@@ -97,20 +100,27 @@ class _CategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: categories
-          .map(
-            (c) => ListTile(
-              onTap: () => GoRouter.of(context).pop(c),
-              leading: CircleAvatar(
-                radius: 28,
-                backgroundColor: c.backgroundColor,
-                child: FaIcon(c.icon, color: c.color),
-              ),
-              title: Text(c.name),
-            ),
-          )
-          .toList(),
+    return ListView.separated(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      itemBuilder: (context, index) => ListTile(
+        contentPadding: const EdgeInsets.only(bottom: 8),
+        minVerticalPadding: 7,
+        onTap: () => GoRouter.of(context).pop(categories.elementAt(index)),
+        leading: CircleAvatar(
+          radius: 28,
+          backgroundColor: categories.elementAt(index).backgroundColor,
+          child: Icon(
+            categories.elementAt(index).icon,
+            color: categories.elementAt(index).color.withOpacity(1),
+          ),
+        ),
+        title: Text(
+          categories.elementAt(index).name,
+          style: Theme.of(context).textTheme.headline6,
+        ),
+      ),
+      itemCount: categories.length,
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
   }
 }

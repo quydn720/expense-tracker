@@ -26,4 +26,6 @@ class TransactionEntity with _$TransactionEntity {
   String get dayInWeek {
     return DateFormat('EEEE').format(dateCreated);
   }
+
+  int get dayInMonth => dateCreated.day;
 }

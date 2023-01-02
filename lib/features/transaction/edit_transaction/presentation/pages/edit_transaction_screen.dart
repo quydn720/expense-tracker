@@ -11,7 +11,6 @@ import 'package:expense_tracker/features/transaction/edit_transaction/presentati
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/pages/bottomsheet.dart';
 import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
 import 'package:expense_tracker/features/wallet/presentation/cubit/wallet_cubit.dart';
-import 'package:expense_tracker/features/wallet/presentation/pages/wallet_screen.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';

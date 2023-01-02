@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
@@ -36,9 +37,12 @@ class MyDatabase extends _$MyDatabase {
       onCreate: (Migrator m) async {
         await m.createAll();
         await createInitialRecords();
+        print('success');
       },
     );
   }
+
+  int get _randomColorValue => (math.Random().nextDouble() * 0xFFFFFF).toInt();
 
   Future<void> createInitialRecords() {
     return batch(
@@ -47,57 +51,99 @@ class MyDatabase extends _$MyDatabase {
           ..insertAll(wallets, [
             WalletsCompanion.insert(
               id: 'wallet 1',
-              name: 'Bank 1',
-              walletType: 'Bank',
-              balance: 100,
-            ),
-            WalletsCompanion.insert(
-              id: 'wallet 2',
-              name: 'Bank 2',
-              walletType: 'Bank',
-              balance: 200,
-            ),
-            WalletsCompanion.insert(
-              id: 'wallet 3',
-              name: 'Wallet 1',
+              name: 'Your Wallet',
               walletType: 'Wallet',
-              balance: 150,
+              balance: 0,
             ),
           ])
           ..insertAll(categories, [
             CategoriesCompanion.insert(
               name: 'Grocery',
-              color: const Color(0xffFCAC12).value,
+              color: _randomColorValue,
               icon: FontAwesomeIcons.calculator,
               type: CategoryType.expense,
             ),
             CategoriesCompanion.insert(
               name: 'Subcription',
-              color: const Color(0xff7F3DFF).value,
+              color: _randomColorValue,
               icon: Icons.abc,
               type: CategoryType.expense,
             ),
             CategoriesCompanion.insert(
               name: 'Food',
-              color: const Color(0xffFD3C4A).value,
+              color: _randomColorValue,
               icon: Icons.note,
               type: CategoryType.expense,
             ),
             CategoriesCompanion.insert(
+              name: 'Others', 
+              color: _randomColorValue,
+              icon: FontAwesomeIcons.moneyBill,
+              type: CategoryType.expense,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Education',
+              color: _randomColorValue,
+              icon: FontAwesomeIcons.book,
+              type: CategoryType.expense,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Invest',
+              color: _randomColorValue,
+              icon: FontAwesomeIcons.chartLine,
+              type: CategoryType.expense,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Shopping',
+              color: _randomColorValue,
+              icon: FontAwesomeIcons.cartShopping,
+              type: CategoryType.expense,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Family',
+              color: _randomColorValue,
+              icon: FontAwesomeIcons.house,
+              type: CategoryType.expense,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Charity',
+              color: _randomColorValue,
+              icon: FontAwesomeIcons.handHoldingHeart,
+              type: CategoryType.expense,
+            ),
+            CategoriesCompanion.insert(
               name: 'Salary',
-              color: const Color(0xffFCAC12).value,
-              icon: FontAwesomeIcons.calculator,
+              color: _randomColorValue,
+              icon: FontAwesomeIcons.building,
               type: CategoryType.income,
             ),
             CategoriesCompanion.insert(
               name: 'Sell',
-              color: const Color(0xff7F3DFF).value,
-              icon: Icons.abc,
+              color: _randomColorValue,
+              icon: FontAwesomeIcons.boxArchive,
               type: CategoryType.income,
             ),
             CategoriesCompanion.insert(
               name: 'Gifted',
-              color: const Color(0xffFD3C4A).value,
+              color: _randomColorValue,
+              icon: FontAwesomeIcons.gift,
+              type: CategoryType.income,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Bonus',
+              color: _randomColorValue,
+              icon: FontAwesomeIcons.moneyCheckDollar,
+              type: CategoryType.income,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Withdrawal',
+              color: _randomColorValue,
+              icon: FontAwesomeIcons.moneyBillTransfer,
+              type: CategoryType.income,
+            ),
+            CategoriesCompanion.insert(
+              name: 'Other',
+              color: _randomColorValue,
               icon: Icons.note,
               type: CategoryType.income,
             ),

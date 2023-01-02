@@ -24,7 +24,6 @@ class BudgetScreenProvider extends StatelessWidget {
 
           return BlocProvider(
             create: (_) => BudgetCubit(
-              WatchAllBudget(budgetRepo),
               GetAllBudgets(budgetRepo),
               getIt(),
               budgetRepo,

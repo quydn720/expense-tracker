@@ -7,7 +7,6 @@ import 'package:expense_tracker/features/user/presentation/bloc/user_bloc.dart';
 import 'package:expense_tracker/features/wallet/data/datasources/wallet_dao.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:rxdart/transformers.dart';
 
 part 'home_state.dart';
 part 'home_event.dart';
@@ -57,11 +56,5 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       },
       onError: (_, __) => state.copyWith(status: HomeStatus.failure),
     );
-  }
-
-  @override
-  Future<void> close() {
-    print('close');
-    return super.close();
   }
 }

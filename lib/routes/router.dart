@@ -14,6 +14,7 @@ import 'package:expense_tracker/features/common/pages/onboarding/onboarding_page
 import 'package:expense_tracker/features/common/pages/profile/export/export_page.dart';
 import 'package:expense_tracker/features/home/presentation/home_page.dart';
 import 'package:expense_tracker/features/notification/presentation/pages/notification_page.dart';
+import 'package:expense_tracker/features/reports/presentation/pages/report_page.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/currency_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/language_screen.dart';
 import 'package:expense_tracker/features/settings/presentation/pages/notification_screen.dart';
@@ -182,7 +183,13 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
       ),
       GoRoute(
         path: '/category',
-        builder: (_, state) => const SelectCategoryProvider(),
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (_, state) {
+          final extra = state.extra as Map<String, String>?;
+          return SelectCategoryProvider(
+            title: extra?['title'],
+          );
+        },
       ),
       GoRoute(
         path: '/success',
@@ -243,24 +250,6 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
       return null;
     },
   );
-}
-
-class TransactionReports extends StatelessWidget {
-  const TransactionReports({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView.builder(
-        itemCount: 4,
-        itemBuilder: (context, index) {
-          if (index == 3) return const Center(child: Text('go to full detail'));
-          if (index == 2) return const Center(child: Text('quote'));
-          return Center(child: Text(index.toString()));
-        },
-      ),
-    );
-  }
 }
 
 class GoRouterRefreshStream extends ChangeNotifier {

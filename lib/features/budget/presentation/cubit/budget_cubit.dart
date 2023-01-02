@@ -12,13 +12,11 @@ part 'budget_state.dart';
 
 class BudgetCubit extends Cubit<BudgetState> {
   BudgetCubit(
-    this._allBudgets,
     this._getAllBudgets,
     this.notificationsDataSource,
     this._repository,
   ) : super(const BudgetState.loading());
 
-  final WatchAllBudget _allBudgets;
   final IBudgetRepository _repository;
   final GetAllBudgets _getAllBudgets;
   final LocalNotificationsDataSource notificationsDataSource;

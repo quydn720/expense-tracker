@@ -69,7 +69,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.0.3+1
   injectable_generator: ^2.0.0
-  json_serializable: ^6.0.0
+  json_serializable: ^6.0.0 
   mocktail: ^0.3.0
   very_good_analysis: ^3.0.1
 

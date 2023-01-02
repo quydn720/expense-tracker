@@ -43,8 +43,17 @@ class ProfileScreen extends StatelessWidget {
                   _ProfileTile(
                     key: moveToAccountScreenButtonKey,
                     iconData: FontAwesomeIcons.wallet,
-                    onTap: () => context.push('/profile/account'),
+                    onTap: () => context.push(
+                      '/profile/account',
+                      extra: {'title': 'Category'},
+                    ),
                     title: l10n.account,
+                  ),
+                  const Divider(),
+                  _ProfileTile(
+                    iconData: FontAwesomeIcons.layerGroup,
+                    onTap: () => context.push('/category'),
+                    title: l10n.category,
                   ),
                   const Divider(),
                   _ProfileTile(

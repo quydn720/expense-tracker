@@ -60,7 +60,12 @@ class HomeView extends StatelessWidget {
                 '${l10n.account_balance}: ${formatter.format(state.accountBalance)}',
                 style: textTheme.headline2?.copyWith(color: color.onBackground),
               ),
-              const SpendFrequency(),
+              const SizedBox(height: 16),
+              SizedBox(
+                height: 32,
+                child: Text(l10n.spend_frequency, style: textTheme.headline6),
+              ),
+              SpendFrequency(transactions: state.transactions),
               const RecentTransactions(),
             ],
           ),

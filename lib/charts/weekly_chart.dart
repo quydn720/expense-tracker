@@ -141,3 +141,93 @@ BarChartGroupData makeGroupData(int x, double y1, double y2, double width) {
     ],
   );
 }
+
+class MonthlyChart extends StatelessWidget {
+  const MonthlyChart({
+    super.key,
+    required this.expenses,
+    required this.startDate,
+    required this.endDate,
+  });
+
+  final Iterable<TransactionEntity> expenses;
+  final DateTime startDate;
+  final DateTime endDate;
+
+  Widget getTitles(double value, TitleMeta meta) {
+    if (value % 5 != 0) {
+      return Container();
+    }
+
+    return SideTitleWidget(
+      axisSide: meta.axisSide,
+      space: 4,
+      child: Text('${value.toInt()}'),
+    );
+  }
+
+  FlTitlesData get titlesData => FlTitlesData(
+        show: true,
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 30,
+            getTitlesWidget: getTitles,
+          ),
+        ),
+        leftTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 40,
+          ),
+        ),
+        topTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        rightTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    final a = expenses.groupMonthly(startDate);
+    final g = a[0]?.sum();
+    // final g2 = a[1]?.sum();
+
+    final c = g?[0] ?? 0;
+
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 32),
+      height: 147,
+      child: BarChart(
+        BarChartData(
+          barGroups: List.generate(
+            a.length,
+            (index) => makeGroupData2(index, c, 1),
+          ),
+          titlesData: titlesData,
+          gridData: FlGridData(
+            show: false,
+            drawVerticalLine: false,
+          ),
+          borderData: FlBorderData(show: false),
+        ),
+      ),
+    );
+  }
+}
+
+BarChartGroupData makeGroupData2(int x, double y, double width) {
+  return BarChartGroupData(
+    x: x,
+    barRods: [
+      BarChartRodData(
+        toY: y,
+        color: Colors.red,
+        width: 14,
+        borderRadius: BorderRadius.circular(6),
+      ),
+    ],
+  );
+}

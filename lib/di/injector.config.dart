@@ -113,12 +113,12 @@ Future<_i1.GetIt> $initGetIt(
   gh.lazySingleton<_i6.GoogleSignIn>(
       () => firebaseInjectableModule.googleSignIn);
   gh.lazySingleton<_i7.IAuthenticationRepository>(
-    () => devAppLocalPackageModule.getDev(),
-    registerFor: {_dev},
-  );
-  gh.lazySingleton<_i7.IAuthenticationRepository>(
     () => devAppLocalPackageModule.getProd(),
     registerFor: {_prod},
+  );
+  gh.lazySingleton<_i7.IAuthenticationRepository>(
+    () => devAppLocalPackageModule.getDev(),
+    registerFor: {_dev},
   );
   gh.factory<List<_i8.Budget>>(() => a.budgets);
   gh.lazySingleton<_i9.FirebaseAuth>(
