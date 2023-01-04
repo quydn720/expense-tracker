@@ -295,6 +295,12 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get reports => 'Báo cáo';
+
+  @override
+  String get total => 'Tổng cộng';
+
+  @override
   String get select_wallet => 'Chọn ví';
 
   @override

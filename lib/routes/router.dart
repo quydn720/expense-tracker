@@ -119,6 +119,7 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
         ],
       ),
       GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
         path: '/reports',
         builder: (_, __) => const TransactionReports(),
       ),

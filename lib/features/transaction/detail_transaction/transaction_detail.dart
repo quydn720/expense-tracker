@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/common/common_bottom_sheet.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
@@ -119,7 +120,7 @@ class TransactionDetailScreen extends StatelessWidget {
                       Text(l10n.type, style: textTheme.subtitle2),
                       const SizedBox(height: 4),
                       Text(
-                        _transaction.category.categoryType.name,
+                        _transaction.category.categoryType.trans(l10n),
                         style: s16w600,
                       ),
                     ],

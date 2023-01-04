@@ -49,18 +49,27 @@ extension ExpensesExtension on Iterable<TransactionEntity> {
     return [transactions, startDate, endDate];
   }
 
-  List<double> sum() {
+  List<double> sumByType() {
     var expense = 0.0;
     var income = 0.0;
+
     forEach((element) {
-      if (element.category.categoryType == CategoryType.expense) {
+      if (element.category.isExpense) {
         expense += element.amount;
       } else {
         income += element.amount;
       }
     });
 
-    return [expense, income];
+    return [expense * -1, income];
+  }
+
+  double sum() {
+    var total = 0.0;
+
+    forEach((element) => total += element.amount);
+
+    return total;
   }
 
   Map<String, List<TransactionEntity>> groupWeekly() {

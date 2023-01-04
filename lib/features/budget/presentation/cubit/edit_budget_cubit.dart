@@ -46,7 +46,6 @@ class EditBudgetCubit extends Cubit<EditBudgetState> {
       category: state.category!,
       whenToNotify: state.receiveAlert ? state.whenToNotify : 0,
     );
-    // if (budget.receiveNotification) {}
 
     try {
       if (state.initialBudget != null) {

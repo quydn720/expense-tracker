@@ -89,11 +89,18 @@ class CreateNewBudgetScreen extends StatelessWidget {
                     child: ListTile(
                       contentPadding: EdgeInsets.zero,
                       minLeadingWidth: 10,
-                      title: Text(controller.state.category?.name ?? ''),
+                      title: Text(
+                        controller.state.category?.name ?? '',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
                       leading: CircleAvatar(
                         radius: 24,
-                        backgroundColor: category?.backgroundColor,
-                        child: Icon(category?.icon, color: category?.color),
+                        backgroundColor:
+                            category?.backgroundColor.withOpacity(0.2),
+                        child: Icon(
+                          category?.icon,
+                          color: category?.color.withOpacity(1),
+                        ),
                       ),
                       onTap: () async {
                         final category =

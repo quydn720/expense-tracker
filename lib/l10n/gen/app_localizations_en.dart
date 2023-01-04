@@ -295,6 +295,12 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get reports => 'Reports';
+
+  @override
+  String get total => 'Total';
+
+  @override
   String get select_wallet => 'Select Wallet';
 
   @override

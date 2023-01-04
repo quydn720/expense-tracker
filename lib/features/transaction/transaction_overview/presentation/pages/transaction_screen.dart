@@ -178,7 +178,7 @@ class TransactionView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'USD ${dayTransactions.sum()[0].removeDecimalZeroFormat()}',
+                            'USD ${dayTransactions.sum().removeDecimalZeroFormat()}',
                             style: const TextStyle(
                               color: CupertinoColors.inactiveGray,
                               fontWeight: FontWeight.w500,

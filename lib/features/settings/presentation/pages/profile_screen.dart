@@ -77,6 +77,7 @@ class ProfileScreen extends StatelessWidget {
                     iconData: FontAwesomeIcons.rightFromBracket,
                     onTap: () async {
                       await showModalBottomSheet<bool>(
+                        useRootNavigator: true,
                         context: context,
                         builder: (_) {
                           return YesNoBottomSheet(
