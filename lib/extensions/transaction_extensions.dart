@@ -15,6 +15,8 @@ extension ExpensesExtension on Iterable<TransactionEntity> {
     DateTime endDate;
     final now = DateTime.now();
 
+    print(this.length);
+
     switch (period) {
       case Period.day:
         startDate = endDate = now.subtract(Duration(days: periodIndex));
@@ -68,7 +70,7 @@ extension ExpensesExtension on Iterable<TransactionEntity> {
 
     forEach((element) => total += element.amount);
 
-    return total;
+    return (total < 0) ? -total : total;
   }
 
   Map<String, List<TransactionEntity>> groupWeekly() {
@@ -81,6 +83,7 @@ extension ExpensesExtension on Iterable<TransactionEntity> {
       'Saturday': [],
       'Sunday': [],
     };
+    print(this.length);
 
     forEach((element) {
       grouped[element.dayInWeek]!.add(element);

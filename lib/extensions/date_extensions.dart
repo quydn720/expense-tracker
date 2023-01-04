@@ -18,7 +18,7 @@ extension DateExtensions on DateTime {
   }
 
   bool isBetween(DateTime startDate, DateTime endDate) {
-    return isAfter(startDate) && isBefore(endDate);
+    return (isAfter(startDate) || this == startDate) && (isBefore(endDate) || this==endDate);
   }
 
   String get formattedDate {
