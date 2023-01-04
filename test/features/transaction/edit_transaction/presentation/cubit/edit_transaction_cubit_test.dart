@@ -10,25 +10,30 @@ class MockAddTransactionUseCase extends Mock implements AddTransactionUseCase {}
 class MockDeleteTransactionUseCase extends Mock
     implements DeleteTransactionUseCase {}
 
+class MockUpdateTransctionUseCase extends Mock
+    implements UpdateTransactionUseCase {}
+
 void main() {
   late AddTransactionUseCase _addTransaction;
   late EditTransactionState state;
+  late UpdateTransactionUseCase _update;
   group('EditTransactionCubit', () {
     setUp(() {
       _addTransaction = MockAddTransactionUseCase();
+      _update = MockUpdateTransctionUseCase();
       state = EditTransactionState(date: DateTime(2022));
     });
 
     blocTest<EditTransactionCubit, EditTransactionState>(
       'emits Status.selectImage when attactment selection pressed',
-      build: () => EditTransactionCubit(_addTransaction),
+      build: () => EditTransactionCubit(_addTransaction, _update),
       act: (bloc) => bloc.openMediaBottomSheet(),
       seed: () => state,
       expect: () => [state.copyWith(showMediaBottomSheet: true)],
     );
     blocTest<EditTransactionCubit, EditTransactionState>(
       'emits amount when amount field changed',
-      build: () => EditTransactionCubit(_addTransaction),
+      build: () => EditTransactionCubit(_addTransaction, _update),
       act: (bloc) => bloc.amountChanged(amountStr: '5.0'),
       seed: () => state,
       expect: () => [
@@ -40,14 +45,14 @@ void main() {
     );
     blocTest<EditTransactionCubit, EditTransactionState>(
       'emits description when description field changed',
-      build: () => EditTransactionCubit(_addTransaction),
+      build: () => EditTransactionCubit(_addTransaction, _update),
       act: (bloc) => bloc.descriptionChanged('some notes'),
       seed: () => state,
       expect: () => [state.copyWith(description: 'some notes')],
     );
     blocTest<EditTransactionCubit, EditTransactionState>(
       'emits reversed state when the repeat button toggled',
-      build: () => EditTransactionCubit(_addTransaction),
+      build: () => EditTransactionCubit(_addTransaction, _update),
       act: (bloc) => bloc.repeatedButtonToggled(),
       seed: () => state,
       expect: () => [state.copyWith(isRepeated: true)],
