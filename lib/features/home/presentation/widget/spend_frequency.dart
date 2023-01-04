@@ -1,6 +1,5 @@
 import 'package:expense_tracker/charts/weekly_chart.dart';
 import 'package:expense_tracker/extensions/date_extensions.dart';
-import 'package:expense_tracker/extensions/number_extensions.dart';
 import 'package:expense_tracker/extensions/transaction_extensions.dart';
 import 'package:expense_tracker/features/settings/theme/theme.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
@@ -16,14 +15,9 @@ class SpendFrequency extends StatelessWidget {
     final _filterResult = transactions.filterByPeriod(Period.week, 0);
 
     final _transactions = _filterResult[0] as List<TransactionEntity>;
-    final _spentInPeriod = _transactions.sum();
 
     final start = _filterResult[1] as DateTime;
     final end = _filterResult[2] as DateTime;
-
-    final numOfDays = end.difference(start).inDays;
-
-    final _avgPerDay = _spentInPeriod / numOfDays;
 
     final textTheme = Theme.of(context).textTheme;
 

@@ -36,10 +36,10 @@ class ReportsCubit extends Cubit<ReportsState> {
   }
 
   void changePeriod(int index) {
-    final month = state.expenses.filterByPeriod(
-      Period.values[index],
-      0,
-    )[0] as List<TransactionEntity>;
+    // final month = state.expenses.filterByPeriod(
+    //   Period.values[index],
+    //   0,
+    // )[0] as List<TransactionEntity>;
     emit(
       state.copyWith(
         period: Period.values[index],

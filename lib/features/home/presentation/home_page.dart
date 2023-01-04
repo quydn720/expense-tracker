@@ -56,6 +56,7 @@ class HomeView extends StatelessWidget {
             children: [
               const _HomeAppBar(),
               const SizedBox(height: 16),
+              // ignore: lines_longer_than_80_chars
               Text(
                 '${l10n.account_balance}: ${formatter.format(state.accountBalance)}',
                 style: textTheme.headline2?.copyWith(color: color.onBackground),
@@ -69,7 +70,7 @@ class HomeView extends StatelessWidget {
               const RecentTransactions(),
             ],
           ),
-        ),
+      ),
       ),
     );
   }

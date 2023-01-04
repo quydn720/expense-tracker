@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(title: context.l10n.login),
+      appBar: AppBar(title: Text(context.l10n.login)),
       body: BlocListener<LoginFormCubit, LoginFormState>(
         listenWhen: (prev, curr) {
           final fail = curr.status == FormzStatus.invalid ||

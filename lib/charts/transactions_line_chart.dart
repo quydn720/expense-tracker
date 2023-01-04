@@ -1,8 +1,5 @@
-import 'package:expense_tracker/extensions/transaction_extensions.dart';
-import 'package:expense_tracker/features/transaction/transaction_overview/presentation/bloc/transaction_bloc.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TransactionsLineChart extends StatelessWidget {
   const TransactionsLineChart({super.key});
@@ -48,9 +45,6 @@ class TransactionsLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<TransactionOverviewBloc>().state;
-    final transactions = state.transactions.groupWeekly();
-
     return LineChart(
       LineChartData(
         titlesData: FlTitlesData(

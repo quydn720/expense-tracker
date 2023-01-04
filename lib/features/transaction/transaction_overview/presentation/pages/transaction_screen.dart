@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:expense_tracker/extensions/date_extensions.dart';
 import 'package:expense_tracker/extensions/number_extensions.dart';
 import 'package:expense_tracker/extensions/transaction_extensions.dart';

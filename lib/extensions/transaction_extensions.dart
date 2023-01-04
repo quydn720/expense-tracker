@@ -1,5 +1,4 @@
 import 'package:expense_tracker/extensions/date_extensions.dart';
-import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 
 enum Period {

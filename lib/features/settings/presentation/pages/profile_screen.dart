@@ -118,7 +118,6 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-// TODO(quy): display current user info
 class _UserTile extends StatelessWidget {
   const _UserTile();
 

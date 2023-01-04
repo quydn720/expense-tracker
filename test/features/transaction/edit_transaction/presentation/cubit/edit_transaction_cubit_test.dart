@@ -12,13 +12,11 @@ class MockDeleteTransactionUseCase extends Mock
 
 void main() {
   late AddTransactionUseCase _addTransaction;
-  late DeleteTransactionUseCase _deleteTransaction;
   late EditTransactionState state;
   group('EditTransactionCubit', () {
     setUp(() {
       _addTransaction = MockAddTransactionUseCase();
       state = EditTransactionState(date: DateTime(2022));
-      _deleteTransaction = MockDeleteTransactionUseCase();
     });
 
     blocTest<EditTransactionCubit, EditTransactionState>(

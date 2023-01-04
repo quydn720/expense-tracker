@@ -1,5 +1,4 @@
 import 'package:expense_tracker/di/injector.dart';
-import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/pages/login_screen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
@@ -12,7 +11,7 @@ class LoginProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(title: context.l10n.login),
+      appBar: AppBar(title: Text(context.l10n.login)),
       body: BlocProvider(
         create: (_) => getIt<LoginFormCubit>(),
         child: const LoginScreen(),
