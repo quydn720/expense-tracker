@@ -295,6 +295,9 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get select_wallet => 'Chọn ví';
+
+  @override
   String delete_confirmation_wallet(Object walletName) {
     return 'Xóa ví $walletName';
   }

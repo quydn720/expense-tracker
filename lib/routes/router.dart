@@ -185,9 +185,8 @@ GoRouter router({String? initialLocation, required AuthenticationBloc auth}) {
         path: '/category',
         parentNavigatorKey: _rootNavigatorKey,
         builder: (_, state) {
-          final extra = state.extra as Map<String, String>?;
-          return SelectCategoryProvider(
-            title: extra?['title'],
+          return const SelectCategoryProvider(
+            child: CategoryView(),
           );
         },
       ),

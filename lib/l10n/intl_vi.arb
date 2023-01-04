@@ -115,6 +115,7 @@
             }
         }
     },
+    "select_wallet": "Chọn ví",
     "delete_confirmation_wallet_1": "Tác vụ này sẽ xóa các giao dịch liên quan đến ví {walletName}",
     "@delete_confirmation_wallet_1": {
         "description": "Send user wallet name",

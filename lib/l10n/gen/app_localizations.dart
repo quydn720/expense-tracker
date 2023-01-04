@@ -657,6 +657,12 @@ abstract class AppLocalizations {
   /// **'This actions will remove all the transactions with {walletName} wallet'**
   String delete_confirmation_wallet_1(Object walletName);
 
+  /// No description provided for @select_wallet.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Wallet'**
+  String get select_wallet;
+
   /// Send user wallet name
   ///
   /// In en, this message translates to:

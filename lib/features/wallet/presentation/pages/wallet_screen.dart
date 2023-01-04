@@ -9,12 +9,12 @@ import 'package:expense_tracker/features/transaction/domain/entities/transaction
 import 'package:expense_tracker/features/transaction/presentation/widgets/transaction_tile.dart';
 import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
 import 'package:expense_tracker/features/wallet/presentation/cubit/wallet_cubit.dart';
+import 'package:expense_tracker/features/wallet/presentation/pages/select_wallet_view.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 
 class WalletScreenProvider extends StatelessWidget {
   const WalletScreenProvider({super.key});
@@ -140,8 +140,15 @@ class WalletScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: ElevatedButton(
-              onPressed: () => context.go('/add-new-wallet'),
               child: const Text('+ Add new wallet'),
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => BlocProvider.value(
+                    value: context.read<WalletCubit>(),
+                    child: const EditWalletScreen(),
+                  ),
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 48),

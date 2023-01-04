@@ -103,7 +103,9 @@ class CreateNewBudgetScreen extends StatelessWidget {
                           useRootNavigator: true,
                           builder: (_) => const FractionallySizedBox(
                             heightFactor: 0.9,
-                            child: SelectCategoryProvider(),
+                            child: SelectCategoryProvider(
+                              child: SelectCategoryView(),
+                            ),
                           ),
                         );
                         if (category != null) {

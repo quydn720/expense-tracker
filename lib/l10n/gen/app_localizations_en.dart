@@ -295,6 +295,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get select_wallet => 'Select Wallet';
+
+  @override
   String delete_confirmation_wallet(Object walletName) {
     return 'Delete $walletName wallet';
   }

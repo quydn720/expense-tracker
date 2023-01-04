@@ -126,6 +126,7 @@
             }
         }
     },
+    "select_wallet": "Select Wallet",
     "delete_confirmation_wallet": "Delete {walletName} wallet",
     "@delete_confirmation_wallet": {
         "description": "Send user wallet name",

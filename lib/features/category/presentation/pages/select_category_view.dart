@@ -17,15 +17,13 @@ import 'package:go_router/go_router.dart';
 const searchIconButtonKey = Key('selectCategoryScreen_search_iconButton');
 
 class SelectCategoryProvider extends StatelessWidget {
-  const SelectCategoryProvider({super.key, this.title});
-
-  final String? title;
-
+  const SelectCategoryProvider({super.key, required this.child});
+  final Widget child;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<CategoryCubit>(),
-      child: SelectCategoryView(title: title),
+      child: child,
     );
   }
 }
@@ -83,9 +81,11 @@ class SelectCategoryView extends StatelessWidget {
                 children: [
                   _CategoryList(
                     categories: categories.where((c) => c.isExpense),
+                    onCategoryTap: GoRouter.of(context).pop,
                   ),
                   _CategoryList(
                     categories: categories.where((c) => c.isIncome),
+                    onCategoryTap: GoRouter.of(context).pop,
                   ),
                 ],
               ),
@@ -100,10 +100,11 @@ class SelectCategoryView extends StatelessWidget {
 class _CategoryList extends StatelessWidget {
   const _CategoryList({
     required this.categories,
+    this.onCategoryTap,
   });
 
   final Iterable<CategoryEntity> categories;
-  // final VoidCallback onCategoryTap;
+  final ValueChanged<CategoryEntity>? onCategoryTap;
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +113,7 @@ class _CategoryList extends StatelessWidget {
       itemBuilder: (context, index) {
         final currentCategory = categories.elementAt(index);
 
+        // final onTap2 = () => GoRouter.of(context).pop(currentCategory);
         return Dismissible(
           direction: DismissDirection.endToStart,
           key: ValueKey(currentCategory),
@@ -139,7 +141,9 @@ class _CategoryList extends StatelessWidget {
           child: ListTile(
             contentPadding: const EdgeInsets.only(bottom: 8),
             minVerticalPadding: 7,
-            onTap: () => GoRouter.of(context).pop(currentCategory),
+            onTap: (onCategoryTap != null)
+                ? () => onCategoryTap!(currentCategory)
+                : null,
             leading: CircleAvatar(
               radius: 28,
               backgroundColor: currentCategory.backgroundColor,
@@ -157,6 +161,66 @@ class _CategoryList extends StatelessWidget {
       },
       itemCount: categories.length,
       separatorBuilder: (BuildContext context, int index) => const Divider(),
+    );
+  }
+}
+
+class CategoryView extends StatelessWidget {
+  const CategoryView({super.key, this.title});
+  final String? title;
+
+  @override
+  Widget build(BuildContext context) {
+    final categories = context.watch<CategoryCubit>().state.categories;
+
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) {
+                return BlocProvider.value(
+                  value: context.read<CategoryCubit>(),
+                  child: const EditCategoryScreen(),
+                );
+              },
+            ),
+          ),
+          label: Text(context.l10n.add_category),
+          icon: const Icon(FontAwesomeIcons.plus),
+        ),
+        appBar: DefaultAppBar(title: title ?? 'Select Category'),
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TabBar(
+              labelColor: Theme.of(context).colorScheme.onBackground,
+              tabs: [
+                Tab(text: context.l10n.expense),
+                Tab(text: context.l10n.income),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  _CategoryList(
+                    categories: categories.where((c) => c.isExpense),
+                  ),
+                  _CategoryList(
+                    categories: categories.where((c) => c.isIncome),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -60,7 +60,7 @@ class SelectWalletView extends StatelessWidget {
         label: Text(context.l10n.add_wallet),
         icon: const Icon(FontAwesomeIcons.plus),
       ),
-      appBar: DefaultAppBar(title: context.l10n.wallet),
+      appBar: DefaultAppBar(title: context.l10n.select_wallet),
       body: _WalletList(wallets: wallets),
     );
   }
