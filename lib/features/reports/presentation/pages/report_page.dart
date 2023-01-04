@@ -258,7 +258,7 @@ class SpendFrequency2 extends StatelessWidget {
             height: 200,
             child: WeeklyChart2(
               transactions: _transactions.groupWeekly(),
-              type: _transactions[0].category.categoryType,
+              type: type,
             ),
           ),
         ],
