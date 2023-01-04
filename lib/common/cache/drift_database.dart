@@ -194,26 +194,6 @@ class MyDatabase extends _$MyDatabase {
         .toList();
   }
 
-  Stream<List<Wallet>> getWallets() {
-    final walletEntries = select(wallets).watch();
-    return walletEntries.map(
-      (event) => event
-          .map(
-            (e) => Wallet(
-              id: e.id,
-              balance: e.balance,
-              name: e.name,
-              iconPath: 'iconPath',
-            ),
-          )
-          .toList(),
-    );
-  }
-
-  Future<void> addNewWallet(WalletsCompanion wallet) async {
-    await into(wallets).insert(wallet);
-  }
-
   // TODO(quy): stream this value
 
   Future<List<TransactionEntity>> getAllTransactionWithWalletId(

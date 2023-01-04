@@ -106,12 +106,30 @@
     "create_new_category": "Tạo danh mục mới",
     "delete_confirmation_1": "Bạn có muốn xóa danh mục này?",
     "delete_confirmation_2": "Tác vụ này không thể hoàn tác",
-    "delete_confirmation_3": "Xóa danh mục {categoryName}",
-    "@delete_confirmation_3": {
+    "delete_confirmation_category": "Xóa danh mục {categoryName}",
+    "@delete_confirmation_category": {
         "description": "Send user category name",
         "placeholders": {
             "categoryName": {
                 "description": "Category going to be deleted"
+            }
+        }
+    },
+    "delete_confirmation_wallet_1": "Tác vụ này sẽ xóa các giao dịch liên quan đến ví {walletName}",
+    "@delete_confirmation_wallet_1": {
+        "description": "Send user wallet name",
+        "placeholders": {
+            "walletName": {
+                "description": "Wallet going to be deleted"
+            }
+        }
+    },
+    "delete_confirmation_wallet": "Xóa ví {walletName}",
+    "@delete_confirmation_wallet": {
+        "description": "Send user wallet name",
+        "placeholders": {
+            "walletName": {
+                "description": "Wallet going to be deleted"
             }
         }
     },

@@ -108,12 +108,30 @@
     "create_new_category": "Create new category",
     "delete_confirmation_1": "Are you sure?",
     "delete_confirmation_2": "This action cannot be undone",
-    "delete_confirmation_3": "Delete {categoryName} category",
-    "@delete_confirmation_3": {
+    "delete_confirmation_category": "Delete {categoryName} category",
+    "@delete_confirmation_category": {
         "description": "Send user category name",
         "placeholders": {
             "categoryName": {
                 "description": "Category going to be deleted"
+            }
+        }
+    },
+    "delete_confirmation_wallet_1": "This actions will remove all the transactions with {walletName} wallet",
+    "@delete_confirmation_wallet_1": {
+        "description": "Send user wallet name",
+        "placeholders": {
+            "walletName": {
+                "description": "Wallet going to be deleted"
+            }
+        }
+    },
+    "delete_confirmation_wallet": "Delete {walletName} wallet",
+    "@delete_confirmation_wallet": {
+        "description": "Send user wallet name",
+        "placeholders": {
+            "walletName": {
+                "description": "Wallet going to be deleted"
             }
         }
     },

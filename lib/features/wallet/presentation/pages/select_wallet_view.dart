@@ -1,7 +1,7 @@
-import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/wallet/data/datasources/wallet_dao.dart';
 import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
 import 'package:expense_tracker/features/wallet/presentation/cubit/edit_wallet_cubit.dart';
 import 'package:expense_tracker/features/wallet/presentation/cubit/wallet_cubit.dart';
@@ -111,7 +111,7 @@ class EditWalletScreen extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => EditWalletCubit(
-        addNewWallet: AddNewWallet(context.read<MyDatabase>()),
+        addNewWallet: AddNewWallet(getIt<WalletsDao>()),
       ),
       child: Builder(
         builder: (context) {

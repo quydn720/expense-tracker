@@ -174,7 +174,7 @@ Future<_i1.GetIt> $initGetIt(
   gh.factory<_i26.IBudgetDataSource>(
       () => _i26.LocalBudgetDataSource(gh<_i22.BudgetsDao>()));
   gh.factory<_i27.WalletCubit>(() => _i27.WalletCubit(
-        db: gh<_i13.MyDatabase>(),
+        walletDao: gh<_i19.WalletsDao>(),
         getTransactionsUseCase: gh<_i27.GetTransactionOfWallet>(),
       ));
   gh.factory<_i28.ICategoryRepository>(

@@ -50,6 +50,9 @@ class TransactionOverviewBloc extends Bloc<TransactionEvent, TransactionState> {
           status: TransactionStatus.loaded,
         );
       },
+      onError: (_, __) {
+        return state.copyWith(status: TransactionStatus.initial);
+      },
     );
   }
 

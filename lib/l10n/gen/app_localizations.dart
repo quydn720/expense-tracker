@@ -649,7 +649,19 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Delete {categoryName} category'**
-  String delete_confirmation_3(Object categoryName);
+  String delete_confirmation_category(Object categoryName);
+
+  /// Send user wallet name
+  ///
+  /// In en, this message translates to:
+  /// **'This actions will remove all the transactions with {walletName} wallet'**
+  String delete_confirmation_wallet_1(Object walletName);
+
+  /// Send user wallet name
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {walletName} wallet'**
+  String delete_confirmation_wallet(Object walletName);
 
   /// No description provided for @name.
   ///

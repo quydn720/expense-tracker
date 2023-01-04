@@ -285,8 +285,18 @@ class AppLocalizationsVi extends AppLocalizations {
   String get delete_confirmation_2 => 'Tác vụ này không thể hoàn tác';
 
   @override
-  String delete_confirmation_3(Object categoryName) {
+  String delete_confirmation_category(Object categoryName) {
     return 'Xóa danh mục $categoryName';
+  }
+
+  @override
+  String delete_confirmation_wallet_1(Object walletName) {
+    return 'Tác vụ này sẽ xóa các giao dịch liên quan đến ví $walletName';
+  }
+
+  @override
+  String delete_confirmation_wallet(Object walletName) {
+    return 'Xóa ví $walletName';
   }
 
   @override

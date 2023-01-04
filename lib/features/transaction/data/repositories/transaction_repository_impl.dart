@@ -12,9 +12,7 @@ import 'package:injectable/injectable.dart';
 @dev
 @Injectable(as: ITransactionRepository)
 class TransactionRepositoryImpl implements ITransactionRepository {
-  TransactionRepositoryImpl(this._dao, this._mapper, this._walletDao) {
-    _init();
-  }
+  TransactionRepositoryImpl(this._dao, this._mapper, this._walletDao);
 
   final TransactionsDao _dao;
   final WalletsDao _walletDao;
@@ -57,8 +55,6 @@ class TransactionRepositoryImpl implements ITransactionRepository {
     final t = await _dao.getTransactionById(transactionId);
     final w = await _walletDao.getEntryById(t.walletId);
 
-    print(t.amount);
-
     await _walletDao.updateWallet(
       budgetId: t.walletId,
       target: WalletsCompanion(
@@ -74,10 +70,6 @@ class TransactionRepositoryImpl implements ITransactionRepository {
       transactionId: transaction.id,
       transaction: _mapper.fromEntity(transaction),
     );
-  }
-
-  Future<void> _init() async {
-    print('crate tran repo');
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/common/cache/drift_database.dart';
+import 'package:expense_tracker/features/wallet/data/datasources/wallet_dao.dart';
 import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
@@ -23,10 +24,11 @@ class EditWalletCubit extends Cubit<EditWalletState> {
 
   void changeAmount({
     required String amountStr,
-    required String currencySymbol,
+    required String? currencySymbol,
   }) {
-    // TODO
-    emit(state.copyWith(amount: 0));
+    final formattedString = amountStr.split(currencySymbol ?? '').join();
+
+    emit(state.copyWith(amount: double.tryParse(formattedString) ?? 0));
   }
 
   Future<void> submit() async {
@@ -49,12 +51,12 @@ class EditWalletCubit extends Cubit<EditWalletState> {
 }
 
 class AddNewWallet {
-  AddNewWallet(this.db);
+  AddNewWallet(this._dao);
 
-  final MyDatabase db;
+  final WalletsDao _dao;
 
   Future<void> call(Wallet wallet) async {
-    await db.addNewWallet(
+    await _dao.addNewWallet(
       WalletsCompanion.insert(
         id: wallet.id,
         name: wallet.name,

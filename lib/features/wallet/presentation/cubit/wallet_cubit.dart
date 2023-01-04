@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
 import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
+import 'package:expense_tracker/features/wallet/data/datasources/wallet_dao.dart';
 import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -14,22 +15,22 @@ part 'wallet_state.dart';
 @injectable
 class WalletCubit extends Cubit<WalletState> {
   WalletCubit({
-    required MyDatabase db,
+    required WalletsDao walletDao,
     required GetTransactionOfWallet getTransactionsUseCase,
-  })  : _db = db,
+  })  : _walletDao = walletDao,
         _getTransactionsUseCase = getTransactionsUseCase,
         super(const WalletState()) {
     _init();
   }
 
-  final MyDatabase _db;
+  final WalletsDao _walletDao;
   final GetTransactionOfWallet _getTransactionsUseCase;
   late final StreamSubscription<List<Wallet>> streamSubscription;
 
   void moveToAddWalletScreen() {}
 
   Future<void> _init() async {
-    streamSubscription = _db.getWallets().listen(
+    streamSubscription = _walletDao.getWallets().listen(
       (wallets) {
         emit(state.copyWith(wallets: wallets, status: WalletStatus.loaded));
       },
@@ -39,7 +40,7 @@ class WalletCubit extends Cubit<WalletState> {
 
   Future<void> c({required String walletId}) async {
     try {
-      final c = _getTransactionsUseCase.call(walletId: walletId);
+      await _getTransactionsUseCase.call(walletId: walletId);
       emit(state.copyWith(status: WalletStatus.loaded));
     } catch (e) {
       emit(state.copyWith(status: WalletStatus.error));
@@ -50,6 +51,10 @@ class WalletCubit extends Cubit<WalletState> {
   Future<void> close() {
     streamSubscription.cancel();
     return super.close();
+  }
+
+  Future<void> deleteWallet(Wallet wallet) async {
+    await _walletDao.deleteWallet(wallet.id);
   }
 }
 

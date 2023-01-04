@@ -3,12 +3,12 @@
 import 'dart:async';
 
 import 'package:expense_tracker/di/injector.dart';
+import 'package:expense_tracker/extensions/show_alert_dialog_helper.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/category/presentation/cubit/category_cubit.dart';
 import 'package:expense_tracker/features/category/presentation/pages/edit_category_view.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -122,7 +122,7 @@ class _CategoryList extends StatelessWidget {
               () => confirmer.complete(true),
               title: context.l10n.delete_confirmation_1,
               content: context.l10n.delete_confirmation_2,
-              destructiveLabel: context.l10n.delete_confirmation_3(
+              destructiveLabel: context.l10n.delete_confirmation_category(
                 currentCategory.name,
               ),
               cancellationCallback: () => confirmer.complete(false),
@@ -159,45 +159,4 @@ class _CategoryList extends StatelessWidget {
       separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
   }
-}
-
-void showAlertDialog(
-  BuildContext context,
-  Function destructiveCallback, {
-  required String title,
-  required String content,
-  required String destructiveLabel,
-  String? cancelLabel,
-  Function? cancellationCallback,
-}) {
-  showCupertinoModalPopup<void>(
-    context: context,
-    builder: (BuildContext context) => CupertinoAlertDialog(
-      title: Text(title),
-      content: Text(content),
-      actions: <CupertinoDialogAction>[
-        CupertinoDialogAction(
-          /// This parameter indicates this action is the default,
-          /// and turns the action's text to bold text.
-          isDefaultAction: true,
-          onPressed: () {
-            cancellationCallback?.call();
-            Navigator.pop(context);
-          },
-          child: Text(cancelLabel ?? 'Cancel'),
-        ),
-        CupertinoDialogAction(
-          /// This parameter indicates the action would perform
-          /// a destructive action such as deletion, and turns
-          /// the action's text color to red.
-          isDestructiveAction: true,
-          onPressed: () {
-            destructiveCallback();
-            Navigator.pop(context);
-          },
-          child: Text(destructiveLabel),
-        ),
-      ],
-    ),
-  );
 }

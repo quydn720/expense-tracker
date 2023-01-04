@@ -285,8 +285,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get delete_confirmation_2 => 'This action cannot be undone';
 
   @override
-  String delete_confirmation_3(Object categoryName) {
+  String delete_confirmation_category(Object categoryName) {
     return 'Delete $categoryName category';
+  }
+
+  @override
+  String delete_confirmation_wallet_1(Object walletName) {
+    return 'This actions will remove all the transactions with $walletName wallet';
+  }
+
+  @override
+  String delete_confirmation_wallet(Object walletName) {
+    return 'Delete $walletName wallet';
   }
 
   @override

@@ -8,4 +8,5 @@ part of 'wallet_dao.dart';
 
 mixin _$WalletsDaoMixin on DatabaseAccessor<MyDatabase> {
   $WalletsTable get wallets => attachedDatabase.wallets;
+  $TransactionsTable get transactions => attachedDatabase.transactions;
 }

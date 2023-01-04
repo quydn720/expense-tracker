@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/di/injector.dart';
+import 'package:expense_tracker/extensions/show_alert_dialog_helper.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
@@ -67,41 +70,70 @@ class WalletScreen extends StatelessWidget {
                 separatorBuilder: (_, __) => const Divider(height: 16),
                 itemCount: state.wallets.length,
                 shrinkWrap: true,
-                itemBuilder: (_, index) => GestureDetector(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 24,
-                          backgroundColor: primary.withOpacity(0.2),
-                          child: Icon(FontAwesomeIcons.wallet, color: primary),
-                        ),
-                        const SizedBox(width: 16),
-                        Text(
-                          state.wallets[index].name,
-                          style: textTheme.headline6,
-                        ),
-                        const Spacer(),
-                        Text(
-                          formatter.format(state.wallets[index].balance),
-                          style: textTheme.headline6,
-                        ),
-                      ],
+                itemBuilder: (_, index) {
+                  final currentWallet = state.wallets.elementAt(index);
+                  return Dismissible(
+                    direction: DismissDirection.endToStart,
+                    key: ValueKey(currentWallet),
+                    background: const ColoredBox(
+                      color: Colors.red,
+                      child: Icon(Icons.delete),
                     ),
-                  ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (_) => BlocProvider.value(
-                        value: context.read<WalletCubit>(),
-                        child: WalletDetail(
-                          wallet: state.wallets[index],
+                    confirmDismiss: (direction) async {
+                      final confirmer = Completer<bool>();
+                      showAlertDialog(
+                        context,
+                        () => confirmer.complete(true),
+                        title: context.l10n.delete_confirmation_1,
+                        content: context.l10n
+                            .delete_confirmation_wallet_1(currentWallet.name),
+                        destructiveLabel: context.l10n
+                            .delete_confirmation_wallet(currentWallet.name),
+                        cancellationCallback: () => confirmer.complete(false),
+                      );
+                      return confirmer.future;
+                    },
+                    onDismissed: (_) {
+                      context.read<WalletCubit>().deleteWallet(currentWallet);
+                    },
+                    child: GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 24,
+                              backgroundColor: primary.withOpacity(0.2),
+                              child:
+                                  Icon(FontAwesomeIcons.wallet, color: primary),
+                            ),
+                            const SizedBox(width: 16),
+                            Text(
+                              state.wallets[index].name,
+                              style: textTheme.headline6,
+                            ),
+                            const Spacer(),
+                            Text(
+                              formatter.format(state.wallets[index].balance),
+                              style: textTheme.headline6,
+                            ),
+                          ],
+                        ),
+                      ),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (_) => BlocProvider.value(
+                            value: context.read<WalletCubit>(),
+                            child: WalletDetail(
+                              wallet: state.wallets[index],
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
             ),
           ),
