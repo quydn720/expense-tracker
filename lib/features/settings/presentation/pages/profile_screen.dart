@@ -32,83 +32,85 @@ class ProfileScreen extends StatelessWidget {
           children: [
             const _UserTile(),
             const SizedBox(height: 40),
-            Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).canvasColor,
-                borderRadius: BorderRadius.circular(24),
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  _ProfileTile(
-                    key: moveToAccountScreenButtonKey,
-                    iconData: FontAwesomeIcons.wallet,
-                    onTap: () => context.push(
-                      '/profile/account',
-                      extra: {'title': 'Category'},
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                padding: const EdgeInsets.all(8),
+                child: ListView(
+                  children: [
+                    _ProfileTile(
+                      key: moveToAccountScreenButtonKey,
+                      iconData: FontAwesomeIcons.wallet,
+                      onTap: () => context.push(
+                        '/profile/account',
+                        extra: {'title': 'Category'},
+                      ),
+                      title: l10n.account,
                     ),
-                    title: l10n.account,
-                  ),
-                  const Divider(),
-                  _ProfileTile(
-                    iconData: FontAwesomeIcons.layerGroup,
-                    onTap: () => context.push('/category'),
-                    title: l10n.category,
-                  ),
-                  const Divider(),
-                  _ProfileTile(
-                    key: moveToSettingScreenButtonKey,
-                    iconData: FontAwesomeIcons.gear,
-                    onTap: () => context.push('/setting'),
-                    title: l10n.settings,
-                  ),
-                  const Divider(),
-                  _ProfileTile(
-                    key: moveToExportDataScreenButtonKey,
-                    iconData: FontAwesomeIcons.arrowUpFromBracket,
-                    onTap: () {
-                      context.push('/profile/export-data');
-                    },
-                    title: l10n.exportData,
-                  ),
-                  const Divider(),
-                  _ProfileTile(
-                    key: logoutButtonKey,
-                    iconData: FontAwesomeIcons.rightFromBracket,
-                    onTap: () async {
-                      await showModalBottomSheet<bool>(
-                        useRootNavigator: true,
-                        context: context,
-                        builder: (_) {
-                          return YesNoBottomSheet(
-                            key: logoutBottomSheetKey,
-                            confirmCallback: () {
-                              context
-                                  .read<AuthenticationBloc>()
-                                  .add(const LogoutRequested());
-                            },
-                            subtitle: l10n.logout_confirmation,
-                            title: l10n.logout,
-                          );
-                        },
-                      );
-                    },
-                    title: l10n.logout,
-                  ),
-                  if (getIt<AppConfigurations>().appName.contains('Dev')) ...[
-                    TextButton(
-                      onPressed: () {
-                        final db = getIt<MyDatabase>();
-                        Navigator.of(context).push(
-                          MaterialPageRoute<void>(
-                            builder: (context) => DriftDbViewer(db),
-                          ),
+                    const Divider(),
+                    _ProfileTile(
+                      iconData: FontAwesomeIcons.layerGroup,
+                      onTap: () => context.push('/category'),
+                      title: l10n.category,
+                    ),
+                    const Divider(),
+                    _ProfileTile(
+                      key: moveToSettingScreenButtonKey,
+                      iconData: FontAwesomeIcons.gear,
+                      onTap: () => context.push('/setting'),
+                      title: l10n.settings,
+                    ),
+                    const Divider(),
+                    _ProfileTile(
+                      key: moveToExportDataScreenButtonKey,
+                      iconData: FontAwesomeIcons.arrowUpFromBracket,
+                      onTap: () {
+                        context.push('/profile/export-data');
+                      },
+                      title: l10n.exportData,
+                    ),
+                    const Divider(),
+                    _ProfileTile(
+                      key: logoutButtonKey,
+                      iconData: FontAwesomeIcons.rightFromBracket,
+                      onTap: () async {
+                        await showModalBottomSheet<bool>(
+                          useRootNavigator: true,
+                          context: context,
+                          builder: (_) {
+                            return YesNoBottomSheet(
+                              key: logoutBottomSheetKey,
+                              confirmCallback: () {
+                                context
+                                    .read<AuthenticationBloc>()
+                                    .add(const LogoutRequested());
+                              },
+                              subtitle: l10n.logout_confirmation,
+                              title: l10n.logout,
+                            );
+                          },
                         );
                       },
-                      child: const Text('view database'),
+                      title: l10n.logout,
                     ),
+                    if (getIt<AppConfigurations>().appName.contains('Dev')) ...[
+                      TextButton(
+                        onPressed: () {
+                          final db = getIt<MyDatabase>();
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (context) => DriftDbViewer(db),
+                            ),
+                          );
+                        },
+                        child: const Text('view database'),
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           ],

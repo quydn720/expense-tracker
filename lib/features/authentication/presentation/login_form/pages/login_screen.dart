@@ -1,6 +1,5 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:expense_tracker/di/injector.dart';
-import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
 import 'package:expense_tracker/features/authentication/presentation/login_form/cubit/login_form_cubit.dart';
 import 'package:expense_tracker/l10n/gen/app_localizations.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';

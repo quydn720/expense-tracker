@@ -45,10 +45,10 @@ class WalletsDao extends DatabaseAccessor<MyDatabase> with _$WalletsDaoMixin {
   }
 
   Future<void> updateWallet({
-    required String budgetId,
+    required String walletId,
     required WalletsCompanion target,
   }) {
-    return (update(wallets)..where((b) => b.id.equals(budgetId))).write(target);
+    return (update(wallets)..where((b) => b.id.equals(walletId))).write(target);
   }
 
   Future<WalletEntry> getEntryById(String id) async {

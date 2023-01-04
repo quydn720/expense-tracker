@@ -72,6 +72,7 @@ class _EditTransaction extends StatelessWidget {
           listener: (_, state) async {
             if (state.formzStatus == FormzStatus.submissionSuccess) {
               final router = GoRouter.of(context);
+              final isNewTransaction = state.isNewTransaction;
               await showDialog<void>(
                 context: _,
                 builder: (_) {
@@ -97,7 +98,13 @@ class _EditTransaction extends StatelessWidget {
                   );
                 },
               );
-              router.pop();
+              if (!isNewTransaction) {
+                router
+                  ..pop()
+                  ..pop();
+              } else {
+                router.pop();
+              }
             }
             if (state.showMediaBottomSheet) {
               final attachment = await showModalBottomSheet<String>(

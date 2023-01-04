@@ -18,12 +18,6 @@ class TransactionsDao extends DatabaseAccessor<MyDatabase>
   Future<void> createOrUpdateTransaction(
     TransactionsCompanion transactionEntry,
   ) async {
-    // await (update(wallets)
-    //       ..where((b) => b.id.equals(transactionEntry.walletId.value)))
-    //     .write(
-    //   const WalletsCompanion(balance: Value(2)),
-    // );
-
     return transaction(
       () async {
         await into(transactions).insertOnConflictUpdate(transactionEntry);
@@ -99,7 +93,26 @@ class TransactionsDao extends DatabaseAccessor<MyDatabase>
   Future<void> updateTransaction({
     required String transactionId,
     required TransactionsCompanion transaction,
-  }) async {}
+  }) async {
+    final oldTransaction = await (select(transactions)
+          ..where((tbl) => tbl.id.equals(transactionId)))
+        .getSingle();
+
+    await (update(transactions)..where((t) => t.id.equals(transactionId)))
+        .write(transaction);
+
+    final walletId = transaction.walletId.value;
+    final wallet = await (select(wallets)
+          ..where((tbl) => tbl.id.equals(walletId)))
+        .getSingle();
+
+    final newWalletBalance =
+        wallet.balance - oldTransaction.amount + transaction.amount.value;
+
+    await (update(wallets)..where((tbl) => tbl.id.equals(walletId))).write(
+      WalletsCompanion(balance: Value(newWalletBalance)),
+    );
+  }
 
   Future<List<TransactionWithCategory>> getAllTransactionWithWalletId(
     String walletId,

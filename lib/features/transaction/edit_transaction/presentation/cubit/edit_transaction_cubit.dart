@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
+import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
 import 'package:expense_tracker/features/transaction/edit_transaction/usecases/add_transaction_use_case.dart';
 import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
 import 'package:expense_tracker/l10n/gen/app_localizations.dart';
@@ -18,7 +19,8 @@ part 'edit_transaction_state.dart';
 @injectable
 class EditTransactionCubit extends Cubit<EditTransactionState> {
   EditTransactionCubit(
-    this._addTransaction, {
+    this._addTransaction,
+    this._updateTransaction, {
     @factoryParam this.initialTransaction,
   }) : super(
           (initialTransaction != null)
@@ -28,7 +30,12 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
                   date: initialTransaction.dateCreated,
                   description: initialTransaction.description ?? '',
                   category: CategoryField.pure(initialTransaction.category),
-                  amount: AmountText.pure(initialTransaction.amount.toString()),
+                  amount: AmountText.pure(
+                    (initialTransaction.amount < 0
+                            ? -initialTransaction.amount
+                            : initialTransaction.amount)
+                        .toString(),
+                  ),
                   imgFile: initialTransaction.file,
                   wallet: WalletField.pure(initialTransaction.wallet),
                 )
@@ -37,6 +44,7 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
 
   final TransactionEntity? initialTransaction;
   final AddTransactionUseCase _addTransaction;
+  final UpdateTransactionUseCase _updateTransaction;
 
   void attachmentSelectionDone(XFile? imgStr) {
     emit(state.copyWith(imgFile: imgStr, showMediaBottomSheet: false));
@@ -85,7 +93,12 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
       file: state.imgFile,
     );
 
-    await _addTransaction.call(transaction);
+    if (initialTransaction != null) {
+      await _updateTransaction.call(transaction);
+    } else {
+      await _addTransaction.call(transaction);
+    }
+
     emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
   }
 
@@ -105,5 +118,16 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
     final formzStatus = Formz.validate([state.amount, state.category, wallet]);
 
     emit(state.copyWith(wallet: wallet, formzStatus: formzStatus));
+  }
+}
+
+@injectable
+class UpdateTransactionUseCase {
+  UpdateTransactionUseCase(this._repo);
+
+  final ITransactionRepository _repo;
+
+  Future<void> call(TransactionEntity transaction) async {
+    await _repo.updateTransaction(transaction);
   }
 }
