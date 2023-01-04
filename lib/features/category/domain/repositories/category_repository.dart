@@ -11,4 +11,5 @@ abstract class ICategoryRepository {
   Future<Either<Failure, CategoryEntity>> getCategoryById({
     required String id,
   });
+  Future<int> deleteCategory(CategoryEntity category);
 }

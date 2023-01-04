@@ -5,6 +5,17 @@ class AppLocalizationsVi extends AppLocalizations {
   AppLocalizationsVi([String locale = 'vi']) : super(locale);
 
   @override
+  String get select_color => 'Chọn màu sắc';
+
+  @override
+  String get color => 'Màu sắc';
+
+  @override
+  String forgot_password_sent(String email) {
+    return 'Kiểm tra email $email và làm theo hướng dẫn để cài đặt mật khẩu mới.';
+  }
+
+  @override
   String get about => 'Về chúng tôi';
 
   @override
@@ -17,7 +28,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get add_attachment => 'Thêm tệp đính kèm';
 
   @override
+  String get add_category => 'Thêm danh mục mới';
+
+  @override
   String get add_new_transaction => 'Thêm giao dịch mới';
+
+  @override
+  String get add_wallet => 'Thêm ví mới';
 
   @override
   String get amount_field_validation_emptyOrNegativeAmount => 'Giá trị giao dịch không thể nhỏ hơn hoặc bằng 0';
@@ -62,6 +79,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get budgetDescription => 'Get notification when you’re budget exceeding the limit';
 
   @override
+  String get camera => 'Camera';
+
+  @override
   String get category => 'Danh mục';
 
   @override
@@ -86,10 +106,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get detail_transaction => 'Chi tiết giao dịch';
 
   @override
+  String get document => 'Tệp tài liệu';
+
+  @override
   String get edit => 'Sửa giao dịch';
 
   @override
   String get edit_transaction => 'Chỉnh sửa giao dịch';
+
+  @override
+  String get empty_field => 'Bạn phải chọn / điền vào trường này';
+
+  @override
+  String get end_after => 'Kết thúc sau';
 
   @override
   String get expense => 'Khoản chi';
@@ -107,6 +136,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get faceId => 'Face ID';
 
   @override
+  String get filter_by => 'Lọc theo loại giao dịch';
+
+  @override
+  String get filter_transactions => 'Lọc và sắp xếp giao dịch';
+
+  @override
   String get fingerprint => 'Fingerprint';
 
   @override
@@ -116,12 +151,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get forgot_password_instruction => 'Nhập email của bạn và chúng tôi sẽ gửi link yêu cầu cài đặt mật khẩu mới.';
 
   @override
-  String forgot_password_sent(String email) {
-    return 'Kiểm tra email $email và làm theo hướng dẫn để cài đặt mật khẩu mới.';
-  }
+  String get forgot_password_title => 'Đừng lo lắng.';
 
   @override
-  String get forgot_password_title => 'Đừng lo lắng.';
+  String get frequency => 'Chu kỳ';
 
   @override
   String get googleError_userCancelled => 'Hủy quá trình đăng nhập với tài khoản Google';
@@ -134,6 +167,9 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get how_much => 'Giá trị giao dịch';
+
+  @override
+  String get image => 'Hình ảnh';
 
   @override
   String get income => 'Khoản thu';
@@ -190,7 +226,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get repeat_transaction => 'Giao dịch có lặp lại';
 
   @override
+  String get reset => 'Đặt lại';
+
+  @override
   String get security => 'Bảo mật';
+
+  @override
+  String get seeYourFinancialReport => 'Xem báo cáo giao dịch của bạn';
 
   @override
   String get see_all => 'Xem tất cả';
@@ -200,6 +242,9 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get signUp => 'Đăng ký';
+
+  @override
+  String get sort_by => 'Sắp xếp theo';
 
   @override
   String get spend_frequency => 'Báo cáo chi tiêu';
@@ -214,52 +259,42 @@ class AppLocalizationsVi extends AppLocalizations {
   String get transactions => 'Giao dịch';
 
   @override
+  String transactionsOverviewTransactionDeletedSnackbarText(Object transactionTitle) {
+    return 'Giao dịch \"$transactionTitle\" đã bị xóa.';
+  }
+
+  @override
   String get transfer => 'Chuyển tiền';
+
+  @override
+  String get type => 'Loại';
+
+  @override
+  String get undo => 'Hoàn tác';
+
+  @override
+  String get create_new_wallet => 'Tạo ví mới';
+
+  @override
+  String get create_new_category => 'Tạo danh mục mới';
+
+  @override
+  String get delete_confirmation_1 => 'Bạn có muốn xóa danh mục này?';
+
+  @override
+  String get delete_confirmation_2 => 'Tác vụ này không thể hoàn tác';
+
+  @override
+  String delete_confirmation_3(Object categoryName) {
+    return 'Xóa danh mục $categoryName';
+  }
+
+  @override
+  String get name => 'Tên';
 
   @override
   String get wallet => 'Ví tiền';
 
   @override
   String get yes_str => 'Có';
-
-  @override
-  String get undo => 'Hoàn tác';
-
-  @override
-  String transactionsOverviewTransactionDeletedSnackbarText(Object transactionTitle) {
-    return 'Giao dịch \"$transactionTitle\" đã bị xóa.';
-  }
-
-  @override
-  String get seeYourFinancialReport => 'Xem báo cáo giao dịch của bạn';
-
-  @override
-  String get filter_by => 'Lọc theo loại giao dịch';
-
-  @override
-  String get filter_transactions => 'Lọc và sắp xếp giao dịch';
-
-  @override
-  String get sort_by => 'Sắp xếp theo';
-
-  @override
-  String get image => 'Hình ảnh';
-
-  @override
-  String get document => 'Tệp tài liệu';
-
-  @override
-  String get camera => 'Camera';
-
-  @override
-  String get frequency => 'Chu kỳ';
-
-  @override
-  String get end_after => 'Kết thúc sau';
-
-  @override
-  String get reset => 'Đặt lại';
-
-  @override
-  String get type => 'Loại';
 }

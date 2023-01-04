@@ -5,6 +5,17 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get select_color => 'Select color';
+
+  @override
+  String get color => 'Color';
+
+  @override
+  String forgot_password_sent(String email) {
+    return 'Check your email $email and follow the instructions to reset your password';
+  }
+
+  @override
   String get about => 'About';
 
   @override
@@ -17,7 +28,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get add_attachment => 'Add attachment';
 
   @override
+  String get add_category => 'Add new category';
+
+  @override
   String get add_new_transaction => 'Add new transaction';
+
+  @override
+  String get add_wallet => 'Add new wallet';
 
   @override
   String get amount_field_validation_emptyOrNegativeAmount => 'The amount\'s value could not be negative or zero.';
@@ -62,6 +79,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get budgetDescription => 'Get notification when you’re budget exceeding the limit';
 
   @override
+  String get camera => 'Camera';
+
+  @override
   String get category => 'Category';
 
   @override
@@ -86,10 +106,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get detail_transaction => 'Transaction Detail';
 
   @override
+  String get document => 'Document';
+
+  @override
   String get edit => 'Edit';
 
   @override
   String get edit_transaction => 'Edit transaction';
+
+  @override
+  String get empty_field => 'This field can not be empty';
+
+  @override
+  String get end_after => 'End After';
 
   @override
   String get expense => 'Expense';
@@ -107,6 +136,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get faceId => 'Face ID';
 
   @override
+  String get filter_by => 'Filter By';
+
+  @override
+  String get filter_transactions => 'Filter Transactions';
+
+  @override
   String get fingerprint => 'Fingerprint';
 
   @override
@@ -116,12 +151,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forgot_password_instruction => 'Enter your email and we’ll send you a link to reset your password.';
 
   @override
-  String forgot_password_sent(String email) {
-    return 'Check your email $email and follow the instructions to reset your password';
-  }
+  String get forgot_password_title => 'Don\'t worry.';
 
   @override
-  String get forgot_password_title => 'Don\'t worry.';
+  String get frequency => 'Frequency';
 
   @override
   String get googleError_userCancelled => 'You canceled the login process';
@@ -134,6 +167,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get how_much => 'How much?';
+
+  @override
+  String get image => 'Image';
 
   @override
   String get income => 'Income';
@@ -190,7 +226,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get repeat_transaction => 'Repeat transaction, set your own time';
 
   @override
+  String get reset => 'Reset';
+
+  @override
   String get security => 'Security';
+
+  @override
+  String get seeYourFinancialReport => 'See your financial report';
 
   @override
   String get see_all => 'See all';
@@ -200,6 +242,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signUp => 'Sign Up';
+
+  @override
+  String get sort_by => 'Sort By';
 
   @override
   String get spend_frequency => 'Spend Frequency';
@@ -214,52 +259,42 @@ class AppLocalizationsEn extends AppLocalizations {
   String get transactions => 'Transactions';
 
   @override
+  String transactionsOverviewTransactionDeletedSnackbarText(Object transactionTitle) {
+    return 'Transaction \"$transactionTitle\" deleted.';
+  }
+
+  @override
   String get transfer => 'Transfer';
+
+  @override
+  String get type => 'Type';
+
+  @override
+  String get undo => 'Undo';
+
+  @override
+  String get create_new_wallet => 'Create new wallet';
+
+  @override
+  String get create_new_category => 'Create new category';
+
+  @override
+  String get delete_confirmation_1 => 'Are you sure?';
+
+  @override
+  String get delete_confirmation_2 => 'This action cannot be undone';
+
+  @override
+  String delete_confirmation_3(Object categoryName) {
+    return 'Delete $categoryName category';
+  }
+
+  @override
+  String get name => 'Name';
 
   @override
   String get wallet => 'Wallet';
 
   @override
   String get yes_str => 'Yes';
-
-  @override
-  String get undo => 'Undo';
-
-  @override
-  String transactionsOverviewTransactionDeletedSnackbarText(Object transactionTitle) {
-    return 'Transaction \"$transactionTitle\" deleted.';
-  }
-
-  @override
-  String get seeYourFinancialReport => 'See your financial report';
-
-  @override
-  String get filter_by => 'Filter By';
-
-  @override
-  String get filter_transactions => 'Filter Transactions';
-
-  @override
-  String get sort_by => 'Sort By';
-
-  @override
-  String get image => 'Image';
-
-  @override
-  String get document => 'Document';
-
-  @override
-  String get camera => 'Camera';
-
-  @override
-  String get frequency => 'Frequency';
-
-  @override
-  String get end_after => 'End After';
-
-  @override
-  String get reset => 'Reset';
-
-  @override
-  String get type => 'Type';
 }

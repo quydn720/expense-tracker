@@ -80,8 +80,7 @@ class EditTransactionCubit extends Cubit<EditTransactionState> {
       category: state.category.value!,
       dateCreated: state.date,
       amount: double.parse(state.amount.value),
-      // walletId: state.wallet.value!.id,
-      walletId: 'wallet 2',
+      walletId: state.wallet.value!.id,
       description: state.description,
       file: state.imgFile,
     );

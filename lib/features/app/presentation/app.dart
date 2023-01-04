@@ -1,6 +1,7 @@
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/budget/domain/repositories/budget_repository.dart';
+import 'package:expense_tracker/features/category/domain/repositories/category_repository.dart';
 import 'package:expense_tracker/features/settings/theme/theme.dart';
 import 'package:expense_tracker/features/transaction/domain/repositories/transaction_repository.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
@@ -41,6 +42,9 @@ class _AppState extends State<App> {
         ),
         RepositoryProvider(
           create: (_) => getIt<ITransactionRepository>(),
+        ),
+        RepositoryProvider(
+          create: (_) => getIt<ICategoryRepository>(),
         ),
       ],
       child: MaterialApp.router(

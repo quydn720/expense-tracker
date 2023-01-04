@@ -9,11 +9,20 @@
             }
         }
     },
+    "@transactionsOverviewTransactionDeletedSnackbarText": {
+        "placeholders": {
+            "transactionTitle": {
+                "description": "The title of the transaction that was deleted"
+            }
+        }
+    },
     "about": "Về chúng tôi",
     "account": "Tài khoản thanh toán",
     "account_balance": "Số dư tài khoản",
     "add_attachment": "Thêm tệp đính kèm",
+    "add_category": "Thêm danh mục mới",
     "add_new_transaction": "Thêm giao dịch mới",
+    "add_wallet": "Thêm ví mới",
     "amount_field_validation_emptyOrNegativeAmount": "Giá trị giao dịch không thể nhỏ hơn hoặc bằng 0",
     "amount_field_validation_invalidAmount": "Giá trị giao dịch không thể chứa các kí tự đặc biệt",
     "appearance": "Giao diện",
@@ -28,6 +37,7 @@
     "authError_wrongPassword": "Sai mật khẩu. Mời bạn thử lại.",
     "budget": "Ví của bạn",
     "budgetDescription": "Get notification when you’re budget exceeding the limit",
+    "camera": "Camera",
     "category": "Danh mục",
     "continue_str": "Tiếp tục",
     "create_budget": "Tạo ví mới",
@@ -36,22 +46,29 @@
     "delete_transaction_confirmation": "Bạn chắc chắn muốn xóa giao dịch này?",
     "description": "Ghi chú",
     "detail_transaction": "Chi tiết giao dịch",
+    "document": "Tệp tài liệu",
     "edit": "Sửa giao dịch",
     "edit_transaction": "Chỉnh sửa giao dịch",
+    "empty_field": "Bạn phải chọn / điền vào trường này",
+    "end_after": "Kết thúc sau",
     "expense": "Khoản chi",
     "expenseAlert": "Expense Alert",
     "expenseAlertDescription": "Get notification about you’re expense",
     "exportData": "Xuất dữ liệu",
     "faceId": "Face ID",
+    "filter_by": "Lọc theo loại giao dịch",
+    "filter_transactions": "Lọc và sắp xếp giao dịch",
     "fingerprint": "Fingerprint",
     "forgot_password": "Quên mật khẩu",
     "forgot_password_instruction": "Nhập email của bạn và chúng tôi sẽ gửi link yêu cầu cài đặt mật khẩu mới.",
     "forgot_password_sent": "Kiểm tra email {email} và làm theo hướng dẫn để cài đặt mật khẩu mới.",
     "forgot_password_title": "Đừng lo lắng.",
+    "frequency": "Chu kỳ",
     "googleError_userCancelled": "Hủy quá trình đăng nhập với tài khoản Google",
     "help": "Bạn cần giúp đỡ?",
     "home": "Trang chủ",
     "how_much": "Giá trị giao dịch",
+    "image": "Hình ảnh",
     "income": "Khoản thu",
     "language": "Ngôn ngữ",
     "languageError_notSuppported": "Ứng dụng chưa hỗ trợ ngôn ngữ này. Vui lòng liên hệ bộ phận hỗ trợ để được giúp đỡ.",
@@ -65,40 +82,42 @@
     "notification": "Thông báo",
     "pin": "PIN",
     "profile": "Hồ sơ",
+    "receive_alert_subtitle": "Nhận thông báo khi tổng số giao dịch vượt qua hạn mức",
+    "receive_alert_title": "Nhận thông báo",
     "recent_transactions": "Giao dịch gần đây",
     "repeat_str": "Lặp lại",
     "repeat_transaction": "Giao dịch có lặp lại",
+    "reset": "Đặt lại",
     "security": "Bảo mật",
+    "seeYourFinancialReport": "Xem báo cáo giao dịch của bạn",
     "see_all": "Xem tất cả",
     "settings": "Cài đặt",
     "signUp": "Đăng ký",
+    "sort_by": "Sắp xếp theo",
     "spend_frequency": "Báo cáo chi tiêu",
     "tipsAndArticles": "Tips and Articles",
     "tipsAndArticlesDescription": "Dich sang tieng Viet",
     "transactions": "Giao dịch",
-    "transfer": "Chuyển tiền",
-    "wallet": "Ví tiền",
-    "yes_str": "Có",
-    "receive_alert_title": "Nhận thông báo",
-    "receive_alert_subtitle": "Nhận thông báo khi tổng số giao dịch vượt qua hạn mức",
-    "undo": "Hoàn tác",
     "transactionsOverviewTransactionDeletedSnackbarText": "Giao dịch \"{transactionTitle}\" đã bị xóa.",
-    "@transactionsOverviewTransactionDeletedSnackbarText": {
+    "transfer": "Chuyển tiền",
+    "type": "Loại",
+    "undo": "Hoàn tác",
+    "name": "Tên",
+    "create_new_category": "Tạo danh mục mới",
+    "delete_confirmation_1": "Bạn có muốn xóa danh mục này?",
+    "delete_confirmation_2": "Tác vụ này không thể hoàn tác",
+    "delete_confirmation_3": "Xóa danh mục {categoryName}",
+    "@delete_confirmation_3": {
+        "description": "Send user category name",
         "placeholders": {
-            "transactionTitle": {
-                "description": "The title of the transaction that was deleted"
+            "categoryName": {
+                "description": "Category going to be deleted"
             }
         }
     },
-    "seeYourFinancialReport": "Xem báo cáo giao dịch của bạn",
-    "filter_by": "Lọc theo loại giao dịch",
-    "filter_transactions": "Lọc và sắp xếp giao dịch",
-    "frequency": "Chu kỳ",
-    "end_after": "Kết thúc sau",
-    "sort_by": "Sắp xếp theo",
-    "image": "Hình ảnh",
-    "camera": "Camera",
-    "document": "Tệp tài liệu",
-    "reset": "Đặt lại",
-    "type": "Loại"
+    "select_color": "Chọn màu sắc",
+    "color": "Màu sắc",
+    "wallet": "Ví tiền",
+    "create_new_wallet": "Tạo ví mới",
+    "yes_str": "Có"
 }

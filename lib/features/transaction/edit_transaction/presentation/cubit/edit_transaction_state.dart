@@ -68,14 +68,26 @@ class WalletField extends FormzInput<Wallet?, WalletTextError> {
   }
 }
 
+extension WalletTextErrorIntl on WalletTextError? {
+  String? toLocalizedString(AppLocalizations l10n) {
+    switch (this) {
+      case WalletTextError.empty:
+      case WalletTextError.negative:
+        return l10n.empty_field;
+      case null:
+        return null;
+    }
+  }
+}
+
 extension AmountTextErrorIntl on AmountTextError? {
   String? toLocalizedString(AppLocalizations l10n) {
     switch (this) {
       case AmountTextError.invalid:
-        return l10n.amount_field_validation_invalidAmount;
+        return l10n.empty_field;
       case AmountTextError.empty:
       case AmountTextError.negative:
-        return l10n.amount_field_validation_emptyOrNegativeAmount;
+        return l10n.empty_field;
       case null:
         return null;
     }
@@ -84,8 +96,8 @@ extension AmountTextErrorIntl on AmountTextError? {
 
 extension CategoryTextErrorIntl on CategoryTextError? {
   String? toLocalizedString(AppLocalizations l10n) {
-    if (this == CategoryTextError.empty) return l10n.authError_invalidEmail;
-    if (this == CategoryTextError.negative) return l10n.authError_userNotFound;
+    if (this == CategoryTextError.empty) return l10n.empty_field;
+    if (this == CategoryTextError.negative) return l10n.empty_field;
     return null;
   }
 }

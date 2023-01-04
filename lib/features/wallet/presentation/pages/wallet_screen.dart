@@ -10,6 +10,7 @@ import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 class WalletScreenProvider extends StatelessWidget {
@@ -31,6 +32,7 @@ class WalletScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<WalletCubit>().state;
     final textTheme = Theme.of(context).textTheme;
+    final primary = Theme.of(context).primaryColor;
 
     final formatter = context.read<AppBloc>().state.numberFormatter;
 
@@ -70,16 +72,11 @@ class WalletScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8),
                     child: Row(
                       children: [
-                        // DecoratedBox(
-                        //   decoration: BoxDecoration(
-                        //     color: const Color(0xffF1F1FA),
-                        //     borderRadius: BorderRadius.circular(16),
-                        //   ),
-                        //   child: Padding(
-                        //     padding: const EdgeInsets.all(12),
-                        //     child: Image.asset(state.wallets[index].iconPath),
-                        //   ),
-                        // ),
+                        CircleAvatar(
+                          radius: 24,
+                          backgroundColor: primary.withOpacity(0.2),
+                          child: Icon(FontAwesomeIcons.wallet, color: primary),
+                        ),
                         const SizedBox(width: 16),
                         Text(
                           state.wallets[index].name,

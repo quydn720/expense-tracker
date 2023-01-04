@@ -4,6 +4,7 @@ import 'package:badges/badges.dart';
 import 'package:expense_tracker/di/injector.dart';
 import 'package:expense_tracker/features/app/bloc/app_bloc.dart';
 import 'package:expense_tracker/features/app/presentation/widgets/default_app_bar.dart';
+import 'package:expense_tracker/features/budget/presentation/cubit/edit_budget_cubit.dart';
 import 'package:expense_tracker/features/category/domain/entities/category.dart';
 import 'package:expense_tracker/features/category/presentation/pages/select_category_view.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
@@ -11,6 +12,7 @@ import 'package:expense_tracker/features/transaction/edit_transaction/presentati
 import 'package:expense_tracker/features/transaction/edit_transaction/presentation/pages/bottomsheet.dart';
 import 'package:expense_tracker/features/wallet/domain/entities/wallet.dart';
 import 'package:expense_tracker/features/wallet/presentation/cubit/wallet_cubit.dart';
+import 'package:expense_tracker/features/wallet/presentation/pages/select_wallet_view.dart';
 import 'package:expense_tracker/gen/assets.gen.dart';
 import 'package:expense_tracker/l10n/localization_factory.dart';
 import 'package:flutter/material.dart';
@@ -398,7 +400,10 @@ class _CategoryField extends StatelessWidget {
             radius: 24,
             backgroundColor: category?.backgroundColor ??
                 theme.primaryColor.withOpacity(0.2),
-            child: Icon(icon, color: category?.color ?? Colors.grey),
+            child: Icon(
+              icon,
+              color: category?.color.withOpacity(1) ?? Colors.grey,
+            ),
           ),
           onTap: _onTap,
         ),
@@ -488,9 +493,14 @@ class _WalletDropdown extends StatelessWidget {
       controller.walletChanged(wallet);
     }
 
+    final state = context.watch<EditTransactionCubit>().state.wallet;
+    final errorText =
+        state.invalid ? state.error.toLocalizedString(context.l10n) : null;
+    final primary = Theme.of(context).primaryColor;
+
     return InputDecorator(
-      decoration: const InputDecoration(
-        // errorText: errorText,
+      decoration: InputDecoration(
+        errorText: errorText,
         contentPadding: EdgeInsets.zero,
         border: InputBorder.none,
       ),
@@ -505,43 +515,14 @@ class _WalletDropdown extends StatelessWidget {
           ),
           minLeadingWidth: 10,
           title: Text(wallet, style: theme.textTheme.bodyText1),
-          leading: const CircleAvatar(radius: 24),
+          leading: CircleAvatar(
+            radius: 24,
+            backgroundColor: primary.withOpacity(0.2),
+            child: Icon(FontAwesomeIcons.wallet, color: primary),
+          ),
           onTap: _onTap,
         ),
       ),
-    );
-  }
-}
-
-class SelectWalletProvider extends StatelessWidget {
-  const SelectWalletProvider({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<WalletCubit>(),
-      child: const SelectWalletScreen(),
-    );
-  }
-}
-
-class SelectWalletScreen extends StatelessWidget {
-  const SelectWalletScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final categories = context.watch<WalletCubit>().state.wallets;
-
-    return ListView(
-      children: categories
-          .map(
-            (w) => ListTile(
-              onTap: () => GoRouter.of(context).pop(w),
-              leading: const CircleAvatar(radius: 28),
-              title: Text(w.name),
-            ),
-          )
-          .toList(),
     );
   }
 }

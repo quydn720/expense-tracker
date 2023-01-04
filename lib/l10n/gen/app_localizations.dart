@@ -93,6 +93,24 @@ abstract class AppLocalizations {
     Locale('vi')
   ];
 
+  /// No description provided for @select_color.
+  ///
+  /// In en, this message translates to:
+  /// **'Select color'**
+  String get select_color;
+
+  /// No description provided for @color.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get color;
+
+  /// Send user prompt with user's email.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email {email} and follow the instructions to reset your password'**
+  String forgot_password_sent(String email);
+
   /// No description provided for @about.
   ///
   /// In en, this message translates to:
@@ -117,11 +135,23 @@ abstract class AppLocalizations {
   /// **'Add attachment'**
   String get add_attachment;
 
+  /// No description provided for @add_category.
+  ///
+  /// In en, this message translates to:
+  /// **'Add new category'**
+  String get add_category;
+
   /// No description provided for @add_new_transaction.
   ///
   /// In en, this message translates to:
   /// **'Add new transaction'**
   String get add_new_transaction;
+
+  /// No description provided for @add_wallet.
+  ///
+  /// In en, this message translates to:
+  /// **'Add new wallet'**
+  String get add_wallet;
 
   /// No description provided for @amount_field_validation_emptyOrNegativeAmount.
   ///
@@ -207,6 +237,12 @@ abstract class AppLocalizations {
   /// **'Get notification when you’re budget exceeding the limit'**
   String get budgetDescription;
 
+  /// No description provided for @camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get camera;
+
   /// No description provided for @category.
   ///
   /// In en, this message translates to:
@@ -255,6 +291,12 @@ abstract class AppLocalizations {
   /// **'Transaction Detail'**
   String get detail_transaction;
 
+  /// No description provided for @document.
+  ///
+  /// In en, this message translates to:
+  /// **'Document'**
+  String get document;
+
   /// No description provided for @edit.
   ///
   /// In en, this message translates to:
@@ -266,6 +308,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Edit transaction'**
   String get edit_transaction;
+
+  /// No description provided for @empty_field.
+  ///
+  /// In en, this message translates to:
+  /// **'This field can not be empty'**
+  String get empty_field;
+
+  /// No description provided for @end_after.
+  ///
+  /// In en, this message translates to:
+  /// **'End After'**
+  String get end_after;
 
   /// No description provided for @expense.
   ///
@@ -297,6 +351,18 @@ abstract class AppLocalizations {
   /// **'Face ID'**
   String get faceId;
 
+  /// No description provided for @filter_by.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter By'**
+  String get filter_by;
+
+  /// No description provided for @filter_transactions.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter Transactions'**
+  String get filter_transactions;
+
   /// No description provided for @fingerprint.
   ///
   /// In en, this message translates to:
@@ -315,17 +381,17 @@ abstract class AppLocalizations {
   /// **'Enter your email and we’ll send you a link to reset your password.'**
   String get forgot_password_instruction;
 
-  /// Send user prompt with user's email.
-  ///
-  /// In en, this message translates to:
-  /// **'Check your email {email} and follow the instructions to reset your password'**
-  String forgot_password_sent(String email);
-
   /// No description provided for @forgot_password_title.
   ///
   /// In en, this message translates to:
   /// **'Don\'t worry.'**
   String get forgot_password_title;
+
+  /// No description provided for @frequency.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency'**
+  String get frequency;
 
   /// No description provided for @googleError_userCancelled.
   ///
@@ -350,6 +416,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'How much?'**
   String get how_much;
+
+  /// No description provided for @image.
+  ///
+  /// In en, this message translates to:
+  /// **'Image'**
+  String get image;
 
   /// No description provided for @income.
   ///
@@ -459,11 +531,23 @@ abstract class AppLocalizations {
   /// **'Repeat transaction, set your own time'**
   String get repeat_transaction;
 
+  /// No description provided for @reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get reset;
+
   /// No description provided for @security.
   ///
   /// In en, this message translates to:
   /// **'Security'**
   String get security;
+
+  /// No description provided for @seeYourFinancialReport.
+  ///
+  /// In en, this message translates to:
+  /// **'See your financial report'**
+  String get seeYourFinancialReport;
 
   /// No description provided for @see_all.
   ///
@@ -482,6 +566,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign Up'**
   String get signUp;
+
+  /// No description provided for @sort_by.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort By'**
+  String get sort_by;
 
   /// No description provided for @spend_frequency.
   ///
@@ -507,11 +597,65 @@ abstract class AppLocalizations {
   /// **'Transactions'**
   String get transactions;
 
+  /// No description provided for @transactionsOverviewTransactionDeletedSnackbarText.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction \"{transactionTitle}\" deleted.'**
+  String transactionsOverviewTransactionDeletedSnackbarText(Object transactionTitle);
+
   /// No description provided for @transfer.
   ///
   /// In en, this message translates to:
   /// **'Transfer'**
   String get transfer;
+
+  /// No description provided for @type.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get type;
+
+  /// No description provided for @undo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get undo;
+
+  /// No description provided for @create_new_wallet.
+  ///
+  /// In en, this message translates to:
+  /// **'Create new wallet'**
+  String get create_new_wallet;
+
+  /// No description provided for @create_new_category.
+  ///
+  /// In en, this message translates to:
+  /// **'Create new category'**
+  String get create_new_category;
+
+  /// No description provided for @delete_confirmation_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure?'**
+  String get delete_confirmation_1;
+
+  /// No description provided for @delete_confirmation_2.
+  ///
+  /// In en, this message translates to:
+  /// **'This action cannot be undone'**
+  String get delete_confirmation_2;
+
+  /// Send user category name
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {categoryName} category'**
+  String delete_confirmation_3(Object categoryName);
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
 
   /// No description provided for @wallet.
   ///
@@ -524,84 +668,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Yes'**
   String get yes_str;
-
-  /// No description provided for @undo.
-  ///
-  /// In en, this message translates to:
-  /// **'Undo'**
-  String get undo;
-
-  /// No description provided for @transactionsOverviewTransactionDeletedSnackbarText.
-  ///
-  /// In en, this message translates to:
-  /// **'Transaction \"{transactionTitle}\" deleted.'**
-  String transactionsOverviewTransactionDeletedSnackbarText(Object transactionTitle);
-
-  /// No description provided for @seeYourFinancialReport.
-  ///
-  /// In en, this message translates to:
-  /// **'See your financial report'**
-  String get seeYourFinancialReport;
-
-  /// No description provided for @filter_by.
-  ///
-  /// In en, this message translates to:
-  /// **'Filter By'**
-  String get filter_by;
-
-  /// No description provided for @filter_transactions.
-  ///
-  /// In en, this message translates to:
-  /// **'Filter Transactions'**
-  String get filter_transactions;
-
-  /// No description provided for @sort_by.
-  ///
-  /// In en, this message translates to:
-  /// **'Sort By'**
-  String get sort_by;
-
-  /// No description provided for @image.
-  ///
-  /// In en, this message translates to:
-  /// **'Image'**
-  String get image;
-
-  /// No description provided for @document.
-  ///
-  /// In en, this message translates to:
-  /// **'Document'**
-  String get document;
-
-  /// No description provided for @camera.
-  ///
-  /// In en, this message translates to:
-  /// **'Camera'**
-  String get camera;
-
-  /// No description provided for @frequency.
-  ///
-  /// In en, this message translates to:
-  /// **'Frequency'**
-  String get frequency;
-
-  /// No description provided for @end_after.
-  ///
-  /// In en, this message translates to:
-  /// **'End After'**
-  String get end_after;
-
-  /// No description provided for @reset.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset'**
-  String get reset;
-
-  /// No description provided for @type.
-  ///
-  /// In en, this message translates to:
-  /// **'Type'**
-  String get type;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

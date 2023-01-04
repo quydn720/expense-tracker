@@ -12,7 +12,7 @@ class CategoryCircleIcon extends StatelessWidget {
     return CircleAvatar(
       radius: _iconRadius,
       backgroundColor: category.backgroundColor,
-      child: Icon(category.icon, color: category.color),
+      child: Icon(category.icon, color: category.color.withOpacity(1)),
     );
   }
 }

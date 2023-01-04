@@ -27,6 +27,11 @@ class CategoriesDao extends DatabaseAccessor<MyDatabase>
       (select(categories)..where((c) => c.name.equals(name))).getSingle();
   Future<List<Category>> getAllCategories() => select(categories).get();
   Stream<List<Category>> watchAllCategories() => select(categories).watch();
+
+  Future<int> deleteCategory(String categoryName) async {
+    final query = delete(categories)..where((c) => c.name.equals(categoryName));
+    return query.go();
+  }
 }
 
 class AlreadyContainsThisCategoryFailure implements Exception {}

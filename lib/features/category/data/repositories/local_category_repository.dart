@@ -22,6 +22,7 @@ class LocalCategoryRepository implements ICategoryRepository {
       name: Value(category.name),
       color: Value(category.color.value),
       icon: Value(category.icon),
+      type: Value(category.categoryType),
     );
     try {
       await _dao.addNewCategory(categoryCompanion);
@@ -77,5 +78,10 @@ class LocalCategoryRepository implements ICategoryRepository {
     } catch (e) {
       return left(Failure());
     }
+  }
+
+  @override
+  Future<int> deleteCategory(CategoryEntity category) async {
+    return _dao.deleteCategory(category.name);
   }
 }

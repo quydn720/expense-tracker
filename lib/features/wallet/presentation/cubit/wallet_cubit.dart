@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:expense_tracker/common/cache/drift_database.dart';
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
@@ -22,16 +24,17 @@ class WalletCubit extends Cubit<WalletState> {
 
   final MyDatabase _db;
   final GetTransactionOfWallet _getTransactionsUseCase;
+  late final StreamSubscription<List<Wallet>> streamSubscription;
 
   void moveToAddWalletScreen() {}
 
   Future<void> _init() async {
-    try {
-      final allWallets = await _db.getAllWallets();
-      emit(state.copyWith(wallets: allWallets, status: WalletStatus.loaded));
-    } catch (e) {
-      emit(state.copyWith(status: WalletStatus.error));
-    }
+    streamSubscription = _db.getWallets().listen(
+      (wallets) {
+        emit(state.copyWith(wallets: wallets, status: WalletStatus.loaded));
+      },
+      onError: (e) => emit(state.copyWith(status: WalletStatus.error)),
+    );
   }
 
   Future<void> c({required String walletId}) async {
@@ -41,6 +44,12 @@ class WalletCubit extends Cubit<WalletState> {
     } catch (e) {
       emit(state.copyWith(status: WalletStatus.error));
     }
+  }
+
+  @override
+  Future<void> close() {
+    streamSubscription.cancel();
+    return super.close();
   }
 }
 

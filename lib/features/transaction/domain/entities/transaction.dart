@@ -22,6 +22,13 @@ class TransactionEntity with _$TransactionEntity {
 
   const TransactionEntity._();
 
+  double get amountToSaveToDb {
+    if (category.isExpense) return amount * -1;
+    if (category.isIncome) return amount * 1;
+
+    return 0;
+  }
+
   String get dateCreatedStr => DateFormat.yMMMMEEEEd().format(dateCreated);
   String get dayInWeek {
     return DateFormat('EEEE').format(dateCreated);

@@ -1,5 +1,8 @@
 {
+    "select_color": "Select color",
+    "color": "Color",
     "@@locale": "en",
+    "forgot_password_sent": "Check your email {email} and follow the instructions to reset your password",
     "@forgot_password_sent": {
         "description": "Send user prompt with user's email.",
         "placeholders": {
@@ -9,11 +12,20 @@
             }
         }
     },
+    "@transactionsOverviewTransactionDeletedSnackbarText": {
+        "placeholders": {
+            "transactionTitle": {
+                "description": "The title of the todo that was deleted"
+            }
+        }
+    },
     "about": "About",
     "account": "Account",
     "account_balance": "Account Balance",
     "add_attachment": "Add attachment",
+    "add_category": "Add new category",
     "add_new_transaction": "Add new transaction",
+    "add_wallet": "Add new wallet",
     "amount_field_validation_emptyOrNegativeAmount": "The amount's value could not be negative or zero.",
     "amount_field_validation_invalidAmount": "Has invalid characters, please fix it.",
     "appearance": "Appearance",
@@ -28,6 +40,7 @@
     "authError_wrongPassword": "Incorrect password, please try again.",
     "budget": "Budget",
     "budgetDescription": "Get notification when you’re budget exceeding the limit",
+    "camera": "Camera",
     "category": "Category",
     "continue_str": "Continue",
     "create_budget": "Create new budget",
@@ -36,22 +49,28 @@
     "delete_transaction_confirmation": "Are you sure do you wanna remove this transaction?",
     "description": "Description",
     "detail_transaction": "Transaction Detail",
+    "document": "Document",
     "edit": "Edit",
     "edit_transaction": "Edit transaction",
+    "empty_field": "This field can not be empty",
+    "end_after": "End After",
     "expense": "Expense",
     "expenseAlert": "Expense Alert",
     "expenseAlertDescription": "Get notification about you’re expense",
     "exportData": "Export Data",
     "faceId": "Face ID",
+    "filter_by": "Filter By",
+    "filter_transactions": "Filter Transactions",
     "fingerprint": "Fingerprint",
     "forgot_password": "Forgot Password",
     "forgot_password_instruction": "Enter your email and we’ll send you a link to reset your password.",
-    "forgot_password_sent": "Check your email {email} and follow the instructions to reset your password",
     "forgot_password_title": "Don't worry.",
+    "frequency": "Frequency",
     "googleError_userCancelled": "You canceled the login process",
     "help": "Help",
     "home": "Home",
     "how_much": "How much?",
+    "image": "Image",
     "income": "Income",
     "language": "Language",
     "languageError_notSuppported": "Error",
@@ -70,35 +89,35 @@
     "recent_transactions": "Recent Transactions",
     "repeat_str": "Repeat",
     "repeat_transaction": "Repeat transaction, set your own time",
+    "reset": "Reset",
     "security": "Security",
+    "seeYourFinancialReport": "See your financial report",
     "see_all": "See all",
     "settings": "Settings",
     "signUp": "Sign Up",
+    "sort_by": "Sort By",
     "spend_frequency": "Spend Frequency",
     "tipsAndArticles": "Tips and Articles",
     "tipsAndArticlesDescription": "Small & useful pieces of pratical financial advice",
     "transactions": "Transactions",
-    "transfer": "Transfer",
-    "wallet": "Wallet",
-    "yes_str": "Yes",
-    "undo": "Undo",
     "transactionsOverviewTransactionDeletedSnackbarText": "Transaction \"{transactionTitle}\" deleted.",
-    "@transactionsOverviewTransactionDeletedSnackbarText": {
+    "transfer": "Transfer",
+    "type": "Type",
+    "undo": "Undo",
+    "create_new_wallet": "Create new wallet",
+    "create_new_category": "Create new category",
+    "delete_confirmation_1": "Are you sure?",
+    "delete_confirmation_2": "This action cannot be undone",
+    "delete_confirmation_3": "Delete {categoryName} category",
+    "@delete_confirmation_3": {
+        "description": "Send user category name",
         "placeholders": {
-            "transactionTitle": {
-                "description": "The title of the todo that was deleted"
+            "categoryName": {
+                "description": "Category going to be deleted"
             }
         }
     },
-    "seeYourFinancialReport": "See your financial report",
-    "filter_by": "Filter By",
-    "filter_transactions": "Filter Transactions",
-    "sort_by": "Sort By",
-    "image": "Image",
-    "document": "Document",
-    "camera": "Camera",
-    "frequency": "Frequency",
-    "end_after": "End After",
-    "reset": "Reset",
-    "type": "Type"
+    "name": "Name",
+    "wallet": "Wallet",
+    "yes_str": "Yes"
 }

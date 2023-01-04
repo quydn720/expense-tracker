@@ -1,4 +1,5 @@
 import 'package:expense_tracker/features/transaction/domain/entities/transaction.dart';
+import 'package:expense_tracker/l10n/gen/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -29,3 +30,14 @@ class CategoryEntity with _$CategoryEntity {
 }
 
 enum CategoryType { expense, income }
+
+extension CategoryTypeStr on CategoryType {
+  String trans(AppLocalizations dict) {
+    switch (this) {
+      case CategoryType.expense:
+        return dict.expense;
+      case CategoryType.income:
+        return dict.income;
+    }
+  }
+}

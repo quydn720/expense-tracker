@@ -65,7 +65,9 @@ class TransactionOverviewBloc extends Bloc<TransactionEvent, TransactionState> {
     TransactionOverviewUndoDeletionRequested event,
     Emitter<TransactionState> emit,
   ) async {
-    final transaction = state.lastDeletedTransaction!;
+    final transaction = state.lastDeletedTransaction!.copyWith(
+      amount: -state.lastDeletedTransaction!.amount,
+    );
 
     emit(state.copyWith(lastDeletedTransaction: null));
     await _addTransactionUseCase(transaction);

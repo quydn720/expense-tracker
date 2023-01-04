@@ -26,21 +26,8 @@ class CategoryCubit extends Cubit<CategoryState> {
     });
   }
 
-  Future<void> addNewCategory() async {
-    final result = await _repo.addNewCategory(
-      const CategoryEntity(
-        name: 'name',
-        color: Colors.transparent,
-        icon: Icons.abc,
-        categoryType: CategoryType.income,
-      ),
-    );
-    result.fold(
-      (l) {
-        emit(state.copyWith(addCategoryErrorMessage: l.toString()));
-      },
-      (r) {},
-    );
+  Future<void> deleteCategory(CategoryEntity category) async {
+    await _repo.deleteCategory(category);
   }
 
   @override

@@ -22,14 +22,15 @@ class TransactionRepositoryImpl implements ITransactionRepository {
 
   @override
   Future<void> addNewTransaction(TransactionEntity transaction) async {
-    await _dao.createOrUpdateTransaction(_mapper.fromEntity(transaction));
+    final transactionDto = _mapper.fromEntity(transaction);
+    await _dao.createOrUpdateTransaction(transactionDto);
 
     final w = await _walletDao.getEntryById(transaction.walletId);
 
     await _walletDao.updateWallet(
       budgetId: transaction.walletId,
       target: WalletsCompanion(
-        balance: Value(w.balance - transaction.amount),
+        balance: Value(w.balance + transactionDto.amount.value),
       ),
     );
   }
@@ -56,10 +57,12 @@ class TransactionRepositoryImpl implements ITransactionRepository {
     final t = await _dao.getTransactionById(transactionId);
     final w = await _walletDao.getEntryById(t.walletId);
 
+    print(t.amount);
+
     await _walletDao.updateWallet(
       budgetId: t.walletId,
       target: WalletsCompanion(
-        balance: Value(w.balance + t.amount),
+        balance: Value(w.balance - t.amount),
       ),
     );
     await _dao.deleteTransaction(transactionId);
@@ -95,7 +98,7 @@ class Mapper {
       walletId: transaction.walletId,
       categoryName: transaction.category.name,
       image: Value(transaction.file?.path),
-      amount: transaction.amount,
+      amount: transaction.amountToSaveToDb,
       dateCreated: transaction.dateCreated,
       isRepeated: transaction.isRepeated,
     );
